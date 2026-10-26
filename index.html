@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mon carnet</title>
+<title>Dashboard</title>
 <meta name="theme-color" content="#05070d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Carnet">
+<meta name="apple-mobile-web-app-title" content="Dashboard">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -292,7 +292,7 @@ details.panel[open]>summary{margin-bottom:12px}
 <div class="wrap">
   <header class="top">
     <div>
-      <h1 id="app-title">Mon carnet</h1>
+      <h1 id="app-title">Dashboard</h1>
       <button class="status" id="status" type="button" style="border:0;background:none;padding:0;cursor:pointer;font:inherit;font-size:.8rem;text-align:left"><i></i><span>Sur cet appareil</span></button>
     </div>
   </header>
@@ -470,7 +470,7 @@ details.panel[open]>summary{margin-bottom:12px}
       <h3>Personnaliser</h3>
       <div class="grid">
         <label for="s-name">Ton prénom<input id="s-name" placeholder="Joseph" maxlength="30" autocomplete="off"></label>
-        <label for="s-title">Nom de la page<input id="s-title" placeholder="Mon carnet" maxlength="40" autocomplete="off"></label>
+        <label for="s-title">Nom de la page<input id="s-title" placeholder="Dashboard" maxlength="40" autocomplete="off"></label>
         <label for="s-out">Catégories de dépenses<textarea id="s-out" spellcheck="false" style="min-height:190px"></textarea></label>
         <label for="s-in">Catégories d'entrées<textarea id="s-in" spellcheck="false" style="min-height:190px"></textarea></label>
         <label for="s-meals" class="wide">Repas<textarea id="s-meals" spellcheck="false" style="min-height:110px"></textarea></label>
@@ -1948,7 +1948,7 @@ document.querySelectorAll("button.card").forEach(function(c){
 
 /* ---------- rendu ---------- */
 function render(){
-  var t=state.settings.title||"Mon carnet";$("#app-title").textContent=t;
+  var t=state.settings.title||"Dashboard";$("#app-title").textContent=t;
   fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderHome();
 }
 
