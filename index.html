@@ -89,7 +89,26 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .chip span{color:var(--muted); font-family:var(--mono); font-size:.76rem}
 .catrow{display:grid; grid-template-columns:7.5rem 1fr auto; align-items:center; gap:10px; padding:5px 0; font-size:.9rem}
 .track{height:10px; background:var(--soft); border-radius:5px; overflow:hidden}
-.track i{display:block; height:100%; background:var(--accent); border-radius:5px}
+.track{display:flex}
+.track i{display:block; height:100%; background:var(--accent)}
+.track i.pend{background:repeating-linear-gradient(135deg, color-mix(in srgb, var(--accent) 45%, transparent) 0 4px, color-mix(in srgb, var(--accent) 22%, transparent) 4px 8px)}
+.track.over i{background:var(--bad)}
+.catrow .sub{display:block; font-size:.74rem; color:var(--muted); font-family:var(--body)}
+.phead{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:10px}
+.phead h3{margin:0}
+button.link{border:0; background:none; color:var(--accent); font:600 .88rem var(--body); cursor:pointer; padding:4px 0}
+details.panel>summary{list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px}
+details.panel>summary::-webkit-details-marker{display:none}
+details.panel>summary h3{margin:0}
+details.panel>summary::after{content:"+"; font:600 1.3rem var(--body); color:var(--muted)}
+details.panel[open]>summary::after{content:"−"}
+details.panel[open]>summary{margin-bottom:12px}
+.fc-big{font-family:var(--mono); font-size:1.9rem; font-weight:500; line-height:1.1; margin:2px 0 8px}
+.fc-lines{display:grid; gap:4px; font-size:.88rem}
+.fc-lines div{display:flex; justify-content:space-between; gap:10px}
+.fc-lines span:last-child{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+.tag{display:inline-block; font-size:.7rem; font-weight:600; color:var(--accent); border:1px solid currentColor; border-radius:999px; padding:0 6px; margin-left:6px; vertical-align:1px}
+.bgrid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px}
 .catrow .num{font-size:.85rem; text-align:right; white-space:nowrap}
 .day{font-size:.78rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin:12px 0 2px}
 .day:first-child{margin-top:0}
@@ -150,6 +169,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     </div>
     <div class="tiles" id="fin-tiles"></div>
     <p class="note" id="fin-note"></p>
+    <div class="panel" id="fin-forecast"></div>
 
     <form class="panel" id="fin-form" novalidate>
       <div class="seg" id="f-type">
@@ -165,7 +185,34 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
       <button class="primary" type="submit" id="f-submit">Ajouter la dépense</button>
     </form>
 
-    <div class="panel"><h3>Où part l'argent ce mois-ci</h3><div id="fin-cats"></div></div>
+    <div class="panel">
+      <div class="phead"><h3>Budget par catégorie</h3><button class="link" type="button" id="b-toggle" aria-expanded="false">Fixer mes budgets</button></div>
+      <p class="note" id="b-total" style="margin-bottom:8px"></p>
+      <div id="fin-cats"></div>
+      <div id="b-edit" hidden>
+        <p class="note" style="margin-top:12px">Montant maximum par mois pour chaque catégorie. Laisse vide pour ne pas budgéter.</p>
+        <div class="bgrid" id="b-inputs"></div>
+      </div>
+    </div>
+    <details class="panel" id="rec-panel">
+      <summary><h3>Dépenses et revenus récurrents</h3></summary>
+      <p class="note" id="rec-total" style="margin-bottom:8px"></p>
+      <div id="rec-list"></div>
+      <form id="rec-form" novalidate style="display:flex;flex-direction:column;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)">
+        <div class="seg">
+          <button type="button" id="r-type-out" data-v="out" aria-pressed="true">Dépense</button>
+          <button type="button" id="r-type-in" data-v="in" aria-pressed="false">Revenu</button>
+        </div>
+        <div class="grid">
+          <label for="r-label" class="wide">Libellé<input id="r-label" placeholder="Loyer, Navigo, Spotify, salaire…" maxlength="60" autocomplete="off"></label>
+          <label for="r-amount">Montant (€)<input id="r-amount" inputmode="decimal" placeholder="80" autocomplete="off"></label>
+          <label for="r-day">Jour du mois<input id="r-day" inputmode="numeric" placeholder="5" autocomplete="off"></label>
+          <label for="r-cat" class="wide">Catégorie<select id="r-cat"></select></label>
+        </div>
+        <button class="primary" type="submit" id="r-submit">Ajouter la dépense récurrente</button>
+        <p class="note">Elle s'ajoute toute seule à tes opérations chaque mois, le jour indiqué.</p>
+      </form>
+    </details>
     <div class="panel"><h3>Opérations du mois</h3><div id="fin-list"></div></div>
   </section>
 
@@ -265,13 +312,13 @@ var CATS={
   in:["Salaire","Aides","Ventes","Remboursement","Autre"]
 };
 
-var state={settings:{},fin:{},cal:{}};
+var state={settings:{},fin:{},cal:{},rec:[],finSkip:{}};
 var ui={tab:"fin",month:today().slice(0,7),day:today(),finType:"out"};
 
 /* ---------- stockage local ---------- */
 var LS="carnet-joseph-v1";
 function loadLocal(){
-  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{}}}}}catch(e){}
+  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{}}}}}catch(e){}
   try{var t=localStorage.getItem(LS+"-tab");if(t==="fin"||t==="cal"||t==="set")ui.tab=t}catch(e){}
 }
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
@@ -290,20 +337,27 @@ var dirty=lsGet("carnet-dirty")||{};
 var sync={state:"off",pushing:false,timer:null,lastOk:null,firstPull:!lsGet("carnet-synced-once")};
 
 function hasCfg(){return !!(CFG.url&&CFG.key)}
-function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length}
+function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length}
 function allKeys(){
   var k=["settings"];
+  if(state.rec.length)k.push("recurring");
   Object.keys(state.fin).forEach(function(m){k.push("fin-"+m)});
   Object.keys(state.cal).forEach(function(m){k.push("cal-"+m)});
   return k;
 }
 function bodyFor(key){
   if(key==="settings")return Object.assign({},state.settings);
-  return {items:(state[key.slice(0,3)][key.slice(4)]||[])};
+  if(key==="recurring")return {items:state.rec};
+  var b={items:(state[key.slice(0,3)][key.slice(4)]||[])};
+  if(key.slice(0,3)==="fin"){var sk=state.finSkip[key.slice(4)];if(sk&&sk.length)b.skipped=sk}
+  return b;
 }
 function applyDoc(key,body){
   if(key==="settings")state.settings=Object.assign({},body||{});
-  else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key))state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
+  else if(key==="recurring")state.rec=Array.isArray(body&&body.items)?body.items:[];
+  else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key)){state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
+    if(key.slice(0,3)==="fin"){if(Array.isArray(body&&body.skipped))state.finSkip[key.slice(4)]=body.skipped;else delete state.finSkip[key.slice(4)]}
+  }
 }
 
 function authFetch(path,opts,retried){
@@ -394,6 +448,7 @@ function pull(){
     });
     if(changed){saveLocal();render()}
     setSync("ok");
+    applyRecurring();
     return push();
   },onSyncError);
 }
@@ -404,7 +459,7 @@ function onSyncError(e){
   setSync("offline");
 }
 function setSync(s,msg){sync.state=s;sync.msg=msg||"";if(s==="ok")sync.lastOk=new Date();renderSync()}
-function syncNow(){if(session&&hasCfg())pull()}
+function syncNow(){if(session&&hasCfg())pull();else applyRecurring()}
 window.addEventListener("online",syncNow);
 window.addEventListener("focus",syncNow);
 document.addEventListener("visibilitychange",function(){if(!document.hidden)syncNow()});
@@ -459,7 +514,7 @@ function renderSync(){
     $("#s-logout").addEventListener("click",logout);
   }
 }
-function initDb(){if(session&&hasCfg()){sync.state="connecting";pull()}renderSync()}
+function initDb(){if(session&&hasCfg()){sync.state="connecting";pull()}else{applyRecurring()}renderSync()}
 
 /* ---------- toast ---------- */
 var toastTimer=null,undoFn=null;
@@ -531,9 +586,116 @@ $("#fin-form").addEventListener("submit",function(e){
 function delFin(m,id){
   var list=state.fin[m]||[];var i=list.findIndex(function(x){return x.id===id});if(i<0)return;
   var removed=list.splice(i,1)[0];
+  if(removed.rec){(state.finSkip[m]=state.finSkip[m]||[]).push(removed.id)}
   persist("fin-"+m);renderFin();
-  toast("Opération supprimée",function(){(state.fin[m]=state.fin[m]||[]).push(removed);persist("fin-"+m);renderFin()});
+  toast(removed.rec?"Supprimée pour ce mois-ci seulement":"Opération supprimée",function(){
+    (state.fin[m]=state.fin[m]||[]).push(removed);
+    if(removed.rec&&state.finSkip[m]){state.finSkip[m]=state.finSkip[m].filter(function(x){return x!==removed.id});if(!state.finSkip[m].length)delete state.finSkip[m]}
+    persist("fin-"+m);renderFin();
+  });
 }
+
+/* ---------- récurrentes ---------- */
+var recType="out";
+function daysIn(m){var p=m.split("-").map(Number);return new Date(p[0],p[1],0).getDate()}
+function recDate(r,m){return m+"-"+pad(Math.min(r.day,daysIn(m)))}
+function recOpId(r,m){return "r-"+r.id+"-"+m}
+function recApplies(r,m){return r.start<=m}
+function recPosted(r,m){
+  var id=recOpId(r,m);
+  return (state.fin[m]||[]).some(function(x){return x.id===id})||((state.finSkip[m]||[]).indexOf(id)>=0);
+}
+function applyRecurring(){
+  var t=today(),cur=t.slice(0,7),touched={};
+  state.rec.forEach(function(r){
+    for(var k=-2;k<=0;k++){
+      var m=addMonths(cur,k);
+      if(!recApplies(r,m)||recPosted(r,m))continue;
+      var d=recDate(r,m);if(d>t)continue;
+      (state.fin[m]=state.fin[m]||[]).push({id:recOpId(r,m),date:d,label:r.label,amount:r.amount,type:r.type,cat:r.cat,rec:r.id});
+      touched[m]=1;
+    }
+  });
+  var ms=Object.keys(touched);
+  ms.forEach(function(m){persist("fin-"+m)});
+  if(ms.length)renderFin();
+}
+function pendingRec(m){
+  // récurrentes pas encore passées pour ce mois (mois en cours ou futur)
+  if(m<today().slice(0,7))return [];
+  return state.rec.filter(function(r){return recApplies(r,m)&&!recPosted(r,m)})
+    .map(function(r){return {r:r,date:recDate(r,m)}})
+    .sort(function(a,b){return a.date<b.date?-1:1});
+}
+function fillRecCats(){
+  var el=$("#r-cat"),cur=el.value;
+  el.innerHTML=cats(recType).map(function(c){return "<option>"+esc(c)+"</option>"}).join("");
+  if(cats(recType).indexOf(cur)>=0)el.value=cur;
+}
+function setRecType(t){
+  recType=t;
+  $("#r-type-out").setAttribute("aria-pressed",t==="out"?"true":"false");
+  $("#r-type-in").setAttribute("aria-pressed",t==="in"?"true":"false");
+  $("#r-submit").textContent=t==="out"?"Ajouter la dépense récurrente":"Ajouter le revenu récurrent";
+  fillRecCats();
+}
+$("#r-type-out").addEventListener("click",function(){setRecType("out")});
+$("#r-type-in").addEventListener("click",function(){setRecType("in")});
+$("#rec-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  var label=$("#r-label").value.trim();if(!label){flash("#r-label");return}
+  var amt=num($("#r-amount").value);if(!(amt>0)){flash("#r-amount");return}
+  var day=Math.round(num($("#r-day").value));if(!(day>=1&&day<=31)){flash("#r-day");return}
+  var r={id:newId(),label:label,amount:Math.round(amt*100)/100,type:recType,cat:$("#r-cat").value,day:day,start:today().slice(0,7)};
+  state.rec.push(r);persist("recurring");
+  $("#r-label").value="";$("#r-amount").value="";$("#r-day").value="";
+  var already=recDate(r,r.start)<=today();
+  applyRecurring();renderFin();
+  toast(already?label+" ajoutée, y compris ce mois-ci. Si tu l'avais déjà notée, supprime le doublon dans les opérations.":label+" ajoutée : le "+day+" de chaque mois.");
+});
+function delRec(id){
+  var i=state.rec.findIndex(function(x){return x.id===id});if(i<0)return;
+  var removed=state.rec.splice(i,1)[0];persist("recurring");renderFin();
+  toast(removed.label+" n'est plus récurrente (les opérations passées restent)",function(){state.rec.splice(i,0,removed);persist("recurring");renderFin()});
+}
+$("#rec-list").addEventListener("click",function(e){var b=e.target.closest(".del");if(b)delRec(b.dataset.id)});
+function renderRec(){
+  var list=state.rec.slice().sort(function(a,b){return a.type===b.type?a.day-b.day:(a.type==="in"?-1:1)});
+  var tin=0,tout=0;list.forEach(function(r){if(r.type==="in")tin+=r.amount;else tout+=r.amount});
+  $("#rec-total").textContent=list.length?"Chaque mois : "+eur.format(tin)+" d'entrées fixes et "+eur.format(tout)+" de dépenses fixes.":"Loyer, forfait, Navigo, abonnements, salaire… Ajoute-les une fois, ils seront comptés tous les mois.";
+  $("#rec-list").innerHTML=list.map(function(r){
+    return '<div class="row"><div class="lbl">'+esc(r.label)+'<small>Le '+r.day+' du mois · '+esc(r.cat)+'</small></div>'+
+      '<span class="num '+(r.type==="in"?"good":"")+'">'+(r.type==="in"?"+ ":"− ")+eur.format(r.amount)+'</span>'+
+      '<button class="del" type="button" aria-label="Arrêter '+esc(r.label)+'" data-id="'+esc(r.id)+'">×</button></div>';
+  }).join("");
+  $("#rec-panel").querySelector("summary h3").textContent="Dépenses et revenus récurrents"+(list.length?" ("+list.length+")":"");
+}
+
+/* ---------- budgets ---------- */
+function budgets(){return state.settings.budgets&&typeof state.settings.budgets==="object"?state.settings.budgets:{}}
+$("#b-toggle").addEventListener("click",function(){
+  var ed=$("#b-edit"),open=ed.hidden;ed.hidden=!open;
+  this.setAttribute("aria-expanded",open?"true":"false");
+  this.textContent=open?"Terminé":(Object.keys(budgets()).length?"Modifier mes budgets":"Fixer mes budgets");
+  if(open)renderBudgetInputs();
+});
+var bTimer=null;
+function renderBudgetInputs(){
+  var b=budgets();
+  $("#b-inputs").innerHTML=cats("out").map(function(c,i){
+    return '<label for="b-in-'+i+'">'+esc(c)+'<input id="b-in-'+i+'" data-cat="'+esc(c)+'" inputmode="decimal" placeholder="—" autocomplete="off" value="'+(b[c]?b[c]:"")+'"></label>';
+  }).join("");
+}
+$("#b-inputs").addEventListener("input",function(){
+  clearTimeout(bTimer);
+  bTimer=setTimeout(function(){
+    var nb={};
+    document.querySelectorAll("#b-inputs input").forEach(function(el){var v=num(el.value);if(v>0)nb[el.dataset.cat]=Math.round(v*100)/100});
+    if(JSON.stringify(nb)===JSON.stringify(budgets()))return;
+    if(Object.keys(nb).length)state.settings.budgets=nb;else delete state.settings.budgets;
+    persist("settings");renderFin();
+  },600);
+});
 function renderFin(){
   $("#m-label").textContent=monthLabel(ui.month);
   var items=(state.fin[ui.month]||[]).slice();
@@ -549,17 +711,59 @@ function renderFin(){
     '<div class="tile main"><small>Reste</small><b class="'+(bal<0?"bad":"good")+'">'+eur.format(bal)+'</b></div>';
   $("#fin-note").textContent=inc>0
     ?(bal>=0?"Tu as mis de côté "+Math.round(bal/inc*100)+" % de tes entrées ce mois-ci.":"Tu as dépensé "+eur.format(-bal)+" de plus que tes entrées ce mois-ci.")
-    :(items.length?"Ajoute tes entrées (salaire, aides…) pour voir ce qu'il te reste.":"");
-  var cats=Object.keys(byCat).sort(function(a,b){return byCat[b]-byCat[a]});
-  $("#fin-cats").innerHTML=cats.length?cats.map(function(c){
-    var v=byCat[c],pct=out?v/out*100:0;
-    return '<div class="catrow"><span>'+esc(c)+'</span><div class="track"><i style="width:'+pct.toFixed(1)+'%"></i></div><span class="num">'+eur.format(v)+' · '+Math.round(pct)+' %</span></div>';
+    :(items.length&&!state.rec.some(function(r){return r.type==="in"})?"Ajoute tes entrées (salaire, aides…) pour voir ce qu'il te reste.":"");
+  // --- prévisionnel ---
+  var pend=pendingRec(ui.month),pendIn=0,pendOut=0,pendCat={};
+  pend.forEach(function(p){if(p.r.type==="in")pendIn+=p.r.amount;else{pendOut+=p.r.amount;pendCat[p.r.cat]=(pendCat[p.r.cat]||0)+p.r.amount}});
+  var bud=budgets(),catSet={};
+  Object.keys(byCat).forEach(function(c){catSet[c]=1});Object.keys(pendCat).forEach(function(c){catSet[c]=1});Object.keys(bud).forEach(function(c){catSet[c]=1});
+  var isPast=ui.month<today().slice(0,7);
+  var projOut=0,budLeft=0,budTotal=0,budSpent=0;
+  Object.keys(catSet).forEach(function(c){
+    var sp=byCat[c]||0,pd=pendCat[c]||0,b=bud[c]||0;
+    if(b){budTotal+=b;budSpent+=sp+pd;var left=Math.max(0,b-sp-pd);if(!isPast)budLeft+=left;projOut+=sp+pd+(isPast?0:left)}
+    else projOut+=sp+pd;
+  });
+  var projIn=inc+pendIn,proj=projIn-projOut;
+  var fc=$("#fin-forecast");
+  if(isPast){
+    fc.innerHTML='<h3>Bilan du mois</h3><div class="fc-big '+(bal<0?"bad":"good")+'">'+eur.format(bal)+'</div><p class="note">Mois terminé : c\'est ce qu\'il t\'est resté.</p>';
+  }else if(!state.rec.length&&!Object.keys(bud).length){
+    fc.innerHTML='<h3>Prévisionnel</h3><p class="note">Ajoute tes dépenses récurrentes (loyer, abonnements, salaire…) et fixe tes budgets par catégorie : je calcule ici ce qu\'il te restera en fin de mois.</p>';
+  }else{
+    var h='<h3>Prévu en fin de mois</h3><div class="fc-big '+(proj<0?"bad":"good")+'">'+eur.format(proj)+'</div><div class="fc-lines">';
+    h+='<div><span>Entrées'+(pendIn?' (dont '+eur.format(pendIn)+' à venir)':'')+'</span><span class="good">+ '+eur.format(projIn)+'</span></div>';
+    h+='<div><span>Déjà dépensé</span><span>− '+eur.format(out)+'</span></div>';
+    if(pendOut)h+='<div><span>Récurrentes à venir</span><span>− '+eur.format(pendOut)+'</span></div>';
+    if(budLeft)h+='<div><span>Reste de budget à dépenser</span><span>− '+eur.format(budLeft)+'</span></div>';
+    h+='</div>';
+    if(pend.length){
+      h+='<div class="day" style="margin-top:14px">À venir</div>';
+      pend.forEach(function(p){
+        h+='<div class="row"><div class="lbl">'+esc(p.r.label)+'<small>'+esc(dayLabel(p.date))+' · '+esc(p.r.cat)+'</small></div><span class="num '+(p.r.type==="in"?"good":"")+'">'+(p.r.type==="in"?"+ ":"− ")+eur.format(p.r.amount)+'</span><span></span></div>';
+      });
+    }
+    if(proj<0)h+='<p class="note bad" style="margin-top:8px">À ce rythme, tu finis le mois à découvert de '+eur.format(-proj)+'.</p>';
+    else if(!pendIn&&!inc)h+='<p class="note" style="margin-top:8px">Aucune entrée prévue ce mois-ci : ajoute ton salaire en revenu récurrent.</p>';
+    fc.innerHTML=h;
+  }
+  // --- budget par catégorie ---
+  $("#b-total").textContent=budTotal?"Budget total "+eur.format(budTotal)+" · prévu "+eur.format(budSpent)+" · "+(budTotal-budSpent>=0?"marge "+eur.format(budTotal-budSpent):"dépassé de "+eur.format(budSpent-budTotal)):"";
+  $("#b-toggle").textContent=$("#b-edit").hidden?(Object.keys(bud).length?"Modifier mes budgets":"Fixer mes budgets"):"Terminé";
+  var maxNoB=0;Object.keys(catSet).forEach(function(c){if(!bud[c])maxNoB=Math.max(maxNoB,(byCat[c]||0)+(pendCat[c]||0))});
+  var catList=Object.keys(catSet).sort(function(a,b){return ((byCat[b]||0)+(pendCat[b]||0))-((byCat[a]||0)+(pendCat[a]||0))||(bud[b]||0)-(bud[a]||0)});
+  $("#fin-cats").innerHTML=catList.length?catList.map(function(c){
+    var sp=byCat[c]||0,pd=pendCat[c]||0,b=bud[c]||0,den=b?Math.max(b,sp+pd):(maxNoB||1),over=b&&sp+pd>b;
+    var txt=b?eur.format(sp)+' / '+eur.format(b):eur.format(sp);
+    var sub=(pd?'+ '+eur.format(pd)+' à venir':'')+(over?(pd?' · ':'')+'dépassé de '+eur.format(sp+pd-b):'')+(b&&!over&&!isPast?(pd?' · ':'')+'reste '+eur.format(b-sp-pd):'');
+    return '<div class="catrow"><span>'+esc(c)+'</span><div class="track'+(over?" over":"")+'"><i style="width:'+(sp/den*100).toFixed(1)+'%"></i><i class="pend" style="width:'+(pd/den*100).toFixed(1)+'%"></i></div><span class="num'+(over?" bad":"")+'">'+txt+(sub?'<span class="sub">'+sub+'</span>':'')+'</span></div>';
   }).join(""):'<p class="empty">Aucune dépense en '+esc(monthLabel(ui.month).toLowerCase())+'.</p>';
+  renderRec();
   items.sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:(a.id<b.id?1:-1)});
   var html="",last="";
   items.forEach(function(x){
     if(x.date!==last){html+='<div class="day">'+esc(dayLabel(x.date))+'</div>';last=x.date}
-    html+='<div class="row"><div class="lbl">'+esc(x.label)+'<small>'+esc(x.cat)+'</small></div>'+
+    html+='<div class="row"><div class="lbl">'+esc(x.label)+(x.rec?'<span class="tag">récurrente</span>':'')+'<small>'+esc(x.cat)+'</small></div>'+
       '<span class="num '+(x.type==="in"?"good":"")+'">'+(x.type==="in"?"+ ":"− ")+eur.format(x.amount)+'</span>'+
       '<button class="del" type="button" aria-label="Supprimer '+esc(x.label)+'" data-m="'+esc(ui.month)+'" data-id="'+esc(x.id)+'">×</button></div>';
   });
@@ -713,7 +917,7 @@ function fillSettings(){
   if(document.activeElement!==$("#s-prot"))$("#s-prot").value=state.settings.protGoal||"";
 }
 $("#status").addEventListener("click",function(){setTab("set")});
-function backupText(){return JSON.stringify({app:"carnet-joseph",v:1,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal})}
+function backupText(){return JSON.stringify({app:"carnet-joseph",v:2,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip})}
 $("#s-download").addEventListener("click",function(){
   var blob=new Blob([backupText()],{type:"application/json"});
   var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="carnet-sauvegarde-"+today()+".json";
@@ -733,6 +937,8 @@ $("#s-import-btn").addEventListener("click",function(){
   if(!p||typeof p!=="object"||(!p.fin&&!p.cal)){toast("Ce texte n'est pas une sauvegarde de ce carnet.");return}
   var ok=function(o){return o&&typeof o==="object"};
   if(ok(p.settings))state.settings=Object.assign({},p.settings);
+  if(Array.isArray(p.rec))state.rec=p.rec;
+  if(ok(p.finSkip))state.finSkip=p.finSkip;
   ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
   allKeys().forEach(persist);
   $("#s-import").value="";
@@ -742,12 +948,13 @@ $("#s-import-btn").addEventListener("click",function(){
 /* ---------- rendu ---------- */
 function render(){
   var t=state.settings.title||"Mon carnet";$("#app-title").textContent=t;
-  fillCats();fillMeals();renderFin();renderCal();fillSettings();
+  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();
 }
 
 loadLocal();
 setTab(ui.tab);
 setFinType("out");
+setRecType("out");
 syncFinDate();
 fillMeals();
 $("#c-meal").value=defaultMeal();
