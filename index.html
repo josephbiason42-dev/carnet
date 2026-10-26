@@ -122,8 +122,11 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .ring-num{font:800 30px var(--body); fill:var(--ink); letter-spacing:-.5px}
 .ring-sub{font:600 11px var(--body); fill:var(--muted)}
 .k-pill{display:inline-flex; align-items:center; gap:8px; font-size:.85rem; font-weight:700; color:#dfe6ff; background:rgba(91,140,255,.16); border:1px solid rgba(91,140,255,.35); border-radius:999px; padding:7px 16px}
-.watch-line{display:flex; justify-content:space-between; gap:10px; font-size:.88rem; margin-top:8px; padding-top:8px; border-top:1px solid var(--line)}
-.watch-line span{color:var(--muted)}
+.def-calc{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:14px; font-size:.88rem; color:var(--muted); font-variant-numeric:tabular-nums}
+.def-big{font-weight:800; font-size:2.2rem; letter-spacing:-.02em; margin-top:6px; line-height:1.1}
+.def-big small{display:block; font-size:.85rem; font-weight:600; color:var(--muted); letter-spacing:0}
+.def-tiles{grid-template-columns:repeat(2,1fr)!important; margin-top:12px}
+.def-sub{display:block; font-size:.74rem; color:var(--muted); margin-top:2px}
 /* candidatures */
 .plus{all:unset; box-sizing:border-box; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; cursor:pointer; font:500 1.6rem/1 var(--body); color:#fff;
   background:linear-gradient(135deg,#5b8cff,#3b62d6); box-shadow:0 8px 22px -8px rgba(91,140,255,.8); transition:transform .25s, box-shadow .25s}
@@ -342,6 +345,14 @@ details.panel[open]>summary{margin-bottom:12px}
       <button id="d-next" aria-label="Jour suivant">›</button>
     </div>
     <div class="panel hero" id="cal-sum"></div>
+    <div class="panel" id="cal-burn">
+      <h3>Déficit calorique</h3>
+      <div class="grid">
+        <label for="c-act">Calories actives du jour<input id="c-act" inputmode="numeric" placeholder="ex. 450" autocomplete="off"></label>
+        <label for="c-bmr">BMR (métabolisme de base)<input id="c-bmr" inputmode="numeric" placeholder="ex. 1 800" autocomplete="off"></label>
+      </div>
+      <div id="cal-def"></div>
+    </div>
 
     <form class="panel" id="cal-form" novalidate>
       <div class="grid">
@@ -390,16 +401,13 @@ details.panel[open]>summary{margin-bottom:12px}
       <div class="grid">
         <label for="s-kcal">Calories par jour (kcal)<input id="s-kcal" inputmode="numeric" placeholder="ex. 2200" autocomplete="off"></label>
         <label for="s-prot">Protéines par jour (g)<input id="s-prot" inputmode="numeric" placeholder="ex. 140" autocomplete="off"></label>
+        <label for="s-bmr" class="wide">Métabolisme de base · BMR (kcal par jour)<input id="s-bmr" inputmode="numeric" placeholder="ex. 1 800" autocomplete="off"></label>
       </div>
       <p class="note" style="margin-top:10px">Laisse vide pour ne pas suivre d'objectif. Les changements sont enregistrés tout seuls.</p>
     </div>
     <div class="panel">
       <h3>Synchronisation</h3>
       <div id="sync-box"></div>
-    </div>
-    <div class="panel">
-      <h3>Montre (Xiaomi Smart Band)</h3>
-      <div id="watch-box"></div>
     </div>
     <div class="panel">
       <h3>Personnaliser</h3>
@@ -483,13 +491,13 @@ var CATS={
   in:["Salaire","Aides","Ventes","Remboursement","Autre"]
 };
 
-var state={settings:{},fin:{},cal:{},rec:[],finSkip:{},jobs:[]};
+var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[]};
 var ui={tab:"home",month:today().slice(0,7),day:today(),finType:"out"};
 
 /* ---------- stockage local ---------- */
 var LS="carnet-joseph-v1";
 function loadLocal(){
-  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[]}}}}catch(e){}
+  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{}}}}}catch(e){}
 
 }
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
@@ -515,6 +523,7 @@ function allKeys(){
   if(state.jobs.length)k.push("jobs");
   Object.keys(state.fin).forEach(function(m){k.push("fin-"+m)});
   Object.keys(state.cal).forEach(function(m){k.push("cal-"+m)});
+  Object.keys(state.act).forEach(function(m){if(k.indexOf("cal-"+m)<0)k.push("cal-"+m)});
   return k;
 }
 function bodyFor(key){
@@ -523,6 +532,7 @@ function bodyFor(key){
   if(key==="jobs")return {items:state.jobs};
   var b={items:(state[key.slice(0,3)][key.slice(4)]||[])};
   if(key.slice(0,3)==="fin"){var sk=state.finSkip[key.slice(4)];if(sk&&sk.length)b.skipped=sk}
+  if(key.slice(0,3)==="cal"){var ac=state.act[key.slice(4)];if(ac&&Object.keys(ac).length)b.active=ac}
   return b;
 }
 function applyDoc(key,body){
@@ -530,6 +540,7 @@ function applyDoc(key,body){
   else if(key==="recurring")state.rec=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="jobs")state.jobs=Array.isArray(body&&body.items)?body.items:[];
   else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key)){state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
+    if(key.slice(0,3)==="cal"){if(body&&body.active&&typeof body.active==="object")state.act[key.slice(4)]=body.active;else delete state.act[key.slice(4)]}
     if(key.slice(0,3)==="fin"){if(Array.isArray(body&&body.skipped))state.finSkip[key.slice(4)]=body.skipped;else delete state.finSkip[key.slice(4)]}
   }
 }
@@ -575,7 +586,7 @@ function login(email,pw,isSignup){
 }
 function logout(){
   if(session)authFetch("/auth/v1/logout",{method:"POST"}).catch(function(){});
-  session=null;lsSet("carnet-session",null);sync.state="off";healthState.token=undefined;renderSync();renderWatch();
+  session=null;lsSet("carnet-session",null);sync.state="off";renderSync();
 }
 
 function markDirty(key){dirty[key]=(dirty[key]||0)+1;lsSet("carnet-dirty",dirty)}
@@ -621,7 +632,6 @@ function pull(){
       if(JSON.stringify(remote[k])!==JSON.stringify(bodyFor(k))){applyDoc(k,remote[k]);changed=true}
     });
     if(changed){saveLocal();render()}
-    fetchHealth();if(healthState.token===undefined)fetchToken();
     setSync("ok");
     applyRecurring();
     return push();
@@ -690,7 +700,7 @@ function renderSync(){
     $("#s-logout").addEventListener("click",logout);
   }
 }
-function initDb(){if(session&&hasCfg()){sync.state="connecting";pull()}else{applyRecurring()}renderSync();renderWatch()}
+function initDb(){if(session&&hasCfg()){sync.state="connecting";pull()}else{applyRecurring()}renderSync()}
 
 /* ---------- toast ---------- */
 var toastTimer=null,undoFn=null;
@@ -1038,6 +1048,66 @@ $("#cal-quick").addEventListener("click",function(e){
   var b=e.target.closest(".chip");if(!b)return;var x=recent[+b.dataset.i];if(!x)return;
   $("#c-name").value=x.name;$("#c-kcal").value=x.kcal;$("#c-prot").value=x.prot||"";$("#c-kcal").focus();
 });
+/* ---------- déficit ---------- */
+var KCAL_KG=7700;
+function actOf(d){var m=state.act[d.slice(0,7)];return m&&m[d]!=null?+m[d]:null}
+function dayDef(d){
+  var bmr=+state.settings.bmr||0;if(!bmr)return null;
+  if(!dayItems(d).length)return null;
+  var eat=dayTotal(d).kcal,act=actOf(d)||0;
+  return {eat:eat,act:act,bmr:bmr,burn:bmr+act,def:bmr+act-eat};
+}
+function sumDef(from,to){
+  var s=0,n=0,d=from;
+  while(d<=to){var x=dayDef(d);if(x){s+=x.def;n++}d=addDays(d,1)}
+  return {def:s,days:n};
+}
+function weekStart(d){var dt=parseYmd(d),w=(dt.getDay()+6)%7;return addDays(d,-w)}
+function fmtDef(v){return (v>=0?"":"+ ")+intf.format(Math.abs(v))+" kcal"}
+function calDefLine(d){
+  var x=dayDef(d);if(!x)return "";
+  var w=sumDef(weekStart(d),d);
+  return '<div class="k-lbl" style="margin-top:2px">'+(x.def>=0?"Déficit ":"Surplus ")+'<b style="color:'+(x.def>=0?"var(--good)":"#ffb38a")+'">'+intf.format(Math.abs(x.def))+' kcal</b> · semaine '+(w.def>=0?"− ":"+ ")+intf.format(Math.abs(w.def))+'</div>';
+}
+function renderDef(){
+  var box=$("#cal-def");if(!box)return;
+  var a=$("#c-act"),b=$("#c-bmr"),ac=actOf(ui.day);
+  if(document.activeElement!==a)a.value=ac!=null?ac:"";
+  if(document.activeElement!==b)b.value=state.settings.bmr||"";
+  var bmr=+state.settings.bmr||0;
+  if(!bmr){box.innerHTML='<p class="note" style="margin-top:10px">Renseigne ton BMR (ton métabolisme de base, en kcal par jour) pour calculer ton déficit.</p>';return}
+  var x=dayDef(ui.day),t=dayTotal(ui.day),act=ac||0;
+  var h='<div class="def-calc"><span>BMR '+intf.format(bmr)+'</span><span>+ actives '+intf.format(act)+'</span><span>− mangé '+intf.format(t.kcal)+'</span></div>';
+  if(!x){h+='<p class="note" style="margin-top:8px">Note ce que tu as mangé ce jour-là pour calculer ton déficit.</p>'}
+  else h+='<div class="def-big '+(x.def>=0?"good":"warn")+'">'+(x.def>=0?"− ":"+ ")+intf.format(Math.abs(x.def))+' kcal<small>'+(x.def>=0?"de déficit":"de surplus")+(dayLabel(ui.day)==="Aujourd'hui"?" aujourd'hui":" ce jour-là")+'</small></div>';
+  var w=sumDef(weekStart(ui.day),ui.day),mo=sumDef(ui.day.slice(0,7)+"-01",ui.day);
+  var tile=function(lbl,o){return '<div class="tile"><small>'+lbl+'</small><b class="'+(o.def>=0?"good":"warn")+'">'+(o.days?(o.def>=0?"− ":"+ ")+intf.format(Math.abs(o.def)):"—")+'</b><span class="def-sub">'+(o.days?o.days+(o.days>1?" jours notés":" jour noté")+" · ≈ "+(Math.abs(o.def)/KCAL_KG).toLocaleString("fr-FR",{maximumFractionDigits:2})+" kg":"aucun jour noté")+'</span></div>'};
+  h+='<div class="tiles def-tiles">'+tile("Cette semaine",w)+tile("Ce mois-ci",mo)+'</div>';
+  h+='<p class="note" style="margin-top:8px">Les jours sans repas noté ne sont pas comptés. Le poids est une estimation (environ 7 700 kcal par kg).</p>';
+  box.innerHTML=h;
+}
+var actT=null;
+$("#c-act").addEventListener("input",function(){
+  var el=this;clearTimeout(actT);
+  actT=setTimeout(function(){
+    var v=num(el.value),d=ui.day,m=d.slice(0,7),cur=actOf(d),nv=v>=0&&el.value.trim()!==""?Math.round(v):null;
+    if(cur===nv)return;
+    state.act[m]=state.act[m]||{};
+    if(nv==null)delete state.act[m][d];else state.act[m][d]=nv;
+    if(!Object.keys(state.act[m]).length)delete state.act[m];
+    persist("cal-"+m);renderDef();renderHome();
+  },500);
+});
+var bmrT=null;
+$("#c-bmr").addEventListener("input",function(){
+  var el=this;clearTimeout(bmrT);
+  bmrT=setTimeout(function(){
+    var v=num(el.value),nv=v>0?Math.round(v):null;
+    if((state.settings.bmr||null)===nv)return;
+    if(nv)state.settings.bmr=nv;else delete state.settings.bmr;
+    persist("settings");renderDef();renderHome();fillSettings();
+  },600);
+});
 function renderCal(){
   renderHome();
   $("#d-label").textContent=dayLabel(ui.day);
@@ -1053,12 +1123,6 @@ function renderCal(){
     h+='<div class="heroline" style="margin-top:8px"><span class="muted">Pas d\'objectif fixé. <button class="ghost" type="button" id="go-set" style="padding:4px 10px;margin-left:4px">Fixer un objectif</button></span>';
   }
   h+='<span class="num">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g</span></div>';
-  var hw=healthDay(ui.day);
-  if(hw){
-    var tot=(hw.kcal||0)+(hw.rest||0),bil=t.kcal-tot;
-    h+='<div class="watch-line"><span>Montre</span><b>'+(hw.kcal!=null?intf.format(hw.kcal)+' kcal actives':'—')+(hw.steps!=null?' · '+intf.format(hw.steps)+' pas':'')+'</b></div>';
-    if(hw.rest)h+='<div class="watch-line"><span>Dépense totale (actives + repos)</span><b>'+intf.format(tot)+' kcal</b></div><div class="watch-line"><span>Bilan du jour (mangé − dépensé)</span><b class="'+(bil>0?"warn":"good")+'">'+(bil>0?"+ ":"− ")+intf.format(Math.abs(bil))+' kcal</b></div>';
-  }
   $("#cal-sum").innerHTML=h;
   var gs=$("#go-set");if(gs)gs.addEventListener("click",function(){setTab("set");$("#s-kcal").focus()});
 
@@ -1075,7 +1139,7 @@ function renderCal(){
     });
   });
   $("#cal-list").innerHTML=html||'<p class="empty">Rien de noté pour ce jour.</p>';
-  renderWeek();renderQuick();
+  renderWeek();renderQuick();renderDef();
 }
 function renderWeek(){
   var days=[];for(var i=6;i>=0;i--)days.push(addDays(ui.day,-i));
@@ -1100,7 +1164,8 @@ function renderWeek(){
   var filled=vals.filter(function(v){return v>0});
   var avg=filled.length?filled.reduce(function(a,b){return a+b},0)/filled.length:0;
   s+='<div class="legend">'+(filled.length?'<span>Moyenne : <b class="num">'+intf.format(avg)+'</b> kcal par jour noté ('+filled.length+' j)</span>':'<span>Aucun jour noté sur la période.</span>')+
-    (goal?'<span>Pointillés : objectif de '+intf.format(goal)+' kcal</span>':'')+'</div>';
+    (goal?'<span>Pointillés : objectif de '+intf.format(goal)+' kcal</span>':'')+
+    (function(){var s7=sumDef(days[0],days[6]);return s7.days?'<span>'+(s7.def>=0?"Déficit":"Surplus")+' sur 7 jours : <b class="num">'+intf.format(Math.abs(s7.def))+'</b> kcal</span>':''})()+'</div>';
   $("#cal-week").innerHTML=s;
 }
 
@@ -1118,7 +1183,7 @@ function bindGoal(sel,key){
     },500);
   });
 }
-bindGoal("#s-kcal","kcalGoal");bindGoal("#s-prot","protGoal");
+bindGoal("#s-kcal","kcalGoal");bindGoal("#s-prot","protGoal");bindGoal("#s-bmr","bmr");
 function bindList(sel,key,isText){
   var el=$(sel),timer=null;
   el.addEventListener("input",function(){
@@ -1147,9 +1212,10 @@ function fillSettings(){
   if(a!==$("#s-meals"))$("#s-meals").value=meals().join("\n");
   if(document.activeElement!==$("#s-kcal"))$("#s-kcal").value=state.settings.kcalGoal||"";
   if(document.activeElement!==$("#s-prot"))$("#s-prot").value=state.settings.protGoal||"";
+  if(document.activeElement!==$("#s-bmr"))$("#s-bmr").value=state.settings.bmr||"";
 }
 $("#status").addEventListener("click",function(){setTab("set")});
-function backupText(){return JSON.stringify({app:"carnet-joseph",v:2,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs})}
+function backupText(){return JSON.stringify({app:"carnet-joseph",v:2,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act})}
 $("#s-download").addEventListener("click",function(){
   var blob=new Blob([backupText()],{type:"application/json"});
   var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="carnet-sauvegarde-"+today()+".json";
@@ -1171,6 +1237,7 @@ $("#s-import-btn").addEventListener("click",function(){
   if(ok(p.settings))state.settings=Object.assign({},p.settings);
   if(Array.isArray(p.rec))state.rec=p.rec;
   if(Array.isArray(p.jobs))state.jobs=p.jobs;
+  if(ok(p.act))state.act=p.act;
   if(ok(p.finSkip))state.finSkip=p.finSkip;
   ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
   allKeys().forEach(persist);
@@ -1178,49 +1245,6 @@ $("#s-import-btn").addEventListener("click",function(){
   render();toast("Sauvegarde restaurée.");
 });
 
-/* ---------- montre ---------- */
-var health=lsGet("carnet-health")||{},healthState={missing:false,token:undefined,last:null};
-function fetchHealth(){
-  if(!session||!hasCfg())return Promise.resolve();
-  var from=addDays(today(),-35);
-  return authFetch("/rest/v1/carnet_health?select=day,active_kcal,rest_kcal,steps,updated_at&day=gte."+from+"&order=day.asc",{method:"GET"}).then(function(rows){
-    healthState.missing=false;var h={},last=null;
-    (rows||[]).forEach(function(r){h[r.day]={kcal:r.active_kcal,rest:r.rest_kcal,steps:r.steps};if(!last||r.updated_at>last)last=r.updated_at});
-    healthState.last=last;
-    if(JSON.stringify(h)!==JSON.stringify(health)){health=h;lsSet("carnet-health",h);renderCal()}
-    renderWatch();
-  },function(e){if(e&&e.status===404){healthState.missing=true;renderWatch()}});
-}
-function fetchToken(){
-  if(!session||!hasCfg())return Promise.resolve();
-  return authFetch("/rest/v1/carnet_tokens?select=token",{method:"GET"}).then(function(rows){healthState.token=rows&&rows[0]?rows[0].token:null;healthState.missing=false;renderWatch()},
-    function(e){if(e&&e.status===404){healthState.missing=true;renderWatch()}});
-}
-function newToken(){
-  var a=new Uint8Array(24);crypto.getRandomValues(a);
-  var t=Array.prototype.map.call(a,function(x){return ("0"+x.toString(16)).slice(-2)}).join("");
-  return authFetch("/rest/v1/carnet_tokens?on_conflict=user_id",{method:"POST",headers:{"Prefer":"resolution=merge-duplicates,return=minimal"},body:JSON.stringify([{token:t}])})
-    .then(function(){healthState.token=t;renderWatch();toast("Code de liaison créé.")},function(e){toast(e&&e.status===404?"Lance d'abord le script montre.sql dans Supabase.":"Impossible de créer le code. Réessaie.")});
-}
-function healthDay(d){return health[d]||null}
-function renderWatch(){
-  var box=$("#watch-box");if(!box)return;
-  if(!session||!hasCfg()){box.innerHTML='<p class="note">Connecte-toi d\'abord (Synchronisation, au-dessus) pour relier ta montre.</p>';return}
-  if(healthState.missing){box.innerHTML='<p class="note">Étape 1 : lance le script <b>montre.sql</b> dans Supabase (SQL Editor → Run), puis reviens ici.</p><div class="btnrow" style="margin-top:10px"><button class="ghost sm" type="button" id="w-retry">J\'ai lancé le script</button></div>';
-    $("#w-retry").addEventListener("click",function(){fetchToken();fetchHealth()});return}
-  var h='';
-  if(!healthState.token){
-    h+='<p class="note" style="margin-bottom:10px">Crée ton code de liaison : c\'est lui que le raccourci iPhone utilisera pour envoyer les données de ta montre.</p><button class="ghost" type="button" id="w-new">Créer mon code de liaison</button>';
-  }else{
-    h+='<label for="w-token">Ton code de liaison (garde-le pour toi)<input id="w-token" readonly value="'+esc(healthState.token)+'" style="font-family:ui-monospace,Menlo,monospace;font-size:13px"></label>'+
-      '<div class="btnrow" style="margin-top:8px"><button class="ghost sm" type="button" id="w-copy">Copier le code</button><button class="ghost sm" type="button" id="w-new">Changer de code</button></div>';
-    var last=healthState.last?new Date(healthState.last).toLocaleString("fr-FR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):null;
-    h+='<p class="note" style="margin-top:10px">'+(last?'Dernières données reçues : <b>'+esc(last)+'</b>':'Aucune donnée reçue pour l\'instant : lance ton raccourci une fois pour tester.')+'</p>';
-  }
-  box.innerHTML=h;
-  var n=$("#w-new");if(n)n.addEventListener("click",function(){if(healthState.token&&!n.dataset.sure){n.dataset.sure="1";n.textContent="Sûr ? Le raccourci devra être mis à jour";return}newToken()});
-  var c=$("#w-copy");if(c)c.addEventListener("click",function(){var v=healthState.token;try{navigator.clipboard.writeText(v).then(function(){toast("Code copié.")},function(){$("#w-token").select()})}catch(e){$("#w-token").select()}});
-}
 /* ---------- candidatures ---------- */
 var JST=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien","Offre","Refusé"];
 var JCLS={"A postuler":"st-a","Candidature envoyée":"st-e","Relancé":"st-rl","A relancer":"st-ar","Entretien":"st-i","Offre":"st-o","Refusé":"st-r"};
@@ -1463,7 +1487,7 @@ function renderHome(){
   var over=goal&&t.kcal>goal;
   $("#card-cal").innerHTML='<div class="k-title">Calories<span class="k-chip'+(over?" warn":"")+'">'+(goal?(over?"Objectif dépassé":Math.round(t.kcal/goal*100)+" %"):"Aujourd'hui")+'</span></div>'+
     ringSVG(t.kcal,goal)+
-    '<div class="k-lbl" style="margin-top:-4px">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g'+(healthDay(d)&&healthDay(d).kcal!=null?' · Dépensé '+intf.format(healthDay(d).kcal)+' kcal':'')+(healthDay(d)&&healthDay(d).steps!=null?' · '+intf.format(healthDay(d).steps)+' pas':'')+'</div>'+
+    '<div class="k-lbl" style="margin-top:-4px">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g'+'</div>'+calDefLine(d)+
     '<span class="k-pill">＋ Ajouter un repas</span>';
   var st=$("#status"),hs=$("#status-home");if(st&&hs){hs.className=st.className;hs.querySelector("span").textContent=st.querySelector("span").textContent}
 }
