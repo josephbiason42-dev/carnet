@@ -55,6 +55,17 @@ h3{font-size:1.02rem; margin-bottom:10px}
 body[data-tab="home"] .wrap{max-width:1100px}
 .status.cloud i{background:var(--accent); box-shadow:0 0 8px var(--accent)}
 .status{font-family:var(--mono)!important; letter-spacing:.02em}
+.back{all:unset; cursor:pointer; align-self:flex-start; font:500 .8rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding:6px 2px}
+.back:hover,.back:focus-visible{color:var(--accent)}
+.gear{all:unset; box-sizing:border-box; position:fixed; left:max(16px, env(safe-area-inset-left)); bottom:max(16px, env(safe-area-inset-bottom)); z-index:15; width:44px; height:44px; border-radius:50%;
+  display:grid; place-items:center; cursor:pointer; color:var(--muted); background:rgba(26,26,28,.85); border:1px solid var(--line); backdrop-filter:blur(8px); transition:color .25s, border-color .25s, transform .5s}
+.gear svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round}
+.gear:hover,.gear:focus-visible{color:var(--accent); border-color:rgba(255,90,43,.55); transform:rotate(60deg)}
+body[data-tab="set"] .gear{color:var(--accent); border-color:rgba(255,90,43,.55)}
+.c-duo{display:flex; flex-direction:column; gap:22px; flex:1; justify-content:center}
+.c-duo .c-big{font-size:3rem}
+.c-sep{height:1px; background:repeating-linear-gradient(90deg,#3a3a3e 0 2px,transparent 2px 7px)}
+.c-big.dim{color:#5a5856}
 /* ---------- accueil ---------- */
 .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:22px; perspective:1400px; padding:6px 0 10px}
 .card{all:unset; box-sizing:border-box; position:relative; aspect-ratio:1/1; min-height:290px; display:flex; flex-direction:column; justify-content:space-between; gap:10px;
@@ -67,7 +78,7 @@ body[data-tab="home"] .wrap{max-width:1100px}
 .card:hover,.card:focus-visible{--ty:-8px; border-color:rgba(255,90,43,.55);
   box-shadow:0 1px 0 rgba(255,255,255,.07) inset, 0 44px 70px -30px rgba(0,0,0,1), 0 0 0 1px rgba(255,90,43,.25), 0 0 40px -8px rgba(255,90,43,.35)}
 .card:focus-visible{outline:2px solid var(--accent); outline-offset:4px}
-.c-head{display:flex; justify-content:space-between; align-items:center; font:500 .78rem var(--mono); letter-spacing:.12em; text-transform:uppercase; color:#cfccc7}
+.c-head{display:flex; justify-content:space-between; align-items:center; min-height:26px; font:500 .78rem var(--mono); letter-spacing:.12em; text-transform:uppercase; color:#cfccc7}
 .c-head b{font-weight:500; color:var(--muted); margin-right:8px}
 .c-pill{font:500 .7rem var(--mono); letter-spacing:.08em; border:1px solid currentColor; border-radius:999px; padding:3px 9px; color:var(--accent)}
 .c-pill.ok{color:#cfccc7}
@@ -193,15 +204,9 @@ details.panel[open]>summary{margin-bottom:12px}
     </div>
   </header>
 
-  <nav class="tabs" role="tablist" aria-label="Sections">
-    <button id="t-home" role="tab" data-tab="home" aria-selected="true">Accueil</button>
-    <button id="t-fin" role="tab" data-tab="fin" aria-selected="false">Finances</button>
-    <button id="t-cal" role="tab" data-tab="cal" aria-selected="false">Calories</button>
-    <button id="t-set" role="tab" data-tab="set" aria-selected="false">Réglages</button>
-  </nav>
 
   <!-- ACCUEIL -->
-  <section class="view on" id="v-home" role="tabpanel" aria-labelledby="t-home">
+  <section class="view on" id="v-home" aria-label="Accueil">
     <div class="cards">
       <button class="card" type="button" id="card-fin" data-go="fin" aria-label="Ouvrir les finances"></button>
       <button class="card" type="button" id="card-cal" data-go="cal" aria-label="Ouvrir les calories"></button>
@@ -210,7 +215,8 @@ details.panel[open]>summary{margin-bottom:12px}
   </section>
 
   <!-- FINANCES -->
-  <section class="view" id="v-fin" role="tabpanel" aria-labelledby="t-fin">
+  <section class="view" id="v-fin" aria-label="Finances">
+    <button class="back" type="button" data-go="home">← Accueil</button>
     <div class="stepper">
       <button id="m-prev" aria-label="Mois précédent">‹</button>
       <h2 id="m-label">Mois</h2>
@@ -267,7 +273,8 @@ details.panel[open]>summary{margin-bottom:12px}
   </section>
 
   <!-- CALORIES -->
-  <section class="view" id="v-cal" role="tabpanel" aria-labelledby="t-cal">
+  <section class="view" id="v-cal" aria-label="Calories">
+    <button class="back" type="button" data-go="home">← Accueil</button>
     <div class="stepper">
       <button id="d-prev" aria-label="Jour précédent">‹</button>
       <h2 id="d-label">Aujourd'hui</h2>
@@ -294,7 +301,8 @@ details.panel[open]>summary{margin-bottom:12px}
   </section>
 
   <!-- RÉGLAGES -->
-  <section class="view" id="v-set" role="tabpanel" aria-labelledby="t-set">
+  <section class="view" id="v-set" aria-label="Réglages">
+    <button class="back" type="button" data-go="home">← Accueil</button>
     <div class="panel">
       <h3>Mes objectifs</h3>
       <div class="grid">
@@ -332,6 +340,7 @@ details.panel[open]>summary{margin-bottom:12px}
     </div>
   </section>
 </div>
+<button class="gear" id="gear" type="button" data-go="set" aria-label="Réglages" title="Réglages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 8.96 4.6H9a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.04a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15Z"/></svg></button>
 <div id="toast" role="status" aria-live="polite"><span id="toast-msg"></span><button id="toast-undo" type="button">Annuler</button></div>
 
 <script>
@@ -583,12 +592,10 @@ function flash(sel){var el=$(sel);el.classList.add("err");el.focus();setTimeout(
 function setTab(t){
   ui.tab=t;document.body.dataset.tab=t;
   window.scrollTo(0,0);
-  ["home","fin","cal","set"].forEach(function(k){
-    $("#t-"+k).setAttribute("aria-selected",k===t?"true":"false");
-    $("#v-"+k).classList.toggle("on",k===t);
-  });
+  ["home","fin","cal","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
 }
-document.querySelectorAll(".tabs button").forEach(function(b){b.addEventListener("click",function(){setTab(b.dataset.tab)})});
+document.querySelectorAll(".back,#gear").forEach(function(b){b.addEventListener("click",function(){setTab(b.id==="gear"&&ui.tab==="set"?"home":b.dataset.go)})});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&ui.tab!=="home"&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||""))setTab("home")});
 
 /* ---------- finances ---------- */
 function cats(t){var v=state.settings[t==="out"?"catsOut":"catsIn"];return Array.isArray(v)&&v.length?v:CATS[t]}
@@ -1082,12 +1089,14 @@ function renderHome(){
   var main=C.bank?C.bank.est:C.bal,mainLbl=C.bank?"Sur ton compte":"Reste ce mois-ci";
   var end=C.endBank!=null?C.endBank:C.proj,risk=end<0;
   var hasForecast=C.bank||state.rec.length||Object.keys(C.bud).length;
+  var endLbl=daysIn(m)+" "+monthLabel(m).split(" ")[0].toLowerCase();
   $("#card-fin").innerHTML=
-    '<div class="c-head"><span><b>01</b>Finances</span><span class="c-pill'+(risk?"":" ok")+'">'+(hasFin?(risk?"Découvert prévu":"Sous contrôle"):"À configurer")+'</span></div>'+
-    '<div><div class="c-big'+(main<0?" neg":"")+'">'+eur0.format(main)+'</div><div class="c-lbl">'+mainLbl+' · '+esc(monthLabel(m).toLowerCase())+'</div></div>'+
-    '<div class="c-viz">'+finDots(m)+'</div>'+
-    '<div class="c-stats"><div><small>Entrées</small><span>'+eur0.format(C.inc)+'</span></div><div><small>Sorties</small><span>'+eur0.format(C.out)+'</span></div>'+
-    '<div><small>Fin de mois</small><span class="'+(risk?"neg":"")+'">'+(hasForecast?eur0.format(end):"—")+'</span></div></div>'+
+    '<div class="c-head"><span><b>01</b>Finances</span></div>'+
+    '<div class="c-duo">'+
+      '<div><div class="c-big'+(C.bank?(C.bank.est<0?" neg":""):" dim")+'">'+(C.bank?eur.format(C.bank.est):"— €")+'</div><div class="c-lbl">'+(C.bank?"Solde réel":"Solde réel · à saisir")+'</div></div>'+
+      '<div class="c-sep"></div>'+
+      '<div><div class="c-big'+(hasForecast?(risk?" neg":""):" dim")+'">'+(hasForecast?eur.format(end):"— €")+'</div><div class="c-lbl">'+(hasForecast?"Solde prévisionnel · "+endLbl:"Prévisionnel · à configurer")+'</div></div>'+
+    '</div>'+
     '<span class="c-open">Ouvrir →</span>';
   var d=today(),t=dayTotal(d),goal=+state.settings.kcalGoal||0,pg=+state.settings.protGoal||0;
   var wk=[],sum=0,cnt=0;for(var i=1;i<=7;i++){var v=dayTotal(addDays(d,-i)).kcal;if(v>0){sum+=v;cnt++}}
