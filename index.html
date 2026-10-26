@@ -155,6 +155,9 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .bm-chips{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:10px; font-size:.86rem; color:var(--muted)}
 .bm-chips b{color:var(--ink); font-size:1rem}
 .bm-legend i{display:inline-block; width:18px; border-top:2px solid #ff8a4c; vertical-align:middle; margin-right:6px}
+.check{flex-direction:row; align-items:flex-start; gap:10px; font-size:.9rem; font-weight:500; color:var(--ink); cursor:pointer}
+.check input{width:18px; height:18px; margin-top:2px; accent-color:#5b8cff; flex:none}
+.warnbtn{color:#ffb38a!important; border-color:rgba(255,138,76,.5)!important}
 /* candidatures */
 .plus{all:unset; box-sizing:border-box; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; cursor:pointer; font:500 1.6rem/1 var(--body); color:#fff;
   background:linear-gradient(135deg,#5b8cff,#3b62d6); box-shadow:0 8px 22px -8px rgba(91,140,255,.8); transition:transform .25s, box-shadow .25s}
@@ -476,16 +479,22 @@ details.panel[open]>summary{margin-bottom:12px}
     </div>
     <div class="panel">
       <h3>Sauvegarde</h3>
-      <p class="note" style="margin-bottom:12px">Garde de temps en temps une copie de tes données, même avec la synchro.</p>
-      <div class="btnrow" style="margin-bottom:12px">
-        <button class="ghost" type="button" id="s-download">Télécharger une sauvegarde</button>
-        <button class="ghost" type="button" id="s-copy">Copier mes données</button>
+      <div id="bk-box"></div>
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line)">
+        <label class="check" for="bk-file-auto"><input type="checkbox" id="bk-file-auto"> Télécharger automatiquement un fichier de sauvegarde chaque semaine sur cet appareil</label>
+        <p class="note" id="bk-file-last" style="margin:6px 0 12px"></p>
+        <div class="btnrow">
+          <button class="ghost" type="button" id="s-download">Télécharger maintenant</button>
+          <label class="ghost" for="s-file" style="cursor:pointer;color:var(--ink)">Restaurer depuis un fichier…</label>
+          <button class="ghost" type="button" id="s-copy">Copier mes données</button>
+        </div>
+        <input type="file" id="s-file" accept=".json,application/json" hidden>
       </div>
-      <label for="s-import">Restaurer depuis une sauvegarde copiée<textarea id="s-import" placeholder="Colle ici le texte copié"></textarea></label>
-      <div class="btnrow" style="margin-top:8px">
-        <button class="ghost" type="button" id="s-import-btn">Restaurer</button>
-      </div>
-      <p class="note" style="margin-top:8px">La restauration remplace les mois contenus dans la sauvegarde.</p>
+      <details style="margin-top:12px">
+        <summary class="note" style="cursor:pointer">Restaurer depuis un texte copié</summary>
+        <label for="s-import" style="margin-top:8px">Texte de sauvegarde<textarea id="s-import" placeholder="Colle ici le texte copié"></textarea></label>
+        <div class="btnrow" style="margin-top:8px"><button class="ghost" type="button" id="s-import-btn">Restaurer</button></div>
+      </details>
     </div>
   </section>
 </div>
@@ -699,7 +708,7 @@ function push(){
 }
 function pull(){
   if(!session||!hasCfg())return Promise.resolve();
-  return authFetch("/rest/v1/carnet_docs?select=key,body",{method:"GET"}).then(function(rows){
+  return authFetch("/rest/v1/carnet_docs?select=key,body&key=not.like.bk-*",{method:"GET"}).then(function(rows){
     rows=rows||[];
     var remote={};rows.forEach(function(r){remote[r.key]=r.body});
     if(sync.firstPull){
@@ -715,6 +724,7 @@ function pull(){
     if(changed){saveLocal();render()}
     setSync("ok");
     applyRecurring();
+    bkAuto();
     return push();
   },onSyncError);
 }
@@ -741,6 +751,7 @@ function renderSync(){
   else txt="Connexion…";
   el.className=cls;el.querySelector("span").textContent=txt;
   var hs=$("#status-home");if(hs){hs.className=cls;hs.querySelector("span").textContent=txt}
+  if(typeof renderBackups==="function"&&$("#bk-box"))renderBackups();
   var box=$("#sync-box");if(!box)return;
   if(!hasCfg()){
     box.innerHTML='<p class="note" style="margin-bottom:10px">Colle ici l\'adresse et la clé publique de ton projet Supabase (Project Settings → API). À faire une fois par appareil, sauf si tu les as mises dans config.js.</p>'+
@@ -1300,12 +1311,8 @@ function fillSettings(){
   if(document.activeElement!==$("#s-wgoal"))$("#s-wgoal").value=state.settings.weightGoal?String(state.settings.weightGoal).replace(".",","):"";
 }
 $("#status").addEventListener("click",function(){setTab("set")});
-function backupText(){return JSON.stringify({app:"carnet-joseph",v:2,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body})}
-$("#s-download").addEventListener("click",function(){
-  var blob=new Blob([backupText()],{type:"application/json"});
-  var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="carnet-sauvegarde-"+today()+".json";
-  document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1000);
-});
+function backupText(){return JSON.stringify(snapData())}
+$("#s-download").addEventListener("click",downloadBackup);
 $("#s-copy").addEventListener("click",function(){
   var txt=backupText()||JSON.stringify({app:"carnet-joseph",v:1,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal});
   var done=function(){toast("Données copiées. Colle-les dans une note pour les garder.")};
@@ -1317,18 +1324,8 @@ function showText(txt){var ta=$("#s-import");ta.value=txt;ta.focus();ta.select()
 $("#s-import-btn").addEventListener("click",function(){
   var raw=$("#s-import").value.trim();if(!raw){flash("#s-import");return}
   var p;try{p=JSON.parse(raw)}catch(e){toast("Ce texte n'est pas une sauvegarde valide.");return}
-  if(!p||typeof p!=="object"||(!p.fin&&!p.cal)){toast("Ce texte n'est pas une sauvegarde de ce carnet.");return}
-  var ok=function(o){return o&&typeof o==="object"};
-  if(ok(p.settings))state.settings=Object.assign({},p.settings);
-  if(Array.isArray(p.rec))state.rec=p.rec;
-  if(Array.isArray(p.jobs))state.jobs=p.jobs;
-  if(ok(p.act))state.act=p.act;
-  if(Array.isArray(p.body))state.body=p.body;
-  if(ok(p.finSkip))state.finSkip=p.finSkip;
-  ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
-  allKeys().forEach(persist);
-  $("#s-import").value="";
-  render();toast("Sauvegarde restaurée.");
+  var go=function(){if(restoreData(p,true)){$("#s-import").value="";toast("Sauvegarde restaurée.")}else toast("Ce texte n'est pas une sauvegarde de ce carnet.")};
+  if(session&&hasCfg())bkCreate("avant").then(go,go);else go();
 });
 
 /* ---------- pesée ---------- */
@@ -1582,6 +1579,100 @@ function renderModel(){
 }
 $("#bm-date").addEventListener("change",function(){bmui.date=this.value;renderModel()});
 $("#bm-cmp").addEventListener("change",function(){bmui.cmp=this.value;renderModel()});
+/* ---------- sauvegardes ---------- */
+function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body}}
+function restoreData(p,full){
+  var ok=function(o){return o&&typeof o==="object"};
+  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body))return false;
+  var before=allKeys();
+  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[]};
+  if(ok(p.settings))state.settings=Object.assign({},p.settings);
+  if(Array.isArray(p.rec))state.rec=p.rec;
+  if(Array.isArray(p.jobs))state.jobs=p.jobs;
+  if(ok(p.act))state.act=p.act;
+  if(Array.isArray(p.body))state.body=p.body;
+  if(ok(p.finSkip))state.finSkip=p.finSkip;
+  ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
+  var keys=allKeys();before.forEach(function(k){if(keys.indexOf(k)<0)keys.push(k)});
+  keys.forEach(persist);
+  render();return true;
+}
+var BK={list:null,done:false,busy:false};
+function bkList(){
+  if(!session||!hasCfg())return Promise.resolve([]);
+  return authFetch("/rest/v1/carnet_docs?select=key,updated_at&key=like.bk-*&order=key.desc",{method:"GET"}).then(function(r){BK.list=r||[];renderBackups();return BK.list},function(){return []});
+}
+function bkCreate(tag){
+  var key="bk-"+today()+(tag?"-"+tag:"");
+  return authFetch("/rest/v1/carnet_docs?on_conflict=user_id,key",{method:"POST",headers:{"Prefer":"resolution=merge-duplicates,return=minimal"},body:JSON.stringify([{key:key,body:{at:new Date().toISOString(),data:snapData()},updated_at:new Date().toISOString()}])})
+    .then(function(){return bkList()}).then(function(list){
+      var old=list.filter(function(r){return !/-avant$/.test(r.key)}).slice(30).concat(list.filter(function(r){return /-avant$/.test(r.key)}).slice(5));
+      if(!old.length)return;
+      return authFetch("/rest/v1/carnet_docs?key=in.("+old.map(function(r){return encodeURIComponent(r.key)}).join(",")+")",{method:"DELETE"}).then(bkList);
+    });
+}
+function bkAuto(){
+  if(BK.done||!session||!hasCfg()||!hasData())return;
+  BK.done=true;
+  bkList().then(function(list){if(!list.some(function(r){return r.key==="bk-"+today()}))return bkCreate()}).catch(function(){});
+}
+function bkRestore(key){
+  if(BK.busy)return;BK.busy=true;
+  authFetch("/rest/v1/carnet_docs?select=body&key=eq."+encodeURIComponent(key),{method:"GET"}).then(function(r){
+    var d=r&&r[0]&&r[0].body&&r[0].body.data;
+    if(!d)throw "vide";
+    return bkCreate("avant").then(function(){if(!restoreData(d,true))throw "invalide";toast("Données restaurées au "+bkLabel(key)+". L'état d'avant est gardé dans les copies.")});
+  }).catch(function(){toast("La restauration a échoué. Rien n'a été modifié.")}).then(function(){BK.busy=false});
+}
+function bkLabel(key){var d=key.slice(3,13);return parseYmd(d).toLocaleDateString("fr-FR",{weekday:"short",day:"numeric",month:"long"})}
+function renderBackups(){
+  var box=$("#bk-box");if(!box)return;
+  if(!session||!hasCfg()){box.innerHTML='<p class="note">Connecte-toi (Synchronisation, au-dessus) pour activer les copies automatiques quotidiennes.</p>';return}
+  var list=BK.list||[];
+  var h='<p class="note" style="margin-bottom:8px">Une copie complète de tes données est faite automatiquement chaque jour où tu ouvres l\'appli. Les 30 dernières sont gardées.</p>';
+  if(!list.length)h+='<p class="note">Première copie en cours…</p>';
+  else list.slice(0,8).forEach(function(r){
+    var t=r.updated_at?new Date(r.updated_at).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}):"";
+    h+='<div class="row"><div class="lbl">'+esc(cap(bkLabel(r.key)))+(/-avant$/.test(r.key)?' <span class="tag">avant restauration</span>':'')+'<small>'+esc(t)+'</small></div><span></span><button class="ghost sm" type="button" data-bk="'+esc(r.key)+'">Restaurer</button></div>';
+  });
+  if(list.length>8)h+='<p class="note" style="margin-top:6px">+ '+(list.length-8)+' copies plus anciennes.</p>';
+  box.innerHTML=h;
+}
+$("#bk-box").addEventListener("click",function(e){
+  var b=e.target.closest("[data-bk]");if(!b)return;
+  if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Confirmer ?";b.classList.add("warnbtn");setTimeout(function(){if(b.isConnected){delete b.dataset.sure;b.textContent="Restaurer";b.classList.remove("warnbtn")}},4000);return}
+  bkRestore(b.dataset.bk);
+});
+// fichier hebdomadaire sur l'appareil
+function downloadBackup(){
+  var blob=new Blob([JSON.stringify(snapData())],{type:"application/json"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="carnet-sauvegarde-"+today()+".json";
+  document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1500);
+  lsSet("carnet-file-last",today());renderFileAuto();
+}
+function fileAutoOn(){return lsGet("carnet-file-auto")!==false}
+function renderFileAuto(){
+  var el=$("#bk-file-auto");if(!el)return;el.checked=fileAutoOn();
+  var last=lsGet("carnet-file-last");
+  $("#bk-file-last").textContent=last?"Dernier fichier sur cet appareil : "+parseYmd(last).toLocaleDateString("fr-FR",{day:"numeric",month:"long"}):"Aucun fichier téléchargé sur cet appareil pour l'instant.";
+}
+function fileAuto(){
+  if(!fileAutoOn()||!hasData())return;
+  var last=lsGet("carnet-file-last");
+  if(last&&(parseYmd(today())-parseYmd(last))/864e5<7)return;
+  downloadBackup();toast("Sauvegarde de la semaine téléchargée (dossier Téléchargements).");
+}
+$("#bk-file-auto").addEventListener("change",function(){lsSet("carnet-file-auto",this.checked);renderFileAuto()});
+$("#s-file").addEventListener("change",function(){
+  var f=this.files&&this.files[0];if(!f)return;var rd=new FileReader();
+  rd.onload=function(){var p;try{p=JSON.parse(rd.result)}catch(e){toast("Ce fichier n'est pas lisible.");return}
+    if(p&&p.type==="candidatures"){toast("C'est un fichier de candidatures : importe-le depuis Candidatures.");return}
+    if(p&&p.type==="mesures"){toast("C'est un fichier de mesures : importe-le depuis Pesée.");return}
+    $("#s-file").value="";
+    var go=function(){if(restoreData(p,true))toast("Sauvegarde du "+(p.exported?parseYmd(p.exported).toLocaleDateString("fr-FR",{day:"numeric",month:"long"}):"fichier")+" restaurée.");else toast("Ce fichier n'est pas une sauvegarde de ce carnet.")};
+    if(session&&hasCfg())bkCreate("avant").then(go,go);else go();
+  };rd.readAsText(f);
+});
 /* ---------- candidatures ---------- */
 var JST=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien","Offre","Refusé"];
 var JCLS={"A postuler":"st-a","Candidature envoyée":"st-e","Relancé":"st-rl","A relancer":"st-ar","Entretien":"st-i","Offre":"st-o","Refusé":"st-r"};
@@ -1871,6 +1962,7 @@ $("#c-meal").value=defaultMeal();
 setStatus();
 render();
 initDb();
+renderBackups();renderFileAuto();setTimeout(fileAuto,4000);
 if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("sw.js").catch(function(){})}
 })();
 </script>
