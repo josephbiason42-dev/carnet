@@ -122,6 +122,8 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .ring-num{font:800 30px var(--body); fill:var(--ink); letter-spacing:-.5px}
 .ring-sub{font:600 11px var(--body); fill:var(--muted)}
 .k-pill{display:inline-flex; align-items:center; gap:8px; font-size:.85rem; font-weight:700; color:#dfe6ff; background:rgba(91,140,255,.16); border:1px solid rgba(91,140,255,.35); border-radius:999px; padding:7px 16px}
+.watch-line{display:flex; justify-content:space-between; gap:10px; font-size:.88rem; margin-top:8px; padding-top:8px; border-top:1px solid var(--line)}
+.watch-line span{color:var(--muted)}
 /* candidatures */
 .plus{all:unset; box-sizing:border-box; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; cursor:pointer; font:500 1.6rem/1 var(--body); color:#fff;
   background:linear-gradient(135deg,#5b8cff,#3b62d6); box-shadow:0 8px 22px -8px rgba(91,140,255,.8); transition:transform .25s, box-shadow .25s}
@@ -396,6 +398,10 @@ details.panel[open]>summary{margin-bottom:12px}
       <div id="sync-box"></div>
     </div>
     <div class="panel">
+      <h3>Montre (Xiaomi Smart Band)</h3>
+      <div id="watch-box"></div>
+    </div>
+    <div class="panel">
       <h3>Personnaliser</h3>
       <div class="grid">
         <label for="s-name">Ton prénom<input id="s-name" placeholder="Joseph" maxlength="30" autocomplete="off"></label>
@@ -569,7 +575,7 @@ function login(email,pw,isSignup){
 }
 function logout(){
   if(session)authFetch("/auth/v1/logout",{method:"POST"}).catch(function(){});
-  session=null;lsSet("carnet-session",null);sync.state="off";renderSync();
+  session=null;lsSet("carnet-session",null);sync.state="off";healthState.token=undefined;renderSync();renderWatch();
 }
 
 function markDirty(key){dirty[key]=(dirty[key]||0)+1;lsSet("carnet-dirty",dirty)}
@@ -615,6 +621,7 @@ function pull(){
       if(JSON.stringify(remote[k])!==JSON.stringify(bodyFor(k))){applyDoc(k,remote[k]);changed=true}
     });
     if(changed){saveLocal();render()}
+    fetchHealth();if(healthState.token===undefined)fetchToken();
     setSync("ok");
     applyRecurring();
     return push();
@@ -683,7 +690,7 @@ function renderSync(){
     $("#s-logout").addEventListener("click",logout);
   }
 }
-function initDb(){if(session&&hasCfg()){sync.state="connecting";pull()}else{applyRecurring()}renderSync()}
+function initDb(){if(session&&hasCfg()){sync.state="connecting";pull()}else{applyRecurring()}renderSync();renderWatch()}
 
 /* ---------- toast ---------- */
 var toastTimer=null,undoFn=null;
@@ -1046,6 +1053,12 @@ function renderCal(){
     h+='<div class="heroline" style="margin-top:8px"><span class="muted">Pas d\'objectif fixé. <button class="ghost" type="button" id="go-set" style="padding:4px 10px;margin-left:4px">Fixer un objectif</button></span>';
   }
   h+='<span class="num">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g</span></div>';
+  var hw=healthDay(ui.day);
+  if(hw){
+    var tot=(hw.kcal||0)+(hw.rest||0),bil=t.kcal-tot;
+    h+='<div class="watch-line"><span>Montre</span><b>'+(hw.kcal!=null?intf.format(hw.kcal)+' kcal actives':'—')+(hw.steps!=null?' · '+intf.format(hw.steps)+' pas':'')+'</b></div>';
+    if(hw.rest)h+='<div class="watch-line"><span>Dépense totale (actives + repos)</span><b>'+intf.format(tot)+' kcal</b></div><div class="watch-line"><span>Bilan du jour (mangé − dépensé)</span><b class="'+(bil>0?"warn":"good")+'">'+(bil>0?"+ ":"− ")+intf.format(Math.abs(bil))+' kcal</b></div>';
+  }
   $("#cal-sum").innerHTML=h;
   var gs=$("#go-set");if(gs)gs.addEventListener("click",function(){setTab("set");$("#s-kcal").focus()});
 
@@ -1165,6 +1178,49 @@ $("#s-import-btn").addEventListener("click",function(){
   render();toast("Sauvegarde restaurée.");
 });
 
+/* ---------- montre ---------- */
+var health=lsGet("carnet-health")||{},healthState={missing:false,token:undefined,last:null};
+function fetchHealth(){
+  if(!session||!hasCfg())return Promise.resolve();
+  var from=addDays(today(),-35);
+  return authFetch("/rest/v1/carnet_health?select=day,active_kcal,rest_kcal,steps,updated_at&day=gte."+from+"&order=day.asc",{method:"GET"}).then(function(rows){
+    healthState.missing=false;var h={},last=null;
+    (rows||[]).forEach(function(r){h[r.day]={kcal:r.active_kcal,rest:r.rest_kcal,steps:r.steps};if(!last||r.updated_at>last)last=r.updated_at});
+    healthState.last=last;
+    if(JSON.stringify(h)!==JSON.stringify(health)){health=h;lsSet("carnet-health",h);renderCal()}
+    renderWatch();
+  },function(e){if(e&&e.status===404){healthState.missing=true;renderWatch()}});
+}
+function fetchToken(){
+  if(!session||!hasCfg())return Promise.resolve();
+  return authFetch("/rest/v1/carnet_tokens?select=token",{method:"GET"}).then(function(rows){healthState.token=rows&&rows[0]?rows[0].token:null;healthState.missing=false;renderWatch()},
+    function(e){if(e&&e.status===404){healthState.missing=true;renderWatch()}});
+}
+function newToken(){
+  var a=new Uint8Array(24);crypto.getRandomValues(a);
+  var t=Array.prototype.map.call(a,function(x){return ("0"+x.toString(16)).slice(-2)}).join("");
+  return authFetch("/rest/v1/carnet_tokens?on_conflict=user_id",{method:"POST",headers:{"Prefer":"resolution=merge-duplicates,return=minimal"},body:JSON.stringify([{token:t}])})
+    .then(function(){healthState.token=t;renderWatch();toast("Code de liaison créé.")},function(e){toast(e&&e.status===404?"Lance d'abord le script montre.sql dans Supabase.":"Impossible de créer le code. Réessaie.")});
+}
+function healthDay(d){return health[d]||null}
+function renderWatch(){
+  var box=$("#watch-box");if(!box)return;
+  if(!session||!hasCfg()){box.innerHTML='<p class="note">Connecte-toi d\'abord (Synchronisation, au-dessus) pour relier ta montre.</p>';return}
+  if(healthState.missing){box.innerHTML='<p class="note">Étape 1 : lance le script <b>montre.sql</b> dans Supabase (SQL Editor → Run), puis reviens ici.</p><div class="btnrow" style="margin-top:10px"><button class="ghost sm" type="button" id="w-retry">J\'ai lancé le script</button></div>';
+    $("#w-retry").addEventListener("click",function(){fetchToken();fetchHealth()});return}
+  var h='';
+  if(!healthState.token){
+    h+='<p class="note" style="margin-bottom:10px">Crée ton code de liaison : c\'est lui que le raccourci iPhone utilisera pour envoyer les données de ta montre.</p><button class="ghost" type="button" id="w-new">Créer mon code de liaison</button>';
+  }else{
+    h+='<label for="w-token">Ton code de liaison (garde-le pour toi)<input id="w-token" readonly value="'+esc(healthState.token)+'" style="font-family:ui-monospace,Menlo,monospace;font-size:13px"></label>'+
+      '<div class="btnrow" style="margin-top:8px"><button class="ghost sm" type="button" id="w-copy">Copier le code</button><button class="ghost sm" type="button" id="w-new">Changer de code</button></div>';
+    var last=healthState.last?new Date(healthState.last).toLocaleString("fr-FR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):null;
+    h+='<p class="note" style="margin-top:10px">'+(last?'Dernières données reçues : <b>'+esc(last)+'</b>':'Aucune donnée reçue pour l\'instant : lance ton raccourci une fois pour tester.')+'</p>';
+  }
+  box.innerHTML=h;
+  var n=$("#w-new");if(n)n.addEventListener("click",function(){if(healthState.token&&!n.dataset.sure){n.dataset.sure="1";n.textContent="Sûr ? Le raccourci devra être mis à jour";return}newToken()});
+  var c=$("#w-copy");if(c)c.addEventListener("click",function(){var v=healthState.token;try{navigator.clipboard.writeText(v).then(function(){toast("Code copié.")},function(){$("#w-token").select()})}catch(e){$("#w-token").select()}});
+}
 /* ---------- candidatures ---------- */
 var JST=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien","Offre","Refusé"];
 var JCLS={"A postuler":"st-a","Candidature envoyée":"st-e","Relancé":"st-rl","A relancer":"st-ar","Entretien":"st-i","Offre":"st-o","Refusé":"st-r"};
@@ -1407,7 +1463,7 @@ function renderHome(){
   var over=goal&&t.kcal>goal;
   $("#card-cal").innerHTML='<div class="k-title">Calories<span class="k-chip'+(over?" warn":"")+'">'+(goal?(over?"Objectif dépassé":Math.round(t.kcal/goal*100)+" %"):"Aujourd'hui")+'</span></div>'+
     ringSVG(t.kcal,goal)+
-    '<div class="k-lbl" style="margin-top:-4px">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g</div>'+
+    '<div class="k-lbl" style="margin-top:-4px">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g'+(healthDay(d)&&healthDay(d).kcal!=null?' · Dépensé '+intf.format(healthDay(d).kcal)+' kcal':'')+(healthDay(d)&&healthDay(d).steps!=null?' · '+intf.format(healthDay(d).steps)+' pas':'')+'</div>'+
     '<span class="k-pill">＋ Ajouter un repas</span>';
   var st=$("#status"),hs=$("#status-home");if(st&&hs){hs.className=st.className;hs.querySelector("span").textContent=st.querySelector("span").textContent}
 }
