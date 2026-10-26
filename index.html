@@ -27,6 +27,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0}
 html{background:#121212}
 body{min-height:100%; color:var(--ink); font:16px/1.45 var(--body); --accent:var(--fin);
@@ -223,8 +224,8 @@ details.panel[open]>summary{margin-bottom:12px}
       <button id="m-next" aria-label="Mois suivant">›</button>
     </div>
     <div class="panel" id="bank"></div>
-    <div class="tiles" id="fin-tiles"></div>
-    <p class="note" id="fin-note"></p>
+    <div class="tiles" id="fin-tiles" hidden></div>
+    <p class="note" id="fin-note" hidden></p>
     <div class="panel" id="fin-forecast"></div>
 
     <form class="panel" id="fin-form" novalidate>
@@ -835,7 +836,7 @@ function renderFin(){
   }else{
     var bi=bankInfo(),useBank=bi&&ui.month===today().slice(0,7),endBank=useBank?bi.est+pendIn-pendOut-budLeft:0;
     var h=useBank
-      ?'<h3>Sur ton compte le '+daysIn(ui.month)+' '+esc(monthLabel(ui.month).split(" ")[0].toLowerCase())+'</h3><div class="fc-big '+(endBank<0?"bad":"good")+'">'+eur.format(endBank)+'</div><p class="note" style="margin-bottom:10px">Ton solde actuel ('+eur.format(bi.est)+') + ce qui doit encore entrer − ce qui doit encore sortir.</p><div class="fc-lines">'
+      ?'<h3>Sur ton compte le '+daysIn(ui.month)+' '+esc(monthLabel(ui.month).split(" ")[0].toLowerCase())+'</h3><div class="fc-big '+(endBank<0?"bad":"good")+'">'+eur.format(endBank)+'</div><div class="fc-lines" style="margin-top:10px">'
       :'<h3>Prévu en fin de mois</h3><div class="fc-big '+(proj<0?"bad":"good")+'">'+eur.format(proj)+'</div><div class="fc-lines">';
     h+='<div><span>Entrées'+(pendIn?' (dont '+eur.format(pendIn)+' à venir)':'')+'</span><span class="good">+ '+eur.format(projIn)+'</span></div>';
     h+='<div><span>Déjà dépensé</span><span>− '+eur.format(out)+'</span></div>';
