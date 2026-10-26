@@ -123,6 +123,19 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .ring-sub{font:600 11px var(--body); fill:var(--muted)}
 .k-pill{display:inline-flex; align-items:center; gap:8px; font-size:.85rem; font-weight:700; color:#dfe6ff; background:rgba(91,140,255,.16); border:1px solid rgba(91,140,255,.35); border-radius:999px; padding:7px 16px}
 /* candidatures */
+.plus{all:unset; box-sizing:border-box; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; cursor:pointer; font:500 1.6rem/1 var(--body); color:#fff;
+  background:linear-gradient(135deg,#5b8cff,#3b62d6); box-shadow:0 8px 22px -8px rgba(91,140,255,.8); transition:transform .25s, box-shadow .25s}
+.plus:hover,.plus:focus-visible{transform:rotate(90deg) scale(1.05); box-shadow:0 10px 28px -6px rgba(91,140,255,.95)}
+.plus:focus-visible{outline:2px solid #9cbcff; outline-offset:3px}
+.modal{width:min(560px, calc(100vw - 32px)); max-height:calc(100vh - 40px); overflow:auto; padding:22px; border-radius:22px; color:var(--ink);
+  background:linear-gradient(180deg, rgba(26,33,58,.97), rgba(12,16,30,.97)); border:1px solid rgba(120,160,255,.28);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,1), 0 0 50px -12px rgba(91,140,255,.45)}
+.modal::backdrop{background:rgba(3,5,12,.6); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px)}
+.modal[open]{animation:pop .22s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0; transform:translateY(10px) scale(.98)}to{opacity:1; transform:none}}
+@media (prefers-reduced-motion:reduce){.modal[open]{animation:none}}
+.mclose{all:unset; cursor:pointer; width:32px; height:32px; border-radius:50%; display:grid; place-items:center; font-size:1.4rem; color:var(--muted)}
+.mclose:hover,.mclose:focus-visible{color:var(--ink); background:rgba(255,255,255,.06)}
 .c-job{grid-column:1 / -1; min-height:0}
 .jgrid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)) 1.4fr; gap:18px; align-items:end}
 .jgrid .k-big{font-size:2.4rem}
@@ -349,7 +362,7 @@ details.panel[open]>summary{margin-bottom:12px}
   <!-- CANDIDATURES -->
   <section class="view" id="v-job" aria-label="Candidatures">
     <button class="back" type="button" data-go="home">← Accueil</button>
-    <h2 style="text-align:left">Candidatures</h2>
+    <div class="phead" style="margin:0"><h2 style="text-align:left">Candidatures</h2><button class="plus" type="button" id="jn-open" aria-label="Nouvelle candidature" title="Nouvelle candidature">+</button></div>
     <div class="panel" id="j-import-hint" hidden>
       <h3>Importer depuis Notion</h3>
       <p class="note" style="margin-bottom:10px">Choisis le fichier <b>candidatures-notion.json</b> pour récupérer toutes tes candidatures Notion.</p>
@@ -358,23 +371,6 @@ details.panel[open]>summary{margin-bottom:12px}
     <input type="file" id="j-file" accept=".json,application/json" hidden>
     <div class="tiles jtiles" id="j-stats"></div>
     <div class="panel" id="j-due"></div>
-    <details class="panel" id="jn-panel">
-      <summary><h3>Nouvelle candidature</h3></summary>
-      <form id="jn-form" novalidate style="display:flex;flex-direction:column;gap:12px">
-        <div class="grid">
-          <label for="jn-co">Entreprise<input id="jn-co" maxlength="80" autocomplete="off" placeholder="Fnac Darty"></label>
-          <label for="jn-role">Poste<input id="jn-role" maxlength="120" autocomplete="off" placeholder="Chef de produit junior"></label>
-          <label for="jn-url" class="wide">Lien de l'offre<input id="jn-url" autocomplete="off" placeholder="https://…"></label>
-          <label for="jn-place">Lieu<input id="jn-place" maxlength="80" autocomplete="off" placeholder="Paris"></label>
-          <label for="jn-date">Envoyée le<input id="jn-date" type="date"></label>
-          <label for="jn-contract">Contrat<select id="jn-contract"><option>CDI</option><option>CDD</option><option>Alternance</option><option>Stage</option><option>Freelance</option><option>Intérim</option></select></label>
-          <label for="jn-sector">Secteur<select id="jn-sector"><option>Marketing</option><option>Vente</option><option>Autres</option></select></label>
-          <label for="jn-status" class="wide">Statut<select id="jn-status"><option>Candidature envoyée</option><option>A postuler</option><option>Entretien</option></select></label>
-        </div>
-        <button class="primary" type="submit">Ajouter la candidature</button>
-        <p class="note">La relance est programmée automatiquement 7 jours après l'envoi.</p>
-      </form>
-    </details>
     <div class="panel">
       <div class="phead"><h3>Mes candidatures</h3><span class="note" id="j-count"></span></div>
       <input id="j-q" type="search" placeholder="Rechercher une entreprise, un poste, une ville…" autocomplete="off" aria-label="Rechercher" style="margin-bottom:10px">
@@ -434,6 +430,23 @@ details.panel[open]>summary{margin-bottom:12px}
   </nav>
   <button class="sbtn" id="gear" type="button" data-go="set" aria-label="Réglages" title="Réglages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 8.96 4.6H9a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.04a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15Z"/></svg></button>
 </aside>
+<dialog class="modal" id="jn-dialog" aria-labelledby="jn-title">
+  <div class="phead"><h3 id="jn-title">Nouvelle candidature</h3><button class="mclose" type="button" id="jn-close" aria-label="Fermer">×</button></div>
+      <form id="jn-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+        <div class="grid">
+          <label for="jn-co">Entreprise<input id="jn-co" maxlength="80" autocomplete="off" placeholder="Fnac Darty"></label>
+          <label for="jn-role">Poste<input id="jn-role" maxlength="120" autocomplete="off" placeholder="Chef de produit junior"></label>
+          <label for="jn-url" class="wide">Lien de l'offre<input id="jn-url" autocomplete="off" placeholder="https://…"></label>
+          <label for="jn-place">Lieu<input id="jn-place" maxlength="80" autocomplete="off" placeholder="Paris"></label>
+          <label for="jn-date">Envoyée le<input id="jn-date" type="date"></label>
+          <label for="jn-contract">Contrat<select id="jn-contract"><option>CDI</option><option>CDD</option><option>Alternance</option><option>Stage</option><option>Freelance</option><option>Intérim</option></select></label>
+          <label for="jn-sector">Secteur<select id="jn-sector"><option>Marketing</option><option>Vente</option><option>Autres</option></select></label>
+          <label for="jn-status" class="wide">Statut<select id="jn-status"><option>Candidature envoyée</option><option>A postuler</option><option>Entretien</option></select></label>
+        </div>
+        <button class="primary" type="submit">Ajouter la candidature</button>
+        <p class="note">La relance est programmée automatiquement 7 jours après l'envoi.</p>
+      </form>
+</dialog>
 <div id="toast" role="status" aria-live="polite"><span id="toast-msg"></span><button id="toast-undo" type="button">Annuler</button></div>
 
 <script>
@@ -693,7 +706,7 @@ function setTab(t){
   document.querySelectorAll(".sbtn").forEach(function(b){b.classList.toggle("on",b.dataset.go===t)});
 }
 document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){setTab(b.id==="gear"&&ui.tab==="set"?"home":b.dataset.go)})});
-document.addEventListener("keydown",function(e){if(e.key==="Escape"&&ui.tab!=="home"&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||""))setTab("home")});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!document.querySelector("dialog[open]")&&ui.tab!=="home"&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||""))setTab("home")});
 
 /* ---------- finances ---------- */
 function cats(t){var v=state.settings[t==="out"?"catsOut":"catsIn"];return Array.isArray(v)&&v.length?v:CATS[t]}
@@ -1270,7 +1283,13 @@ $("#j-list").addEventListener("change",function(e){
   persist("jobs");renderHome();
   if(el.dataset.k!=="status"){var row=box.parentNode.querySelector(".jhead .lbl");if(row)row.innerHTML=esc(j.co)+'<small>'+esc(j.role)+(j.place?' · '+esc(jShortPlace(j.place)):'')+'</small>'}
 });
-// ajout
+// ajout (fenêtre)
+var jnDlg=$("#jn-dialog");
+function jnOpen(){$("#jn-date").value=today();if(jnDlg.showModal)jnDlg.showModal();else jnDlg.setAttribute("open","");setTimeout(function(){$("#jn-co").focus()},30)}
+function jnClose(){if(jnDlg.close)jnDlg.close();else jnDlg.removeAttribute("open")}
+$("#jn-open").addEventListener("click",jnOpen);
+$("#jn-close").addEventListener("click",jnClose);
+jnDlg.addEventListener("click",function(e){if(e.target!==jnDlg)return;var r=jnDlg.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)jnClose()});
 $("#jn-date").value=today();
 $("#jn-form").addEventListener("submit",function(e){
   e.preventDefault();
@@ -1278,7 +1297,7 @@ $("#jn-form").addEventListener("submit",function(e){
   var role=$("#jn-role").value.trim();if(!role){flash("#jn-role");return}
   var d=$("#jn-date").value||today(),st=$("#jn-status").value;
   var j={id:newId(),co:co,role:role,status:st,contract:[$("#jn-contract").value],sector:$("#jn-sector").value,date:d,relance:st==="Candidature envoyée"?addDays(d,7):"",url:$("#jn-url").value.trim(),place:$("#jn-place").value.trim(),mail:"",notes:""};
-  state.jobs.push(j);jSave();
+  state.jobs.push(j);jSave();jnClose();
   ["#jn-co","#jn-role","#jn-url","#jn-place"].forEach(function(s){$(s).value=""});
   toast(co+" ajoutée"+(j.relance?" · relance prévue le "+parseYmd(j.relance).toLocaleDateString("fr-FR",{day:"numeric",month:"long"}):""));
 });
