@@ -108,6 +108,9 @@ details.panel[open]>summary{margin-bottom:12px}
 .fc-lines div{display:flex; justify-content:space-between; gap:10px}
 .fc-lines span:last-child{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
 .tag{display:inline-block; font-size:.7rem; font-weight:600; color:var(--accent); border:1px solid currentColor; border-radius:999px; padding:0 6px; margin-left:6px; vertical-align:1px}
+.bank-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px}
+.bank-form{display:flex; gap:8px; margin-top:12px}
+.bank-form input{flex:1}
 .bgrid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px}
 .catrow .num{font-size:.85rem; text-align:right; white-space:nowrap}
 .day{font-size:.78rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin:12px 0 2px}
@@ -167,6 +170,7 @@ details.panel[open]>summary{margin-bottom:12px}
       <h2 id="m-label">Mois</h2>
       <button id="m-next" aria-label="Mois suivant">›</button>
     </div>
+    <div class="panel" id="bank"></div>
     <div class="tiles" id="fin-tiles"></div>
     <p class="note" id="fin-note"></p>
     <div class="panel" id="fin-forecast"></div>
@@ -696,8 +700,51 @@ $("#b-inputs").addEventListener("input",function(){
     persist("settings");renderFin();
   },600);
 });
+/* ---------- solde réel ---------- */
+function idTime(id){var t=parseInt(String(id).slice(0,8),36);return isFinite(t)?t:0}
+function bankInfo(){
+  var b=state.settings.bank;if(!b||typeof b.amount!=="number"||!b.date)return null;
+  var t=today(),delta=0,n=0;
+  Object.keys(state.fin).forEach(function(m){
+    if(m<b.date.slice(0,7)||m>t.slice(0,7))return;
+    (state.fin[m]||[]).forEach(function(x){
+      if(x.date>t)return;
+      var after=x.date>b.date||(x.date===b.date&&!x.rec&&idTime(x.id)>(b.at||0));
+      if(!after)return;
+      delta+=x.type==="in"?x.amount:-x.amount;n++;
+    });
+  });
+  return {base:b.amount,date:b.date,est:Math.round((b.amount+delta)*100)/100,delta:delta,n:n};
+}
+var bankEditing=false;
+function renderBank(){
+  var el=$("#bank"),bi=bankInfo();
+  var h='<div class="bank-top"><div><h3 style="margin-bottom:2px">Solde de mon compte</h3>';
+  if(bi){
+    h+='<div class="fc-big '+(bi.est<0?"bad":"")+'">'+eur.format(bi.est)+'</div>';
+    h+='<p class="note">Saisi le '+esc(parseYmd(bi.date).toLocaleDateString("fr-FR",{day:"numeric",month:"long"}))+' : '+eur.format(bi.base)+(bi.n?' · '+(bi.delta>=0?"+ ":"− ")+eur.format(Math.abs(bi.delta))+' d\'opérations depuis ('+bi.n+')':' · aucune opération depuis')+'</p>';
+  }else{
+    h+='<p class="note">Saisis ce que tu as vraiment sur ton compte aujourd\'hui : l\'appli le met à jour avec chaque opération et calcule ce qu\'il y aura en fin de mois.</p>';
+  }
+  h+='</div>'+(bi&&!bankEditing?'<button class="link" type="button" id="bk-edit">Mettre à jour</button>':'')+'</div>';
+  if(!bi||bankEditing){
+    h+='<form class="bank-form" id="bk-form" novalidate><input id="bk-amount" inputmode="decimal" placeholder="Solde affiché par ta banque, ex. 1 245,60" autocomplete="off" aria-label="Solde réel en euros"><button class="primary" type="submit" style="padding:9px 14px">Enregistrer</button></form>';
+    if(bi)h+='<p class="note" style="margin-top:6px">Recopie le solde affiché dans ton appli bancaire, opérations du jour comprises.</p>';
+  }
+  el.innerHTML=h;
+  var ed=$("#bk-edit");if(ed)ed.addEventListener("click",function(){bankEditing=true;renderBank();$("#bk-amount").focus()});
+  var f=$("#bk-form");if(f)f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var raw=$("#bk-amount").value.replace(/−/g,"-");var v=num(raw);
+    if(!isFinite(v)||raw.trim()===""){flash("#bk-amount");return}
+    state.settings.bank={amount:Math.round(v*100)/100,date:today(),at:Date.now()};
+    bankEditing=false;persist("settings");renderFin();
+    toast("Solde enregistré : "+eur.format(v));
+  });
+}
 function renderFin(){
   $("#m-label").textContent=monthLabel(ui.month);
+  renderBank();
   var items=(state.fin[ui.month]||[]).slice();
   var inc=0,out=0,byCat={};
   items.forEach(function(x){
@@ -731,19 +778,23 @@ function renderFin(){
   }else if(!state.rec.length&&!Object.keys(bud).length){
     fc.innerHTML='<h3>Prévisionnel</h3><p class="note">Ajoute tes dépenses récurrentes (loyer, abonnements, salaire…) et fixe tes budgets par catégorie : je calcule ici ce qu\'il te restera en fin de mois.</p>';
   }else{
-    var h='<h3>Prévu en fin de mois</h3><div class="fc-big '+(proj<0?"bad":"good")+'">'+eur.format(proj)+'</div><div class="fc-lines">';
+    var bi=bankInfo(),useBank=bi&&ui.month===today().slice(0,7),endBank=useBank?bi.est+pendIn-pendOut-budLeft:0;
+    var h=useBank
+      ?'<h3>Sur ton compte le '+daysIn(ui.month)+' '+esc(monthLabel(ui.month).split(" ")[0].toLowerCase())+'</h3><div class="fc-big '+(endBank<0?"bad":"good")+'">'+eur.format(endBank)+'</div><p class="note" style="margin-bottom:10px">Ton solde actuel ('+eur.format(bi.est)+') + ce qui doit encore entrer − ce qui doit encore sortir.</p><div class="fc-lines">'
+      :'<h3>Prévu en fin de mois</h3><div class="fc-big '+(proj<0?"bad":"good")+'">'+eur.format(proj)+'</div><div class="fc-lines">';
     h+='<div><span>Entrées'+(pendIn?' (dont '+eur.format(pendIn)+' à venir)':'')+'</span><span class="good">+ '+eur.format(projIn)+'</span></div>';
     h+='<div><span>Déjà dépensé</span><span>− '+eur.format(out)+'</span></div>';
     if(pendOut)h+='<div><span>Récurrentes à venir</span><span>− '+eur.format(pendOut)+'</span></div>';
     if(budLeft)h+='<div><span>Reste de budget à dépenser</span><span>− '+eur.format(budLeft)+'</span></div>';
     h+='</div>';
+    if(useBank)h+='<div class="fc-lines" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line)"><div><span>Bilan du mois (entrées − sorties prévues)</span><span class="'+(proj<0?"bad":"good")+'">'+(proj<0?"− ":"+ ")+eur.format(Math.abs(proj))+'</span></div></div>';
     if(pend.length){
       h+='<div class="day" style="margin-top:14px">À venir</div>';
       pend.forEach(function(p){
         h+='<div class="row"><div class="lbl">'+esc(p.r.label)+'<small>'+esc(dayLabel(p.date))+' · '+esc(p.r.cat)+'</small></div><span class="num '+(p.r.type==="in"?"good":"")+'">'+(p.r.type==="in"?"+ ":"− ")+eur.format(p.r.amount)+'</span><span></span></div>';
       });
     }
-    if(proj<0)h+='<p class="note bad" style="margin-top:8px">À ce rythme, tu finis le mois à découvert de '+eur.format(-proj)+'.</p>';
+    if(useBank?endBank<0:proj<0)h+='<p class="note bad" style="margin-top:8px">'+(useBank?'À ce rythme, ton compte sera à découvert de '+eur.format(-endBank)+' en fin de mois.':'À ce rythme, tu dépenses '+eur.format(-proj)+' de plus que tu ne gagnes ce mois-ci.')+'</p>';
     else if(!pendIn&&!inc)h+='<p class="note" style="margin-top:8px">Aucune entrée prévue ce mois-ci : ajoute ton salaire en revenu récurrent.</p>';
     fc.innerHTML=h;
   }
