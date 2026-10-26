@@ -122,6 +122,33 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .ring-num{font:800 30px var(--body); fill:var(--ink); letter-spacing:-.5px}
 .ring-sub{font:600 11px var(--body); fill:var(--muted)}
 .k-pill{display:inline-flex; align-items:center; gap:8px; font-size:.85rem; font-weight:700; color:#dfe6ff; background:rgba(91,140,255,.16); border:1px solid rgba(91,140,255,.35); border-radius:999px; padding:7px 16px}
+/* candidatures */
+.c-job{grid-column:1 / -1; min-height:0}
+.jgrid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)) 1.4fr; gap:18px; align-items:end}
+.jgrid .k-big{font-size:2.4rem}
+.jnext{border-left:1px solid var(--line); padding-left:18px; display:flex; flex-direction:column; gap:6px; min-width:0}
+.jnext div{display:flex; justify-content:space-between; gap:8px; font-size:.88rem; white-space:nowrap}
+.jnext div span:first-child{overflow:hidden; text-overflow:ellipsis; font-weight:600}
+.jnext div span:last-child{color:var(--muted)}
+#j-stats.tiles{grid-template-columns:repeat(4,1fr)}
+.jtiles b{font-size:1.5rem!important}
+.warn{color:#ffb38a}
+.chip.on{background:rgba(91,140,255,.18); border-color:rgba(91,140,255,.45); color:#dfe6ff}
+.jrow{border-bottom:1px solid var(--line)}
+.jrow:last-child{border-bottom:0}
+.jhead{all:unset; box-sizing:border-box; width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 2px; cursor:pointer}
+.jhead:hover .lbl{color:#cfd8ff}
+.jhead:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:8px}
+.jhead .lbl{min-width:0}
+.jhead .lbl small{display:block; color:var(--muted); font-size:.78rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jedit{padding:4px 0 14px}
+.jpill{flex:none; font-size:.72rem; font-weight:700; border-radius:999px; padding:3px 10px; border:1px solid currentColor; white-space:nowrap}
+.st-a{color:#facc15} .st-e{color:#7aa2ff} .st-rl{color:#f472b6} .st-ar{color:#c084fc} .st-i{color:#4ade80} .st-o{color:#22c55e; background:rgba(34,197,94,.12)} .st-r{color:#6b7591}
+.jdue{grid-template-columns:1fr auto auto}
+.jlink{font-size:.82rem; font-weight:700; color:#9cbcff; text-decoration:none}
+.jbtns{display:flex; gap:6px}
+.ghost.sm{padding:6px 10px; font-size:.8rem}
+@media (max-width:760px){ .jgrid{grid-template-columns:repeat(3,1fr)} .jnext{grid-column:1 / -1; border-left:0; padding-left:0; border-top:1px solid var(--line); padding-top:12px} #j-stats.tiles{grid-template-columns:repeat(2,1fr)} .jdue{grid-template-columns:1fr; gap:6px} }
 @media (max-width:760px){ .hgrid{grid-template-columns:1fr} .k-big{font-size:2.2rem} .fin2 .k-big{font-size:1.8rem} }
 @media (prefers-reduced-motion:reduce){ .card,.sbtn{transition:none} }
 .stepper{display:flex; align-items:center; gap:8px}
@@ -146,7 +173,7 @@ input.err{border-color:var(--bad); box-shadow:0 0 0 2px color-mix(in srgb, var(-
 .seg button[data-v="out"][aria-pressed="true"]{color:var(--bad)}
 .seg button[data-v="in"][aria-pressed="true"]{color:var(--good)}
 button.primary{border:0; background:linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #1b2a6b)); color:#fff; font:700 1rem var(--body); padding:11px; border-radius:12px; cursor:pointer; box-shadow:0 10px 24px -12px var(--accent)}
-button.ghost{border:1px solid var(--line); background:var(--surface); color:var(--ink); font:600 .9rem var(--body); padding:9px 12px; border-radius:9px; cursor:pointer}
+.ghost{border:1px solid var(--line); background:var(--surface); color:var(--ink); font:600 .9rem var(--body); padding:9px 12px; border-radius:9px; cursor:pointer}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 .chips{display:flex; flex-wrap:wrap; gap:6px}
 .chip{border:1px solid var(--line); background:var(--bg); color:var(--ink); border-radius:999px; padding:5px 10px; font:500 .82rem var(--body); cursor:pointer}
@@ -229,6 +256,7 @@ details.panel[open]>summary{margin-bottom:12px}
       <div class="card c-date" id="card-date"></div>
       <button class="card c-fin" type="button" id="card-fin" data-go="fin" aria-label="Ouvrir les finances"></button>
       <button class="card c-cal" type="button" id="card-cal" data-go="cal" aria-label="Ouvrir les calories"></button>
+      <button class="card c-job" type="button" id="card-job" data-go="job" aria-label="Ouvrir les candidatures"></button>
     </div>
   </section>
 
@@ -318,6 +346,44 @@ details.panel[open]>summary{margin-bottom:12px}
     <div class="panel"><h3>Les 7 derniers jours</h3><div id="cal-week"></div></div>
   </section>
 
+  <!-- CANDIDATURES -->
+  <section class="view" id="v-job" aria-label="Candidatures">
+    <button class="back" type="button" data-go="home">← Accueil</button>
+    <h2 style="text-align:left">Candidatures</h2>
+    <div class="panel" id="j-import-hint" hidden>
+      <h3>Importer depuis Notion</h3>
+      <p class="note" style="margin-bottom:10px">Choisis le fichier <b>candidatures-notion.json</b> pour récupérer toutes tes candidatures Notion.</p>
+      <label class="ghost" for="j-file" style="display:inline-flex;cursor:pointer;color:var(--ink)">Choisir le fichier…</label>
+    </div>
+    <input type="file" id="j-file" accept=".json,application/json" hidden>
+    <div class="tiles jtiles" id="j-stats"></div>
+    <div class="panel" id="j-due"></div>
+    <details class="panel" id="jn-panel">
+      <summary><h3>Nouvelle candidature</h3></summary>
+      <form id="jn-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+        <div class="grid">
+          <label for="jn-co">Entreprise<input id="jn-co" maxlength="80" autocomplete="off" placeholder="Fnac Darty"></label>
+          <label for="jn-role">Poste<input id="jn-role" maxlength="120" autocomplete="off" placeholder="Chef de produit junior"></label>
+          <label for="jn-url" class="wide">Lien de l'offre<input id="jn-url" autocomplete="off" placeholder="https://…"></label>
+          <label for="jn-place">Lieu<input id="jn-place" maxlength="80" autocomplete="off" placeholder="Paris"></label>
+          <label for="jn-date">Envoyée le<input id="jn-date" type="date"></label>
+          <label for="jn-contract">Contrat<select id="jn-contract"><option>CDI</option><option>CDD</option><option>Alternance</option><option>Stage</option><option>Freelance</option><option>Intérim</option></select></label>
+          <label for="jn-sector">Secteur<select id="jn-sector"><option>Marketing</option><option>Vente</option><option>Autres</option></select></label>
+          <label for="jn-status" class="wide">Statut<select id="jn-status"><option>Candidature envoyée</option><option>A postuler</option><option>Entretien</option></select></label>
+        </div>
+        <button class="primary" type="submit">Ajouter la candidature</button>
+        <p class="note">La relance est programmée automatiquement 7 jours après l'envoi.</p>
+      </form>
+    </details>
+    <div class="panel">
+      <div class="phead"><h3>Mes candidatures</h3><span class="note" id="j-count"></span></div>
+      <input id="j-q" type="search" placeholder="Rechercher une entreprise, un poste, une ville…" autocomplete="off" aria-label="Rechercher" style="margin-bottom:10px">
+      <div class="chips" id="j-filters" style="margin-bottom:6px"></div>
+      <div id="j-list"></div>
+      <p class="note" style="margin-top:14px"><label for="j-file" style="display:inline;cursor:pointer;color:var(--accent);font-weight:600">Importer un fichier de candidatures…</label></p>
+    </div>
+  </section>
+
   <!-- RÉGLAGES -->
   <section class="view" id="v-set" aria-label="Réglages">
     <button class="back" type="button" data-go="home">← Accueil</button>
@@ -363,6 +429,7 @@ details.panel[open]>summary{margin-bottom:12px}
   <nav>
     <button class="sbtn" type="button" data-go="home" aria-label="Accueil" title="Accueil"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/></svg></button>
     <button class="sbtn" type="button" data-go="fin" aria-label="Finances" title="Finances"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-5 4 4 8-8"/><path d="M15 8h5v5"/></svg></button>
+    <button class="sbtn" type="button" data-go="job" aria-label="Candidatures" title="Candidatures"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M3 12.5h18"/></svg></button>
     <button class="sbtn" type="button" data-go="cal" aria-label="Calories" title="Calories"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4 0 7-2.8 7-7 0-3.5-2.2-6.2-4-8-.3 2-1.3 3.5-2.8 4.3C12.6 8.6 11 5 8 2.5 8.3 6 5 8.6 5 15c0 4.2 3 7 7 7Z"/></svg></button>
   </nav>
   <button class="sbtn" id="gear" type="button" data-go="set" aria-label="Réglages" title="Réglages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 8.96 4.6H9a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.04a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15Z"/></svg></button>
@@ -397,13 +464,13 @@ var CATS={
   in:["Salaire","Aides","Ventes","Remboursement","Autre"]
 };
 
-var state={settings:{},fin:{},cal:{},rec:[],finSkip:{}};
+var state={settings:{},fin:{},cal:{},rec:[],finSkip:{},jobs:[]};
 var ui={tab:"home",month:today().slice(0,7),day:today(),finType:"out"};
 
 /* ---------- stockage local ---------- */
 var LS="carnet-joseph-v1";
 function loadLocal(){
-  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{}}}}}catch(e){}
+  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[]}}}}catch(e){}
 
 }
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
@@ -422,10 +489,11 @@ var dirty=lsGet("carnet-dirty")||{};
 var sync={state:"off",pushing:false,timer:null,lastOk:null,firstPull:!lsGet("carnet-synced-once")};
 
 function hasCfg(){return !!(CFG.url&&CFG.key)}
-function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length}
+function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length}
 function allKeys(){
   var k=["settings"];
   if(state.rec.length)k.push("recurring");
+  if(state.jobs.length)k.push("jobs");
   Object.keys(state.fin).forEach(function(m){k.push("fin-"+m)});
   Object.keys(state.cal).forEach(function(m){k.push("cal-"+m)});
   return k;
@@ -433,6 +501,7 @@ function allKeys(){
 function bodyFor(key){
   if(key==="settings")return Object.assign({},state.settings);
   if(key==="recurring")return {items:state.rec};
+  if(key==="jobs")return {items:state.jobs};
   var b={items:(state[key.slice(0,3)][key.slice(4)]||[])};
   if(key.slice(0,3)==="fin"){var sk=state.finSkip[key.slice(4)];if(sk&&sk.length)b.skipped=sk}
   return b;
@@ -440,6 +509,7 @@ function bodyFor(key){
 function applyDoc(key,body){
   if(key==="settings")state.settings=Object.assign({},body||{});
   else if(key==="recurring")state.rec=Array.isArray(body&&body.items)?body.items:[];
+  else if(key==="jobs")state.jobs=Array.isArray(body&&body.items)?body.items:[];
   else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key)){state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
     if(key.slice(0,3)==="fin"){if(Array.isArray(body&&body.skipped))state.finSkip[key.slice(4)]=body.skipped;else delete state.finSkip[key.slice(4)]}
   }
@@ -619,7 +689,7 @@ function flash(sel){var el=$(sel);el.classList.add("err");el.focus();setTimeout(
 function setTab(t){
   ui.tab=t;document.body.dataset.tab=t;
   window.scrollTo(0,0);
-  ["home","fin","cal","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
+  ["home","fin","cal","job","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
   document.querySelectorAll(".sbtn").forEach(function(b){b.classList.toggle("on",b.dataset.go===t)});
 }
 document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){setTab(b.id==="gear"&&ui.tab==="set"?"home":b.dataset.go)})});
@@ -1053,7 +1123,7 @@ function fillSettings(){
   if(document.activeElement!==$("#s-prot"))$("#s-prot").value=state.settings.protGoal||"";
 }
 $("#status").addEventListener("click",function(){setTab("set")});
-function backupText(){return JSON.stringify({app:"carnet-joseph",v:2,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip})}
+function backupText(){return JSON.stringify({app:"carnet-joseph",v:2,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs})}
 $("#s-download").addEventListener("click",function(){
   var blob=new Blob([backupText()],{type:"application/json"});
   var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="carnet-sauvegarde-"+today()+".json";
@@ -1074,6 +1144,7 @@ $("#s-import-btn").addEventListener("click",function(){
   var ok=function(o){return o&&typeof o==="object"};
   if(ok(p.settings))state.settings=Object.assign({},p.settings);
   if(Array.isArray(p.rec))state.rec=p.rec;
+  if(Array.isArray(p.jobs))state.jobs=p.jobs;
   if(ok(p.finSkip))state.finSkip=p.finSkip;
   ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
   allKeys().forEach(persist);
@@ -1081,6 +1152,156 @@ $("#s-import-btn").addEventListener("click",function(){
   render();toast("Sauvegarde restaurée.");
 });
 
+/* ---------- candidatures ---------- */
+var JST=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien","Offre","Refusé"];
+var JCLS={"A postuler":"st-a","Candidature envoyée":"st-e","Relancé":"st-rl","A relancer":"st-ar","Entretien":"st-i","Offre":"st-o","Refusé":"st-r"};
+var JOPEN=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien"];
+var jui={filter:"open",q:"",open:null,limit:60};
+function jRelDate(j){return j.relance||(j.date?addDays(j.date,7):"")}
+function jDue(j){
+  if(j.status==="A relancer")return true;
+  if(j.status!=="Candidature envoyée")return false;
+  var r=jRelDate(j);return !!r&&r<=today();
+}
+function jStats(){
+  var t=today(),m=t.slice(0,7),s={open:0,due:0,itv:0,month:0,total:state.jobs.length};
+  state.jobs.forEach(function(j){
+    if(JOPEN.indexOf(j.status)>=0)s.open++;
+    if(jDue(j))s.due++;
+    if(j.status==="Entretien")s.itv++;
+    if(j.date&&j.date.slice(0,7)===m)s.month++;
+  });
+  return s;
+}
+function jFind(id){for(var i=0;i<state.jobs.length;i++)if(state.jobs[i].id===id)return state.jobs[i];return null}
+function jSave(){persist("jobs");renderJobs();renderHome()}
+function jShortPlace(p){
+  if(!p)return "";
+  var parts=p.split(",").map(function(x){return x.trim()}).filter(Boolean);
+  if(parts.length<=1)return p;
+  var city=parts.filter(function(x){return !/^\d{5}$/.test(x)&&!/France$|Île-de-France|Bretagne/.test(x)});
+  var c=city[city.length-1]||parts[0];
+  return c.replace(/^\d{5}\s+/,"");
+}
+function jPill(s){return '<span class="jpill '+(JCLS[s]||"")+'">'+esc(s)+'</span>'}
+function renderJobs(){
+  if(!$("#v-job"))return;
+  var s=jStats();
+  $("#j-stats").innerHTML=
+    '<div class="tile"><small>En cours</small><b>'+s.open+'</b></div>'+
+    '<div class="tile'+(s.due?" main":"")+'"><small>À relancer</small><b class="'+(s.due?"warn":"")+'">'+s.due+'</b></div>'+
+    '<div class="tile"><small>Entretiens</small><b class="good">'+s.itv+'</b></div>'+
+    '<div class="tile"><small>Ce mois-ci</small><b>'+s.month+'</b></div>';
+  // à relancer
+  var due=state.jobs.filter(jDue).sort(function(a,b){return jRelDate(a)<jRelDate(b)?-1:1});
+  var h='<div class="phead"><h3>À relancer'+(due.length?" ("+due.length+")":"")+'</h3></div>';
+  if(!due.length)h+='<p class="note">Rien à relancer pour l\'instant. Une candidature arrive ici 7 jours après l\'envoi.</p>';
+  else due.slice(0,12).forEach(function(j){
+    var late=Math.round((parseYmd(today())-parseYmd(jRelDate(j)))/864e5);
+    h+='<div class="row jdue"><div class="lbl">'+esc(j.co)+'<small>'+esc(j.role)+' · envoyée le '+esc(parseYmd(j.date).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}))+(late>0?' · <span class="warn">'+late+' j de retard</span>':'')+'</small></div>'+
+      (j.url?'<a class="jlink" href="'+esc(j.url)+'" target="_blank" rel="noopener">Offre ↗</a>':'<span></span>')+
+      '<div class="jbtns"><button class="ghost sm" type="button" data-act="relance" data-id="'+esc(j.id)+'">Relancé ✓</button><button class="ghost sm" type="button" data-act="refuse" data-id="'+esc(j.id)+'" title="Marquer comme refusée">Refusé</button></div></div>';
+  });
+  if(due.length>12)h+='<p class="note" style="margin-top:8px">+ '+(due.length-12)+' autres dans la liste ci-dessous (filtre « À relancer »).</p>';
+  $("#j-due").innerHTML=h;
+  // filtres
+  var F={open:"En cours",due:"À relancer",itv:"Entretiens",ref:"Refusées",all:"Toutes"};
+  $("#j-filters").innerHTML=Object.keys(F).map(function(k){return '<button type="button" class="chip'+(jui.filter===k?" on":"")+'" data-f="'+k+'">'+F[k]+'</button>'}).join("");
+  var q=jui.q.trim().toLowerCase();
+  var list=state.jobs.filter(function(j){
+    if(jui.filter==="open"&&JOPEN.indexOf(j.status)<0)return false;
+    if(jui.filter==="due"&&!jDue(j))return false;
+    if(jui.filter==="itv"&&j.status!=="Entretien"&&j.status!=="Offre")return false;
+    if(jui.filter==="ref"&&j.status!=="Refusé")return false;
+    if(q&&(j.co+" "+j.role+" "+j.place+" "+(j.notes||"")).toLowerCase().indexOf(q)<0)return false;
+    return true;
+  }).sort(function(a,b){return (b.date||"")+(b.id)>(a.date||"")+(a.id)?1:-1});
+  $("#j-count").textContent=list.length+" candidature"+(list.length>1?"s":"");
+  var html="",last="";
+  list.slice(0,jui.limit).forEach(function(j){
+    var mk=j.date?j.date.slice(0,7):"";
+    if(mk!==last){html+='<div class="day">'+(mk?esc(monthLabel(mk)):"Sans date")+'</div>';last=mk}
+    var open=jui.open===j.id;
+    html+='<div class="jrow'+(open?" open":"")+'"><button type="button" class="jhead" data-id="'+esc(j.id)+'" aria-expanded="'+open+'">'+
+      '<span class="lbl">'+esc(j.co)+'<small>'+esc(j.role)+(j.place?' · '+esc(jShortPlace(j.place)):'')+(j.contract&&j.contract.length?' · '+esc(j.contract.join(" ")):'')+'</small></span>'+jPill(j.status)+'</button>';
+    if(open){
+      html+='<div class="jedit" data-id="'+esc(j.id)+'"><div class="grid">'+
+        '<label for="je-status">Statut<select id="je-status" data-k="status">'+JST.map(function(x){return '<option'+(x===j.status?" selected":"")+'>'+esc(x)+'</option>'}).join("")+'</select></label>'+
+        '<label for="je-rel">Relance prévue<input id="je-rel" type="date" data-k="relance" value="'+esc(jRelDate(j))+'"></label>'+
+        '<label for="je-co">Entreprise<input id="je-co" data-k="co" value="'+esc(j.co)+'"></label>'+
+        '<label for="je-role">Poste<input id="je-role" data-k="role" value="'+esc(j.role)+'"></label>'+
+        '<label for="je-date">Envoyée le<input id="je-date" type="date" data-k="date" value="'+esc(j.date)+'"></label>'+
+        '<label for="je-place">Lieu<input id="je-place" data-k="place" value="'+esc(j.place)+'"></label>'+
+        '<label for="je-url" class="wide">Lien de l\'offre<input id="je-url" data-k="url" value="'+esc(j.url)+'" placeholder="https://…"></label>'+
+        '<label for="je-mail" class="wide">Contact / mail de relance<input id="je-mail" data-k="mail" value="'+esc(j.mail)+'"></label>'+
+        '<label for="je-notes" class="wide">Notes<textarea id="je-notes" data-k="notes" placeholder="Nom du recruteur, questions d\'entretien, ressenti…">'+esc(j.notes||"")+'</textarea></label>'+
+        '</div><div class="btnrow" style="margin-top:10px">'+(j.url?'<a class="ghost sm" href="'+esc(j.url)+'" target="_blank" rel="noopener" style="text-decoration:none">Voir l\'offre ↗</a>':'')+
+        '<button class="ghost sm" type="button" data-act="del" data-id="'+esc(j.id)+'">Supprimer</button></div></div>';
+    }
+    html+='</div>';
+  });
+  if(list.length>jui.limit)html+='<button class="ghost" type="button" id="j-more" style="margin-top:10px;width:100%">Afficher plus ('+(list.length-jui.limit)+')</button>';
+  $("#j-list").innerHTML=html||'<p class="empty">Aucune candidature ici.</p>';
+  $("#j-import-hint").hidden=state.jobs.length>0;
+}
+$("#j-filters").addEventListener("click",function(e){var b=e.target.closest("[data-f]");if(!b)return;jui.filter=b.dataset.f;jui.limit=60;jui.open=null;renderJobs()});
+var jqT=null;$("#j-q").addEventListener("input",function(){clearTimeout(jqT);var v=this.value;jqT=setTimeout(function(){jui.q=v;jui.limit=60;renderJobs()},200)});
+function jAct(e){
+  var b=e.target.closest("[data-act]");if(!b)return false;
+  var j=jFind(b.dataset.id);if(!j)return true;
+  if(b.dataset.act==="relance"){var prev={status:j.status,relance:j.relance};j.status="Relancé";j.relance=today();jSave();toast(j.co+" : relance notée",function(){j.status=prev.status;j.relance=prev.relance;jSave()})}
+  else if(b.dataset.act==="refuse"){var ps=j.status;j.status="Refusé";jSave();toast(j.co+" : marquée refusée",function(){j.status=ps;jSave()})}
+  else if(b.dataset.act==="del"){var i=state.jobs.indexOf(j);state.jobs.splice(i,1);jui.open=null;jSave();toast("Candidature supprimée",function(){state.jobs.splice(i,0,j);jSave()})}
+  return true;
+}
+$("#j-due").addEventListener("click",jAct);
+$("#j-list").addEventListener("click",function(e){
+  if(jAct(e))return;
+  if(e.target.id==="j-more"){jui.limit+=60;renderJobs();return}
+  var h=e.target.closest(".jhead");if(!h)return;
+  jui.open=jui.open===h.dataset.id?null:h.dataset.id;renderJobs();
+});
+var jeT=null;
+$("#j-list").addEventListener("change",function(e){
+  var el=e.target,box=el.closest(".jedit");if(!box||!el.dataset.k)return;
+  var j=jFind(box.dataset.id);if(!j)return;
+  j[el.dataset.k]=el.value.trim();
+  if(el.dataset.k==="status")renderJobs();
+  persist("jobs");renderHome();
+  if(el.dataset.k!=="status"){var row=box.parentNode.querySelector(".jhead .lbl");if(row)row.innerHTML=esc(j.co)+'<small>'+esc(j.role)+(j.place?' · '+esc(jShortPlace(j.place)):'')+'</small>'}
+});
+// ajout
+$("#jn-date").value=today();
+$("#jn-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  var co=$("#jn-co").value.trim();if(!co){flash("#jn-co");return}
+  var role=$("#jn-role").value.trim();if(!role){flash("#jn-role");return}
+  var d=$("#jn-date").value||today(),st=$("#jn-status").value;
+  var j={id:newId(),co:co,role:role,status:st,contract:[$("#jn-contract").value],sector:$("#jn-sector").value,date:d,relance:st==="Candidature envoyée"?addDays(d,7):"",url:$("#jn-url").value.trim(),place:$("#jn-place").value.trim(),mail:"",notes:""};
+  state.jobs.push(j);jSave();
+  ["#jn-co","#jn-role","#jn-url","#jn-place"].forEach(function(s){$(s).value=""});
+  toast(co+" ajoutée"+(j.relance?" · relance prévue le "+parseYmd(j.relance).toLocaleDateString("fr-FR",{day:"numeric",month:"long"}):""));
+});
+// import
+$("#j-file").addEventListener("change",function(){
+  var f=this.files&&this.files[0];if(!f)return;
+  var rd=new FileReader();
+  rd.onload=function(){
+    var p;try{p=JSON.parse(rd.result)}catch(e){toast("Ce fichier n'est pas lisible.");return}
+    var items=Array.isArray(p)?p:(p&&Array.isArray(p.items)?p.items:null);
+    if(!items){toast("Ce fichier ne contient pas de candidatures.");return}
+    var have={};state.jobs.forEach(function(j){have[j.id]=1});
+    var n=0;items.forEach(function(x){
+      if(!x||typeof x!=="object"||!x.id||have[x.id])return;
+      state.jobs.push({id:String(x.id),n:x.n||null,co:String(x.co||"(sans nom)"),role:String(x.role||""),status:JST.indexOf(x.status)>=0?x.status:"Candidature envoyée",contract:Array.isArray(x.contract)?x.contract:[],sector:x.sector||"",date:x.date||"",relance:x.relance||"",url:x.url||"",place:x.place||"",mail:x.mail||"",notes:x.notes||""});
+      have[x.id]=1;n++;
+    });
+    $("#j-file").value="";
+    if(!n){toast("Tout était déjà importé.");return}
+    jSave();toast(n+" candidatures importées.");
+  };
+  rd.readAsText(f);
+});
 /* ---------- accueil ---------- */
 function greet(){var h=new Date().getHours();return h<5?"Bonne nuit":h<12?"Bonjour":h<18?"Bon après-midi":"Bonsoir"}
 function hhmm(){return new Date().toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}
@@ -1154,6 +1375,15 @@ function renderHome(){
     '<div class="fin2"><div><div class="k-big'+(C.bank?(C.bank.est<0?" neg":""):" dim")+'">'+(C.bank?eur.format(C.bank.est):"— €")+'</div><div class="k-lbl">'+(C.bank?"Solde réel":"Solde réel · à saisir")+'</div></div>'+
     '<div><div class="k-big'+(hasForecast?(risk?" neg":""):" dim")+'">'+(hasForecast?eur.format(end):"— €")+'</div><div class="k-lbl">'+(hasForecast?"Solde prévisionnel · "+endLbl.replace("Prévu le ","").trim():"Prévisionnel · à configurer")+'</div></div></div>'+
     '<span class="k-open">Ouvrir →</span>';
+  // candidatures
+  var js=jStats(),dueL=state.jobs.filter(jDue).sort(function(a,b){return jRelDate(a)<jRelDate(b)?-1:1});
+  var nx=dueL.length?dueL.slice(0,3).map(function(j){return (function(){var late=Math.round((parseYmd(today())-parseYmd(jRelDate(j)))/864e5);return '<div><span>'+esc(j.co)+'</span><span'+(late>0?' class="warn"':'')+'>'+(late>0?late+" j de retard":late===0?"aujourd'hui":"le "+esc(parseYmd(jRelDate(j)).toLocaleDateString("fr-FR",{day:"numeric",month:"short"})))+'</span></div>'})()}).join(""):'<div><span style="font-weight:500;color:var(--muted)">Aucune relance en attente</span></div>';
+  $("#card-job").innerHTML='<div class="k-title">Candidatures<span class="k-chip'+(js.due?" warn":"")+'">'+(js.total?(js.due?js.due+" à relancer":"À jour"):"À importer")+'</span></div>'+
+    '<div class="jgrid"><div><div class="k-big">'+js.open+'</div><div class="k-lbl">En cours</div></div>'+
+    '<div><div class="k-big">'+js.itv+'</div><div class="k-lbl">Entretiens</div></div>'+
+    '<div><div class="k-big">'+js.month+'</div><div class="k-lbl">Envoyées ce mois-ci</div></div>'+
+    '<div class="jnext"><div class="k-lbl" style="margin:0 0 2px">Prochaines relances</div>'+nx+'</div></div>'+
+    '<span class="k-open">Ouvrir →</span>';
   // calories
   var over=goal&&t.kcal>goal;
   $("#card-cal").innerHTML='<div class="k-title">Calories<span class="k-chip'+(over?" warn":"")+'">'+(goal?(over?"Objectif dépassé":Math.round(t.kcal/goal*100)+" %"):"Aujourd'hui")+'</span></div>'+
@@ -1180,7 +1410,7 @@ document.querySelectorAll("button.card").forEach(function(c){
 /* ---------- rendu ---------- */
 function render(){
   var t=state.settings.title||"Mon carnet";$("#app-title").textContent=t;
-  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderHome();
+  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderHome();
 }
 
 loadLocal();
