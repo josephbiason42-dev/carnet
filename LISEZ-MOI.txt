@@ -1,0 +1,49 @@
+MON CARNET — installation (une seule fois, ~20 minutes, 100 % gratuit)
+=====================================================================
+
+Contenu du dossier
+  index.html, sw.js, manifest.webmanifest, icônes .png  → l'appli
+  config.js   → tes réglages Supabase (à remplir, étape 2)
+  setup.sql   → la table de données (à lancer, étape 1)
+
+1. SUPABASE (la synchro)
+   - Crée un compte gratuit sur https://supabase.com puis « New project »
+     (nom : carnet, région : Paris / West EU, note bien le mot de passe).
+   - Menu SQL Editor → New query → colle tout le contenu de setup.sql → Run.
+   - Facultatif mais pratique : Authentication → Sign In / Providers → Email →
+     désactive « Confirm email » (sinon tu devras cliquer un lien reçu par mail
+     lors de la création du compte).
+   - Project Settings → API (ou « API Keys ») : copie la « Project URL »
+     et la clé publique « anon » (ou « publishable »). JAMAIS la clé « service_role » / « secret ».
+
+2. CONFIG
+   - Ouvre config.js avec TextEdit (Format → Convertir au format texte)
+     et remplace les deux textes COLLE_ICI_… par tes valeurs, entre les guillemets.
+   - Si tu sautes cette étape, l'appli te les demandera dans Réglages sur chaque appareil.
+
+3. GITHUB PAGES (l'hébergement)
+   - Crée un compte gratuit sur https://github.com → « New repository »
+     nom : carnet, visibilité : Public → Create repository.
+   - « uploading an existing file » → glisse TOUS les fichiers du dossier
+     (pas le dossier lui-même) → Commit changes.
+   - Settings → Pages → Source : « Deploy from a branch », Branch : main, / (root) → Save.
+   - Après 1 à 2 minutes, ton appli est en ligne sur :
+     https://TON-PSEUDO.github.io/carnet/
+
+4. INSTALLATION
+   - Mac : ouvre l'adresse dans Safari → Fichier → Ajouter au Dock.
+     (Chrome : menu ⋮ → Caster, enregistrer et partager → Installer la page en tant qu'application.)
+   - iPhone : Safari → Partager → Sur l'écran d'accueil.
+   - Android : Chrome → menu ⋮ → Installer l'application.
+
+5. PREMIÈRE CONNEXION
+   - Dans l'appli : Réglages → Synchronisation → « Créer mon compte » (e-mail + mot de passe).
+   - Sur chaque autre appareil : même e-mail, même mot de passe → « Se connecter ».
+
+Bon à savoir
+  - Le dépôt GitHub est public : le code et la clé publique sont visibles, c'est normal.
+    Tes données, elles, ne sont lisibles qu'avec ton compte (sécurité « RLS » du script).
+  - L'appli marche aussi hors ligne : tes ajouts partent dès que le réseau revient.
+  - Supabase met en pause les projets gratuits inutilisés pendant une semaine.
+    Si ça arrive : connecte-toi sur supabase.com → « Restore project ». Rien n'est perdu.
+  - Pour modifier l'appli plus tard : remplace index.html sur GitHub (Add file → Upload files).
