@@ -215,6 +215,23 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 /* bibliothèque */
 .l-cur{padding:4px 0 14px; border-bottom:1px solid var(--line); margin-bottom:12px}
 .lnav{grid-template-columns:1fr 1fr; margin:12px 0 14px}
+.k-chip.warn{color:#ffb38a}
+.rp-scroll{overflow-x:auto; margin:4px -4px 0; padding:0 4px 4px}
+.rp{position:relative; display:flex; gap:4px; padding-top:22px}
+.rp-seg{min-width:74px; position:relative; display:flex; flex-direction:column; gap:6px}
+.rp-bar{height:12px; border-radius:4px; background:var(--soft); overflow:hidden; border:1px solid var(--line)}
+.rp-bar i{display:block; height:100%; background:linear-gradient(90deg,#5b8cff,#8b5cf6)}
+.rp-seg.full .rp-bar i{background:linear-gradient(90deg,#4ade80,#22c55e)}
+.rp-seg.late .rp-bar{border-color:rgba(248,113,113,.55)}
+.rp-seg.cur .rp-bar{box-shadow:0 0 0 2px rgba(91,140,255,.35)}
+.rp-dots{display:flex; flex-wrap:wrap; gap:3px; min-height:8px}
+.rp-dots i{width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.18)}
+.rp-dots i.d{background:#4ade80} .rp-dots i.c{background:#5b8cff} .rp-dots i.l{background:#f87171}
+.rp-lbl{display:flex; flex-direction:column; font-size:.68rem; color:var(--muted); line-height:1.3; white-space:nowrap}
+.rp-lbl b{color:var(--ink); font-size:.72rem}
+.rp-seg.cur .rp-lbl b{color:#9cbcff}
+.rp-now{position:absolute; top:-22px; bottom:0; width:0; border-left:2px dashed rgba(251,191,36,.85); z-index:1; pointer-events:none}
+.rp-now span{position:absolute; top:0; left:4px; font-size:.66rem; font-weight:700; color:#fbbf24; white-space:nowrap}
 .prow{display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center; padding:10px 0; border-bottom:1px solid var(--line)}
 .prow:last-child{border-bottom:0}
 .prow-main{all:unset; cursor:pointer; min-width:0; display:flex; flex-direction:column; gap:2px}
@@ -800,6 +817,7 @@ details.panel[open]>summary{margin-bottom:12px}
     </div>
     <input type="file" id="p-file" accept=".json,application/json" hidden>
     <div class="panel" id="p-top"></div>
+    <div class="panel" id="p-retro" hidden></div>
     <div class="panel"><h3>Avancement par condition</h3><div id="p-phases"></div></div>
     <div class="panel"><h3>Routines continues</h3><div id="p-routines"></div></div>
     <div class="panel">
@@ -2958,7 +2976,7 @@ function renderP30(){
   if(!$("#v-p30"))return;
   var S=pStats();
   $("#p-import-hint").hidden=state.p30.length>0;
-  if(!state.p30.length){$("#p-top").innerHTML="";$("#p-phases").innerHTML="";$("#p-list").innerHTML="";$("#p-routines").innerHTML="";return}
+  if(!state.p30.length){renderRetro();$("#p-top").innerHTML="";$("#p-phases").innerHTML="";$("#p-list").innerHTML="";$("#p-routines").innerHTML="";return}
   // prochaine étape
   var nx=S.next,cur=S.cur,h='<div class="p-hero"><div class="p-ring">'+pRing(S.pct,120)+'</div><div style="min-width:0">'+
     '<div class="k-lbl" style="margin:0">'+S.done+' étape'+(S.done>1?"s":"")+' sur '+S.total+' · horizon actuel <b style="color:var(--ink)">'+esc(pShortH(S.horizon))+'</b></div>';
@@ -2967,6 +2985,7 @@ function renderP30(){
   if(!nx&&!cur.length)h+='<p class="note">Toutes les étapes sont terminées. Bravo.</p>';
   h+='</div></div>'+pTimeline(true);
   $("#p-top").innerHTML=h;
+  renderRetro();
   // conditions
   $("#p-phases").innerHTML=PPH.map(function(ph){
     var st=pSteps().filter(function(x){return x.phase===ph});if(!st.length)return "";
@@ -3782,7 +3801,8 @@ function renderHome(){
   if(!state.p30.length)pc.innerHTML='<div class="k-title">Projet 30<span class="k-chip">À importer</span></div><div class="k-lbl">Importe ton plan Notion pour suivre tes étapes ici.</div><span class="k-open">Ouvrir →</span>';
   else{
     var focus=PS.cur[0]||PS.next;
-    pc.innerHTML='<div class="k-title">Projet 30<span class="k-chip">Étape '+(focus?focus.step:PS.total)+' / '+PS.total+'</span></div>'+
+    var RS=rpStats(),rsT=RS.el<0?"":RS.diff<=-1?" · retard "+(-RS.diff):RS.diff>=1?" · avance "+RS.diff:" · à l'heure";
+    pc.innerHTML='<div class="k-title">Projet 30<span class="k-chip'+(RS.diff<=-1?" warn":"")+'">Étape '+(focus?focus.step:PS.total)+' / '+PS.total+rsT+'</span></div>'+
       '<div class="p30h"><div class="p-ring">'+pRing(PS.pct,96)+'</div><div style="min-width:0;flex:1">'+
       (focus?'<div class="k-lbl" style="margin:0 0 2px">'+(PS.cur.length&&focus===PS.cur[0]?"En cours":"Prochaine étape")+' · '+esc(pShortH(focus.horizon))+'</div><div class="p-title">'+esc(focus.title)+'</div>'+(focus.deliverable?'<div class="k-lbl">'+esc(focus.deliverable)+'</div>':''):'<div class="p-title">Plan terminé</div>')+
       '</div></div>'+pTimeline(false)+'<span class="k-open">Ouvrir →</span>';
@@ -3877,6 +3897,55 @@ function covApply(b){
   renderHome();
 }
 function covImg(b){return b.cover?'<img class="lc-img" src="'+esc(b.cover)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.remove(\'has-img\');this.remove()">':''}
+/* ---------- rétroplanning Projet 30 ---------- */
+function rpStart(){var s=state.settings.p30Start;return /^\d{4}-\d{2}-\d{2}$/.test(s||"")?s:"2026-10-01"}
+function rpBounds(h){var m=String(h||"").match(/M(\d+)-M(\d+)/);return m?[+m[1],+m[2]]:null}
+function rpDate(mo){var d=parseYmd(rpStart());d.setMonth(d.getMonth()+Math.floor(mo));d.setDate(d.getDate()+Math.round((mo%1)*30.44));return ymd(d)}
+function rpElapsed(){return (parseYmd(today())-parseYmd(rpStart()))/864e5/30.44}
+function rpStepDue(x){if(x.due)return x.due;var b=rpBounds(x.horizon);return b?addDays(rpDate(b[1]),-1):null}
+function rpStats(){
+  var S=pSteps().filter(function(x){return rpBounds(x.horizon)}),el=Math.max(0,rpElapsed()),done=S.filter(pDone).length,exp=0;
+  S.forEach(function(x){var b=rpBounds(x.horizon);exp+=el>=b[1]?1:el<=b[0]?0:(el-b[0])/(b[1]-b[0])});
+  // rythme : étapes faites / mois écoulés (minimum 1 mois)
+  var dd=S.filter(pDone).map(function(x){return x.doneOn}).filter(Boolean).sort();
+  var since=Math.max(1,el),pace=done/since,left=S.length-done,eta=pace>0?el+left/pace:null;
+  var end=Math.max.apply(null,S.map(function(x){return rpBounds(x.horizon)[1]}));
+  return {S:S,el:el,done:done,exp:exp,diff:Math.round(done-exp),pace:pace,eta:eta,end:end,left:left};
+}
+function rpMonthLbl(mo){return parseYmd(rpDate(mo)).toLocaleDateString("fr-FR",{month:"short",year:"2-digit"})}
+function renderRetro(){
+  var el=$("#p-retro");if(!el)return;
+  if(!state.p30.length){el.hidden=true;return}el.hidden=false;
+  var R=rpStats(),end=R.end||60,H=PHZ.filter(function(z){return R.S.some(function(x){return x.horizon===z})});
+  var stTxt=R.el<0?"Le plan commence le "+fd(rpStart()):R.diff>=1?"En avance de "+R.diff+" étape"+(R.diff>1?"s":""):R.diff<=-1?"En retard de "+(-R.diff)+" étape"+(R.diff<-1?"s":""):"Dans les temps";
+  var cls=R.diff<=-1?"warn":R.diff>=1?"ok":"";
+  var h='<div class="phead"><h3>Rétroplanning</h3><span class="k-chip '+cls+'">'+esc(stTxt)+'</span></div>';
+  // frise
+  var todayPct=Math.max(0,Math.min(100,R.el/end*100));
+  h+='<div class="rp-scroll"><div class="rp">';
+  H.forEach(function(z){
+    var b=rpBounds(z),st=R.S.filter(function(x){return x.horizon===z}),d=st.filter(pDone).length,w=(b[1]-b[0])/end*100;
+    var past=R.el>=b[1],cur=R.el>=b[0]&&R.el<b[1],late=past&&d<st.length;
+    h+='<div class="rp-seg'+(cur?" cur":"")+(late?" late":"")+(d===st.length?" full":"")+'" style="flex:'+(b[1]-b[0])+' 1 0">'+(cur?'<div class="rp-now" style="left:'+((R.el-b[0])/(b[1]-b[0])*100).toFixed(1)+'%"><span>Aujourd\'hui</span></div>':'')+
+      '<div class="rp-bar"><i style="width:'+(st.length?d/st.length*100:0).toFixed(1)+'%"></i></div>'+
+      '<div class="rp-dots">'+st.map(function(x){return '<i class="'+(pDone(x)?"d":x.status==="En cours"?"c":rpStepDue(x)<today()?"l":"")+'" title="'+esc("Étape "+x.step+" · "+x.title)+'"></i>'}).join("")+'</div>'+
+      '<div class="rp-lbl"><b>'+esc(pShortH(z))+'</b><span>'+esc(rpMonthLbl(b[0]))+'</span><span>'+d+'/'+st.length+'</span></div></div>';
+  });
+  h+='</div></div>';
+  // synthèse
+  var target=rpDate(end),etaTxt;
+  if(R.eta==null)etaTxt="Termine une première étape pour estimer ta date d'arrivée.";
+  else{var ed=rpDate(R.eta),gap=Math.round(R.eta-end);etaTxt='À ton rythme actuel ('+nf1.format(R.pace)+' étape'+(R.pace>=2?"s":"")+' par mois), dernière étape vers <b style="color:var(--ink)">'+esc(parseYmd(ed).toLocaleDateString("fr-FR",{month:"long",year:"numeric"}))+'</b>'+(gap>2?', soit '+gap+' mois après l\'objectif.':gap<-2?', soit '+(-gap)+' mois d\'avance.':', pile dans l\'objectif.')}
+  h+='<div class="fc-lines" style="margin-top:12px"><div><span>Étapes faites</span><span>'+R.done+' / '+R.S.length+'</span></div><div><span>Attendues à cette date</span><span>'+nf1.format(R.exp)+'</span></div><div><span>Objectif de fin</span><span>'+esc(parseYmd(target).toLocaleDateString("fr-FR",{month:"long",year:"numeric"}))+'</span></div></div>';
+  h+='<p class="note" style="margin-top:8px">'+etaTxt+(R.eta!=null&&R.el<3?' Estimation encore peu fiable : le plan vient de commencer.':'')+'</p>';
+  // échéances
+  var up=R.S.filter(function(x){return !pDone(x)}).sort(function(a,b){return a.step-b.step}).slice(0,5);
+  if(up.length){h+='<div class="day" style="margin-top:14px">Prochaines échéances</div>'+up.map(function(x){var du=rpStepDue(x),late=du&&du<today(),n=du?Math.round((parseYmd(du)-parseYmd(today()))/864e5):null;
+    return '<div class="row"><div class="lbl">'+x.step+'. '+esc(x.title)+'<small>'+esc(pShortH(x.horizon))+(x.status==="En cours"?" · en cours":"")+'</small></div><span class="num '+(late?"bad":"")+'">'+(du?(late?"en retard":"avant le "+esc(parseYmd(du).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"2-digit"})))+'':'—')+'</span><span></span></div>'}).join("")}
+  h+='<details style="margin-top:10px"><summary class="link" style="cursor:pointer;color:var(--accent);font:600 .82rem var(--body)">Début du plan (M0) : '+esc(fd(rpStart()))+'</summary><label for="rp-start" style="margin-top:8px">Date de départ<input type="date" id="rp-start" value="'+rpStart()+'"></label><p class="note">Les horizons M0-M3, M3-M6… sont calculés à partir de cette date. Chaque étape doit être finie avant la fin de son horizon.</p></details>';
+  el.innerHTML=h;
+}
+$("#p-retro").addEventListener("change",function(e){if(e.target.id!=="rp-start")return;var v=e.target.value;if(!/^\d{4}-\d{2}-\d{2}$/.test(v))return;state.settings.p30Start=v;persist("settings");renderRetro();renderHome()});
 /* ---------- carrousel, fiches et notes de lecture ---------- */
 var BCOL={"Neuromarketing":["#8b5cf6","#4c1d95"],"Psychologie du consommateur":["#5b8cff","#1e3a8a"],"Branding & marques":["#ff8a4c","#9a3412"],"IA dans le marketing":["#22d3ee","#155e75"],"Transversal":["#4ade80","#166534"],"Autre":["#94a3b8","#334155"]};
 var NT={idea:{n:"Idée",p:"Idées",c:"#9cbcff"},quote:{n:"Citation",p:"Citations",c:"#c4b5ff"},apply:{n:"À appliquer",p:"À appliquer",c:"#4ade80"}};
