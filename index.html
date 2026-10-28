@@ -31,12 +31,38 @@
 html,body{margin:0}
 html{background:#05070d}
 body{min-height:100vh; color:var(--ink); font:16px/1.45 var(--body); font-variant-numeric:tabular-nums; --accent:var(--fin);
-  background:
-    radial-gradient(55% 45% at 100% 0%, rgba(46,98,255,.30), transparent 70%),
-    radial-gradient(45% 40% at 105% 80%, rgba(255,112,40,.32), transparent 70%),
-    radial-gradient(35% 35% at 0% 100%, rgba(40,70,200,.14), transparent 70%),
-    #05070d;
-  background-attachment:fixed}
+  background:transparent}
+/* ciel animé selon l'heure */
+#sky{position:fixed; inset:0; z-index:-1; overflow:hidden; background:var(--sk0,#05070d); transition:background 3s}
+#sky b{position:absolute; border-radius:50%; filter:blur(10px); transition:background 3s, opacity 3s; will-change:transform}
+#sky .sk1{width:85vmax; height:70vmax; right:-35vmax; top:-35vmax; background:radial-gradient(closest-side, var(--sk1), transparent); animation:skd1 38s ease-in-out infinite alternate}
+#sky .sk2{width:70vmax; height:62vmax; right:-32vmax; bottom:-25vmax; background:radial-gradient(closest-side, var(--sk2), transparent); animation:skd2 46s ease-in-out infinite alternate}
+#sky .sk3{width:60vmax; height:60vmax; left:-30vmax; bottom:-32vmax; background:radial-gradient(closest-side, var(--sk3), transparent); animation:skd3 52s ease-in-out infinite alternate}
+@keyframes skd1{to{transform:translate(-9vmax,7vmax) scale(1.08)}}
+@keyframes skd2{to{transform:translate(-7vmax,-9vmax) scale(.94)}}
+@keyframes skd3{to{transform:translate(8vmax,-6vmax) scale(1.1)}}
+#sky .stars{position:absolute; inset:0; opacity:0; transition:opacity 3s}
+#sky .stars i{position:absolute; border-radius:50%; background:#fff; animation:twk 5s ease-in-out infinite}
+@keyframes twk{0%,100%{opacity:.15}50%{opacity:.85}}
+body[data-sky="aube"]{--sk0:#080a17; --sk1:rgba(255,128,120,.30); --sk2:rgba(140,110,255,.26); --sk3:rgba(255,186,120,.14)}
+body,body[data-sky="jour"]{--sk0:#05070d; --sk1:rgba(46,98,255,.34); --sk2:rgba(34,190,238,.20); --sk3:rgba(40,70,200,.16)}
+body[data-sky="soir"]{--sk0:#07060e; --sk1:rgba(120,70,255,.28); --sk2:rgba(255,112,40,.36); --sk3:rgba(236,72,153,.16)}
+body[data-sky="nuit"]{--sk0:#03040a; --sk1:rgba(40,60,190,.24); --sk2:rgba(110,60,200,.16); --sk3:rgba(30,50,140,.14)}
+body[data-sky="nuit"] #sky .stars{opacity:1}
+body[data-sky="soir"] #sky .stars{opacity:.35}
+@media (prefers-reduced-motion:reduce){#sky b,#sky .stars i{animation:none}}
+/* confettis */
+.confetti{position:fixed; inset:0; width:100vw; height:100vh; pointer-events:none; z-index:9999}
+/* jauges qui se remplissent */
+@keyframes fillIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.view.anim .gauge i,.view.anim .meter i,.view.anim .track i,.view.anim .lc-foot i,.view.anim .catrow .track i{transform-origin:left center; animation:fillIn .9s cubic-bezier(.2,.8,.2,1) both}
+.view.anim .track i.pend{animation-delay:.25s}
+@media (prefers-reduced-motion:reduce){.view.anim *{animation:none!important}}
+/* transitions de page */
+::view-transition-old(root),::view-transition-new(root){animation-duration:.22s}
+::view-transition-group(expand){animation-duration:.42s; animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(expand),::view-transition-new(expand){height:100%; object-fit:cover; overflow:hidden}
+::view-transition-image-pair(expand){isolation:isolate}
 body[data-tab="cal"]{--accent:var(--cal)}
 .wrap{max-width:760px; margin:0 auto; padding:22px 18px 100px; display:flex; flex-direction:column; gap:16px}
 body[data-tab="home"] .wrap{max-width:1080px}
@@ -1414,12 +1440,12 @@ function flash(sel){var el=$(sel);el.classList.add("err");el.focus();setTimeout(
 /* ---------- onglets ---------- */
 function setTab(t){
   if(String(t).indexOf(":")>0){var sp=String(t).split(":");t=sp[0];if(t==="fin")setFinPane(sp[1])}
-  ui.tab=t;document.body.dataset.tab=t;if(t==="rev")renderRev();if(t==="lib"&&typeof lcCenter==="function")setTimeout(function(){lcCenter(false)},30);
+  ui.tab=t;document.body.dataset.tab=t;if(typeof viewAnim==="function")setTimeout(function(){viewAnim(t)},0);if(t==="rev")renderRev();if(t==="lib"&&typeof lcCenter==="function")setTimeout(function(){lcCenter(false)},30);
   window.scrollTo(0,0);
   ["home","fin","cal","body","job","p30","lib","plan","rev","prod","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
   document.querySelectorAll(".sbtn").forEach(function(b){b.classList.toggle("on",b.dataset.go===t)});
 }
-document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){setTab(b.id==="gear"&&ui.tab==="set"?"home":b.dataset.go)})});
+document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){navTo(b.id==="gear"&&ui.tab==="set"?"home":b.dataset.go,b)})});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!document.querySelector("dialog[open]")&&ui.tab!=="home"&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||""))setTab("home")});
 
 /* ---------- finances ---------- */
@@ -3722,7 +3748,7 @@ function renderHome(){
   var m=today().slice(0,7),C=finCalc(m),name=(state.settings.name||"Joseph").trim();
   var end=C.endBank!=null?C.endBank:C.proj,hasForecast=C.bank||state.rec.length||Object.keys(C.bud).length,risk=hasForecast&&end<0;
   var d=today(),t=dayTotal(d),goal=+state.settings.kcalGoal||0,pg=+state.settings.protGoal||0;
-  renderHello();renderRevCard();renderProdCard();
+  renderHello();renderRevCard();renderProdCard();if(typeof msCheck==="function")setTimeout(msCheck,0);if(ui.tab==="home"&&typeof countUp==="function")setTimeout(function(){countUp($("#v-home"))},0);
   // aujourd'hui
   var now=new Date(),n=daysIn(m),td=today(),its=dayItemsP(td),D0=pday(td);
   var nowM=now.getHours()*60+now.getMinutes();
@@ -3792,7 +3818,7 @@ function renderHome(){
 }
 setInterval(function(){var c=$("#clock");if(c)c.textContent=hhmm();if(!document.hidden&&ui.tab==="home"&&document.activeElement!==$("#cap-in"))renderHello()},60000);
 document.querySelectorAll("button.card").forEach(function(c){
-  c.addEventListener("click",function(){setTab(c.dataset.go)});
+  c.addEventListener("click",function(){navTo(c.dataset.go,c)});
   if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
   c.addEventListener("pointermove",function(e){
     if(e.pointerType!=="mouse"||hEdit)return;
@@ -4191,6 +4217,87 @@ function renderProdCard(){
   el.innerHTML='<div class="k-title">Produits<span class="k-chip">Boulanger</span></div>'+
     (P.length?'<div style="margin-top:auto"><div class="k-big">'+P.length+'</div><div class="k-lbl">fiches produits · '+cats+' rayon'+(cats>1?"s":"")+(fav?' · '+fav+' favori'+(fav>1?"s":""):'')+'</div></div>':'<div class="k-lbl" style="margin-top:auto">Charge la sélection petit électroménager pour retrouver caractéristiques et arguments.</div>')+
     '<span class="k-open">Rechercher →</span>';
+}
+/* ---------- effets : ciel, confettis, chiffres, transitions ---------- */
+var RM=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// ciel selon l'heure
+(function(){
+  var sky=document.createElement("div");sky.id="sky";sky.setAttribute("aria-hidden","true");
+  var st="";for(var i=0;i<70;i++){var x=Math.random()*100,y=Math.random()*70,s=Math.random()<.15?2:1;st+='<i style="left:'+x.toFixed(2)+'%;top:'+y.toFixed(2)+'%;width:'+s+'px;height:'+s+'px;animation-delay:-'+(Math.random()*6).toFixed(2)+'s;animation-duration:'+(3+Math.random()*4).toFixed(2)+'s"></i>'}
+  sky.innerHTML='<b class="sk1"></b><b class="sk2"></b><b class="sk3"></b><div class="stars">'+st+'</div>';
+  document.body.insertBefore(sky,document.body.firstChild);
+  function upd(){var h=new Date().getHours(),p=h>=6&&h<10?"aube":h>=10&&h<17?"jour":h>=17&&h<21?"soir":"nuit";if(document.body.dataset.sky!==p)document.body.dataset.sky=p}
+  upd();setInterval(upd,5*60000);
+})();
+// confettis
+function confetti(){
+  if(RM)return;
+  var cv=document.createElement("canvas");cv.className="confetti";document.body.appendChild(cv);
+  var dpr=window.devicePixelRatio||1,W=window.innerWidth,H=window.innerHeight;cv.width=W*dpr;cv.height=H*dpr;
+  var c=cv.getContext("2d");c.scale(dpr,dpr);
+  var cols=["#5b8cff","#8b5cf6","#4ade80","#fbbf24","#ff8a4c","#f472b6","#22d3ee"],P=[];
+  for(var i=0;i<160;i++){var side=i%2;P.push({x:side?W*0.85:W*0.15,y:H*0.75,vx:(side?-1:1)*(2+Math.random()*7),vy:-(9+Math.random()*9),r:Math.random()*6.28,vr:(Math.random()-.5)*.35,w:5+Math.random()*6,h:8+Math.random()*8,c:cols[i%cols.length]})}
+  var t0=performance.now();
+  (function fr(t){var el=t-t0;c.clearRect(0,0,W,H);
+    P.forEach(function(p){p.vy+=0.32;p.vx*=0.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;c.save();c.translate(p.x,p.y);c.rotate(p.r);c.globalAlpha=Math.max(0,1-el/2600);c.fillStyle=p.c;c.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.r*1.7)));c.restore()});
+    if(el<2600)requestAnimationFrame(fr);else cv.remove()})(t0);
+}
+function msCurrent(){
+  var A={};
+  if(state.sav.envs.length){var tot=savTotal();paliers().forEach(function(p){if(tot>=p.v)A["sav:"+p.v]="Palier atteint : "+p.n+" d'épargne 🎉"})}
+  state.books.forEach(function(b){if(b.status==="Lu")A["book:"+b.id]="Livre terminé : "+b.title+" 🎉"});
+  state.credits.forEach(function(c){if((+c.balance||0)>0&&crLeft(c).left<=0)A["cred:"+c.id]=c.name+" est remboursé 🎉"});
+  var g=+state.settings.weightGoal||0,bl=bodyLast("w");if(g&&bl&&bl.v<=g)A["w:"+g]="Objectif de poids atteint : "+nf1.format(bl.v)+" kg 🎉";
+  state.p30.forEach(function(x){if(x.status==="Fait")A["p30:"+x.id]="Projet 30 : étape "+x.step+" terminée 🎉"});
+  return A;
+}
+var msReady=false;
+function msCheck(){
+  var A=msCurrent(),seen=Array.isArray(state.settings.ms)?state.settings.ms:null,keys=Object.keys(A);
+  if(!seen){if(!msReady)return;state.settings.ms=keys;persist("settings");return}
+  var fresh=keys.filter(function(k){return seen.indexOf(k)<0});
+  var gone=seen.filter(function(k){return !A[k]});
+  if(!fresh.length&&!gone.length)return;
+  state.settings.ms=keys;persist("settings");
+  if(fresh.length&&msReady){confetti();toast(A[fresh[fresh.length-1]])}
+}
+setTimeout(function(){msReady=true;msCheck()},4000);
+// chiffres qui défilent
+var cntPrev={};
+function countUp(root){
+  if(RM||!root)return;
+  root.querySelectorAll(".k-big,.sv-total,.fc-big,.rv-mini b").forEach(function(el,i){
+    var tn=null;for(var n=el.firstChild;n;n=n.nextSibling)if(n.nodeType===3&&/\d/.test(n.nodeValue)){tn=n;break}
+    if(!tn)return;var txt=tn.nodeValue,m=txt.match(/[−-]?\d[\d\s  ]*(,\d+)?/);if(!m)return;
+    var raw=m[0],dec=m[1]?m[1].length-1:0,v=parseFloat(raw.replace(/[\s  ]/g,"").replace("−","-").replace(",","."));if(!isFinite(v))return;
+    var key=(el.closest("[id]")||{}).id+":"+i,from=cntPrev[key]==null?0:cntPrev[key];cntPrev[key]=v;
+    if(from===v)return;
+    var nf=new Intl.NumberFormat("fr-FR",{minimumFractionDigits:dec,maximumFractionDigits:dec}),neg=raw.charAt(0)==="−",t0=performance.now(),D=750;
+    (function step(t){var k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3),cur=from+(v-from)*e;
+      var s=nf.format(Math.abs(cur));if(cur<0)s=(neg?"−":"-")+s;tn.nodeValue=txt.replace(raw,s);
+      if(k<1)requestAnimationFrame(step);else tn.nodeValue=txt})(t0);
+  });
+}
+function viewAnim(t){
+  var v=$("#v-"+t);if(!v||RM)return;v.classList.remove("anim");void v.offsetWidth;v.classList.add("anim");
+  setTimeout(function(){v.classList.remove("anim")},1200);
+  requestAnimationFrame(function(){countUp(v)});
+}
+// transitions entre pages
+function navTo(t,src){
+  var go=function(){setTab(t)};
+  if(RM||!document.startViewTransition){go();return}
+  var from=ui.tab,card=null,view=null;
+  if(src&&src.classList&&src.classList.contains("card")){card=src;view=$("#v-"+t)}
+  else if(t==="home"){card=document.querySelector('#v-home .card[data-go="'+from+'"]');view=$("#v-"+from);if(card&&card.hidden)card=null}
+  if(!card||!view){document.startViewTransition(go);return}
+  var cr=card.getBoundingClientRect();if(t!=="home"&&(cr.bottom<0||cr.top>window.innerHeight)){document.startViewTransition(go);return}
+  if(t==="home"){view.style.viewTransitionName="expand"}else card.style.viewTransitionName="expand";
+  var tr=document.startViewTransition(function(){
+    if(t==="home"){view.style.viewTransitionName="";go();card.style.viewTransitionName="expand"}
+    else{card.style.viewTransitionName="";go();view.style.viewTransitionName="expand"}
+  });
+  tr.finished.then(function(){card.style.viewTransitionName="";view.style.viewTransitionName=""},function(){card.style.viewTransitionName="";view.style.viewTransitionName=""});
 }
 /* ---------- conseil IA (copier vers Claude) ---------- */
 var AIS={all:"Tout",fin:"Finances",body:"Corps",job:"Candidatures",p30:"Projet 30 et lecture",plan:"Planning"};
