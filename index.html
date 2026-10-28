@@ -225,6 +225,19 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 /* bibliothèque */
 .l-cur{padding:4px 0 14px; border-bottom:1px solid var(--line); margin-bottom:12px}
 .lnav{grid-template-columns:1fr 1fr; margin:12px 0 14px}
+#c-scan{margin-top:10px}
+.ff-vid{position:relative; margin-top:12px; border-radius:14px; overflow:hidden; background:#000; aspect-ratio:4/3}
+.ff-vid video{width:100%; height:100%; object-fit:cover; display:block}
+.ff-vid i{position:absolute; left:12%; right:12%; top:42%; height:16%; border:2px solid rgba(74,222,128,.9); border-radius:10px; box-shadow:0 0 0 999px rgba(0,0,0,.35)}
+.ff-item{all:unset; box-sizing:border-box; width:100%; cursor:pointer; display:flex; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px solid var(--line)}
+.ff-item small{display:block; color:var(--muted); font-size:.76rem}
+.ff-item .num{text-align:right; white-space:nowrap; font-family:var(--mono)}
+.ff-item:hover b{color:#cfd8ff}
+.ff-card{padding:14px; border-radius:14px; background:rgba(255,255,255,.04); border:1px solid var(--line)}
+.ff-calc{display:flex; flex-direction:column; justify-content:flex-end; padding-bottom:6px}
+.ff-calc b{font-family:var(--mono); font-size:1.3rem}
+.ff-calc span{font-size:.8rem; color:var(--muted)}
+#ff-dialog .bank-form{margin-top:10px}
 .k-chip.warn{color:#ffb38a}
 .rp-scroll{overflow-x:auto; margin:4px -4px 0; padding:0 4px 4px}
 .rp{position:relative; display:flex; gap:4px; padding-top:22px}
@@ -782,6 +795,7 @@ details.panel[open]>summary{margin-bottom:12px}
         <label for="c-name" class="wide">Aliment ou plat<input id="c-name" placeholder="Poulet riz brocolis" maxlength="60" autocomplete="off"></label>
         <label for="c-prot">Protéines (g, facultatif)<input id="c-prot" inputmode="decimal" placeholder="35" autocomplete="off"></label>
       </div>
+      <button class="ghost" type="button" id="c-scan" style="width:100%">📷 Scanner un code-barres ou chercher un produit</button>
       <div id="cal-quick-wrap" hidden>
         <label style="margin-bottom:6px">Reprendre un aliment récent</label>
         <div class="chips" id="cal-quick"></div>
@@ -1096,6 +1110,15 @@ details.panel[open]>summary{margin-bottom:12px}
     <button class="primary" type="submit">Enregistrer</button>
     <button class="ghost" type="button" id="sv-del" hidden>Supprimer l'enveloppe</button>
   </form>
+</dialog>
+<dialog class="modal" id="ff-dialog" aria-labelledby="ff-h">
+  <div class="phead"><h3 id="ff-h">Trouver un aliment</h3><button class="mclose" type="button" id="ff-close" aria-label="Fermer">×</button></div>
+  <button class="primary" type="button" id="ff-cam-btn" style="width:100%">📷 Scanner le code-barres</button>
+  <div id="ff-cam" hidden><div class="ff-vid"><video id="ff-video" muted playsinline></video><i></i></div><p class="note" id="ff-cam-msg" style="text-align:center;margin-top:6px"></p></div>
+  <form class="bank-form" id="ff-code-form" novalidate><input id="ff-code" inputmode="numeric" placeholder="Ou tape le code-barres (13 chiffres)" autocomplete="off" aria-label="Code-barres"><button class="ghost" type="submit">OK</button></form>
+  <form class="bank-form" id="ff-q-form" novalidate><input id="ff-q" type="search" placeholder="Ou cherche par nom : skyr, Président camembert…" autocomplete="off" aria-label="Rechercher un produit"><button class="ghost" type="submit">Chercher</button></form>
+  <div id="ff-res" style="margin-top:12px"></div>
+  <p class="note" style="margin-top:10px">Données Open Food Facts (base collaborative, licence ODbL) : vérifie avec l'étiquette en cas de doute.</p>
 </dialog>
 <dialog class="modal" id="pv-dialog" aria-label="Fiche produit"><div id="pv-body"></div></dialog>
 <dialog class="modal" id="pc-dialog" aria-labelledby="pc-h" style="width:min(820px,calc(100vw - 24px))">
@@ -4594,6 +4617,96 @@ document.querySelectorAll("section.view").forEach(function(v){
   var w=document.createElement("div");w.className="ai-bar";bk.parentNode.insertBefore(w,bk);w.appendChild(bk);
   var b=document.createElement("button");b.type="button";b.className="ai-btn";b.innerHTML='<span aria-hidden="true">✦</span> Conseil';b.setAttribute("aria-label","Demander conseil à Claude");
   b.addEventListener("click",function(){aiOpen(AIMAP[k])});w.appendChild(b);
+});
+/* ---------- Open Food Facts : scan et recherche d'aliments ---------- */
+var ffDlg=$("#ff-dialog"),ff={stream:null,reader:null,loop:null,prod:null,busy:false};
+function ffOpen(){ff.prod=null;$("#ff-res").innerHTML="";$("#ff-code").value="";$("#ff-q").value="";ffRecent();dlgOpen(ffDlg)}
+function ffClose(){ffStop();dlgClose(ffDlg)}
+$("#c-scan").addEventListener("click",ffOpen);
+$("#ff-close").addEventListener("click",ffClose);
+ffDlg.addEventListener("close",ffStop);
+dlgBackdrop(ffDlg);
+function ffStop(){
+  if(ff.loop){cancelAnimationFrame(ff.loop);ff.loop=null}
+  if(ff.reader){try{ff.reader.reset()}catch(e){}ff.reader=null}
+  if(ff.stream){ff.stream.getTracks().forEach(function(t){t.stop()});ff.stream=null}
+  var v=$("#ff-video");if(v){v.srcObject=null}$("#ff-cam").hidden=true;$("#ff-cam-btn").hidden=false;
+}
+function ffLoadZx(){
+  if(window.ZXing)return Promise.resolve();
+  return new Promise(function(ok,ko){var s=document.createElement("script");s.src="vendor/zxing.min.js";s.onload=ok;s.onerror=ko;document.head.appendChild(s)});
+}
+$("#ff-cam-btn").addEventListener("click",function(){
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){toast("Caméra indisponible : tape le code-barres à la main.");return}
+  $("#ff-cam").hidden=false;$("#ff-cam-btn").hidden=true;$("#ff-cam-msg").textContent="Vise le code-barres…";
+  var v=$("#ff-video");
+  var found=function(code){if(!code||ff.busy)return;if(navigator.vibrate)navigator.vibrate(60);ffStop();$("#ff-code").value=code;ffLookup(code)};
+  if("BarcodeDetector" in window){
+    var det;try{det=new BarcodeDetector({formats:["ean_13","ean_8","upc_a","upc_e"]})}catch(e){det=null}
+    if(det){
+      navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"},audio:false}).then(function(st){
+        ff.stream=st;v.srcObject=st;v.setAttribute("playsinline","");v.play();
+        var tick=function(){if(!ff.stream)return;det.detect(v).then(function(r){if(r&&r[0])found(r[0].rawValue);else ff.loop=requestAnimationFrame(tick)},function(){ff.loop=requestAnimationFrame(tick)})};
+        ff.loop=requestAnimationFrame(tick);
+      },function(){ffStop();toast("Accès à la caméra refusé : autorise-le dans les réglages, ou tape le code.")});
+      return;
+    }
+  }
+  $("#ff-cam-msg").textContent="Chargement du lecteur…";
+  ffLoadZx().then(function(){
+    var Z=window.ZXing,hints=new Map();hints.set(Z.DecodeHintType.POSSIBLE_FORMATS,[Z.BarcodeFormat.EAN_13,Z.BarcodeFormat.EAN_8,Z.BarcodeFormat.UPC_A,Z.BarcodeFormat.UPC_E]);
+    ff.reader=new Z.BrowserMultiFormatReader(hints);
+    $("#ff-cam-msg").textContent="Vise le code-barres…";
+    return ff.reader.decodeFromConstraints({video:{facingMode:"environment"},audio:false},v,function(res){if(res)found(res.getText())});
+  }).catch(function(){ffStop();toast("Impossible d'ouvrir la caméra : tape le code-barres à la main.")});
+});
+function ffNum(v){v=+v;return isFinite(v)?v:null}
+function ffFrom(p){
+  var n=p.nutriments||{},k=ffNum(n["energy-kcal_100g"]);if(k==null&&ffNum(n["energy_100g"])!=null)k=ffNum(n["energy_100g"])/4.184;
+  return {code:p.code||p._id||"",name:(p.product_name_fr||p.product_name||"").trim(),brand:(p.brands||"").split(",")[0].trim(),kcal:k==null?null:Math.round(k),prot:ffNum(n["proteins_100g"]),serving:ffNum(p.serving_quantity),qty:p.quantity||""};
+}
+function ffLookup(code){
+  code=String(code||"").replace(/\D/g,"");if(code.length<8){flash("#ff-code");return}
+  ff.busy=true;$("#ff-res").innerHTML='<p class="note">Recherche du produit…</p>';
+  fetch("https://world.openfoodfacts.org/api/v2/product/"+code+".json?fields=code,product_name,product_name_fr,brands,nutriments,serving_quantity,quantity")
+    .then(function(r){return r.json()}).then(function(j){
+      if(!j||j.status!==1||!j.product){$("#ff-res").innerHTML='<p class="note">Produit introuvable dans Open Food Facts. Essaie la recherche par nom, ou saisis les calories de l\'étiquette.</p>';return}
+      ffShow(ffFrom(Object.assign({code:code},j.product)));
+    }).catch(function(){$("#ff-res").innerHTML='<p class="note bad">Pas de connexion à Open Food Facts. Réessaie plus tard.</p>'}).then(function(){ff.busy=false});
+}
+$("#ff-code-form").addEventListener("submit",function(e){e.preventDefault();ffLookup($("#ff-code").value)});
+$("#ff-q-form").addEventListener("submit",function(e){
+  e.preventDefault();var q=$("#ff-q").value.trim();if(q.length<2){flash("#ff-q");return}
+  $("#ff-res").innerHTML='<p class="note">Recherche…</p>';
+  fetch("https://world.openfoodfacts.org/cgi/search.pl?action=process&json=1&search_simple=1&page_size=12&lc=fr&cc=fr&fields=code,product_name,product_name_fr,brands,nutriments,serving_quantity,quantity&search_terms="+encodeURIComponent(q))
+    .then(function(r){return r.json()}).then(function(j){
+      var L=(j.products||[]).map(ffFrom).filter(function(x){return x.name&&x.kcal!=null});ff.list=L;
+      $("#ff-res").innerHTML=L.length?'<div class="ai-sec">Résultats</div>'+L.map(function(x,i){return '<button type="button" class="ff-item" data-ffi="'+i+'"><span><b>'+esc(x.name)+'</b><small>'+esc([x.brand,x.qty].filter(Boolean).join(" · "))+'</small></span><span class="num">'+x.kcal+' kcal<small>/100 g</small></span></button>'}).join(""):'<p class="note">Aucun produit trouvé.</p>';
+    }).catch(function(){$("#ff-res").innerHTML='<p class="note bad">Pas de connexion à Open Food Facts.</p>'});
+});
+$("#ff-res").addEventListener("click",function(e){var b=e.target.closest("[data-ffi]");if(b&&ff.list){ffShow(ff.list[+b.dataset.ffi]);return}var r=e.target.closest("[data-ffr]");if(r){var R=(state.settings.offRecent||[])[+r.dataset.ffr];if(R)ffShow(R)}});
+function ffRecent(){
+  var R=state.settings.offRecent||[];if(!R.length)return;
+  $("#ff-res").innerHTML='<div class="ai-sec">Produits récents</div>'+R.map(function(x,i){return '<button type="button" class="ff-item" data-ffr="'+i+'"><span><b>'+esc(x.name)+'</b><small>'+esc(x.brand||"")+'</small></span><span class="num">'+x.kcal+' kcal<small>/100 g</small></span></button>'}).join("");
+}
+function ffShow(x){
+  ff.prod=x;var q=x.serving||100;
+  $("#ff-res").innerHTML='<div class="ff-card"><div class="pbrand">'+esc(x.brand||"Open Food Facts")+'</div><div class="pmodel">'+esc(x.name||"Produit sans nom")+'</div>'+
+    '<p class="note" style="margin:4px 0 10px">Pour 100 g : <b style="color:var(--ink)">'+(x.kcal!=null?x.kcal+" kcal":"calories inconnues")+'</b>'+(x.prot!=null?' · '+nf1.format(x.prot)+' g de protéines':'')+(x.serving?' · portion '+nf1.format(x.serving)+' g':'')+'</p>'+
+    '<div class="grid"><label for="ff-qty">Quantité mangée (g)<input id="ff-qty" inputmode="decimal" value="'+String(q).replace(".",",")+'"></label><div id="ff-calc" class="ff-calc"></div></div>'+
+    '<div class="chips" style="margin-top:8px">'+[["½ portion",.5],["1 portion",1],["2 portions",2]].filter(function(){return !!x.serving}).map(function(c){return '<button type="button" class="chip" data-ffq="'+(x.serving*c[1])+'">'+c[0]+'</button>'}).join("")+'</div>'+
+    '<button class="primary" type="button" id="ff-use" style="width:100%;margin-top:12px"'+(x.kcal==null?" disabled":"")+'>Utiliser dans mon repas</button></div>';
+  ffCalc();
+}
+function ffCalc(){var x=ff.prod,el=$("#ff-calc");if(!x||!el)return;var g=num($("#ff-qty").value);if(!(g>0)||x.kcal==null){el.textContent="—";return}
+  el.innerHTML='<b>'+Math.round(x.kcal*g/100)+' kcal</b>'+(x.prot!=null?'<span>'+nf1.format(x.prot*g/100)+' g de protéines</span>':'')}
+$("#ff-res").addEventListener("input",function(e){if(e.target.id==="ff-qty")ffCalc()});
+$("#ff-res").addEventListener("click",function(e){
+  var q=e.target.closest("[data-ffq]");if(q){$("#ff-qty").value=nf1.format(+q.dataset.ffq);ffCalc();return}
+  if(e.target.id!=="ff-use")return;var x=ff.prod,g=num($("#ff-qty").value);if(!x||!(g>0)){flash("#ff-qty");return}
+  $("#c-name").value=(x.name+(x.brand?" ("+x.brand+")":"")).slice(0,60)+"";$("#c-kcal").value=Math.round(x.kcal*g/100);$("#c-prot").value=x.prot!=null?nf1.format(x.prot*g/100):"";
+  var R=(state.settings.offRecent||[]).filter(function(r){return r.code!==x.code||!x.code});R.unshift({code:x.code,name:x.name,brand:x.brand,kcal:x.kcal,prot:x.prot,serving:x.serving,qty:x.qty});state.settings.offRecent=R.slice(0,15);persist("settings");
+  ffClose();$("#c-kcal").focus();toast("Calories remplies : choisis le repas puis « Ajouter au journal ».");
 });
 /* ---------- sous-navigation par espace ---------- */
 Object.keys(GRP).forEach(function(g){
