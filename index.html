@@ -397,7 +397,12 @@ details.panel[open]>summary{margin-bottom:12px}
 .del{width:32px; height:32px; border-radius:8px; border:1px solid transparent; background:transparent; color:var(--muted); font-size:1.1rem; cursor:pointer}
 .del:hover{border-color:var(--line); color:var(--bad)}
 .empty{color:var(--muted); font-size:.9rem; margin:0}
-.fnav{grid-template-columns:repeat(3,1fr); margin-bottom:14px}
+.fnav{grid-template-columns:repeat(4,1fr); margin-bottom:14px}
+.fnav button{padding:8px 2px; font-size:.86rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.k-chip.ok{color:#4ade80}
+.fn-s{display:none}
+@media (max-width:420px){.fn-l{display:none}.fn-s{display:inline}}
+.sv-total.good{color:var(--good)}
 .rv-t4{grid-template-columns:repeat(4,1fr)}
 @media (max-width:760px){.rv-t4{grid-template-columns:repeat(2,1fr)}}
 .rv-d{display:block; font-size:.74rem; color:var(--muted); margin-top:2px; font-family:var(--body)}
@@ -543,7 +548,8 @@ details.panel[open]>summary{margin-bottom:12px}
     <div class="seg fnav" id="fnav" role="group" aria-label="Rubriques des finances">
       <button type="button" data-p="month" aria-pressed="true">Mois</button>
       <button type="button" data-p="sav" aria-pressed="false">Épargne</button>
-      <button type="button" data-p="subs" aria-pressed="false">Abonnements</button>
+      <button type="button" data-p="cred" aria-pressed="false">Crédits</button>
+      <button type="button" data-p="subs" aria-pressed="false" aria-label="Abonnements"><span class="fn-l">Abonnements</span><span class="fn-s">Abos</span></button>
     </div>
     <div id="fp-month">
     <div class="stepper">
@@ -607,6 +613,10 @@ details.panel[open]>summary{margin-bottom:12px}
       <div class="panel"><div class="phead"><h3>Mes enveloppes</h3><button class="plus" type="button" id="sv-add" aria-label="Ajouter une enveloppe" style="width:34px;height:34px;font-size:1.3rem">+</button></div><div id="sv-envs"></div></div>
       <div class="panel" id="sv-plan-p"><div class="phead"><h3>Plan investissement</h3><label class="link" for="sv-file" style="cursor:pointer;color:var(--accent);font:600 .88rem var(--body)">Importer</label></div><div id="sv-plan"></div>
         <input type="file" id="sv-file" accept=".json,application/json" hidden></div>
+    </div>
+    <div id="fp-cred" hidden>
+      <div class="panel" id="cr-head"></div>
+      <div class="panel"><div class="phead"><h3>Mes crédits</h3><button class="plus" type="button" id="cr-add" aria-label="Ajouter un crédit" style="width:34px;height:34px;font-size:1.3rem">+</button></div><div id="cr-list"></div></div>
     </div>
     <div id="fp-subs" hidden>
       <div class="panel" id="su-head"></div>
@@ -928,6 +938,24 @@ details.panel[open]>summary{margin-bottom:12px}
     <button class="ghost" type="button" id="sv-del" hidden>Supprimer l'enveloppe</button>
   </form>
 </dialog>
+<dialog class="modal" id="cr-dialog" aria-labelledby="cr-h">
+  <div class="phead"><h3 id="cr-h">Nouveau crédit</h3><button class="mclose" type="button" id="cr-close" aria-label="Fermer">×</button></div>
+  <form id="cr-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+    <div class="grid">
+      <label for="cr-name">Nom<input id="cr-name" maxlength="40" autocomplete="off" placeholder="Crédit conso"></label>
+      <label for="cr-lender">Organisme<input id="cr-lender" maxlength="40" autocomplete="off" placeholder="facultatif"></label>
+      <label for="cr-left">Restant dû aujourd'hui (€)<input id="cr-left" inputmode="decimal" autocomplete="off"></label>
+      <label for="cr-init">Montant emprunté (€)<input id="cr-init" inputmode="decimal" autocomplete="off" placeholder="facultatif"></label>
+      <label for="cr-rec" class="wide">Prélèvement<select id="cr-rec"></select></label>
+      <label for="cr-monthly" id="cr-mwrap">Mensualité (€)<input id="cr-monthly" inputmode="decimal" autocomplete="off"></label>
+      <label for="cr-day" id="cr-dwrap">Le (jour du mois)<input id="cr-day" inputmode="numeric" autocomplete="off"></label>
+      <label for="cr-rate" class="wide">Taux annuel (%)<input id="cr-rate" inputmode="decimal" autocomplete="off" placeholder="facultatif, ex. 5,9 : pour séparer intérêts et capital"></label>
+    </div>
+    <p class="note">Chaque mensualité prélevée fait baisser le restant dû. Si ta mensualité est déjà dans tes dépenses récurrentes, relie-la pour ne pas la compter deux fois.</p>
+    <button class="primary" type="submit">Enregistrer</button>
+    <button class="ghost" type="button" id="cr-del" hidden>Supprimer le crédit</button>
+  </form>
+</dialog>
 <dialog class="modal" id="su-dialog" aria-labelledby="su-h">
   <div class="phead"><h3 id="su-h">Nouvel abonnement</h3><button class="mclose" type="button" id="su-close" aria-label="Fermer">×</button></div>
   <form id="su-form" novalidate style="display:flex;flex-direction:column;gap:12px">
@@ -974,13 +1002,13 @@ var CATS={
   in:["Salaire","Aides","Ventes","Remboursement","Autre"]
 };
 
-var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],sav:{envs:[],plan:[],goal:100000}};
+var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],sav:{envs:[],plan:[],goal:100000}};
 var ui={tab:"home",month:today().slice(0,7),day:today(),finType:"out"};
 
 /* ---------- stockage local ---------- */
 var LS="carnet-joseph-v1";
 function loadLocal(){
-  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[],books:Array.isArray(p.books)?p.books:[],plan:p.plan&&typeof p.plan==="object"?p.plan:{},inbox:Array.isArray(p.inbox)?p.inbox:[],subs:Array.isArray(p.subs)?p.subs:[],sav:savNorm(p.sav)}}}}catch(e){}
+  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[],books:Array.isArray(p.books)?p.books:[],plan:p.plan&&typeof p.plan==="object"?p.plan:{},inbox:Array.isArray(p.inbox)?p.inbox:[],subs:Array.isArray(p.subs)?p.subs:[],credits:Array.isArray(p.credits)?p.credits:[],sav:savNorm(p.sav)}}}}catch(e){}
 
 }
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
@@ -1000,7 +1028,7 @@ var sync={state:"off",pushing:false,timer:null,lastOk:null,firstPull:!lsGet("car
 
 function savNorm(b){b=b&&typeof b==="object"?b:{};return {envs:Array.isArray(b.envs)?b.envs:[],plan:Array.isArray(b.plan)?b.plan:[],goal:+b.goal>0?+b.goal:100000}}
 function hasCfg(){return !!(CFG.url&&CFG.key)}
-function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length||state.books.length||Object.keys(state.plan).length||state.inbox.length||state.subs.length||state.sav.envs.length||state.sav.plan.length}
+function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length||state.books.length||Object.keys(state.plan).length||state.inbox.length||state.subs.length||state.credits.length||state.sav.envs.length||state.sav.plan.length}
 function allKeys(){
   var k=["settings"];
   if(state.rec.length)k.push("recurring");
@@ -1011,6 +1039,7 @@ function allKeys(){
   if(Object.keys(state.plan).length)k.push("plan");
   if(state.inbox.length)k.push("inbox");
   if(state.subs.length)k.push("subs");
+  if(state.credits.length)k.push("credits");
   if(state.sav.envs.length||state.sav.plan.length)k.push("savings");
   Object.keys(state.fin).forEach(function(m){k.push("fin-"+m)});
   Object.keys(state.cal).forEach(function(m){k.push("cal-"+m)});
@@ -1027,6 +1056,7 @@ function bodyFor(key){
   if(key==="plan")return {days:state.plan};
   if(key==="inbox")return {items:state.inbox};
   if(key==="subs")return {items:state.subs};
+  if(key==="credits")return {items:state.credits};
   if(key==="savings")return {envs:state.sav.envs,plan:state.sav.plan,goal:state.sav.goal};
   var b={items:(state[key.slice(0,3)][key.slice(4)]||[])};
   if(key.slice(0,3)==="fin"){var sk=state.finSkip[key.slice(4)];if(sk&&sk.length)b.skipped=sk}
@@ -1042,6 +1072,7 @@ function applyDoc(key,body){
   else if(key==="books")state.books=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="inbox")state.inbox=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="subs")state.subs=Array.isArray(body&&body.items)?body.items:[];
+  else if(key==="credits")state.credits=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="savings")state.sav=savNorm(body);
   else if(key==="plan")state.plan=body&&body.days&&typeof body.days==="object"?body.days:{};
   else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key)){state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
@@ -1296,7 +1327,7 @@ function recOpId(r,m){return "r-"+r.id+"-"+m}
 function recApplies(r,m){return r.start<=m&&(r.every!=="year"||+m.slice(5)===+r.month)}
 function subRecs(){return state.subs.map(function(x){return {id:x.id,label:x.name,amount:x.amount,type:"out",cat:x.cat||"Abonnements",day:x.day,start:x.start,every:x.cycle==="year"?"year":"month",month:x.month,sub:x.id}})}
 function savRecs(){return state.sav.envs.filter(function(e){return e.monthly>0&&e.day>=1}).map(function(e){return {id:e.id,label:"Versement "+e.name,amount:e.monthly,type:"out",cat:"Épargne",day:e.day,start:e.start||"0000-00",env:e.id}})}
-function allRec(){return state.rec.concat(subRecs(),savRecs())}
+function allRec(){return state.rec.concat(subRecs(),savRecs(),credRecs())}
 function recPosted(r,m){
   var id=recOpId(r,m);
   return (state.fin[m]||[]).some(function(x){return x.id===id})||((state.finSkip[m]||[]).indexOf(id)>=0);
@@ -1505,10 +1536,11 @@ function renderFin(){
   }).join(""):'<p class="empty">Aucune dépense en '+esc(monthLabel(ui.month).toLowerCase())+'.</p>';
   renderRec();
   renderOps();
-  renderSav();renderSubs();
+  renderSav();renderSubs();renderCred();
 }
 function opTag(x){
   if(x.env||(x.rec&&state.sav.envs.some(function(e){return e.id===x.rec})))return '<span class="tag" style="color:#4ade80">épargne</span>';
+  if(x.credit||(x.rec&&state.credits.some(function(c){return c.id===x.rec||c.recId===x.rec})))return '<span class="tag" style="color:#c4a5ff">crédit</span>';
   if(x.rec&&state.subs.some(function(s){return s.id===x.rec}))return '<span class="tag" style="color:#ffb38a">abonnement</span>';
   return x.rec?'<span class="tag">récurrente</span>':'';
 }
@@ -1601,7 +1633,7 @@ ui.finPane="month";
 function setFinPane(p){
   ui.finPane=p;
   document.querySelectorAll("#fnav button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.p===p?"true":"false")});
-  $("#fp-month").hidden=p!=="month";$("#fp-sav").hidden=p!=="sav";$("#fp-subs").hidden=p!=="subs";
+  $("#fp-month").hidden=p!=="month";$("#fp-sav").hidden=p!=="sav";$("#fp-subs").hidden=p!=="subs";$("#fp-cred").hidden=p!=="cred";
 }
 $("#fnav").addEventListener("click",function(e){var b=e.target.closest("button[data-p]");if(b)setFinPane(b.dataset.p)});
 /* ---------- épargne ---------- */
@@ -1643,7 +1675,8 @@ function taskAuto(t){
   if(/3 mois de d.penses sur livret a/i.test(tx))return !!la&&envBal(la)>=secTarget();
   if(/virement mensuel vers le livret a/i.test(tx))return !!la&&la.monthly>0;
   if(/versements sur le pea/i.test(tx))return !!pea&&pea.monthly>0;
-  if(/atteindre 10\s?000/i.test(tx))return tot>=10000;
+  if(/atteindre 10\s?000/i.test(tx))return tot-credTotal()>=10000;
+  if(/rembourser le cr.dit/i.test(tx))return state.credits.length>0&&credTotal()<=0;
   return false;
 }
 function isRule(t){return /r.gle permanente/i.test(t.notes||"")}
@@ -1670,6 +1703,7 @@ function renderSav(){
   h+='<div class="paliers">'+P.map(function(p){return '<span class="palier'+(tot>=p.v?" ok":next&&p.v===next.v?" cur":"")+'">'+(tot>=p.v?"✓ ":"")+esc(p.n)+'</span>'}).join("")+'</div>';
   var mg=monthsTo(g,tot,mon);
   h+='<p class="note" style="margin-top:10px">'+(mon?'Tu mets '+eur.format(mon)+' de côté chaque mois'+(mg!=null&&mg>0?(mg>240?' : à ce rythme il faudrait plus de 20 ans pour '+intf.format(g)+' €. Augmente tes versements à chaque hausse de revenus.':' : '+intf.format(g)+' € vers '+whenTxt(mg)+' sans compter les intérêts.'):'.'):'Ajoute un versement automatique à une enveloppe pour voir quand tu atteindras chaque palier.')+'</p>';
+  if(state.credits.length){var ct=credTotal();h+='<p class="note" style="margin-top:6px">Patrimoine net (épargne − crédits) : <b style="color:'+(tot-ct<0?"var(--bad)":"var(--ink)")+'">'+eur.format(tot-ct)+'</b></p>'}
   $("#sv-goal").innerHTML=h;
   // enveloppes
   var E=state.sav.envs;
@@ -1773,6 +1807,137 @@ $("#sv-envs").addEventListener("click",function(ev){
   }
 });
 $("#sv-envs").addEventListener("keydown",function(ev){if(ev.key==="Enter"&&ev.target.matches(".env-move input")){ev.preventDefault();ev.target.parentNode.querySelector("[data-ea=go]").click()}});
+/* ---------- crédits ---------- */
+function crPays(c){
+  // opérations de remboursement liées, après la date de saisie du restant dû
+  var key=c.recId||c.id,L=[];
+  Object.keys(state.fin).forEach(function(m){
+    if(c.date&&m<c.date.slice(0,7))return;
+    (state.fin[m]||[]).forEach(function(x){
+      if(x.rec!==key&&x.credit!==c.id)return;if(x.type!=="out")return;if(x.date>today())return;
+      var after=!c.date||x.date>c.date||(x.date===c.date&&!x.rec&&idTime(x.id)>(c.at||0));
+      if(after)L.push(x);
+    });
+  });
+  return L.sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:0});
+}
+function crLeft(c){
+  var r=+c.balance||0,i=(+c.rate||0)/1200,paid=0,int=0;
+  crPays(c).forEach(function(x){
+    var it=x.credit?0:r*i;int+=it;
+    r=Math.max(0,r-(x.amount-it));paid+=x.amount;
+  });
+  return {left:Math.round(r*100)/100,paid:paid,int:int};
+}
+function crMonthly(c){
+  if(c.recId){var r=state.rec.filter(function(x){return x.id===c.recId})[0];return r?{amount:r.amount,day:r.day}:{amount:0,day:0}}
+  return {amount:+c.monthly||0,day:+c.day||0};
+}
+function crProj(c){
+  var L=crLeft(c).left,M=crMonthly(c).amount,i=(+c.rate||0)/1200,n=0,int=0;
+  if(L<=0)return {n:0,int:0,done:true};
+  if(!(M>0))return null;
+  while(L>0.005&&n<600){var it=L*i;if(M<=it)return {n:null,int:null};int+=it;L-=M-it;n++}
+  return {n:n,int:int,last:M+L};
+}
+function crEndOff(c,p){ // mois (à partir de maintenant) de la dernière échéance
+  if(!p||!p.n)return null;
+  var M=crMonthly(c),cur=today().slice(0,7),key=c.recId||c.id;
+  var paidThis=(state.fin[cur]||[]).some(function(x){return x.rec===key&&x.type==="out"});
+  var first=(!paidThis&&M.day>=+today().slice(8)&&(c.recId||(c.start||"")<=cur))?0:1;
+  return first+p.n-1;
+}
+function credRecs(){
+  return state.credits.filter(function(c){return !c.recId&&c.monthly>0&&c.day>=1&&crLeft(c).left>0})
+    .map(function(c){return {id:c.id,label:"Échéance "+c.name,amount:c.monthly,type:"out",cat:"Crédit",day:c.day,start:c.start||"0000-00",credit:c.id}});
+}
+function credTotal(){return state.credits.reduce(function(a,c){return a+crLeft(c).left},0)}
+function renderCred(){
+  var C=state.credits,tot=credTotal(),mon=0,endN=0,init=0,paid=0;
+  C.forEach(function(c){var l=crLeft(c);if(l.left>0)mon+=crMonthly(c).amount;var p=crProj(c),eo=crEndOff(c,p);if(eo!=null&&eo>endN)endN=eo;
+    var i0=+c.initial||0;if(i0){init+=i0;paid+=Math.max(0,i0-l.left)}});
+  var h='<div class="phead"><h3>Restant dû</h3>'+(C.length?'<span class="k-chip'+(tot>0?"":" ok")+'">'+(tot>0?C.filter(function(c){return crLeft(c).left>0}).length+" en cours":"Tout est remboursé")+'</span>':'')+'</div>';
+  h+='<div class="sv-total'+(tot>0?"":" good")+'">'+eur.format(tot)+'</div>';
+  if(init)h+='<div class="gauge"><i style="width:'+Math.min(100,paid/init*100).toFixed(1)+'%"></i></div><p class="note">'+Math.round(paid/init*100)+' % remboursé sur '+eur.format(init)+' empruntés</p>';
+  if(tot>0)h+='<p class="note" style="margin-top:8px">'+(mon?eur.format(mon)+' de mensualités par mois':'')+(endN?' · libre de tout crédit vers <b style="color:var(--ink)">'+whenTxt(endN)+'</b>':'')+'</p>';
+  if(!C.length)h='<div class="phead"><h3>Crédits</h3></div><p class="empty">Ajoute ton crédit avec le + : restant dû, mensualité et jour de prélèvement suffisent. Je calcule la date de fin et je le déduis chaque mois.</p>';
+  $("#cr-head").innerHTML=h;
+  $("#cr-list").innerHTML=C.map(function(c){
+    var l=crLeft(c),p=crProj(c),M=crMonthly(c),i0=+c.initial||0;
+    var sub=[];if(c.lender)sub.push(esc(c.lender));if(M.amount)sub.push(eur.format(M.amount)+(M.day?" le "+M.day:"")+(c.recId?" (récurrente)":""));if(+c.rate)sub.push(String(c.rate).replace(".",",")+" %");
+    var info=l.left<=0?'<span class="good">Remboursé ✓</span>':p&&p.n?'Dernière échéance en '+whenTxt(crEndOff(c,p))+' · '+p.n+' échéance'+(p.n>1?"s":"")+(+c.rate&&p.int>0?' · ~'+eur.format(p.int)+' d\'intérêts restants':''):p&&p.n===null?'<span class="bad">La mensualité ne couvre pas les intérêts</span>':'Ajoute une mensualité pour voir la date de fin';
+    return '<div class="env" data-cr="'+esc(c.id)+'"><div class="env-top"><div class="lbl" style="font-weight:600">'+esc(c.name)+'<small>'+sub.join(" · ")+'</small></div><span class="num">'+eur.format(l.left)+'</span></div>'+
+      (i0?'<div class="gauge"><i style="width:'+Math.min(100,Math.max(0,(i0-l.left)/i0*100)).toFixed(1)+'%"></i></div>':'')+
+      '<p class="note" style="margin-top:6px">'+info+'</p>'+
+      '<div class="env-acts"><button class="link" type="button" data-ca="early">Remboursement anticipé</button><button class="link" type="button" data-ca="set">Mettre à jour le restant dû</button><button class="link" type="button" data-ca="edit" style="color:var(--muted)">Modifier</button></div>'+
+      '<div class="env-move" hidden><input inputmode="decimal" placeholder="Montant" aria-label="Montant" autocomplete="off"><button class="primary" type="button" data-ca="go" style="padding:8px 14px">OK</button></div></div>';
+  }).join("");
+}
+var crDlg=$("#cr-dialog"),crEdit=null;
+function crFillRec(sel){
+  var L=state.rec.filter(function(r){return r.type==="out"});
+  $("#cr-rec").innerHTML='<option value="">Créer le prélèvement automatiquement</option>'+L.map(function(r){return '<option value="'+esc(r.id)+'">Déjà en récurrente : '+esc(r.label)+' ('+eur.format(r.amount)+' le '+r.day+')</option>'}).join("");
+  $("#cr-rec").value=sel||"";crRecToggle();
+}
+function crRecToggle(){var linked=!!$("#cr-rec").value;$("#cr-mwrap").hidden=linked;$("#cr-dwrap").hidden=linked}
+$("#cr-rec").addEventListener("change",crRecToggle);
+function crOpen(c){
+  crEdit=c||null;
+  $("#cr-h").textContent=c?"Modifier "+c.name:"Nouveau crédit";
+  var guess=!c&&state.rec.filter(function(r){return r.type==="out"&&/cr[ée]dit|pr[eê]t|cetelem|cofidis|sofinco|oney|floa|younited/i.test(r.label+" "+r.cat)&&!state.credits.some(function(x){return x.recId===r.id})})[0];
+  crFillRec(c?c.recId:guess?guess.id:"");
+  $("#cr-name").value=c?c.name:guess?guess.label:"";$("#cr-lender").value=c?c.lender||"":"";
+  $("#cr-left").value=c?String(crLeft(c).left).replace(".",","):"";$("#cr-init").value=c&&c.initial?String(c.initial).replace(".",","):"";
+  $("#cr-monthly").value=c&&c.monthly?String(c.monthly).replace(".",","):"";$("#cr-day").value=c&&c.day?c.day:"";
+  $("#cr-rate").value=c&&c.rate?String(c.rate).replace(".",","):"";
+  $("#cr-del").hidden=!c;
+  if(crDlg.showModal)crDlg.showModal();else crDlg.setAttribute("open","");
+  setTimeout(function(){$(c?"#cr-left":"#cr-name").focus()},30);
+}
+function crClose(){if(crDlg.close)crDlg.close();else crDlg.removeAttribute("open")}
+$("#cr-add").addEventListener("click",function(){crOpen(null)});
+$("#cr-close").addEventListener("click",crClose);
+crDlg.addEventListener("click",function(e){if(e.target!==crDlg)return;var r=crDlg.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)crClose()});
+$("#cr-form").addEventListener("submit",function(ev){
+  ev.preventDefault();
+  var name=$("#cr-name").value.trim();if(!name){flash("#cr-name");return}
+  var left=num($("#cr-left").value);if(!isFinite(left)||left<0){flash("#cr-left");return}
+  var init=$("#cr-init").value.trim()?num($("#cr-init").value):0;if(!isFinite(init)||init<0){flash("#cr-init");return}
+  var rate=$("#cr-rate").value.trim()?num($("#cr-rate").value):0;if(!isFinite(rate)||rate<0||rate>40){flash("#cr-rate");return}
+  var recId=$("#cr-rec").value,mo=0,day=0;
+  if(!recId){mo=$("#cr-monthly").value.trim()?num($("#cr-monthly").value):0;if(!isFinite(mo)||mo<0){flash("#cr-monthly");return}
+    day=$("#cr-day").value.trim()?Math.round(num($("#cr-day").value)):0;if(mo>0&&!(day>=1&&day<=31)){flash("#cr-day");return}}
+  var c=crEdit||{id:newId()},td=+today().slice(8),cur=today().slice(0,7);
+  if(!crEdit||Math.abs(crLeft(c).left-left)>.004){c.balance=Math.round(left*100)/100;c.date=today();c.at=Date.now()}
+  if(!crEdit||c.monthly!==mo||c.day!==day||c.recId!==recId)c.start=day&&day<td?addMonths(cur,1):cur;
+  c.name=name;c.lender=$("#cr-lender").value.trim();c.initial=init>0?Math.round(init*100)/100:0;c.rate=rate>0?rate:0;
+  c.recId=recId||"";c.monthly=recId?0:(mo>0?Math.round(mo*100)/100:0);c.day=recId?0:(mo>0?day:0);
+  if(!crEdit)state.credits.push(c);
+  persist("credits");crClose();applyRecurring();renderFin();toast(name+(crEdit?" mis à jour.":" ajouté."));
+});
+$("#cr-del").addEventListener("click",function(){
+  if(!crEdit)return;var i=state.credits.indexOf(crEdit);if(i<0)return;
+  var rm=state.credits.splice(i,1)[0];persist("credits");crClose();renderFin();
+  toast(rm.name+" supprimé",function(){state.credits.splice(i,0,rm);persist("credits");renderFin()});
+});
+$("#cr-list").addEventListener("click",function(ev){
+  var b=ev.target.closest("[data-ca]");if(!b)return;
+  var box=b.closest(".env"),c=state.credits.filter(function(x){return x.id===box.dataset.cr})[0];if(!c)return;
+  var a=b.dataset.ca,mv=box.querySelector(".env-move"),inp=mv.querySelector("input");
+  if(a==="edit"){crOpen(c);return}
+  if(a==="early"||a==="set"){mv.hidden=mv.dataset.mode===a?!mv.hidden:false;mv.dataset.mode=a;
+    inp.placeholder=a==="set"?"Restant dû indiqué par ta banque":"Montant remboursé en plus";inp.value="";if(!mv.hidden)inp.focus();return}
+  if(a==="go"){
+    var v=num(inp.value),md=mv.dataset.mode;
+    if(!isFinite(v)||v<0||(md==="early"&&!(v>0))){inp.classList.add("err");setTimeout(function(){inp.classList.remove("err")},900);return}
+    if(md==="set"){c.balance=Math.round(v*100)/100;c.date=today();c.at=Date.now();persist("credits");renderFin();toast("Restant dû de "+c.name+" : "+eur.format(v));return}
+    var m=today().slice(0,7),op={id:newId(),date:today(),label:"Remboursement anticipé "+c.name,amount:Math.round(v*100)/100,type:"out",cat:"Crédit",credit:c.id};
+    (state.fin[m]=state.fin[m]||[]).push(op);persist("fin-"+m);renderFin();
+    toast("Remboursé : "+eur.format(v),function(){var L=state.fin[m]||[],k=L.indexOf(op);if(k>=0){L.splice(k,1);persist("fin-"+m);renderFin()}});
+  }
+});
+$("#cr-list").addEventListener("keydown",function(ev){if(ev.key==="Enter"&&ev.target.matches(".env-move input")){ev.preventDefault();ev.target.parentNode.querySelector("[data-ca=go]").click()}});
+
 /* ---------- abonnements ---------- */
 function subNext(x){
   var t=today(),cur=t.slice(0,7);
@@ -1852,15 +2017,16 @@ function mDays(m){var n=daysIn(m),L=[];for(var i=1;i<=n;i++)L.push(m+"-"+pad(i))
 function monthStats(m){
   var t=today(),days=mDays(m).filter(function(d){return d<=t}),S={m:m};
   // finances
-  var inc=0,out=0,sav=0,byCat={},big=null,subs=0;
+  var inc=0,out=0,sav=0,byCat={},big=null,subs=0,cred=0;
   (state.fin[m]||[]).forEach(function(x){
     if(x.cat==="Épargne"){sav+=x.type==="out"?x.amount:-x.amount;return}
+    if(x.type==="out"&&(x.credit||(x.rec&&state.credits.some(function(c){return c.id===x.rec||c.recId===x.rec}))))cred+=x.amount;
     if(x.type==="in")inc+=x.amount;else{out+=x.amount;byCat[x.cat]=(byCat[x.cat]||0)+x.amount;if(!big||x.amount>big.amount)big=x;
       if(x.rec&&state.subs.some(function(s){return s.id===x.rec}))subs+=x.amount}
   });
   var bud=budgets(),bOk=0,bN=0,bOver=[];
   Object.keys(bud).forEach(function(c){bN++;var sp=byCat[c]||0;if(sp<=bud[c])bOk++;else bOver.push({c:c,v:sp-bud[c]})});
-  S.fin={inc:inc,out:out,sav:sav,bal:inc-out-sav,rate:inc>0?(inc-out)/inc:null,byCat:byCat,big:big,subs:subs,bOk:bOk,bN:bN,bOver:bOver,n:(state.fin[m]||[]).length};
+  S.fin={inc:inc,out:out,sav:sav,bal:inc-out-sav,rate:inc>0?(inc-out)/inc:null,byCat:byCat,big:big,subs:subs,cred:cred,bOk:bOk,bN:bN,bOver:bOver,n:(state.fin[m]||[]).length};
   // calories
   var kd=0,ks=0,ps=0;days.forEach(function(d){var it=dayItems(d);if(it.length){kd++;var tt=dayTotal(d);ks+=tt.kcal;ps+=tt.prot}});
   var df=sumDef(m+"-01",days.length?days[days.length-1]:m+"-01");
@@ -1905,6 +2071,7 @@ function revPoints(S,P){
   if(S.cal.defDays)out.push({g:S.cal.def>=0?1:0,t:(S.cal.def>=0?"Déficit":"Surplus")+" cumulé de "+intf.format(Math.abs(S.cal.def))+" kcal sur "+S.cal.defDays+" jours, soit environ "+nf1.format(Math.abs(S.cal.def)/KCAL_KG)+" kg de gras."});
   if(S.job.sent||S.job.itv)out.push({g:S.job.itv?1:2,t:S.job.sent+" candidature"+(S.job.sent>1?"s":"")+" envoyée"+(S.job.sent>1?"s":"")+(S.job.itv?" et "+S.job.itv+" entretien"+(S.job.itv>1?"s":""):"")+"."});
   if(S.plan.spP)out.push({g:S.plan.spD/S.plan.spP>=.7?1:0,t:S.plan.spD+" séance"+(S.plan.spD>1?"s":"")+" de sport sur "+S.plan.spP+" prévue"+(S.plan.spP>1?"s":"")+"."});
+  if(S.fin.cred)out.push({g:1,t:"Tu as remboursé "+eur.format(S.fin.cred)+" de crédit"+(state.credits.length&&S.m===today().slice(0,7)?", il reste "+eur.format(credTotal())+".":".")});
   if(S.p30.length||S.books.length)out.push({g:1,t:(S.p30.length?S.p30.length+" étape"+(S.p30.length>1?"s":"")+" du Projet 30 terminée"+(S.p30.length>1?"s":""):"")+(S.p30.length&&S.books.length?" et ":"")+(S.books.length?S.books.length+" livre"+(S.books.length>1?"s":"")+" fini"+(S.books.length>1?"s":""):"")+"."});
   return out;
 }
@@ -2454,12 +2621,12 @@ function renderModel(){
 $("#bm-date").addEventListener("change",function(){bmui.date=this.value;renderModel()});
 $("#bm-cmp").addEventListener("change",function(){bmui.cmp=this.value;renderModel()});
 /* ---------- sauvegardes ---------- */
-function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30,books:state.books,plan:state.plan,inbox:state.inbox,subs:state.subs,sav:state.sav}}
+function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30,books:state.books,plan:state.plan,inbox:state.inbox,subs:state.subs,credits:state.credits,sav:state.sav}}
 function restoreData(p,full){
   var ok=function(o){return o&&typeof o==="object"};
-  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30&&!p.books&&!p.plan&&!p.subs&&!p.sav))return false;
+  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30&&!p.books&&!p.plan&&!p.subs&&!p.sav&&!p.credits))return false;
   var before=allKeys();
-  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],sav:{envs:[],plan:[],goal:100000}};
+  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],sav:{envs:[],plan:[],goal:100000}};
   if(ok(p.settings))state.settings=Object.assign({},p.settings);
   if(Array.isArray(p.rec))state.rec=p.rec;
   if(Array.isArray(p.jobs))state.jobs=p.jobs;
@@ -2470,6 +2637,7 @@ function restoreData(p,full){
   if(ok(p.plan))state.plan=p.plan;
   if(Array.isArray(p.inbox))state.inbox=p.inbox;
   if(Array.isArray(p.subs))state.subs=p.subs;
+  if(Array.isArray(p.credits))state.credits=p.credits;
   if(ok(p.sav))state.sav=savNorm(p.sav);
   if(ok(p.finSkip))state.finSkip=p.finSkip;
   ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
