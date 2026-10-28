@@ -159,7 +159,8 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .check input{width:18px; height:18px; margin-top:2px; accent-color:#5b8cff; flex:none}
 .warnbtn{color:#ffb38a!important; border-color:rgba(255,138,76,.5)!important}
 /* projet 30 */
-.c-p30{grid-column:1 / -1; min-height:0}
+.c-p30{min-height:0}
+.c-p30 .ptl-seg span{font-size:.6rem}
 .p30h{display:flex; gap:18px; align-items:center}
 .p-hero{display:flex; gap:20px; align-items:flex-start}
 .p-ring{flex:none}
@@ -183,6 +184,13 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .pdl dd{margin:2px 0 0; font-size:.88rem}
 #p-filters{flex-wrap:wrap}
 @media (max-width:760px){ .p-hero{flex-direction:column} .ptl{overflow-x:auto} .ptl-seg{min-width:64px} .pdl{grid-template-columns:1fr} .p30h{align-items:flex-start} }
+/* bibliothèque */
+.l-cur{padding:4px 0 14px; border-bottom:1px solid var(--line); margin-bottom:12px}
+.l-cur:last-child{border-bottom:0; margin-bottom:0; padding-bottom:0}
+.lstars{color:#facc15; font-size:.8rem; margin-right:8px; letter-spacing:1px}
+#l-stats.tiles{grid-template-columns:repeat(4,1fr)}
+#l-stats .tile b{font-size:1.4rem!important}
+@media (max-width:760px){#l-stats.tiles{grid-template-columns:repeat(2,1fr)}}
 /* candidatures */
 .plus{all:unset; box-sizing:border-box; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; cursor:pointer; font:500 1.6rem/1 var(--body); color:#fff;
   background:linear-gradient(135deg,#5b8cff,#3b62d6); box-shadow:0 8px 22px -8px rgba(91,140,255,.8); transition:transform .25s, box-shadow .25s}
@@ -333,6 +341,7 @@ details.panel[open]>summary{margin-bottom:12px}
       <button class="card c-job" type="button" id="card-job" data-go="job" aria-label="Ouvrir les candidatures"></button>
       <button class="card c-body" type="button" id="card-body" data-go="body" aria-label="Ouvrir la pesée"></button>
       <button class="card c-p30" type="button" id="card-p30" data-go="p30" aria-label="Ouvrir Projet 30"></button>
+      <button class="card c-lib" type="button" id="card-lib" data-go="lib" aria-label="Ouvrir la bibliothèque"></button>
     </div>
   </section>
 
@@ -473,6 +482,25 @@ details.panel[open]>summary{margin-bottom:12px}
     </div>
   </section>
 
+  <!-- BIBLIOTHÈQUE -->
+  <section class="view" id="v-lib" aria-label="Bibliothèque">
+    <button class="back" type="button" data-go="home">← Accueil</button>
+    <div class="phead" style="margin:0"><h2 style="text-align:left">Bibliothèque</h2><button class="plus" type="button" id="l-open" aria-label="Ajouter un livre" title="Ajouter un livre">+</button></div>
+    <div class="panel" id="l-seed" hidden>
+      <h3>Ta sélection Projet 30</h3>
+      <p class="note" style="margin-bottom:10px">Ajoute les 13 livres de ta page « Bibliothèque Projet 30 » (Kahneman, Cialdini, Godin, Sutherland, Mollick…), dans ton ordre de lecture et reliés aux étapes du plan.</p>
+      <button class="ghost" type="button" id="l-seed-btn">Ajouter ma sélection</button>
+    </div>
+    <div class="tiles" id="l-stats"></div>
+    <div class="panel"><h3>En cours de lecture</h3><div id="l-cur"></div></div>
+    <div class="panel">
+      <div class="phead"><h3>Mes livres</h3></div>
+      <div class="chips" id="l-filters" style="margin-bottom:6px"></div>
+      <div id="l-list"></div>
+      <p class="note" style="margin-top:12px">Quand un livre relié au Projet 30 passe en « Lu », l'étape correspondante est cochée automatiquement.</p>
+    </div>
+  </section>
+
   <!-- CANDIDATURES -->
   <section class="view" id="v-job" aria-label="Candidatures">
     <button class="back" type="button" data-go="home">← Accueil</button>
@@ -550,6 +578,7 @@ details.panel[open]>summary{margin-bottom:12px}
     <button class="sbtn" type="button" data-go="fin" aria-label="Finances" title="Finances"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-5 4 4 8-8"/><path d="M15 8h5v5"/></svg></button>
     <button class="sbtn" type="button" data-go="body" aria-label="Pesée" title="Pesée"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M8.5 9.5a5 5 0 0 1 7 0"/><path d="M12 9.8l1.4-2"/></svg></button>
     <button class="sbtn" type="button" data-go="p30" aria-label="Projet 30" title="Projet 30"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></button>
+    <button class="sbtn" type="button" data-go="lib" aria-label="Bibliothèque" title="Bibliothèque"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M13 4h5.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H13Z"/><path d="M7 8h1.5M16 8h1.5"/></svg></button>
     <button class="sbtn" type="button" data-go="job" aria-label="Candidatures" title="Candidatures"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M3 12.5h18"/></svg></button>
     <button class="sbtn" type="button" data-go="cal" aria-label="Calories" title="Calories"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4 0 7-2.8 7-7 0-3.5-2.2-6.2-4-8-.3 2-1.3 3.5-2.8 4.3C12.6 8.6 11 5 8 2.5 8.3 6 5 8.6 5 15c0 4.2 3 7 7 7Z"/></svg></button>
   </nav>
@@ -576,6 +605,20 @@ details.panel[open]>summary{margin-bottom:12px}
     <p class="note">Remplis seulement ce que tu as mesuré. Les valeurs grisées sont celles de ta dernière pesée.</p>
     <button class="primary" type="submit">Enregistrer</button>
     <button class="ghost" type="button" id="b-del" hidden>Supprimer cette pesée</button>
+  </form>
+</dialog>
+<dialog class="modal" id="l-dialog" aria-labelledby="lb-h">
+  <div class="phead"><h3 id="lb-h">Ajouter un livre</h3><button class="mclose" type="button" id="l-close" aria-label="Fermer">×</button></div>
+  <form id="lb-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+    <div class="grid">
+      <label for="lb-title" class="wide">Titre<input id="lb-title" maxlength="140" autocomplete="off"></label>
+      <label for="lb-author">Auteur<input id="lb-author" maxlength="80" autocomplete="off"></label>
+      <label for="lb-pages">Pages<input id="lb-pages" inputmode="numeric" autocomplete="off"></label>
+      <label for="lb-pillar">Thème<select id="lb-pillar"><option>Neuromarketing</option><option>Psychologie du consommateur</option><option>Branding & marques</option><option>IA dans le marketing</option><option>Transversal</option><option>Autre</option></select></label>
+      <label for="lb-status">Statut<select id="lb-status"><option>À lire</option><option>En cours</option><option>Lu</option></select></label>
+      <label for="lb-source" class="wide">Provenance<select id="lb-source"><option value="">—</option><option>Acheté</option><option>Médiathèque</option><option>Prêté</option><option>Numérique</option></select></label>
+    </div>
+    <button class="primary" type="submit">Ajouter</button>
   </form>
 </dialog>
 <dialog class="modal" id="jn-dialog" aria-labelledby="jn-title">
@@ -625,13 +668,13 @@ var CATS={
   in:["Salaire","Aides","Ventes","Remboursement","Autre"]
 };
 
-var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[]};
+var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[]};
 var ui={tab:"home",month:today().slice(0,7),day:today(),finType:"out"};
 
 /* ---------- stockage local ---------- */
 var LS="carnet-joseph-v1";
 function loadLocal(){
-  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[]}}}}catch(e){}
+  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[],books:Array.isArray(p.books)?p.books:[]}}}}catch(e){}
 
 }
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
@@ -650,13 +693,14 @@ var dirty=lsGet("carnet-dirty")||{};
 var sync={state:"off",pushing:false,timer:null,lastOk:null,firstPull:!lsGet("carnet-synced-once")};
 
 function hasCfg(){return !!(CFG.url&&CFG.key)}
-function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length}
+function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length||state.books.length}
 function allKeys(){
   var k=["settings"];
   if(state.rec.length)k.push("recurring");
   if(state.jobs.length)k.push("jobs");
   if(state.body.length)k.push("body");
   if(state.p30.length)k.push("p30");
+  if(state.books.length)k.push("books");
   Object.keys(state.fin).forEach(function(m){k.push("fin-"+m)});
   Object.keys(state.cal).forEach(function(m){k.push("cal-"+m)});
   Object.keys(state.act).forEach(function(m){if(k.indexOf("cal-"+m)<0)k.push("cal-"+m)});
@@ -668,6 +712,7 @@ function bodyFor(key){
   if(key==="jobs")return {items:state.jobs};
   if(key==="body")return {items:state.body};
   if(key==="p30")return {items:state.p30};
+  if(key==="books")return {items:state.books};
   var b={items:(state[key.slice(0,3)][key.slice(4)]||[])};
   if(key.slice(0,3)==="fin"){var sk=state.finSkip[key.slice(4)];if(sk&&sk.length)b.skipped=sk}
   if(key.slice(0,3)==="cal"){var ac=state.act[key.slice(4)];if(ac&&Object.keys(ac).length)b.active=ac}
@@ -679,6 +724,7 @@ function applyDoc(key,body){
   else if(key==="jobs")state.jobs=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="body")state.body=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="p30")state.p30=Array.isArray(body&&body.items)?body.items:[];
+  else if(key==="books")state.books=Array.isArray(body&&body.items)?body.items:[];
   else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key)){state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
     if(key.slice(0,3)==="cal"){if(body&&body.active&&typeof body.active==="object")state.act[key.slice(4)]=body.active;else delete state.act[key.slice(4)]}
     if(key.slice(0,3)==="fin"){if(Array.isArray(body&&body.skipped))state.finSkip[key.slice(4)]=body.skipped;else delete state.finSkip[key.slice(4)]}
@@ -861,7 +907,7 @@ function flash(sel){var el=$(sel);el.classList.add("err");el.focus();setTimeout(
 function setTab(t){
   ui.tab=t;document.body.dataset.tab=t;
   window.scrollTo(0,0);
-  ["home","fin","cal","body","job","p30","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
+  ["home","fin","cal","body","job","p30","lib","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
   document.querySelectorAll(".sbtn").forEach(function(b){b.classList.toggle("on",b.dataset.go===t)});
 }
 document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){setTab(b.id==="gear"&&ui.tab==="set"?"home":b.dataset.go)})});
@@ -1630,18 +1676,19 @@ function renderModel(){
 $("#bm-date").addEventListener("change",function(){bmui.date=this.value;renderModel()});
 $("#bm-cmp").addEventListener("change",function(){bmui.cmp=this.value;renderModel()});
 /* ---------- sauvegardes ---------- */
-function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30}}
+function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30,books:state.books}}
 function restoreData(p,full){
   var ok=function(o){return o&&typeof o==="object"};
-  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30))return false;
+  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30&&!p.books))return false;
   var before=allKeys();
-  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[]};
+  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[]};
   if(ok(p.settings))state.settings=Object.assign({},p.settings);
   if(Array.isArray(p.rec))state.rec=p.rec;
   if(Array.isArray(p.jobs))state.jobs=p.jobs;
   if(ok(p.act))state.act=p.act;
   if(Array.isArray(p.body))state.body=p.body;
   if(Array.isArray(p.p30))state.p30=p.p30;
+  if(Array.isArray(p.books))state.books=p.books;
   if(ok(p.finSkip))state.finSkip=p.finSkip;
   ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
   var keys=allKeys();before.forEach(function(k){if(keys.indexOf(k)<0)keys.push(k)});
@@ -1849,6 +1896,142 @@ $("#p-file").addEventListener("change",function(){
     if(!n){toast("Tout était déjà importé.");return}
     pSave();toast(n+" tâches Projet 30 importées.");
   };rd.readAsText(f);
+});
+/* ---------- bibliothèque ---------- */
+var BST=["À lire","En cours","Lu","En pause","Abandonné"];
+var BCLS={"À lire":"st-r","En cours":"st-e","Lu":"st-i","En pause":"st-ar","Abandonné":"st-r"};
+var BPIL=["Neuromarketing","Psychologie du consommateur","Branding & marques","IA dans le marketing","Transversal","Autre"];
+var BSEED=[
+["Système 1 / Système 2 : Les deux vitesses de la pensée","Daniel Kahneman","Neuromarketing",555,"Incontournable","LE socle : comment le cerveau décide (rapide/intuitif vs lent/réfléchi). À lire chapitre par chapitre.",8,1],
+["Neuromarketing : le nerf de la vente","Patrick Renvoisé & Christophe Morin","Neuromarketing",250,"Approfondissement","Application directe au marketing et à la vente : cerveau reptilien et 6 stimuli. Test du protocole 5 phases.",4,2],
+["The Choice Factory","Richard Shotton","Neuromarketing",240,"Approfondissement","25 biais cognitifs appliqués à la pub, un chapitre par biais. Utile pour la grille d'analyse.",11,3],
+["Influence et manipulation","Robert Cialdini","Psychologie du consommateur",350,"Incontournable","Les 6 principes d'influence illustrés par des études et des cas réels.",12,4],
+["Pré-Suasion","Robert Cialdini","Psychologie du consommateur",400,"Approfondissement","Ce qui se passe avant la décision : préparer le terrain mental.",13,5],
+["Contagious","Jonah Berger","Psychologie du consommateur",240,"Approfondissement","Pourquoi certaines marques se propagent : le framework STEPPS.",14,6],
+["This is Marketing","Seth Godin","Branding & marques",300,"Incontournable","Le marketing au service de la transformation du client, pas de la manipulation.",20,7],
+["Alchemy","Rory Sutherland","Branding & marques",380,"Approfondissement","Neuromarketing + branding + irrationnel : la perception vaut plus que la réalité.",21,8],
+["Building a StoryBrand","Donald Miller","Branding & marques",240,"Approfondissement","Framework narratif : le client est le héros, la marque est le guide.",22,9],
+["Co-Intelligence : Living and Working with AI","Ethan Mollick","IA dans le marketing",240,"Incontournable","La référence actuelle pour travailler avec l'IA en pratique.",23,10],
+["Les marques, capital de l'entreprise","Jean-Noël Kapferer","Branding & marques",500,"Approfondissement","Référence académique française du branding, prisme d'identité de marque. À lire par morceaux.",26,11],
+["Don't Make Me Think","Steve Krug","Transversal",200,"Transversal","Principe de clarté applicable à tout contenu de marque.",null,12],
+["Thinking in Systems","Donella Meadows","Transversal",240,"Bonus","Pensée systémique : voir les marques comme des systèmes vivants.",null,13]];
+var lui={filter:"all",open:null};
+function bkFind(id){for(var i=0;i<state.books.length;i++)if(state.books[i].id===id)return state.books[i];return null}
+function libSave(){persist("books");renderLib();renderHome()}
+function bPct(b){return b.pages?Math.min(100,Math.round((b.page||0)/b.pages*100)):(b.status==="Lu"?100:0)}
+function bDueInfo(b){
+  if(b.source!=="Médiathèque"||!b.dueBack||b.status==="Lu"&&b.returned)return null;
+  if(b.returned)return null;
+  var d=Math.round((parseYmd(b.dueBack)-parseYmd(today()))/864e5);
+  return {days:d,txt:d<0?"à rendre depuis "+(-d)+" j":d===0?"à rendre aujourd'hui":"à rendre dans "+d+" j"};
+}
+function bEta(b){
+  if(!b.started||!b.pages||!b.page)return "";
+  var days=Math.max(1,Math.round((parseYmd(today())-parseYmd(b.started))/864e5)),pace=b.page/days;
+  if(pace<=0)return "";var left=Math.ceil((b.pages-b.page)/pace);
+  return "≈ "+Math.round(pace)+" p./jour · fini vers le "+parseYmd(addDays(today(),left)).toLocaleDateString("fr-FR",{day:"numeric",month:"short"});
+}
+function bLinkStep(b,st){
+  if(!b.step)return;var x=null;state.p30.forEach(function(t){if(t.step===b.step)x=t});if(!x)return;
+  if(st==="Lu"&&x.status!=="Fait"){x.status="Fait";x.doneOn=today();persist("p30");toast("Étape "+b.step+" de Projet 30 cochée aussi.");renderP30()}
+  else if(st==="En cours"&&(x.status==="À faire"||x.status==="À préparer")){x.status="En cours";persist("p30");renderP30()}
+}
+function bSetStatus(b,st){
+  b.status=st;
+  if(st==="En cours"&&!b.started)b.started=today();
+  if(st==="Lu"){b.finished=b.finished||today();if(b.pages)b.page=b.pages}
+  bLinkStep(b,st);
+}
+function renderLib(){
+  if(!$("#v-lib"))return;
+  var B=state.books,yr=today().slice(0,4);
+  $("#l-seed").hidden=B.length>0;
+  var read=B.filter(function(b){return b.status==="Lu"}),cur=B.filter(function(b){return b.status==="En cours"});
+  var pages=B.reduce(function(a,b){return a+(b.status==="Lu"?(b.pages||0):(b.page||0))},0);
+  $("#l-stats").innerHTML='<div class="tile"><small>En cours</small><b>'+cur.length+'</b></div><div class="tile"><small>Lus</small><b class="good">'+read.length+' <span class="u">/ '+B.length+'</span></b></div>'+
+    '<div class="tile"><small>Lus en '+yr+'</small><b>'+read.filter(function(b){return (b.finished||"").slice(0,4)===yr}).length+'</b></div><div class="tile"><small>Pages lues</small><b>'+intf.format(pages)+'</b></div>';
+  // en cours
+  var h='';
+  if(!cur.length){var nx=B.filter(function(b){return b.status==="À lire"}).sort(function(a,b){return (a.order||99)-(b.order||99)})[0];
+    h='<p class="note">Aucun livre en cours.'+(nx?' Le prochain dans ton ordre : <b style="color:var(--ink)">'+esc(nx.title)+'</b>.':'')+'</p>'+(nx?'<div class="btnrow" style="margin-top:10px"><button class="ghost sm" type="button" data-bact="start" data-id="'+esc(nx.id)+'">Commencer ce livre</button></div>':'');}
+  cur.forEach(function(b){
+    var p=bPct(b),di=bDueInfo(b);
+    h+='<div class="l-cur"><div class="p-title">'+esc(b.title)+'</div><div class="k-lbl" style="margin:2px 0 8px">'+esc(b.author)+(di?' · <span class="'+(di.days<=3?"warn":"")+'">Médiathèque : '+esc(di.txt)+'</span>':'')+'</div>'+
+      '<div class="meter" style="margin:6px 0"><i style="width:'+p+'%;background:linear-gradient(90deg,#5b8cff,#8b5cf6)"></i></div>'+
+      '<div class="heroline"><span>'+(b.pages?'Page '+(b.page||0)+' / '+b.pages+' · '+p+' %':'')+'</span><span class="muted">'+esc(bEta(b))+'</span></div>'+
+      '<div class="btnrow" style="margin-top:10px;align-items:center"><label for="lp-'+esc(b.id)+'" style="flex-direction:row;align-items:center;gap:8px">Page actuelle<input id="lp-'+esc(b.id)+'" class="lpage" data-id="'+esc(b.id)+'" inputmode="numeric" value="'+(b.page||"")+'" style="width:90px"></label>'+
+      '<button class="ghost sm" type="button" data-bact="plus" data-n="10" data-id="'+esc(b.id)+'">+10 p.</button><button class="ghost sm" type="button" data-bact="plus" data-n="25" data-id="'+esc(b.id)+'">+25 p.</button><button class="ghost sm" type="button" data-bact="done" data-id="'+esc(b.id)+'">Terminé ✓</button></div></div>';
+  });
+  $("#l-cur").innerHTML=h;
+  // liste
+  var F={all:"Tous",todo:"À lire",cur:"En cours",read:"Lus"};
+  $("#l-filters").innerHTML=Object.keys(F).map(function(k){return '<button type="button" class="chip'+(lui.filter===k?" on":"")+'" data-f="'+k+'">'+F[k]+'</button>'}).join("");
+  var list=B.filter(function(b){return lui.filter==="all"||(lui.filter==="todo"&&b.status==="À lire")||(lui.filter==="cur"&&b.status==="En cours")||(lui.filter==="read"&&b.status==="Lu")});
+  var html="";
+  BPIL.forEach(function(pl){
+    var its=list.filter(function(b){return (b.pillar||"Autre")===pl}).sort(function(a,b){return (a.order||99)-(b.order||99)});if(!its.length)return;
+    var all=B.filter(function(b){return (b.pillar||"Autre")===pl});
+    html+='<div class="day">'+esc(pl)+' · '+all.filter(function(b){return b.status==="Lu"}).length+'/'+all.length+' lus</div>';
+    its.forEach(function(b){html+=bRowHTML(b)});
+  });
+  $("#l-list").innerHTML=html||'<p class="empty">Aucun livre ici.</p>';
+}
+function bRowHTML(b){
+  var open=lui.open===b.id,di=bDueInfo(b);
+  var h='<div class="jrow'+(open?" open":"")+'"><button type="button" class="jhead" data-bid="'+esc(b.id)+'" aria-expanded="'+open+'"><span class="lbl">'+esc(b.title)+'<small>'+esc([b.author,b.pages?b.pages+" p.":"",b.kind,b.step?"étape "+b.step+" du Projet 30":""].filter(Boolean).join(" · "))+(di?' · <span class="warn">'+esc(di.txt)+'</span>':'')+'</small></span>'+
+    (b.rating?'<span class="lstars">'+"★".repeat(b.rating)+'</span>':'')+'<span class="jpill '+(BCLS[b.status]||"")+'">'+esc(b.status)+(b.status==="En cours"&&b.pages?" "+bPct(b)+"%":"")+'</span></button>';
+  if(open){
+    var I=function(k){return esc(b[k]==null?"":b[k])};
+    h+='<div class="jedit" data-id="'+esc(b.id)+'">'+(b.why?'<p class="note" style="margin-bottom:10px">'+esc(b.why)+'</p>':'')+'<div class="grid">'+
+      '<label for="le-status">Statut<select id="le-status" data-k="status">'+BST.map(function(x){return '<option'+(x===b.status?" selected":"")+'>'+x+'</option>'}).join("")+'</select></label>'+
+      '<label for="le-rating">Ma note<select id="le-rating" data-k="rating"><option value="">—</option>'+[1,2,3,4,5].map(function(n){return '<option value="'+n+'"'+(b.rating===n?" selected":"")+'>'+"★".repeat(n)+'</option>'}).join("")+'</select></label>'+
+      '<label for="le-page">Page actuelle<input id="le-page" data-k="page" inputmode="numeric" value="'+I("page")+'"></label>'+
+      '<label for="le-pages">Nombre de pages<input id="le-pages" data-k="pages" inputmode="numeric" value="'+I("pages")+'"></label>'+
+      '<label for="le-started">Commencé le<input id="le-started" type="date" data-k="started" value="'+I("started")+'"></label>'+
+      '<label for="le-finished">Fini le<input id="le-finished" type="date" data-k="finished" value="'+I("finished")+'"></label>'+
+      '<label for="le-source">Provenance<select id="le-source" data-k="source">'+["","Acheté","Médiathèque","Prêté","Numérique"].map(function(x){return '<option value="'+x+'"'+(x===(b.source||"")?" selected":"")+'>'+(x||"—")+'</option>'}).join("")+'</select></label>'+
+      '<label for="le-due">À rendre le (médiathèque)<input id="le-due" type="date" data-k="dueBack" value="'+I("dueBack")+'"></label>'+
+      '<label for="le-notes" class="wide">Fiche de lecture · idées clés<textarea id="le-notes" data-k="notes" style="min-height:140px" placeholder="Concepts clés, citations, ce que je transpose sur une marque…">'+I("notes")+'</textarea></label>'+
+      '</div><div class="btnrow" style="margin-top:10px">'+(b.source==="Médiathèque"&&!b.returned?'<button class="ghost sm" type="button" data-bact="returned" data-id="'+esc(b.id)+'">Rendu à la médiathèque ✓</button>':'')+'<button class="ghost sm" type="button" data-bact="del" data-id="'+esc(b.id)+'">Retirer de la bibliothèque</button></div></div>';
+  }
+  return h+'</div>';
+}
+function bAct(e){
+  var x=e.target.closest("[data-bact]");if(!x)return false;var b=bkFind(x.dataset.id);if(!b)return true;var a=x.dataset.bact;
+  if(a==="start"){bSetStatus(b,"En cours");libSave();toast("Bonne lecture : "+b.title)}
+  else if(a==="plus"){b.page=Math.min(b.pages||1e9,(b.page||0)+(+x.dataset.n));if(b.pages&&b.page>=b.pages){bSetStatus(b,"Lu");toast("Livre terminé 🎉")}libSave()}
+  else if(a==="done"){var prev={s:b.status,p:b.page,f:b.finished};bSetStatus(b,"Lu");libSave();toast(b.title+" : terminé",function(){b.status=prev.s;b.page=prev.p;b.finished=prev.f;libSave()})}
+  else if(a==="returned"){b.returned=today();libSave();toast("Retour médiathèque noté.")}
+  else if(a==="del"){var i=state.books.indexOf(b);state.books.splice(i,1);lui.open=null;libSave();toast("Livre retiré",function(){state.books.splice(i,0,b);libSave()})}
+  return true;
+}
+["#l-cur","#l-list"].forEach(function(sel){$(sel).addEventListener("click",function(e){
+  if(bAct(e))return;var h=e.target.closest(".jhead[data-bid]");if(!h)return;lui.open=lui.open===h.dataset.bid?null:h.dataset.bid;renderLib();
+})});
+$("#l-cur").addEventListener("change",function(e){var el=e.target;if(!el.classList.contains("lpage"))return;var b=bkFind(el.dataset.id);if(!b)return;var v=Math.round(num(el.value));if(!(v>=0))return;b.page=b.pages?Math.min(v,b.pages):v;if(b.pages&&b.page>=b.pages)bSetStatus(b,"Lu");libSave()});
+$("#l-list").addEventListener("change",function(e){
+  var el=e.target,box=el.closest(".jedit");if(!box||!el.dataset.k)return;var b=bkFind(box.dataset.id);if(!b)return;var k=el.dataset.k,v=el.value.trim();
+  if(k==="status")bSetStatus(b,v);
+  else if(k==="page"||k==="pages"||k==="rating"){var n=Math.round(num(v));if(v===""||!(n>0))delete b[k];else b[k]=n}
+  else b[k]=v;
+  persist("books");renderHome();if(k==="status"||k==="rating"||k==="source")renderLib();
+});
+$("#l-filters").addEventListener("click",function(e){var f=e.target.closest("[data-f]");if(!f)return;lui.filter=f.dataset.f;renderLib()});
+$("#l-seed-btn").addEventListener("click",function(){
+  BSEED.forEach(function(r){state.books.push({id:"bk"+r[7]+"-"+newId(),title:r[0],author:r[1],pillar:r[2],pages:r[3],kind:r[4],why:r[5],step:r[6],order:r[6]||(80+r[7]),status:"À lire",source:r[7]===2?"Médiathèque":""})});
+  libSave();toast(BSEED.length+" livres ajoutés à ta bibliothèque.");
+});
+// ajout d'un livre
+var lDlg=$("#l-dialog");
+$("#l-open").addEventListener("click",function(){$("#lb-title").value="";$("#lb-author").value="";$("#lb-pages").value="";if(lDlg.showModal)lDlg.showModal();else lDlg.setAttribute("open","");setTimeout(function(){$("#lb-title").focus()},30)});
+$("#l-close").addEventListener("click",function(){lDlg.close?lDlg.close():lDlg.removeAttribute("open")});
+lDlg.addEventListener("click",function(e){if(e.target!==lDlg)return;var r=lDlg.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)lDlg.close()});
+$("#lb-form").addEventListener("submit",function(e){
+  e.preventDefault();var t=$("#lb-title").value.trim();if(!t){flash("#lb-title");return}
+  var b={id:newId(),title:t,author:$("#lb-author").value.trim(),pillar:$("#lb-pillar").value,status:$("#lb-status").value,source:$("#lb-source").value,order:99};
+  var n=Math.round(num($("#lb-pages").value));if(n>0)b.pages=n;
+  if(b.status!=="À lire")bSetStatus(b,b.status);
+  state.books.push(b);lDlg.close?lDlg.close():lDlg.removeAttribute("open");libSave();toast(t+" ajouté.");
 });
 /* ---------- candidatures ---------- */
 var JST=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien","Offre","Refusé"];
@@ -2089,6 +2272,18 @@ function renderHome(){
       (focus?'<div class="k-lbl" style="margin:0 0 2px">'+(PS.cur.length&&focus===PS.cur[0]?"En cours":"Prochaine étape")+' · '+esc(pShortH(focus.horizon))+'</div><div class="p-title">'+esc(focus.title)+'</div>'+(focus.deliverable?'<div class="k-lbl">'+esc(focus.deliverable)+'</div>':''):'<div class="p-title">Plan terminé</div>')+
       '</div></div>'+pTimeline(false)+'<span class="k-open">Ouvrir →</span>';
   }
+  // bibliothèque
+  var lc=$("#card-lib"),BB=state.books;
+  if(!BB.length)lc.innerHTML='<div class="k-title">Lecture<span class="k-chip">À configurer</span></div><div class="k-lbl">Ajoute ta sélection de livres Projet 30.</div><span class="k-open">Ouvrir →</span>';
+  else{
+    var bc=BB.filter(function(b){return b.status==="En cours"})[0],bn=BB.filter(function(b){return b.status==="À lire"}).sort(function(a,b){return (a.order||99)-(b.order||99)})[0];
+    var lus=BB.filter(function(b){return b.status==="Lu"}).length,late=BB.map(bDueInfo).filter(function(x){return x&&x.days<=3})[0];
+    var bb=bc||bn;
+    lc.innerHTML='<div class="k-title">Lecture<span class="k-chip'+(late?" warn":"")+'">'+(late?"Médiathèque : "+late.txt:lus+" / "+BB.length+" lus")+'</span></div>'+
+      (bb?'<div style="margin-top:auto"><div class="k-lbl" style="margin:0 0 2px">'+(bc?"En cours":"À commencer")+'</div><div class="p-title">'+esc(bb.title)+'</div><div class="k-lbl">'+esc(bb.author||"")+'</div>'+
+        (bc&&bc.pages?'<div class="meter" style="margin:10px 0 4px"><i style="width:'+bPct(bc)+'%;background:linear-gradient(90deg,#5b8cff,#8b5cf6)"></i></div><div class="k-lbl">Page '+(bc.page||0)+' / '+bc.pages+' · '+bPct(bc)+' %</div>':'')+'</div>':'<div class="p-title" style="margin-top:auto">Tout est lu</div>')+
+      '<span class="k-open">Ouvrir →</span>';
+  }
   // pesée
   var bl=bodyLast("w"),bg=+state.settings.weightGoal||0,bh;
   if(bl){
@@ -2136,7 +2331,7 @@ document.querySelectorAll("button.card").forEach(function(c){
 /* ---------- rendu ---------- */
 function render(){
   var t=state.settings.title||"Dashboard";$("#app-title").textContent=t;
-  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderHome();
+  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderHome();
 }
 
 loadLocal();
