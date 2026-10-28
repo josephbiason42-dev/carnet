@@ -397,6 +397,14 @@ details.panel[open]>summary{margin-bottom:12px}
 .del{width:32px; height:32px; border-radius:8px; border:1px solid transparent; background:transparent; color:var(--muted); font-size:1.1rem; cursor:pointer}
 .del:hover{border-color:var(--line); color:var(--bad)}
 .empty{color:var(--muted); font-size:.9rem; margin:0}
+.ai-bar{display:flex; justify-content:space-between; align-items:center; gap:10px}
+.ai-btn{all:unset; cursor:pointer; font:700 .82rem var(--body); color:#c4b5ff; padding:7px 12px; border-radius:999px; border:1px solid rgba(167,139,250,.4); background:rgba(139,92,246,.12); margin-bottom:12px}
+.ai-btn:hover,.ai-btn:focus-visible{background:rgba(139,92,246,.24)}
+.ai-btn:focus-visible{outline:2px solid #c4b5ff; outline-offset:2px}
+.chip.on{border-color:rgba(167,139,250,.7); background:rgba(139,92,246,.18)}
+.ai-q{text-align:left}
+#ai-prev{white-space:pre-wrap; font:12px/1.45 var(--mono); color:var(--muted); max-height:240px; overflow:auto; margin:8px 0 0; padding:10px; border-radius:10px; background:rgba(255,255,255,.03); border:1px solid var(--line)}
+.ai-sec{font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin:4px 0 6px}
 .fnav{grid-template-columns:repeat(4,1fr); margin-bottom:14px}
 .fnav button{padding:8px 2px; font-size:.86rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .k-chip.ok{color:#4ade80}
@@ -937,6 +945,21 @@ details.panel[open]>summary{margin-bottom:12px}
     <button class="primary" type="submit">Enregistrer</button>
     <button class="ghost" type="button" id="sv-del" hidden>Supprimer l'enveloppe</button>
   </form>
+</dialog>
+<dialog class="modal" id="ai-dialog" aria-labelledby="ai-h">
+  <div class="phead"><h3 id="ai-h">✦ Demander conseil à Claude</h3><button class="mclose" type="button" id="ai-close" aria-label="Fermer">×</button></div>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div><div class="ai-sec">Sur quoi ?</div><div class="chips" id="ai-scope"></div></div>
+    <div><div class="ai-sec">Ta question</div><div class="chips" id="ai-qs" style="margin-bottom:8px"></div>
+      <textarea id="ai-q" rows="2" maxlength="600" placeholder="Ou écris ta propre question…" style="font:15px/1.4 var(--body);min-height:60px"></textarea></div>
+    <details><summary class="link" style="cursor:pointer;color:var(--accent);font:600 .88rem var(--body)">À propos de moi (facultatif)</summary>
+      <textarea id="ai-about" rows="3" maxlength="800" placeholder="Ex. vendeur chez Boulanger à Rennes depuis novembre, je vise un CDI en marketing…" style="font:14px/1.4 var(--body);margin-top:8px"></textarea>
+      <p class="note">Gardé pour les prochaines fois et ajouté en tête du message.</p></details>
+    <details><summary class="link" style="cursor:pointer;color:var(--accent);font:600 .88rem var(--body)">Voir ce qui sera envoyé · <span id="ai-len"></span></summary><pre id="ai-prev"></pre></details>
+    <button class="primary" type="button" id="ai-go">Copier et ouvrir Claude</button>
+    <button class="ghost" type="button" id="ai-copy">Copier seulement</button>
+    <p class="note">Rien n'est envoyé automatiquement : le texte est copié, puis tu le colles dans Claude si besoin.</p>
+  </div>
 </dialog>
 <dialog class="modal" id="cr-dialog" aria-labelledby="cr-h">
   <div class="phead"><h3 id="cr-h">Nouveau crédit</h3><button class="mclose" type="button" id="cr-close" aria-label="Fermer">×</button></div>
@@ -3338,6 +3361,7 @@ function renderHello(){
     el.addEventListener("click",function(e){
       if(hEdit)return;var b=e.target.closest("[data-go]");if(b){setTab(b.dataset.go);return}
       if(e.target.closest("#inbox-link"))ibOpen();
+      if(e.target.closest("#ai-home"))aiOpen("all");
       if(e.target.closest("#brief-more")){helloAll=!helloAll;renderHello()}
     });
   }
@@ -3347,7 +3371,7 @@ function renderHello(){
   var lim=helloAll?br.length:4;
   if(br.length){h+='<div class="brief">'+br.slice(0,lim).map(function(x){return '<button type="button" class="br-i" data-go="'+x.go+'"><i style="background:'+x.c+'"></i><span>'+esc(x.t)+'</span><b aria-hidden="true">›</b></button>'}).join("")+(br.length>4?'<button type="button" class="ib-link" id="brief-more" style="color:var(--muted);margin-top:2px">'+(helloAll?"Réduire":"+ "+(br.length-4)+" autre"+(br.length-4>1?"s":""))+'</button>':'')+'</div>'}
   else h+='<div class="brief"><div class="br-ok">Tout est en ordre ✓</div></div>';
-  h+='<div class="h-sub"><div class="status" id="status-home"><i></i><span></span></div>'+(ib?'<button type="button" class="ib-link" id="inbox-link">Boîte de réception · '+ib+'</button>':'')+'</div>';
+  h+='<div class="h-sub"><div class="status" id="status-home"><i></i><span></span></div><span style="display:flex;gap:14px;align-items:center"><button type="button" class="ib-link" id="ai-home" style="color:#c4b5ff">✦ Conseil</button>'+(ib?'<button type="button" class="ib-link" id="inbox-link">Boîte de réception · '+ib+'</button>':'')+'</span></div>';
   $("#hello-dyn").innerHTML=h;
   $("#hello-wave").innerHTML=waveHTML();
   var st=$("#status"),hs=$("#status-home");if(st&&hs){hs.className=st.className;hs.querySelector("span").textContent=st.querySelector("span").textContent}
@@ -3656,6 +3680,139 @@ document.querySelectorAll("button.card").forEach(function(c){
 });
 
 /* ---------- rendu ---------- */
+/* ---------- conseil IA (copier vers Claude) ---------- */
+var AIS={all:"Tout",fin:"Finances",body:"Corps",job:"Candidatures",p30:"Projet 30 et lecture",plan:"Planning"};
+var AIQ={
+  all:["Fais-moi un point global sur ma situation","Que dois-je prioriser cette semaine ?","Quels sont mes 3 points faibles en ce moment ?"],
+  fin:["Comment rembourser mes crédits plus vite ?","Mon budget est-il réaliste ?","Où puis-je économiser ce mois-ci ?","Combien épargner chaque mois, et où ?"],
+  body:["Mon déficit est-il adapté à mon objectif de poids ?","Comment atteindre mon objectif de protéines ?","Analyse l'évolution de mes pesées"],
+  job:["Comment améliorer mon taux de réponse ?","Quelles candidatures relancer en priorité ?","Analyse mes candidatures : où ça bloque ?"],
+  p30:["Que prioriser cette semaine pour le Projet 30 ?","Comment avancer plus vite sur le Projet 30 ?","Comment mieux exploiter mes lectures ?"],
+  plan:["Comment mieux organiser ma semaine ?","Comment caser sport et Projet 30 avec mes horaires ?"]
+};
+var AIMAP={fin:"fin",cal:"body",body:"body",job:"job",p30:"p30",lib:"p30",plan:"plan",rev:"all",home:"all"};
+var aiS={scope:"all",q:""};
+function e2(v){return eur.format(v)}
+function fd(d){return parseYmd(d).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"numeric"})}
+function aiFin(){
+  var t=today(),m=t.slice(0,7),C=finCalc(m),L=[],bi=C.bank,R=rav();
+  L.push("## Finances");
+  if(bi)L.push("- Solde réel du compte courant : "+e2(bi.est)+" (saisi le "+fd(bi.date)+")");
+  L.push("- Prévu sur le compte le "+daysIn(m)+"/"+m.slice(5)+" : "+e2(C.endBank!=null?C.endBank:C.proj));
+  if(R)L.push("- Reste à vivre : "+e2(R.perDay)+"/jour pendant "+R.days+" jours");
+  for(var k=3;k>=0;k--){var mm=addMonths(m,-k),S=monthStats(mm).fin;if(!S.n)continue;
+    var top=Object.keys(S.byCat).sort(function(a,b){return S.byCat[b]-S.byCat[a]}).slice(0,5).map(function(c){return c+" "+e2(S.byCat[c])}).join(", ");
+    L.push("- "+monthLabel(mm)+(k===0?" (en cours)":"")+" : entrées "+e2(S.inc)+", dépenses "+e2(S.out)+(S.sav?", épargné "+e2(S.sav):"")+(top?" — principales catégories : "+top:""))}
+  var bud=budgets();if(Object.keys(bud).length)L.push("- Budgets mensuels : "+Object.keys(bud).map(function(c){return c+" "+e2(bud[c])+" (dépensé "+e2(C.byCat[c]||0)+")"}).join(", "));
+  var rec=state.rec.filter(function(r){return r.type==="out"}),rin=state.rec.filter(function(r){return r.type==="in"});
+  if(rin.length)L.push("- Revenus récurrents : "+rin.map(function(r){return r.label+" "+e2(r.amount)+" le "+r.day}).join(", "));
+  if(rec.length)L.push("- Dépenses récurrentes : "+rec.map(function(r){return r.label+" "+e2(r.amount)+" le "+r.day}).join(", "));
+  if(state.subs.length){var sc=subCost();L.push("- Abonnements ("+e2(sc.month)+"/mois, "+e2(sc.year)+"/an) : "+state.subs.map(function(s){return s.name+" "+e2(s.amount)+"/"+(s.cycle==="year"?"an":"mois")}).join(", "))}
+  if(state.credits.length){L.push("- Crédits (restant dû total "+e2(credTotal())+") :");state.credits.forEach(function(c){var l=crLeft(c),p=crProj(c),M=crMonthly(c);
+    L.push("  - "+c.name+" : restant dû "+e2(l.left)+", mensualité "+e2(M.amount)+(+c.rate?", taux "+String(c.rate).replace(".",",")+" %":"")+(p&&p.n?", "+p.n+" échéances restantes"+(p.int?", ~"+e2(p.int)+" d'intérêts restants":""):""))})}
+  if(state.sav.envs.length){L.push("- Épargne totale : "+e2(savTotal())+" (objectif "+e2(state.sav.goal||100000)+")");state.sav.envs.forEach(function(e){L.push("  - "+e.name+" : "+e2(envBal(e))+(e.monthly?", versement auto "+e2(e.monthly)+"/mois":"")+(e.target?", objectif "+e2(e.target):""))})}
+  else L.push("- Épargne : aucune enveloppe enregistrée");
+  if(state.sav.plan.length){var st=savStepNow();if(st){L.push("- Plan d'investissement, étape actuelle « "+st+" ». Tâches restantes : "+state.sav.plan.filter(function(x){return x.step===st&&!tDone(x)&&!isRule(x)}).map(function(x){return x.task}).join(" ; "))}
+    var rl=state.sav.plan.filter(isRule).map(function(x){return x.task});if(rl.length)L.push("- Mes règles financières : "+rl.join(" ; "))}
+  return L.join("\n");
+}
+function aiBody(){
+  var L=["## Corps et alimentation"],s=state.settings,t=today();
+  var g=[];if(s.kcalGoal)g.push("calories "+s.kcalGoal+" kcal/j");if(s.protGoal)g.push("protéines "+s.protGoal+" g/j");if(s.bmr)g.push("métabolisme de base "+s.bmr+" kcal");if(s.weightGoal)g.push("poids visé "+nf1.format(s.weightGoal)+" kg");
+  if(g.length)L.push("- Objectifs : "+g.join(", "));
+  [7,30].forEach(function(n){var k=0,p=0,c=0;for(var i=0;i<n;i++){var d=addDays(t,-i);if(dayItems(d).length){var x=dayTotal(d);k+=x.kcal;p+=x.prot;c++}}
+    if(c)L.push("- "+n+" derniers jours : "+c+" jours notés, moyenne "+intf.format(k/c)+" kcal et "+intf.format(p/c)+" g de protéines par jour")});
+  var w=sumDef(weekStart(t),t),mo=sumDef(t.slice(0,7)+"-01",t);
+  if(w.days)L.push("- Déficit cumulé cette semaine : "+intf.format(w.def)+" kcal ("+w.days+" j) ; ce mois-ci : "+intf.format(mo.def)+" kcal ("+mo.days+" j)");
+  var B=bodySorted().slice(-6);
+  if(B.length){L.push("- Dernières pesées :");B.forEach(function(x){L.push("  - "+fd(x.date)+" : "+BF.filter(function(f){return x[f[0]]!=null}).map(function(f){return f[1]+" "+nf1.format(x[f[0]])+(f[2]?" "+f[2]:"")}).join(", "))})}
+  var spP=0,spD=0;for(var i=0;i<28;i++){var D=pday(addDays(t,-i));(D&&D.blocks||[]).forEach(function(b){if(b.t==="sport"){spP++;if(b.done)spD++}})}
+  if(spP)L.push("- Sport sur 4 semaines : "+spD+" séances faites sur "+spP+" prévues");
+  return L.join("\n");
+}
+function aiJob(){
+  var L=["## Recherche d'emploi"],J=state.jobs,by={};J.forEach(function(j){by[j.status]=(by[j.status]||0)+1});
+  L.push("- "+J.length+" candidatures au total : "+Object.keys(by).map(function(k){return k+" "+by[k]}).join(", "));
+  var m=today().slice(0,7);for(var k=3;k>=0;k--){var mm=addMonths(m,-k),n=J.filter(function(j){return (j.date||"").slice(0,7)===mm}).length;if(n)L.push("- Envoyées en "+monthLabel(mm).toLowerCase()+" : "+n)}
+  var sec={};J.forEach(function(j){var s=j.sector||"Non précisé";sec[s]=sec[s]||{n:0,i:0};sec[s].n++;if(j.status==="Entretien"||j.status==="Offre")sec[s].i++});
+  L.push("- Par secteur : "+Object.keys(sec).map(function(s){return s+" "+sec[s].n+" (entretiens/offres "+sec[s].i+")"}).join(", "));
+  var itv=J.filter(function(j){return j.status==="Entretien"||j.status==="Offre"});if(itv.length)L.push("- En entretien / offre : "+itv.map(function(j){return j.co+" — "+j.role}).join(" ; "));
+  var due=J.filter(jDue);if(due.length)L.push("- À relancer : "+due.slice(0,10).map(function(j){return j.co+" ("+j.role+", envoyée le "+fd(j.date)+")"}).join(" ; "));
+  var rec=J.filter(function(j){return j.date}).sort(function(a,b){return a.date<b.date?1:-1}).slice(0,8);
+  if(rec.length)L.push("- Dernières candidatures : "+rec.map(function(j){return j.co+" — "+j.role+" ("+j.status+")"}).join(" ; "));
+  return L.join("\n");
+}
+function aiP30(){
+  var L=["## Projet 30 et lecture"];
+  if(state.p30.length){var S=pStats();L.push("- Projet 30 : "+S.done+"/"+S.total+" étapes terminées ("+S.pct+" %), horizon actuel "+pShortH(S.horizon));
+    S.cur.forEach(function(x){L.push("- En cours : étape "+x.step+" — "+x.title+(x.deliverable?" (livrable : "+x.deliverable+")":""))});
+    if(S.next)L.push("- Prochaine étape : "+S.next.step+" — "+S.next.title);
+    var up=pSteps().filter(function(x){return !pDone(x)}).slice(0,6);if(up.length)L.push("- Étapes à venir : "+up.map(function(x){return x.step+". "+x.title}).join(" ; "))}
+  var B=state.books;if(B.length){var lu=B.filter(function(b){return b.status==="Lu"});
+    L.push("- Livres : "+lu.length+"/"+B.length+" lus"+(lu.length?" ("+lu.map(function(b){return b.title}).join(", ")+")":""));
+    B.filter(function(b){return b.status==="En cours"}).forEach(function(b){L.push("- En cours de lecture : "+b.title+(b.author?" ("+b.author+")":"")+(b.pages?", page "+(b.page||0)+"/"+b.pages:""))})}
+  if(L.length===1)L.push("- Aucune donnée pour l'instant");
+  return L.join("\n");
+}
+function aiPlan(){
+  var L=["## Planning de la semaine"],ws=monday(today());
+  if(!wdays(ws).some(function(d){var D=pday(d);return D&&(D.kind||(D.blocks||[]).length)})){L.push("- Horaires de la semaine pas encore saisis");return L.join("\n")}
+  wdays(ws).forEach(function(d){var D=pday(d);var its=dayItemsP(d);
+    L.push("- "+cap(parseYmd(d).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"short"}))+" : "+(!D||!D.kind?"horaires non saisis":D.kind==="work"?"travail "+(D.start||"?")+"–"+(D.end||"?")+(D.pause?" (pause "+D.pause+" min)":""):D.kind==="off"?"repos":"congé")+
+      (its.filter(function(b){return b.t!=="work"}).length?" ; "+its.filter(function(b){return b.t!=="work"}).map(function(b){return (b.start||"")+" "+(b.label||PT[b.t].n)+(b.done?" ✓":"")}).join(", "):""))});
+  return L.join("\n");
+}
+function aiBuild(){
+  var s=state.settings,name=(s.name||"Joseph").trim(),sc=aiS.scope,q=aiS.q.trim()||AIQ[sc][0];
+  var P=["Je m'appelle "+name+". Voici un extrait de mon tableau de bord personnel au "+fd(today())+"."];
+  if((s.aiAbout||"").trim())P.push("À propos de moi : "+s.aiAbout.trim());
+  P.push("");
+  if(sc==="all"||sc==="fin")P.push(aiFin(),"");
+  if(sc==="all"||sc==="body")P.push(aiBody(),"");
+  if(sc==="all"||sc==="job")P.push(aiJob(),"");
+  if(sc==="all"||sc==="p30")P.push(aiP30(),"");
+  if(sc==="all"||sc==="plan")P.push(aiPlan(),"");
+  P.push("## Ma question","« "+q+" »","","Réponds en français, de façon concrète et personnalisée à partir de ces données, avec des actions précises et chiffrées quand c'est possible. Si une information importante manque, pose-moi la question avant de conclure.");
+  return P.join("\n");
+}
+var aiDlg=$("#ai-dialog");
+function aiRender(){
+  $("#ai-scope").innerHTML=Object.keys(AIS).map(function(k){return '<button type="button" class="chip'+(k===aiS.scope?" on":"")+'" data-sc="'+k+'">'+esc(AIS[k])+'</button>'}).join("");
+  $("#ai-qs").innerHTML=AIQ[aiS.scope].map(function(q,i){return '<button type="button" class="chip ai-q'+(aiS.q===q?" on":"")+'" data-qi="'+i+'">'+esc(q)+'</button>'}).join("");
+  var txt=aiBuild();$("#ai-prev").textContent=txt;$("#ai-len").textContent=intf.format(txt.length)+" caractères";
+}
+function aiOpen(scope){
+  aiS.scope=AIS[scope]?scope:"all";aiS.q="";$("#ai-q").value="";$("#ai-about").value=state.settings.aiAbout||"";
+  aiRender();if(aiDlg.showModal)aiDlg.showModal();else aiDlg.setAttribute("open","");
+}
+function aiClose(){if(aiDlg.close)aiDlg.close();else aiDlg.removeAttribute("open")}
+$("#ai-close").addEventListener("click",aiClose);
+aiDlg.addEventListener("click",function(e){
+  var b=e.target.closest("[data-sc]");if(b){aiS.scope=b.dataset.sc;if(AIQ[aiS.scope].indexOf(aiS.q)<0&&aiS.q===$("#ai-q").value&&AIQ.all.concat(AIQ.fin,AIQ.body,AIQ.job,AIQ.p30,AIQ.plan).indexOf(aiS.q)>=0){aiS.q="";$("#ai-q").value=""}aiRender();return}
+  var q=e.target.closest("[data-qi]");if(q){aiS.q=AIQ[aiS.scope][+q.dataset.qi];$("#ai-q").value=aiS.q;aiRender();return}
+  if(e.target===aiDlg){var r=aiDlg.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)aiClose()}
+});
+var aiT=null;
+$("#ai-q").addEventListener("input",function(){aiS.q=this.value;clearTimeout(aiT);aiT=setTimeout(aiRender,250)});
+$("#ai-about").addEventListener("input",function(){var v=this.value;clearTimeout(aiT);aiT=setTimeout(function(){if((state.settings.aiAbout||"")!==v){if(v.trim())state.settings.aiAbout=v;else delete state.settings.aiAbout;persist("settings")}aiRender()},500)});
+function aiCopy(txt){
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(txt).then(function(){return true},function(){return aiCopyOld(txt)})}}catch(e){}
+  return Promise.resolve(aiCopyOld(txt));
+}
+function aiCopyOld(txt){var ta=document.createElement("textarea");ta.value=txt;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}ta.remove();return ok}
+$("#ai-go").addEventListener("click",function(){
+  var txt=aiBuild(),url="https://claude.ai/new"+(encodeURIComponent(txt).length<12000?"?q="+encodeURIComponent(txt):"");
+  aiCopy(txt).then(function(ok){toast(ok?"Copié. Si le texte n'apparaît pas dans Claude, colle-le.":"Copie impossible : sélectionne le texte dans « Voir ce qui sera envoyé ».")});
+  window.open(url,"_blank","noopener");
+});
+$("#ai-copy").addEventListener("click",function(){aiCopy(aiBuild()).then(function(ok){toast(ok?"Copié : colle-le dans Claude.":"Copie impossible : sélectionne le texte dans l'aperçu.")})});
+// boutons dans chaque module
+document.querySelectorAll("section.view").forEach(function(v){
+  var k=v.id.replace("v-","");if(!AIMAP[k]||k==="home")return;var bk=v.querySelector(".back");if(!bk)return;
+  var w=document.createElement("div");w.className="ai-bar";bk.parentNode.insertBefore(w,bk);w.appendChild(bk);
+  var b=document.createElement("button");b.type="button";b.className="ai-btn";b.innerHTML='<span aria-hidden="true">✦</span> Conseil';b.setAttribute("aria-label","Demander conseil à Claude");
+  b.addEventListener("click",function(){aiOpen(AIMAP[k])});w.appendChild(b);
+});
 function render(){
   var t=state.settings.title||"Dashboard";$("#app-title").textContent=t;
   fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderPlan();fillPlanCfg();renderHome();applyHome();if(ui.tab==="rev")renderRev();
