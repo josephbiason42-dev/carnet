@@ -158,6 +158,31 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .check{flex-direction:row; align-items:flex-start; gap:10px; font-size:.9rem; font-weight:500; color:var(--ink); cursor:pointer}
 .check input{width:18px; height:18px; margin-top:2px; accent-color:#5b8cff; flex:none}
 .warnbtn{color:#ffb38a!important; border-color:rgba(255,138,76,.5)!important}
+/* projet 30 */
+.c-p30{grid-column:1 / -1; min-height:0}
+.p30h{display:flex; gap:18px; align-items:center}
+.p-hero{display:flex; gap:20px; align-items:flex-start}
+.p-ring{flex:none}
+.p-title{font-weight:700; font-size:1.08rem; line-height:1.3; margin-top:2px}
+.p-card{margin-top:12px; padding:12px 14px; border-radius:14px; background:rgba(91,140,255,.08); border:1px solid rgba(91,140,255,.22)}
+.p-meta{display:flex; flex-wrap:wrap; gap:4px 14px; font-size:.82rem; color:var(--muted); margin-top:6px}
+.ptl{display:flex; gap:6px; margin-top:16px}
+.ptl-seg{flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; padding:8px 4px; border-radius:10px; border:1px solid transparent}
+.ptl-seg.cur{background:rgba(91,140,255,.10); border-color:rgba(91,140,255,.35)}
+.ptl-seg span{font-size:.64rem; font-weight:700; color:var(--muted); white-space:nowrap; letter-spacing:-.01em}
+#p-phases .catrow{grid-template-columns:11rem 1fr auto}
+.ptl-seg.cur span{color:#cfe0ff}
+.ptl-seg small{font-size:.68rem; color:var(--muted)}
+.ptl-dots{display:flex; flex-wrap:wrap; gap:3px; min-height:8px}
+.ptl-dots i{width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.12)}
+.ptl-dots i.d{background:#4ade80}
+.ptl-dots i.c{background:#5b8cff; box-shadow:0 0 6px #5b8cff}
+.pnum{display:inline-grid; place-items:center; min-width:24px; height:20px; padding:0 5px; margin-right:8px; border-radius:6px; background:rgba(255,255,255,.07); font-size:.72rem; color:#aab6d6}
+.pdl{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 16px; margin:0}
+.pdl dt{font-size:.72rem; font-weight:600; color:var(--muted)}
+.pdl dd{margin:2px 0 0; font-size:.88rem}
+#p-filters{flex-wrap:wrap}
+@media (max-width:760px){ .p-hero{flex-direction:column} .ptl{overflow-x:auto} .ptl-seg{min-width:64px} .pdl{grid-template-columns:1fr} .p30h{align-items:flex-start} }
 /* candidatures */
 .plus{all:unset; box-sizing:border-box; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; cursor:pointer; font:500 1.6rem/1 var(--body); color:#fff;
   background:linear-gradient(135deg,#5b8cff,#3b62d6); box-shadow:0 8px 22px -8px rgba(91,140,255,.8); transition:transform .25s, box-shadow .25s}
@@ -307,6 +332,7 @@ details.panel[open]>summary{margin-bottom:12px}
       <button class="card c-cal" type="button" id="card-cal" data-go="cal" aria-label="Ouvrir les calories"></button>
       <button class="card c-job" type="button" id="card-job" data-go="job" aria-label="Ouvrir les candidatures"></button>
       <button class="card c-body" type="button" id="card-body" data-go="body" aria-label="Ouvrir la pesée"></button>
+      <button class="card c-p30" type="button" id="card-p30" data-go="p30" aria-label="Ouvrir Projet 30"></button>
     </div>
   </section>
 
@@ -427,6 +453,26 @@ details.panel[open]>summary{margin-bottom:12px}
     <div class="panel"><h3>Historique</h3><div id="b-table"></div></div>
   </section>
 
+  <!-- PROJET 30 -->
+  <section class="view" id="v-p30" aria-label="Projet 30">
+    <button class="back" type="button" data-go="home">← Accueil</button>
+    <h2 style="text-align:left">Projet 30</h2>
+    <div class="panel" id="p-import-hint" hidden>
+      <h3>Importer depuis Notion</h3>
+      <p class="note" style="margin-bottom:10px">Choisis le fichier <b>projet30-notion.json</b> pour récupérer les 70 tâches de ton plan.</p>
+      <label class="ghost" for="p-file" style="display:inline-flex;cursor:pointer;color:var(--ink)">Choisir le fichier…</label>
+    </div>
+    <input type="file" id="p-file" accept=".json,application/json" hidden>
+    <div class="panel" id="p-top"></div>
+    <div class="panel"><h3>Avancement par condition</h3><div id="p-phases"></div></div>
+    <div class="panel"><h3>Routines continues</h3><div id="p-routines"></div></div>
+    <div class="panel">
+      <div class="phead"><h3>Les étapes</h3></div>
+      <div class="chips" id="p-filters" style="margin-bottom:6px"></div>
+      <div id="p-list"></div>
+    </div>
+  </section>
+
   <!-- CANDIDATURES -->
   <section class="view" id="v-job" aria-label="Candidatures">
     <button class="back" type="button" data-go="home">← Accueil</button>
@@ -503,6 +549,7 @@ details.panel[open]>summary{margin-bottom:12px}
     <button class="sbtn" type="button" data-go="home" aria-label="Accueil" title="Accueil"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/></svg></button>
     <button class="sbtn" type="button" data-go="fin" aria-label="Finances" title="Finances"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-5 4 4 8-8"/><path d="M15 8h5v5"/></svg></button>
     <button class="sbtn" type="button" data-go="body" aria-label="Pesée" title="Pesée"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M8.5 9.5a5 5 0 0 1 7 0"/><path d="M12 9.8l1.4-2"/></svg></button>
+    <button class="sbtn" type="button" data-go="p30" aria-label="Projet 30" title="Projet 30"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></button>
     <button class="sbtn" type="button" data-go="job" aria-label="Candidatures" title="Candidatures"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M3 12.5h18"/></svg></button>
     <button class="sbtn" type="button" data-go="cal" aria-label="Calories" title="Calories"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4 0 7-2.8 7-7 0-3.5-2.2-6.2-4-8-.3 2-1.3 3.5-2.8 4.3C12.6 8.6 11 5 8 2.5 8.3 6 5 8.6 5 15c0 4.2 3 7 7 7Z"/></svg></button>
   </nav>
@@ -578,13 +625,13 @@ var CATS={
   in:["Salaire","Aides","Ventes","Remboursement","Autre"]
 };
 
-var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[]};
+var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[]};
 var ui={tab:"home",month:today().slice(0,7),day:today(),finType:"out"};
 
 /* ---------- stockage local ---------- */
 var LS="carnet-joseph-v1";
 function loadLocal(){
-  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[]}}}}catch(e){}
+  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[]}}}}catch(e){}
 
 }
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
@@ -603,12 +650,13 @@ var dirty=lsGet("carnet-dirty")||{};
 var sync={state:"off",pushing:false,timer:null,lastOk:null,firstPull:!lsGet("carnet-synced-once")};
 
 function hasCfg(){return !!(CFG.url&&CFG.key)}
-function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length}
+function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length}
 function allKeys(){
   var k=["settings"];
   if(state.rec.length)k.push("recurring");
   if(state.jobs.length)k.push("jobs");
   if(state.body.length)k.push("body");
+  if(state.p30.length)k.push("p30");
   Object.keys(state.fin).forEach(function(m){k.push("fin-"+m)});
   Object.keys(state.cal).forEach(function(m){k.push("cal-"+m)});
   Object.keys(state.act).forEach(function(m){if(k.indexOf("cal-"+m)<0)k.push("cal-"+m)});
@@ -619,6 +667,7 @@ function bodyFor(key){
   if(key==="recurring")return {items:state.rec};
   if(key==="jobs")return {items:state.jobs};
   if(key==="body")return {items:state.body};
+  if(key==="p30")return {items:state.p30};
   var b={items:(state[key.slice(0,3)][key.slice(4)]||[])};
   if(key.slice(0,3)==="fin"){var sk=state.finSkip[key.slice(4)];if(sk&&sk.length)b.skipped=sk}
   if(key.slice(0,3)==="cal"){var ac=state.act[key.slice(4)];if(ac&&Object.keys(ac).length)b.active=ac}
@@ -629,6 +678,7 @@ function applyDoc(key,body){
   else if(key==="recurring")state.rec=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="jobs")state.jobs=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="body")state.body=Array.isArray(body&&body.items)?body.items:[];
+  else if(key==="p30")state.p30=Array.isArray(body&&body.items)?body.items:[];
   else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key)){state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
     if(key.slice(0,3)==="cal"){if(body&&body.active&&typeof body.active==="object")state.act[key.slice(4)]=body.active;else delete state.act[key.slice(4)]}
     if(key.slice(0,3)==="fin"){if(Array.isArray(body&&body.skipped))state.finSkip[key.slice(4)]=body.skipped;else delete state.finSkip[key.slice(4)]}
@@ -811,7 +861,7 @@ function flash(sel){var el=$(sel);el.classList.add("err");el.focus();setTimeout(
 function setTab(t){
   ui.tab=t;document.body.dataset.tab=t;
   window.scrollTo(0,0);
-  ["home","fin","cal","body","job","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
+  ["home","fin","cal","body","job","p30","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
   document.querySelectorAll(".sbtn").forEach(function(b){b.classList.toggle("on",b.dataset.go===t)});
 }
 document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){setTab(b.id==="gear"&&ui.tab==="set"?"home":b.dataset.go)})});
@@ -1580,17 +1630,18 @@ function renderModel(){
 $("#bm-date").addEventListener("change",function(){bmui.date=this.value;renderModel()});
 $("#bm-cmp").addEventListener("change",function(){bmui.cmp=this.value;renderModel()});
 /* ---------- sauvegardes ---------- */
-function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body}}
+function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30}}
 function restoreData(p,full){
   var ok=function(o){return o&&typeof o==="object"};
-  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body))return false;
+  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30))return false;
   var before=allKeys();
-  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[]};
+  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[]};
   if(ok(p.settings))state.settings=Object.assign({},p.settings);
   if(Array.isArray(p.rec))state.rec=p.rec;
   if(Array.isArray(p.jobs))state.jobs=p.jobs;
   if(ok(p.act))state.act=p.act;
   if(Array.isArray(p.body))state.body=p.body;
+  if(Array.isArray(p.p30))state.p30=p.p30;
   if(ok(p.finSkip))state.finSkip=p.finSkip;
   ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
   var keys=allKeys();before.forEach(function(k){if(keys.indexOf(k)<0)keys.push(k)});
@@ -1668,9 +1719,135 @@ $("#s-file").addEventListener("change",function(){
   rd.onload=function(){var p;try{p=JSON.parse(rd.result)}catch(e){toast("Ce fichier n'est pas lisible.");return}
     if(p&&p.type==="candidatures"){toast("C'est un fichier de candidatures : importe-le depuis Candidatures.");return}
     if(p&&p.type==="mesures"){toast("C'est un fichier de mesures : importe-le depuis Pesée.");return}
+    if(p&&p.type==="projet30"){toast("C'est le plan Projet 30 : importe-le depuis Projet 30.");return}
     $("#s-file").value="";
     var go=function(){if(restoreData(p,true))toast("Sauvegarde du "+(p.exported?parseYmd(p.exported).toLocaleDateString("fr-FR",{day:"numeric",month:"long"}):"fichier")+" restaurée.");else toast("Ce fichier n'est pas une sauvegarde de ce carnet.")};
     if(session&&hasCfg())bkCreate("avant").then(go,go);else go();
+  };rd.readAsText(f);
+});
+/* ---------- projet 30 ---------- */
+var PST=["À faire","À préparer","En cours","En pause","Fait","Abandonné"];
+var PCLS={"À faire":"st-r","À préparer":"st-a","En cours":"st-e","En pause":"st-ar","Fait":"st-i","Abandonné":"st-r"};
+var PHZ=["M0-M3 Démarrage","M3-M6","M6-M12","M12-M18","M18-M24","M24-M30","M30-M36","M36-M48","M48-M60"];
+var PPH=["C1 — Socle intellectuel","C2 — Méthode livrable","C3 — Corpus public","C4 — Audience","C5 — Réseau","Z — Finalité","Transversal"];
+var pui={filter:"open",open:null,day:""};
+function pSteps(){return state.p30.filter(function(x){return x.step!=null}).sort(function(a,b){return a.step-b.step})}
+function pRoutines(){return state.p30.filter(function(x){return x.step==null})}
+function pDone(x){return x.status==="Fait"||x.status==="Abandonné"}
+function pNext(){var s=pSteps();for(var i=0;i<s.length;i++)if(!pDone(s[i])&&s[i].status!=="En cours")return s[i];return null}
+function pCurrent(){return pSteps().filter(function(x){return x.status==="En cours"})}
+function pFind(id){for(var i=0;i<state.p30.length;i++)if(state.p30[i].id===id)return state.p30[i];return null}
+function pShortH(h){return (h||"").replace(" Démarrage","")}
+function pStats(){
+  var s=pSteps(),done=s.filter(pDone).length,nx=pNext(),cur=pCurrent();
+  var hz=(cur[0]||nx||{}).horizon||"";
+  return {total:s.length,done:done,pct:s.length?Math.round(done/s.length*100):0,next:nx,cur:cur,horizon:hz};
+}
+function pTimeline(big){
+  var s=pSteps(),cur=pStats().horizon,h='<div class="ptl'+(big?" big":"")+'">';
+  PHZ.forEach(function(z){
+    var st=s.filter(function(x){return x.horizon===z});if(!st.length&&!big)return;
+    var d=st.filter(pDone).length;
+    h+='<div class="ptl-seg'+(z===cur?" cur":"")+'"><div class="ptl-dots">'+st.map(function(x){return '<i class="'+(pDone(x)?"d":x.status==="En cours"?"c":"")+'" title="'+esc("Étape "+x.step+" · "+x.title)+'"></i>'}).join("")+'</div><span>'+esc(pShortH(z))+'</span>'+(big?'<small>'+d+'/'+st.length+'</small>':'')+'</div>';
+  });
+  return h+'</div>';
+}
+function pSave(){persist("p30");renderP30();renderHome()}
+function renderP30(){
+  if(!$("#v-p30"))return;
+  var S=pStats();
+  $("#p-import-hint").hidden=state.p30.length>0;
+  if(!state.p30.length){$("#p-top").innerHTML="";$("#p-phases").innerHTML="";$("#p-list").innerHTML="";$("#p-routines").innerHTML="";return}
+  // prochaine étape
+  var nx=S.next,cur=S.cur,h='<div class="p-hero"><div class="p-ring">'+pRing(S.pct,120)+'</div><div style="min-width:0">'+
+    '<div class="k-lbl" style="margin:0">'+S.done+' étape'+(S.done>1?"s":"")+' sur '+S.total+' · horizon actuel <b style="color:var(--ink)">'+esc(pShortH(S.horizon))+'</b></div>';
+  cur.forEach(function(x){h+=pCardHTML(x,"En cours")});
+  if(nx)h+=pCardHTML(nx,"Prochaine étape");
+  if(!nx&&!cur.length)h+='<p class="note">Toutes les étapes sont terminées. Bravo.</p>';
+  h+='</div></div>'+pTimeline(true);
+  $("#p-top").innerHTML=h;
+  // conditions
+  $("#p-phases").innerHTML=PPH.map(function(ph){
+    var st=pSteps().filter(function(x){return x.phase===ph});if(!st.length)return "";
+    var d=st.filter(pDone).length,pct=d/st.length*100;
+    return '<div class="catrow"><span>'+esc(ph.replace(" — "," · "))+'</span><div class="track"><i style="width:'+pct.toFixed(1)+'%"></i></div><span class="num">'+d+' / '+st.length+'</span></div>';
+  }).join("");
+  // routines
+  $("#p-routines").innerHTML=pRoutines().map(function(x){return pRowHTML(x)}).join("")||'<p class="empty">Aucune routine.</p>';
+  // liste
+  var F={open:"À faire et en cours",cur:"En cours",done:"Terminées",all:"Toutes"};
+  $("#p-filters").innerHTML=Object.keys(F).map(function(k){return '<button type="button" class="chip'+(pui.filter===k?" on":"")+'" data-f="'+k+'">'+F[k]+'</button>'}).join("")+
+    '<span style="flex:1"></span>'+[["","Tous les jours"],["Jour A — Profond","Jour profond"],["Jour B — Éclaté","Jour éclaté"]].map(function(o){return '<button type="button" class="chip'+(pui.day===o[0]?" on":"")+'" data-d="'+esc(o[0])+'">'+o[1]+'</button>'}).join("");
+  var list=pSteps().filter(function(x){
+    if(pui.filter==="open"&&pDone(x))return false;
+    if(pui.filter==="cur"&&x.status!=="En cours")return false;
+    if(pui.filter==="done"&&!pDone(x))return false;
+    if(pui.day&&x.day!==pui.day)return false;
+    return true;
+  });
+  var html="",last="";
+  list.forEach(function(x){if(x.horizon!==last){html+='<div class="day">'+esc(x.horizon)+'</div>';last=x.horizon}html+=pRowHTML(x)});
+  $("#p-list").innerHTML=html||'<p class="empty">Aucune étape ici.</p>';
+}
+function pRing(pct,size){
+  var R=size/2-9,C=2*Math.PI*R;
+  var gid="pg"+size;
+  return '<svg viewBox="0 0 '+size+' '+size+'" width="'+size+'" height="'+size+'" aria-hidden="true"><defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b8cff"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ff8a4c"/></linearGradient></defs><circle cx="'+size/2+'" cy="'+size/2+'" r="'+R+'" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="9"/>'+
+    (pct>0?'<circle cx="'+size/2+'" cy="'+size/2+'" r="'+R+'" fill="none" stroke="url(#'+gid+')" stroke-width="9" stroke-linecap="round" stroke-dasharray="'+(C*pct/100).toFixed(1)+' '+C.toFixed(1)+'" transform="rotate(-90 '+size/2+' '+size/2+')"/>':'')+
+    '<text x="50%" y="50%" dy=".35em" text-anchor="middle" class="ring-num" style="font-size:'+(size/4.2)+'px">'+pct+'%</text></svg>';
+}
+function pCardHTML(x,lbl){
+  return '<div class="p-card"><div class="k-lbl" style="margin:0 0 4px">'+esc(lbl)+' · étape '+x.step+'</div><div class="p-title">'+esc(x.title)+'</div>'+
+    '<div class="p-meta">'+(x.deliverable?'<span>Livrable : '+esc(x.deliverable)+'</span>':'')+(x.duration?'<span>Durée : '+esc(x.duration)+'</span>':'')+(x.day?'<span>'+esc(x.day)+'</span>':'')+'</div>'+
+    '<div class="btnrow" style="margin-top:10px">'+(x.status!=="En cours"?'<button class="ghost sm" type="button" data-pact="start" data-id="'+esc(x.id)+'">Démarrer</button>':'')+'<button class="ghost sm" type="button" data-pact="done" data-id="'+esc(x.id)+'">Terminée ✓</button></div></div>';
+}
+function pRowHTML(x){
+  var open=pui.open===x.id;
+  var h='<div class="jrow'+(open?" open":"")+'"><button type="button" class="jhead" data-pid="'+esc(x.id)+'" aria-expanded="'+open+'"><span class="lbl">'+(x.step!=null?'<b class="pnum">'+x.step+'</b>':'')+esc(x.title)+'<small>'+esc([x.type,x.sub||x.phase,x.duration].filter(Boolean).join(" · "))+'</small></span>'+
+    '<span class="jpill '+(PCLS[x.status]||"")+'">'+esc(x.status)+'</span></button>';
+  if(open){
+    h+='<div class="jedit"><div class="pdl">'+
+      [["Livrable attendu",x.deliverable],["Débloque",x.unlocks],["Prérequis",x.prereq],["Durée estimée",x.duration],["Jour",x.day],["Priorité",x.prio],["Horizon",x.horizon]].filter(function(r){return r[1]}).map(function(r){return '<div><dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd></div>'}).join("")+'</div>'+
+      '<div class="grid" style="margin-top:10px"><label for="pe-status">Statut<select id="pe-status" data-k="status" data-id="'+esc(x.id)+'">'+PST.map(function(s){return '<option'+(s===x.status?" selected":"")+'>'+esc(s)+'</option>'}).join("")+'</select></label>'+
+      '<label for="pe-due">Date cible<input id="pe-due" type="date" data-k="due" data-id="'+esc(x.id)+'" value="'+esc(x.due||"")+'"></label>'+
+      '<label for="pe-notes" class="wide">Notes<textarea id="pe-notes" data-k="notes" data-id="'+esc(x.id)+'">'+esc(x.notes||"")+'</textarea></label></div></div>';
+  }
+  return h+'</div>';
+}
+function pAct(e){
+  var b=e.target.closest("[data-pact]");if(!b)return false;var x=pFind(b.dataset.id);if(!x)return true;
+  var prev=x.status;x.status=b.dataset.pact==="start"?"En cours":"Fait";
+  if(x.status==="Fait")x.doneOn=today();
+  pSave();toast("Étape "+x.step+(x.status==="Fait"?" terminée":" démarrée"),function(){x.status=prev;pSave()});
+  return true;
+}
+["#p-top","#p-list","#p-routines"].forEach(function(sel){
+  $(sel).addEventListener("click",function(e){
+    if(pAct(e))return;
+    var h=e.target.closest(".jhead[data-pid]");if(!h)return;
+    pui.open=pui.open===h.dataset.pid?null:h.dataset.pid;renderP30();
+  });
+  $(sel).addEventListener("change",function(e){
+    var el=e.target;if(!el.dataset||!el.dataset.k)return;var x=pFind(el.dataset.id);if(!x)return;
+    x[el.dataset.k]=el.value;if(el.dataset.k==="status"&&el.value==="Fait")x.doneOn=today();
+    persist("p30");renderHome();if(el.dataset.k==="status")renderP30();
+  });
+});
+$("#p-filters").addEventListener("click",function(e){
+  var f=e.target.closest("[data-f]"),d=e.target.closest("[data-d]");
+  if(f)pui.filter=f.dataset.f;else if(d)pui.day=d.dataset.d;else return;
+  renderP30();
+});
+$("#p-file").addEventListener("change",function(){
+  var f=this.files&&this.files[0];if(!f)return;var rd=new FileReader();
+  rd.onload=function(){
+    var p;try{p=JSON.parse(rd.result)}catch(e){toast("Ce fichier n'est pas lisible.");return}
+    if(!p||!Array.isArray(p.items)||p.type!=="projet30"){toast("Ce fichier ne contient pas le plan Projet 30.");return}
+    var have={};state.p30.forEach(function(x){have[x.id]=1});var n=0;
+    p.items.forEach(function(x){if(!x||!x.id||have[x.id])return;state.p30.push(x);n++});
+    $("#p-file").value="";
+    if(!n){toast("Tout était déjà importé.");return}
+    pSave();toast(n+" tâches Projet 30 importées.");
   };rd.readAsText(f);
 });
 /* ---------- candidatures ---------- */
@@ -1902,6 +2079,16 @@ function renderHome(){
     '<div class="fin2"><div><div class="k-big'+(C.bank?(C.bank.est<0?" neg":""):" dim")+'">'+(C.bank?eur.format(C.bank.est):"— €")+'</div><div class="k-lbl">'+(C.bank?"Solde réel":"Solde réel · à saisir")+'</div></div>'+
     '<div><div class="k-big'+(hasForecast?(risk?" neg":""):" dim")+'">'+(hasForecast?eur.format(end):"— €")+'</div><div class="k-lbl">'+(hasForecast?"Solde prévisionnel · "+endLbl.replace("Prévu le ","").trim():"Prévisionnel · à configurer")+'</div></div></div>'+
     '<span class="k-open">Ouvrir →</span>';
+  // projet 30
+  var PS=pStats(),pc=$("#card-p30");
+  if(!state.p30.length)pc.innerHTML='<div class="k-title">Projet 30<span class="k-chip">À importer</span></div><div class="k-lbl">Importe ton plan Notion pour suivre tes étapes ici.</div><span class="k-open">Ouvrir →</span>';
+  else{
+    var focus=PS.cur[0]||PS.next;
+    pc.innerHTML='<div class="k-title">Projet 30<span class="k-chip">Étape '+(focus?focus.step:PS.total)+' / '+PS.total+'</span></div>'+
+      '<div class="p30h"><div class="p-ring">'+pRing(PS.pct,96)+'</div><div style="min-width:0;flex:1">'+
+      (focus?'<div class="k-lbl" style="margin:0 0 2px">'+(PS.cur.length&&focus===PS.cur[0]?"En cours":"Prochaine étape")+' · '+esc(pShortH(focus.horizon))+'</div><div class="p-title">'+esc(focus.title)+'</div>'+(focus.deliverable?'<div class="k-lbl">'+esc(focus.deliverable)+'</div>':''):'<div class="p-title">Plan terminé</div>')+
+      '</div></div>'+pTimeline(false)+'<span class="k-open">Ouvrir →</span>';
+  }
   // pesée
   var bl=bodyLast("w"),bg=+state.settings.weightGoal||0,bh;
   if(bl){
@@ -1949,7 +2136,7 @@ document.querySelectorAll("button.card").forEach(function(c){
 /* ---------- rendu ---------- */
 function render(){
   var t=state.settings.title||"Dashboard";$("#app-title").textContent=t;
-  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderHome();
+  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderHome();
 }
 
 loadLocal();
