@@ -40,6 +40,7 @@ body{min-height:100vh; color:var(--ink); font:16px/1.45 var(--body); font-varian
 body[data-tab="cal"]{--accent:var(--cal)}
 .wrap{max-width:760px; margin:0 auto; padding:22px 18px 100px; display:flex; flex-direction:column; gap:16px}
 body[data-tab="home"] .wrap{max-width:1080px}
+body[data-tab="plan"] .wrap{max-width:1180px}
 h1,h2,h3{font-family:var(--display); text-wrap:balance; margin:0; letter-spacing:-.01em}
 h1{font-weight:800; font-size:1.7rem}
 h2{font-size:1.2rem; font-weight:700; text-align:center; flex:1}
@@ -191,6 +192,39 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 #l-stats.tiles{grid-template-columns:repeat(4,1fr)}
 #l-stats .tile b{font-size:1.4rem!important}
 @media (max-width:760px){#l-stats.tiles{grid-template-columns:repeat(2,1fr)}}
+/* planning */
+.pt-work{--pc:#6b7591} .pt-a{--pc:#8b5cf6} .pt-b{--pc:#ff8a4c} .pt-sport{--pc:#4ade80} .pt-read{--pc:#5b8cff} .pt-perso{--pc:#94a3b8}
+.pl-week{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:8px}
+.pl-day{display:flex; flex-direction:column; gap:6px; padding:10px 8px; border-radius:16px; background:linear-gradient(180deg, rgba(24,31,54,.78), rgba(12,16,30,.78)); border:1px solid var(--line); min-height:220px}
+.pl-day.today{border-color:rgba(91,140,255,.55); box-shadow:0 0 24px -8px rgba(91,140,255,.6)}
+.pl-day.free{background:linear-gradient(180deg, rgba(30,40,70,.85), rgba(14,19,36,.85))}
+.pl-dh{all:unset; cursor:pointer; display:flex; flex-direction:column; gap:2px; padding:2px 4px 6px; border-bottom:1px solid var(--line)}
+.pl-dh b{font-size:.92rem}
+.pl-k{font-size:.72rem; color:#aab6d6}
+.pl-blocks{display:flex; flex-direction:column; gap:5px; flex:1}
+.pl-b{all:unset; box-sizing:border-box; cursor:pointer; display:flex; flex-direction:column; gap:1px; padding:6px 7px; border-radius:9px; font-size:.76rem; font-weight:600; line-height:1.25; color:var(--ink);
+  background:color-mix(in srgb, var(--pc) 16%, transparent); border-left:3px solid var(--pc)}
+div.pl-b{cursor:default}
+.pl-b.done{opacity:.55; text-decoration:line-through}
+.pl-b:focus-visible{outline:2px solid var(--pc)}
+.pl-time{font-size:.68rem; font-weight:600; color:var(--muted)}
+.pl-empty{color:var(--muted); font-size:.8rem; padding:4px}
+.pl-add{all:unset; cursor:pointer; font-size:.74rem; color:var(--muted); text-align:center; padding:4px; border-radius:8px}
+.pl-add:hover{color:#9cbcff; background:rgba(91,140,255,.08)}
+.pl-dot{display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--pc); margin-right:8px; vertical-align:1px; flex:none}
+#pl-stats.tiles{grid-template-columns:repeat(4,1fr)}
+#pl-stats .tile b{font-size:1.3rem!important}
+.pw-head,.pw-row{display:grid; grid-template-columns:5.5rem 1.2fr 1fr 1fr .8fr; gap:8px; align-items:center}
+.pw-head span{font-size:.72rem; font-weight:600; color:var(--muted)}
+.pw-row{margin-bottom:6px} .pw-row b{font-size:.88rem}
+.pw-row input,.pw-row select{padding:7px 8px; font-size:14px}
+.td-list{display:flex; flex-direction:column; gap:6px; margin-top:8px}
+.td-row{display:flex; align-items:center; gap:4px; font-size:.9rem}
+.td-row.past{opacity:.45}
+.td-row.done .td-l{text-decoration:line-through; opacity:.6}
+.td-t{font-variant-numeric:tabular-nums; color:var(--muted); font-size:.82rem; min-width:92px}
+.td-l{font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+@media (max-width:900px){ .pl-week{grid-template-columns:1fr} .pl-day{min-height:0} #pl-stats.tiles{grid-template-columns:repeat(2,1fr)} .pw-head{display:none} .pw-row{grid-template-columns:1fr 1fr; } .pw-row b{grid-column:1 / -1} }
 /* candidatures */
 .plus{all:unset; box-sizing:border-box; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; cursor:pointer; font:500 1.6rem/1 var(--body); color:#fff;
   background:linear-gradient(135deg,#5b8cff,#3b62d6); box-shadow:0 8px 22px -8px rgba(91,140,255,.8); transition:transform .25s, box-shadow .25s}
@@ -335,7 +369,7 @@ details.panel[open]>summary{margin-bottom:12px}
   <section class="view on" id="v-home" aria-label="Accueil">
     <div class="hgrid">
       <div class="card c-hello" id="card-hello"></div>
-      <div class="card c-date" id="card-date"></div>
+      <button class="card c-date" type="button" id="card-date" data-go="plan" aria-label="Ouvrir le planning"></button>
       <button class="card c-fin" type="button" id="card-fin" data-go="fin" aria-label="Ouvrir les finances"></button>
       <button class="card c-cal" type="button" id="card-cal" data-go="cal" aria-label="Ouvrir les calories"></button>
       <button class="card c-job" type="button" id="card-job" data-go="job" aria-label="Ouvrir les candidatures"></button>
@@ -343,6 +377,39 @@ details.panel[open]>summary{margin-bottom:12px}
       <button class="card c-p30" type="button" id="card-p30" data-go="p30" aria-label="Ouvrir Projet 30"></button>
       <button class="card c-lib" type="button" id="card-lib" data-go="lib" aria-label="Ouvrir la bibliothèque"></button>
     </div>
+  </section>
+
+  <!-- PLANNING -->
+  <section class="view" id="v-plan" aria-label="Planning">
+    <button class="back" type="button" data-go="home">← Accueil</button>
+    <h2 style="text-align:left">Planning</h2>
+    <div class="stepper">
+      <button id="pl-prev" aria-label="Semaine précédente">‹</button>
+      <h2 id="pl-label" style="font-size:1.05rem">Semaine</h2>
+      <button id="pl-next" aria-label="Semaine suivante">›</button>
+    </div>
+    <div class="btnrow">
+      <button class="ghost sm" type="button" id="pl-hours">Saisir mes horaires</button>
+      <button class="ghost sm" type="button" id="pl-suggest">Proposer ma semaine</button>
+      <button class="ghost sm" type="button" id="pl-copy">Copier les horaires de la semaine dernière</button>
+      <button class="ghost sm" type="button" id="pl-today">Cette semaine</button>
+    </div>
+    <div class="panel" id="pl-hint" hidden>
+      <h3>Commence par tes horaires</h3>
+      <p class="note" style="margin-bottom:10px">Indique tes journées de travail chez Boulanger et tes repos. Je place ensuite ton jour profond, ton jour éclaté, tes séances de sport et tes lectures.</p>
+      <button class="primary" type="button" id="pl-hint-btn">Saisir mes horaires de la semaine</button>
+    </div>
+    <div class="tiles" id="pl-stats"></div>
+    <div class="pl-week" id="pl-week"></div>
+    <p class="note">Clique sur un bloc pour le cocher quand c'est fait, sur le nom du jour pour le modifier.</p>
+    <details class="panel">
+      <summary><h3>Réglages du planning</h3></summary>
+      <div class="grid">
+        <label for="plc-n">Séances de sport par semaine<input id="plc-n" inputmode="numeric"></label>
+        <label for="plc-dur">Durée d'une séance (min)<input id="plc-dur" inputmode="numeric"></label>
+        <label for="plc-trip" class="wide">Trajet travail → salle (min)<input id="plc-trip" inputmode="numeric"></label>
+      </div>
+    </details>
   </section>
 
   <!-- FINANCES -->
@@ -575,6 +642,7 @@ details.panel[open]>summary{margin-bottom:12px}
 <aside class="side" aria-label="Navigation">
   <nav>
     <button class="sbtn" type="button" data-go="home" aria-label="Accueil" title="Accueil"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/></svg></button>
+    <button class="sbtn" type="button" data-go="plan" aria-label="Planning" title="Planning"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h3M8 17h6"/></svg></button>
     <button class="sbtn" type="button" data-go="fin" aria-label="Finances" title="Finances"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-5 4 4 8-8"/><path d="M15 8h5v5"/></svg></button>
     <button class="sbtn" type="button" data-go="body" aria-label="Pesée" title="Pesée"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M8.5 9.5a5 5 0 0 1 7 0"/><path d="M12 9.8l1.4-2"/></svg></button>
     <button class="sbtn" type="button" data-go="p30" aria-label="Projet 30" title="Projet 30"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></button>
@@ -620,6 +688,33 @@ details.panel[open]>summary{margin-bottom:12px}
     </div>
     <button class="primary" type="submit">Ajouter</button>
   </form>
+</dialog>
+<dialog class="modal" id="pw-dialog" aria-labelledby="pw-h" style="width:min(640px,calc(100vw - 32px))">
+  <div class="phead"><h3 id="pw-h">Mes horaires de la semaine</h3><button class="mclose" type="button" id="pw-close" aria-label="Fermer">×</button></div>
+  <form id="pw-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+    <div class="pw-head"><span></span><span>Journée</span><span>Début</span><span>Fin</span><span>Pause (min)</span></div>
+    <div id="pw-rows"></div>
+    <label class="check" for="pw-auto"><input type="checkbox" id="pw-auto" checked> Proposer automatiquement ma semaine (jour profond, jour éclaté, sport, lecture)</label>
+    <button class="primary" type="submit">Enregistrer</button>
+  </form>
+</dialog>
+<dialog class="modal" id="pd-dialog" aria-labelledby="pd-title">
+  <div class="phead"><h3 id="pd-title">Journée</h3><button class="mclose" type="button" id="pd-close" aria-label="Fermer">×</button></div>
+  <div class="grid">
+    <label for="pd-kind" class="wide">Journée<select id="pd-kind"><option value="">—</option><option value="work">Travail</option><option value="off">Repos</option><option value="leave">Congé</option></select></label>
+    <label for="pd-start">Début<input id="pd-start" type="time"></label>
+    <label for="pd-end">Fin<input id="pd-end" type="time"></label>
+    <label for="pd-pause" class="wide">Pause (min)<input id="pd-pause" inputmode="numeric" placeholder="60"></label>
+  </div>
+  <h3 style="margin-top:16px">Blocs</h3>
+  <div id="pd-blocks"></div>
+  <div class="grid" style="margin-top:12px">
+    <label for="pdb-type">Type<select id="pdb-type"><option value="A">Jour profond</option><option value="B">Jour éclaté</option><option value="sport">Sport</option><option value="read">Lecture</option><option value="perso">Perso</option></select></label>
+    <label for="pdb-label">Intitulé<input id="pdb-label" placeholder="facultatif"></label>
+    <label for="pdb-start">Début<input id="pdb-start" type="time"></label>
+    <label for="pdb-end">Fin<input id="pdb-end" type="time"></label>
+  </div>
+  <button class="ghost" type="button" id="pdb-add" style="margin-top:10px;width:100%">Ajouter ce bloc</button>
 </dialog>
 <dialog class="modal" id="jn-dialog" aria-labelledby="jn-title">
   <div class="phead"><h3 id="jn-title">Nouvelle candidature</h3><button class="mclose" type="button" id="jn-close" aria-label="Fermer">×</button></div>
@@ -668,13 +763,13 @@ var CATS={
   in:["Salaire","Aides","Ventes","Remboursement","Autre"]
 };
 
-var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[]};
+var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{}};
 var ui={tab:"home",month:today().slice(0,7),day:today(),finType:"out"};
 
 /* ---------- stockage local ---------- */
 var LS="carnet-joseph-v1";
 function loadLocal(){
-  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[],books:Array.isArray(p.books)?p.books:[]}}}}catch(e){}
+  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[],books:Array.isArray(p.books)?p.books:[],plan:p.plan&&typeof p.plan==="object"?p.plan:{}}}}}catch(e){}
 
 }
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
@@ -693,7 +788,7 @@ var dirty=lsGet("carnet-dirty")||{};
 var sync={state:"off",pushing:false,timer:null,lastOk:null,firstPull:!lsGet("carnet-synced-once")};
 
 function hasCfg(){return !!(CFG.url&&CFG.key)}
-function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length||state.books.length}
+function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length||state.books.length||Object.keys(state.plan).length}
 function allKeys(){
   var k=["settings"];
   if(state.rec.length)k.push("recurring");
@@ -701,6 +796,7 @@ function allKeys(){
   if(state.body.length)k.push("body");
   if(state.p30.length)k.push("p30");
   if(state.books.length)k.push("books");
+  if(Object.keys(state.plan).length)k.push("plan");
   Object.keys(state.fin).forEach(function(m){k.push("fin-"+m)});
   Object.keys(state.cal).forEach(function(m){k.push("cal-"+m)});
   Object.keys(state.act).forEach(function(m){if(k.indexOf("cal-"+m)<0)k.push("cal-"+m)});
@@ -713,6 +809,7 @@ function bodyFor(key){
   if(key==="body")return {items:state.body};
   if(key==="p30")return {items:state.p30};
   if(key==="books")return {items:state.books};
+  if(key==="plan")return {days:state.plan};
   var b={items:(state[key.slice(0,3)][key.slice(4)]||[])};
   if(key.slice(0,3)==="fin"){var sk=state.finSkip[key.slice(4)];if(sk&&sk.length)b.skipped=sk}
   if(key.slice(0,3)==="cal"){var ac=state.act[key.slice(4)];if(ac&&Object.keys(ac).length)b.active=ac}
@@ -725,6 +822,7 @@ function applyDoc(key,body){
   else if(key==="body")state.body=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="p30")state.p30=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="books")state.books=Array.isArray(body&&body.items)?body.items:[];
+  else if(key==="plan")state.plan=body&&body.days&&typeof body.days==="object"?body.days:{};
   else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key)){state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
     if(key.slice(0,3)==="cal"){if(body&&body.active&&typeof body.active==="object")state.act[key.slice(4)]=body.active;else delete state.act[key.slice(4)]}
     if(key.slice(0,3)==="fin"){if(Array.isArray(body&&body.skipped))state.finSkip[key.slice(4)]=body.skipped;else delete state.finSkip[key.slice(4)]}
@@ -907,7 +1005,7 @@ function flash(sel){var el=$(sel);el.classList.add("err");el.focus();setTimeout(
 function setTab(t){
   ui.tab=t;document.body.dataset.tab=t;
   window.scrollTo(0,0);
-  ["home","fin","cal","body","job","p30","lib","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
+  ["home","fin","cal","body","job","p30","lib","plan","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
   document.querySelectorAll(".sbtn").forEach(function(b){b.classList.toggle("on",b.dataset.go===t)});
 }
 document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){setTab(b.id==="gear"&&ui.tab==="set"?"home":b.dataset.go)})});
@@ -1676,12 +1774,12 @@ function renderModel(){
 $("#bm-date").addEventListener("change",function(){bmui.date=this.value;renderModel()});
 $("#bm-cmp").addEventListener("change",function(){bmui.cmp=this.value;renderModel()});
 /* ---------- sauvegardes ---------- */
-function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30,books:state.books}}
+function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30,books:state.books,plan:state.plan}}
 function restoreData(p,full){
   var ok=function(o){return o&&typeof o==="object"};
-  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30&&!p.books))return false;
+  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30&&!p.books&&!p.plan))return false;
   var before=allKeys();
-  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[]};
+  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{}};
   if(ok(p.settings))state.settings=Object.assign({},p.settings);
   if(Array.isArray(p.rec))state.rec=p.rec;
   if(Array.isArray(p.jobs))state.jobs=p.jobs;
@@ -1689,6 +1787,7 @@ function restoreData(p,full){
   if(Array.isArray(p.body))state.body=p.body;
   if(Array.isArray(p.p30))state.p30=p.p30;
   if(Array.isArray(p.books))state.books=p.books;
+  if(ok(p.plan))state.plan=p.plan;
   if(ok(p.finSkip))state.finSkip=p.finSkip;
   ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
   var keys=allKeys();before.forEach(function(k){if(keys.indexOf(k)<0)keys.push(k)});
@@ -2033,6 +2132,170 @@ $("#lb-form").addEventListener("submit",function(e){
   if(b.status!=="À lire")bSetStatus(b,b.status);
   state.books.push(b);lDlg.close?lDlg.close():lDlg.removeAttribute("open");libSave();toast(t+" ajouté.");
 });
+/* ---------- planning ---------- */
+var PT={work:{n:"Travail",c:"pt-work"},A:{n:"Jour profond",c:"pt-a"},B:{n:"Jour éclaté",c:"pt-b"},sport:{n:"Sport",c:"pt-sport"},read:{n:"Lecture",c:"pt-read"},perso:{n:"Perso",c:"pt-perso"}};
+var plui={week:null,edit:null};
+function tmin(t){if(!t)return null;var p=t.split(":");return (+p[0])*60+(+p[1]||0)}
+function tfmt(m){m=Math.max(0,Math.min(24*60-1,Math.round(m)));return pad(Math.floor(m/60))+":"+pad(m%60)}
+function monday(d){return addDays(d,-((parseYmd(d).getDay()+6)%7))}
+function wdays(w){var a=[];for(var i=0;i<7;i++)a.push(addDays(w,i));return a}
+function pday(d){return state.plan[d]||null}
+function pdayW(d){if(!state.plan[d])state.plan[d]={kind:"",blocks:[]};if(!state.plan[d].blocks)state.plan[d].blocks=[];return state.plan[d]}
+function plCfg(){var s=state.settings;return {n:s.sportN||3,dur:s.sportDur||75,trip:s.trip!=null?s.trip:30}}
+function workH(D){if(!D||D.kind!=="work"||!D.start||!D.end)return 0;var m=tmin(D.end)-tmin(D.start)-(D.pause!=null?+D.pause:60);return Math.max(0,m)/60}
+function dayItemsP(d){
+  var D=pday(d),it=[];if(!D)return it;
+  if(D.kind==="work"&&D.start&&D.end)it.push({t:"work",start:D.start,end:D.end,label:"Travail"+(D.pause?" (pause "+D.pause+" min)":""),fixed:true});
+  (D.blocks||[]).forEach(function(b){it.push(b)});
+  return it.sort(function(a,b){return (tmin(a.start)||0)-(tmin(b.start)||0)});
+}
+function plSave(){persist("plan");renderPlan();renderHome()}
+function suggestWeek(w){
+  var days=wdays(w),cfg=plCfg(),notes=[];
+  days.forEach(function(d){var D=pday(d);if(D&&D.blocks)D.blocks=D.blocks.filter(function(b){return !b.auto})});
+  var free=days.filter(function(d){var D=pday(d);return D&&(D.kind==="off"||D.kind==="leave")});
+  var work=days.filter(function(d){var D=pday(d);return D&&D.kind==="work"&&D.start&&D.end});
+  if(!free.length&&!work.length)return "Saisis d'abord tes horaires de la semaine.";
+  var add=function(d,t,s,e,l){pdayW(d).blocks.push({id:newId(),t:t,start:s,end:e,label:l,done:false,auto:true})};
+  var aDay=free[0]||null,bDay=free[1]||null;
+  if(aDay){add(aDay,"A","09:30","13:00","Lecture profonde");add(aDay,"A","14:30","18:00","Écriture")}
+  else notes.push("pas de jour off : le jour profond n'a pas pu être placé");
+  if(bDay){add(bDay,"B","10:00","12:00","Veille & observation");add(bDay,"B","14:00","16:00","Réseau / écriture légère")}
+  else{
+    var ev=work.filter(function(d){return tmin(pday(d).end)<=19*60}).slice(0,2);
+    ev.forEach(function(d){var s=tmin(pday(d).end)+cfg.trip+15;add(d,"B",tfmt(s),tfmt(s+60),"Jour éclaté (version courte)")});
+    if(aDay)notes.push("un seul jour off : le jour éclaté est réparti sur "+ev.length+" soirée"+(ev.length>1?"s":""));
+  }
+  // sport
+  var cand=[];
+  days.forEach(function(d){
+    var D=pday(d);if(!D)return;
+    if(D.kind==="work"&&D.end&&tmin(D.end)+cfg.trip<=20*60)cand.push({d:d,s:tmin(D.end)+cfg.trip});
+    else if(D.kind==="off"||D.kind==="leave")cand.push({d:d,s:d===aDay?18*60+30:(d===bDay?16*60+30:11*60)});
+  });
+  var pick=[];
+  cand.forEach(function(c){if(pick.length<cfg.n&&(!pick.length||(parseYmd(c.d)-parseYmd(pick[pick.length-1].d))/864e5>=2))pick.push(c)});
+  cand.forEach(function(c){if(pick.length<cfg.n&&pick.indexOf(c)<0)pick.push(c)});
+  pick.forEach(function(c){add(c.d,"sport",tfmt(c.s),tfmt(c.s+cfg.dur),"Muscu — Fitness Park")});
+  if(pick.length<cfg.n)notes.push((cfg.n-pick.length)+" séance"+(cfg.n-pick.length>1?"s":"")+" de sport non placée"+(cfg.n-pick.length>1?"s":"")+" (journées trop chargées)");
+  // lecture courte les jours de travail sans autre bloc
+  work.forEach(function(d){
+    var D=pday(d);if(D.blocks.some(function(b){return b.t==="A"||b.t==="B"}))return;
+    var st=tmin(D.start);
+    if(st>=11*60)add(d,"read",tfmt(st-120),tfmt(st-90),"Lecture 30 min");
+    else add(d,"read","21:00","21:30","Lecture 30 min");
+  });
+  return notes.length?"Semaine proposée — "+notes.join(" ; ")+".":"Semaine proposée. Ajuste ce que tu veux.";
+}
+function renderPlan(){
+  if(!$("#v-plan"))return;
+  if(!plui.week)plui.week=monday(today());
+  var w=plui.week,days=wdays(w),cfg=plCfg();
+  var end=addDays(w,6);
+  $("#pl-label").textContent="Semaine du "+parseYmd(w).toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" au "+parseYmd(end).toLocaleDateString("fr-FR",{day:"numeric",month:"short"});
+  var hours=0,offs=0,sp=0,spd=0,hasA=false,hasB=false,doneA=false,doneB=false,filled=0;
+  days.forEach(function(d){var D=pday(d);if(!D)return;if(D.kind)filled++;hours+=workH(D);if(D.kind==="off"||D.kind==="leave")offs++;
+    (D.blocks||[]).forEach(function(b){if(b.t==="sport"){sp++;if(b.done)spd++}if(b.t==="A"){hasA=true;if(b.done)doneA=true}if(b.t==="B"){hasB=true;if(b.done)doneB=true}})});
+  $("#pl-stats").innerHTML='<div class="tile"><small>Heures de travail</small><b>'+nf1.format(hours)+' <span class="u">h</span></b></div>'+
+    '<div class="tile"><small>Jours off</small><b>'+offs+'</b></div>'+
+    '<div class="tile"><small>Sport</small><b class="'+(spd>=cfg.n?"good":"")+'">'+spd+' <span class="u">/ '+(sp||cfg.n)+'</span></b></div>'+
+    '<div class="tile"><small>Modèle A</small><b><span class="'+(doneA?"good":hasA?"":"muted")+'">A'+(doneA?" ✓":"")+'</span> · <span class="'+(doneB?"good":hasB?"":"muted")+'">B'+(doneB?" ✓":"")+'</span></b></div>';
+  $("#pl-hint").hidden=filled>0;
+  var t=today(),h="";
+  days.forEach(function(d){
+    var D=pday(d),it=dayItemsP(d),isT=d===t;
+    var kind=!D||!D.kind?'<span class="pl-k muted">Horaires à saisir</span>':D.kind==="work"?'<span class="pl-k">Travail '+esc(D.start||"?")+'–'+esc(D.end||"?")+'</span>':D.kind==="off"?'<span class="pl-k good">Repos</span>':'<span class="pl-k good">Congé</span>';
+    h+='<div class="pl-day'+(isT?" today":"")+(D&&(D.kind==="off"||D.kind==="leave")?" free":"")+'"><button type="button" class="pl-dh" data-day="'+d+'"><b>'+esc(cap(parseYmd(d).toLocaleDateString("fr-FR",{weekday:"short"}).replace(".","")))+' '+parseYmd(d).getDate()+'</b>'+kind+'</button><div class="pl-blocks">';
+    it.forEach(function(b){
+      if(b.t==="work"){h+='<div class="pl-b pt-work"><span class="pl-time">'+esc(b.start)+'–'+esc(b.end)+'</span>Travail</div>';return}
+      h+='<button type="button" class="pl-b '+PT[b.t].c+(b.done?" done":"")+'" data-tog="'+esc(b.id)+'" data-d="'+d+'" title="Cliquer pour cocher"><span class="pl-time">'+esc(b.start||"")+(b.end?'–'+esc(b.end):"")+'</span>'+esc(b.label||PT[b.t].n)+(b.done?' ✓':'')+'</button>';
+    });
+    if(!it.length)h+='<div class="pl-empty">—</div>';
+    h+='</div><button type="button" class="pl-add" data-day="'+d+'">+ ajouter</button></div>';
+  });
+  $("#pl-week").innerHTML=h;
+}
+$("#pl-prev").addEventListener("click",function(){plui.week=addDays(plui.week,-7);renderPlan()});
+$("#pl-next").addEventListener("click",function(){plui.week=addDays(plui.week,7);renderPlan()});
+$("#pl-today").addEventListener("click",function(){plui.week=monday(today());renderPlan()});
+$("#pl-suggest").addEventListener("click",function(){var m=suggestWeek(plui.week);plSave();toast(m)});
+$("#pl-copy").addEventListener("click",function(){
+  var n=0;wdays(plui.week).forEach(function(d){var P=pday(addDays(d,-7));if(P&&P.kind){var D=pdayW(d);D.kind=P.kind;D.start=P.start;D.end=P.end;D.pause=P.pause;n++}});
+  if(!n){toast("Rien à copier : la semaine dernière est vide.");return}
+  plSave();toast("Horaires de la semaine dernière copiés.");
+});
+$("#pl-week").addEventListener("click",function(e){
+  var tg=e.target.closest("[data-tog]");
+  if(tg){var D=pday(tg.dataset.d);(D.blocks||[]).forEach(function(b){if(b.id===tg.dataset.tog)b.done=!b.done});plSave();return}
+  var dd=e.target.closest("[data-day]");if(dd)dayOpen(dd.dataset.day);
+});
+// saisie de la semaine
+var wDlg=$("#pw-dialog");
+function weekOpen(){
+  var days=wdays(plui.week);
+  $("#pw-rows").innerHTML=days.map(function(d,i){var D=pday(d)||{};return '<div class="pw-row"><b>'+esc(cap(parseYmd(d).toLocaleDateString("fr-FR",{weekday:"short",day:"numeric"})))+'</b>'+
+    '<select data-i="'+i+'" data-k="kind" aria-label="Type de journée"><option value="">—</option><option value="work"'+(D.kind==="work"?" selected":"")+'>Travail</option><option value="off"'+(D.kind==="off"?" selected":"")+'>Repos</option><option value="leave"'+(D.kind==="leave"?" selected":"")+'>Congé</option></select>'+
+    '<input type="time" data-i="'+i+'" data-k="start" value="'+esc(D.start||"")+'" aria-label="Début">'+'<input type="time" data-i="'+i+'" data-k="end" value="'+esc(D.end||"")+'" aria-label="Fin">'+
+    '<input data-i="'+i+'" data-k="pause" inputmode="numeric" placeholder="60" value="'+(D.pause!=null?D.pause:"")+'" aria-label="Pause en minutes"></div>'}).join("");
+  if(wDlg.showModal)wDlg.showModal();else wDlg.setAttribute("open","");
+}
+$("#pl-hours").addEventListener("click",weekOpen);
+$("#pl-hint-btn").addEventListener("click",weekOpen);
+$("#pw-close").addEventListener("click",function(){wDlg.close()});
+$("#pw-rows").addEventListener("change",function(e){
+  var el=e.target;if(el.dataset.k!=="kind")return;var row=el.closest(".pw-row");
+  row.querySelectorAll("input").forEach(function(x){x.disabled=el.value!=="work"});
+});
+$("#pw-form").addEventListener("submit",function(e){
+  e.preventDefault();var days=wdays(plui.week),bad=false;
+  days.forEach(function(d,i){
+    var g=function(k){var el=$('#pw-rows [data-i="'+i+'"][data-k="'+k+'"]');return el?el.value.trim():""};
+    var k=g("kind");if(!k){if(state.plan[d]){state.plan[d].kind="";delete state.plan[d].start;delete state.plan[d].end}return}
+    var D=pdayW(d);D.kind=k;
+    if(k==="work"){D.start=g("start");D.end=g("end");var p=g("pause");D.pause=p===""?60:Math.max(0,Math.round(num(p)));if(!D.start||!D.end||tmin(D.end)<=tmin(D.start))bad=true}
+    else{delete D.start;delete D.end;delete D.pause}
+  });
+  if(bad){toast("Vérifie les heures : chaque journée de travail doit avoir un début et une fin.");return}
+  wDlg.close();
+  var auto=$("#pw-auto").checked,msg="Horaires enregistrés.";
+  if(auto)msg=suggestWeek(plui.week);
+  plSave();toast(msg);
+});
+// édition d'une journée
+var dDlg=$("#pd-dialog");
+function dayOpen(d){
+  plui.edit=d;var D=pday(d)||{blocks:[]};
+  $("#pd-title").textContent=cap(parseYmd(d).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"}));
+  $("#pd-kind").value=D.kind||"";$("#pd-start").value=D.start||"";$("#pd-end").value=D.end||"";$("#pd-pause").value=D.pause!=null?D.pause:"";
+  dayBlocks();$("#pdb-start").value="";$("#pdb-end").value="";$("#pdb-label").value="";
+  if(dDlg.showModal)dDlg.showModal();else dDlg.setAttribute("open","");
+}
+function dayBlocks(){
+  var D=pday(plui.edit)||{blocks:[]};
+  $("#pd-blocks").innerHTML=(D.blocks||[]).slice().sort(function(a,b){return (tmin(a.start)||0)-(tmin(b.start)||0)}).map(function(b){
+    return '<div class="row"><div class="lbl"><span class="pl-dot '+PT[b.t].c+'"></span>'+esc(b.label||PT[b.t].n)+'<small>'+esc((b.start||"")+(b.end?"–"+b.end:""))+' · '+PT[b.t].n+(b.done?" · fait":"")+'</small></div><span></span><button class="del" type="button" data-bdel="'+esc(b.id)+'" aria-label="Supprimer">×</button></div>'}).join("")||'<p class="empty">Aucun bloc ce jour-là.</p>';
+}
+$("#pd-close").addEventListener("click",function(){dDlg.close()});
+dDlg.addEventListener("close",function(){plSave()});
+["#pd-kind","#pd-start","#pd-end","#pd-pause"].forEach(function(s){$(s).addEventListener("change",function(){
+  var D=pdayW(plui.edit);D.kind=$("#pd-kind").value;
+  if(D.kind==="work"){D.start=$("#pd-start").value;D.end=$("#pd-end").value;var p=$("#pd-pause").value.trim();D.pause=p===""?60:Math.max(0,Math.round(num(p)))}
+  else{delete D.start;delete D.end;delete D.pause}
+  persist("plan");
+})});
+$("#pd-blocks").addEventListener("click",function(e){var b=e.target.closest("[data-bdel]");if(!b)return;var D=pday(plui.edit);D.blocks=D.blocks.filter(function(x){return x.id!==b.dataset.bdel});persist("plan");dayBlocks()});
+$("#pdb-add").addEventListener("click",function(){
+  var t=$("#pdb-type").value,s=$("#pdb-start").value,e=$("#pdb-end").value,l=$("#pdb-label").value.trim();
+  if(!s){flash("#pdb-start");return}
+  pdayW(plui.edit).blocks.push({id:newId(),t:t,start:s,end:e,label:l||PT[t].n,done:false});
+  persist("plan");dayBlocks();$("#pdb-start").value="";$("#pdb-end").value="";$("#pdb-label").value="";
+});
+// réglages
+["#plc-n","#plc-dur","#plc-trip"].forEach(function(sel){$(sel).addEventListener("change",function(){
+  var k={"#plc-n":"sportN","#plc-dur":"sportDur","#plc-trip":"trip"}[sel],v=Math.round(num(this.value));
+  if(this.value.trim()===""||!(v>=0))delete state.settings[k];else state.settings[k]=v;persist("settings");renderPlan();
+})});
+function fillPlanCfg(){var c=plCfg();if(document.activeElement!==$("#plc-n"))$("#plc-n").value=c.n;if(document.activeElement!==$("#plc-dur"))$("#plc-dur").value=c.dur;if(document.activeElement!==$("#plc-trip"))$("#plc-trip").value=c.trip}
 /* ---------- candidatures ---------- */
 var JST=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien","Offre","Refusé"];
 var JCLS={"A postuler":"st-a","Candidature envoyée":"st-e","Relancé":"st-rl","A relancer":"st-ar","Entretien":"st-i","Offre":"st-o","Refusé":"st-r"};
@@ -2249,13 +2512,14 @@ function renderHome(){
   $("#card-hello").innerHTML='<div class="hi">'+greet()+',</div><h2>'+esc(name)+'</h2><p>'+esc(line.join(" "))+'</p>'+
     '<div class="status" id="status-home" style="margin-top:10px"><i></i><span></span></div>'+
     '<span class="k-chip" id="clock">'+hhmm()+'</span>'+waveHTML();
-  // date
-  var now=new Date(),n=daysIn(m),cur=now.getDate(),left=n-cur;
-  var dots="";for(var i=1;i<=n;i++)dots+='<i class="'+(i<cur?"p":i===cur?"t":"")+'"></i>';
-  $("#card-date").innerHTML='<div class="d1">'+esc(now.toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}))+'</div>'+
-    '<div class="d2">'+esc(cap(now.toLocaleDateString("fr-FR",{weekday:"long"})))+'</div>'+
-    '<div class="mdots" aria-hidden="true" style="margin-top:14px">'+dots+'</div>'+
-    '<div class="dleft"><b>'+left+'</b><span class="k-lbl">'+(left===0?"dernier jour du mois":left===1?"jour avant la fin du mois":"jours avant la fin du mois")+'</span></div>';
+  // aujourd'hui
+  var now=new Date(),n=daysIn(m),td=today(),its=dayItemsP(td),D0=pday(td);
+  var nowM=now.getHours()*60+now.getMinutes();
+  var rows=its.map(function(b){var past=b.end&&tmin(b.end)<nowM;return '<div class="td-row'+(past?" past":"")+(b.done?" done":"")+'"><span class="pl-dot '+PT[b.t].c+'"></span><span class="td-t">'+esc(b.start||"")+(b.end?"–"+esc(b.end):"")+'</span><span class="td-l">'+esc(b.t==="work"?"Travail":(b.label||PT[b.t].n))+(b.done?" ✓":"")+'</span></div>'}).join("");
+  var tm=pday(addDays(td,1)),tmTxt=tm&&tm.kind?(tm.kind==="work"?"Demain : travail "+esc(tm.start||"")+"–"+esc(tm.end||""):"Demain : repos"):"";
+  $("#card-date").innerHTML='<div class="k-title" style="font-weight:700">'+esc(cap(now.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})))+'<span class="k-chip">'+(D0&&D0.kind?(D0.kind==="work"?"Travail":D0.kind==="off"?"Repos":"Congé"):"Planning")+'</span></div>'+
+    (rows?'<div class="td-list">'+rows+'</div>':'<div class="k-lbl" style="margin-top:6px">'+(D0&&D0.kind?"Rien de prévu aujourd'hui.":"Saisis tes horaires de la semaine pour voir ta journée ici.")+'</div>')+
+    (tmTxt?'<div class="k-lbl" style="margin-top:auto">'+tmTxt+'</div>':'')+'<span class="k-open">Ouvrir →</span>';
   // finances
   var endLbl="Prévu le "+n+" "+monthLabel(m).split(" ")[0].toLowerCase();
   $("#card-fin").innerHTML='<span class="fin-glow"></span><div class="k-title">Finances<span class="k-chip'+(risk?" warn":"")+'">'+(hasForecast||C.bank?(risk?"Découvert prévu":"Sous contrôle"):"À configurer")+'</span></div>'+
@@ -2331,7 +2595,7 @@ document.querySelectorAll("button.card").forEach(function(c){
 /* ---------- rendu ---------- */
 function render(){
   var t=state.settings.title||"Dashboard";$("#app-title").textContent=t;
-  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderHome();
+  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderPlan();fillPlanCfg();renderHome();
 }
 
 loadLocal();
