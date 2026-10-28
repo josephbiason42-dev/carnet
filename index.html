@@ -616,7 +616,7 @@ details.panel[open]>summary{margin-bottom:12px}
     </div>
     <div id="fp-cred" hidden>
       <div class="panel" id="cr-head"></div>
-      <div class="panel"><div class="phead"><h3>Mes crédits</h3><button class="plus" type="button" id="cr-add" aria-label="Ajouter un crédit" style="width:34px;height:34px;font-size:1.3rem">+</button></div><div id="cr-list"></div></div>
+      <div class="panel"><div class="phead"><h3>Mes crédits</h3><span style="display:flex;align-items:center;gap:14px"><label class="link" for="cr-file" style="cursor:pointer;color:var(--accent);font:600 .88rem var(--body)">Importer</label><input type="file" id="cr-file" accept=".json,application/json" hidden><button class="plus" type="button" id="cr-add" aria-label="Ajouter un crédit" style="width:34px;height:34px;font-size:1.3rem">+</button></span></div><div id="cr-list"></div></div>
     </div>
     <div id="fp-subs" hidden>
       <div class="panel" id="su-head"></div>
@@ -1837,7 +1837,7 @@ function crProj(c){
   var L=crLeft(c).left,M=crMonthly(c).amount,i=(+c.rate||0)/1200,n=0,int=0;
   if(L<=0)return {n:0,int:0,done:true};
   if(!(M>0))return null;
-  while(L>0.005&&n<600){var it=L*i;if(M<=it)return {n:null,int:null};int+=it;L-=M-it;n++}
+  while(L>1&&n<600){var it=L*i;if(M<=it)return {n:null,int:null};int+=it;L-=M-it;n++}
   return {n:n,int:int,last:M+L};
 }
 function crEndOff(c,p){ // mois (à partir de maintenant) de la dernière échéance
@@ -1861,6 +1861,8 @@ function renderCred(){
   if(init)h+='<div class="gauge"><i style="width:'+Math.min(100,paid/init*100).toFixed(1)+'%"></i></div><p class="note">'+Math.round(paid/init*100)+' % remboursé sur '+eur.format(init)+' empruntés</p>';
   if(tot>0)h+='<p class="note" style="margin-top:8px">'+(mon?eur.format(mon)+' de mensualités par mois':'')+(endN?' · libre de tout crédit vers <b style="color:var(--ink)">'+whenTxt(endN)+'</b>':'')+'</p>';
   if(!C.length)h='<div class="phead"><h3>Crédits</h3></div><p class="empty">Ajoute ton crédit avec le + : restant dû, mensualité et jour de prélèvement suffisent. Je calcule la date de fin et je le déduis chaque mois.</p>';
+  var dup=C.some(function(c){return !c.recId&&crLeft(c).left>0})?state.rec.filter(function(r){return r.type==="out"&&/cr[ée]dit|pr[eê]t|sofinco|cetelem|cofidis|oney|floa|younited/i.test(r.label+" "+r.cat)&&!C.some(function(c){return c.recId===r.id})}):[];
+  dup.forEach(function(r){h+='<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)"><p class="note bad" style="margin-bottom:8px">La dépense récurrente « '+esc(r.label)+' » ('+eur.format(r.amount)+' le '+r.day+') fait doublon avec les prélèvements de tes crédits.</p><button class="ghost" type="button" data-crdup="'+esc(r.id)+'">Supprimer cette récurrente</button></div>'});
   $("#cr-head").innerHTML=h;
   $("#cr-list").innerHTML=C.map(function(c){
     var l=crLeft(c),p=crProj(c),M=crMonthly(c),i0=+c.initial||0;
@@ -1935,6 +1937,17 @@ $("#cr-list").addEventListener("click",function(ev){
     (state.fin[m]=state.fin[m]||[]).push(op);persist("fin-"+m);renderFin();
     toast("Remboursé : "+eur.format(v),function(){var L=state.fin[m]||[],k=L.indexOf(op);if(k>=0){L.splice(k,1);persist("fin-"+m);renderFin()}});
   }
+});
+$("#cr-head").addEventListener("click",function(e){var b=e.target.closest("[data-crdup]");if(b)delRec(b.dataset.crdup)});
+$("#cr-file").addEventListener("change",function(){
+  var f=this.files&&this.files[0];if(!f)return;var rd=new FileReader();
+  rd.onload=function(){
+    try{var j=JSON.parse(rd.result),L=Array.isArray(j)?j:j.credits;if(!Array.isArray(L)||!L.length||!L[0].name)throw 0;
+      L.forEach(function(c){var i=state.credits.findIndex(function(x){return x.id===c.id});if(i>=0)state.credits[i]=c;else state.credits.push(c)});
+      persist("credits");applyRecurring();renderFin();toast(L.length+" crédit"+(L.length>1?"s":"")+" importé"+(L.length>1?"s":"")+".");
+    }catch(e){toast("Ce fichier ne contient pas de crédits.")}
+    $("#cr-file").value="";
+  };rd.readAsText(f);
 });
 $("#cr-list").addEventListener("keydown",function(ev){if(ev.key==="Enter"&&ev.target.matches(".env-move input")){ev.preventDefault();ev.target.parentNode.querySelector("[data-ca=go]").click()}});
 
