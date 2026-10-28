@@ -226,13 +226,22 @@ div.pl-b{cursor:default}
 .td-t{font-variant-numeric:tabular-nums; color:var(--muted); font-size:.82rem; min-width:92px}
 .td-l{font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 @media (max-width:900px){ .pl-week{grid-template-columns:1fr} .pl-day{min-height:0} #pl-stats.tiles{grid-template-columns:repeat(2,1fr)} .pw-head{display:none} .pw-row{grid-template-columns:1fr 1fr; } .pw-row b{grid-column:1 / -1} }
-.h-row{display:grid; grid-template-columns:1fr 9.5rem auto; gap:8px; align-items:center; padding:7px 0; border-bottom:1px solid var(--line)}
-.h-row:last-child{border-bottom:0}
-.h-row.off b{opacity:.45}
-.h-row select{padding:7px 8px; font-size:14px}
-.h-mv{display:flex; gap:4px}
-.h-mv button{padding:5px 9px}
-.h-mv button:disabled{opacity:.3; cursor:default}
+.h-foot{gap:8px; align-items:center; flex-wrap:wrap}
+.h-foot .note{flex:1; min-width:200px}
+body.h-edit .hgrid > .card{outline:1.5px dashed rgba(156,188,255,.45); outline-offset:3px; cursor:grab; transform:none!important; animation:hwig 2.6s ease-in-out infinite}
+body.h-edit .hgrid > .card:nth-child(2n){animation-delay:-1.3s}
+@keyframes hwig{0%,100%{rotate:0deg}50%{rotate:.35deg}}
+@media (prefers-reduced-motion:reduce){body.h-edit .hgrid > .card{animation:none}}
+body.h-edit .hgrid > .card.h-off{opacity:.38}
+body.h-edit .k-open{display:none}
+.hgrid > .card.dragging{z-index:60; cursor:grabbing; pointer-events:none; animation:none; opacity:.95; outline-color:#9cbcff; box-shadow:0 40px 80px -20px rgba(0,0,0,1), 0 0 40px -6px rgba(91,140,255,.6); transition:none}
+body.h-edit .hgrid > .card.dragging{transform:var(--t,none)!important}
+body.h-dragging{user-select:none; -webkit-user-select:none; cursor:grabbing}
+.h-ov{position:absolute; inset:auto 0 0 0; padding:28px 10px 10px; border-radius:0 0 22px 22px; background:linear-gradient(180deg,transparent,rgba(8,11,22,.92) 55%); display:flex; gap:6px; align-items:center; justify-content:flex-end; z-index:5}
+.h-handle{margin-right:auto; width:34px; height:34px; display:grid; place-items:center; border-radius:10px; font-size:18px; color:#cfe0ff; background:rgba(91,140,255,.22); border:1px solid rgba(91,140,255,.45); touch-action:none; cursor:grab}
+.h-ctl{font-size:.72rem; font-weight:700; padding:6px 10px; border-radius:999px; color:#dfe6ff; background:rgba(10,14,27,.85); border:1px solid rgba(120,160,255,.4); cursor:pointer; white-space:nowrap}
+.h-ctl:hover,.h-ctl:focus-visible{background:rgba(91,140,255,.3); outline:none}
+.h-off .h-ctl[data-hc="vis"]{color:#ffb38a; border-color:rgba(255,138,76,.5)}
 /* candidatures */
 .plus{all:unset; box-sizing:border-box; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; cursor:pointer; font:500 1.6rem/1 var(--body); color:#fff;
   background:linear-gradient(135deg,#5b8cff,#3b62d6); box-shadow:0 8px 22px -8px rgba(91,140,255,.8); transition:transform .25s, box-shadow .25s}
@@ -415,7 +424,7 @@ details.panel[open]>summary{margin-bottom:12px}
       <button class="card c-p30" type="button" id="card-p30" data-go="p30" aria-label="Ouvrir Projet 30"></button>
       <button class="card c-lib" type="button" id="card-lib" data-go="lib" aria-label="Ouvrir la bibliothèque"></button>
     </div>
-    <div class="h-foot"><button class="ghost sm" type="button" id="h-open">Personnaliser l'accueil</button></div>
+    <div class="h-foot"><span class="note" id="h-tip" hidden>Glisse les cartes pour les réorganiser (sur téléphone, avec la poignée ⠿). Touche la taille pour l'agrandir, « Visible » pour la masquer.</span><button class="ghost sm" type="button" id="h-reset" hidden>Réinitialiser</button><button class="ghost sm" type="button" id="h-open">Personnaliser l'accueil</button></div>
   </section>
 
   <!-- PLANNING -->
@@ -754,12 +763,6 @@ details.panel[open]>summary{margin-bottom:12px}
     <label for="pdb-end">Fin<input id="pdb-end" type="time"></label>
   </div>
   <button class="ghost" type="button" id="pdb-add" style="margin-top:10px;width:100%">Ajouter ce bloc</button>
-</dialog>
-<dialog class="modal" id="h-dialog" aria-labelledby="h-h">
-  <div class="phead"><h3 id="h-h">Personnaliser l'accueil</h3><button class="mclose" type="button" id="h-close" aria-label="Fermer">×</button></div>
-  <p class="note" style="margin-bottom:10px">Coche les cartes à afficher, choisis leur taille et leur ordre. L'aperçu se met à jour derrière la fenêtre. Sur téléphone, les petites cartes s'affichent côte à côte.</p>
-  <div id="h-rows"></div>
-  <div class="btnrow" style="margin-top:14px"><button class="primary" type="button" id="h-save" style="flex:1">Enregistrer</button><button class="ghost" type="button" id="h-reset">Réinitialiser</button></div>
 </dialog>
 <dialog class="modal" id="jn-dialog" aria-labelledby="jn-title">
   <div class="phead"><h3 id="jn-title">Nouvelle candidature</h3><button class="mclose" type="button" id="jn-close" aria-label="Fermer">×</button></div>
@@ -2341,48 +2344,111 @@ $("#pdb-add").addEventListener("click",function(){
   if(this.value.trim()===""||!(v>=0))delete state.settings[k];else state.settings[k]=v;persist("settings");renderPlan();
 })});
 function fillPlanCfg(){var c=plCfg();if(document.activeElement!==$("#plc-n"))$("#plc-n").value=c.n;if(document.activeElement!==$("#plc-dur"))$("#plc-dur").value=c.dur;if(document.activeElement!==$("#plc-trip"))$("#plc-trip").value=c.trip}
-/* ---------- personnalisation de l'accueil ---------- */
-var HCARDS=[["hello","Bonjour","l"],["date","Aujourd'hui (planning)","s"],["fin","Finances","l"],["cal","Calories","s"],["job","Candidatures","l"],["body","Pesée","s"],["p30","Projet 30","l"],["lib","Lecture","s"]];
-var HSIZE={s:"Petite",l:"Grande",f:"Pleine largeur"};
+/* ---------- personnalisation de l'accueil (glisser-déposer) ---------- */
+var HCARDS=[["hello","Bonjour","l"],["date","Aujourd'hui","s"],["fin","Finances","l"],["cal","Calories","s"],["job","Candidatures","l"],["body","Pesée","s"],["p30","Projet 30","l"],["lib","Lecture","s"]];
+var HSIZE={s:"Petite",l:"Grande",f:"Pleine largeur"},HNEXT={s:"l",l:"f",f:"s"};
+var hEdit=false,hDrag=null,hSuppress=false;
 function homeCfg(){
   var saved=Array.isArray(state.settings.home)?state.settings.home:[],out=[],seen={};
   saved.forEach(function(c){var d=HCARDS.filter(function(h){return h[0]===c.id})[0];if(d&&!seen[c.id]){seen[c.id]=1;out.push({id:c.id,size:HSIZE[c.size]?c.size:d[2],hidden:!!c.hidden})}});
   HCARDS.forEach(function(h){if(!seen[h[0]])out.push({id:h[0],size:h[2],hidden:false})});
   return out;
 }
+function hSaveCfg(cfg){state.settings.home=cfg.map(function(c){return {id:c.id,size:c.size,hidden:c.hidden}});persist("settings")}
 function applyHome(){
   var g=$(".hgrid");if(!g)return;
-  homeCfg().forEach(function(c){var el=$("#card-"+c.id);if(!el)return;g.appendChild(el);el.classList.remove("w-s","w-l","w-f");el.classList.add("w-"+c.size);el.hidden=c.hidden});
+  homeCfg().forEach(function(c){
+    var el=$("#card-"+c.id);if(!el)return;
+    if(!hDrag)g.appendChild(el);
+    el.classList.remove("w-s","w-l","w-f");el.classList.add("w-"+c.size);
+    el.hidden=c.hidden&&!hEdit;el.classList.toggle("h-off",c.hidden);
+    var ov=el.querySelector(".h-ov");
+    if(hEdit){
+      if(!ov){ov=document.createElement("span");ov.className="h-ov";el.appendChild(ov)}
+      ov.innerHTML='<span class="h-handle" title="Glisser pour déplacer" aria-hidden="true">⠿</span><span class="h-ctl" role="button" tabindex="0" data-hc="size" data-id="'+c.id+'" title="Changer la taille">'+HSIZE[c.size]+'</span>'+
+        '<span class="h-ctl" role="button" tabindex="0" data-hc="vis" data-id="'+c.id+'" title="'+(c.hidden?"Afficher":"Masquer")+' la carte">'+(c.hidden?"Masquée":"Visible")+'</span>';
+      el.setAttribute("aria-roledescription","carte déplaçable");
+    }else if(ov){ov.remove();el.removeAttribute("aria-roledescription")}
+  });
 }
-var hDlg=$("#h-dialog"),hDraft=null;
-function hRender(){
-  $("#h-rows").innerHTML=hDraft.map(function(c,i){
-    var n=HCARDS.filter(function(h){return h[0]===c.id})[0][1];
-    return '<div class="h-row'+(c.hidden?" off":"")+'"><label class="check" for="hv-'+c.id+'"><input type="checkbox" id="hv-'+c.id+'" data-i="'+i+'" data-k="vis"'+(c.hidden?"":" checked")+'> <b>'+esc(n)+'</b></label>'+
-      '<select data-i="'+i+'" data-k="size" aria-label="Taille de la carte '+esc(n)+'">'+Object.keys(HSIZE).map(function(k){return '<option value="'+k+'"'+(c.size===k?" selected":"")+'>'+HSIZE[k]+'</option>'}).join("")+'</select>'+
-      '<span class="h-mv"><button type="button" class="ghost sm" data-i="'+i+'" data-mv="-1" aria-label="Monter"'+(i===0?" disabled":"")+'>↑</button><button type="button" class="ghost sm" data-i="'+i+'" data-mv="1" aria-label="Descendre"'+(i===hDraft.length-1?" disabled":"")+'>↓</button></span></div>';
-  }).join("");
+function hOrderFromDom(){
+  var cfg=homeCfg(),by={};cfg.forEach(function(c){by[c.id]=c});
+  return [].slice.call(document.querySelectorAll(".hgrid > .card")).map(function(el){return by[el.id.replace("card-","")]}).filter(Boolean);
 }
-$("#h-open").addEventListener("click",function(){hDraft=homeCfg();hRender();if(hDlg.showModal)hDlg.showModal();else hDlg.setAttribute("open","")});
-$("#h-close").addEventListener("click",function(){hDlg.close()});
-$("#h-rows").addEventListener("click",function(e){
-  var b=e.target.closest("[data-mv]");if(!b)return;var i=+b.dataset.i,j=i+(+b.dataset.mv);if(j<0||j>=hDraft.length)return;
-  var t=hDraft[i];hDraft[i]=hDraft[j];hDraft[j]=t;hRender();hLive();
-  var nb=$('#h-rows [data-i="'+j+'"][data-mv="'+b.dataset.mv+'"]');if(nb&&!nb.disabled)nb.focus();
+function hSetEdit(on){
+  hEdit=on;document.body.classList.toggle("h-edit",on);
+  $("#h-open").textContent=on?"Terminé":"Personnaliser l'accueil";
+  $("#h-open").classList.toggle("primary",on);$("#h-reset").hidden=!on;$("#h-tip").hidden=!on;
+  document.querySelectorAll(".hgrid > .card").forEach(function(c){c.style.removeProperty("--rx");c.style.removeProperty("--ry")});
+  applyHome();
+}
+$("#h-open").addEventListener("click",function(){hSetEdit(!hEdit);if(!hEdit)toast("Accueil enregistré.")});
+$("#h-reset").addEventListener("click",function(){delete state.settings.home;persist("settings");applyHome();toast("Disposition d'origine rétablie.")});
+// tailles et visibilité
+function hCtl(el){
+  var cfg=homeCfg(),c=cfg.filter(function(x){return x.id===el.dataset.id})[0];if(!c)return;
+  if(el.dataset.hc==="size")c.size=HNEXT[c.size];else c.hidden=!c.hidden;
+  hSaveCfg(cfg);applyHome();
+  var again=$('#card-'+c.id+' [data-hc="'+el.dataset.hc+'"]');if(again)again.focus();
+}
+$(".hgrid").addEventListener("click",function(e){
+  var ctl=e.target.closest("[data-hc]");
+  if(ctl){e.preventDefault();e.stopPropagation();hCtl(ctl);return}
+  if(hEdit||hSuppress){e.preventDefault();e.stopPropagation();hSuppress=false}
+},true);
+$(".hgrid").addEventListener("keydown",function(e){
+  var ctl=e.target.closest("[data-hc]");
+  if(ctl&&(e.key==="Enter"||e.key===" ")){e.preventDefault();hCtl(ctl);return}
+  if(!hEdit)return;
+  var card=e.target.closest(".hgrid > .card");if(!card||ctl)return;
+  var dir={ArrowUp:-1,ArrowLeft:-1,ArrowDown:1,ArrowRight:1}[e.key];if(!dir)return;
+  e.preventDefault();
+  var sib=dir<0?card.previousElementSibling:card.nextElementSibling;if(!sib)return;
+  if(dir<0)card.parentNode.insertBefore(card,sib);else card.parentNode.insertBefore(sib,card);
+  hSaveCfg(hOrderFromDom());card.focus();
 });
-$("#h-rows").addEventListener("change",function(e){
-  var el=e.target,i=+el.dataset.i;if(isNaN(i))return;
-  if(el.dataset.k==="vis")hDraft[i].hidden=!el.checked;if(el.dataset.k==="size")hDraft[i].size=el.value;
-  hRender();hLive();
+// glisser-déposer (souris : toute la carte ; tactile : la poignée)
+$(".hgrid").addEventListener("pointerdown",function(e){
+  if(!hEdit||e.button>0)return;
+  if(e.target.closest("[data-hc]"))return;
+  var card=e.target.closest(".hgrid > .card");if(!card)return;
+  if(e.pointerType!=="mouse"&&!e.target.closest(".h-handle"))return;
+  var r=card.getBoundingClientRect();
+  hDrag={el:card,id:e.pointerId,sx:e.clientX,sy:e.clientY,ox:e.clientX-r.left,oy:e.clientY-r.top,on:false};
+  try{card.setPointerCapture(e.pointerId)}catch(_){}
+  if(e.pointerType!=="mouse")e.preventDefault();
 });
-function hLive(){state.settings.home=hDraft.map(function(c){return {id:c.id,size:c.size,hidden:c.hidden}});applyHome()}
-$("#h-save").addEventListener("click",function(){hLive();persist("settings");hDlg.close();toast("Accueil enregistré.")});
-$("#h-reset").addEventListener("click",function(){delete state.settings.home;hDraft=homeCfg();hRender();applyHome()});
-hDlg.addEventListener("close",function(){
-  // annuler les essais non enregistrés
-  var saved=lsGet(LS);var s=saved&&saved.settings&&saved.settings.home;
-  if(JSON.stringify(s||null)!==JSON.stringify(state.settings.home||null)){if(s)state.settings.home=s;else delete state.settings.home;applyHome()}
-});
+function hPlace(px,py){
+  var el=hDrag.el;el.style.setProperty("--t","none");var b=el.getBoundingClientRect();
+  el.style.setProperty("--t","translate("+(px-hDrag.ox-b.left)+"px,"+(py-hDrag.oy-b.top)+"px)");
+}
+var hScroll=null;
+function hAuto(py){
+  clearInterval(hScroll);hScroll=null;var h=window.innerHeight,edge=70,v=0;
+  if(py<edge)v=-Math.ceil((edge-py)/6);else if(py>h-edge)v=Math.ceil((py-(h-edge))/6);
+  if(v)hScroll=setInterval(function(){window.scrollBy(0,v);if(hDrag&&hDrag.on)hPlace(hDrag.lx,hDrag.ly)},16);
+}
+document.addEventListener("pointermove",function(e){
+  if(!hDrag||e.pointerId!==hDrag.id)return;
+  if(!hDrag.on){if(Math.abs(e.clientX-hDrag.sx)+Math.abs(e.clientY-hDrag.sy)<6)return;hDrag.on=true;hDrag.el.classList.add("dragging");document.body.classList.add("h-dragging")}
+  e.preventDefault();hDrag.lx=e.clientX;hDrag.ly=e.clientY;
+  var el=hDrag.el,under=document.elementFromPoint(e.clientX,e.clientY),tgt=under&&under.closest(".hgrid > .card");
+  if(tgt&&tgt!==el){
+    var r=tgt.getBoundingClientRect(),wide=r.width>tgt.parentNode.getBoundingClientRect().width*.75;
+    var after=wide?e.clientY>r.top+r.height/2:e.clientX>r.left+r.width/2;
+    var ref=after?tgt.nextElementSibling:tgt;
+    if(ref!==el&&el.nextElementSibling!==ref)tgt.parentNode.insertBefore(el,ref);
+  }
+  hPlace(e.clientX,e.clientY);hAuto(e.clientY);
+},{passive:false});
+function hEnd(e){
+  if(!hDrag||(e&&e.pointerId!==hDrag.id))return;
+  clearInterval(hScroll);hScroll=null;
+  var el=hDrag.el,was=hDrag.on;hDrag=null;
+  el.classList.remove("dragging");document.body.classList.remove("h-dragging");el.style.removeProperty("--t");
+  if(was){hSuppress=true;setTimeout(function(){hSuppress=false},50);hSaveCfg(hOrderFromDom())}
+}
+document.addEventListener("pointerup",hEnd);document.addEventListener("pointercancel",hEnd);
 /* ---------- candidatures ---------- */
 var JST=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien","Offre","Refusé"];
 var JCLS={"A postuler":"st-a","Candidature envoyée":"st-e","Relancé":"st-rl","A relancer":"st-ar","Entretien":"st-i","Offre":"st-o","Refusé":"st-r"};
@@ -2662,6 +2728,7 @@ function renderHome(){
     ringSVG(t.kcal,goal)+
     '<div class="k-lbl" style="margin-top:-4px">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g'+'</div>'+calDefLine(d)+
     '<span class="k-pill">＋ Ajouter un repas</span>';
+  if(typeof applyHome==="function"&&hEdit)applyHome();
   var st=$("#status"),hs=$("#status-home");if(st&&hs){hs.className=st.className;hs.querySelector("span").textContent=st.querySelector("span").textContent}
 }
 setInterval(function(){var c=$("#clock");if(c)c.textContent=hhmm()},20000);
@@ -2669,7 +2736,7 @@ document.querySelectorAll("button.card").forEach(function(c){
   c.addEventListener("click",function(){setTab(c.dataset.go)});
   if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
   c.addEventListener("pointermove",function(e){
-    if(e.pointerType!=="mouse")return;
+    if(e.pointerType!=="mouse"||hEdit)return;
     var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
     c.style.setProperty("--rx",((0.5-y)*5).toFixed(2)+"deg");
     c.style.setProperty("--ry",((x-0.5)*6).toFixed(2)+"deg");
