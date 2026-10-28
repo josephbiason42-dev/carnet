@@ -188,6 +188,37 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 @media (max-width:760px){ .p-hero{flex-direction:column} .ptl{overflow-x:auto} .ptl-seg{min-width:64px} .pdl{grid-template-columns:1fr} .p30h{align-items:flex-start} }
 /* bibliothèque */
 .l-cur{padding:4px 0 14px; border-bottom:1px solid var(--line); margin-bottom:12px}
+.lnav{grid-template-columns:1fr 1fr; margin:12px 0 14px}
+#l-fiche{margin-top:16px; padding-top:16px; border-top:1px solid var(--line)}
+#lc-wrap{position:relative; padding:0}
+.lc-track{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:22px calc(50% - 80px) 18px; scrollbar-width:none; overscroll-behavior-x:contain}
+.lc-track::-webkit-scrollbar{display:none}
+.lc-book{all:unset; box-sizing:border-box; flex:none; width:160px; height:236px; scroll-snap-align:center; cursor:pointer; position:relative; border-radius:5px 14px 14px 5px; padding:16px 14px 14px 20px;
+  display:flex; flex-direction:column; gap:6px; color:#fff; background:linear-gradient(160deg,var(--c1),var(--c2)); box-shadow:inset 7px 0 0 rgba(0,0,0,.22), inset 9px 0 0 rgba(255,255,255,.08), 0 18px 34px -16px rgba(0,0,0,.9);
+  transform:scale(.8); opacity:.4; transition:transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s, box-shadow .3s}
+.lc-book.on{transform:scale(1); opacity:1; box-shadow:inset 7px 0 0 rgba(0,0,0,.22), inset 9px 0 0 rgba(255,255,255,.08), 0 26px 50px -18px var(--c1)}
+.lc-book:focus-visible{outline:2px solid #fff; outline-offset:4px}
+.lc-pil{font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; opacity:.8}
+.lc-t{font-weight:800; font-size:1.02rem; line-height:1.22; display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical; overflow:hidden}
+.lc-a{font-size:.78rem; opacity:.85}
+.lc-foot{margin-top:auto; font-size:.7rem; font-weight:600; opacity:.9; display:flex; flex-direction:column; gap:6px}
+.lc-foot i{display:block; height:4px; border-radius:2px; background:linear-gradient(90deg,#fff var(--p),rgba(255,255,255,.25) var(--p))}
+.lc-arrow{position:absolute; top:50%; transform:translateY(-50%); z-index:2; width:42px; height:42px; border-radius:50%; border:1px solid rgba(120,160,255,.35); background:rgba(14,19,36,.85); color:var(--ink); font-size:1.4rem; cursor:pointer; display:grid; place-items:center; backdrop-filter:blur(8px)}
+.lc-arrow:hover,.lc-arrow:focus-visible{background:rgba(40,52,90,.95)}
+#lc-prev{left:6px} #lc-next{right:6px}
+@media (prefers-reduced-motion:reduce){.lc-book{transition:none}}
+.lnote{padding:10px 0; border-bottom:1px solid var(--line)}
+.lnote:last-child{border-bottom:0}
+.lnote-h{display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:.76rem; color:var(--muted)}
+.lnote-acts{margin-left:auto; display:flex; align-items:center; gap:4px}
+.lnote-acts .link{font-size:.78rem}
+.lnote-acts .del{width:28px; height:28px}
+.lnote-b{all:unset; cursor:pointer; color:#9cbcff; font-weight:600}
+.lnote-t{margin-top:4px; font-size:.95rem; line-height:1.45; white-space:pre-wrap; overflow-wrap:anywhere}
+.lnote-t.q{font-style:italic; border-left:3px solid rgba(196,181,255,.5); padding-left:10px}
+.lnote-t.q::before{content:"« "} .lnote-t.q::after{content:" »"}
+#l-all-tools{display:flex; flex-direction:column; gap:8px; margin-bottom:6px}
+.rv-card{padding:16px; border-radius:14px; background:rgba(255,255,255,.04); border:1px solid var(--line); border-left:4px solid var(--c1)}
 .l-cur:last-child{border-bottom:0; margin-bottom:0; padding-bottom:0}
 .lstars{color:#facc15; font-size:.8rem; margin-right:8px; letter-spacing:1px}
 #l-stats.tiles{grid-template-columns:repeat(4,1fr)}
@@ -714,19 +745,27 @@ details.panel[open]>summary{margin-bottom:12px}
   <!-- BIBLIOTHÈQUE -->
   <section class="view" id="v-lib" aria-label="Bibliothèque">
     <button class="back" type="button" data-go="home">← Accueil</button>
-    <div class="phead" style="margin:0"><h2 style="text-align:left">Bibliothèque</h2><button class="plus" type="button" id="l-open" aria-label="Ajouter un livre" title="Ajouter un livre">+</button></div>
+    <div class="phead" style="margin:0"><h2 style="text-align:left">Bibliothèque</h2><span style="display:flex;gap:10px;align-items:center"><button class="ghost sm" type="button" id="l-note-btn">✎ Note</button><button class="plus" type="button" id="l-open" aria-label="Ajouter un livre" title="Ajouter un livre">+</button></span></div>
     <div class="panel" id="l-seed" hidden>
       <h3>Ta sélection Projet 30</h3>
       <p class="note" style="margin-bottom:10px">Ajoute les 13 livres de ta page « Bibliothèque Projet 30 » (Kahneman, Cialdini, Godin, Sutherland, Mollick…), dans ton ordre de lecture et reliés aux étapes du plan.</p>
       <button class="ghost" type="button" id="l-seed-btn">Ajouter ma sélection</button>
     </div>
+    <div class="seg lnav" id="lnav" role="group" aria-label="Affichage"><button type="button" data-lp="books" aria-pressed="true">Mes livres</button><button type="button" data-lp="notes" aria-pressed="false">Toutes mes notes</button></div>
+    <div id="lp-books">
+    <div class="panel" id="lc-wrap"><button class="lc-arrow" type="button" id="lc-prev" aria-label="Livre précédent">‹</button><div class="lc-track" id="lc-track" tabindex="0" aria-label="Sélection de livre"></div><button class="lc-arrow" type="button" id="lc-next" aria-label="Livre suivant">›</button></div>
+    <div class="panel"><div id="l-cur"></div><div id="l-fiche"></div></div>
     <div class="tiles" id="l-stats"></div>
-    <div class="panel"><h3>En cours de lecture</h3><div id="l-cur"></div></div>
     <div class="panel">
-      <div class="phead"><h3>Mes livres</h3></div>
+      <div class="phead"><h3>Toute la bibliothèque</h3></div>
       <div class="chips" id="l-filters" style="margin-bottom:6px"></div>
       <div id="l-list"></div>
       <p class="note" style="margin-top:12px">Quand un livre relié au Projet 30 passe en « Lu », l'étape correspondante est cochée automatiquement.</p>
+    </div>
+    </div>
+    <div id="lp-notes" hidden>
+      <div class="panel" id="l-all-head"></div>
+      <div class="panel"><div id="l-all-tools"></div><div id="l-all"></div></div>
     </div>
   </section>
 
@@ -945,6 +984,22 @@ details.panel[open]>summary{margin-bottom:12px}
     <button class="primary" type="submit">Enregistrer</button>
     <button class="ghost" type="button" id="sv-del" hidden>Supprimer l'enveloppe</button>
   </form>
+</dialog>
+<dialog class="modal" id="nq-dialog" aria-labelledby="nq-h">
+  <div class="phead"><h3 id="nq-h">Nouvelle note de lecture</h3><button class="mclose" type="button" id="nq-close" aria-label="Fermer">×</button></div>
+  <form id="nq-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+    <div class="seg" id="nq-type" style="grid-template-columns:repeat(3,1fr)"><button type="button" data-t="idea" aria-pressed="true">Idée</button><button type="button" data-t="quote" aria-pressed="false">Citation</button><button type="button" data-t="apply" aria-pressed="false">À appliquer</button></div>
+    <div class="grid">
+      <label for="nq-book">Livre<select id="nq-book"></select></label>
+      <label for="nq-page">Page<input id="nq-page" inputmode="numeric" autocomplete="off" placeholder="—"></label>
+      <label for="nq-text" class="wide">Note<textarea id="nq-text" maxlength="2000" style="font:16px/1.45 var(--body);min-height:110px"></textarea></label>
+    </div>
+    <button class="primary" type="submit">Enregistrer</button>
+  </form>
+</dialog>
+<dialog class="modal" id="rv-dialog" aria-labelledby="rvd-h">
+  <div class="phead"><h3 id="rvd-h">Révision de lecture</h3><button class="mclose" type="button" id="rv-close2" aria-label="Fermer">×</button></div>
+  <div id="rvw-body"></div>
 </dialog>
 <dialog class="modal" id="ai-dialog" aria-labelledby="ai-h">
   <div class="phead"><h3 id="ai-h">✦ Demander conseil à Claude</h3><button class="mclose" type="button" id="ai-close" aria-label="Fermer">×</button></div>
@@ -1279,7 +1334,7 @@ function flash(sel){var el=$(sel);el.classList.add("err");el.focus();setTimeout(
 /* ---------- onglets ---------- */
 function setTab(t){
   if(String(t).indexOf(":")>0){var sp=String(t).split(":");t=sp[0];if(t==="fin")setFinPane(sp[1])}
-  ui.tab=t;document.body.dataset.tab=t;if(t==="rev")renderRev();
+  ui.tab=t;document.body.dataset.tab=t;if(t==="rev")renderRev();if(t==="lib"&&typeof lcCenter==="function")setTimeout(function(){lcCenter(false)},30);
   window.scrollTo(0,0);
   ["home","fin","cal","body","job","p30","lib","plan","rev","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
   document.querySelectorAll(".sbtn").forEach(function(b){b.classList.toggle("on",b.dataset.go===t)});
@@ -2936,19 +2991,7 @@ function renderLib(){
   var pages=B.reduce(function(a,b){return a+(b.status==="Lu"?(b.pages||0):(b.page||0))},0);
   $("#l-stats").innerHTML='<div class="tile"><small>En cours</small><b>'+cur.length+'</b></div><div class="tile"><small>Lus</small><b class="good">'+read.length+' <span class="u">/ '+B.length+'</span></b></div>'+
     '<div class="tile"><small>Lus en '+yr+'</small><b>'+read.filter(function(b){return (b.finished||"").slice(0,4)===yr}).length+'</b></div><div class="tile"><small>Pages lues</small><b>'+intf.format(pages)+'</b></div>';
-  // en cours
-  var h='';
-  if(!cur.length){var nx=B.filter(function(b){return b.status==="À lire"}).sort(function(a,b){return (a.order||99)-(b.order||99)})[0];
-    h='<p class="note">Aucun livre en cours.'+(nx?' Le prochain dans ton ordre : <b style="color:var(--ink)">'+esc(nx.title)+'</b>.':'')+'</p>'+(nx?'<div class="btnrow" style="margin-top:10px"><button class="ghost sm" type="button" data-bact="start" data-id="'+esc(nx.id)+'">Commencer ce livre</button></div>':'');}
-  cur.forEach(function(b){
-    var p=bPct(b),di=bDueInfo(b);
-    h+='<div class="l-cur"><div class="p-title">'+esc(b.title)+'</div><div class="k-lbl" style="margin:2px 0 8px">'+esc(b.author)+(di?' · <span class="'+(di.days<=3?"warn":"")+'">Médiathèque : '+esc(di.txt)+'</span>':'')+'</div>'+
-      '<div class="meter" style="margin:6px 0"><i style="width:'+p+'%;background:linear-gradient(90deg,#5b8cff,#8b5cf6)"></i></div>'+
-      '<div class="heroline"><span>'+(b.pages?'Page '+(b.page||0)+' / '+b.pages+' · '+p+' %':'')+'</span><span class="muted">'+esc(bEta(b))+'</span></div>'+
-      '<div class="btnrow" style="margin-top:10px;align-items:center"><label for="lp-'+esc(b.id)+'" style="flex-direction:row;align-items:center;gap:8px">Page actuelle<input id="lp-'+esc(b.id)+'" class="lpage" data-id="'+esc(b.id)+'" inputmode="numeric" value="'+(b.page||"")+'" style="width:90px"></label>'+
-      '<button class="ghost sm" type="button" data-bact="plus" data-n="10" data-id="'+esc(b.id)+'">+10 p.</button><button class="ghost sm" type="button" data-bact="plus" data-n="25" data-id="'+esc(b.id)+'">+25 p.</button><button class="ghost sm" type="button" data-bact="done" data-id="'+esc(b.id)+'">Terminé ✓</button></div></div>';
-  });
-  $("#l-cur").innerHTML=h;
+  if(lui.pane==="books"){renderCarousel();renderBookDetail()}else renderAllNotes();
   // liste
   var F={all:"Tous",todo:"À lire",cur:"En cours",read:"Lus"};
   $("#l-filters").innerHTML=Object.keys(F).map(function(k){return '<button type="button" class="chip'+(lui.filter===k?" on":"")+'" data-f="'+k+'">'+F[k]+'</button>'}).join("");
@@ -2977,7 +3020,6 @@ function bRowHTML(b){
       '<label for="le-finished">Fini le<input id="le-finished" type="date" data-k="finished" value="'+I("finished")+'"></label>'+
       '<label for="le-source">Provenance<select id="le-source" data-k="source">'+["","Acheté","Médiathèque","Prêté","Numérique"].map(function(x){return '<option value="'+x+'"'+(x===(b.source||"")?" selected":"")+'>'+(x||"—")+'</option>'}).join("")+'</select></label>'+
       '<label for="le-due">À rendre le (médiathèque)<input id="le-due" type="date" data-k="dueBack" value="'+I("dueBack")+'"></label>'+
-      '<label for="le-notes" class="wide">Fiche de lecture · idées clés<textarea id="le-notes" data-k="notes" style="min-height:140px" placeholder="Concepts clés, citations, ce que je transpose sur une marque…">'+I("notes")+'</textarea></label>'+
       '</div><div class="btnrow" style="margin-top:10px">'+(b.source==="Médiathèque"&&!b.returned?'<button class="ghost sm" type="button" data-bact="returned" data-id="'+esc(b.id)+'">Rendu à la médiathèque ✓</button>':'')+'<button class="ghost sm" type="button" data-bact="del" data-id="'+esc(b.id)+'">Retirer de la bibliothèque</button></div></div>';
   }
   return h+'</div>';
@@ -2992,7 +3034,7 @@ function bAct(e){
   return true;
 }
 ["#l-cur","#l-list"].forEach(function(sel){$(sel).addEventListener("click",function(e){
-  if(bAct(e))return;var h=e.target.closest(".jhead[data-bid]");if(!h)return;lui.open=lui.open===h.dataset.bid?null:h.dataset.bid;renderLib();
+  if(bAct(e))return;var h=e.target.closest(".jhead[data-bid]");if(!h)return;lui.open=lui.open===h.dataset.bid?null:h.dataset.bid;if(lui.open)lui.sel=lui.open;renderLib();
 })});
 $("#l-cur").addEventListener("change",function(e){var el=e.target;if(!el.classList.contains("lpage"))return;var b=bkFind(el.dataset.id);if(!b)return;var v=Math.round(num(el.value));if(!(v>=0))return;b.page=b.pages?Math.min(v,b.pages):v;if(b.pages&&b.page>=b.pages)bSetStatus(b,"Lu");libSave()});
 $("#l-list").addEventListener("change",function(e){
@@ -3329,6 +3371,8 @@ function helloBrief(){
   if(state.p30.length){var S=pStats(),f=S.cur[0]||S.next;if(f){
     var bk=state.books.filter(function(b){return b.step===f.step&&b.status==="En cours"})[0];
     out.push({go:bk?"lib":"p30",c:"#5b8cff",t:"Projet 30 · étape "+f.step+" : "+f.title+(bk&&bk.pages?" (p. "+(bk.page||0)+"/"+bk.pages+")":"")});}}
+  // révision des notes de lecture
+  var rvd=revDue().length;if(rvd)out.push({go:"review",c:"#c4b5ff",t:rvd+" note"+(rvd>1?"s":"")+" de lecture à réviser (2 min)"});
   // médiathèque
   state.books.forEach(function(b){var di=bDueInfo(b);if(di&&di.days<=3)out.push({go:"lib",c:"#ffb38a",t:b.title+" : "+di.txt})});
   // finances
@@ -3359,7 +3403,8 @@ function renderHello(){
       state.inbox.unshift({id:newId(),text:v,date:today(),done:false});persist("inbox");$("#cap-in").value="";renderHello();toast("Noté dans ta boîte de réception.");
     });
     el.addEventListener("click",function(e){
-      if(hEdit)return;var b=e.target.closest("[data-go]");if(b){setTab(b.dataset.go);return}
+      if(hEdit)return;var b=e.target.closest("[data-go]");if(b){if(b.dataset.go==="review")rvOpen();else setTab(b.dataset.go);return}
+      if(e.target.closest("#nq-home")){nqOpen(null,null);return}
       if(e.target.closest("#inbox-link"))ibOpen();
       if(e.target.closest("#ai-home"))aiOpen("all");
       if(e.target.closest("#brief-more")){helloAll=!helloAll;renderHello()}
@@ -3371,7 +3416,7 @@ function renderHello(){
   var lim=helloAll?br.length:4;
   if(br.length){h+='<div class="brief">'+br.slice(0,lim).map(function(x){return '<button type="button" class="br-i" data-go="'+x.go+'"><i style="background:'+x.c+'"></i><span>'+esc(x.t)+'</span><b aria-hidden="true">›</b></button>'}).join("")+(br.length>4?'<button type="button" class="ib-link" id="brief-more" style="color:var(--muted);margin-top:2px">'+(helloAll?"Réduire":"+ "+(br.length-4)+" autre"+(br.length-4>1?"s":""))+'</button>':'')+'</div>'}
   else h+='<div class="brief"><div class="br-ok">Tout est en ordre ✓</div></div>';
-  h+='<div class="h-sub"><div class="status" id="status-home"><i></i><span></span></div><span style="display:flex;gap:14px;align-items:center"><button type="button" class="ib-link" id="ai-home" style="color:#c4b5ff">✦ Conseil</button>'+(ib?'<button type="button" class="ib-link" id="inbox-link">Boîte de réception · '+ib+'</button>':'')+'</span></div>';
+  h+='<div class="h-sub"><div class="status" id="status-home"><i></i><span></span></div><span style="display:flex;gap:14px;align-items:center"><button type="button" class="ib-link" id="ai-home" style="color:#c4b5ff">✦ Conseil</button>'+(state.books.some(function(b){return b.status==="En cours"})?'<button type="button" class="ib-link" id="nq-home">✎ Note de lecture</button>':'')+''+(ib?'<button type="button" class="ib-link" id="inbox-link">Boîte de réception · '+ib+'</button>':'')+'</span></div>';
   $("#hello-dyn").innerHTML=h;
   $("#hello-wave").innerHTML=waveHTML();
   var st=$("#status"),hs=$("#status-home");if(st&&hs){hs.className=st.className;hs.querySelector("span").textContent=st.querySelector("span").textContent}
@@ -3680,6 +3725,199 @@ document.querySelectorAll("button.card").forEach(function(c){
 });
 
 /* ---------- rendu ---------- */
+/* ---------- carrousel, fiches et notes de lecture ---------- */
+var BCOL={"Neuromarketing":["#8b5cf6","#4c1d95"],"Psychologie du consommateur":["#5b8cff","#1e3a8a"],"Branding & marques":["#ff8a4c","#9a3412"],"IA dans le marketing":["#22d3ee","#155e75"],"Transversal":["#4ade80","#166534"],"Autre":["#94a3b8","#334155"]};
+var NT={idea:{n:"Idée",p:"Idées",c:"#9cbcff"},quote:{n:"Citation",p:"Citations",c:"#c4b5ff"},apply:{n:"À appliquer",p:"À appliquer",c:"#4ade80"}};
+var LEIT=[1,3,7,14,30,60];
+lui.pane="books";lui.nf="all";lui.q="";lui.bf="";lui.sel=null;
+function bCards(b){if(!Array.isArray(b.cards))b.cards=[];return b.cards}
+function lcOrder(){
+  var rk={"En cours":0,"À lire":1,"En pause":2,"Lu":3,"Abandonné":4};
+  return state.books.slice().sort(function(a,b){return (rk[a.status]!=null?rk[a.status]:5)-(rk[b.status]!=null?rk[b.status]:5)||(a.order||99)-(b.order||99)});
+}
+function lcSel(){
+  var L=lcOrder();if(!L.length)return null;
+  var s=L.filter(function(b){return b.id===lui.sel})[0];
+  if(!s){s=L[0];lui.sel=s.id}
+  return s;
+}
+function coverHTML(b,on){
+  var c=BCOL[b.pillar]||BCOL.Autre,p=bPct(b),nc=(b.cards||[]).length;
+  return '<button type="button" class="lc-book'+(on?" on":"")+'" data-lc="'+esc(b.id)+'" style="--c1:'+c[0]+';--c2:'+c[1]+'" aria-label="'+esc(b.title)+'">'+
+    '<span class="lc-pil">'+esc(b.pillar||"")+'</span><span class="lc-t">'+esc(b.title)+'</span><span class="lc-a">'+esc(b.author||"")+'</span>'+
+    '<span class="lc-foot"><span>'+esc(b.status)+(nc?' · '+nc+' note'+(nc>1?"s":""):'')+'</span>'+(b.status==="En cours"&&b.pages?'<i style="--p:'+p+'%"></i>':'')+'</span></button>';
+}
+function renderCarousel(){
+  var L=lcOrder(),s=lcSel(),el=$("#lc-track");
+  $("#lc-wrap").hidden=!L.length;
+  if(!L.length){el.innerHTML="";return}
+  el.innerHTML=L.map(function(b){return coverHTML(b,s&&b.id===s.id)}).join("");
+  requestAnimationFrame(function(){lcCenter(false)});
+}
+function lcCenter(smooth){
+  var tr=$("#lc-track"),el=tr&&tr.querySelector('[data-lc="'+(window.CSS&&CSS.escape?CSS.escape(lui.sel||""):lui.sel)+'"]');if(!el||!tr.clientWidth)return;
+  var x=el.offsetLeft+el.offsetWidth/2-tr.clientWidth/2;
+  lcLock=true;tr.scrollTo({left:x,behavior:smooth?"smooth":"auto"});setTimeout(function(){lcLock=false},smooth?450:60);
+}
+var lcLock=false,lcT=null;
+function lcNearest(){
+  var tr=$("#lc-track"),mid=tr.scrollLeft+tr.clientWidth/2,best=null,bd=1e9;
+  tr.querySelectorAll(".lc-book").forEach(function(c){var d=Math.abs(c.offsetLeft+c.offsetWidth/2-mid);if(d<bd){bd=d;best=c}});
+  return best;
+}
+$("#lc-track").addEventListener("scroll",function(){
+  var n=lcNearest();if(!n)return;
+  this.querySelectorAll(".lc-book.on").forEach(function(c){if(c!==n)c.classList.remove("on")});n.classList.add("on");
+  clearTimeout(lcT);lcT=setTimeout(function(){if(lcLock)return;var id=n.dataset.lc;if(id&&id!==lui.sel){lui.sel=id;renderBookDetail()}},140);
+},{passive:true});
+function lcStep(d){
+  var L=lcOrder(),i=L.findIndex(function(b){return b.id===lui.sel});if(i<0)return;
+  var j=Math.max(0,Math.min(L.length-1,i+d));if(j===i)return;
+  lui.sel=L[j].id;$("#lc-track").querySelectorAll(".lc-book").forEach(function(c){c.classList.toggle("on",c.dataset.lc===lui.sel)});
+  lcCenter(true);renderBookDetail();
+}
+$("#lc-prev").addEventListener("click",function(){lcStep(-1)});
+$("#lc-next").addEventListener("click",function(){lcStep(1)});
+$("#lc-track").addEventListener("click",function(e){var c=e.target.closest("[data-lc]");if(!c)return;
+  if(c.dataset.lc===lui.sel){var f=$("#l-fiche");if(f)f.scrollIntoView({behavior:"smooth",block:"start"});return}
+  lui.sel=c.dataset.lc;this.querySelectorAll(".lc-book").forEach(function(x){x.classList.toggle("on",x===c)});lcCenter(true);renderBookDetail()});
+$("#lc-track").addEventListener("keydown",function(e){if(e.key==="ArrowLeft"){e.preventDefault();lcStep(-1)}else if(e.key==="ArrowRight"){e.preventDefault();lcStep(1)}});
+function renderBookDetail(){
+  var b=lcSel(),cur=$("#l-cur"),fi=$("#l-fiche");
+  if(!b){cur.innerHTML='<p class="empty">Ajoute un livre avec le +.</p>';fi.innerHTML="";return}
+  var p=bPct(b),di=bDueInfo(b);
+  var h='<div class="lc-info"><div class="p-title">'+esc(b.title)+'</div><div class="k-lbl" style="margin:2px 0 8px">'+esc([b.author,b.pages?b.pages+" p.":"",b.step?"étape "+b.step+" du Projet 30":""].filter(Boolean).join(" · "))+(di?' · <span class="'+(di.days<=3?"warn":"")+'">Médiathèque : '+esc(di.txt)+'</span>':'')+'</div>';
+  if(b.status==="En cours"){
+    h+='<div class="meter" style="margin:6px 0"><i style="width:'+p+'%;background:linear-gradient(90deg,#5b8cff,#8b5cf6)"></i></div>'+
+      '<div class="heroline"><span>'+(b.pages?'Page '+(b.page||0)+' / '+b.pages+' · '+p+' %':'')+'</span><span class="muted">'+esc(bEta(b))+'</span></div>'+
+      '<div class="btnrow" style="margin-top:10px;align-items:center"><label for="lp-'+esc(b.id)+'" style="flex-direction:row;align-items:center;gap:8px">Page<input id="lp-'+esc(b.id)+'" class="lpage" data-id="'+esc(b.id)+'" inputmode="numeric" value="'+(b.page||"")+'" style="width:80px"></label>'+
+      '<button class="ghost sm" type="button" data-bact="plus" data-n="10" data-id="'+esc(b.id)+'">+10 p.</button><button class="ghost sm" type="button" data-bact="plus" data-n="25" data-id="'+esc(b.id)+'">+25 p.</button><button class="ghost sm" type="button" data-bact="done" data-id="'+esc(b.id)+'">Terminé ✓</button></div>';
+  }else if(b.status==="Lu")h+='<p class="note">Lu'+(b.finished?' le '+esc(fd(b.finished)):'')+(b.rating?' · <span class="lstars">'+"★".repeat(b.rating)+'</span>':'')+'</p>';
+  else h+=(b.why?'<p class="note" style="margin-bottom:10px">'+esc(b.why)+'</p>':'')+'<div class="btnrow"><button class="ghost sm" type="button" data-bact="start" data-id="'+esc(b.id)+'">Commencer ce livre</button></div>';
+  cur.innerHTML=h+'</div>';
+  // fiche
+  var C=bCards(b),f=lui.nf,list=C.filter(function(n){return f==="all"||n.t===f}).slice().sort(function(a,c){return (a.page||1e6)-(c.page||1e6)||(a.date<c.date?-1:1)});
+  var cnt={};C.forEach(function(n){cnt[n.t]=(cnt[n.t]||0)+1});
+  h='<div class="phead"><h3>Fiche de lecture</h3><button class="ghost sm" type="button" id="nq-add">＋ Note</button></div>'+
+    '<label for="lf-sum" class="ai-sec" style="display:block">Résumé en quelques lignes</label><textarea id="lf-sum" data-bid="'+esc(b.id)+'" placeholder="L\'idée centrale du livre, ce que j\'en retiens…" style="font:15px/1.45 var(--body);min-height:90px">'+esc(b.notes||"")+'</textarea>'+
+    '<div class="chips" style="margin:14px 0 6px">'+['all','idea','quote','apply'].map(function(k){return '<button type="button" class="chip'+(f===k?" on":"")+'" data-nf="'+k+'">'+(k==="all"?"Toutes":NT[k].p)+' <span>'+(k==="all"?C.length:(cnt[k]||0))+'</span></button>'}).join("")+'</div>';
+  h+=list.length?list.map(function(n){return noteHTML(n,null)}).join(""):'<p class="empty" style="margin-top:8px">'+(C.length?"Aucune note de ce type.":"Pas encore de note. Touche « ＋ Note » pendant ta lecture : page + idée, 5 secondes.")+'</p>';
+  fi.innerHTML=h;
+}
+function noteHTML(n,b){
+  var T=NT[n.t]||NT.idea;
+  return '<div class="lnote" data-nid="'+esc(n.id)+'"'+(b?' data-nb="'+esc(b.id)+'"':'')+'><div class="lnote-h"><span class="tag" style="color:'+T.c+';margin:0">'+T.n+'</span>'+(n.page?'<span>p. '+n.page+'</span>':'')+(b?'<button type="button" class="lnote-b" data-go-book="'+esc(b.id)+'">'+esc(b.title)+'</button>':'')+'<span class="lnote-acts"><button type="button" class="link" data-nedit="1">Modifier</button><button type="button" class="del" data-ndel="1" aria-label="Supprimer la note">×</button></span></div>'+
+    '<div class="lnote-t'+(n.t==="quote"?" q":"")+'">'+esc(n.text)+'</div></div>';
+}
+var sumT=null;
+$("#l-fiche").addEventListener("input",function(e){if(e.target.id!=="lf-sum")return;var el=e.target,b=bkFind(el.dataset.bid);if(!b)return;clearTimeout(sumT);sumT=setTimeout(function(){b.notes=el.value;persist("books")},500)});
+function noteFind(nid,bid){var bs=bid?[bkFind(bid)]:state.books;for(var i=0;i<bs.length;i++){var b=bs[i];if(!b)continue;var C=b.cards||[];for(var j=0;j<C.length;j++)if(C[j].id===nid)return {b:b,n:C[j],i:j}}return null}
+function noteClick(e,ctxBook){
+  var nf=e.target.closest("[data-nf]");if(nf){lui.nf=nf.dataset.nf;ctxBook?renderBookDetail():renderAllNotes();return true}
+  var gb=e.target.closest("[data-go-book]");if(gb){lui.sel=gb.dataset.goBook;setLibPane("books");return true}
+  var row=e.target.closest(".lnote");if(!row)return false;
+  var F=noteFind(row.dataset.nid,row.dataset.nb||(ctxBook&&lui.sel));if(!F)return true;
+  if(e.target.closest("[data-ndel]")){F.b.cards.splice(F.i,1);persist("books");rerenderNotes();toast("Note supprimée",function(){F.b.cards.splice(F.i,0,F.n);persist("books");rerenderNotes()});return true}
+  if(e.target.closest("[data-nedit]")){nqOpen(F.b.id,F.n);return true}
+  return true;
+}
+function rerenderNotes(){renderBookDetail();renderAllNotes();renderCarousel();renderHome()}
+$("#l-fiche").addEventListener("click",function(e){if(e.target.id==="nq-add"){nqOpen(lui.sel,null);return}noteClick(e,true)});
+// page globale
+function setLibPane(p){
+  lui.pane=p;document.querySelectorAll("#lnav button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.lp===p?"true":"false")});
+  $("#lp-books").hidden=p!=="books";$("#lp-notes").hidden=p!=="notes";
+  if(p==="books"){renderCarousel();renderBookDetail()}else renderAllNotes();
+}
+$("#lnav").addEventListener("click",function(e){var b=e.target.closest("[data-lp]");if(b)setLibPane(b.dataset.lp)});
+function renderAllNotes(){
+  if(!$("#l-all"))return;
+  var q=normQ(lui.q),f=lui.nf,bf=lui.bf,all=[],cnt={idea:0,quote:0,apply:0};
+  state.books.forEach(function(b){(b.cards||[]).forEach(function(n){all.push({b:b,n:n})})});
+  all.forEach(function(o){cnt[o.n.t]=(cnt[o.n.t]||0)+1});
+  var L=all.filter(function(o){return (f==="all"||o.n.t===f)&&(!bf||o.b.id===bf)&&(!q||normQ(o.n.text+" "+o.b.title+" "+(o.b.author||"")).indexOf(q)>=0)});
+  L.sort(function(a,c){return a.n.date<c.n.date?1:a.n.date>c.n.date?-1:0});
+  var due=revDue().length;
+  var bsel=state.books.filter(function(b){return (b.cards||[]).length});
+  $("#l-all-head").innerHTML='<div class="tiles" style="grid-template-columns:repeat(4,1fr)"><div class="tile"><small>Notes</small><b>'+all.length+'</b></div><div class="tile"><small>Idées</small><b>'+cnt.idea+'</b></div><div class="tile"><small>Citations</small><b>'+cnt.quote+'</b></div><div class="tile"><small>À appliquer</small><b class="good">'+cnt.apply+'</b></div></div>'+
+    (all.length?'<button class="ghost" type="button" id="rv-open-btn" style="width:100%;margin-top:12px">'+(due?"Réviser mes notes · "+due+" à revoir aujourd'hui":"Révision du jour terminée ✓")+'</button>':'');
+  $("#l-all-tools").innerHTML='<input id="ln-q" type="search" placeholder="Rechercher dans toutes mes notes…" autocomplete="off" aria-label="Rechercher dans les notes" value="'+esc(lui.q)+'">'+
+    '<select id="ln-b" aria-label="Filtrer par livre"><option value="">Tous les livres</option>'+bsel.map(function(b){return '<option value="'+esc(b.id)+'"'+(bf===b.id?" selected":"")+'>'+esc(b.title)+' ('+b.cards.length+')</option>'}).join("")+'</select>'+
+    '<div class="chips">'+['all','idea','quote','apply'].map(function(k){return '<button type="button" class="chip'+(f===k?" on":"")+'" data-nf="'+k+'">'+(k==="all"?"Toutes":NT[k].p)+'</button>'}).join("")+'</div>';
+  $("#l-all").innerHTML=L.length?L.slice(0,300).map(function(o){return noteHTML(o.n,o.b)}).join(""):'<p class="empty">'+(all.length?"Aucune note ne correspond.":"Tes notes de tous les livres apparaîtront ici.")+'</p>';
+}
+$("#l-all-tools").addEventListener("input",function(e){if(e.target.id!=="ln-q")return;lui.q=e.target.value;clearTimeout(sumT);sumT=setTimeout(function(){var pos=e.target.selectionStart;renderAllNotes();var i=$("#ln-q");i.focus();try{i.setSelectionRange(pos,pos)}catch(x){}},200)});
+$("#l-all-tools").addEventListener("change",function(e){if(e.target.id==="ln-b"){lui.bf=e.target.value;renderAllNotes()}});
+$("#l-all-tools").addEventListener("click",function(e){noteClick(e,false)});
+$("#l-all").addEventListener("click",function(e){noteClick(e,false)});
+$("#l-all-head").addEventListener("click",function(e){if(e.target.id==="rv-open-btn")rvOpen()});
+// dialogue note
+var nqDlg=$("#nq-dialog"),nq={bid:null,n:null,t:"idea"};
+function nqType(t){nq.t=t;document.querySelectorAll("#nq-type button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.t===t?"true":"false")});$("#nq-text").placeholder=t==="quote"?"Le passage exact, entre guillemets inutiles":t==="apply"?"Comment je l'applique : Boulanger, une marque, le Projet 30…":"L'idée en une ou deux phrases, avec tes mots"}
+$("#nq-type").addEventListener("click",function(e){var b=e.target.closest("[data-t]");if(b)nqType(b.dataset.t)});
+function nqOpen(bid,n){
+  if(!state.books.length){toast("Ajoute d'abord un livre.");return}
+  var cur=state.books.filter(function(b){return b.status==="En cours"})[0];
+  bid=bid||(cur&&cur.id)||lui.sel||state.books[0].id;
+  nq.bid=bid;nq.n=n||null;
+  $("#nq-h").textContent=n?"Modifier la note":"Nouvelle note de lecture";
+  $("#nq-book").innerHTML=lcOrder().map(function(b){return '<option value="'+esc(b.id)+'">'+esc(b.title)+'</option>'}).join("");$("#nq-book").value=bid;
+  var b=bkFind(bid);
+  $("#nq-page").value=n?(n.page||""):(b&&b.status==="En cours"&&b.page?b.page:"");
+  $("#nq-text").value=n?n.text:"";nqType(n?n.t:"idea");
+  if(nqDlg.showModal)nqDlg.showModal();else nqDlg.setAttribute("open","");
+  setTimeout(function(){$("#nq-text").focus()},30);
+}
+function nqClose(){if(nqDlg.close)nqDlg.close();else nqDlg.removeAttribute("open")}
+$("#nq-close").addEventListener("click",nqClose);
+nqDlg.addEventListener("click",function(e){if(e.target!==nqDlg)return;var r=nqDlg.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)nqClose()});
+$("#nq-book").addEventListener("change",function(){var b=bkFind(this.value);if(!nq.n&&b&&b.status==="En cours"&&b.page)$("#nq-page").value=b.page});
+$("#nq-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  var txt=$("#nq-text").value.trim();if(!txt){flash("#nq-text");return}
+  var b=bkFind($("#nq-book").value);if(!b)return;
+  var pg=Math.round(num($("#nq-page").value)),page=pg>0?pg:null;
+  if(nq.n){
+    var F=noteFind(nq.n.id);if(F){F.n.text=txt;F.n.t=nq.t;F.n.page=page;if(F.b!==b){F.b.cards.splice(F.i,1);bCards(b).push(F.n)}}
+  }else{
+    bCards(b).push({id:newId(),t:nq.t,text:txt,page:page,date:today(),box:1,next:addDays(today(),1)});
+    if(page&&b.status==="En cours"&&(!b.page||page>b.page)&&(!b.pages||page<=b.pages))b.page=page;
+  }
+  persist("books");nqClose();lui.sel=b.id;rerenderNotes();renderLib();toast(nq.n?"Note modifiée":"Note ajoutée à « "+b.title+" »");
+});
+// révision espacée
+function revDue(){
+  var t=today(),L=[];
+  state.books.forEach(function(b){(b.cards||[]).forEach(function(n){if((n.next||n.date)<=t)L.push({b:b,n:n})})});
+  L.sort(function(a,c){return (a.n.next||"")<(c.n.next||"")?-1:1});
+  var done=(state.settings.revDone&&state.settings.revDone.d===t)?state.settings.revDone.n:0;
+  return L.slice(0,Math.max(0,5-done));
+}
+var rvDlg=$("#rv-dialog"),rv={list:[],i:0,show:false};
+function rvOpen(){rv.list=revDue();rv.i=0;rv.show=false;rvRender();if(rvDlg.showModal)rvDlg.showModal();else rvDlg.setAttribute("open","")}
+function rvRender(){
+  var o=rv.list[rv.i],el=$("#rvw-body");
+  if(!o){el.innerHTML='<p style="font-size:1.05rem;margin:6px 0 14px">Révision du jour terminée ✓</p><p class="note">Les notes reviennent de plus en plus espacées : 1 jour, 3 jours, 1 semaine, 2 semaines, 1 mois… tant que tu t\'en souviens.</p><button class="primary" type="button" data-rv="close" style="width:100%;margin-top:14px">Fermer</button>';return}
+  var T=NT[o.n.t]||NT.idea,c=BCOL[o.b.pillar]||BCOL.Autre;
+  el.innerHTML='<div class="note" style="margin-bottom:8px">'+(rv.i+1)+' / '+rv.list.length+'</div>'+
+    '<div class="rv-card" style="--c1:'+c[0]+'"><div class="lnote-h"><span class="tag" style="color:'+T.c+';margin:0">'+T.n+'</span><span>'+esc(o.b.title)+(o.n.page?' · p. '+o.n.page:'')+'</span></div>'+
+    '<div class="lnote-t'+(o.n.t==="quote"?" q":"")+'" style="font-size:1.05rem">'+esc(o.n.text)+'</div></div>'+
+    '<p class="note" style="margin:12px 0">Relis-la, et demande-toi comment tu l\'utiliserais aujourd\'hui.</p>'+
+    '<div class="btnrow" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="ghost" type="button" data-rv="again">À revoir demain</button><button class="primary" type="button" data-rv="ok">Je la retiens ✓</button></div>';
+}
+rvDlg.addEventListener("click",function(e){
+  var b=e.target.closest("[data-rv]");
+  if(!b){if(e.target===rvDlg){var r=rvDlg.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)rvDlg.close()}return}
+  if(b.dataset.rv==="close"){rvDlg.close();return}
+  var o=rv.list[rv.i];if(!o)return;
+  if(b.dataset.rv==="ok"){o.n.box=Math.min(LEIT.length,(o.n.box||1)+1)}else o.n.box=1;
+  o.n.next=addDays(today(),LEIT[(o.n.box||1)-1]);
+  var t=today(),rd=state.settings.revDone&&state.settings.revDone.d===t?state.settings.revDone:{d:t,n:0};rd.n++;state.settings.revDone=rd;
+  persist("books");persist("settings");rv.i++;rvRender();
+});
+$("#rv-close2").addEventListener("click",function(){rvDlg.close()});
+rvDlg.addEventListener("close",function(){renderHome();if(lui.pane==="notes")renderAllNotes()});
+$("#l-note-btn").addEventListener("click",function(){nqOpen(lui.pane==="books"?lui.sel:null,null)});
 /* ---------- conseil IA (copier vers Claude) ---------- */
 var AIS={all:"Tout",fin:"Finances",body:"Corps",job:"Candidatures",p30:"Projet 30 et lecture",plan:"Planning"};
 var AIQ={
@@ -3751,6 +3989,9 @@ function aiP30(){
   var B=state.books;if(B.length){var lu=B.filter(function(b){return b.status==="Lu"});
     L.push("- Livres : "+lu.length+"/"+B.length+" lus"+(lu.length?" ("+lu.map(function(b){return b.title}).join(", ")+")":""));
     B.filter(function(b){return b.status==="En cours"}).forEach(function(b){L.push("- En cours de lecture : "+b.title+(b.author?" ("+b.author+")":"")+(b.pages?", page "+(b.page||0)+"/"+b.pages:""))})}
+  var NN=[];state.books.forEach(function(b){(b.cards||[]).forEach(function(n){NN.push({b:b,n:n})})});
+  if(NN.length){NN.sort(function(a,c){return a.n.date<c.n.date?1:-1});L.push("- Mes notes de lecture ("+NN.length+" au total), les plus récentes :");
+    NN.slice(0,15).forEach(function(o){L.push("  - ["+(NT[o.n.t]||NT.idea).n+"] "+o.b.title+(o.n.page?" p. "+o.n.page:"")+" : "+o.n.text.replace(/\s+/g," ").slice(0,300))})}
   if(L.length===1)L.push("- Aucune donnée pour l'instant");
   return L.join("\n");
 }
