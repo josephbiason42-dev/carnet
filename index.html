@@ -226,9 +226,11 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .l-cur{padding:4px 0 14px; border-bottom:1px solid var(--line); margin-bottom:12px}
 .lnav{grid-template-columns:1fr 1fr; margin:12px 0 14px}
 #c-scan{margin-top:10px}
-.ff-vid{position:relative; margin-top:12px; border-radius:14px; overflow:hidden; background:#000; aspect-ratio:4/3}
+.ff-vid{position:relative; margin-top:12px; border-radius:16px; overflow:hidden; background:#000; height:min(62vh,520px)}
 .ff-vid video{width:100%; height:100%; object-fit:cover; display:block}
-.ff-vid i{position:absolute; left:12%; right:12%; top:42%; height:16%; border:2px solid rgba(74,222,128,.9); border-radius:10px; box-shadow:0 0 0 999px rgba(0,0,0,.35)}
+.ff-vid i{position:absolute; left:6%; right:6%; top:28%; height:44%; border:3px solid rgba(74,222,128,.95); border-radius:14px; box-shadow:0 0 0 999px rgba(0,0,0,.28)}
+.ff-vid i::after{content:""; position:absolute; left:4%; right:4%; top:50%; height:2px; background:rgba(248,113,113,.85); box-shadow:0 0 8px rgba(248,113,113,.8)}
+#ff-dialog{width:min(560px, calc(100vw - 16px)); padding:18px}
 .ff-item{all:unset; box-sizing:border-box; width:100%; cursor:pointer; display:flex; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px solid var(--line)}
 .ff-item small{display:block; color:var(--muted); font-size:.76rem}
 .ff-item .num{text-align:right; white-space:nowrap; font-family:var(--mono)}
