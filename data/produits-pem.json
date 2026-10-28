@@ -1,0 +1,993 @@
+{
+"app": "carnet-joseph",
+"kind": "products",
+"updated": "2026-10",
+"items": [
+{
+"id": "p001",
+"cat": "aspi",
+"brand": "Dyson",
+"model": "V16 Piston Animal",
+"price": 699,
+"specs": {
+"type": "Balai sans fil",
+"autonomie": 70,
+"puissance": "315 AW",
+"poids": 3.4,
+"bac": 1.35,
+"hepa": "oui",
+"animaux": "oui",
+"station": "non"
+},
+"args": [
+"Le balai le plus puissant de Dyson : 315 AW",
+"Brosse à cônes auto-démêlante : cheveux et poils ne s'enroulent pas",
+"Jusqu'à 70 min d'autonomie : grands logements",
+"Filtration HEPA : idéal allergies"
+],
+"obj": "Prix élevé → comparer avec Gen5detect ou V15 ; poids 3,4 kg → montrer la prise en main en version aspirateur à main",
+"acc": "",
+"seed": true
+},
+{
+"id": "p002",
+"cat": "aspi",
+"brand": "Dyson",
+"model": "V16 Piston Animal Submarine",
+"price": 849,
+"specs": {
+"type": "Balai sans fil",
+"autonomie": 70,
+"puissance": "315 AW",
+"poids": 3.4,
+"bac": 1.35,
+"hepa": "oui",
+"animaux": "oui",
+"station": "non"
+},
+"args": [
+"Même base que le V16 + rouleau laveur Submarine : aspire et lave les sols durs",
+"Une seule machine au lieu d'un balai + un laveur"
+],
+"obj": "Si le client a surtout des tapis, la version sans Submarine suffit (150 € de moins)",
+"acc": "",
+"seed": true
+},
+{
+"id": "p003",
+"cat": "aspi",
+"brand": "Dyson",
+"model": "Gen5detect",
+"price": 765,
+"specs": {
+"type": "Balai sans fil",
+"autonomie": 70,
+"puissance": "262 AW",
+"hepa": "oui",
+"animaux": "oui",
+"station": "non"
+},
+"args": [
+"Éclairage des poussières et capteur qui compte les particules",
+"Écran qui affiche ce qui est aspiré : argument « hygiène »",
+"Alternative premium au V16"
+],
+"obj": "Autonomie réduite en puissance max : expliquer le mode auto qui ajuste la puissance",
+"acc": "",
+"seed": true
+},
+{
+"id": "p004",
+"cat": "aspi",
+"brand": "Dyson",
+"model": "V15 Detect Fluffy",
+"price": 549,
+"specs": {
+"type": "Balai sans fil",
+"autonomie": 60,
+"puissance": "230 AW",
+"hepa": "oui",
+"animaux": "oui",
+"station": "non"
+},
+"args": [
+"Laser qui révèle la poussière invisible sur sols durs",
+"Capteur piézo qui adapte la puissance",
+"Le bon compromis prix / technologie Dyson"
+],
+"obj": "Gâchette à maintenir sur certains modèles : vérifier la version",
+"acc": "",
+"seed": true
+},
+{
+"id": "p005",
+"cat": "aspi",
+"brand": "Dyson",
+"model": "V8 Cyclone",
+"price": 299,
+"specs": {
+"type": "Balai sans fil",
+"autonomie": 60,
+"puissance": "150 AW",
+"hepa": "oui",
+"animaux": "oui",
+"station": "non"
+},
+"args": [
+"L'entrée de gamme Dyson : marque premium à moins de 300 €",
+"Batterie amovible",
+"Léger et maniable pour un appartement"
+],
+"obj": "Moins puissant que les V15/V16 : à orienter vers un petit logement",
+"acc": "",
+"seed": true
+},
+{
+"id": "p006",
+"cat": "aspi",
+"brand": "Rowenta",
+"model": "X-Force Flex 12.60 Aqua",
+"price": null,
+"specs": {
+"type": "Balai sans fil",
+"autonomie": 45,
+"hepa": "non",
+"animaux": "oui",
+"station": "non"
+},
+"args": [
+"Tube Flex qui se plie : aspire sous les meubles sans se baisser",
+"Fonction lavage Aqua",
+"Marque française du groupe SEB, pièces disponibles longtemps"
+],
+"obj": "Autonomie très réduite en puissance max (environ 5 min)",
+"acc": "",
+"seed": true
+},
+{
+"id": "p007",
+"cat": "aspi",
+"brand": "Rowenta",
+"model": "X-Pert 6.60",
+"price": 160,
+"specs": {
+"type": "Balai sans fil",
+"hepa": "non",
+"animaux": "non",
+"station": "non"
+},
+"args": [
+"Petit prix pour un balai sans fil de marque",
+"Léger, idéal en complément d'un traîneau ou pour un studio"
+],
+"obj": "Pas pour une grande maison ou beaucoup de tapis",
+"acc": "",
+"seed": true
+},
+{
+"id": "p008",
+"cat": "aspi",
+"brand": "Samsung",
+"model": "Jet 85 Pet",
+"price": null,
+"specs": {
+"type": "Balai sans fil",
+"animaux": "oui",
+"station": "non"
+},
+"args": [
+"Pensé pour les poils d'animaux",
+"Bonne polyvalence multisurface"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p009",
+"cat": "aspi",
+"brand": "Ecovacs",
+"model": "Deebot T90 Pro Omni",
+"price": 549,
+"specs": {
+"type": "Robot laveur",
+"puissance": "30 000 Pa",
+"animaux": "oui",
+"station": "oui"
+},
+"args": [
+"Lavage par rouleau : meilleur résultat qu'une serpillière qui tourne",
+"Navigation laser (LiDAR)",
+"Très bon rapport qualité/prix pour un robot avec station"
+],
+"obj": "Prévoir la place de la station et l'entretien (sacs, eau)",
+"acc": "",
+"seed": true
+},
+{
+"id": "p010",
+"cat": "aspi",
+"brand": "Roborock",
+"model": "Saros 10R",
+"price": null,
+"specs": {
+"type": "Robot laveur",
+"animaux": "oui",
+"station": "oui"
+},
+"args": [
+"Haut de gamme Roborock, très bien noté en tests",
+"Station qui vide, lave et sèche les serpillières"
+],
+"obj": "Prix élevé : comparer avec Qrevo ou Deebot",
+"acc": "",
+"seed": true
+},
+{
+"id": "p011",
+"cat": "aspi",
+"brand": "Roborock",
+"model": "Saros Z70",
+"price": null,
+"specs": {
+"type": "Robot laveur",
+"animaux": "oui",
+"station": "oui"
+},
+"args": [
+"Bras mécanique rétractable qui ramasse les petits objets au sol",
+"Effet « waouh » en démonstration"
+],
+"obj": "Prix très élevé : produit vitrine",
+"acc": "",
+"seed": true
+},
+{
+"id": "p012",
+"cat": "aspi",
+"brand": "Roborock",
+"model": "Qrevo Curv 2 Pro",
+"price": null,
+"specs": {
+"type": "Robot laveur",
+"animaux": "oui",
+"station": "oui"
+},
+"args": [
+"Station complète, milieu-haut de gamme",
+"Bonne alternative au Saros"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p013",
+"cat": "aspi",
+"brand": "Dreame",
+"model": "L40s Pro Ultra",
+"price": null,
+"specs": {
+"type": "Robot laveur",
+"animaux": "oui",
+"station": "oui"
+},
+"args": [
+"Très apprécié des clients",
+"Station tout-en-un"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p014",
+"cat": "cafe",
+"brand": "De'Longhi",
+"model": "Magnifica S ECAM22.110.B",
+"price": 315,
+"specs": {
+"type": "Grain automatique",
+"lait": "Buse vapeur",
+"pression": 15,
+"reservoir": 1.8,
+"puissance": 1450
+},
+"args": [
+"La machine à grain la plus vendue : fiable et simple",
+"Café fraîchement moulu : bien meilleur et moins cher à la tasse que les capsules",
+"Buse vapeur pour cappuccino"
+],
+"obj": "Lait manuel avec la buse : si le client veut du latte en une touche → Eletta ou LatteGo",
+"acc": "",
+"seed": true
+},
+{
+"id": "p015",
+"cat": "cafe",
+"brand": "De'Longhi",
+"model": "Eletta Explore ECAM450.65.G",
+"price": null,
+"specs": {
+"type": "Grain automatique",
+"lait": "Automatique"
+},
+"args": [
+"Boissons chaudes ET froides (cold brew, lait froid)",
+"Lait automatique en une touche",
+"Très polyvalente : idéale famille"
+],
+"obj": "Plus encombrante et plus chère",
+"acc": "",
+"seed": true
+},
+{
+"id": "p016",
+"cat": "cafe",
+"brand": "Philips",
+"model": "Série 5400 LatteGo",
+"price": null,
+"specs": {
+"type": "Grain automatique",
+"lait": "Automatique"
+},
+"args": [
+"Système LatteGo : 2 pièces, sans tuyau, se rince en 10 secondes",
+"Profils utilisateurs, nombreuses recettes"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p017",
+"cat": "cafe",
+"brand": "Philips",
+"model": "Série 2200 LatteGo",
+"price": null,
+"specs": {
+"type": "Grain automatique",
+"lait": "Automatique"
+},
+"args": [
+"Le lait automatique LatteGo au prix d'entrée de gamme",
+"Nettoyage du lait le plus simple du marché"
+],
+"obj": "Moins de boissons que la 5400",
+"acc": "",
+"seed": true
+},
+{
+"id": "p018",
+"cat": "cafe",
+"brand": "Saeco",
+"model": "GranAroma",
+"price": null,
+"specs": {
+"type": "Grain automatique",
+"lait": "Automatique"
+},
+"args": [
+"Haut de gamme, finitions premium",
+"Large choix de boissons personnalisables"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p019",
+"cat": "cafe",
+"brand": "De'Longhi",
+"model": "Nespresso Citiz & Milk EN267",
+"price": null,
+"specs": {
+"type": "Capsules",
+"lait": "Mousseur"
+},
+"args": [
+"Compacte et design",
+"Mousseur Aeroccino inclus pour le lait"
+],
+"obj": "Coût à la tasse plus élevé que le grain : à mentionner si gros consommateur",
+"acc": "",
+"seed": true
+},
+{
+"id": "p020",
+"cat": "cafe",
+"brand": "Philips",
+"model": "L'OR Barista LM8012",
+"price": 85,
+"specs": {
+"type": "Capsules",
+"lait": "Non"
+},
+"args": [
+"Fait 1 ou 2 cafés en même temps (double capsule)",
+"Compatible capsules L'OR et Nespresso Original"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p021",
+"cat": "cuis",
+"brand": "Vorwerk",
+"model": "Thermomix TM7",
+"price": null,
+"specs": {
+"type": "Robot cuiseur",
+"connecte": "oui"
+},
+"args": [
+"Référence du marché, énorme base de recettes Cookidoo"
+],
+"obj": "⚠ Vendu par Vorwerk en direct, pas chez Boulanger : savoir le comparer à Magimix Cook Expert et Moulinex Companion",
+"acc": "",
+"seed": true
+},
+{
+"id": "p022",
+"cat": "cuis",
+"brand": "Magimix",
+"model": "Cook Expert",
+"price": 1000,
+"specs": {
+"type": "Robot cuiseur",
+"capacite": 3.5,
+"temp": 140,
+"balance": "non"
+},
+"args": [
+"Concurrent n°1 du Thermomix, fabriqué en France",
+"Robot multifonction complet : râpe, découpe, pétrit et cuit",
+"Moteur garanti 30 ans"
+],
+"obj": "Pas de balance intégrée",
+"acc": "",
+"seed": true
+},
+{
+"id": "p023",
+"cat": "cuis",
+"brand": "Moulinex",
+"model": "Companion XL",
+"price": 600,
+"specs": {
+"type": "Robot cuiseur",
+"capacite": 4.5,
+"temp": 130,
+"balance": "non"
+},
+"args": [
+"Grande capacité 4,5 L : familles",
+"Bien noté face au Thermomix en tests, pour bien moins cher"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p024",
+"cat": "cuis",
+"brand": "Moulinex",
+"model": "i-Companion Touch XL",
+"price": null,
+"specs": {
+"type": "Robot cuiseur",
+"connecte": "oui"
+},
+"args": [
+"Version connectée à écran tactile, recettes guidées"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p025",
+"cat": "cuis",
+"brand": "Moulinex",
+"model": "Cookeo Infinity",
+"price": 449,
+"specs": {
+"type": "Multicuiseur",
+"capacite": 4.3,
+"connecte": "oui"
+},
+"args": [
+"20 modes de cuisson + fonction airfryer intégrée",
+"Cuisson rapide sous pression"
+],
+"obj": "Ne mixe pas : si le client veut hacher/mixer → robot cuiseur",
+"acc": "",
+"seed": true
+},
+{
+"id": "p026",
+"cat": "cuis",
+"brand": "Moulinex",
+"model": "Cookeo Touch Wifi",
+"price": null,
+"specs": {
+"type": "Multicuiseur",
+"connecte": "oui"
+},
+"args": [
+"Recettes guidées sur écran tactile",
+"Le multicuiseur le plus connu"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p027",
+"cat": "cuis",
+"brand": "Kenwood",
+"model": "Cooking Chef XL",
+"price": 1300,
+"specs": {
+"type": "Robot pâtissier",
+"capacite": 6.7,
+"temp": 180,
+"balance": "oui"
+},
+"args": [
+"Robot pâtissier qui cuit jusqu'à 180 °C",
+"Très grande capacité, balance intégrée"
+],
+"obj": "Encombrant et lourd",
+"acc": "",
+"seed": true
+},
+{
+"id": "p028",
+"cat": "air",
+"brand": "Ninja",
+"model": "Foodi FlexDrawer AF500EU",
+"price": 165,
+"specs": {
+"capacite": 10.4,
+"tiroirs": "1 tiroir modulable"
+},
+"args": [
+"Grand tiroir de 10,4 L séparable en 2 zones",
+"Cuit un poulet entier ou deux plats différents"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p029",
+"cat": "air",
+"brand": "Ninja",
+"model": "Double Stack",
+"price": null,
+"specs": {
+"tiroirs": "2 superposés"
+},
+"args": [
+"Deux tiroirs superposés : grande capacité sur peu de place au plan de travail"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p030",
+"cat": "air",
+"brand": "Ninja",
+"model": "Air Fryer MAX PRO",
+"price": 110,
+"specs": {
+"capacite": 6.2,
+"tiroirs": "1"
+},
+"args": [
+"Un tiroir de 6,2 L : famille de 4",
+"Cuisson rapide et homogène"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p031",
+"cat": "air",
+"brand": "Ninja",
+"model": "CRISPi portable 4-en-1",
+"price": 109,
+"specs": {
+"capacite": 3.8,
+"tiroirs": "1"
+},
+"args": [
+"Cuve en verre : on voit la cuisson et on sert directement",
+"Compact, 1 à 3 personnes"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p032",
+"cat": "air",
+"brand": "Moulinex",
+"model": "Easy Fry Mega",
+"price": 70,
+"specs": {
+"capacite": 7.5,
+"tiroirs": "1"
+},
+"args": [
+"7,5 L pour moins de 80 € : jusqu'à 8 personnes",
+"Marque française"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p033",
+"cat": "air",
+"brand": "Moulinex",
+"model": "Dual Easy Fry & Grill",
+"price": null,
+"specs": {
+"tiroirs": "2"
+},
+"args": [
+"Deux tiroirs + fonction grill",
+"Très bien noté en tests"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p034",
+"cat": "air",
+"brand": "Philips",
+"model": "Airfryer 2000 NA230/00",
+"price": 71,
+"specs": {
+"capacite": 6.2,
+"tiroirs": "1",
+"puissance": 1700
+},
+"args": [
+"Petit prix, marque pionnière de l'airfryer",
+"Compact pour petites familles"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p035",
+"cat": "air",
+"brand": "Philips",
+"model": "Airfryer Série 3000 NA352",
+"price": 137,
+"specs": {
+"capacite": 9,
+"tiroirs": "2"
+},
+"args": [
+"Deux paniers indépendants (9 L au total) : deux températures en même temps"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p036",
+"cat": "air",
+"brand": "Bosch",
+"model": "Série 6 XXL MAF671C0",
+"price": 129,
+"specs": {
+"capacite": 7.2,
+"tiroirs": "1"
+},
+"args": [
+"Grande capacité 7,2 L, 7 programmes"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p037",
+"cat": "linge",
+"brand": "Calor",
+"model": "Pro Express Ultimate II",
+"price": 270,
+"specs": {
+"type": "Centrale vapeur",
+"pression": 7.5
+},
+"args": [
+"Haute pression et grand réservoir : idéal gros volumes de linge",
+"Marque de référence du repassage"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p038",
+"cat": "linge",
+"brand": "Calor",
+"model": "Pro Express Protect GV9223",
+"price": null,
+"specs": {
+"type": "Centrale vapeur",
+"pression": 7.3,
+"pressing": 480,
+"reservoir": 1.6,
+"sansreglage": "oui"
+},
+"args": [
+"Sans réglage : zéro risque de brûler un vêtement",
+"Protection anti-calcaire"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p039",
+"cat": "linge",
+"brand": "Calor",
+"model": "Pro Express Vision GV9810",
+"price": null,
+"specs": {
+"type": "Centrale vapeur",
+"pression": 8.3,
+"pressing": 680,
+"reservoir": 1.1
+},
+"args": [
+"3 000 W, coup de vapeur 680 g/min : très puissante",
+"Haut de gamme Calor"
+],
+"obj": "Réservoir plus petit (1,1 L)",
+"acc": "",
+"seed": true
+},
+{
+"id": "p040",
+"cat": "linge",
+"brand": "Calor",
+"model": "Pro Express Ultimate Pure GV9610",
+"price": null,
+"specs": {
+"type": "Centrale vapeur",
+"pression": 8,
+"pressing": 650,
+"reservoir": 1.9
+},
+"args": [
+"Grand réservoir 1,9 L : autonomie illimitée avec remplissage en continu",
+"Semelle Durilium AirGlide Autoclean"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p041",
+"cat": "linge",
+"brand": "Philips",
+"model": "PerfectCare Elite Plus GC9682/80",
+"price": null,
+"specs": {
+"type": "Centrale vapeur",
+"pressing": 440,
+"sansreglage": "oui"
+},
+"args": [
+"Sans réglage (OptimalTEMP) : tous les tissus sans trier",
+"Prête en moins d'une minute"
+],
+"obj": "Pas d'enrouleur de cordon",
+"acc": "",
+"seed": true
+},
+{
+"id": "p042",
+"cat": "linge",
+"brand": "Philips",
+"model": "PerfectCare 7000 GC7844/20",
+"price": null,
+"specs": {
+"type": "Centrale vapeur",
+"pression": 6.5,
+"pressing": 400,
+"sansreglage": "oui"
+},
+"args": [
+"Compacte : se range facilement",
+"Sans réglage"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p043",
+"cat": "linge",
+"brand": "Philips",
+"model": "PerfectCare 9000 PSG9030",
+"price": null,
+"specs": {
+"type": "Centrale vapeur",
+"sansreglage": "oui"
+},
+"args": [
+"Caméra intégrée qui reconnaît le tissu et adapte la vapeur"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p044",
+"cat": "linge",
+"brand": "Rowenta",
+"model": "Silence Steam Pro",
+"price": 281,
+"specs": {
+"type": "Centrale vapeur"
+},
+"args": [
+"Très silencieuse : repasser devant la TV ou le soir"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p045",
+"cat": "beaute",
+"brand": "Dyson",
+"model": "Supersonic Nural HD16",
+"price": 449,
+"specs": {
+"type": "Sèche-cheveux",
+"puissance": 1600
+},
+"args": [
+"Capteur qui baisse la chaleur près du cuir chevelu",
+"Mémorise les réglages selon l'embout",
+"Moteur numérique très léger"
+],
+"obj": "Prix : rappeler la durabilité et la protection du cheveu",
+"acc": "",
+"seed": true
+},
+{
+"id": "p046",
+"cat": "beaute",
+"brand": "Dyson",
+"model": "Supersonic HD07",
+"price": 420,
+"specs": {
+"type": "Sèche-cheveux",
+"puissance": 1600
+},
+"args": [
+"Le Supersonic classique : séchage rapide, contrôle de la chaleur"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p047",
+"cat": "beaute",
+"brand": "Dyson",
+"model": "Airwrap i.d.",
+"price": null,
+"specs": {
+"type": "Multi-styler"
+},
+"args": [
+"Boucle et lisse sans chaleur extrême (effet Coanda)",
+"Connecté : réglages personnalisés"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p048",
+"cat": "beaute",
+"brand": "Shark",
+"model": "SpeedStyle Pro FLEX 4-en-1 HD542EU",
+"price": 187,
+"specs": {
+"type": "Sèche-cheveux"
+},
+"args": [
+"4 embouts, alternative au Dyson à moins de 200 €"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p049",
+"cat": "beaute",
+"brand": "Shark",
+"model": "FlexStyle",
+"price": null,
+"specs": {
+"type": "Multi-styler"
+},
+"args": [
+"Sèche-cheveux qui se plie en multi-styler",
+"L'alternative au Dyson Airwrap la plus vendue"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p050",
+"cat": "beaute",
+"brand": "Philips",
+"model": "5000 Series ThermoProtect BHD358",
+"price": null,
+"specs": {
+"type": "Sèche-cheveux",
+"puissance": 2300
+},
+"args": [
+"Ionique, température uniforme : cheveux fins ou colorés",
+"Bon prix"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p051",
+"cat": "beaute",
+"brand": "Braun",
+"model": "Satin Hair 7 IONTEC",
+"price": null,
+"specs": {
+"type": "Sèche-cheveux"
+},
+"args": [
+"Ionique, bon rapport qualité/prix"
+],
+"obj": "",
+"acc": "",
+"seed": true
+},
+{
+"id": "p052",
+"cat": "beaute",
+"brand": "Philips",
+"model": "OneBlade",
+"price": null,
+"specs": {
+"type": "Rasoir / tondeuse"
+},
+"args": [
+"Rase, taille et dessine la barbe avec une seule lame",
+"Lames remplaçables : penser aux recharges"
+],
+"obj": "",
+"acc": "",
+"seed": true
+}
+]
+}
