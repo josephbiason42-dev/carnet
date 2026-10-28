@@ -1,5 +1,5 @@
 // Garde l'appli disponible hors ligne. Les données passent par l'appli, pas par ce fichier.
-const CACHE = "carnet-v23";
+const CACHE = "carnet-v24";
 const FILES = ["./", "./index.html", "./config.js", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener("activate", e => {

@@ -1482,7 +1482,6 @@ function renderFin(){
     if(pendOut)h+='<div><span>Récurrentes à venir</span><span>− '+eur.format(pendOut)+'</span></div>';
     if(budLeft)h+='<div><span>Reste de budget à dépenser</span><span>− '+eur.format(budLeft)+'</span></div>';
     h+='</div>';
-    if(useBank)h+='<div class="fc-lines" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line)"><div><span>Bilan du mois (entrées − sorties prévues)</span><span class="'+(proj<0?"bad":"good")+'">'+(proj<0?"− ":"+ ")+eur.format(Math.abs(proj))+'</span></div></div>';
     if(pend.length){
       h+='<div class="day" style="margin-top:14px">À venir</div>';
       pend.forEach(function(p){
