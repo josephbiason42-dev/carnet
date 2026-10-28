@@ -72,8 +72,10 @@ body[data-tab="home"] .top{display:none}
   .side nav{display:none}
 }
 /* ---------- accueil ---------- */
-.hgrid{display:grid; grid-template-columns:1.55fr 1fr; gap:18px; perspective:1600px}
-.card{all:unset; box-sizing:border-box; position:relative; display:flex; flex-direction:column; gap:12px; min-height:220px; padding:22px; border-radius:22px; color:var(--ink); overflow:hidden;
+.hgrid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); grid-auto-flow:row dense; gap:18px; perspective:1600px}
+.hgrid .w-s{grid-column:span 5} .hgrid .w-l{grid-column:span 7} .hgrid .w-f{grid-column:span 12}
+.h-foot{display:flex; justify-content:flex-end; margin-top:2px}
+.card{all:unset; box-sizing:border-box; container-type:inline-size; position:relative; display:flex; flex-direction:column; gap:12px; min-height:220px; padding:22px; border-radius:22px; color:var(--ink); overflow:hidden;
   background:radial-gradient(380px circle at var(--mx,80%) var(--my,-30%), rgba(91,140,255,.16), transparent 50%), linear-gradient(180deg, rgba(24,31,54,.82), rgba(10,14,27,.82));
   border:1px solid var(--line); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
   box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 30px 60px -36px rgba(0,0,0,.95);
@@ -129,7 +131,6 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .def-tiles{grid-template-columns:repeat(2,1fr)!important; margin-top:12px}
 .def-sub{display:block; font-size:.74rem; color:var(--muted); margin-top:2px}
 /* pesée */
-.c-job{grid-column:auto!important}
 .bspark{width:100%; height:46px; margin-top:6px}
 .u{font-size:.75em; color:var(--muted); font-weight:500}
 .dz{color:var(--muted)}
@@ -225,6 +226,13 @@ div.pl-b{cursor:default}
 .td-t{font-variant-numeric:tabular-nums; color:var(--muted); font-size:.82rem; min-width:92px}
 .td-l{font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 @media (max-width:900px){ .pl-week{grid-template-columns:1fr} .pl-day{min-height:0} #pl-stats.tiles{grid-template-columns:repeat(2,1fr)} .pw-head{display:none} .pw-row{grid-template-columns:1fr 1fr; } .pw-row b{grid-column:1 / -1} }
+.h-row{display:grid; grid-template-columns:1fr 9.5rem auto; gap:8px; align-items:center; padding:7px 0; border-bottom:1px solid var(--line)}
+.h-row:last-child{border-bottom:0}
+.h-row.off b{opacity:.45}
+.h-row select{padding:7px 8px; font-size:14px}
+.h-mv{display:flex; gap:4px}
+.h-mv button{padding:5px 9px}
+.h-mv button:disabled{opacity:.3; cursor:default}
 /* candidatures */
 .plus{all:unset; box-sizing:border-box; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; cursor:pointer; font:500 1.6rem/1 var(--body); color:#fff;
   background:linear-gradient(135deg,#5b8cff,#3b62d6); box-shadow:0 8px 22px -8px rgba(91,140,255,.8); transition:transform .25s, box-shadow .25s}
@@ -239,7 +247,7 @@ div.pl-b{cursor:default}
 @media (prefers-reduced-motion:reduce){.modal[open]{animation:none}}
 .mclose{all:unset; cursor:pointer; width:32px; height:32px; border-radius:50%; display:grid; place-items:center; font-size:1.4rem; color:var(--muted)}
 .mclose:hover,.mclose:focus-visible{color:var(--ink); background:rgba(255,255,255,.06)}
-.c-job{grid-column:1 / -1; min-height:0}
+.c-job{min-height:0}
 .jgrid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)) 1.4fr; gap:18px; align-items:end}
 .jgrid .k-big{font-size:2.4rem}
 .jnext{border-left:1px solid var(--line); padding-left:18px; display:flex; flex-direction:column; gap:6px; min-width:0}
@@ -265,7 +273,37 @@ div.pl-b{cursor:default}
 .jbtns{display:flex; gap:6px}
 .ghost.sm{padding:6px 10px; font-size:.8rem}
 @media (max-width:760px){ .jgrid{grid-template-columns:repeat(3,1fr)} .jnext{grid-column:1 / -1; border-left:0; padding-left:0; border-top:1px solid var(--line); padding-top:12px} #j-stats.tiles{grid-template-columns:repeat(2,1fr)} .jdue{grid-template-columns:1fr; gap:6px} }
-@media (max-width:760px){ .hgrid{grid-template-columns:1fr} .k-big{font-size:2.2rem} .fin2 .k-big{font-size:1.8rem} }
+@media (max-width:760px){
+  .hgrid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+  .hgrid .w-s{grid-column:span 1} .hgrid .w-l,.hgrid .w-f{grid-column:span 2}
+  .c-hello .wave{height:24%}
+  .card{padding:16px; min-height:0; border-radius:18px; gap:8px}
+  .c-hello{min-height:190px}
+  .k-big{font-size:2rem} .fin2 .k-big{font-size:1.7rem}
+  .wrap{padding-top:16px}
+}
+/* cartes étroites (petites cartes, téléphone) */
+@container (max-width:470px){
+  .jgrid{grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+  .jgrid .k-big{font-size:1.9rem}
+  .jnext{grid-column:1 / -1; border-left:0; padding-left:0; border-top:1px solid var(--line); padding-top:10px}
+  .ptl-seg span{display:none} .ptl{gap:3px}
+  .fin2 .k-big{font-size:1.7rem}
+}
+@container (max-width:280px){
+  .k-title{font-size:.88rem} .k-chip{display:none} .k-open{display:none}
+  .k-big,.fin2 .k-big,.jgrid .k-big{font-size:1.55rem!important}
+  .k-lbl{font-size:.72rem}
+  .fin2{grid-template-columns:1fr; gap:10px} .fin2>div+div{border-left:0; padding-left:0}
+  .c-cal svg.ring{width:104px; height:104px} .c-cal .k-pill{display:none}
+  .ring-num{font-size:26px}
+  .td-list{gap:4px} .td-row{font-size:.78rem; flex-wrap:wrap} .td-t{min-width:0; font-size:.7rem; margin-right:4px}
+  .p30h{gap:10px} .p30h .p-ring svg{width:60px; height:60px} .ptl{display:none} .p-title{font-size:.92rem}
+  .jgrid{grid-template-columns:1fr 1fr} .jnext{display:none}
+  .bspark{display:none}
+  .c-hello h2{font-size:1.4rem} .c-hello p{display:none}
+  .meter{height:10px}
+}
 @media (prefers-reduced-motion:reduce){ .card,.sbtn{transition:none} }
 .stepper{display:flex; align-items:center; gap:8px}
 .stepper button{width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background:var(--surface); color:var(--ink); font-size:1.3rem; cursor:pointer}
@@ -377,6 +415,7 @@ details.panel[open]>summary{margin-bottom:12px}
       <button class="card c-p30" type="button" id="card-p30" data-go="p30" aria-label="Ouvrir Projet 30"></button>
       <button class="card c-lib" type="button" id="card-lib" data-go="lib" aria-label="Ouvrir la bibliothèque"></button>
     </div>
+    <div class="h-foot"><button class="ghost sm" type="button" id="h-open">Personnaliser l'accueil</button></div>
   </section>
 
   <!-- PLANNING -->
@@ -715,6 +754,12 @@ details.panel[open]>summary{margin-bottom:12px}
     <label for="pdb-end">Fin<input id="pdb-end" type="time"></label>
   </div>
   <button class="ghost" type="button" id="pdb-add" style="margin-top:10px;width:100%">Ajouter ce bloc</button>
+</dialog>
+<dialog class="modal" id="h-dialog" aria-labelledby="h-h">
+  <div class="phead"><h3 id="h-h">Personnaliser l'accueil</h3><button class="mclose" type="button" id="h-close" aria-label="Fermer">×</button></div>
+  <p class="note" style="margin-bottom:10px">Coche les cartes à afficher, choisis leur taille et leur ordre. L'aperçu se met à jour derrière la fenêtre. Sur téléphone, les petites cartes s'affichent côte à côte.</p>
+  <div id="h-rows"></div>
+  <div class="btnrow" style="margin-top:14px"><button class="primary" type="button" id="h-save" style="flex:1">Enregistrer</button><button class="ghost" type="button" id="h-reset">Réinitialiser</button></div>
 </dialog>
 <dialog class="modal" id="jn-dialog" aria-labelledby="jn-title">
   <div class="phead"><h3 id="jn-title">Nouvelle candidature</h3><button class="mclose" type="button" id="jn-close" aria-label="Fermer">×</button></div>
@@ -2296,6 +2341,48 @@ $("#pdb-add").addEventListener("click",function(){
   if(this.value.trim()===""||!(v>=0))delete state.settings[k];else state.settings[k]=v;persist("settings");renderPlan();
 })});
 function fillPlanCfg(){var c=plCfg();if(document.activeElement!==$("#plc-n"))$("#plc-n").value=c.n;if(document.activeElement!==$("#plc-dur"))$("#plc-dur").value=c.dur;if(document.activeElement!==$("#plc-trip"))$("#plc-trip").value=c.trip}
+/* ---------- personnalisation de l'accueil ---------- */
+var HCARDS=[["hello","Bonjour","l"],["date","Aujourd'hui (planning)","s"],["fin","Finances","l"],["cal","Calories","s"],["job","Candidatures","l"],["body","Pesée","s"],["p30","Projet 30","l"],["lib","Lecture","s"]];
+var HSIZE={s:"Petite",l:"Grande",f:"Pleine largeur"};
+function homeCfg(){
+  var saved=Array.isArray(state.settings.home)?state.settings.home:[],out=[],seen={};
+  saved.forEach(function(c){var d=HCARDS.filter(function(h){return h[0]===c.id})[0];if(d&&!seen[c.id]){seen[c.id]=1;out.push({id:c.id,size:HSIZE[c.size]?c.size:d[2],hidden:!!c.hidden})}});
+  HCARDS.forEach(function(h){if(!seen[h[0]])out.push({id:h[0],size:h[2],hidden:false})});
+  return out;
+}
+function applyHome(){
+  var g=$(".hgrid");if(!g)return;
+  homeCfg().forEach(function(c){var el=$("#card-"+c.id);if(!el)return;g.appendChild(el);el.classList.remove("w-s","w-l","w-f");el.classList.add("w-"+c.size);el.hidden=c.hidden});
+}
+var hDlg=$("#h-dialog"),hDraft=null;
+function hRender(){
+  $("#h-rows").innerHTML=hDraft.map(function(c,i){
+    var n=HCARDS.filter(function(h){return h[0]===c.id})[0][1];
+    return '<div class="h-row'+(c.hidden?" off":"")+'"><label class="check" for="hv-'+c.id+'"><input type="checkbox" id="hv-'+c.id+'" data-i="'+i+'" data-k="vis"'+(c.hidden?"":" checked")+'> <b>'+esc(n)+'</b></label>'+
+      '<select data-i="'+i+'" data-k="size" aria-label="Taille de la carte '+esc(n)+'">'+Object.keys(HSIZE).map(function(k){return '<option value="'+k+'"'+(c.size===k?" selected":"")+'>'+HSIZE[k]+'</option>'}).join("")+'</select>'+
+      '<span class="h-mv"><button type="button" class="ghost sm" data-i="'+i+'" data-mv="-1" aria-label="Monter"'+(i===0?" disabled":"")+'>↑</button><button type="button" class="ghost sm" data-i="'+i+'" data-mv="1" aria-label="Descendre"'+(i===hDraft.length-1?" disabled":"")+'>↓</button></span></div>';
+  }).join("");
+}
+$("#h-open").addEventListener("click",function(){hDraft=homeCfg();hRender();if(hDlg.showModal)hDlg.showModal();else hDlg.setAttribute("open","")});
+$("#h-close").addEventListener("click",function(){hDlg.close()});
+$("#h-rows").addEventListener("click",function(e){
+  var b=e.target.closest("[data-mv]");if(!b)return;var i=+b.dataset.i,j=i+(+b.dataset.mv);if(j<0||j>=hDraft.length)return;
+  var t=hDraft[i];hDraft[i]=hDraft[j];hDraft[j]=t;hRender();hLive();
+  var nb=$('#h-rows [data-i="'+j+'"][data-mv="'+b.dataset.mv+'"]');if(nb&&!nb.disabled)nb.focus();
+});
+$("#h-rows").addEventListener("change",function(e){
+  var el=e.target,i=+el.dataset.i;if(isNaN(i))return;
+  if(el.dataset.k==="vis")hDraft[i].hidden=!el.checked;if(el.dataset.k==="size")hDraft[i].size=el.value;
+  hRender();hLive();
+});
+function hLive(){state.settings.home=hDraft.map(function(c){return {id:c.id,size:c.size,hidden:c.hidden}});applyHome()}
+$("#h-save").addEventListener("click",function(){hLive();persist("settings");hDlg.close();toast("Accueil enregistré.")});
+$("#h-reset").addEventListener("click",function(){delete state.settings.home;hDraft=homeCfg();hRender();applyHome()});
+hDlg.addEventListener("close",function(){
+  // annuler les essais non enregistrés
+  var saved=lsGet(LS);var s=saved&&saved.settings&&saved.settings.home;
+  if(JSON.stringify(s||null)!==JSON.stringify(state.settings.home||null)){if(s)state.settings.home=s;else delete state.settings.home;applyHome()}
+});
 /* ---------- candidatures ---------- */
 var JST=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien","Offre","Refusé"];
 var JCLS={"A postuler":"st-a","Candidature envoyée":"st-e","Relancé":"st-rl","A relancer":"st-ar","Entretien":"st-i","Offre":"st-o","Refusé":"st-r"};
@@ -2595,7 +2682,7 @@ document.querySelectorAll("button.card").forEach(function(c){
 /* ---------- rendu ---------- */
 function render(){
   var t=state.settings.title||"Dashboard";$("#app-title").textContent=t;
-  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderPlan();fillPlanCfg();renderHome();
+  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderPlan();fillPlanCfg();renderHome();applyHome();
 }
 
 loadLocal();
