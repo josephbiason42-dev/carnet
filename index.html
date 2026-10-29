@@ -225,6 +225,24 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 /* bibliothèque */
 .l-cur{padding:4px 0 14px; border-bottom:1px solid var(--line); margin-bottom:12px}
 .lnav{grid-template-columns:1fr 1fr; margin:12px 0 14px}
+.md-take{all:unset; box-sizing:border-box; width:100%; cursor:pointer; display:flex; align-items:center; gap:14px; padding:14px; margin-top:8px; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid var(--line); transition:background .2s, border-color .2s}
+.md-take:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.md-ic{flex:none; width:34px; height:34px; border-radius:50%; border:2px solid rgba(255,255,255,.3); display:grid; place-items:center; font-weight:800; font-size:1.1rem}
+.md-tx{flex:1; min-width:0} .md-tx b{display:block; font-size:1.02rem} .md-tx small{color:var(--muted); font-size:.82rem}
+.md-act{font:700 .85rem var(--body); padding:8px 14px; border-radius:999px; background:linear-gradient(135deg,#5b8cff,#3b62d6); color:#fff}
+.md-ok{background:rgba(74,222,128,.10); border-color:rgba(74,222,128,.4)} .md-ok .md-ic{background:#4ade80; border-color:#4ade80; color:#05210f} .md-ok .md-act{background:transparent; color:var(--muted); border:1px solid var(--line)}
+.md-now{border-color:rgba(91,140,255,.6); box-shadow:0 0 0 3px rgba(91,140,255,.15)}
+.md-late{border-color:rgba(248,113,113,.55); background:rgba(248,113,113,.07)} .md-late small{color:#fca5a5}
+.md-grid{display:grid; gap:3px; align-items:center; font-size:.68rem}
+.md-dh{text-align:center; color:var(--muted); line-height:1.15}
+.md-n{font-size:.78rem; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding-right:4px}
+.md-c{display:block; aspect-ratio:1; border-radius:4px; background:rgba(255,255,255,.06)}
+.md-c.ok{background:#4ade80} .md-c.part{background:#fbbf24} .md-c.miss{background:#f87171} .md-c.none2{background:rgba(255,255,255,.12); outline:1px dashed rgba(255,255,255,.3)} .md-c.none{background:transparent}
+.md-mini{display:flex; flex-direction:column; gap:6px; margin:10px 0 6px}
+.md-chip{display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:12px; background:rgba(255,255,255,.05); border:1px solid var(--line); cursor:pointer; text-align:left}
+.md-chip i{flex:none; width:24px; height:24px; border-radius:50%; border:2px solid rgba(255,255,255,.3); display:grid; place-items:center; font-style:normal; font-weight:800; font-size:.8rem}
+.md-chip b{display:block; font-size:.86rem} .md-chip small{font-size:.72rem; color:var(--muted)}
+.md-chip.md-ok i{background:#4ade80; border-color:#4ade80; color:#05210f} .md-chip.md-late{border-color:rgba(248,113,113,.5)} .md-chip.md-now{border-color:rgba(91,140,255,.6)}
 #c-scan{margin-top:10px}
 .ff-vid{position:relative; margin-top:12px; border-radius:16px; overflow:hidden; background:#000; height:min(62vh,520px)}
 .ff-vid video{width:100%; height:100%; object-fit:cover; display:block}
@@ -653,6 +671,7 @@ details.panel[open]>summary{margin-bottom:12px}
       <button class="card c-lib" type="button" id="card-lib" data-go="lib" aria-label="Ouvrir la bibliothèque"></button>
       <button class="card c-rev" type="button" id="card-rev" data-go="rev" aria-label="Ouvrir le bilan du mois"></button>
       <button class="card c-prod" type="button" id="card-prod" data-go="prod" aria-label="Ouvrir les produits"></button>
+      <button class="card c-meds" type="button" id="card-meds" data-go="meds" aria-label="Ouvrir les médicaments"></button>
     </div>
     <div class="h-foot"><span class="note" id="h-tip" hidden>Glisse les cartes pour les réorganiser (sur téléphone, avec la poignée ⠿). Touche la taille pour l'agrandir, « Visible » pour la masquer.</span><button class="ghost sm" type="button" id="h-reset" hidden>Réinitialiser</button><button class="ghost sm" type="button" id="h-open">Personnaliser l'accueil</button></div>
   </section>
@@ -879,6 +898,15 @@ details.panel[open]>summary{margin-bottom:12px}
       <div class="panel" id="l-all-head"></div>
       <div class="panel"><div id="l-all-tools"></div><div id="l-all"></div></div>
     </div>
+  </section>
+
+  <section class="view" id="v-meds" aria-label="Médicaments">
+    <button class="back" type="button" data-go="home">← Accueil</button>
+    <div class="phead" style="margin:0"><h2 style="text-align:left">Médicaments</h2><button class="plus" type="button" id="md-add" aria-label="Ajouter un traitement" title="Ajouter un traitement">+</button></div>
+    <div class="panel" id="md-today"></div>
+    <div class="panel" id="md-yday" hidden></div>
+    <div class="panel"><h3>Les 14 derniers jours</h3><div id="md-hist"></div></div>
+    <div class="panel"><h3>Mes traitements</h3><div id="md-list"></div><p class="note" style="margin-top:8px">Touche un traitement pour le modifier, le mettre en pause ou suivre ton stock.</p></div>
   </section>
 
   <!-- CANDIDATURES -->
@@ -1113,6 +1141,28 @@ details.panel[open]>summary{margin-bottom:12px}
     <button class="ghost" type="button" id="sv-del" hidden>Supprimer l'enveloppe</button>
   </form>
 </dialog>
+<dialog class="modal" id="md-dialog" aria-labelledby="md-h">
+  <div class="phead"><h3 id="md-h">Nouveau traitement</h3><button class="mclose" type="button" id="md-close" aria-label="Fermer">×</button></div>
+  <form id="md-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+    <div class="grid">
+      <label for="md-name">Nom<input id="md-name" maxlength="40" autocomplete="off"></label>
+      <label for="md-dose">Dose (facultatif)<input id="md-dose" maxlength="30" autocomplete="off" placeholder="1 comprimé"></label>
+    </div>
+    <label class="check" for="md-need"><input type="checkbox" id="md-need"> Seulement si besoin (pas d'heure fixe)</label>
+    <div id="md-sched" style="display:flex;flex-direction:column;gap:12px">
+      <div><div class="ai-sec">Heure(s) de prise</div><div class="grid" style="grid-template-columns:repeat(4,1fr)">
+        <input type="time" id="md-t0" aria-label="Heure 1"><input type="time" id="md-t1" aria-label="Heure 2"><input type="time" id="md-t2" aria-label="Heure 3"><input type="time" id="md-t3" aria-label="Heure 4"></div></div>
+      <div><div class="ai-sec">Jours</div><div class="seg" id="md-days" style="grid-template-columns:repeat(7,1fr)"><button type="button" data-dw="0" aria-pressed="true">L</button><button type="button" data-dw="1" aria-pressed="true">M</button><button type="button" data-dw="2" aria-pressed="true">M</button><button type="button" data-dw="3" aria-pressed="true">J</button><button type="button" data-dw="4" aria-pressed="true">V</button><button type="button" data-dw="5" aria-pressed="true">S</button><button type="button" data-dw="6" aria-pressed="true">D</button></div></div>
+    </div>
+    <div class="grid">
+      <label for="md-stock">Stock restant (facultatif)<input id="md-stock" inputmode="numeric" placeholder="nombre de prises"></label>
+      <label for="md-end">Jusqu'au (facultatif)<input type="date" id="md-end"></label>
+    </div>
+    <label class="check" for="md-pause" id="md-pausew"><input type="checkbox" id="md-pause"> Mettre en pause</label>
+    <button class="primary" type="submit">Enregistrer</button>
+    <button class="ghost" type="button" id="md-del" hidden>Supprimer</button>
+  </form>
+</dialog>
 <dialog class="modal" id="ff-dialog" aria-labelledby="ff-h">
   <div class="phead"><h3 id="ff-h">Trouver un aliment</h3><button class="mclose" type="button" id="ff-close" aria-label="Fermer">×</button></div>
   <button class="primary" type="button" id="ff-cam-btn" style="width:100%">📷 Scanner le code-barres</button>
@@ -1238,13 +1288,13 @@ var CATS={
   in:["Salaire","Aides","Ventes","Remboursement","Autre"]
 };
 
-var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],products:[],sav:{envs:[],plan:[],goal:100000}};
+var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],products:[],meds:{list:[],log:{}},sav:{envs:[],plan:[],goal:100000}};
 var ui={tab:"home",month:today().slice(0,7),day:today(),finType:"out"};
 
 /* ---------- stockage local ---------- */
 var LS="carnet-joseph-v1";
 function loadLocal(){
-  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[],books:Array.isArray(p.books)?p.books:[],plan:p.plan&&typeof p.plan==="object"?p.plan:{},inbox:Array.isArray(p.inbox)?p.inbox:[],subs:Array.isArray(p.subs)?p.subs:[],credits:Array.isArray(p.credits)?p.credits:[],products:Array.isArray(p.products)?p.products:[],sav:savNorm(p.sav)}}}}catch(e){}
+  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[],books:Array.isArray(p.books)?p.books:[],plan:p.plan&&typeof p.plan==="object"?p.plan:{},inbox:Array.isArray(p.inbox)?p.inbox:[],subs:Array.isArray(p.subs)?p.subs:[],credits:Array.isArray(p.credits)?p.credits:[],products:Array.isArray(p.products)?p.products:[],meds:mdNorm(p.meds),sav:savNorm(p.sav)}}}}catch(e){}
 
 }
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
@@ -1264,7 +1314,7 @@ var sync={state:"off",pushing:false,timer:null,lastOk:null,firstPull:!lsGet("car
 
 function savNorm(b){b=b&&typeof b==="object"?b:{};return {envs:Array.isArray(b.envs)?b.envs:[],plan:Array.isArray(b.plan)?b.plan:[],goal:+b.goal>0?+b.goal:100000}}
 function hasCfg(){return !!(CFG.url&&CFG.key)}
-function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length||state.books.length||Object.keys(state.plan).length||state.inbox.length||state.subs.length||state.credits.length||state.products.length||state.sav.envs.length||state.sav.plan.length}
+function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length||state.books.length||Object.keys(state.plan).length||state.inbox.length||state.subs.length||state.credits.length||state.products.length||state.meds.list.length||state.sav.envs.length||state.sav.plan.length}
 function allKeys(){
   var k=["settings"];
   if(state.rec.length)k.push("recurring");
@@ -1277,6 +1327,7 @@ function allKeys(){
   if(state.subs.length)k.push("subs");
   if(state.credits.length)k.push("credits");
   if(state.products.length)k.push("products");
+  if(state.meds.list.length||Object.keys(state.meds.log).length)k.push("meds");
   if(state.sav.envs.length||state.sav.plan.length)k.push("savings");
   Object.keys(state.fin).forEach(function(m){k.push("fin-"+m)});
   Object.keys(state.cal).forEach(function(m){k.push("cal-"+m)});
@@ -1295,6 +1346,7 @@ function bodyFor(key){
   if(key==="subs")return {items:state.subs};
   if(key==="credits")return {items:state.credits};
   if(key==="products")return {items:state.products};
+  if(key==="meds")return {list:state.meds.list,log:state.meds.log};
   if(key==="savings")return {envs:state.sav.envs,plan:state.sav.plan,goal:state.sav.goal};
   var b={items:(state[key.slice(0,3)][key.slice(4)]||[])};
   if(key.slice(0,3)==="fin"){var sk=state.finSkip[key.slice(4)];if(sk&&sk.length)b.skipped=sk}
@@ -1312,6 +1364,7 @@ function applyDoc(key,body){
   else if(key==="subs")state.subs=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="credits")state.credits=Array.isArray(body&&body.items)?body.items:[];
   else if(key==="products")state.products=Array.isArray(body&&body.items)?body.items:[];
+  else if(key==="meds")state.meds=mdNorm(body);
   else if(key==="savings")state.sav=savNorm(body);
   else if(key==="plan")state.plan=body&&body.days&&typeof body.days==="object"?body.days:{};
   else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key)){state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
@@ -1497,13 +1550,13 @@ function setTab(t){
   if(String(t).indexOf(":")>0){var sp=String(t).split(":");t=sp[0];if(t==="fin")setFinPane(sp[1])}
   ui.tab=t;document.body.dataset.tab=t;if(typeof viewAnim==="function")setTimeout(function(){viewAnim(t)},0);if(t==="rev")renderRev();if(t==="lib"&&typeof lcCenter==="function")setTimeout(function(){lcCenter(false)},30);
   window.scrollTo(0,0);
-  ["home","fin","cal","body","job","p30","lib","plan","rev","prod","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
+  ["home","fin","cal","body","meds","job","p30","lib","plan","rev","prod","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
   var gg=grpOf(t);if(gg)ui.lastIn[gg]=t;
   document.querySelectorAll(".sbtn").forEach(function(b){b.classList.toggle("on",b.dataset.grp?b.dataset.grp===gg:b.dataset.go===t)});
   document.querySelectorAll(".gnav button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.gt===t?"true":"false")});
 }
-var GRP={home:["home","rev"],money:["fin"],body:["cal","body"],work:["plan","job","prod"],know:["lib","p30"]};
-var TABN={home:"Accueil",rev:"Bilan du mois",cal:"Calories",body:"Pesée",plan:"Planning",job:"Candidatures",prod:"Produits",lib:"Bibliothèque",p30:"Projet 30"};
+var GRP={home:["home","rev"],money:["fin"],body:["cal","body","meds"],work:["plan","job","prod"],know:["lib","p30"]};
+var TABN={meds:"Médicaments",home:"Accueil",rev:"Bilan du mois",cal:"Calories",body:"Pesée",plan:"Planning",job:"Candidatures",prod:"Produits",lib:"Bibliothèque",p30:"Projet 30"};
 ui.lastIn={};
 function grpOf(t){for(var k in GRP)if(GRP[k].indexOf(t)>=0)return k;return null}
 document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){
@@ -2910,12 +2963,12 @@ function renderModel(){
 $("#bm-date").addEventListener("change",function(){bmui.date=this.value;renderModel()});
 $("#bm-cmp").addEventListener("change",function(){bmui.cmp=this.value;renderModel()});
 /* ---------- sauvegardes ---------- */
-function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30,books:state.books,plan:state.plan,inbox:state.inbox,subs:state.subs,credits:state.credits,products:state.products,sav:state.sav}}
+function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30,books:state.books,plan:state.plan,inbox:state.inbox,subs:state.subs,credits:state.credits,products:state.products,meds:state.meds,sav:state.sav}}
 function restoreData(p,full){
   var ok=function(o){return o&&typeof o==="object"};
-  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30&&!p.books&&!p.plan&&!p.subs&&!p.sav&&!p.credits&&!p.products))return false;
+  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30&&!p.books&&!p.plan&&!p.subs&&!p.sav&&!p.credits&&!p.products&&!p.meds))return false;
   var before=allKeys();
-  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],products:[],sav:{envs:[],plan:[],goal:100000}};
+  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],products:[],meds:{list:[],log:{}},sav:{envs:[],plan:[],goal:100000}};
   if(ok(p.settings))state.settings=Object.assign({},p.settings);
   if(Array.isArray(p.rec))state.rec=p.rec;
   if(Array.isArray(p.jobs))state.jobs=p.jobs;
@@ -2928,6 +2981,7 @@ function restoreData(p,full){
   if(Array.isArray(p.subs))state.subs=p.subs;
   if(Array.isArray(p.credits))state.credits=p.credits;
   if(Array.isArray(p.products))state.products=p.products;
+  if(ok(p.meds))state.meds=mdNorm(p.meds);
   if(ok(p.sav))state.sav=savNorm(p.sav);
   if(ok(p.finSkip))state.finSkip=p.finSkip;
   ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
@@ -3433,7 +3487,7 @@ $("#pdb-add").addEventListener("click",function(){
 })});
 function fillPlanCfg(){var c=plCfg();if(document.activeElement!==$("#plc-n"))$("#plc-n").value=c.n;if(document.activeElement!==$("#plc-dur"))$("#plc-dur").value=c.dur;if(document.activeElement!==$("#plc-trip"))$("#plc-trip").value=c.trip}
 /* ---------- personnalisation de l'accueil (glisser-déposer) ---------- */
-var HCARDS=[["hello","Bonjour","l"],["date","Aujourd'hui","s"],["fin","Finances","l"],["cal","Calories","s"],["job","Candidatures","l"],["body","Pesée","s"],["p30","Projet 30","l"],["lib","Lecture","s"],["rev","Bilan du mois","s"],["prod","Produits","s"]];
+var HCARDS=[["hello","Bonjour","l"],["date","Aujourd'hui","s"],["fin","Finances","l"],["cal","Calories","s"],["job","Candidatures","l"],["body","Pesée","s"],["p30","Projet 30","l"],["lib","Lecture","s"],["rev","Bilan du mois","s"],["prod","Produits","s"],["meds","Médicaments","s"]];
 var HSIZE={s:"Petite",l:"Grande",f:"Pleine largeur"},HNEXT={s:"l",l:"f",f:"s"};
 var hEdit=false,hDrag=null,hSuppress=false;
 function homeCfg(){
@@ -3578,6 +3632,9 @@ function helloBrief(){
   if(state.p30.length){var S=pStats(),f=S.cur[0]||S.next;if(f){
     var bk=state.books.filter(function(b){return b.step===f.step&&b.status==="En cours"})[0];
     out.push({go:bk?"lib":"p30",c:"#5b8cff",t:"Projet 30 · étape "+f.step+" : "+f.title+(bk&&bk.pages?" (p. "+(bk.page||0)+"/"+bk.pages+")":"")});}}
+  // médicaments
+  mdSlots(td).forEach(function(s){var st=mdState(td,s);if(st.k==="late"||st.k==="now")out.unshift({go:"meds",c:st.k==="late"?"#f87171":"#5b8cff",t:s.m.name+" ("+s.t+") : "+(st.k==="late"?"pas encore pris":"à prendre maintenant")})});
+  state.meds.list.forEach(function(m){var si=mdStockInfo(m);if(!m.paused&&si&&si.days!=null&&si.days<=5)out.push({go:"meds",c:"#ffb38a",t:m.name+" : plus que "+si.n+" prise"+(si.n>1?"s":"")+" en stock"})});
   // révision des notes de lecture
   var rvd=revDue().length;if(rvd)out.push({go:"review",c:"#c4b5ff",t:rvd+" note"+(rvd>1?"s":"")+" de lecture à réviser (2 min)"});
   // médiathèque
@@ -3849,7 +3906,7 @@ function renderHome(){
   var m=today().slice(0,7),C=finCalc(m),name=(state.settings.name||"Joseph").trim();
   var end=C.endBank!=null?C.endBank:C.proj,hasForecast=C.bank||state.rec.length||Object.keys(C.bud).length,risk=hasForecast&&end<0;
   var d=today(),t=dayTotal(d),goal=+state.settings.kcalGoal||0,pg=+state.settings.protGoal||0;
-  renderHello();renderRevCard();renderProdCard();if(typeof msCheck==="function")setTimeout(msCheck,0);if(ui.tab==="home"&&typeof countUp==="function")setTimeout(function(){countUp($("#v-home"))},0);
+  renderHello();renderRevCard();renderProdCard();renderMedCard();if(typeof msCheck==="function")setTimeout(msCheck,0);if(ui.tab==="home"&&typeof countUp==="function")setTimeout(function(){countUp($("#v-home"))},0);
   // aujourd'hui
   var now=new Date(),n=daysIn(m),td=today(),its=dayItemsP(td),D0=pday(td);
   var nowM=now.getHours()*60+now.getMinutes();
@@ -4494,7 +4551,7 @@ var AIQ={
   p30:["Que prioriser cette semaine pour le Projet 30 ?","Comment avancer plus vite sur le Projet 30 ?","Comment mieux exploiter mes lectures ?"],
   plan:["Comment mieux organiser ma semaine ?","Comment caser sport et Projet 30 avec mes horaires ?"]
 };
-var AIMAP={fin:"fin",cal:"body",body:"body",job:"job",p30:"p30",lib:"p30",plan:"plan",rev:"all",home:"all"};
+var AIMAP={meds:"body",fin:"fin",cal:"body",body:"body",job:"job",p30:"p30",lib:"p30",plan:"plan",rev:"all",home:"all"};
 var aiS={scope:"all",q:""};
 function e2(v){return eur.format(v)}
 function fd(d){return parseYmd(d).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"numeric"})}
@@ -4710,6 +4767,123 @@ $("#ff-res").addEventListener("click",function(e){
   var R=(state.settings.offRecent||[]).filter(function(r){return r.code!==x.code||!x.code});R.unshift({code:x.code,name:x.name,brand:x.brand,kcal:x.kcal,prot:x.prot,serving:x.serving,qty:x.qty});state.settings.offRecent=R.slice(0,15);persist("settings");
   ffClose();$("#c-kcal").focus();toast("Calories remplies : choisis le repas puis « Ajouter au journal ».");
 });
+/* ---------- médicaments ---------- */
+var MDAYS=["L","M","M","J","V","S","D"];
+function mdNorm(b){b=b&&typeof b==="object"?b:{};return {list:Array.isArray(b.list)?b.list:[],log:b.log&&typeof b.log==="object"?b.log:{}}}
+function mdFind(id){return state.meds.list.filter(function(m){return m.id===id})[0]}
+function mdDow(d){return (parseYmd(d).getDay()+6)%7}
+function mdOnDay(m,d){if(m.start&&d<m.start)return false;if(m.end&&d>m.end)return false;return !m.days||!m.days.length||m.days.indexOf(mdDow(d))>=0}
+function mdSlots(d){
+  var out=[];state.meds.list.forEach(function(m){if(m.paused||!mdOnDay(m,d))return;(m.times||[]).forEach(function(t){out.push({m:m,t:t,key:m.id+"@"+t})})});
+  return out.sort(function(a,b){return a.t<b.t?-1:a.t>b.t?1:0});
+}
+function mdLog(d){return state.meds.log[d]||{}}
+function mdTaken(d,key){return mdLog(d)[key]||null}
+function mdNowM(){var n=new Date();return n.getHours()*60+n.getMinutes()}
+function mdState(d,s){
+  var tk=mdTaken(d,s.key);if(tk)return {k:"ok",txt:"Pris à "+tk.at};
+  if(d<today())return {k:"miss",txt:"Oublié"};
+  if(d>today())return {k:"todo",txt:"À "+s.t};
+  var late=mdNowM()-tmin(s.t);
+  if(late>60)return {k:"late",txt:"En retard ("+s.t+")"};
+  if(late>=-30)return {k:"now",txt:"À prendre maintenant"};
+  return {k:"todo",txt:"À "+s.t};
+}
+function mdTake(d,key,m){
+  var L=state.meds.log[d]=state.meds.log[d]||{},n=new Date();
+  if(L[key]){var prev=L[key];delete L[key];if(!Object.keys(L).length)delete state.meds.log[d];if(m&&typeof m.stock==="number")m.stock++;
+    persist("meds");renderMeds();renderHome();toast("Prise annulée",function(){(state.meds.log[d]=state.meds.log[d]||{})[key]=prev;if(m&&typeof m.stock==="number")m.stock--;persist("meds");renderMeds();renderHome()});return}
+  L[key]={at:d===today()?hhmm():"—"};if(m&&typeof m.stock==="number"&&m.stock>0)m.stock--;
+  persist("meds");renderMeds();renderHome();toast((m?m.name:"Médicament")+" : pris ✓");
+}
+function mdTakeNeed(m){
+  var d=today(),L=state.meds.log[d]=state.meds.log[d]||{},key=m.id+"@b"+Date.now().toString(36);
+  L[key]={at:hhmm()};if(typeof m.stock==="number"&&m.stock>0)m.stock--;persist("meds");renderMeds();renderHome();toast(m.name+" : prise notée à "+hhmm());
+}
+function mdPerDay(m){return (m.times||[]).length*(m.days&&m.days.length?m.days.length/7:1)}
+function mdStockInfo(m){if(typeof m.stock!=="number")return null;var pd=mdPerDay(m);return {n:m.stock,days:pd?Math.floor(m.stock/pd):null}}
+var mdui={hist:false};
+function renderMeds(){
+  if(!$("#v-meds"))return;
+  var d=today(),S=mdSlots(d),M=state.meds.list;
+  // aujourd'hui
+  var done=S.filter(function(s){return mdTaken(d,s.key)}).length,h="";
+  if(!M.length)h='<p class="empty">Ajoute ton traitement avec le + : nom, heure(s) de prise et jours. Tu n\'auras plus qu\'à toucher « Pris » chaque jour.</p>';
+  else{
+    h='<div class="phead"><h3>Aujourd\'hui</h3><span class="k-chip'+(S.length&&done===S.length?" ok":"")+'">'+(S.length?done+" / "+S.length+" prise"+(S.length>1?"s":""):"Rien de prévu")+'</span></div>';
+    h+=S.map(function(s){var st=mdState(d,s);
+      return '<button type="button" class="md-take md-'+st.k+'" data-mk="'+esc(s.key)+'" data-mid="'+esc(s.m.id)+'" aria-pressed="'+(st.k==="ok")+'"><span class="md-ic" aria-hidden="true">'+(st.k==="ok"?"✓":"")+'</span><span class="md-tx"><b>'+esc(s.m.name)+'</b><small>'+esc([s.m.dose,st.txt].filter(Boolean).join(" · "))+'</small></span><span class="md-act">'+(st.k==="ok"?"Annuler":"Pris")+'</span></button>'}).join("");
+    var need=M.filter(function(m){return !m.paused&&!(m.times||[]).length});
+    if(need.length){h+='<div class="day" style="margin-top:14px">Si besoin</div>'+need.map(function(m){var L=mdLog(d),n=Object.keys(L).filter(function(k){return k.indexOf(m.id+"@b")===0}).map(function(k){return L[k].at});
+      return '<div class="row"><div class="lbl">'+esc(m.name)+'<small>'+(n.length?"Pris aujourd'hui à "+n.join(", "):"Pas pris aujourd'hui")+(m.dose?" · "+esc(m.dose):"")+'</small></div><button class="ghost sm" type="button" data-mneed="'+esc(m.id)+'">J\'en prends un</button><span></span></div>'}).join("")}
+  }
+  $("#md-today").innerHTML=h;
+  // traitements
+  $("#md-list").innerHTML=M.length?M.map(function(m){var si=mdStockInfo(m);
+    var sched=(m.times||[]).length?(m.days&&m.days.length&&m.days.length<7?m.days.map(function(i){return ["lun","mar","mer","jeu","ven","sam","dim"][i]}).join(", "):"Tous les jours")+" · "+m.times.join(", "):"Si besoin";
+    return '<div class="row" data-medit="'+esc(m.id)+'" style="cursor:pointer"><div class="lbl" style="font-weight:600">'+esc(m.name)+(m.paused?'<span class="tag" style="color:var(--muted)">en pause</span>':'')+'<small>'+esc([m.dose,sched].filter(Boolean).join(" · "))+(m.end?" · jusqu'au "+esc(fd(m.end)):"")+'</small></div><span class="num'+(si&&si.days!=null&&si.days<=5?" bad":"")+'">'+(si?si.n+" restant"+(si.n>1?"s":"")+(si.days!=null?'<span class="sub" style="display:block;font-size:.72rem;color:var(--muted)">≈ '+si.days+' j</span>':''):"")+'</span><span></span></div>'}).join(""):'<p class="empty">Aucun traitement.</p>';
+  // historique 14 jours
+  var days=[];for(var i=13;i>=0;i--)days.push(addDays(d,-i));
+  var sched=M.filter(function(m){return (m.times||[]).length});
+  $("#md-hist").innerHTML=sched.length?'<div class="md-grid" style="grid-template-columns:minmax(90px,1.2fr) repeat(14,1fr)"><span></span>'+days.map(function(x){return '<span class="md-dh">'+MDAYS[mdDow(x)]+'<br>'+(+x.slice(8))+'</span>'}).join("")+
+    sched.map(function(m){return '<span class="md-n">'+esc(m.name)+'</span>'+days.map(function(x){if(!mdOnDay(m,x)||(m.added&&x<m.added))return '<i class="md-c none"></i>';var tot=m.times.length,ok=m.times.filter(function(t){return mdTaken(x,m.id+"@"+t)}).length;
+      var cls=ok===tot?"ok":x===today()?(ok?"part":"none2"):ok?"part":"miss";return '<i class="md-c '+cls+'" title="'+esc(fd(x)+" : "+ok+"/"+tot)+'"></i>'}).join("")}).join("")+'</div><p class="note" style="margin-top:8px">Vert : toutes les prises · orange : en partie · rouge : oubliée. Touche « Pris » même en retard : la prise compte pour la journée.</p>':'<p class="note">L\'historique apparaît pour les traitements à heures fixes.</p>';
+  // rattrapage d'hier
+  var y=addDays(d,-1),YS=mdSlots(y).filter(function(s){return !mdTaken(y,s.key)&&(!s.m.added||y>=s.m.added)});
+  $("#md-yday").hidden=!YS.length;
+  $("#md-yday").innerHTML=YS.length?'<p class="note" style="margin-bottom:8px">Hier, non coché : '+esc(YS.map(function(s){return s.m.name+" ("+s.t+")"}).join(", "))+'. Si tu l\'avais pris, coche-le :</p>'+YS.map(function(s){return '<button class="ghost sm" type="button" data-myk="'+esc(s.key)+'" data-mid="'+esc(s.m.id)+'" style="margin:0 6px 6px 0">✓ '+esc(s.m.name+" "+s.t)+'</button>'}).join(""):"";
+}
+$("#md-today").addEventListener("click",function(e){
+  var b=e.target.closest("[data-mk]");if(b){mdTake(today(),b.dataset.mk,mdFind(b.dataset.mid));return}
+  var n=e.target.closest("[data-mneed]");if(n){var m=mdFind(n.dataset.mneed);if(m)mdTakeNeed(m)}
+});
+$("#md-yday").addEventListener("click",function(e){var b=e.target.closest("[data-myk]");if(!b)return;var y=addDays(today(),-1),L=state.meds.log[y]=state.meds.log[y]||{};L[b.dataset.myk]={at:"—"};var m=mdFind(b.dataset.mid);if(m&&typeof m.stock==="number"&&m.stock>0)m.stock--;persist("meds");renderMeds();renderHome()});
+$("#md-list").addEventListener("click",function(e){var r=e.target.closest("[data-medit]");if(r)mdOpen(mdFind(r.dataset.medit))});
+// fenêtre ajout / modification
+var mdDlg=$("#md-dialog"),mdEdit=null;
+function mdOpen(m){
+  mdEdit=m||null;$("#md-h").textContent=m?"Modifier "+m.name:"Nouveau traitement";
+  $("#md-name").value=m?m.name:"";$("#md-dose").value=m?m.dose||"":"";
+  var T=m?(m.times||[]):["08:00"];[0,1,2,3].forEach(function(i){$("#md-t"+i).value=T[i]||""});
+  $("#md-need").checked=!!(m&&!(m.times||[]).length);mdNeedToggle();
+  var D=m&&m.days&&m.days.length?m.days:[0,1,2,3,4,5,6];
+  document.querySelectorAll("#md-days [data-dw]").forEach(function(b){b.setAttribute("aria-pressed",D.indexOf(+b.dataset.dw)>=0?"true":"false")});
+  $("#md-stock").value=m&&typeof m.stock==="number"?m.stock:"";$("#md-end").value=m&&m.end||"";$("#md-pause").checked=!!(m&&m.paused);
+  $("#md-pausew").hidden=!m;$("#md-del").hidden=!m;
+  dlgOpen(mdDlg);setTimeout(function(){$(m?"#md-t0":"#md-name").focus()},30);
+}
+function mdNeedToggle(){var on=$("#md-need").checked;$("#md-sched").hidden=on}
+$("#md-need").addEventListener("change",mdNeedToggle);
+$("#md-days").addEventListener("click",function(e){var b=e.target.closest("[data-dw]");if(b)b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")==="true"?"false":"true")});
+$("#md-add").addEventListener("click",function(){mdOpen(null)});
+$("#md-close").addEventListener("click",function(){dlgClose(mdDlg)});
+dlgBackdrop(mdDlg);
+$("#md-form").addEventListener("submit",function(e){
+  e.preventDefault();var name=$("#md-name").value.trim();if(!name){flash("#md-name");return}
+  var need=$("#md-need").checked,T=[];
+  if(!need){[0,1,2,3].forEach(function(i){var v=$("#md-t"+i).value;if(/^\d{2}:\d{2}$/.test(v)&&T.indexOf(v)<0)T.push(v)});if(!T.length){flash("#md-t0");return}T.sort()}
+  var D=[];document.querySelectorAll("#md-days [data-dw]").forEach(function(b){if(b.getAttribute("aria-pressed")==="true")D.push(+b.dataset.dw)});
+  if(!need&&!D.length){toast("Choisis au moins un jour.");return}
+  var st=$("#md-stock").value.trim(),sn=st===""?null:Math.round(num(st));if(st!==""&&!(sn>=0)){flash("#md-stock");return}
+  var m=mdEdit||{id:newId(),added:today()};
+  m.name=name;m.dose=$("#md-dose").value.trim();m.times=need?[]:T;m.days=D.length===7?[]:D;m.end=$("#md-end").value||"";
+  if(sn==null)delete m.stock;else m.stock=sn;m.paused=mdEdit?$("#md-pause").checked:false;
+  if(!mdEdit)state.meds.list.push(m);
+  persist("meds");dlgClose(mdDlg);renderMeds();renderHome();toast(name+(mdEdit?" mis à jour.":" ajouté."));
+});
+$("#md-del").addEventListener("click",function(){if(!mdEdit)return;var i=state.meds.list.indexOf(mdEdit);if(i<0)return;var rm=state.meds.list.splice(i,1)[0];persist("meds");dlgClose(mdDlg);renderMeds();renderHome();toast(rm.name+" supprimé",function(){state.meds.list.splice(i,0,rm);persist("meds");renderMeds();renderHome()})});
+// carte accueil
+function renderMedCard(){
+  var el=$("#card-meds");if(!el)return;var d=today(),S=mdSlots(d),M=state.meds.list;
+  if(!M.length){el.innerHTML='<div class="k-title">Médicaments<span class="k-chip">À configurer</span></div><div class="k-lbl" style="margin-top:auto">Ajoute ton traitement pour ne plus te demander si tu l\'as pris.</div><span class="k-open">Ouvrir →</span>';return}
+  var done=S.filter(function(s){return mdTaken(d,s.key)}).length,low=M.filter(function(m){var si=mdStockInfo(m);return !m.paused&&si&&si.days!=null&&si.days<=5});
+  el.innerHTML='<div class="k-title">Médicaments<span class="k-chip'+(S.length&&done===S.length?" ok":low.length?" warn":"")+'">'+(S.length?(done===S.length?"Tout est pris ✓":done+" / "+S.length):"Rien aujourd'hui")+'</span></div>'+
+    '<div class="md-mini">'+S.slice(0,4).map(function(s){var st=mdState(d,s);return '<span role="button" tabindex="0" class="md-chip md-'+st.k+'" data-mk="'+esc(s.key)+'" data-mid="'+esc(s.m.id)+'" aria-label="'+esc(s.m.name+" "+s.t+" : "+st.txt)+'"><i>'+(st.k==="ok"?"✓":"")+'</i><span><b>'+esc(s.m.name)+'</b><small>'+esc(st.txt)+'</small></span></span>'}).join("")+'</div>'+
+    (low.length?'<div class="k-lbl" style="color:#ffb38a">Stock bas : '+esc(low.map(function(m){return m.name}).join(", "))+'</div>':'')+'<span class="k-open">Ouvrir →</span>';
+}
+$("#card-meds").addEventListener("click",function(e){var c=e.target.closest("[data-mk]");if(!c||hEdit)return;e.stopPropagation();e.preventDefault();mdTake(today(),c.dataset.mk,mdFind(c.dataset.mid))},true);
+$("#card-meds").addEventListener("keydown",function(e){var c=e.target.closest("[data-mk]");if(c&&(e.key==="Enter"||e.key===" ")){e.preventDefault();e.stopPropagation();mdTake(today(),c.dataset.mk,mdFind(c.dataset.mid))}},true);
+setInterval(function(){if(!document.hidden&&(ui.tab==="meds"||ui.tab==="home")){renderMeds();renderMedCard()}},5*60000);
 /* ---------- sous-navigation par espace ---------- */
 Object.keys(GRP).forEach(function(g){
   var T=GRP[g];if(T.length<2)return;
@@ -4723,7 +4897,7 @@ Object.keys(GRP).forEach(function(g){
 });
 function render(){
   var t=state.settings.title||"Dashboard";$("#app-title").textContent=t;
-  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderPlan();fillPlanCfg();renderHome();applyHome();renderProd();if(ui.tab==="rev")renderRev();
+  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderPlan();fillPlanCfg();renderHome();applyHome();renderProd();renderMeds();if(ui.tab==="rev")renderRev();
 }
 
 loadLocal();
