@@ -709,6 +709,62 @@ details.panel[open]>summary{margin-bottom:12px}
   .catrow{grid-template-columns:5.8rem 1fr auto; gap:8px}
 }
 @media (prefers-reduced-motion:no-preference){ .track i,.meter i{transition:width .3s ease} }
+/* ================= thème graphite (inspiré du tableau de bord météo) ================= */
+:root{--ink:#eef0f4; --muted:#8d93a1; --line:rgba(255,255,255,.075); --soft:rgba(255,255,255,.05); --fin:#7aa7ff}
+html{background:#2c2e34}
+#sky{opacity:.45; filter:saturate(.55)}
+body[data-sky] #sky{--sk0:#16181d}
+/* cadre de l'appli sur ordinateur */
+@media (min-width:761px){
+  body::after{content:""; position:fixed; inset:14px; z-index:-1; border-radius:30px; pointer-events:none;
+    background:linear-gradient(160deg, rgba(30,33,40,.94), rgba(17,19,24,.96)); border:1px solid rgba(255,255,255,.06);
+    box-shadow:0 40px 90px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(0,0,0,.4)}
+  .side{left:28px; top:28px; bottom:28px; width:64px; border-radius:22px; background:linear-gradient(180deg, rgba(42,46,56,.75), rgba(26,29,36,.75)); border-color:rgba(255,255,255,.06)}
+  body{padding-left:100px; padding-right:14px}
+  .wrap{padding-top:34px}
+}
+.panel{background:linear-gradient(160deg, rgba(52,57,69,.55), rgba(28,31,38,.78)); border-color:var(--line); border-radius:22px;
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 20px 44px -30px rgba(0,0,0,.9)}
+.card{background:radial-gradient(420px circle at var(--mx,90%) var(--my,-20%), rgba(140,170,255,.10), transparent 55%), linear-gradient(160deg, rgba(55,60,73,.62), rgba(26,29,36,.86));
+  border-color:var(--line); border-radius:24px; box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 26px 50px -34px rgba(0,0,0,.95)}
+button.card:hover,button.card:focus-visible{border-color:rgba(255,255,255,.16); box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 34px 60px -32px rgba(0,0,0,1), 0 0 30px -10px rgba(122,167,255,.35)}
+.k-title{font-size:.92rem; font-weight:600; color:#d9dce3}
+.k-chip{background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.08); color:#b9bec9}
+.sbtn{color:#7c818d}
+.sbtn:hover,.sbtn:focus-visible{color:#e4e7ee; background:rgba(255,255,255,.07)}
+.sbtn.on{color:#fff; background:rgba(255,255,255,.12); box-shadow:0 0 0 1px rgba(255,255,255,.12) inset}
+.seg{background:rgba(0,0,0,.22)} .seg button[aria-pressed="true"]{background:rgba(255,255,255,.1)}
+input,select,textarea{background:rgba(0,0,0,.2)}
+.modal{background:linear-gradient(160deg, rgba(44,48,58,.98), rgba(22,24,30,.98)); border-color:rgba(255,255,255,.09)}
+.chip{background:rgba(0,0,0,.25); border-color:rgba(255,255,255,.08)}
+.tile{background:rgba(255,255,255,.04)}
+.fh-mini,.ff-card,.rv-card{background:rgba(0,0,0,.18)}
+/* ---------- disposition horizontale sur grand écran ---------- */
+@media (min-width:1200px){
+  body[data-tab="home"] .wrap{max-width:1500px}
+  .wrap{max-width:1040px}
+  body[data-tab="fin"] .wrap,body[data-tab="plan"] .wrap,body[data-tab="prod"] .wrap,body[data-tab="lib"] .wrap{max-width:1320px}
+  .hgrid{gap:16px}
+  .hgrid .w-s{grid-column:span 3} .hgrid .w-l{grid-column:span 6} .hgrid .w-f{grid-column:span 12}
+  .card{min-height:230px; padding:20px}
+  .c-hello{min-height:230px}
+  .k-big{font-size:2.2rem}
+  /* finances : résumé et budgets à gauche, opérations à droite */
+  #fp-month{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:16px; align-items:start; grid-auto-flow:row dense}
+  #fp-month > *{grid-column:1}
+  #fp-month > #fin-ops{grid-column:2; grid-row:1 / span 6; position:sticky; top:20px; max-height:calc(100vh - 60px); overflow:auto}
+  #fp-month > .stepper{grid-column:1 / -1}
+  #fp-month > #fin-ops{grid-row:2 / span 6}
+  #fp-sav,#fp-cred,#fp-subs{display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start}
+  #fp-sav[hidden],#fp-cred[hidden],#fp-subs[hidden]{display:none}
+  #fp-sav > #sv-plan-p{grid-column:1 / -1}
+  /* bibliothèque : carrousel et fiche côte à côte */
+  #lp-books{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:16px; align-items:start}
+  #lp-books[hidden]{display:none}
+  #lp-books > *{grid-column:1} #lp-books > .panel:nth-child(2){grid-column:2; grid-row:1 / span 3}
+  #lp-books > .panel:last-child{grid-column:1 / -1}
+}
+@media (min-width:1600px){ .hgrid .w-s{grid-column:span 3} body[data-tab="home"] .wrap{max-width:1640px} }
 </style>
 </head>
 <body data-tab="home">
@@ -4605,16 +4661,17 @@ setTimeout(function(){msReady=true;msCheck()},4000);
 var cntPrev={};
 function countUp(root){
   if(RM||!root)return;
-  root.querySelectorAll(".k-big,.sv-total,.fc-big,.rv-mini b").forEach(function(el,i){
+  root.querySelectorAll(".k-big,.sv-total,.fc-big,.rv-mini b").forEach(function(el){
+    if(el._cu)return;var host=el.closest("[id]")||root,i=[].indexOf.call(host.querySelectorAll(".k-big,.sv-total,.fc-big,.rv-mini b"),el);
     var tn=null;for(var n=el.firstChild;n;n=n.nextSibling)if(n.nodeType===3&&/\d/.test(n.nodeValue)){tn=n;break}
     if(!tn)return;var txt=tn.nodeValue,m=txt.match(/[−-]?\d[\d\s  ]*(,\d+)?/);if(!m)return;
     var raw=m[0],dec=m[1]?m[1].length-1:0,v=parseFloat(raw.replace(/[\s  ]/g,"").replace("−","-").replace(",","."));if(!isFinite(v))return;
-    var key=(el.closest("[id]")||{}).id+":"+i,from=cntPrev[key]==null?0:cntPrev[key];cntPrev[key]=v;
+    var key=host.id+":"+i,from=cntPrev[key]==null?0:cntPrev[key];cntPrev[key]=v;
     if(from===v)return;
-    var nf=new Intl.NumberFormat("fr-FR",{minimumFractionDigits:dec,maximumFractionDigits:dec}),neg=raw.charAt(0)==="−",t0=performance.now(),D=750;
+    var nf=new Intl.NumberFormat("fr-FR",{minimumFractionDigits:dec,maximumFractionDigits:dec}),neg=raw.charAt(0)==="−",t0=performance.now(),D=750;el._cu=true;
     (function step(t){var k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3),cur=from+(v-from)*e;
       var s=nf.format(Math.abs(cur));if(cur<0)s=(neg?"−":"-")+s;tn.nodeValue=txt.replace(raw,s);
-      if(k<1)requestAnimationFrame(step);else tn.nodeValue=txt})(t0);
+      if(k<1&&el.isConnected)requestAnimationFrame(step);else{tn.nodeValue=txt;el._cu=false}})(t0);
   });
 }
 function viewAnim(t){
