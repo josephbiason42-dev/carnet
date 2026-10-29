@@ -34,7 +34,7 @@ body{min-height:100vh; color:var(--ink); font:16px/1.45 var(--body); font-varian
   background:transparent}
 /* ciel animé selon l'heure */
 #sky{position:fixed; inset:0; z-index:-1; overflow:hidden; background:var(--sk0,#05070d); transition:background 3s}
-#sky b{position:absolute; border-radius:50%; filter:blur(10px); transition:background 3s, opacity 3s; will-change:transform}
+#sky b{position:absolute; border-radius:50%; transition:background 3s, opacity 3s; will-change:transform}
 #sky .sk1{width:85vmax; height:70vmax; right:-35vmax; top:-35vmax; background:radial-gradient(closest-side, var(--sk1), transparent); animation:skd1 38s ease-in-out infinite alternate}
 #sky .sk2{width:70vmax; height:62vmax; right:-32vmax; bottom:-25vmax; background:radial-gradient(closest-side, var(--sk2), transparent); animation:skd2 46s ease-in-out infinite alternate}
 #sky .sk3{width:60vmax; height:60vmax; left:-30vmax; bottom:-32vmax; background:radial-gradient(closest-side, var(--sk3), transparent); animation:skd3 52s ease-in-out infinite alternate}
@@ -42,7 +42,10 @@ body{min-height:100vh; color:var(--ink); font:16px/1.45 var(--body); font-varian
 @keyframes skd2{to{transform:translate(-7vmax,-9vmax) scale(.94)}}
 @keyframes skd3{to{transform:translate(8vmax,-6vmax) scale(1.1)}}
 #sky .stars{position:absolute; inset:0; opacity:0; transition:opacity 3s}
-#sky .stars i{position:absolute; border-radius:50%; background:#fff; animation:twk 5s ease-in-out infinite}
+#sky .stars i{position:absolute; border-radius:50%; background:#fff; animation:twk 5s ease-in-out infinite; animation-play-state:paused}
+body[data-sky="nuit"] #sky .stars i,body[data-sky="soir"] #sky .stars i{animation-play-state:running}
+body.idle #sky *,body.calm #sky *{animation-play-state:paused!important}
+body.calm #sky b{animation:none}
 @keyframes twk{0%,100%{opacity:.15}50%{opacity:.85}}
 body[data-sky="aube"]{--sk0:#080a17; --sk1:rgba(255,128,120,.30); --sk2:rgba(140,110,255,.26); --sk3:rgba(255,186,120,.14)}
 body,body[data-sky="jour"]{--sk0:#05070d; --sk1:rgba(46,98,255,.34); --sk2:rgba(34,190,238,.20); --sk3:rgba(40,70,200,.16)}
@@ -80,12 +83,12 @@ body[data-tab="home"] .top{display:none}
 .view{display:none; flex-direction:column; gap:16px}
 .view.on{display:flex}
 .panel{background:linear-gradient(180deg, rgba(24,31,54,.78), rgba(12,16,30,.78)); border:1px solid var(--line); border-radius:20px; padding:18px;
-  box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 50px -30px rgba(0,0,0,.9); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px)}
+  box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 50px -30px rgba(0,0,0,.9);}
 .back{all:unset; cursor:pointer; align-self:flex-start; font:600 .85rem var(--body); color:var(--muted); padding:4px 2px}
 .back:hover,.back:focus-visible{color:var(--accent)}
 /* ---------- barre latérale ---------- */
 .side{position:fixed; left:16px; top:16px; bottom:16px; width:68px; z-index:15; display:flex; flex-direction:column; align-items:center; justify-content:space-between;
-  padding:14px 0; border-radius:20px; background:linear-gradient(180deg, rgba(20,26,46,.8), rgba(10,13,25,.8)); border:1px solid var(--line); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px)}
+  padding:14px 0; border-radius:20px; background:linear-gradient(180deg, rgba(20,26,46,.8), rgba(10,13,25,.8)); border:1px solid var(--line);}
 .side nav{display:flex; flex-direction:column; gap:10px}
 .sbtn{all:unset; box-sizing:border-box; width:44px; height:44px; border-radius:13px; display:grid; place-items:center; cursor:pointer; color:#7d87a3; transition:color .2s, background .2s, box-shadow .2s, transform .5s}
 .sbtn svg{width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
@@ -113,7 +116,7 @@ body[data-tab="home"] .top{display:none}
 .h-foot{display:flex; justify-content:flex-end; margin-top:2px}
 .card{all:unset; box-sizing:border-box; container-type:inline-size; position:relative; display:flex; flex-direction:column; gap:12px; min-height:220px; padding:22px; border-radius:22px; color:var(--ink); overflow:hidden;
   background:radial-gradient(380px circle at var(--mx,80%) var(--my,-30%), rgba(91,140,255,.16), transparent 50%), linear-gradient(180deg, rgba(24,31,54,.82), rgba(10,14,27,.82));
-  border:1px solid var(--line); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--line);
   box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 30px 60px -36px rgba(0,0,0,.95);
   transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));
   transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s}
@@ -236,7 +239,7 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .sh-q button{all:unset; cursor:pointer; width:26px; height:26px; border-radius:7px; display:grid; place-items:center; background:rgba(255,255,255,.06); font-weight:700}
 .sh-pr{all:unset; cursor:pointer; font-family:var(--mono); font-size:.9rem; min-width:62px; text-align:right; white-space:nowrap}
 .sh-it .del{width:26px; height:26px}
-.sh-cart{position:sticky; bottom:12px; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-radius:16px; background:rgba(14,19,36,.95); border:1px solid rgba(74,222,128,.4); backdrop-filter:blur(10px)}
+.sh-cart{position:sticky; bottom:12px; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-radius:16px; background:rgba(14,19,36,.95); border:1px solid rgba(74,222,128,.4);}
 .sh-cart small{display:block; font-size:.74rem; color:var(--muted)} .sh-cart b{font-size:1.3rem; font-weight:800}
 @media (max-width:760px){.sh-cart{bottom:calc(84px + env(safe-area-inset-bottom))}}
 .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
@@ -355,7 +358,7 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .pstar:focus-visible{outline:2px solid var(--accent); border-radius:4px}
 .pcmp{display:flex; flex-direction:row; align-items:center; gap:4px; font-size:.72rem; color:var(--muted); cursor:pointer}
 .pcmp input{width:16px; height:16px; accent-color:#5b8cff}
-#pr-cmpbar{position:sticky; bottom:12px; z-index:5; display:flex; align-items:center; gap:14px; justify-content:flex-end; padding:10px 14px; border-radius:14px; background:rgba(14,19,36,.95); border:1px solid rgba(120,160,255,.35); backdrop-filter:blur(10px); margin-top:12px}
+#pr-cmpbar{position:sticky; bottom:12px; z-index:5; display:flex; align-items:center; gap:14px; justify-content:flex-end; padding:10px 14px; border-radius:14px; background:rgba(14,19,36,.95); border:1px solid rgba(120,160,255,.35); margin-top:12px}
 #pr-cmpbar span{margin-right:auto; font-size:.88rem}
 #pr-cmpbar button[disabled]{opacity:.45}
 .pv-price{font-family:var(--mono); font-size:1.3rem; font-weight:600}
@@ -386,7 +389,7 @@ table.pc td.pc-args{font-size:.78rem; line-height:1.4}
 .lc-a{font-size:.78rem; opacity:.85}
 .lc-foot{margin-top:auto; font-size:.7rem; font-weight:600; opacity:.9; display:flex; flex-direction:column; gap:6px}
 .lc-foot i{display:block; height:4px; border-radius:2px; background:linear-gradient(90deg,#fff var(--p),rgba(255,255,255,.25) var(--p))}
-.lc-arrow{position:absolute; top:50%; transform:translateY(-50%); z-index:2; width:42px; height:42px; border-radius:50%; border:1px solid rgba(120,160,255,.35); background:rgba(14,19,36,.85); color:var(--ink); font-size:1.4rem; cursor:pointer; display:grid; place-items:center; backdrop-filter:blur(8px)}
+.lc-arrow{position:absolute; top:50%; transform:translateY(-50%); z-index:2; width:42px; height:42px; border-radius:50%; border:1px solid rgba(120,160,255,.35); background:rgba(14,19,36,.85); color:var(--ink); font-size:1.4rem; cursor:pointer; display:grid; place-items:center;}
 .lc-arrow:hover,.lc-arrow:focus-visible{background:rgba(40,52,90,.95)}
 #lc-prev{left:6px} #lc-next{right:6px}
 @media (prefers-reduced-motion:reduce){.lc-book{transition:none}}
@@ -490,7 +493,7 @@ body.h-dragging{user-select:none; -webkit-user-select:none; cursor:grabbing}
 .modal{width:min(560px, calc(100vw - 32px)); max-height:calc(100vh - 40px); overflow:auto; padding:22px; border-radius:22px; color:var(--ink);
   background:linear-gradient(180deg, rgba(26,33,58,.97), rgba(12,16,30,.97)); border:1px solid rgba(120,160,255,.28);
   box-shadow:0 40px 90px -30px rgba(0,0,0,1), 0 0 50px -12px rgba(91,140,255,.45)}
-.modal::backdrop{background:rgba(3,5,12,.6); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px)}
+.modal::backdrop{background:rgba(3,5,12,.6);}
 .modal[open]{animation:pop .22s cubic-bezier(.2,.8,.2,1)}
 @keyframes pop{from{opacity:0; transform:translateY(10px) scale(.98)}to{opacity:1; transform:none}}
 @media (prefers-reduced-motion:reduce){.modal[open]{animation:none}}
@@ -712,20 +715,20 @@ details.panel[open]>summary{margin-bottom:12px}
 /* ================= thème graphite (inspiré du tableau de bord météo) ================= */
 :root{--ink:#eef0f4; --muted:#8d93a1; --line:rgba(255,255,255,.075); --soft:rgba(255,255,255,.05); --fin:#7aa7ff}
 html{background:#2c2e34}
-#sky{opacity:.45; filter:saturate(.55)}
+#sky b{opacity:.45}
 body[data-sky] #sky{--sk0:#16181d}
 /* cadre de l'appli sur ordinateur */
 @media (min-width:761px){
   body::after{content:""; position:fixed; inset:14px; z-index:-1; border-radius:30px; pointer-events:none;
     background:linear-gradient(160deg, rgba(30,33,40,.94), rgba(17,19,24,.96)); border:1px solid rgba(255,255,255,.06);
     box-shadow:0 40px 90px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(0,0,0,.4)}
-  .side{left:28px; top:28px; bottom:28px; width:64px; border-radius:22px; background:linear-gradient(180deg, rgba(42,46,56,.75), rgba(26,29,36,.75)); border-color:rgba(255,255,255,.06)}
+  .side{left:28px; top:28px; bottom:28px; width:64px; border-radius:22px; background:linear-gradient(180deg, rgba(40,44,54,.96), rgba(26,29,36,.96)); border-color:rgba(255,255,255,.06)}
   body{padding-left:100px; padding-right:14px}
   .wrap{padding-top:34px}
 }
-.panel{background:linear-gradient(160deg, rgba(52,57,69,.55), rgba(28,31,38,.78)); border-color:var(--line); border-radius:22px;
+.panel{background:linear-gradient(160deg, rgba(48,52,63,.92), rgba(27,30,36,.95)); border-color:var(--line); border-radius:22px;
   box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 20px 44px -30px rgba(0,0,0,.9)}
-.card{background:radial-gradient(420px circle at var(--mx,90%) var(--my,-20%), rgba(140,170,255,.10), transparent 55%), linear-gradient(160deg, rgba(55,60,73,.62), rgba(26,29,36,.86));
+.card{background:radial-gradient(420px circle at var(--mx,90%) var(--my,-20%), rgba(140,170,255,.10), transparent 55%), linear-gradient(160deg, rgba(50,55,67,.9), rgba(26,29,36,.95));
   border-color:var(--line); border-radius:24px; box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 26px 50px -34px rgba(0,0,0,.95)}
 button.card:hover,button.card:focus-visible{border-color:rgba(255,255,255,.16); box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 34px 60px -32px rgba(0,0,0,1), 0 0 30px -10px rgba(122,167,255,.35)}
 .k-title{font-size:.92rem; font-weight:600; color:#d9dce3}
@@ -1106,6 +1109,7 @@ input,select,textarea{background:rgba(0,0,0,.2)}
       <h3>Modules affichés</h3>
       <p class="note" style="margin-bottom:10px">Décoche ceux que tu n'utilises pas : ils disparaissent de l'accueil et de la navigation. Tes données sont gardées.</p>
       <div id="mods-box" style="display:grid;gap:10px"></div>
+      <label class="check" for="calm-mode" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line)"><input type="checkbox" id="calm-mode"> Fond fixe (économise la batterie et évite que l'ordinateur chauffe)</label>
     </div>
     <div class="panel">
       <h3>Personnaliser</h3>
@@ -4644,11 +4648,15 @@ var RM=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").
 // ciel selon l'heure
 (function(){
   var sky=document.createElement("div");sky.id="sky";sky.setAttribute("aria-hidden","true");
-  var st="";for(var i=0;i<70;i++){var x=Math.random()*100,y=Math.random()*70,s=Math.random()<.15?2:1;st+='<i style="left:'+x.toFixed(2)+'%;top:'+y.toFixed(2)+'%;width:'+s+'px;height:'+s+'px;animation-delay:-'+(Math.random()*6).toFixed(2)+'s;animation-duration:'+(3+Math.random()*4).toFixed(2)+'s"></i>'}
+  var st="";for(var i=0;i<36;i++){var x=Math.random()*100,y=Math.random()*70,s=Math.random()<.15?2:1;st+='<i style="left:'+x.toFixed(2)+'%;top:'+y.toFixed(2)+'%;width:'+s+'px;height:'+s+'px;animation-delay:-'+(Math.random()*6).toFixed(2)+'s;animation-duration:'+(3+Math.random()*4).toFixed(2)+'s"></i>'}
   sky.innerHTML='<b class="sk1"></b><b class="sk2"></b><b class="sk3"></b><div class="stars">'+st+'</div>';
   document.body.insertBefore(sky,document.body.firstChild);
   function upd(){var h=new Date().getHours(),p=h>=6&&h<10?"aube":h>=10&&h<17?"jour":h>=17&&h<21?"soir":"nuit";if(document.body.dataset.sky!==p)document.body.dataset.sky=p}
   upd();setInterval(upd,5*60000);
+  var idle=function(on){document.body.classList.toggle("idle",on)};
+  window.addEventListener("blur",function(){idle(true)});window.addEventListener("focus",function(){idle(false)});
+  document.addEventListener("visibilitychange",function(){idle(document.hidden)});
+  try{if(localStorage.getItem("carnet-calm")==="1")document.body.classList.add("calm")}catch(e){}
 })();
 // confettis
 function confetti(){
@@ -5224,6 +5232,8 @@ Object.keys(GRP).forEach(function(g){
     w.addEventListener("click",function(e){var b=e.target.closest("[data-gt]");if(b&&b.dataset.gt!==ui.tab)navTo(b.dataset.gt)});
   });
 });
+/* ---------- fond fixe (par appareil) ---------- */
+(function(){var cb=$("#calm-mode");if(!cb)return;cb.checked=document.body.classList.contains("calm");cb.addEventListener("change",function(){document.body.classList.toggle("calm",cb.checked);try{localStorage.setItem("carnet-calm",cb.checked?"1":"0")}catch(e){}})})();
 /* ---------- modules affichés (par compte) ---------- */
 var MODS=[["fin","Finances : budget, épargne, crédits, abonnements"],["shop","Courses : liste et estimation"],["cal","Calories"],["body","Pesée"],["meds","Médicaments"],["plan","Planning"],["job","Candidatures"],["prod","Produits Boulanger"],["lib","Bibliothèque"],["p30","Projet 30"],["rev","Bilan du mois"]];
 var HMOD={fin:"fin",cal:"cal",body:"body",meds:"meds",date:"plan",job:"job",prod:"prod",lib:"lib",p30:"p30",rev:"rev"};
