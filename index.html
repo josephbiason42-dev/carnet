@@ -1574,10 +1574,30 @@ function schedulePush(){
   clearTimeout(sync.timer);
   sync.timer=setTimeout(push,800);
 }
+/* fusion des réglages champ par champ : un appareil en retard ne doit pas effacer ce qu'un autre a changé (ex. le solde) */
+function setBase(){return lsGet("carnet-set-base")}
+function setBaseSave(b){lsSet("carnet-set-base",JSON.parse(JSON.stringify(b||{})))}
+function mergeSettings(remote,local,base){
+  remote=remote||{};var out=Object.assign({},remote);
+  if(base){
+    var K={};Object.keys(local).concat(Object.keys(base)).forEach(function(k){K[k]=1});
+    Object.keys(K).forEach(function(k){if(JSON.stringify(local[k])!==JSON.stringify(base[k])){if(k in local)out[k]=local[k];else delete out[k]}});
+  }else Object.keys(local).forEach(function(k){if(!(k in out))out[k]=local[k]});
+  var rb=remote.bank,lb=local.bank;
+  if(rb&&lb)out.bank=((lb.at||0)>(rb.at||0)||((lb.at||0)===(rb.at||0)&&lb.date>rb.date))?lb:rb;else if(rb&&!(base&&base.bank&&!lb))out.bank=rb;
+  return out;
+}
+function pullSettingsMerge(){
+  return authFetch("/rest/v1/carnet_docs?select=body&key=eq.settings",{method:"GET"}).then(function(r){
+    if(!r||!r.length)return;var remote=r[0].body||{},m=mergeSettings(remote,state.settings,setBase());
+    if(JSON.stringify(m)!==JSON.stringify(state.settings)){state.settings=m;saveLocal();render()}
+  });
+}
 function push(){
   if(!session||!hasCfg()||sync.pushing)return Promise.resolve();
   var keys=Object.keys(dirty);
   if(!keys.length){return Promise.resolve()}
+  if(dirty.settings&&!push._merged){sync.pushing=true;return pullSettingsMerge().then(function(){sync.pushing=false;push._merged=true;return push()},function(e){sync.pushing=false;onSyncError(e)}).then(function(){push._merged=false})}
   sync.pushing=true;
   var snap={};keys.forEach(function(k){snap[k]=dirty[k]});
   var now=new Date().toISOString();
@@ -1585,6 +1605,7 @@ function push(){
   return authFetch("/rest/v1/carnet_docs?on_conflict=user_id,key",{method:"POST",headers:{"Prefer":"resolution=merge-duplicates,return=minimal"},body:JSON.stringify(rows)})
     .then(function(){
       keys.forEach(function(k){if(dirty[k]===snap[k])delete dirty[k]});
+      if(keys.indexOf("settings")>=0)setBaseSave(rows.filter(function(r){return r.key==="settings"})[0].body);
       lsSet("carnet-dirty",dirty);
       setSync("ok");
     },onSyncError)
@@ -1602,7 +1623,9 @@ function pull(){
     }
     var changed=false;
     Object.keys(remote).forEach(function(k){
+      if(k==="settings"&&dirty[k]){var mg=mergeSettings(remote[k],state.settings,setBase());if(JSON.stringify(mg)!==JSON.stringify(state.settings)){state.settings=mg;changed=true}return}
       if(dirty[k])return;
+      if(k==="settings")setBaseSave(remote[k]);
       if(JSON.stringify(remote[k])!==JSON.stringify(bodyFor(k))){applyDoc(k,remote[k]);changed=true}
     });
     if(changed){saveLocal();render()}
@@ -2786,20 +2809,23 @@ $("#s-cunit").addEventListener("change",function(){if(this.value)state.settings.
 (function(){var el=$("#s-wgoal"),t=null;el.addEventListener("input",function(){clearTimeout(t);t=setTimeout(function(){var v=num(el.value),nv=v>0?Math.round(v*10)/10:null;if((state.settings.weightGoal||null)===nv)return;if(nv)state.settings.weightGoal=nv;else delete state.settings.weightGoal;persist("settings");renderBody();renderHome()},600)})})();
 function bindList(sel,key,isText){
   var el=$(sel),timer=null;
+  var commit=null;
+  el.addEventListener("blur",function(){if(commit){clearTimeout(timer);commit()}});
   el.addEventListener("input",function(){
-    clearTimeout(timer);
-    timer=setTimeout(function(){
+    clearTimeout(timer);var val=el.value;
+    commit=function(){commit=null;
       if(isText){
-        var t=el.value.trim();
+        var t=val.trim();
         if((state.settings[key]||"")===t)return;
         if(t)state.settings[key]=t;else delete state.settings[key];
       }else{
-        var seen={},list=el.value.split("\n").map(function(x){return x.trim()}).filter(function(x){if(!x||seen[x.toLowerCase()])return false;seen[x.toLowerCase()]=1;return true}).slice(0,30);
+        var seen={},list=val.split("\n").map(function(x){return x.trim()}).filter(function(x){if(!x||seen[x.toLowerCase()])return false;seen[x.toLowerCase()]=1;return true}).slice(0,30);
         if(JSON.stringify(state.settings[key]||[])===JSON.stringify(list))return;
         if(list.length)state.settings[key]=list;else delete state.settings[key];
       }
       persist("settings");render();
-    },700);
+    };
+    timer=setTimeout(function(){if(commit)commit()},700);
   });
 }
 bindList("#s-title","title",true);bindList("#s-name","name",true);bindList("#s-out","catsOut");bindList("#s-in","catsIn");bindList("#s-meals","meals");
