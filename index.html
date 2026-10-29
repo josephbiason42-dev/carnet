@@ -982,9 +982,14 @@ details.panel[open]>summary{margin-bottom:12px}
       <div id="sync-box"></div>
     </div>
     <div class="panel">
+      <h3>Modules affichés</h3>
+      <p class="note" style="margin-bottom:10px">Décoche ceux que tu n'utilises pas : ils disparaissent de l'accueil et de la navigation. Tes données sont gardées.</p>
+      <div id="mods-box" style="display:grid;gap:10px"></div>
+    </div>
+    <div class="panel">
       <h3>Personnaliser</h3>
       <div class="grid">
-        <label for="s-name">Ton prénom<input id="s-name" placeholder="Joseph" maxlength="30" autocomplete="off"></label>
+        <label for="s-name">Ton prénom<input id="s-name" placeholder="Ton prénom" maxlength="30" autocomplete="off"></label>
         <label for="s-title">Nom de la page<input id="s-title" placeholder="Dashboard" maxlength="40" autocomplete="off"></label>
         <label for="s-out">Catégories de dépenses<textarea id="s-out" spellcheck="false" style="min-height:190px"></textarea></label>
         <label for="s-in">Catégories d'entrées<textarea id="s-in" spellcheck="false" style="min-height:190px"></textarea></label>
@@ -1560,7 +1565,7 @@ var TABN={meds:"Médicaments",home:"Accueil",rev:"Bilan du mois",cal:"Calories",
 ui.lastIn={};
 function grpOf(t){for(var k in GRP)if(GRP[k].indexOf(t)>=0)return k;return null}
 document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){
-  if(b.dataset.grp){var g=b.dataset.grp,cur=grpOf(ui.tab);navTo(cur===g&&g!=="home"?GRP[g][0]:g==="home"?"home":(ui.lastIn[g]||GRP[g][0]),b);return}
+  if(b.dataset.grp){var g=b.dataset.grp,cur=grpOf(ui.tab),last=ui.lastIn[g];if(last&&!modOn(last))last=null;navTo(cur===g&&g!=="home"?grpFirst(g):g==="home"?"home":(last||grpFirst(g)),b);return}
   navTo(b.id==="gear"&&ui.tab==="set"?"home":b.dataset.go,b)})});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!document.querySelector("dialog[open]")&&ui.tab!=="home"&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||""))setTab("home")});
 
@@ -3503,7 +3508,7 @@ function applyHome(){
     var el=$("#card-"+c.id);if(!el)return;
     if(!hDrag)g.appendChild(el);
     el.classList.remove("w-s","w-l","w-f");el.classList.add("w-"+c.size);
-    el.hidden=c.hidden&&!hEdit;el.classList.toggle("h-off",c.hidden);
+    el.hidden=(c.hidden&&!hEdit)||!modOn(HMOD[c.id]);el.classList.toggle("h-off",c.hidden);
     var ov=el.querySelector(".h-ov");
     if(hEdit){
       if(!ov){ov=document.createElement("span");ov.className="h-ov";el.appendChild(ov)}
@@ -3675,9 +3680,9 @@ function renderHello(){
       if(e.target.closest("#brief-more")){helloAll=!helloAll;renderHello()}
     });
   }
-  var name=(state.settings.name||"Joseph").trim(),msg=helloMessage(),br=helloBrief(),ib=inboxOpen().length;
+  var name=myName(),msg=helloMessage(),br=helloBrief().filter(function(x){return modOn(String(x.go).split(":")[0])}),ib=inboxOpen().length;
   $("#clock").textContent=hhmm();
-  var h='<div class="hi">'+greet()+',</div><h2>'+esc(name)+'</h2><p class="h-msg">'+esc(msg.t)+'</p>';
+  var h=name?'<div class="hi">'+greet()+',</div><h2>'+esc(name)+'</h2><p class="h-msg">'+esc(msg.t)+'</p>':'<div class="hi">'+greet()+' !</div><h2>Bienvenue</h2><p class="h-msg">Commence par les réglages : ton prénom et les modules que tu veux utiliser.</p><button type="button" class="ghost" data-go="set" style="margin:4px 0 10px">Ouvrir les réglages →</button>';
   var lim=helloAll?br.length:4;
   if(br.length){h+='<div class="brief">'+br.slice(0,lim).map(function(x){return '<button type="button" class="br-i" data-go="'+x.go+'"><i style="background:'+x.c+'"></i><span>'+esc(x.t)+'</span><b aria-hidden="true">›</b></button>'}).join("")+(br.length>4?'<button type="button" class="ib-link" id="brief-more" style="color:var(--muted);margin-top:2px">'+(helloAll?"Réduire":"+ "+(br.length-4)+" autre"+(br.length-4>1?"s":""))+'</button>':'')+'</div>'}
   else h+='<div class="brief"><div class="br-ok">Tout est en ordre ✓</div></div>';
@@ -3903,7 +3908,7 @@ function ringSVG(kcal,goal){
     '<text class="ring-sub" x="85" y="108" text-anchor="middle">'+(goal?"sur "+intf.format(goal)+" kcal":"kcal aujourd'hui")+'</text></svg>';
 }
 function renderHome(){
-  var m=today().slice(0,7),C=finCalc(m),name=(state.settings.name||"Joseph").trim();
+  var m=today().slice(0,7),C=finCalc(m),name=myName();
   var end=C.endBank!=null?C.endBank:C.proj,hasForecast=C.bank||state.rec.length||Object.keys(C.bud).length,risk=hasForecast&&end<0;
   var d=today(),t=dayTotal(d),goal=+state.settings.kcalGoal||0,pg=+state.settings.protGoal||0;
   renderHello();renderRevCard();renderProdCard();renderMedCard();if(typeof msCheck==="function")setTimeout(msCheck,0);if(ui.tab==="home"&&typeof countUp==="function")setTimeout(function(){countUp($("#v-home"))},0);
@@ -4895,9 +4900,31 @@ Object.keys(GRP).forEach(function(g){
     w.addEventListener("click",function(e){var b=e.target.closest("[data-gt]");if(b&&b.dataset.gt!==ui.tab)navTo(b.dataset.gt)});
   });
 });
+/* ---------- modules affichés (par compte) ---------- */
+var MODS=[["fin","Finances : budget, épargne, crédits, abonnements"],["cal","Calories"],["body","Pesée"],["meds","Médicaments"],["plan","Planning"],["job","Candidatures"],["prod","Produits Boulanger"],["lib","Bibliothèque"],["p30","Projet 30"],["rev","Bilan du mois"]];
+var HMOD={fin:"fin",cal:"cal",body:"body",meds:"meds",date:"plan",job:"job",prod:"prod",lib:"lib",p30:"p30",rev:"rev"};
+function modOn(t){if(!t)return true;var H=state.settings.hiddenMods;return !(Array.isArray(H)&&H.indexOf(t)>=0)}
+function grpFirst(g){var T=GRP[g].filter(modOn);return T[0]||GRP[g][0]}
+function myName(){return String(state.settings.name||(session&&session.email&&/^joseph/i.test(session.email)?"Joseph":"")).trim()}
+function applyMods(){
+  document.querySelectorAll(".sbtn[data-grp]").forEach(function(b){var g=b.dataset.grp;b.hidden=g!=="home"&&!GRP[g].some(modOn)});
+  document.querySelectorAll(".gnav").forEach(function(w){var vis=0;w.querySelectorAll("[data-gt]").forEach(function(b){var on=modOn(b.dataset.gt);b.hidden=!on;if(on)vis++});w.hidden=vis<2;w.style.gridTemplateColumns="repeat("+Math.max(1,vis)+",1fr)"});
+  if(ui.tab!=="home"&&ui.tab!=="set"&&!modOn(ui.tab))setTab("home");
+  $("#l-seed").hidden=$("#l-seed").hidden||!modOn("p30");
+}
+function renderModsSet(){
+  var el=$("#mods-box");if(!el)return;
+  el.innerHTML=MODS.map(function(m){return '<label class="check" for="mod-'+m[0]+'"><input type="checkbox" id="mod-'+m[0]+'" data-mod="'+m[0]+'"'+(modOn(m[0])?" checked":"")+'> '+esc(m[1])+'</label>'}).join("");
+}
+$("#mods-box").addEventListener("change",function(e){
+  var k=e.target.dataset.mod;if(!k)return;var H=Array.isArray(state.settings.hiddenMods)?state.settings.hiddenMods.slice():[];
+  var i=H.indexOf(k);if(e.target.checked){if(i>=0)H.splice(i,1)}else if(i<0)H.push(k);
+  if(H.length)state.settings.hiddenMods=H;else delete state.settings.hiddenMods;
+  persist("settings");applyHome();applyMods();renderHome();
+});
 function render(){
   var t=state.settings.title||"Dashboard";$("#app-title").textContent=t;
-  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderPlan();fillPlanCfg();renderHome();applyHome();renderProd();renderMeds();if(ui.tab==="rev")renderRev();
+  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderPlan();fillPlanCfg();renderHome();applyHome();renderProd();renderMeds();renderModsSet();applyMods();if(ui.tab==="rev")renderRev();
 }
 
 loadLocal();
