@@ -1000,12 +1000,14 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
       <p class="note" style="margin-top:12px">Jours de sport et moment de la séance. « Auto » : avant le travail si tu commences l'après-midi, après sinon.</p>
       <div class="pl-sd" id="plc-days"></div>
       <label class="check" for="plc-extra" style="margin-top:12px"><input type="checkbox" id="plc-extra"> Ajouter aussi jour profond, jour éclaté et lecture dans la proposition</label>
-      <h3 class="pl-cfg-h">Transports en temps réel</h3>
-      <p class="note">Avec une clé gratuite <a href="https://navitia.io/register" target="_blank" rel="noopener">navitia.io</a>, l'heure de départ est calculée sur les vrais horaires TER et STAR, retards compris. Sans clé, j'utilise le trajet fixe ci-dessus.</p>
+      <h3 class="pl-cfg-h">Trains en temps réel</h3>
+      <p class="note">Avec une clé gratuite de l'<a href="https://numerique.sncf.com/startup/api/token-developpeur/" target="_blank" rel="noopener">API SNCF</a>, ton heure de départ suit le vrai TER (retards compris). Pour le métro et le bus STAR, j'ajoute la durée indiquée ci-dessous. Sans clé, j'utilise le trajet fixe plus haut.</p>
       <div class="grid" style="margin-top:10px">
-        <label for="plc-navkey" class="wide">Clé navitia.io<input id="plc-navkey" type="password" autocomplete="off" spellcheck="false" placeholder="ex. 3b036afe-0110-…"></label>
-        <label for="plc-navfrom">Départ (adresse)<input id="plc-navfrom" placeholder="Rue Josiane Somers, Bruz"></label>
-        <label for="plc-navto">Travail<input id="plc-navto" placeholder="Grand Quartier, Saint-Grégoire"></label>
+        <label for="plc-navkey" class="wide">Clé API SNCF<input id="plc-navkey" type="password" autocomplete="off" spellcheck="false" placeholder="ex. 3b036afe-0110-…"></label>
+        <label for="plc-navfrom">Gare de départ<input id="plc-navfrom" placeholder="Bruz"></label>
+        <label for="plc-navto">Gare d'arrivée<input id="plc-navto" placeholder="Rennes"></label>
+        <label for="plc-navwalk">Domicile → gare (min)<input id="plc-navwalk" inputmode="numeric" placeholder="8"></label>
+        <label for="plc-navleg">Gare → travail, métro + bus (min)<input id="plc-navleg" inputmode="numeric" placeholder="30"></label>
         <label for="plc-navmargin" class="wide">Arriver avant la prise de poste (min)<input id="plc-navmargin" inputmode="numeric" placeholder="10"></label>
       </div>
       <div class="nav-test"><button class="ghost sm" type="button" id="plc-navtest">Tester l'itinéraire</button><span class="note" id="plc-navmsg"></span></div>
@@ -1403,7 +1405,7 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
 <dialog class="modal" id="tj-dialog" aria-labelledby="tj-h" style="width:min(480px,calc(100vw - 32px))">
   <div class="phead"><h3 id="tj-h">Itinéraire</h3><button class="mclose" type="button" id="tj-close" aria-label="Fermer">×</button></div>
   <div id="tj-body"></div>
-  <p class="note tj-foot"><span id="tj-upd"></span> · <button type="button" class="linkbtn" id="tj-refresh">Actualiser</button> · Itinéraires <a href="https://www.navitia.io" target="_blank" rel="noopener">navitia.io</a></p>
+  <p class="note tj-foot"><span id="tj-upd"></span> · <button type="button" class="linkbtn" id="tj-refresh">Actualiser</button> · Horaires TER : <a href="https://numerique.sncf.com/startup/api/" target="_blank" rel="noopener">API SNCF</a></p>
 </dialog>
 <dialog class="modal" id="pb-dialog" aria-labelledby="pb-h" style="width:min(460px,calc(100vw - 32px))">
   <div class="phead"><h3 id="pb-h">Nouveau bloc</h3><button class="mclose" type="button" id="pb-close" aria-label="Fermer">×</button></div>
@@ -3761,45 +3763,57 @@ function suggestWeek(w){
   }
   return notes.length?placed+" séance"+(placed>1?"s":"")+" placée"+(placed>1?"s":"")+" — "+notes.join(" ; ")+".":placed+" séance"+(placed>1?"s":"")+" de sport placée"+(placed>1?"s":"")+". Touche une séance pour la déplacer.";
 }
-/* ---------- transports en temps réel (navitia.io) ---------- */
-var NAV="https://api.navitia.io/v1/",trBusy={},trErr=null,trRT=null;
+/* ---------- trains en temps réel (API SNCF, moteur Navitia) ---------- */
+var NAV="https://api.sncf.com/v1/coverage/sncf/",trBusy={},trErr=null,trRT=null,navMemo={};
 function navKey(){return String(state.settings.navKey||"").trim()}
-function navFromQ(){return state.settings.navFromQ||"Rue Josiane Somers, Bruz"}
-function navToQ(){return state.settings.navToQ||"Grand Quartier, Saint-Grégoire"}
-function navMargin(){var v=state.settings.navMargin;return v!=null&&v!==""?+v:10}
+function navFromQ(){return state.settings.navFromQ||"Bruz"}
+function navToQ(){return state.settings.navToQ||"Rennes"}
+function navNum(k,def){var v=state.settings[k];return v!=null&&v!==""?+v:def}
+function navMargin(){return navNum("navMargin",10)}
+function navWalk(){return navNum("navWalk",8)}
+function navLeg(){return navNum("navLeg",30)}
 function trCache(){try{return JSON.parse(localStorage.getItem("carnet-trips")||"{}")}catch(e){return {}}}
 function trPut(k,v){var c=trCache(),lim=addDays(today(),-2);Object.keys(c).forEach(function(x){if(x.slice(0,10)<lim)delete c[x]});c[k]=v;try{localStorage.setItem("carnet-trips",JSON.stringify(c))}catch(e){}}
 function trReset(){try{localStorage.removeItem("carnet-trips")}catch(e){}}
 function navGet(path){
-  return fetch(NAV+path,{headers:{Authorization:navKey()}}).then(function(r){
-    if(r.status===401||r.status===403)throw new Error("clé refusée par navitia.io");
-    return r.json().then(function(j){if(!r.ok&&!(j&&j.error&&j.error.id==="no_solution"))throw new Error((j&&j.message)||("erreur "+r.status));return j});
+  return fetch(NAV+path,{headers:{Authorization:"Basic "+btoa(navKey()+":")}}).then(function(r){
+    if(r.status===401||r.status===403)throw new Error("clé refusée par l'API SNCF");
+    if(r.status===429)throw new Error("quota du jour atteint");
+    return r.json().then(function(j){if(!r.ok&&!(j&&j.error&&j.error.id==="no_solution"))throw new Error((j&&(j.message||(j.error&&j.error.message)))||("erreur "+r.status));return j});
   });
-}
-var navMemo={};
-function navCov(){
-  if(state.settings.navCov)return Promise.resolve(state.settings.navCov);
-  if(navMemo.cov)return navMemo.cov;
-  return navMemo.cov=navGet("coord/-1.6778;48.1173").then(function(j){var id=j&&j.regions&&j.regions[0];if(!id)throw new Error("région de Rennes introuvable");state.settings.navCov=id;persist("settings");return id}).finally(function(){delete navMemo.cov});
 }
 function navPlace(which){
   var q=which==="from"?navFromQ():navToQ(),k=which==="from"?"navFrom":"navTo",c=state.settings[k];
   if(c&&c.q===q&&c.id)return Promise.resolve(c);
   if(navMemo[k])return navMemo[k];
-  return navMemo[k]=navCov().then(function(cov){return navGet("coverage/"+cov+"/places?count=1&q="+encodeURIComponent(q))}).then(function(j){
-    var pl=j&&j.places&&j.places[0];if(!pl)throw new Error("adresse introuvable : "+q);
-    var v={q:q,id:pl.id,name:pl.name};state.settings[k]=v;persist("settings");return v}).finally(function(){delete navMemo[k]});
+  return navMemo[k]=navGet("places?count=1&type[]=stop_area&q="+encodeURIComponent(q)).then(function(j){
+    var pl=j&&j.places&&j.places[0];if(!pl)throw new Error("gare introuvable : "+q);
+    var v={q:q,id:pl.id,name:(pl.stop_area&&pl.stop_area.name)||pl.name};state.settings[k]=v;persist("settings");return v}).finally(function(){delete navMemo[k]});
 }
-function navDT(d,m){return d.replace(/-/g,"")+"T"+pad(Math.floor(m/60))+pad(m%60)+"00"}
+function navDT(d,m){while(m<0){m+=1440;d=addDays(d,-1)}while(m>=1440){m-=1440;d=addDays(d,1)}return d.replace(/-/g,"")+"T"+pad(Math.floor(m/60))+pad(m%60)+"00"}
 function navT(x){return x?{d:x.slice(0,4)+"-"+x.slice(4,6)+"-"+x.slice(6,8),m:+x.slice(9,11)*60+(+x.slice(11,13))}:null}
-function navSimp(j){
-  return {dep:j.departure_date_time,arr:j.arrival_date_time,dur:j.duration,st:j.status||"",sec:(j.sections||[]).filter(function(x){return x.type==="public_transport"||((x.type==="street_network"||x.type==="crow_fly"||x.type==="transfer")&&x.duration>=60)}).map(function(x){
-    var di=x.display_informations||{};
-    return x.type==="public_transport"?{t:"pt",mode:di.commercial_mode||di.physical_mode||"",code:di.code||"",dir:di.direction||"",from:x.from&&x.from.name,to:x.to&&x.to.name,dep:x.departure_date_time,arr:x.arrival_date_time,dur:x.duration,late:x.base_departure_date_time&&x.base_departure_date_time!==x.departure_date_time?x.base_departure_date_time:""}
-      :{t:"walk",to:x.to&&x.to.name,dep:x.departure_date_time,arr:x.arrival_date_time,dur:x.duration}})};
+function navAdd(x,min){var t=navT(x);return navDT(t.d,t.m+min)}
+function navPT(j){
+  return (j.sections||[]).filter(function(x){return x.type==="public_transport"}).map(function(x){var di=x.display_informations||{};
+    return {t:"pt",mode:di.commercial_mode||di.physical_mode||"TER",code:di.headsign||di.code||"",dir:di.direction||"",from:x.from&&x.from.name,to:x.to&&x.to.name,dep:x.departure_date_time,arr:x.arrival_date_time,dur:x.duration,late:x.base_departure_date_time&&x.base_departure_date_time!==x.departure_date_time?x.base_departure_date_time:""}});
 }
-function trTarget(d,dir){var D=pday(d);if(!D||D.kind!=="work"||!D.start||!D.end)return null;var sh=D.shifts&&D.shifts.length?D.shifts:[[D.start,D.end]];return dir==="go"?tmin(sh[0][0])-navMargin():tmin(sh[sh.length-1][1])+5}
-function trKey(d,dir){var t=trTarget(d,dir);return t==null?null:d+"|"+dir+"|"+t+"|"+navFromQ()+"|"+navToQ()}
+function navBuild(j,dir,A,B){
+  var pt=navPT(j);if(!pt.length)return null;
+  var td=pt[0].dep,ta=pt[pt.length-1].arr,wk=navWalk(),lg=navLeg(),sec=[];
+  if(dir==="go"){
+    sec.push({t:"walk",dep:navAdd(td,-wk-2),arr:navAdd(td,-2),dur:wk*60,to:"gare de "+A.name});
+    sec=sec.concat(pt);
+    sec.push({t:"walk",est:1,work:1,dep:ta,arr:navAdd(ta,lg),dur:lg*60});
+    return {dep:navAdd(td,-wk-2),arr:navAdd(ta,lg),dur:(navT(navAdd(ta,lg)).m-navT(navAdd(td,-wk-2)).m+1440)%1440*60,st:j.status||"",sec:sec,train:td};
+  }
+  sec.push({t:"walk",est:1,dep:navAdd(td,-lg),arr:td,dur:lg*60,to:"gare de "+A.name});
+  sec=sec.concat(pt);
+  sec.push({t:"walk",dep:ta,arr:navAdd(ta,wk),dur:wk*60,to:"chez toi"});
+  return {dep:navAdd(td,-lg),arr:navAdd(ta,wk),dur:(navT(navAdd(ta,wk)).m-navT(navAdd(td,-lg)).m+1440)%1440*60,st:j.status||"",sec:sec,train:td};
+}
+function navToWork(){return "le travail"}
+function trTarget(d,dir){var D=pday(d);if(!D||D.kind!=="work"||!D.start||!D.end)return null;var sh=D.shifts&&D.shifts.length?D.shifts:[[D.start,D.end]];return dir==="go"?tmin(sh[0][0])-navMargin():tmin(sh[sh.length-1][1])}
+function trKey(d,dir){var t=trTarget(d,dir);return t==null?null:d+"|"+dir+"|"+t+"|"+navFromQ()+"|"+navToQ()+"|"+navWalk()+"|"+navLeg()}
 function trPick(e){return e&&e.list&&e.list.length?e.list[e.pick||0]:null}
 function tripGet(d,dir){var k=trKey(d,dir);if(!k||!navKey())return null;var e=trCache()[k];trWant(d,dir,k,e);return e&&!e.err?e:null}
 function trWant(d,dir,k,e){
@@ -3812,21 +3826,21 @@ function trWant(d,dir,k,e){
 }
 function trRedraw(){clearTimeout(trRT);trRT=setTimeout(function(){if(!document.querySelector("dialog[open]"))renderPlan();renderDateCard()},250)}
 function tripFetch(d,dir){
-  var t=trTarget(d,dir);
-  return Promise.all([navCov(),navPlace("from"),navPlace("to")]).then(function(r){
-    var A=dir==="go"?r[1]:r[2],B=dir==="go"?r[2]:r[1];
-    return navGet("coverage/"+r[0]+"/journeys?from="+encodeURIComponent(A.id)+"&to="+encodeURIComponent(B.id)+"&datetime="+navDT(d,t)+"&datetime_represents="+(dir==="go"?"arrival":"departure")+"&count=4&data_freshness=realtime");
-  }).then(function(j){
-    var L=(j.journeys||[]).map(navSimp).filter(function(x){return x.dep&&x.arr});
-    if(!L.length)throw new Error("aucun itinéraire trouvé");
-    L.sort(function(a,b){return a.dep<b.dep?-1:1});
-    var pick=0,tt=navDT(d,t);
-    if(dir==="go"){L.forEach(function(x,i){if(x.arr<=tt)pick=i})}
-    else{pick=L.length-1;for(var i=L.length-1;i>=0;i--)if(L[i].dep>=tt)pick=i}
-    return {at:Date.now(),list:L,pick:pick};
+  var t=trTarget(d,dir),lg=navLeg(),wk=navWalk();
+  return Promise.all([navPlace("from"),navPlace("to")]).then(function(r){
+    var A=dir==="go"?r[0]:r[1],B=dir==="go"?r[1]:r[0],tt=dir==="go"?t-lg:t+lg;
+    return navGet("journeys?from="+encodeURIComponent(A.id)+"&to="+encodeURIComponent(B.id)+"&datetime="+navDT(d,tt)+"&datetime_represents="+(dir==="go"?"arrival":"departure")+"&count=4&data_freshness=realtime").then(function(j){
+      var L=(j.journeys||[]).map(function(x){return navBuild(x,dir,r[0],r[1])}).filter(Boolean);
+      if(!L.length)throw new Error("aucun train trouvé");
+      var seen={};L=L.filter(function(x){if(seen[x.train])return false;seen[x.train]=1;return true}).sort(function(a,b){return a.dep<b.dep?-1:1});
+      var pick=dir==="go"?0:L.length-1,lim=navDT(d,t);
+      if(dir==="go")L.forEach(function(x,i){if(x.arr<=lim)pick=i});
+      else for(var i=L.length-1;i>=0;i--)if(L[i].dep>=lim)pick=i;
+      return {at:Date.now(),list:L,pick:pick};
+    });
   });
 }
-function trModes(p){return p.sec.filter(function(x){return x.t==="pt"}).map(function(x){return (x.mode==="Métro"||/metro/i.test(x.mode)?"Métro ":x.mode==="Bus"?"Bus ":/ter/i.test(x.mode)?"TER":x.mode+" ")+(x.mode&&/ter/i.test(x.mode)?"":x.code)}).map(function(x){return x.trim()}).join(" → ")}
+function trModes(p){var f=trFirstPT(p);return f?(/ter/i.test(f.mode)?"TER":f.mode)+" "+tfmt(navT(f.dep).m):""}
 function trFirstPT(p){return p.sec.filter(function(x){return x.t==="pt"})[0]}
 function tripOpen(d,dir){
   plui.trip={d:d,dir:dir};var e=trCache()[trKey(d,dir)],p=trPick(e),h="";
@@ -3837,8 +3851,8 @@ function tripOpen(d,dir){
     if(p.st)h+='<p class="tj-warn">Perturbation signalée sur ce trajet : vérifie avant de partir.</p>';
     h+='<div class="tj-sum"><b>Pars à '+tfmt(navT(p.dep).m)+'</b><span>'+durTxt(p.dur/60)+' · arrivée '+tfmt(navT(p.arr).m)+(dir==="go"?" (prise de poste "+esc(pday(d).start)+")":"")+'</span></div><ol class="tj-steps">';
     p.sec.forEach(function(x){
-      if(x.t==="walk")h+='<li class="tj-walk"><span class="tj-t">'+(x.dep?tfmt(navT(x.dep).m):"")+'</span><span class="tj-l">Marche '+durTxt(x.dur/60)+(x.to?' jusqu\'à '+esc(x.to):'')+'</span></li>';
-      else h+='<li class="tj-pt"><span class="tj-t">'+tfmt(navT(x.dep).m)+'</span><span class="tj-l"><span class="tj-badge">'+esc(/ter/i.test(x.mode)?"TER":(x.mode+" "+x.code).trim())+'</span> '+esc(x.from||"")+' → '+esc(x.to||"")+(x.dir?'<small>direction '+esc(x.dir)+'</small>':'')+(x.late?'<small class="tj-late">prévu '+tfmt(navT(x.late).m)+'</small>':'')+'</span><span class="tj-a">'+tfmt(navT(x.arr).m)+'</span></li>';
+      if(x.t==="walk")h+='<li class="tj-walk"><span class="tj-t">'+(x.dep?tfmt(navT(x.dep).m):"")+'</span><span class="tj-l">'+(x.est?'Métro + bus STAR (environ '+durTxt(x.dur/60)+')':'Marche '+durTxt(x.dur/60))+(x.work?' jusqu\'au travail':x.to?' jusqu\'à '+esc(x.to):'')+(x.est?'<small>durée fixe, réglable dans les réglages</small>':'')+'</span>'+(x.arr?'<span class="tj-a">'+tfmt(navT(x.arr).m)+'</span>':'')+'</li>';
+      else h+='<li class="tj-pt"><span class="tj-t">'+tfmt(navT(x.dep).m)+'</span><span class="tj-l"><span class="tj-badge">'+esc((/ter/i.test(x.mode)?"TER":x.mode)+(x.code?" "+x.code:""))+'</span> '+esc(x.from||"")+' → '+esc(x.to||"")+(x.dir?'<small>direction '+esc(x.dir)+'</small>':'')+(x.late?'<small class="tj-late">prévu '+tfmt(navT(x.late).m)+'</small>':'')+'</span><span class="tj-a">'+tfmt(navT(x.arr).m)+'</span></li>';
     });
     h+='</ol>';
   }
@@ -4092,19 +4106,18 @@ $("#pb-del").addEventListener("click",function(){var D=pday(plui.blk.d),i=-1,kee
   if(this.value.trim()===""||!(v>=0))delete state.settings[k];else state.settings[k]=v;persist("settings");renderPlan();
 })});
 $("#plc-extra").addEventListener("change",function(){state.settings.planExtras=this.checked;persist("settings")});
-[["#plc-navkey","navKey"],["#plc-navfrom","navFromQ"],["#plc-navto","navToQ"],["#plc-navmargin","navMargin"]].forEach(function(x){$(x[0]).addEventListener("change",function(){
-  var v=this.value.trim();if(x[1]==="navMargin"){var n=Math.round(num(v));if(v===""||!(n>=0))delete state.settings.navMargin;else state.settings.navMargin=n}else if(v)state.settings[x[1]]=v;else delete state.settings[x[1]];
-  if(x[1]==="navKey")delete state.settings.navCov;
-  if(x[1]!=="navMargin"){delete state.settings.navFrom;delete state.settings.navTo}
+[["#plc-navkey","navKey"],["#plc-navfrom","navFromQ"],["#plc-navto","navToQ"],["#plc-navmargin","navMargin"],["#plc-navwalk","navWalk"],["#plc-navleg","navLeg"]].forEach(function(x){$(x[0]).addEventListener("change",function(){
+  var v=this.value.trim(),isN=/navMargin|navWalk|navLeg/.test(x[1]);if(isN){var n=Math.round(num(v));if(v===""||!(n>=0))delete state.settings[x[1]];else state.settings[x[1]]=n}else if(v)state.settings[x[1]]=v;else delete state.settings[x[1]];
+  if(!isN){delete state.settings.navFrom;delete state.settings.navTo}
   trReset();persist("settings");$("#plc-navmsg").textContent="";renderPlan();renderDateCard();
 })});
 $("#plc-navtest").addEventListener("click",function(){
   var m=$("#plc-navmsg");if(!navKey()){m.textContent="Colle d'abord ta clé navitia.io.";return}
-  m.textContent="Recherche…";var d=today(),t=8*60+30;
-  Promise.all([navCov(),navPlace("from"),navPlace("to")]).then(function(r){return navGet("coverage/"+r[0]+"/journeys?from="+encodeURIComponent(r[1].id)+"&to="+encodeURIComponent(r[2].id)+"&count=1&data_freshness=realtime").then(function(j){return {r:r,j:j}})}).then(function(o){
-    var p=o.j.journeys&&o.j.journeys[0];if(!p){m.textContent="Adresses trouvées ("+o.r[1].name+" → "+o.r[2].name+") mais aucun trajet maintenant.";return}
-    var P=navSimp(p);m.textContent="✓ "+o.r[1].name+" → "+o.r[2].name+" : "+durTxt(P.dur/60)+" ("+trModes(P)+")";
-    renderPlan();renderDateCard();
+  m.textContent="Recherche…";
+  Promise.all([navPlace("from"),navPlace("to")]).then(function(r){return navGet("journeys?from="+encodeURIComponent(r[0].id)+"&to="+encodeURIComponent(r[1].id)+"&count=1&data_freshness=realtime").then(function(j){return {r:r,j:j}})}).then(function(o){
+    var p=o.j.journeys&&o.j.journeys[0],pt=p?navPT(p):[];if(!pt.length){m.textContent="Gares trouvées ("+o.r[0].name+" → "+o.r[1].name+") mais aucun train pour l'instant.";return}
+    m.textContent="✓ Prochain train "+o.r[0].name+" → "+o.r[1].name+" : "+tfmt(navT(pt[0].dep).m)+" (arrivée "+tfmt(navT(pt[pt.length-1].arr).m)+")";
+    trReset();renderPlan();renderDateCard();
   },function(err){m.textContent="✗ "+err.message});
 });
 $("#plc-days").addEventListener("change",function(e){
@@ -4116,7 +4129,7 @@ function fillPlanCfg(){
   var c=plCfg();
   [["#plc-dur","dur"],["#plc-trip","trip"],["#plc-gap","gap"]].forEach(function(x){if(document.activeElement!==$(x[0]))$(x[0]).value=c[x[1]]});
   if(document.activeElement!==$("#plc-commute"))$("#plc-commute").value=plCommute();
-  [["#plc-navkey",state.settings.navKey||""],["#plc-navfrom",state.settings.navFromQ||""],["#plc-navto",state.settings.navToQ||""],["#plc-navmargin",state.settings.navMargin!=null?state.settings.navMargin:""]].forEach(function(x){if(document.activeElement!==$(x[0]))$(x[0]).value=x[1]});if(document.activeElement!==$("#plc-contract"))$("#plc-contract").value=String(plContract()).replace(".",",");
+  [["#plc-navkey",state.settings.navKey||""],["#plc-navfrom",state.settings.navFromQ||""],["#plc-navto",state.settings.navToQ||""],["#plc-navmargin",state.settings.navMargin!=null?state.settings.navMargin:""],["#plc-navwalk",state.settings.navWalk!=null?state.settings.navWalk:""],["#plc-navleg",state.settings.navLeg!=null?state.settings.navLeg:""]].forEach(function(x){if(document.activeElement!==$(x[0]))$(x[0]).value=x[1]});if(document.activeElement!==$("#plc-contract"))$("#plc-contract").value=String(plContract()).replace(".",",");
   $("#plc-extra").checked=c.extra;
   if($("#plc-days").contains(document.activeElement))return;
   var N=["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"],O=[["","—"],["auto","Auto"],["before","Avant"],["after","Après"]];
@@ -4545,7 +4558,7 @@ function renderDateCard(){
   if(kind==="work"&&D0.start&&D0.end){
     var s0=tmin(D0.start),e0=tmin(D0.end);
     main='<span class="dc-h">'+esc(D0.start)+'</span><span class="dc-sep">–</span><span class="dc-h">'+esc(D0.end)+'</span>';
-    var tg=trPick(tripGet(td,"go")),dep=tg?navT(tg.dep).m:s0-cm,fp=tg?trFirstPT(tg):null,via=fp?" · "+(/ter/i.test(fp.mode)?"TER":fp.mode+" "+fp.code).trim()+" "+tfmt(navT(fp.dep).m):"";
+    var tg=trPick(tripGet(td,"go")),dep=tg?navT(tg.dep).m:s0-cm,fp=tg?trFirstPT(tg):null,via=fp?" · TER "+tfmt(navT(fp.dep).m):"";
     if(nm<s0){var lv=dep-nm;if((tg||cm)&&lv<=45&&lv>=-10){alert=true;sub=(lv>0?"Pars dans "+durTxt(lv)+" ("+tfmt(dep)+")":"C'est l'heure de partir")+via}else sub=(tg||cm?"Pars à "+tfmt(dep)+via:"Commence dans "+durTxt(s0-nm))}
     else if(nm<e0){prog=(nm-s0)/(e0-s0);var tb=trPick(tripGet(td,"back"));sub="Fin dans "+durTxt(e0-nm)+(tb?" · retour "+tfmt(navT(tb.dep).m):"")}
     else{var tb2=trPick(tripGet(td,"back"));sub=tb2&&navT(tb2.dep).m>=nm-5?"Retour à "+tfmt(navT(tb2.dep).m)+" · arrivée "+tfmt(navT(tb2.arr).m):"Journée terminée"}
