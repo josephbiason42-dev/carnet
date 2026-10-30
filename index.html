@@ -904,6 +904,29 @@ button.pg-b{all:unset; position:absolute; box-sizing:border-box; border-radius:1
   .pd-times{grid-template-columns:1fr 1fr!important} .pd-times label:last-child{grid-column:1 / -1}
   #pl-cfg .grid{grid-template-columns:1fr}
 }
+
+/* transports temps réel */
+.pl-cfg-h{margin:20px 0 4px; font-size:1rem}
+.nav-test{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:10px}
+#plc-navmsg{margin:0}
+button.pg-trip.rt{all:unset; box-sizing:border-box; position:absolute; left:3px; right:3px; cursor:pointer; border-radius:8px; display:flex; align-items:flex-start; background:repeating-linear-gradient(135deg, rgba(122,167,255,.12) 0 5px, rgba(122,167,255,.04) 5px 10px); border:1px solid rgba(122,167,255,.35)}
+button.pg-trip.rt span{color:#cfdcff; font-size:.66rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:3px 6px}
+button.pg-trip.rt span b{font-weight:800}
+button.pg-trip.rt:hover{border-color:rgba(122,167,255,.7)}
+button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
+.tj-opts{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px}
+.tj-sum{display:flex; flex-direction:column; gap:2px; padding:12px 14px; border-radius:14px; background:rgba(122,167,255,.1); border:1px solid rgba(122,167,255,.25); margin-bottom:12px}
+.tj-sum b{font-size:1.35rem; font-weight:800} .tj-sum span{font-size:.84rem; color:var(--muted)}
+.tj-warn{color:#ffb38a; font-size:.86rem; margin:0 0 10px}
+.tj-steps{list-style:none; margin:0; padding:0; display:flex; flex-direction:column}
+.tj-steps li{display:grid; grid-template-columns:48px 1fr auto; gap:10px; align-items:start; padding:9px 0; border-top:1px solid var(--line)}
+.tj-t,.tj-a{font-weight:700; font-variant-numeric:tabular-nums; font-size:.9rem} .tj-a{color:var(--muted)}
+.tj-l{font-size:.88rem; line-height:1.35} .tj-l small{display:block; color:var(--muted); font-size:.76rem}
+.tj-walk .tj-l{color:var(--muted)}
+.tj-badge{display:inline-block; font-size:.74rem; font-weight:800; padding:1px 7px; border-radius:6px; background:rgba(122,167,255,.2); color:#dfe6ff; margin-right:2px}
+.tj-late{color:#ffb38a!important}
+.tj-foot{margin-top:14px; font-size:.76rem} .tj-foot a{color:#9cbcff}
+.linkbtn{all:unset; cursor:pointer; color:#9cbcff; font-weight:600}
 </style>
 </head>
 <body data-tab="home">
@@ -977,6 +1000,15 @@ button.pg-b{all:unset; position:absolute; box-sizing:border-box; border-radius:1
       <p class="note" style="margin-top:12px">Jours de sport et moment de la séance. « Auto » : avant le travail si tu commences l'après-midi, après sinon.</p>
       <div class="pl-sd" id="plc-days"></div>
       <label class="check" for="plc-extra" style="margin-top:12px"><input type="checkbox" id="plc-extra"> Ajouter aussi jour profond, jour éclaté et lecture dans la proposition</label>
+      <h3 class="pl-cfg-h">Transports en temps réel</h3>
+      <p class="note">Avec une clé gratuite <a href="https://navitia.io/register" target="_blank" rel="noopener">navitia.io</a>, l'heure de départ est calculée sur les vrais horaires TER et STAR, retards compris. Sans clé, j'utilise le trajet fixe ci-dessus.</p>
+      <div class="grid" style="margin-top:10px">
+        <label for="plc-navkey" class="wide">Clé navitia.io<input id="plc-navkey" type="password" autocomplete="off" spellcheck="false" placeholder="ex. 3b036afe-0110-…"></label>
+        <label for="plc-navfrom">Départ (adresse)<input id="plc-navfrom" placeholder="Rue Josiane Somers, Bruz"></label>
+        <label for="plc-navto">Travail<input id="plc-navto" placeholder="Grand Quartier, Saint-Grégoire"></label>
+        <label for="plc-navmargin" class="wide">Arriver avant la prise de poste (min)<input id="plc-navmargin" inputmode="numeric" placeholder="10"></label>
+      </div>
+      <div class="nav-test"><button class="ghost sm" type="button" id="plc-navtest">Tester l'itinéraire</button><span class="note" id="plc-navmsg"></span></div>
     </details>
   </section>
 
@@ -1367,6 +1399,11 @@ button.pg-b{all:unset; position:absolute; box-sizing:border-box; border-radius:1
   </div>
   <p class="pd-sum" id="pd-sum"></p>
   <div class="pd-foot"><button class="ghost" type="button" id="pd-clear">Effacer la journée</button><button class="primary" type="button" id="pd-ok">OK</button></div>
+</dialog>
+<dialog class="modal" id="tj-dialog" aria-labelledby="tj-h" style="width:min(480px,calc(100vw - 32px))">
+  <div class="phead"><h3 id="tj-h">Itinéraire</h3><button class="mclose" type="button" id="tj-close" aria-label="Fermer">×</button></div>
+  <div id="tj-body"></div>
+  <p class="note tj-foot"><span id="tj-upd"></span> · <button type="button" class="linkbtn" id="tj-refresh">Actualiser</button> · Itinéraires <a href="https://www.navitia.io" target="_blank" rel="noopener">navitia.io</a></p>
 </dialog>
 <dialog class="modal" id="pb-dialog" aria-labelledby="pb-h" style="width:min(460px,calc(100vw - 32px))">
   <div class="phead"><h3 id="pb-h">Nouveau bloc</h3><button class="mclose" type="button" id="pb-close" aria-label="Fermer">×</button></div>
@@ -3724,13 +3761,104 @@ function suggestWeek(w){
   }
   return notes.length?placed+" séance"+(placed>1?"s":"")+" placée"+(placed>1?"s":"")+" — "+notes.join(" ; ")+".":placed+" séance"+(placed>1?"s":"")+" de sport placée"+(placed>1?"s":"")+". Touche une séance pour la déplacer.";
 }
+/* ---------- transports en temps réel (navitia.io) ---------- */
+var NAV="https://api.navitia.io/v1/",trBusy={},trErr=null,trRT=null;
+function navKey(){return String(state.settings.navKey||"").trim()}
+function navFromQ(){return state.settings.navFromQ||"Rue Josiane Somers, Bruz"}
+function navToQ(){return state.settings.navToQ||"Grand Quartier, Saint-Grégoire"}
+function navMargin(){var v=state.settings.navMargin;return v!=null&&v!==""?+v:10}
+function trCache(){try{return JSON.parse(localStorage.getItem("carnet-trips")||"{}")}catch(e){return {}}}
+function trPut(k,v){var c=trCache(),lim=addDays(today(),-2);Object.keys(c).forEach(function(x){if(x.slice(0,10)<lim)delete c[x]});c[k]=v;try{localStorage.setItem("carnet-trips",JSON.stringify(c))}catch(e){}}
+function trReset(){try{localStorage.removeItem("carnet-trips")}catch(e){}}
+function navGet(path){
+  return fetch(NAV+path,{headers:{Authorization:navKey()}}).then(function(r){
+    if(r.status===401||r.status===403)throw new Error("clé refusée par navitia.io");
+    return r.json().then(function(j){if(!r.ok&&!(j&&j.error&&j.error.id==="no_solution"))throw new Error((j&&j.message)||("erreur "+r.status));return j});
+  });
+}
+var navMemo={};
+function navCov(){
+  if(state.settings.navCov)return Promise.resolve(state.settings.navCov);
+  if(navMemo.cov)return navMemo.cov;
+  return navMemo.cov=navGet("coord/-1.6778;48.1173").then(function(j){var id=j&&j.regions&&j.regions[0];if(!id)throw new Error("région de Rennes introuvable");state.settings.navCov=id;persist("settings");return id}).finally(function(){delete navMemo.cov});
+}
+function navPlace(which){
+  var q=which==="from"?navFromQ():navToQ(),k=which==="from"?"navFrom":"navTo",c=state.settings[k];
+  if(c&&c.q===q&&c.id)return Promise.resolve(c);
+  if(navMemo[k])return navMemo[k];
+  return navMemo[k]=navCov().then(function(cov){return navGet("coverage/"+cov+"/places?count=1&q="+encodeURIComponent(q))}).then(function(j){
+    var pl=j&&j.places&&j.places[0];if(!pl)throw new Error("adresse introuvable : "+q);
+    var v={q:q,id:pl.id,name:pl.name};state.settings[k]=v;persist("settings");return v}).finally(function(){delete navMemo[k]});
+}
+function navDT(d,m){return d.replace(/-/g,"")+"T"+pad(Math.floor(m/60))+pad(m%60)+"00"}
+function navT(x){return x?{d:x.slice(0,4)+"-"+x.slice(4,6)+"-"+x.slice(6,8),m:+x.slice(9,11)*60+(+x.slice(11,13))}:null}
+function navSimp(j){
+  return {dep:j.departure_date_time,arr:j.arrival_date_time,dur:j.duration,st:j.status||"",sec:(j.sections||[]).filter(function(x){return x.type==="public_transport"||((x.type==="street_network"||x.type==="crow_fly"||x.type==="transfer")&&x.duration>=60)}).map(function(x){
+    var di=x.display_informations||{};
+    return x.type==="public_transport"?{t:"pt",mode:di.commercial_mode||di.physical_mode||"",code:di.code||"",dir:di.direction||"",from:x.from&&x.from.name,to:x.to&&x.to.name,dep:x.departure_date_time,arr:x.arrival_date_time,dur:x.duration,late:x.base_departure_date_time&&x.base_departure_date_time!==x.departure_date_time?x.base_departure_date_time:""}
+      :{t:"walk",to:x.to&&x.to.name,dep:x.departure_date_time,arr:x.arrival_date_time,dur:x.duration}})};
+}
+function trTarget(d,dir){var D=pday(d);if(!D||D.kind!=="work"||!D.start||!D.end)return null;var sh=D.shifts&&D.shifts.length?D.shifts:[[D.start,D.end]];return dir==="go"?tmin(sh[0][0])-navMargin():tmin(sh[sh.length-1][1])+5}
+function trKey(d,dir){var t=trTarget(d,dir);return t==null?null:d+"|"+dir+"|"+t+"|"+navFromQ()+"|"+navToQ()}
+function trPick(e){return e&&e.list&&e.list.length?e.list[e.pick||0]:null}
+function tripGet(d,dir){var k=trKey(d,dir);if(!k||!navKey())return null;var e=trCache()[k];trWant(d,dir,k,e);return e&&!e.err?e:null}
+function trWant(d,dir,k,e){
+  var td=today();if(d<td||d>addDays(td,6)||trBusy[k])return;
+  var age=e?Date.now()-e.at:1e12,ttl=6*36e5;
+  if(e&&e.err)ttl=30*6e4;
+  else if(d===td){var nm=new Date().getHours()*60+new Date().getMinutes(),p=trPick(e),dep=p?navT(p.dep).m:trTarget(d,dir);ttl=dep-nm<150&&dep-nm>-20?8*6e4:60*6e4}
+  if(age<ttl)return;
+  trBusy[k]=1;tripFetch(d,dir).then(function(v){trPut(k,v)},function(err){trErr=err.message;trPut(k,{at:Date.now(),err:err.message})}).then(function(){delete trBusy[k];trRedraw()});
+}
+function trRedraw(){clearTimeout(trRT);trRT=setTimeout(function(){if(!document.querySelector("dialog[open]"))renderPlan();renderDateCard()},250)}
+function tripFetch(d,dir){
+  var t=trTarget(d,dir);
+  return Promise.all([navCov(),navPlace("from"),navPlace("to")]).then(function(r){
+    var A=dir==="go"?r[1]:r[2],B=dir==="go"?r[2]:r[1];
+    return navGet("coverage/"+r[0]+"/journeys?from="+encodeURIComponent(A.id)+"&to="+encodeURIComponent(B.id)+"&datetime="+navDT(d,t)+"&datetime_represents="+(dir==="go"?"arrival":"departure")+"&count=4&data_freshness=realtime");
+  }).then(function(j){
+    var L=(j.journeys||[]).map(navSimp).filter(function(x){return x.dep&&x.arr});
+    if(!L.length)throw new Error("aucun itinéraire trouvé");
+    L.sort(function(a,b){return a.dep<b.dep?-1:1});
+    var pick=0,tt=navDT(d,t);
+    if(dir==="go"){L.forEach(function(x,i){if(x.arr<=tt)pick=i})}
+    else{pick=L.length-1;for(var i=L.length-1;i>=0;i--)if(L[i].dep>=tt)pick=i}
+    return {at:Date.now(),list:L,pick:pick};
+  });
+}
+function trModes(p){return p.sec.filter(function(x){return x.t==="pt"}).map(function(x){return (x.mode==="Métro"||/metro/i.test(x.mode)?"Métro ":x.mode==="Bus"?"Bus ":/ter/i.test(x.mode)?"TER":x.mode+" ")+(x.mode&&/ter/i.test(x.mode)?"":x.code)}).map(function(x){return x.trim()}).join(" → ")}
+function trFirstPT(p){return p.sec.filter(function(x){return x.t==="pt"})[0]}
+function tripOpen(d,dir){
+  plui.trip={d:d,dir:dir};var e=trCache()[trKey(d,dir)],p=trPick(e),h="";
+  $("#tj-h").textContent=(dir==="go"?"Aller":"Retour")+" · "+cap(parseYmd(d).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"short"}));
+  if(!p){h='<p class="empty">'+(e&&e.err?"Itinéraire indisponible : "+esc(e.err):"Recherche de l'itinéraire…")+'</p>'}
+  else{
+    h+='<div class="tj-opts">'+e.list.map(function(x,i){return '<button type="button" class="chip'+(i===(e.pick||0)?" on":"")+'" data-tjp="'+i+'">'+tfmt(navT(x.dep).m)+' → '+tfmt(navT(x.arr).m)+'</button>'}).join("")+'</div>';
+    if(p.st)h+='<p class="tj-warn">Perturbation signalée sur ce trajet : vérifie avant de partir.</p>';
+    h+='<div class="tj-sum"><b>Pars à '+tfmt(navT(p.dep).m)+'</b><span>'+durTxt(p.dur/60)+' · arrivée '+tfmt(navT(p.arr).m)+(dir==="go"?" (prise de poste "+esc(pday(d).start)+")":"")+'</span></div><ol class="tj-steps">';
+    p.sec.forEach(function(x){
+      if(x.t==="walk")h+='<li class="tj-walk"><span class="tj-t">'+(x.dep?tfmt(navT(x.dep).m):"")+'</span><span class="tj-l">Marche '+durTxt(x.dur/60)+(x.to?' jusqu\'à '+esc(x.to):'')+'</span></li>';
+      else h+='<li class="tj-pt"><span class="tj-t">'+tfmt(navT(x.dep).m)+'</span><span class="tj-l"><span class="tj-badge">'+esc(/ter/i.test(x.mode)?"TER":(x.mode+" "+x.code).trim())+'</span> '+esc(x.from||"")+' → '+esc(x.to||"")+(x.dir?'<small>direction '+esc(x.dir)+'</small>':'')+(x.late?'<small class="tj-late">prévu '+tfmt(navT(x.late).m)+'</small>':'')+'</span><span class="tj-a">'+tfmt(navT(x.arr).m)+'</span></li>';
+    });
+    h+='</ol>';
+  }
+  $("#tj-body").innerHTML=h;
+  $("#tj-upd").textContent=e&&e.at?"Mis à jour à "+hhmmOf(new Date(e.at)):"";
+  var dl=$("#tj-dialog");if(!dl.open){if(dl.showModal)dl.showModal();else dl.setAttribute("open","")}
+}
+function hhmmOf(x){return pad(x.getHours())+":"+pad(x.getMinutes())}
+$("#tj-close").addEventListener("click",function(){$("#tj-dialog").close()});
+$("#tj-dialog").addEventListener("close",function(){if(ui.tab==="plan")renderPlan();renderDateCard()});
+$("#tj-body").addEventListener("click",function(e){var b=e.target.closest("[data-tjp]");if(!b)return;var k=trKey(plui.trip.d,plui.trip.dir),c=trCache()[k];if(!c)return;c.pick=+b.dataset.tjp;trPut(k,c);tripOpen(plui.trip.d,plui.trip.dir)});
+$("#tj-refresh").addEventListener("click",function(){var t=plui.trip,k=trKey(t.d,t.dir);$("#tj-body").innerHTML='<p class="empty">Actualisation…</p>';tripFetch(t.d,t.dir).then(function(v){trPut(k,v)},function(err){trPut(k,{at:Date.now(),err:err.message})}).then(function(){tripOpen(t.d,t.dir)})});
 function plCommute(){var v=state.settings.commute;return v!=null&&v!==""?+v:60}
 function plContract(){return +state.settings.contractH||25}
 function durTxt(m){m=Math.max(0,Math.round(m));var h=Math.floor(m/60),r=m%60;return h?(h+" h"+(r?" "+pad(r):"")):r+" min"}
 function wdShort(d){return cap(parseYmd(d).toLocaleDateString("fr-FR",{weekday:"short"}).replace(".",""))}
 function plRange(days){
   var lo=8*60,hi=21*60,cm=plCommute();
-  days.forEach(function(d){dayItemsP(d).forEach(function(b){var s0=tmin(b.start);if(s0==null)return;var e0=tmin(b.end)||s0+45;if(b.t==="work"){s0-=cm;e0+=cm}lo=Math.min(lo,s0);hi=Math.max(hi,e0)})});
+  days.forEach(function(d){dayItemsP(d).forEach(function(b){var s0=tmin(b.start);if(s0==null)return;var e0=tmin(b.end)||s0+45;if(b.t==="work"){s0-=cm;e0+=cm}lo=Math.min(lo,s0);hi=Math.max(hi,e0)});
+    ["go","back"].forEach(function(dir){var e=navKey()&&trKey(d,dir)?trCache()[trKey(d,dir)]:null,p=trPick(e);if(p){lo=Math.min(lo,navT(p.dep).m);hi=Math.max(hi,navT(p.arr).m)}})});
   return [Math.max(5*60,Math.floor(lo/60)*60),Math.min(24*60,Math.ceil(hi/60)*60)];
 }
 function plLanes(it){
@@ -3783,9 +3911,13 @@ function renderPlan(){
   var cols=days.map(function(d){
     var D=pday(d),it=dayItemsP(d),kind=D&&D.kind,b="";
     plLanes(it);
-    if(kind==="work")(D.shifts&&D.shifts.length?D.shifts:[[D.start,D.end]]).forEach(function(x,i,a){var a0=tmin(x[0]),e0=tmin(x[1]);if(a0==null||e0==null||!cm)return;
-      if(i===0)b+='<div class="pg-trip" style="top:'+y(a0-cm)+'px;height:'+(cm/60*PPH).toFixed(1)+'px"><span>Départ '+tfmt(a0-cm)+'</span></div>';
-      if(i===a.length-1)b+='<div class="pg-trip" style="top:'+y(e0)+'px;height:'+(cm/60*PPH).toFixed(1)+'px"><span>Retour '+tfmt(e0+cm)+'</span></div>'});
+    if(kind==="work")(D.shifts&&D.shifts.length?D.shifts:[[D.start,D.end]]).forEach(function(x,i,a){var a0=tmin(x[0]),e0=tmin(x[1]);if(a0==null||e0==null)return;
+      if(i===0){var tg=tripGet(d,"go"),pg=trPick(tg);
+        if(pg){var s1=navT(pg.dep).m,e1=navT(pg.arr).m;b+='<button type="button" class="pg-trip rt" data-trip="'+d+'|go" style="top:'+y(s1)+'px;height:'+Math.max(18,(e1-s1)/60*PPH-2).toFixed(1)+'px"><span><b>Départ '+tfmt(s1)+'</b> · '+esc(trModes(pg))+'</span></button>'}
+        else if(cm)b+='<div class="pg-trip" style="top:'+y(a0-cm)+'px;height:'+(cm/60*PPH).toFixed(1)+'px"><span>Départ '+tfmt(a0-cm)+'</span></div>'}
+      if(i===a.length-1){var tb=tripGet(d,"back"),pb=trPick(tb);
+        if(pb){var s2=navT(pb.dep).m,e2=navT(pb.arr).m;b+='<button type="button" class="pg-trip rt" data-trip="'+d+'|back" style="top:'+y(Math.max(e0,s2-10))+'px;height:'+Math.max(18,(e2-Math.max(e0,s2-10))/60*PPH-2).toFixed(1)+'px"><span><b>Retour '+tfmt(s2)+'</b> · arrivée '+tfmt(e2)+'</span></button>'}
+        else if(cm)b+='<div class="pg-trip" style="top:'+y(e0)+'px;height:'+(cm/60*PPH).toFixed(1)+'px"><span>Retour '+tfmt(e0+cm)+'</span></div>'}});
     it.forEach(function(x){
       var hpx=(x._e-x._s)/60*PPH,pos='top:'+y(x._s)+'px;height:'+Math.max(22,hpx-2).toFixed(1)+'px;left:calc('+(x._l/x._n*100).toFixed(2)+'% + 2px);width:calc('+(100/x._n).toFixed(2)+'% - 4px)',sz=hpx<30?" xs":hpx<44?" s":"";
       var tm=esc(x.start)+(x.end?"–"+esc(x.end):"");
@@ -3826,6 +3958,7 @@ $("#pl-copy").addEventListener("click",function(){
 $("#pl-week").addEventListener("click",function(e){
   var tg=e.target.closest("[data-tog]");
   if(tg){var D=pday(tg.dataset.d);(D.blocks||[]).forEach(function(b){if(b.id===tg.dataset.tog){b.done=!b.done;if(b.done&&b.t==="sport"&&typeof confetti==="function")confetti()}});plSave();return}
+  var tr=e.target.closest("[data-trip]");if(tr){var q=tr.dataset.trip.split("|");tripOpen(q[0],q[1]);return}
   var bk=e.target.closest("[data-blk]");if(bk){blockOpen(bk.dataset.d,bk.dataset.blk);return}
   var wk=e.target.closest("[data-wk]");if(wk){dayOpen(wk.dataset.wk);return}
   var ad=e.target.closest("[data-add]");if(ad){var it=dayItemsP(ad.dataset.add),last=it.length?it[it.length-1]:null,st=last&&last.end?Math.min(22*60,q15up(tmin(last.end)+(last.t==="work"?plCommute():0))):18*60;blockOpen(ad.dataset.add,null,tfmt(st));return}
@@ -3901,7 +4034,8 @@ function pdView(){
   $("#pd-work").hidden=k!=="work";
   var s0=tmin($("#pd-start").value),e0=tmin($("#pd-end").value),p=$("#pd-pause").value.trim(),pa=p===""?60:+p||0,cm=plCommute();
   $("#pd-pre").innerHTML=pdPresets().map(function(x){var cur=$("#pd-start").value+"–"+$("#pd-end").value;return '<button type="button" class="chip'+(x===cur?" on":"")+'" data-pre="'+x+'">'+x+'</button>'}).join("");
-  $("#pd-sum").innerHTML=k==="work"&&s0!=null&&e0!=null&&e0>s0?'<b>'+durTxt(e0-s0-pa)+'</b> de travail'+(cm?' · départ <b>'+tfmt(s0-cm)+'</b> · retour vers <b>'+tfmt(e0+cm)+'</b>':''):k==="off"?"Journée libre : je peux y placer une séance de sport.":"";
+  var tg=plui.edit?trPick(tripGet(plui.edit,"go")):null,tb=plui.edit?trPick(tripGet(plui.edit,"back")):null;
+  $("#pd-sum").innerHTML=k==="work"&&s0!=null&&e0!=null&&e0>s0?'<b>'+durTxt(e0-s0-pa)+'</b> de travail'+(tg?' · départ <b>'+tfmt(navT(tg.dep).m)+'</b>':cm?' · départ <b>'+tfmt(s0-cm)+'</b>':'')+(tb?' · retour à <b>'+tfmt(navT(tb.arr).m)+'</b>':cm?' · retour vers <b>'+tfmt(e0+cm)+'</b>':''):k==="off"?"Journée libre : je peux y placer une séance de sport.":"";
 }
 function pdApply(){
   var D=pdayW(plui.edit);D.kind=$("#pd-kind").value;
@@ -3958,6 +4092,21 @@ $("#pb-del").addEventListener("click",function(){var D=pday(plui.blk.d),i=-1,kee
   if(this.value.trim()===""||!(v>=0))delete state.settings[k];else state.settings[k]=v;persist("settings");renderPlan();
 })});
 $("#plc-extra").addEventListener("change",function(){state.settings.planExtras=this.checked;persist("settings")});
+[["#plc-navkey","navKey"],["#plc-navfrom","navFromQ"],["#plc-navto","navToQ"],["#plc-navmargin","navMargin"]].forEach(function(x){$(x[0]).addEventListener("change",function(){
+  var v=this.value.trim();if(x[1]==="navMargin"){var n=Math.round(num(v));if(v===""||!(n>=0))delete state.settings.navMargin;else state.settings.navMargin=n}else if(v)state.settings[x[1]]=v;else delete state.settings[x[1]];
+  if(x[1]==="navKey")delete state.settings.navCov;
+  if(x[1]!=="navMargin"){delete state.settings.navFrom;delete state.settings.navTo}
+  trReset();persist("settings");$("#plc-navmsg").textContent="";renderPlan();renderDateCard();
+})});
+$("#plc-navtest").addEventListener("click",function(){
+  var m=$("#plc-navmsg");if(!navKey()){m.textContent="Colle d'abord ta clé navitia.io.";return}
+  m.textContent="Recherche…";var d=today(),t=8*60+30;
+  Promise.all([navCov(),navPlace("from"),navPlace("to")]).then(function(r){return navGet("coverage/"+r[0]+"/journeys?from="+encodeURIComponent(r[1].id)+"&to="+encodeURIComponent(r[2].id)+"&count=1&data_freshness=realtime").then(function(j){return {r:r,j:j}})}).then(function(o){
+    var p=o.j.journeys&&o.j.journeys[0];if(!p){m.textContent="Adresses trouvées ("+o.r[1].name+" → "+o.r[2].name+") mais aucun trajet maintenant.";return}
+    var P=navSimp(p);m.textContent="✓ "+o.r[1].name+" → "+o.r[2].name+" : "+durTxt(P.dur/60)+" ("+trModes(P)+")";
+    renderPlan();renderDateCard();
+  },function(err){m.textContent="✗ "+err.message});
+});
 $("#plc-days").addEventListener("change",function(e){
   var el=e.target.closest("[data-sd]");if(!el)return;var d=Object.assign({},plDays());
   if(el.value)d[el.dataset.sd]=el.value;else delete d[el.dataset.sd];
@@ -3966,7 +4115,8 @@ $("#plc-days").addEventListener("change",function(e){
 function fillPlanCfg(){
   var c=plCfg();
   [["#plc-dur","dur"],["#plc-trip","trip"],["#plc-gap","gap"]].forEach(function(x){if(document.activeElement!==$(x[0]))$(x[0]).value=c[x[1]]});
-  if(document.activeElement!==$("#plc-commute"))$("#plc-commute").value=plCommute();if(document.activeElement!==$("#plc-contract"))$("#plc-contract").value=String(plContract()).replace(".",",");
+  if(document.activeElement!==$("#plc-commute"))$("#plc-commute").value=plCommute();
+  [["#plc-navkey",state.settings.navKey||""],["#plc-navfrom",state.settings.navFromQ||""],["#plc-navto",state.settings.navToQ||""],["#plc-navmargin",state.settings.navMargin!=null?state.settings.navMargin:""]].forEach(function(x){if(document.activeElement!==$(x[0]))$(x[0]).value=x[1]});if(document.activeElement!==$("#plc-contract"))$("#plc-contract").value=String(plContract()).replace(".",",");
   $("#plc-extra").checked=c.extra;
   if($("#plc-days").contains(document.activeElement))return;
   var N=["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"],O=[["","—"],["auto","Auto"],["before","Avant"],["after","Après"]];
@@ -4395,9 +4545,10 @@ function renderDateCard(){
   if(kind==="work"&&D0.start&&D0.end){
     var s0=tmin(D0.start),e0=tmin(D0.end);
     main='<span class="dc-h">'+esc(D0.start)+'</span><span class="dc-sep">–</span><span class="dc-h">'+esc(D0.end)+'</span>';
-    if(nm<s0){var lv=s0-cm-nm;if(cm&&lv<=45&&lv>=-10){alert=true;sub=lv>0?"Pars dans "+durTxt(lv):"C'est l'heure de partir"}else sub="Commence dans "+durTxt(s0-nm)+(cm?" · départ "+tfmt(s0-cm):"")}
-    else if(nm<e0){prog=(nm-s0)/(e0-s0);sub="Fin dans "+durTxt(e0-nm)}
-    else sub="Journée terminée";
+    var tg=trPick(tripGet(td,"go")),dep=tg?navT(tg.dep).m:s0-cm,fp=tg?trFirstPT(tg):null,via=fp?" · "+(/ter/i.test(fp.mode)?"TER":fp.mode+" "+fp.code).trim()+" "+tfmt(navT(fp.dep).m):"";
+    if(nm<s0){var lv=dep-nm;if((tg||cm)&&lv<=45&&lv>=-10){alert=true;sub=(lv>0?"Pars dans "+durTxt(lv)+" ("+tfmt(dep)+")":"C'est l'heure de partir")+via}else sub=(tg||cm?"Pars à "+tfmt(dep)+via:"Commence dans "+durTxt(s0-nm))}
+    else if(nm<e0){prog=(nm-s0)/(e0-s0);var tb=trPick(tripGet(td,"back"));sub="Fin dans "+durTxt(e0-nm)+(tb?" · retour "+tfmt(navT(tb.dep).m):"")}
+    else{var tb2=trPick(tripGet(td,"back"));sub=tb2&&navT(tb2.dep).m>=nm-5?"Retour à "+tfmt(navT(tb2.dep).m)+" · arrivée "+tfmt(navT(tb2.arr).m):"Journée terminée"}
   }else if(kind){main='<span class="dc-h">'+(kind==="off"?"Repos":"Congé")+'</span>';sub="Journée libre"}
   else{main='<span class="dc-h dim">—</span>';sub="Saisis tes horaires pour voir ta journée"}
   var nx=plNext(),nxt="";
