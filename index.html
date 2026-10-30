@@ -441,6 +441,10 @@ div.pl-b{cursor:default}
 .pw-head,.pw-row{display:grid; grid-template-columns:5.5rem 1.2fr 1fr 1fr .8fr; gap:8px; align-items:center}
 .pw-head span{font-size:.72rem; font-weight:600; color:var(--muted)}
 .pw-row{margin-bottom:6px} .pw-row b{font-size:.88rem}
+.pw-paste textarea{width:100%;min-height:90px;box-sizing:border-box;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:500 .82rem var(--body)}
+.pl-sd{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:6px} .pl-sd label{display:flex;flex-direction:column;gap:4px;font-size:.74rem;font-weight:600;color:var(--muted)} .pl-sd select{padding:6px 4px;font-size:13px}
+@media (max-width:900px){.pl-sd{grid-template-columns:repeat(4,1fr)}}
+.pl-sh{display:block;font-size:.7rem;font-weight:500;opacity:.8}
 .pw-row input,.pw-row select{padding:7px 8px; font-size:14px}
 .td-list{display:flex; flex-direction:column; gap:6px; margin-top:8px}
 .td-row{display:flex; align-items:center; gap:4px; font-size:.9rem}
@@ -824,10 +828,13 @@ input,select,textarea{background:rgba(0,0,0,.2)}
     <details class="panel">
       <summary><h3>Réglages du planning</h3></summary>
       <div class="grid">
-        <label for="plc-n">Séances de sport par semaine<input id="plc-n" inputmode="numeric"></label>
         <label for="plc-dur">Durée d'une séance (min)<input id="plc-dur" inputmode="numeric"></label>
-        <label for="plc-trip" class="wide">Trajet travail → salle (min)<input id="plc-trip" inputmode="numeric"></label>
+        <label for="plc-trip">Trajet travail ↔ salle (min)<input id="plc-trip" inputmode="numeric"></label>
+        <label for="plc-gap" class="wide">Marge entre la séance et le début du travail (repas, douche, en min)<input id="plc-gap" inputmode="numeric"></label>
       </div>
+      <p class="note" style="margin-top:12px">Jours de sport et moment de la séance. « Auto » : avant le travail si tu commences l'après-midi, après sinon.</p>
+      <div class="pl-sd" id="plc-days"></div>
+      <label class="check" for="plc-extra" style="margin-top:12px"><input type="checkbox" id="plc-extra"> Ajouter aussi jour profond, jour éclaté et lecture dans la proposition</label>
     </details>
   </section>
 
@@ -1193,9 +1200,14 @@ input,select,textarea{background:rgba(0,0,0,.2)}
 <dialog class="modal" id="pw-dialog" aria-labelledby="pw-h" style="width:min(640px,calc(100vw - 32px))">
   <div class="phead"><h3 id="pw-h">Mes horaires de la semaine</h3><button class="mclose" type="button" id="pw-close" aria-label="Fermer">×</button></div>
   <form id="pw-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+    <details class="pw-paste" id="pw-paste"><summary><b>Coller mon planning Boulanger</b> <span class="note">(remplit tout seul)</span></summary>
+      <p class="note" style="margin:8px 0">Copie le texte de ton planning (jours + horaires, ex. « Lundi 02 Novembre 9:20 - 12:00 VENTE 13:30 - 15:50 VENTE ») et colle-le ici.</p>
+      <textarea id="pw-text" placeholder="Lundi 02 Novembre&#10;9:20 - 12:00 VENTE&#10;13:30 - 15:50 VENTE&#10;Mardi 03 Novembre&#10;..."></textarea>
+      <button class="ghost sm" type="button" id="pw-parse" style="margin-top:8px">Remplir les horaires</button>
+    </details>
     <div class="pw-head"><span></span><span>Journée</span><span>Début</span><span>Fin</span><span>Pause (min)</span></div>
     <div id="pw-rows"></div>
-    <label class="check" for="pw-auto"><input type="checkbox" id="pw-auto" checked> Proposer automatiquement ma semaine (jour profond, jour éclaté, sport, lecture)</label>
+    <label class="check" for="pw-auto"><input type="checkbox" id="pw-auto" checked> Placer automatiquement mes séances de sport</label>
     <button class="primary" type="submit">Enregistrer</button>
   </form>
 </dialog>
@@ -3514,51 +3526,52 @@ function monday(d){return addDays(d,-((parseYmd(d).getDay()+6)%7))}
 function wdays(w){var a=[];for(var i=0;i<7;i++)a.push(addDays(w,i));return a}
 function pday(d){return state.plan[d]||null}
 function pdayW(d){if(!state.plan[d])state.plan[d]={kind:"",blocks:[]};if(!state.plan[d].blocks)state.plan[d].blocks=[];return state.plan[d]}
-function plCfg(){var s=state.settings;return {n:s.sportN||3,dur:s.sportDur||75,trip:s.trip!=null?s.trip:30}}
+var PL_DEF_DAYS={0:"auto",2:"auto",4:"auto"};
+function plDays(){var d=state.settings.sportDays;return d&&typeof d==="object"?d:PL_DEF_DAYS}
+function plCfg(){var s=state.settings,sd=plDays();return {n:Object.keys(sd).filter(function(k){return sd[k]}).length,days:sd,dur:s.sportDur||75,trip:s.trip!=null?s.trip:30,gap:s.sportGap!=null?s.sportGap:60,extra:!!s.planExtras}}
+function q15up(m){return Math.ceil(m/15)*15} function q15dn(m){return Math.floor(m/15)*15}
+function shiftsTxt(D){return (D.shifts&&D.shifts.length?D.shifts:[[D.start,D.end]]).map(function(x){return x[0]+"–"+x[1]}).join(" · ")}
 function workH(D){if(!D||D.kind!=="work"||!D.start||!D.end)return 0;var m=tmin(D.end)-tmin(D.start)-(D.pause!=null?+D.pause:60);return Math.max(0,m)/60}
 function dayItemsP(d){
   var D=pday(d),it=[];if(!D)return it;
-  if(D.kind==="work"&&D.start&&D.end)it.push({t:"work",start:D.start,end:D.end,label:"Travail"+(D.pause?" (pause "+D.pause+" min)":""),fixed:true});
+  if(D.kind==="work"&&D.start&&D.end){if(D.shifts&&D.shifts.length>1)D.shifts.forEach(function(x){it.push({t:"work",start:x[0],end:x[1],label:"Travail",fixed:true})});else it.push({t:"work",start:D.start,end:D.end,label:"Travail"+(D.pause?" (pause "+D.pause+" min)":""),fixed:true})}
   (D.blocks||[]).forEach(function(b){it.push(b)});
   return it.sort(function(a,b){return (tmin(a.start)||0)-(tmin(b.start)||0)});
 }
 function plSave(){persist("plan");renderPlan();renderHome()}
 function suggestWeek(w){
   var days=wdays(w),cfg=plCfg(),notes=[];
-  days.forEach(function(d){var D=pday(d);if(D&&D.blocks)D.blocks=D.blocks.filter(function(b){return !b.auto})});
+  days.forEach(function(d){var D=pday(d);if(D&&D.blocks)D.blocks=D.blocks.filter(function(b){return !b.auto||b.done})});
   var free=days.filter(function(d){var D=pday(d);return D&&(D.kind==="off"||D.kind==="leave")});
   var work=days.filter(function(d){var D=pday(d);return D&&D.kind==="work"&&D.start&&D.end});
   if(!free.length&&!work.length)return "Saisis d'abord tes horaires de la semaine.";
   var add=function(d,t,s,e,l){pdayW(d).blocks.push({id:newId(),t:t,start:s,end:e,label:l,done:false,auto:true})};
-  var aDay=free[0]||null,bDay=free[1]||null;
-  if(aDay){add(aDay,"A","09:30","13:00","Lecture profonde");add(aDay,"A","14:30","18:00","Écriture")}
-  else notes.push("pas de jour off : le jour profond n'a pas pu être placé");
-  if(bDay){add(bDay,"B","10:00","12:00","Veille & observation");add(bDay,"B","14:00","16:00","Réseau / écriture légère")}
-  else{
-    var ev=work.filter(function(d){return tmin(pday(d).end)<=19*60}).slice(0,2);
-    ev.forEach(function(d){var s=tmin(pday(d).end)+cfg.trip+15;add(d,"B",tfmt(s),tfmt(s+60),"Jour éclaté (version courte)")});
-    if(aDay)notes.push("un seul jour off : le jour éclaté est réparti sur "+ev.length+" soirée"+(ev.length>1?"s":""));
+  var has=function(d,t){var D=pday(d);return D&&(D.blocks||[]).some(function(b){return b.t===t})};
+  // sport : jours et moments choisis dans les réglages
+  var placed=0,miss=[];
+  days.forEach(function(d,i){
+    var mode=cfg.days[i];if(!mode)return;
+    if(has(d,"sport")){placed++;return}
+    var D=pday(d),st=null;
+    if(D&&D.kind==="work"&&D.start&&D.end){
+      var ws=tmin(D.start),we=tmin(D.end);
+      var before=q15dn(ws-cfg.trip-cfg.gap-cfg.dur),after=q15up(we+cfg.trip);
+      var okB=before>=6*60+30,okA=after+cfg.dur<=21*60+30;
+      var want=mode==="auto"?(ws>=12*60?"before":"after"):mode;
+      if(want==="before")st=okB?before:(okA?after:null);else st=okA?after:(okB?before:null);
+    }else if(!D||!D.kind||D.kind==="off"||D.kind==="leave")st=11*60;
+    if(st==null){miss.push(cap(parseYmd(d).toLocaleDateString("fr-FR",{weekday:"long"})));return}
+    add(d,"sport",tfmt(st),tfmt(st+cfg.dur),"Muscu — Fitness Park");placed++;
+  });
+  if(miss.length)notes.push("pas de créneau pour le sport : "+miss.join(", "));
+  if(cfg.extra){
+    var aDay=free[0]||null,bDay=free[1]||null;
+    if(aDay&&!has(aDay,"A")){add(aDay,"A","09:30","13:00","Lecture profonde");add(aDay,"A","14:30","18:00","Écriture")}
+    if(bDay&&!has(bDay,"B")){add(bDay,"B","14:00","16:00","Veille & observation")}
+    work.forEach(function(d){var D=pday(d);if(has(d,"read"))return;var st=tmin(D.start);
+      if(st>=11*60&&!has(d,"sport"))add(d,"read",tfmt(st-120),tfmt(st-90),"Lecture 30 min");else add(d,"read","21:00","21:30","Lecture 30 min")});
   }
-  // sport
-  var cand=[];
-  days.forEach(function(d){
-    var D=pday(d);if(!D)return;
-    if(D.kind==="work"&&D.end&&tmin(D.end)+cfg.trip<=20*60)cand.push({d:d,s:tmin(D.end)+cfg.trip});
-    else if(D.kind==="off"||D.kind==="leave")cand.push({d:d,s:d===aDay?18*60+30:(d===bDay?16*60+30:11*60)});
-  });
-  var pick=[];
-  cand.forEach(function(c){if(pick.length<cfg.n&&(!pick.length||(parseYmd(c.d)-parseYmd(pick[pick.length-1].d))/864e5>=2))pick.push(c)});
-  cand.forEach(function(c){if(pick.length<cfg.n&&pick.indexOf(c)<0)pick.push(c)});
-  pick.forEach(function(c){add(c.d,"sport",tfmt(c.s),tfmt(c.s+cfg.dur),"Muscu — Fitness Park")});
-  if(pick.length<cfg.n)notes.push((cfg.n-pick.length)+" séance"+(cfg.n-pick.length>1?"s":"")+" de sport non placée"+(cfg.n-pick.length>1?"s":"")+" (journées trop chargées)");
-  // lecture courte les jours de travail sans autre bloc
-  work.forEach(function(d){
-    var D=pday(d);if(D.blocks.some(function(b){return b.t==="A"||b.t==="B"}))return;
-    var st=tmin(D.start);
-    if(st>=11*60)add(d,"read",tfmt(st-120),tfmt(st-90),"Lecture 30 min");
-    else add(d,"read","21:00","21:30","Lecture 30 min");
-  });
-  return notes.length?"Semaine proposée — "+notes.join(" ; ")+".":"Semaine proposée. Ajuste ce que tu veux.";
+  return notes.length?placed+" séance"+(placed>1?"s":"")+" placée"+(placed>1?"s":"")+" — "+notes.join(" ; ")+".":placed+" séance"+(placed>1?"s":"")+" de sport placée"+(placed>1?"s":"")+". Tu peux les déplacer en cliquant sur le jour.";
 }
 function renderPlan(){
   if(!$("#v-plan"))return;
@@ -3572,12 +3585,12 @@ function renderPlan(){
   $("#pl-stats").innerHTML='<div class="tile"><small>Heures de travail</small><b>'+nf1.format(hours)+' <span class="u">h</span></b></div>'+
     '<div class="tile"><small>Jours off</small><b>'+offs+'</b></div>'+
     '<div class="tile"><small>Sport</small><b class="'+(spd>=cfg.n?"good":"")+'">'+spd+' <span class="u">/ '+(sp||cfg.n)+'</span></b></div>'+
-    '<div class="tile"><small>Modèle A</small><b><span class="'+(doneA?"good":hasA?"":"muted")+'">A'+(doneA?" ✓":"")+'</span> · <span class="'+(doneB?"good":hasB?"":"muted")+'">B'+(doneB?" ✓":"")+'</span></b></div>';
+    (!cfg.extra?'':'<div class="tile"><small>Modèle A</small><b><span class="'+(doneA?"good":hasA?"":"muted")+'">A'+(doneA?" ✓":"")+'</span> · <span class="'+(doneB?"good":hasB?"":"muted")+'">B'+(doneB?" ✓":"")+'</span></b></div>');
   $("#pl-hint").hidden=filled>0;
   var t=today(),h="";
   days.forEach(function(d){
     var D=pday(d),it=dayItemsP(d),isT=d===t;
-    var kind=!D||!D.kind?'<span class="pl-k muted">Horaires à saisir</span>':D.kind==="work"?'<span class="pl-k">Travail '+esc(D.start||"?")+'–'+esc(D.end||"?")+'</span>':D.kind==="off"?'<span class="pl-k good">Repos</span>':'<span class="pl-k good">Congé</span>';
+    var kind=!D||!D.kind?'<span class="pl-k muted">Horaires à saisir</span>':D.kind==="work"?'<span class="pl-k">Travail '+esc(D.start?shiftsTxt(D):"?")+'</span>':D.kind==="off"?'<span class="pl-k good">Repos</span>':'<span class="pl-k good">Congé</span>';
     h+='<div class="pl-day'+(isT?" today":"")+(D&&(D.kind==="off"||D.kind==="leave")?" free":"")+'"><button type="button" class="pl-dh" data-day="'+d+'"><b>'+esc(cap(parseYmd(d).toLocaleDateString("fr-FR",{weekday:"short"}).replace(".","")))+' '+parseYmd(d).getDate()+'</b>'+kind+'</button><div class="pl-blocks">';
     it.forEach(function(b){
       if(b.t==="work"){h+='<div class="pl-b pt-work"><span class="pl-time">'+esc(b.start)+'–'+esc(b.end)+'</span>Travail</div>';return}
@@ -3593,7 +3606,7 @@ $("#pl-next").addEventListener("click",function(){plui.week=addDays(plui.week,7)
 $("#pl-today").addEventListener("click",function(){plui.week=monday(today());renderPlan()});
 $("#pl-suggest").addEventListener("click",function(){var m=suggestWeek(plui.week);plSave();toast(m)});
 $("#pl-copy").addEventListener("click",function(){
-  var n=0;wdays(plui.week).forEach(function(d){var P=pday(addDays(d,-7));if(P&&P.kind){var D=pdayW(d);D.kind=P.kind;D.start=P.start;D.end=P.end;D.pause=P.pause;n++}});
+  var n=0;wdays(plui.week).forEach(function(d){var P=pday(addDays(d,-7));if(P&&P.kind){var D=pdayW(d);D.kind=P.kind;D.start=P.start;D.end=P.end;D.pause=P.pause;if(P.shifts)D.shifts=P.shifts.slice();else delete D.shifts;n++}});
   if(!n){toast("Rien à copier : la semaine dernière est vide.");return}
   plSave();toast("Horaires de la semaine dernière copiés.");
 });
@@ -3612,8 +3625,32 @@ function weekOpen(){
     '<input data-i="'+i+'" data-k="pause" inputmode="numeric" placeholder="60" value="'+(D.pause!=null?D.pause:"")+'" aria-label="Pause en minutes"></div>'}).join("");
   if(wDlg.showModal)wDlg.showModal();else wDlg.setAttribute("open","");
 }
-$("#pl-hours").addEventListener("click",weekOpen);
-$("#pl-hint-btn").addEventListener("click",weekOpen);
+var pwShifts={};
+function parsePlanning(txt){
+  var names=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"],out={},cur=-1,found=false;
+  txt.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").split(/(lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)/).forEach(function(part){
+    var i=names.indexOf(part);if(i>=0){cur=i;found=true;if(!out[i])out[i]=[];return}
+    if(cur<0)return;
+    var re=/(\d{1,2})\s*[:h]\s*(\d{2})\s*(?:-|–|—|a)\s*(\d{1,2})\s*[:h]\s*(\d{2})/g,m;
+    while((m=re.exec(part)))out[cur].push([pad(+m[1])+":"+m[2],pad(+m[3])+":"+m[4]]);
+  });
+  return found?out:null;
+}
+$("#pw-parse").addEventListener("click",function(){
+  var r=parsePlanning($("#pw-text").value);
+  if(!r){toast("Je ne trouve pas de jours (lundi, mardi…) dans le texte collé.");return}
+  pwShifts={};var n=0;
+  Object.keys(r).forEach(function(i){
+    var row=$('#pw-rows [data-i="'+i+'"][data-k="kind"]');if(!row)return;
+    var sh=r[i].sort(function(a,b){return tmin(a[0])-tmin(b[0])}),set=function(k,v){var el=$('#pw-rows [data-i="'+i+'"][data-k="'+k+'"]');el.value=v;el.disabled=row.value!=="work"};
+    if(sh.length){row.value="work";var gap=0;for(var j=1;j<sh.length;j++)gap+=Math.max(0,tmin(sh[j][0])-tmin(sh[j-1][1]));
+      set("start",sh[0][0]);set("end",sh[sh.length-1][1]);set("pause",gap);pwShifts[i]=sh;n++}
+    else{row.value="off";set("start","");set("end","");set("pause","")}
+  });
+  $("#pw-paste").open=false;toast(n+" journée"+(n>1?"s":"")+" de travail remplie"+(n>1?"s":"")+". Vérifie puis enregistre.");
+});
+$("#pl-hours").addEventListener("click",function(){pwShifts={};$("#pw-text").value="";weekOpen()});
+$("#pl-hint-btn").addEventListener("click",function(){pwShifts={};$("#pw-text").value="";weekOpen()});
 $("#pw-close").addEventListener("click",function(){wDlg.close()});
 $("#pw-rows").addEventListener("change",function(e){
   var el=e.target;if(el.dataset.k!=="kind")return;var row=el.closest(".pw-row");
@@ -3625,8 +3662,9 @@ $("#pw-form").addEventListener("submit",function(e){
     var g=function(k){var el=$('#pw-rows [data-i="'+i+'"][data-k="'+k+'"]');return el?el.value.trim():""};
     var k=g("kind");if(!k){if(state.plan[d]){state.plan[d].kind="";delete state.plan[d].start;delete state.plan[d].end}return}
     var D=pdayW(d);D.kind=k;
-    if(k==="work"){D.start=g("start");D.end=g("end");var p=g("pause");D.pause=p===""?60:Math.max(0,Math.round(num(p)));if(!D.start||!D.end||tmin(D.end)<=tmin(D.start))bad=true}
-    else{delete D.start;delete D.end;delete D.pause}
+    if(k==="work"){D.start=g("start");D.end=g("end");var p=g("pause");D.pause=p===""?60:Math.max(0,Math.round(num(p)));if(!D.start||!D.end||tmin(D.end)<=tmin(D.start))bad=true;
+      var sh=pwShifts[i];if(sh&&sh[0][0]===D.start&&sh[sh.length-1][1]===D.end)D.shifts=sh;else if(!sh||sh[0][0]!==D.start||sh[sh.length-1][1]!==D.end){if(!(D.shifts&&D.shifts[0][0]===D.start&&D.shifts[D.shifts.length-1][1]===D.end))delete D.shifts}}
+    else{delete D.start;delete D.end;delete D.pause;delete D.shifts}
   });
   if(bad){toast("Vérifie les heures : chaque journée de travail doit avoir un début et une fin.");return}
   wDlg.close();
@@ -3652,8 +3690,8 @@ $("#pd-close").addEventListener("click",function(){dDlg.close()});
 dDlg.addEventListener("close",function(){plSave()});
 ["#pd-kind","#pd-start","#pd-end","#pd-pause"].forEach(function(s){$(s).addEventListener("change",function(){
   var D=pdayW(plui.edit);D.kind=$("#pd-kind").value;
-  if(D.kind==="work"){D.start=$("#pd-start").value;D.end=$("#pd-end").value;var p=$("#pd-pause").value.trim();D.pause=p===""?60:Math.max(0,Math.round(num(p)))}
-  else{delete D.start;delete D.end;delete D.pause}
+  if(D.kind==="work"){D.start=$("#pd-start").value;D.end=$("#pd-end").value;var p=$("#pd-pause").value.trim();D.pause=p===""?60:Math.max(0,Math.round(num(p)));if(D.shifts&&(D.shifts[0][0]!==D.start||D.shifts[D.shifts.length-1][1]!==D.end))delete D.shifts}
+  else{delete D.start;delete D.end;delete D.pause;delete D.shifts}
   persist("plan");
 })});
 $("#pd-blocks").addEventListener("click",function(e){var b=e.target.closest("[data-bdel]");if(!b)return;var D=pday(plui.edit);D.blocks=D.blocks.filter(function(x){return x.id!==b.dataset.bdel});persist("plan");dayBlocks()});
@@ -3664,11 +3702,24 @@ $("#pdb-add").addEventListener("click",function(){
   persist("plan");dayBlocks();$("#pdb-start").value="";$("#pdb-end").value="";$("#pdb-label").value="";
 });
 // réglages
-["#plc-n","#plc-dur","#plc-trip"].forEach(function(sel){$(sel).addEventListener("change",function(){
-  var k={"#plc-n":"sportN","#plc-dur":"sportDur","#plc-trip":"trip"}[sel],v=Math.round(num(this.value));
+["#plc-dur","#plc-trip","#plc-gap"].forEach(function(sel){$(sel).addEventListener("change",function(){
+  var k={"#plc-dur":"sportDur","#plc-trip":"trip","#plc-gap":"sportGap"}[sel],v=Math.round(num(this.value));
   if(this.value.trim()===""||!(v>=0))delete state.settings[k];else state.settings[k]=v;persist("settings");renderPlan();
 })});
-function fillPlanCfg(){var c=plCfg();if(document.activeElement!==$("#plc-n"))$("#plc-n").value=c.n;if(document.activeElement!==$("#plc-dur"))$("#plc-dur").value=c.dur;if(document.activeElement!==$("#plc-trip"))$("#plc-trip").value=c.trip}
+$("#plc-extra").addEventListener("change",function(){state.settings.planExtras=this.checked;persist("settings")});
+$("#plc-days").addEventListener("change",function(e){
+  var el=e.target.closest("[data-sd]");if(!el)return;var d=Object.assign({},plDays());
+  if(el.value)d[el.dataset.sd]=el.value;else delete d[el.dataset.sd];
+  state.settings.sportDays=d;persist("settings");renderPlan();
+});
+function fillPlanCfg(){
+  var c=plCfg();
+  [["#plc-dur","dur"],["#plc-trip","trip"],["#plc-gap","gap"]].forEach(function(x){if(document.activeElement!==$(x[0]))$(x[0]).value=c[x[1]]});
+  $("#plc-extra").checked=c.extra;
+  if($("#plc-days").contains(document.activeElement))return;
+  var N=["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"],O=[["","—"],["auto","Auto"],["before","Avant"],["after","Après"]];
+  $("#plc-days").innerHTML=N.map(function(n,i){return '<label>'+n+'<select data-sd="'+i+'" aria-label="Sport le '+n+'">'+O.map(function(o){return '<option value="'+o[0]+'"'+((c.days[i]||"")===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select></label>'}).join("");
+}
 /* ---------- personnalisation de l'accueil (glisser-déposer) ---------- */
 var HCARDS=[["hello","Bonjour","l"],["date","Aujourd'hui","s"],["fin","Finances","l"],["cal","Calories","s"],["job","Candidatures","l"],["body","Pesée","s"],["p30","Projet 30","l"],["lib","Lecture","s"],["rev","Bilan du mois","s"],["prod","Produits","s"],["meds","Médicaments","s"]];
 var HSIZE={s:"Petite",l:"Grande",f:"Pleine largeur"},HNEXT={s:"l",l:"f",f:"s"};
