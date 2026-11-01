@@ -1691,6 +1691,7 @@ var monthLabel=function(m){return cap(parseYmd(m+"-01").toLocaleDateString("fr-F
 var dayLabel=function(s){
   if(s===today())return "Aujourd'hui";
   if(s===addDays(today(),-1))return "Hier";
+  if(s===addDays(today(),1))return "Demain";
   return cap(parseYmd(s).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"}));
 };
 var newId=function(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)};
@@ -2922,7 +2923,7 @@ $("#cal-form").addEventListener("submit",function(e){
   persist("cal-"+m);
   $("#c-kcal").value="";$("#c-name").value="";$("#c-prot").value="";$("#c-carb").value="";$("#c-fat").value="";
   renderCal();
-  toast(item.name+" ajouté ("+intf.format(item.kcal)+" kcal)");
+  toast(item.name+" ajouté"+(ui.day>today()?" pour "+dayLabel(ui.day).toLowerCase():"")+" ("+intf.format(item.kcal)+" kcal)");
 });
 function delCal(m,id){
   var list=state.cal[m]||[];var i=list.findIndex(function(x){return x.id===id});if(i<0)return;
@@ -3008,8 +3009,9 @@ $("#c-bmr").addEventListener("input",function(){
 function renderCal(){
   renderHome();
   $("#d-label").textContent=dayLabel(ui.day);
-  $("#d-next").disabled=ui.day>=today();
-  $("#d-next").style.opacity=ui.day>=today()?".4":"1";
+  var dMax=addDays(today(),7);
+  $("#d-next").disabled=ui.day>=dMax;
+  $("#d-next").style.opacity=ui.day>=dMax?".4":"1";
   var t=dayTotal(ui.day),goal=+state.settings.kcalGoal||0,pg=+state.settings.protGoal||0;
   var h='<div class="big">'+intf.format(t.kcal)+' <small>'+(goal?"/ "+intf.format(goal)+" kcal":"kcal")+'</small></div>';
   if(goal){
