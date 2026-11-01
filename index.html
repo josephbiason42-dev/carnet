@@ -366,6 +366,12 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .pv-specs{display:grid; grid-template-columns:1fr 1fr; gap:6px 18px}
 .pv-specs div{display:flex; justify-content:space-between; gap:8px; font-size:.88rem; padding:5px 0; border-bottom:1px solid var(--line)}
 .pv-specs span{color:var(--muted)}
+.gd-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px; align-items:start}
+.gdc{border:1px solid var(--line); border-radius:14px; background:var(--bg); padding:14px; display:flex; flex-direction:column; gap:10px}
+.gdc-f{font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted)}
+.gdc h3{margin:0; font-size:1.05rem; line-height:1.25}
+.gdc .gd-q{margin:0}
+.gdc.rx{border-color:rgba(74,222,128,.35); background:rgba(74,222,128,.06)}
 .gd{border:1px solid var(--line); border-radius:12px; margin:0 0 8px; background:var(--bg)}
 .gd>summary{list-style:none; cursor:pointer; padding:12px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px}
 .gd>summary::-webkit-details-marker{display:none}
@@ -963,7 +969,7 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
       <button class="card c-p30" type="button" id="card-p30" data-go="p30" aria-label="Ouvrir Projet 30"></button>
       <button class="card c-lib" type="button" id="card-lib" data-go="lib" aria-label="Ouvrir la bibliothèque"></button>
       <button class="card c-rev" type="button" id="card-rev" data-go="rev" aria-label="Ouvrir le bilan du mois"></button>
-      <button class="card c-prod" type="button" id="card-prod" data-go="prod" aria-label="Ouvrir les produits"></button>
+      <button class="card c-prod" type="button" id="card-prod" data-go="prod" aria-label="Ouvrir les fiches conseil"></button>
       <button class="card c-meds" type="button" id="card-meds" data-go="meds" aria-label="Ouvrir les médicaments"></button>
     </div>
     <div class="h-foot"><span class="note" id="h-tip" hidden>Glisse les cartes pour les réorganiser (sur téléphone, avec la poignée ⠿). Touche la taille pour l'agrandir, « Visible » pour la masquer.</span><button class="ghost sm" type="button" id="h-reset" hidden>Réinitialiser</button><button class="ghost sm" type="button" id="h-open">Personnaliser l'accueil</button></div>
@@ -1253,15 +1259,15 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
   <section class="view" id="v-prod" aria-label="Produits">
     <button class="back" type="button" data-go="home">← Accueil</button>
     <div class="phead" style="margin:0"><h2 style="text-align:left">Produits</h2><button class="plus" type="button" id="pr-add" aria-label="Ajouter un produit" title="Ajouter un produit">+</button></div>
-    <div class="seg" id="pr-nav" role="group" aria-label="Affichage"><button type="button" data-pt="list" aria-pressed="true">Produits</button><button type="button" data-pt="guide" aria-pressed="false">Fiches conseil</button></div>
-    <div id="pr-tab-guide" hidden>
+    <div class="seg" id="pr-nav" role="group" aria-label="Affichage"><button type="button" data-pt="guide" aria-pressed="true">Fiches conseil</button><button type="button" data-pt="list" aria-pressed="false">Produits</button></div>
+    <div id="pr-tab-guide">
       <div class="panel">
         <input id="gd-q" type="search" placeholder="Rechercher : « café », « cheveux », « animaux »…" autocomplete="off" aria-label="Rechercher une fiche conseil" style="margin-bottom:10px">
         <div class="chips" id="gd-fam" style="margin-bottom:12px"></div>
         <div id="gd-list"><p class="empty">Chargement des fiches…</p></div>
       </div>
     </div>
-    <div id="pr-tab-list">
+    <div id="pr-tab-list" hidden>
     <div class="panel" id="pr-seed" hidden>
       <h3>Petit électroménager</h3>
       <p class="note" style="margin-bottom:10px">Ajoute une sélection de 52 produits phares (aspirateurs, café, robots cuiseurs, airfryers, repassage, beauté) avec caractéristiques, arguments de vente et objections. Prix indicatifs, à vérifier en magasin.</p>
@@ -1944,7 +1950,7 @@ function flash(sel){var el=$(sel);el.classList.add("err");el.focus();setTimeout(
 /* ---------- onglets ---------- */
 function setTab(t){
   if(String(t).indexOf(":")>0){var sp=String(t).split(":");t=sp[0];if(t==="fin")setFinPane(sp[1])}
-  ui.tab=t;document.body.dataset.tab=t;if(typeof viewAnim==="function")setTimeout(function(){viewAnim(t)},0);if(t==="rev")renderRev();if(t==="lib"&&typeof lcCenter==="function")setTimeout(function(){lcCenter(false)},30);
+  ui.tab=t;document.body.dataset.tab=t;if(typeof viewAnim==="function")setTimeout(function(){viewAnim(t)},0);if(t==="rev")renderRev();if(t==="prod"&&typeof gdTab==="function")gdTab(gdui.tab);if(t==="lib"&&typeof lcCenter==="function")setTimeout(function(){lcCenter(false)},30);
   window.scrollTo(0,0);
   ["home","fin","shop","cal","body","meds","job","p30","lib","plan","rev","prod","set"].forEach(function(k){$("#v-"+k).classList.toggle("on",k===t)});
   var gg=grpOf(t);if(gg)ui.lastIn[gg]=t;
@@ -4964,7 +4970,7 @@ var PCAT={
   beaute:{n:"Beauté",f:[["type","Type","sel",["Sèche-cheveux","Multi-styler","Lisseur","Rasoir / tondeuse","Brosse à dents","Épilateur"]],["puissance","Puissance","num","W"]],acc:["Embouts et accessoires","Lames ou brossettes de rechange"]}
 };
 var pui={cat:"all",q:"",sort:"fav",flt:{},cmp:[],open:null};
-var gdui={tab:"list",fam:"all",q:"",data:null,loading:false,open:null};
+var gdui={tab:"guide",fam:"all",q:"",data:null,loading:false,open:null};
 function pAll(){return state.products}
 function pFind(id){return state.products.filter(function(p){return p.id===id})[0]}
 function pName(p){return (p.brand?p.brand+" ":"")+p.model}
@@ -5067,37 +5073,23 @@ function gdTab(t){
   if(t==="guide"){$("#pr-cmpbar").hidden=true;gdLoad(renderGuides)}else renderProd();
 }
 function renderGuides(){
-  var D=gdui.data;if(!D)return;var q=normQ(gdui.q),P=pAll(),n=0;
+  var D=gdui.data;if(!D)return;var q=normQ(gdui.q);
   $("#gd-fam").innerHTML='<button type="button" class="chip'+(gdui.fam==="all"?" on":"")+'" data-gf="all">Tout</button>'+D.families.map(function(f,i){return '<button type="button" class="chip'+(gdui.fam===String(i)?" on":"")+'" data-gf="'+i+'">'+esc(f.n)+'</button>'}).join("");
-  var h=(gdui.fam==="all"&&!q)?'<details class="gd"><summary><b>Les 4 réflexes pour tout le rayon</b></summary><div class="gd-body"><ol class="gd-rx">'+D.reflexes.map(function(r){return '<li>'+esc(r)+'</li>'}).join("")+'</ol></div></details>':"";
+  var h=(gdui.fam==="all"&&!q)?'<article class="gdc rx"><div class="gdc-f">Pour tout le rayon</div><h3>Les 4 réflexes</h3><ol class="gd-c">'+D.reflexes.map(function(r){return '<li>'+esc(r)+'</li>'}).join("")+'</ol></article>':"";
   D.families.forEach(function(f,i){
     if(gdui.fam!=="all"&&gdui.fam!==String(i))return;
     f.items.forEach(function(g){
       if(q){var hay=normQ([g.n,f.n,g.q,g.c.map(function(c){return c.join(" ")}).join(" ")].join(" "));if(q.split(/\s+/).some(function(w){return hay.indexOf(w)<0}))return}
-      n++;var np=g.cat?P.filter(function(p){return p.cat===g.cat}).length:0;
-      h+='<details class="gd" data-gid="'+esc(g.id)+'"'+(gdui.open===g.id?" open":"")+'><summary><b>'+esc(g.n)+'</b><small>'+esc(f.n)+'</small></summary><div class="gd-body">'+
+      h+='<article class="gdc" id="gd-'+esc(g.id)+'"><div class="gdc-f">'+esc(f.n)+'</div><h3>'+esc(g.n)+'</h3>'+
         '<p class="gd-q"><span>La question qui tranche</span>'+esc(g.q)+'</p>'+
-        '<div class="ai-sec">Points de comparaison, par ordre d\'importance</div><ol class="gd-c">'+g.c.map(function(c){return '<li><b>'+esc(c[0])+'</b>'+(c[1]?'<span>'+esc(c[1])+'</span>':'')+'</li>'}).join("")+'</ol>'+
-        (g.cat?'<button class="ghost sm" type="button" data-gcat="'+esc(g.cat)+'" style="margin-top:12px">Voir les produits '+esc((PCAT[g.cat]||{}).n||"")+(np?" ("+np+")":"")+' →</button>':'')+
-        '</div></details>';
+        '<ol class="gd-c">'+g.c.map(function(c){return '<li><b>'+esc(c[0])+'</b>'+(c[1]?'<span>'+esc(c[1])+'</span>':'')+'</li>'}).join("")+'</ol></article>';
     });
   });
-  $("#gd-list").innerHTML=h||'<p class="empty">Aucune fiche ne correspond à ta recherche.</p>';
-  if(!h)return;if(q&&n===1){var d=$("#gd-list details[data-gid]");if(d)d.open=true}
+  $("#gd-list").innerHTML=h?'<div class="gd-grid">'+h+'</div>':'<p class="empty">Aucune fiche ne correspond à ta recherche.</p>';
 }
-function gdFor(p){
-  var t=(p.specs||{}).type||"",m={aspi:/robot/i.test(t)?"aspi-robot":/tra[iî]neau/i.test(t)?"aspi-traineau":/laveur/i.test(t)?"aspi-laveur":"aspi-balai",
-    cafe:"cafe",air:"airfryer",linge:/d[ée]froisseur/i.test(t)?"defroisseur":"repassage",
-    cuis:/p[âa]tissier/i.test(t)?"patissier":/multicuiseur/i.test(t)?"multicuiseur":"cuiseur",
-    beaute:/s[èe]che/i.test(t)?"seche-cheveux":/(lisseur|styler)/i.test(t)?"lisseur":/(rasoir|tondeuse)/i.test(t)?"tondeuse":/dents/i.test(t)?"brosse-dents":/[ée]pil/i.test(t)?"epilation":null};
-  return m[p.cat]||null;
-}
-function gdOpen(id){gdui.fam="all";gdui.q="";$("#gd-q").value="";gdui.open=id;dlgClose(pvDlg);gdTab("guide");gdLoad(function(){renderGuides();var d=$('#gd-list [data-gid="'+id+'"]');if(d)d.scrollIntoView({block:"start",behavior:"smooth"})})}
 $("#pr-nav").addEventListener("click",function(e){var b=e.target.closest("[data-pt]");if(b)gdTab(b.dataset.pt)});
 $("#gd-fam").addEventListener("click",function(e){var b=e.target.closest("[data-gf]");if(!b)return;gdui.fam=b.dataset.gf;renderGuides()});
 var gdT=null;$("#gd-q").addEventListener("input",function(){gdui.q=this.value;clearTimeout(gdT);gdT=setTimeout(renderGuides,150)});
-$("#gd-list").addEventListener("toggle",function(e){var d=e.target;if(d.dataset&&d.dataset.gid&&d.open)gdui.open=d.dataset.gid},true);
-$("#gd-list").addEventListener("click",function(e){var b=e.target.closest("[data-gcat]");if(!b)return;pui.cat=b.dataset.gcat;pui.flt={};$("#pr-filters").innerHTML="";gdTab("list")});
 // fiche produit
 var pvDlg=$("#pv-dialog");
 function dlgOpen(D){if(D.showModal)D.showModal();else D.setAttribute("open","")}
@@ -5115,7 +5107,6 @@ function pvRender(){
   if(specs)h+='<div class="ai-sec" style="margin-top:14px">Caractéristiques</div><div class="pv-specs">'+specs+'</div>';
   if((p.args||[]).length)h+='<div class="ai-sec" style="margin-top:14px">Arguments de vente</div><ul class="rv-pts">'+p.args.map(function(a){return '<li class="good">'+esc(a)+'</li>'}).join("")+'</ul>';
   if(p.obj)h+='<div class="ai-sec" style="margin-top:14px">Objections et points d\'attention</div><p class="pv-obj">'+esc(p.obj)+'</p>';
-  var gid=gdFor(p);if(gid)h+='<button class="ghost sm" type="button" data-pv="guide" style="margin-top:14px">Fiche conseil de la catégorie →</button>';
   h+='<div class="ai-sec" style="margin-top:14px">À proposer avec</div><div class="chips">'+acc.map(function(a){return '<span class="pchip">'+esc(a)+'</span>'}).join("")+'</div>';
   h+='<label class="ai-sec" for="pv-notes" style="display:block;margin-top:14px">Mes notes</label><textarea id="pv-notes" placeholder="Retours clients, prix promo, stock, astuces de démo…" style="font:15px/1.4 var(--body);min-height:80px">'+esc(p.notes||"")+'</textarea>'+
     '<div class="btnrow" style="margin-top:12px"><button class="ghost sm" type="button" data-pv="edit">Modifier la fiche</button><button class="ghost sm" type="button" data-pv="del" style="color:var(--bad)">Supprimer</button></div>';
@@ -5126,7 +5117,6 @@ $("#pv-body").addEventListener("input",function(e){if(e.target.id!=="pv-notes")r
 $("#pv-body").addEventListener("click",function(e){
   var b=e.target.closest("[data-pv]");if(!b)return;var p=pFind(pui.open);if(!p)return;var a=b.dataset.pv;
   if(a==="close")dlgClose(pvDlg);
-  else if(a==="guide"){var g=gdFor(p);if(g)gdOpen(g)}
   else if(a==="fav"){p.fav=!p.fav;persist("products");pvRender();renderProd();renderHome()}
   else if(a==="cmp"){var i=pui.cmp.indexOf(p.id);if(i>=0)pui.cmp.splice(i,1);else if(pui.cmp.length<3)pui.cmp.push(p.id);else{toast("3 produits maximum à comparer.");return}pvRender();renderProd()}
   else if(a==="price"){var v=window.prompt("Prix constaté (€)",p.price!=null?String(p.price).replace(".",","):"");if(v==null)return;var n=num(v);if(!(n>0)){toast("Prix invalide.");return}p.price=Math.round(n*100)/100;p.priceAt=today();persist("products");pvRender();renderProd()}
@@ -5188,10 +5178,10 @@ function pcOpen(){
 }
 $("#pc-close").addEventListener("click",function(){dlgClose(pcDlg)});
 function renderProdCard(){
-  var el=$("#card-prod");if(!el)return;var P=pAll(),fav=P.filter(function(p){return p.fav}).length,cats=Object.keys(PCAT).filter(function(k){return P.some(function(p){return p.cat===k})}).length;
-  el.innerHTML='<div class="k-title">Produits<span class="k-chip">Boulanger</span></div>'+
-    (P.length?'<div style="margin-top:auto"><div class="k-big">'+P.length+'</div><div class="k-lbl">fiches produits · '+cats+' rayon'+(cats>1?"s":"")+(fav?' · '+fav+' favori'+(fav>1?"s":""):'')+'</div></div>':'<div class="k-lbl" style="margin-top:auto">Charge la sélection petit électroménager pour retrouver caractéristiques et arguments.</div>')+
-    '<span class="k-open">Rechercher →</span>';
+  var el=$("#card-prod");if(!el)return;
+  el.innerHTML='<div class="k-title">Fiches conseil<span class="k-chip">Boulanger</span></div>'+
+    '<div style="margin-top:auto"><div class="k-big">30</div><div class="k-lbl">catégories · critères pour orienter le client</div></div>'+
+    '<span class="k-open">Ouvrir →</span>';
 }
 /* ---------- effets : ciel, confettis, chiffres, transitions ---------- */
 var RM=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
