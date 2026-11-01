@@ -963,6 +963,18 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
 .tj-late{color:#ffb38a!important}
 .tj-foot{margin-top:14px; font-size:.76rem} .tj-foot a{color:#9cbcff}
 .linkbtn{all:unset; cursor:pointer; color:#9cbcff; font-weight:600}
+
+/* macros */
+.c-macros{grid-template-columns:repeat(3,minmax(0,1fr))!important; margin-top:10px}
+.mac-row{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:14px}
+.mac{display:flex; flex-direction:column; gap:3px; min-width:0}
+.mac small{font-size:.74rem; color:var(--muted); font-weight:600}
+.mac b{font-size:1.1rem; font-weight:800}
+.mac-bar{height:5px; border-radius:9px; background:rgba(255,255,255,.08); overflow:hidden} .mac-bar i{display:block; height:100%; border-radius:9px}
+.mac em{font-style:normal; font-size:.72rem; color:var(--muted)}
+.ff-mac{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:0 0 12px}
+.ff-mac span{display:flex; flex-direction:column; gap:1px; padding:8px 10px; border-radius:11px; background:rgba(255,255,255,.05)}
+.ff-mac small{font-size:.72rem; color:var(--muted); font-weight:600} .ff-mac b{font-size:1rem} .ff-mac em{font-style:normal; font-size:.7rem; color:var(--muted)}
 </style>
 </head>
 <body data-tab="home">
@@ -1142,7 +1154,11 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
         <label for="c-meal">Repas<select id="c-meal"></select></label>
         <label for="c-kcal">Calories (kcal)<input id="c-kcal" inputmode="numeric" placeholder="450" autocomplete="off"></label>
         <label for="c-name" class="wide">Aliment ou plat<input id="c-name" placeholder="Poulet riz brocolis" maxlength="60" autocomplete="off"></label>
-        <label for="c-prot">Protéines (g, facultatif)<input id="c-prot" inputmode="decimal" placeholder="35" autocomplete="off"></label>
+      </div>
+      <div class="grid c-macros">
+        <label for="c-prot">Protéines (g)<input id="c-prot" inputmode="decimal" placeholder="35" autocomplete="off"></label>
+        <label for="c-carb">Glucides (g)<input id="c-carb" inputmode="decimal" placeholder="50" autocomplete="off"></label>
+        <label for="c-fat">Lipides (g)<input id="c-fat" inputmode="decimal" placeholder="15" autocomplete="off"></label>
       </div>
       <button class="ghost" type="button" id="c-scan" style="width:100%">📷 Scanner un code-barres ou chercher un produit</button>
       <div id="cal-quick-wrap" hidden>
@@ -2887,7 +2903,9 @@ function renderRevCard(){
 var MEALS=["Petit-déjeuner","Déjeuner","Collation","Dîner"];
 function defaultMeal(){var ms=meals();if(ms!==MEALS)return ms[0];var h=new Date().getHours();return h<11?MEALS[0]:h<15?MEALS[1]:h<18?MEALS[2]:MEALS[3]}
 function dayItems(d){return (state.cal[d.slice(0,7)]||[]).filter(function(x){return x.date===d})}
-function dayTotal(d){var k=0,p=0;dayItems(d).forEach(function(x){k+=x.kcal||0;p+=x.prot||0});return {kcal:k,prot:p}}
+function dayTotal(d){var k=0,p=0,c=0,f=0,hc=false,hf=false;dayItems(d).forEach(function(x){k+=x.kcal||0;p+=x.prot||0;if(x.carb!=null){c+=x.carb;hc=true}if(x.fat!=null){f+=x.fat;hf=true}});return {kcal:k,prot:p,carb:c,fat:f,hasC:hc,hasF:hf}}
+function g1(v){var n=num(v);return v!==""&&n>=0?Math.round(n*10)/10:null}
+function macroTxt(x){var a=[];if(x.prot)a.push("P "+nf1.format(x.prot)+" g");if(x.carb!=null)a.push("G "+nf1.format(x.carb)+" g");if(x.fat!=null)a.push("L "+nf1.format(x.fat)+" g");return a.join(" · ")}
 $("#d-prev").addEventListener("click",function(){ui.day=addDays(ui.day,-1);renderCal()});
 $("#d-next").addEventListener("click",function(){ui.day=addDays(ui.day,1);renderCal()});
 $("#cal-form").addEventListener("submit",function(e){
@@ -2898,10 +2916,11 @@ $("#cal-form").addEventListener("submit",function(e){
   if(!name){flash("#c-name");return}
   var p=num($("#c-prot").value);
   var item={id:newId(),date:ui.day,meal:$("#c-meal").value,name:name,kcal:Math.round(k),prot:p>=0?Math.round(p*10)/10:0};
+  var cb=g1($("#c-carb").value.trim()),ft=g1($("#c-fat").value.trim());if(cb!=null)item.carb=cb;if(ft!=null)item.fat=ft;
   var m=ui.day.slice(0,7);
   (state.cal[m]=state.cal[m]||[]).push(item);
   persist("cal-"+m);
-  $("#c-kcal").value="";$("#c-name").value="";$("#c-prot").value="";
+  $("#c-kcal").value="";$("#c-name").value="";$("#c-prot").value="";$("#c-carb").value="";$("#c-fat").value="";
   renderCal();
   toast(item.name+" ajouté ("+intf.format(item.kcal)+" kcal)");
 });
@@ -2924,7 +2943,7 @@ function renderQuick(){
 }
 $("#cal-quick").addEventListener("click",function(e){
   var b=e.target.closest(".chip");if(!b)return;var x=recent[+b.dataset.i];if(!x)return;
-  $("#c-name").value=x.name;$("#c-kcal").value=x.kcal;$("#c-prot").value=x.prot||"";$("#c-kcal").focus();
+  $("#c-name").value=x.name;$("#c-kcal").value=x.kcal;$("#c-prot").value=x.prot||"";$("#c-carb").value=x.carb!=null?nf1.format(x.carb):"";$("#c-fat").value=x.fat!=null?nf1.format(x.fat):"";$("#c-kcal").focus();
 });
 /* ---------- déficit ---------- */
 var KCAL_KG=7700;
@@ -3000,7 +3019,10 @@ function renderCal(){
   }else{
     h+='<div class="heroline" style="margin-top:8px"><span class="muted">Pas d\'objectif fixé. <button class="ghost" type="button" id="go-set" style="padding:4px 10px;margin-left:4px">Fixer un objectif</button></span>';
   }
-  h+='<span class="num">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g</span></div>';
+  var showMac=!!(t.prot||t.hasC||t.hasF);
+  h+=(showMac?'':'<span class="num">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g</span>')+'</div>';
+  if(showMac){var tot=t.prot*4+t.carb*4+t.fat*9;
+    h+='<div class="mac-row">'+[["Protéines",t.prot,"#5b8cff",4],["Glucides",t.carb,"#ffb547",4],["Lipides",t.fat,"#f472b6",9]].map(function(m){return '<div class="mac"><small>'+m[0]+'</small><b>'+nf1.format(Math.round(m[1]*10)/10)+(m[0]==="Protéines"&&pg?' <span class="u">/ '+intf.format(pg)+'</span>':'')+' g</b><span class="mac-bar"><i style="width:'+(tot?Math.round(m[1]*m[3]/tot*100):0)+'%;background:'+m[2]+'"></i></span><em>'+(tot?Math.round(m[1]*m[3]/tot*100):0)+' % des kcal</em></div>'}).join("")+'</div>';}
   $("#cal-sum").innerHTML=h;
   var gs=$("#go-set");if(gs)gs.addEventListener("click",function(){setTab("set");$("#s-kcal").focus()});
 
@@ -3011,7 +3033,7 @@ function renderCal(){
     var sum=its.reduce(function(a,x){return a+x.kcal},0);
     html+='<div class="day">'+esc(meal)+' · '+intf.format(sum)+' kcal</div>';
     its.forEach(function(x){
-      html+='<div class="row"><div class="lbl">'+esc(x.name)+(x.prot?'<small>'+intf.format(x.prot)+' g de protéines</small>':'')+'</div>'+
+      html+='<div class="row"><div class="lbl">'+esc(x.name)+(macroTxt(x)?'<small>'+macroTxt(x)+'</small>':'')+'</div>'+
         '<span class="num">'+intf.format(x.kcal)+' kcal</span>'+
         '<button class="del" type="button" aria-label="Supprimer '+esc(x.name)+'" data-m="'+m+'" data-id="'+esc(x.id)+'">×</button></div>';
     });
@@ -5569,7 +5591,7 @@ $("#ff-cam-btn").addEventListener("click",function(){
 function ffNum(v){v=+v;return isFinite(v)?v:null}
 function ffFrom(p){
   var n=p.nutriments||{},k=ffNum(n["energy-kcal_100g"]);if(k==null&&ffNum(n["energy_100g"])!=null)k=ffNum(n["energy_100g"])/4.184;
-  return {code:p.code||p._id||"",name:(p.product_name_fr||p.product_name||"").trim(),brand:(p.brands||"").split(",")[0].trim(),kcal:k==null?null:Math.round(k),prot:ffNum(n["proteins_100g"]),serving:ffNum(p.serving_quantity),qty:p.quantity||""};
+  return {code:p.code||p._id||"",name:(p.product_name_fr||p.product_name||"").trim(),brand:(p.brands||"").split(",")[0].trim(),kcal:k==null?null:Math.round(k),prot:ffNum(n["proteins_100g"]),carb:ffNum(n["carbohydrates_100g"]),sugar:ffNum(n["sugars_100g"]),fat:ffNum(n["fat_100g"]),serving:ffNum(p.serving_quantity),qty:p.quantity||""};
 }
 function ffLookup(code){
   code=String(code||"").replace(/\D/g,"");if(code.length<8){flash("#ff-code");return}
@@ -5599,21 +5621,23 @@ function ffShow(x){
   if(ff.mode==="shop"){shFfShow(x);return}
   ff.prod=x;var q=x.serving||100;
   $("#ff-res").innerHTML='<div class="ff-card"><div class="pbrand">'+esc(x.brand||"Open Food Facts")+'</div><div class="pmodel">'+esc(x.name||"Produit sans nom")+'</div>'+
-    '<p class="note" style="margin:4px 0 10px">Pour 100 g : <b style="color:var(--ink)">'+(x.kcal!=null?x.kcal+" kcal":"calories inconnues")+'</b>'+(x.prot!=null?' · '+nf1.format(x.prot)+' g de protéines':'')+(x.serving?' · portion '+nf1.format(x.serving)+' g':'')+'</p>'+
+    '<p class="note" style="margin:4px 0 10px">Pour 100 g : <b style="color:var(--ink)">'+(x.kcal!=null?x.kcal+" kcal":"calories inconnues")+'</b>'+(x.serving?' · portion '+nf1.format(x.serving)+' g':'')+'</p>'+
+    '<div class="ff-mac">'+[["Protéines",x.prot],["Glucides",x.carb,x.sugar!=null?"dont sucres "+nf1.format(x.sugar)+" g":""],["Lipides",x.fat]].map(function(m){return '<span><small>'+m[0]+'</small><b>'+(m[1]!=null?nf1.format(m[1])+" g":"—")+'</b>'+(m[2]?'<em>'+m[2]+'</em>':'')+'</span>'}).join("")+'</div>'+
     '<div class="grid"><label for="ff-qty">Quantité mangée (g)<input id="ff-qty" inputmode="decimal" value="'+String(q).replace(".",",")+'"></label><div id="ff-calc" class="ff-calc"></div></div>'+
     '<div class="chips" style="margin-top:8px">'+[["½ portion",.5],["1 portion",1],["2 portions",2]].filter(function(){return !!x.serving}).map(function(c){return '<button type="button" class="chip" data-ffq="'+(x.serving*c[1])+'">'+c[0]+'</button>'}).join("")+'</div>'+
     '<button class="primary" type="button" id="ff-use" style="width:100%;margin-top:12px"'+(x.kcal==null?" disabled":"")+'>Utiliser dans mon repas</button></div>';
   ffCalc();
 }
 function ffCalc(){var x=ff.prod,el=$("#ff-calc");if(!x||!el)return;var g=num($("#ff-qty").value);if(!(g>0)||x.kcal==null){el.textContent="—";return}
-  el.innerHTML='<b>'+Math.round(x.kcal*g/100)+' kcal</b>'+(x.prot!=null?'<span>'+nf1.format(x.prot*g/100)+' g de protéines</span>':'')}
+  var a=[];if(x.prot!=null)a.push("P "+nf1.format(x.prot*g/100)+" g");if(x.carb!=null)a.push("G "+nf1.format(x.carb*g/100)+" g");if(x.fat!=null)a.push("L "+nf1.format(x.fat*g/100)+" g");
+  el.innerHTML='<b>'+Math.round(x.kcal*g/100)+' kcal</b>'+(a.length?'<span>'+a.join(" · ")+'</span>':'')}
 $("#ff-res").addEventListener("input",function(e){if(e.target.id==="ff-qty")ffCalc()});
 $("#ff-res").addEventListener("click",function(e){
   var q=e.target.closest("[data-ffq]");if(q){$("#ff-qty").value=nf1.format(+q.dataset.ffq);ffCalc();return}
   if(e.target.id!=="ff-use"||ff.mode==="shop")return;var x=ff.prod,g=num($("#ff-qty").value);if(!x||!(g>0)){flash("#ff-qty");return}
-  $("#c-name").value=(x.name+(x.brand?" ("+x.brand+")":"")).slice(0,60)+"";$("#c-kcal").value=Math.round(x.kcal*g/100);$("#c-prot").value=x.prot!=null?nf1.format(x.prot*g/100):"";
-  var R=(state.settings.offRecent||[]).filter(function(r){return r.code!==x.code||!x.code});R.unshift({code:x.code,name:x.name,brand:x.brand,kcal:x.kcal,prot:x.prot,serving:x.serving,qty:x.qty});state.settings.offRecent=R.slice(0,15);persist("settings");
-  ffClose();$("#c-kcal").focus();toast("Calories remplies : choisis le repas puis « Ajouter au journal ».");
+  $("#c-name").value=(x.name+(x.brand?" ("+x.brand+")":"")).slice(0,60)+"";$("#c-kcal").value=Math.round(x.kcal*g/100);$("#c-prot").value=x.prot!=null?nf1.format(x.prot*g/100):"";$("#c-carb").value=x.carb!=null?nf1.format(x.carb*g/100):"";$("#c-fat").value=x.fat!=null?nf1.format(x.fat*g/100):"";
+  var R=(state.settings.offRecent||[]).filter(function(r){return r.code!==x.code||!x.code});R.unshift({code:x.code,name:x.name,brand:x.brand,kcal:x.kcal,prot:x.prot,carb:x.carb,sugar:x.sugar,fat:x.fat,serving:x.serving,qty:x.qty});state.settings.offRecent=R.slice(0,15);persist("settings");
+  ffClose();$("#c-kcal").focus();toast("Calories et macros remplies : choisis le repas puis « Ajouter au journal ».");
 });
 /* ---------- courses : liste et estimation avant achat ---------- */
 var SHOPS=["Lidl","Carrefour","Leclerc","Intermarché","Super U","Auchan","Aldi","Monoprix"];
