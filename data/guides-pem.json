@@ -10,6 +10,7 @@
  ],
  "families": [
   {
+   "u": "Boulanger Infinity",
    "n": "Boulanger Infinity",
    "items": [
     {
@@ -253,6 +254,7 @@
    ]
   },
   {
+   "u": "Petit électroménager",
    "n": "Entretien de la maison",
    "items": [
     {
@@ -573,6 +575,7 @@
    ]
   },
   {
+   "u": "Petit électroménager",
    "n": "Café et petit-déjeuner",
    "items": [
     {
@@ -698,6 +701,7 @@
    ]
   },
   {
+   "u": "Petit électroménager",
    "n": "Cuisson et préparation",
    "items": [
     {
@@ -1124,6 +1128,7 @@
    ]
   },
   {
+   "u": "Petit électroménager",
    "n": "Soin de la personne",
    "items": [
     {
@@ -1387,6 +1392,7 @@
    ]
   },
   {
+   "u": "Petit électroménager",
    "n": "Confort de la maison",
    "items": [
     {
@@ -1504,6 +1510,1902 @@
        [
         "Anti-basculement et anti-surchauffe → enfants, animaux",
         "Protection IP adaptée → obligatoire en salle de bain"
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "u": "Gros électroménager",
+   "n": "Gros électroménager",
+   "items": [
+    {
+     "id": "lave-linge",
+     "n": "Lave-linge",
+     "q": "Combien de personnes dans le foyer, et où sera installée la machine ?",
+     "c": [
+      [
+       "Capacité",
+       "",
+       [
+        "6 à 7 kg → 1 à 2 personnes",
+        "8 à 9 kg → 3 à 4 personnes, couette 1 personne",
+        "10 kg et plus → famille de 5 et plus, couette 2 personnes"
+       ]
+      ],
+      [
+       "Hublot ou top",
+       "",
+       [
+        "Hublot → plus grande capacité, superposable avec un sèche-linge, sous un plan de travail",
+        "Top (40 cm de large) → petits espaces, pas besoin de se baisser"
+       ]
+      ],
+      [
+       "Vitesse d'essorage",
+       "",
+       [
+        "1 200 tr/min → standard",
+        "1 400 tr/min et plus → linge moins humide, séchage plus court"
+       ]
+      ],
+      [
+       "Moteur et bruit",
+       "",
+       [
+        "Moteur induction → plus silencieux et plus durable, souvent garanti 10 ans par la marque",
+        "Moins de 72 dB à l'essorage → cuisine ouverte, pièce de vie",
+        "Plus de 76 dB → bruyant"
+       ]
+      ],
+      [
+       "Options utiles",
+       "",
+       [
+        "Vapeur → réduit les plis et les allergènes",
+        "Dosage automatique de lessive → économie de lessive",
+        "Programme rapide 15 à 30 min → linge peu sale",
+        "Départ différé → heures creuses"
+       ]
+      ],
+      [
+       "Lavante-séchante",
+       "Pour qui n'a pas la place pour deux appareils.",
+       [
+        "Capacité de séchage inférieure au lavage (ex. 9 kg / 6 kg) → on sèche une demi-charge"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "seche-linge",
+     "n": "Sèche-linge",
+     "q": "Avez-vous une sortie d'air, et dans quelle pièce sera-t-il installé ?",
+     "c": [
+      [
+       "Technologie",
+       "",
+       [
+        "Évacuation → le moins cher, mais il faut une sortie d'air vers l'extérieur",
+        "Condensation → pas de sortie d'air, consomme davantage",
+        "Pompe à chaleur → environ 2 fois moins d'énergie, séchage doux à basse température, cycle plus long"
+       ]
+      ],
+      [
+       "Capacité",
+       "",
+       [
+        "Égale à celle du lave-linge → on sèche une machine entière d'un coup"
+       ]
+      ],
+      [
+       "Capteur d'humidité",
+       "",
+       [
+        "Arrête le séchage au bon moment → pas de linge surséché ni froissé"
+       ]
+      ],
+      [
+       "Programmes",
+       "",
+       [
+        "Anti-froissage, laine, délicat, rafraîchir → moins de repassage"
+       ]
+      ],
+      [
+       "Installation",
+       "",
+       [
+        "Kit de superposition → sur un lave-linge de même largeur",
+        "Pièce non chauffée sous 5 °C → la pompe à chaleur fonctionne mal"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "frigo",
+     "n": "Réfrigérateur",
+     "q": "Combien de personnes, et quelles dimensions pour l'emplacement ?",
+     "c": [
+      [
+       "Format",
+       "",
+       [
+        "Table top (85 cm) → studio, appoint",
+        "Une porte → couple, avec petit freezer ou sans",
+        "Combiné (congélateur en bas) → famille",
+        "Multi-portes (70 à 80 cm) → grande capacité sans la largeur d'un américain",
+        "Américain (90 cm de large) → grande famille, distributeur d'eau et de glaçons"
+       ]
+      ],
+      [
+       "Volume",
+       "",
+       [
+        "150 à 250 L → 1 à 2 personnes",
+        "250 à 350 L → 3 à 4 personnes",
+        "350 L et plus → 5 personnes et plus"
+       ]
+      ],
+      [
+       "Type de froid",
+       "",
+       [
+        "Statique → il faut dégivrer",
+        "Ventilé → température homogène dans tout le réfrigérateur",
+        "No Frost → plus jamais de dégivrage"
+       ]
+      ],
+      [
+       "Zone fraîcheur (0 à 3 °C)",
+       "",
+       [
+        "Viande, poisson, fromage → se gardent plus longtemps"
+       ]
+      ],
+      [
+       "Classe énergétique et bruit",
+       "Il tourne 24 h/24 : la classe compte plus que pour tout autre appareil.",
+       [
+        "Moins de 35 dB → studio, cuisine ouverte",
+        "Plus de 40 dB → s'entend dans la pièce"
+       ]
+      ],
+      [
+       "Emplacement",
+       "",
+       [
+        "Mesurer la niche et laisser l'espace de ventilation",
+        "Porte réversible → selon le sens d'ouverture de la cuisine"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "congel",
+     "n": "Congélateur",
+     "q": "Où sera-t-il installé, et que congelez-vous ?",
+     "c": [
+      [
+       "Format",
+       "",
+       [
+        "Armoire → tiroirs, tout est facile à trouver",
+        "Coffre → plus de volume pour le prix, garde mieux le froid en cas de coupure",
+        "Top (sous un plan) → 80 à 100 L, appoint"
+       ]
+      ],
+      [
+       "Volume",
+       "",
+       [
+        "Environ 50 L par personne → gros stockage, cueillette, chasse, batch cooking"
+       ]
+      ],
+      [
+       "Classe climatique",
+       "",
+       [
+        "N → pièce chauffée",
+        "SN ou T → garage ou cellier qui descend sous 16 °C"
+       ]
+      ],
+      [
+       "No Frost",
+       "",
+       [
+        "Plus de givre → pas de dégivrage, pas de perte de volume"
+       ]
+      ],
+      [
+       "Pouvoir de congélation et autonomie",
+       "",
+       [
+        "20 kg/24 h et plus → congeler de grosses quantités d'un coup",
+        "20 h d'autonomie et plus → sécurité en cas de coupure de courant"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "lave-vaisselle",
+     "n": "Lave-vaisselle",
+     "q": "Combien de personnes, et la cuisine est-elle ouverte sur le salon ?",
+     "c": [
+      [
+       "Largeur et couverts",
+       "",
+       [
+        "45 cm, 9 à 10 couverts → 1 à 3 personnes",
+        "60 cm, 12 à 13 couverts → famille de 4",
+        "60 cm, 14 à 16 couverts → famille nombreuse, réceptions"
+       ]
+      ],
+      [
+       "Niveau sonore",
+       "",
+       [
+        "Moins de 42 dB → très silencieux, cuisine ouverte, la nuit",
+        "42 à 46 dB → standard",
+        "Plus de 46 dB → s'entend"
+       ]
+      ],
+      [
+       "Installation",
+       "",
+       [
+        "Pose libre → n'importe où",
+        "Encastrable sous plan → avec bandeau visible",
+        "Tout intégrable → la porte du meuble cache l'appareil"
+       ]
+      ],
+      [
+       "Rangement",
+       "",
+       [
+        "Tiroir à couverts (3e panier) → plus de place en bas pour les plats",
+        "Paniers réglables → grands plats et verres à pied"
+       ]
+      ],
+      [
+       "Séchage et consommation",
+       "",
+       [
+        "Ouverture automatique de la porte en fin de cycle → vaisselle plus sèche, moins d'énergie",
+        "Environ 10 L d'eau par cycle → contre jusqu'à 40 L à la main",
+        "Programme Eco → long (3 à 4 h) mais le plus économe"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "four",
+     "n": "Four encastrable",
+     "q": "Vous cuisinez souvent, et le nettoyage vous pèse ?",
+     "c": [
+      [
+       "Nettoyage",
+       "",
+       [
+        "Pyrolyse → le four chauffe à 500 °C et réduit les graisses en cendres : zéro effort",
+        "Catalyse → les parois absorbent les projections légères",
+        "Hydrolyse → l'eau ramollit les graisses, on finit à l'éponge"
+       ]
+      ],
+      [
+       "Volume",
+       "",
+       [
+        "65 à 75 L → standard, plusieurs plats ou une dinde"
+       ]
+      ],
+      [
+       "Chaleur tournante",
+       "",
+       [
+        "Cuisson sur 2 ou 3 niveaux en même temps, sans mélange d'odeurs"
+       ]
+      ],
+      [
+       "Vapeur",
+       "",
+       [
+        "Vapeur assistée → pain croustillant, viande moelleuse",
+        "Four vapeur combiné → cuisson vapeur pure, réchauffage sans dessécher"
+       ]
+      ],
+      [
+       "Confort et sécurité",
+       "",
+       [
+        "Sonde de cuisson → viande cuite à cœur au degré près",
+        "Rails télescopiques → sortir les plaques sans se brûler",
+        "Porte à 3 ou 4 vitres → porte froide, sécurité enfants"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "plaque",
+     "n": "Plaque de cuisson",
+     "q": "Quelle énergie dans la cuisine, et vos casseroles sont-elles compatibles induction ?",
+     "c": [
+      [
+       "Énergie",
+       "",
+       [
+        "Induction → la plus rapide et précise, froide autour du récipient, nettoyage facile ; casseroles compatibles (aimant)",
+        "Vitrocéramique → tous les récipients, plus lente, reste chaude",
+        "Gaz → contrôle visuel de la flamme, fonctionne sans électricité"
+       ]
+      ],
+      [
+       "Nombre de foyers et largeur",
+       "",
+       [
+        "2 foyers → studio",
+        "3 à 4 foyers (60 cm) → famille",
+        "5 foyers ou 80 à 90 cm → grandes tablées"
+       ]
+      ],
+      [
+       "Zones flexibles",
+       "",
+       [
+        "Foyers qui se combinent → grandes poêles, plancha, faitout ovale"
+       ]
+      ],
+      [
+       "Puissance et compteur",
+       "",
+       [
+        "7 200 à 7 400 W au total → standard",
+        "Limiteur de puissance réglable → petit abonnement électrique sans disjoncter"
+       ]
+      ],
+      [
+       "Hotte intégrée à la plaque",
+       "",
+       [
+        "Aspiration au centre de la plaque → pas de hotte au-dessus : îlot, cuisine ouverte"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "hotte",
+     "n": "Hotte aspirante",
+     "q": "Quelle surface de cuisine, et une sortie vers l'extérieur est-elle possible ?",
+     "c": [
+      [
+       "Débit",
+       "Règle : volume de la pièce × 10.",
+       [
+        "Cuisine de 15 m² → environ 400 m³/h",
+        "Cuisine ouverte ou cuisine très grasse → prévoir plus"
+       ]
+      ],
+      [
+       "Évacuation ou recyclage",
+       "",
+       [
+        "Évacuation → la plus efficace, conduit vers l'extérieur",
+        "Recyclage → filtre charbon à changer tous les 3 à 6 mois, ou régénérable"
+       ]
+      ],
+      [
+       "Largeur",
+       "",
+       [
+        "Au moins la largeur de la plaque → 60 cm pour 60 cm, 90 cm pour une grande plaque"
+       ]
+      ],
+      [
+       "Bruit",
+       "",
+       [
+        "Moins de 55 dB en vitesse normale → on peut parler en cuisinant"
+       ]
+      ],
+      [
+       "Type",
+       "",
+       [
+        "Casquette → sous un meuble, petit budget",
+        "Murale décorative → la plus courante",
+        "Îlot ou plafond → plaque au centre de la pièce"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "cave",
+     "n": "Cave à vin",
+     "q": "Garder des vins plusieurs années, ou les servir à bonne température ?",
+     "c": [
+      [
+       "Usage",
+       "",
+       [
+        "Vieillissement → une température stable (environ 12 °C), humidité, sans vibrations",
+        "Service → plusieurs zones, rouges et blancs prêts à boire",
+        "Polyvalente → 2 ou 3 zones, un peu des deux"
+       ]
+      ],
+      [
+       "Capacité (en bouteilles bordelaises)",
+       "Les bouteilles de bourgogne ou de champagne prennent plus de place.",
+       [
+        "6 à 30 bouteilles → consommation courante",
+        "50 à 100 → amateur",
+        "150 et plus → collectionneur"
+       ]
+      ],
+      [
+       "Technologie",
+       "",
+       [
+        "Compresseur → grandes caves, pièce chaude",
+        "Thermoélectrique → silencieux et sans vibration, petites caves dans une pièce tempérée"
+       ]
+      ],
+      [
+       "Équipement",
+       "",
+       [
+        "Porte vitrée anti-UV → protège le vin de la lumière",
+        "Clayettes en bois coulissantes → accès facile aux bouteilles"
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "u": "TV - Image - Son",
+   "n": "TV - Image - Son",
+   "items": [
+    {
+     "id": "tv",
+     "n": "Téléviseur",
+     "q": "À quelle distance regardez-vous la TV, et la pièce est-elle lumineuse ?",
+     "c": [
+      [
+       "Taille selon la distance",
+       "En 4K : distance ≈ 1 à 1,5 fois la diagonale.",
+       [
+        "55 pouces (140 cm) → environ 2 m",
+        "65 pouces (165 cm) → environ 2,5 m",
+        "75 pouces (190 cm) → environ 3 m"
+       ]
+      ],
+      [
+       "Technologie d'écran",
+       "",
+       [
+        "LED → prix bas, usage quotidien",
+        "QLED → couleurs vives, très lumineux : pièce claire",
+        "Mini LED → fort contraste et forte luminosité",
+        "OLED → noirs parfaits, angles de vision : films en pièce sombre"
+       ]
+      ],
+      [
+       "Fréquence",
+       "",
+       [
+        "50/60 Hz → TV, films",
+        "100/120 Hz → sport et jeux vidéo fluides",
+        "144 Hz et plus → jeu sur PC"
+       ]
+      ],
+      [
+       "HDMI 2.1 et HDR",
+       "",
+       [
+        "HDMI 2.1 → PS5 et Xbox en 4K 120 Hz",
+        "Dolby Vision ou HDR10+ → images optimisées scène par scène sur Netflix, Disney+, Prime Video"
+       ]
+      ],
+      [
+       "Son et système",
+       "",
+       [
+        "20 W intégrés → son de base : proposer une barre de son",
+        "Google TV, webOS, Tizen → applis de streaming intégrées"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "barre-son",
+     "n": "Barre de son et home cinéma",
+     "q": "Vous voulez surtout mieux entendre les dialogues, ou un vrai son de cinéma ?",
+     "c": [
+      [
+       "Nombre de canaux",
+       "",
+       [
+        "2.0 ou 2.1 → dialogues plus clairs, basses",
+        "3.1 → canal central dédié aux voix",
+        "5.1 → son tout autour",
+        "5.1.2 et plus (Dolby Atmos) → effets qui viennent d'en haut"
+       ]
+      ],
+      [
+       "Caisson de basses",
+       "",
+       [
+        "Sans fil → basses profondes pour les films d'action ; attention aux voisins"
+       ]
+      ],
+      [
+       "Connexion à la TV",
+       "",
+       [
+        "HDMI eARC → une seule télécommande, Dolby Atmos depuis les applis de la TV",
+        "Optique → plus simple, mais pas de Dolby Atmos"
+       ]
+      ],
+      [
+       "Fonctions",
+       "",
+       [
+        "Mode voix → dialogues plus nets",
+        "Mode nuit → réduit les écarts de volume",
+        "Wi-Fi, AirPlay, Chromecast → musique et multiroom"
+       ]
+      ],
+      [
+       "Home cinéma (ampli + enceintes)",
+       "",
+       [
+        "Meilleure qualité et évolutif → mais plus encombrant et plus de câbles"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "casque",
+     "n": "Casque audio",
+     "q": "Pour les transports, le télétravail, ou regarder la TV ?",
+     "c": [
+      [
+       "Réduction de bruit active",
+       "",
+       [
+        "Coupe le bruit des transports, de l'avion, de l'open space"
+       ]
+      ],
+      [
+       "Autonomie",
+       "",
+       [
+        "20 h avec réduction de bruit → une semaine de trajets",
+        "30 à 60 h → longs voyages"
+       ]
+      ],
+      [
+       "Format",
+       "",
+       [
+        "Circum-auriculaire → englobe l'oreille, isole, confortable longtemps",
+        "Supra-auriculaire → plus compact, isole moins"
+       ]
+      ],
+      [
+       "Connexion",
+       "",
+       [
+        "AAC → idéal avec un iPhone",
+        "LDAC ou aptX → meilleure qualité avec un Android",
+        "Multipoint → connecté au téléphone et à l'ordinateur en même temps"
+       ]
+      ],
+      [
+       "Casque TV sans fil",
+       "",
+       [
+        "Base reliée à la TV, volume indépendant → personnes malentendantes, regarder la TV la nuit"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "ecouteurs",
+     "n": "Écouteurs sans fil",
+     "q": "Quel téléphone utilisez-vous, et faites-vous du sport avec ?",
+     "c": [
+      [
+       "Format",
+       "",
+       [
+        "Intra-auriculaire → isole bien, compatible réduction de bruit",
+        "Semi-ouvert → plus confortable, on entend un peu autour",
+        "Oreilles libres ou conduction osseuse → sport, sécurité en ville"
+       ]
+      ],
+      [
+       "Autonomie",
+       "",
+       [
+        "5 à 8 h par charge + 20 à 30 h avec le boîtier"
+       ]
+      ],
+      [
+       "Résistance",
+       "",
+       [
+        "IPX4 → transpiration",
+        "IP55 ou IPX7 → pluie, sport intense"
+       ]
+      ],
+      [
+       "Écosystème",
+       "",
+       [
+        "AirPods → iPhone : appairage automatique, audio spatial",
+        "Galaxy Buds → Samsung",
+        "Pixel Buds → Google Pixel"
+       ]
+      ],
+      [
+       "Confort",
+       "",
+       [
+        "Plusieurs tailles d'embouts → bonne isolation et bon maintien"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "enceinte",
+     "n": "Enceinte Bluetooth et connectée",
+     "q": "Pour la maison, l'extérieur, ou les soirées ?",
+     "c": [
+      [
+       "Usage",
+       "",
+       [
+        "Nomade sur batterie → plage, randonnée, terrasse",
+        "Wi-Fi multiroom → musique dans toute la maison",
+        "Soirée → lumières, karaoké, son fort"
+       ]
+      ],
+      [
+       "Puissance",
+       "",
+       [
+        "10 à 20 W → une pièce, petit groupe",
+        "30 à 60 W → terrasse, soirée",
+        "100 W et plus → fête"
+       ]
+      ],
+      [
+       "Autonomie et résistance",
+       "",
+       [
+        "10 à 12 h → une journée",
+        "20 h et plus → un week-end",
+        "IP67 → résiste à la poussière et à l'immersion : plage, piscine"
+       ]
+      ],
+      [
+       "Fonctions",
+       "",
+       [
+        "Mode stéréo ou party → associer deux enceintes",
+        "Assistant vocal → pilotage à la voix, domotique"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "videoprojecteur",
+     "n": "Vidéoprojecteur",
+     "q": "La pièce peut-elle être plongée dans le noir, et à quelle distance du mur ?",
+     "c": [
+      [
+       "Luminosité (lumens ANSI)",
+       "",
+       [
+        "500 à 1 000 → pièce noire",
+        "2 000 à 3 000 → pièce tamisée",
+        "3 000 et plus → un peu de lumière ambiante"
+       ]
+      ],
+      [
+       "Distance de projection",
+       "",
+       [
+        "Focale standard → environ 2,5 à 3 m pour une image de 100 pouces",
+        "Courte focale → environ 1 m",
+        "Ultra courte focale → 20 à 50 cm du mur : remplace une TV"
+       ]
+      ],
+      [
+       "Résolution",
+       "",
+       [
+        "Full HD → usage occasionnel",
+        "4K → grand écran net, cinéma maison"
+       ]
+      ],
+      [
+       "Source lumineuse",
+       "",
+       [
+        "Lampe → moins cher, à remplacer après quelques milliers d'heures",
+        "LED ou laser → 20 000 h et plus, allumage instantané"
+       ]
+      ],
+      [
+       "Smart et son",
+       "",
+       [
+        "Applis intégrées → Netflix, YouTube sans boîtier",
+        "Bruit du ventilateur sous 30 dB → ne gêne pas les films calmes"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "photo",
+     "n": "Appareil photo",
+     "q": "Qu'est-ce que vous photographiez, et le smartphone ne vous suffit plus pour quoi ?",
+     "c": [
+      [
+       "Type",
+       "",
+       [
+        "Compact → dans la poche, zoom",
+        "Bridge → zoom très puissant (50x et plus), tout-en-un",
+        "Hybride → objectifs interchangeables, compact, autofocus moderne",
+        "Reflex → viseur optique, grande autonomie",
+        "Instantané → photo papier immédiate"
+       ]
+      ],
+      [
+       "Taille du capteur",
+       "Plus importante que les mégapixels.",
+       [
+        "APS-C → très bonne qualité, bon rapport qualité-prix",
+        "Plein format → photos en basse lumière, arrière-plan flou"
+       ]
+      ],
+      [
+       "Mégapixels",
+       "",
+       [
+        "20 à 24 Mpx → largement assez pour imprimer en A3",
+        "40 Mpx et plus → recadrage, paysage, impression grand format"
+       ]
+      ],
+      [
+       "Zoom optique (focale)",
+       "",
+       [
+        "24 à 70 mm → polyvalent, voyage, portrait",
+        "200 mm et plus → animaux, sport"
+       ]
+      ],
+      [
+       "Vidéo",
+       "",
+       [
+        "4K à 30 ou 60 images/s → vidéo de qualité",
+        "Écran orientable → vlog, selfie"
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "u": "Informatique - Tablette",
+   "n": "Informatique - Tablette",
+   "items": [
+    {
+     "id": "pc-portable",
+     "n": "Ordinateur portable",
+     "q": "Qu'allez-vous faire avec, et vous le transportez souvent ?",
+     "c": [
+      [
+       "Configuration selon l'usage",
+       "",
+       [
+        "Internet, bureautique, streaming → Core i3/i5 ou Ryzen 3/5, 16 Go de RAM conseillés, SSD 512 Go",
+        "Études, télétravail multitâche → Core i5/Ryzen 5 ou puce Apple M, 16 Go, 512 Go",
+        "Photo, montage vidéo → Core i7/Ryzen 7 ou Apple M Pro, 16 à 32 Go, 1 To",
+        "Jeux vidéo → carte graphique dédiée (RTX 5050/5060 en Full HD, RTX 5070 et plus pour les jeux exigeants)"
+       ]
+      ],
+      [
+       "Mémoire vive (RAM)",
+       "",
+       [
+        "8 Go → minimum, ralentit vite",
+        "16 Go → confortable et durable",
+        "32 Go → montage, gros logiciels"
+       ]
+      ],
+      [
+       "Stockage SSD",
+       "",
+       [
+        "256 Go → si tout est dans le cloud",
+        "512 Go → standard",
+        "1 To → photos, vidéos, jeux"
+       ]
+      ],
+      [
+       "Écran et poids",
+       "",
+       [
+        "13 à 14 pouces, moins de 1,5 kg → nomade",
+        "15 à 16 pouces → polyvalent, pavé numérique",
+        "17 pouces → reste au bureau, jeux"
+       ]
+      ],
+      [
+       "Autonomie",
+       "",
+       [
+        "6 à 8 h → usage à la maison",
+        "10 à 15 h et plus → journée de cours sans chargeur"
+       ]
+      ],
+      [
+       "Système",
+       "",
+       [
+        "Windows → compatibilité maximale, jeux",
+        "macOS → simplicité, iPhone",
+        "Chromebook → navigation, petit prix, enfants",
+        "PC Copilot+ → fonctions IA de Windows en local"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "pc-fixe",
+     "n": "Ordinateur de bureau",
+     "q": "Avez-vous déjà un écran, et faut-il pouvoir faire évoluer l'ordinateur ?",
+     "c": [
+      [
+       "Format",
+       "",
+       [
+        "Tour → puissance, évolutif, jeux",
+        "Tout-en-un → écran intégré, un seul câble, salon ou bureau familial",
+        "Mini PC → bureautique, branché derrière un écran ou une TV"
+       ]
+      ],
+      [
+       "Configuration",
+       "Mêmes repères que pour un portable, à prix égal un fixe est plus puissant.",
+       [
+        "16 Go de RAM et SSD 512 Go → base conseillée"
+       ]
+      ],
+      [
+       "Ce qui est inclus",
+       "",
+       [
+        "Écran, clavier, souris → vérifier s'ils sont fournis"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "ecran-pc",
+     "n": "Écran PC",
+     "q": "Pour travailler, jouer, ou faire de la création ?",
+     "c": [
+      [
+       "Taille et résolution",
+       "",
+       [
+        "24 pouces Full HD → bureautique",
+        "27 pouces QHD (1440p) → le meilleur compromis",
+        "32 pouces 4K → création, multitâche",
+        "34 pouces ultra-large → plusieurs fenêtres côte à côte, simulation"
+       ]
+      ],
+      [
+       "Fréquence",
+       "",
+       [
+        "60 à 75 Hz → bureautique",
+        "144 à 180 Hz → jeux fluides",
+        "240 Hz et plus → jeux compétitifs"
+       ]
+      ],
+      [
+       "Dalle",
+       "",
+       [
+        "IPS → couleurs fidèles, angles de vision",
+        "VA → contraste, films",
+        "OLED → noirs parfaits, très réactif ; éviter les images fixes en permanence"
+       ]
+      ],
+      [
+       "Connectique",
+       "",
+       [
+        "USB-C avec charge (65 à 90 W) → un seul câble pour l'ordinateur portable",
+        "DisplayPort → 144 Hz et plus"
+       ]
+      ],
+      [
+       "Ergonomie",
+       "",
+       [
+        "Réglable en hauteur et pivotable → confort de travail",
+        "Sans scintillement, filtre lumière bleue → yeux moins fatigués"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "tablette",
+     "n": "Tablette",
+     "q": "Pour regarder, prendre des notes, dessiner, ou remplacer un ordinateur ?",
+     "c": [
+      [
+       "Usage",
+       "",
+       [
+        "Multimédia, lecture → 10 à 11 pouces, entrée de gamme",
+        "Prise de notes, dessin → compatible stylet (Apple Pencil, S Pen)",
+        "Remplacer un PC → 12 à 13 pouces, clavier, 8 Go de RAM et plus"
+       ]
+      ],
+      [
+       "Stockage",
+       "",
+       [
+        "64 Go → streaming uniquement",
+        "128 à 256 Go → applis, photos, films téléchargés",
+        "Carte microSD (Android) → stockage extensible"
+       ]
+      ],
+      [
+       "Écosystème",
+       "",
+       [
+        "iPad → avec iPhone et Mac",
+        "Android → avec un smartphone Samsung ou Android"
+       ]
+      ],
+      [
+       "Connexion",
+       "",
+       [
+        "Wi-Fi → à la maison",
+        "4G/5G → partout, avec une carte SIM"
+       ]
+      ],
+      [
+       "Tablette enfant",
+       "",
+       [
+        "Contrôle parental, coque renforcée, contenus éducatifs"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "imprimante",
+     "n": "Imprimante",
+     "q": "Combien de pages par mois, et plutôt texte ou photos ?",
+     "c": [
+      [
+       "Technologie selon le volume",
+       "Comparer le coût par page, pas le prix d'achat.",
+       [
+        "Moins de 50 pages/mois → jet d'encre classique, ou abonnement encre",
+        "50 à 300 pages/mois → réservoirs d'encre : achat plus cher, page à quelques centimes",
+        "Impressions rares ou beaucoup de texte → laser : le toner ne sèche pas"
+       ]
+      ],
+      [
+       "Fonctions",
+       "",
+       [
+        "Multifonction → scanner et copier",
+        "Recto-verso automatique → moins de papier",
+        "Chargeur automatique de documents → scanner plusieurs pages d'un coup"
+       ]
+      ],
+      [
+       "Photo",
+       "",
+       [
+        "Jet d'encre 5 à 6 couleurs ou imprimante photo dédiée → tirages 10 × 15"
+       ]
+      ],
+      [
+       "Connexion",
+       "",
+       [
+        "Wi-Fi et appli → imprimer depuis le téléphone"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "stockage",
+     "n": "Disque dur, SSD, clé USB, carte mémoire",
+     "q": "Pour sauvegarder, transporter, ou agrandir l'espace ?",
+     "c": [
+      [
+       "Disque dur ou SSD externe",
+       "",
+       [
+        "Disque dur → le moins cher par To : sauvegardes",
+        "SSD externe → 5 à 10 fois plus rapide, résiste aux chocs : à transporter"
+       ]
+      ],
+      [
+       "Capacité",
+       "",
+       [
+        "1 To → environ 200 000 photos",
+        "2 à 5 To → sauvegarde complète, vidéos"
+       ]
+      ],
+      [
+       "Clé USB et carte mémoire",
+       "",
+       [
+        "Clé de 64 à 256 Go → transferts ponctuels",
+        "Carte SD V30 / U3 → vidéo 4K sans coupure"
+       ]
+      ],
+      [
+       "Serveur NAS",
+       "",
+       [
+        "Sauvegarde automatique de toute la famille, accès à distance"
+       ]
+      ],
+      [
+       "Le bon conseil",
+       "",
+       [
+        "Toujours 2 copies dont une hors de l'ordinateur → on ne perd pas ses photos"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "reseau",
+     "n": "Wi-Fi, répéteur, CPL",
+     "q": "Où le Wi-Fi ne passe-t-il pas, et quelle taille fait le logement ?",
+     "c": [
+      [
+       "Solution selon le problème",
+       "",
+       [
+        "Une pièce mal couverte → répéteur Wi-Fi",
+        "Grande maison, plusieurs étages → Wi-Fi maillé (plusieurs bornes, un seul réseau)",
+        "Murs épais, pièce éloignée → CPL (passe par le réseau électrique)"
+       ]
+      ],
+      [
+       "Norme",
+       "",
+       [
+        "Wi-Fi 6 → standard actuel",
+        "Wi-Fi 6E ou 7 → plus de débit, moins d'interférences, si la box est compatible"
+       ]
+      ],
+      [
+       "Sans box fixe",
+       "",
+       [
+        "Box 4G/5G → pas de fibre, logement temporaire",
+        "Internet par satellite → zones sans réseau"
+       ]
+      ],
+      [
+       "Câble Ethernet",
+       "",
+       [
+        "Console, TV, PC fixe → connexion la plus stable"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "liseuse",
+     "n": "Liseuse",
+     "q": "Où lisez-vous, et où achetez-vous vos livres ?",
+     "c": [
+      [
+       "Taille d'écran",
+       "",
+       [
+        "6 pouces → poche",
+        "7 pouces → confort",
+        "8 pouces et plus ou couleur → BD, magazines, grands caractères"
+       ]
+      ],
+      [
+       "Confort de lecture",
+       "",
+       [
+        "300 ppp → texte net comme du papier",
+        "Éclairage chaud réglable → lecture le soir",
+        "Étanche IPX8 → bain, plage"
+       ]
+      ],
+      [
+       "Écosystème",
+       "",
+       [
+        "Kindle → boutique Amazon",
+        "Kobo, Vivlio → format EPUB, librairies françaises, prêt numérique en bibliothèque"
+       ]
+      ],
+      [
+       "Stylet",
+       "",
+       [
+        "Annoter, prendre des notes → modèles compatibles stylet"
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "u": "Smartphone - Téléphonie",
+   "n": "Smartphone - Téléphonie",
+   "items": [
+    {
+     "id": "smartphone",
+     "n": "Smartphone",
+     "q": "Qu'est-ce qui vous manque sur votre téléphone actuel ?",
+     "c": [
+      [
+       "Gamme de prix",
+       "",
+       [
+        "Moins de 250 € → appels, messages, réseaux sociaux",
+        "250 à 500 € → bon équilibre photo et autonomie",
+        "500 à 900 € → photo avancée, écran 120 Hz, performances",
+        "Plus de 900 € → téléobjectif, IA, pliables"
+       ]
+      ],
+      [
+       "Stockage",
+       "Pas de carte mémoire sur iPhone.",
+       [
+        "128 Go → usage courant avec le cloud",
+        "256 Go → photos, vidéos, jeux",
+        "512 Go et plus → vidéo 4K"
+       ]
+      ],
+      [
+       "Photo",
+       "Les mégapixels ne suffisent pas.",
+       [
+        "Ultra grand-angle → paysages, groupes",
+        "Téléobjectif 3x à 5x → zoom sans perte",
+        "Stabilisation optique → photos de nuit et vidéos nettes"
+       ]
+      ],
+      [
+       "Autonomie et charge",
+       "",
+       [
+        "4 500 à 5 000 mAh → une journée",
+        "5 500 mAh et plus → 1,5 à 2 jours",
+        "Charge rapide 25 à 45 W → environ 50 % en 30 min"
+       ]
+      ],
+      [
+       "Durée de vie",
+       "",
+       [
+        "Jusqu'à 7 ans de mises à jour (Samsung, Google, Apple) → téléphone gardé longtemps",
+        "IP68 → résiste à l'eau et à la poussière"
+       ]
+      ],
+      [
+       "Écosystème",
+       "",
+       [
+        "iPhone → avec Mac, iPad, Apple Watch",
+        "Android → plus de choix et de prix",
+        "Transfert des données → service à proposer"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "montre",
+     "n": "Montre connectée",
+     "q": "Quel smartphone avez-vous, et pour le sport ou la santé ?",
+     "c": [
+      [
+       "Compatibilité",
+       "",
+       [
+        "Apple Watch → iPhone uniquement",
+        "Galaxy Watch → Android, toutes les fonctions avec un Samsung",
+        "Garmin, Withings, Huawei, Xiaomi → iPhone et Android"
+       ]
+      ],
+      [
+       "Autonomie",
+       "",
+       [
+        "1 à 2 jours → recharge quotidienne (Apple Watch, Galaxy Watch)",
+        "5 à 14 jours → bracelets, Huawei, Xiaomi",
+        "2 semaines et plus → Garmin, Withings"
+       ]
+      ],
+      [
+       "Santé",
+       "",
+       [
+        "Cardio, sommeil, oxygène dans le sang",
+        "ECG → détection de troubles du rythme cardiaque",
+        "Détection de chute → personnes âgées, sportifs seuls"
+       ]
+      ],
+      [
+       "Sport",
+       "",
+       [
+        "GPS intégré → courir sans téléphone",
+        "Cartes et multisport → trail, vélo, natation"
+       ]
+      ],
+      [
+       "Connexion",
+       "",
+       [
+        "Version 4G → appels sans le téléphone",
+        "Paiement sans contact"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "fixe",
+     "n": "Téléphone fixe",
+     "q": "Pour qui, et combien de pièces ou d'étages ?",
+     "c": [
+      [
+       "Nombre de combinés",
+       "",
+       [
+        "Duo ou trio → un combiné par étage ou par pièce de vie"
+       ]
+      ],
+      [
+       "Fonctions",
+       "",
+       [
+        "Répondeur intégré",
+        "Blocage des appels indésirables → démarchage",
+        "Mains libres"
+       ]
+      ],
+      [
+       "Senior",
+       "",
+       [
+        "Grandes touches, son amplifié, compatible appareils auditifs",
+        "Touche SOS → prévient un proche",
+        "Touches photos → appeler un proche sans composer le numéro"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "chargeur",
+     "n": "Chargeur et batterie externe",
+     "q": "Quel téléphone, et pour quel usage : maison, voyage ?",
+     "c": [
+      [
+       "Puissance du chargeur",
+       "",
+       [
+        "20 W → charge rapide d'un iPhone",
+        "25 à 45 W → charge rapide d'un Samsung",
+        "65 à 100 W → charge aussi un ordinateur portable"
+       ]
+      ],
+      [
+       "Technologie",
+       "",
+       [
+        "USB-C Power Delivery → compatible avec la plupart des appareils",
+        "GaN → chargeur puissant et compact",
+        "Induction, MagSafe, Qi2 → charge sans fil"
+       ]
+      ],
+      [
+       "Batterie externe",
+       "",
+       [
+        "5 000 mAh → environ 1 recharge de téléphone",
+        "10 000 mAh → environ 2 recharges",
+        "20 000 mAh → 3 à 4 recharges, ou une tablette",
+        "Moins de 100 Wh → acceptée en cabine dans l'avion"
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "u": "Console - Gaming",
+   "n": "Console - Gaming",
+   "items": [
+    {
+     "id": "console",
+     "n": "Console de salon",
+     "q": "Pour qui, quels jeux, et quelle TV ?",
+     "c": [
+      [
+       "Catalogue",
+       "C'est le premier critère : les jeux disponibles.",
+       [
+        "PlayStation → exclusivités Sony (God of War, Spider-Man)",
+        "Xbox → Game Pass : un catalogue de jeux par abonnement",
+        "Nintendo Switch 2 → famille, Mario, Zelda, Pokémon, jeu portable et salon"
+       ]
+      ],
+      [
+       "Version",
+       "",
+       [
+        "Avec lecteur → jeux en boîte, occasion, prêt entre amis",
+        "Sans lecteur → jeux dématérialisés uniquement, console moins chère",
+        "PS5 Pro → 4K plus fluide sur une TV 4K 120 Hz"
+       ]
+      ],
+      [
+       "Stockage",
+       "",
+       [
+        "Environ 1 To → une dizaine de gros jeux",
+        "SSD ou carte d'extension → pour les gros joueurs"
+       ]
+      ],
+      [
+       "Abonnement",
+       "",
+       [
+        "Jouer en ligne → PlayStation Plus, Game Pass, Nintendo Switch Online selon la console"
+       ]
+      ],
+      [
+       "Compléments",
+       "",
+       [
+        "Manette supplémentaire → jouer à deux",
+        "TV HDMI 2.1 → 4K 120 Hz"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "console-portable",
+     "n": "Console portable",
+     "q": "Jouer partout, ou continuer ses jeux de salon ailleurs dans la maison ?",
+     "c": [
+      [
+       "Type",
+       "",
+       [
+        "Nintendo Switch 2 → portable et salon, nouveaux jeux, compatible jeux Switch",
+        "Switch Lite → portable uniquement, petit prix, enfants",
+        "PC portable de jeu (ROG Ally, Legion Go) → jeux PC, autonomie de 1,5 à 3 h en jeu exigeant",
+        "PlayStation Portal → nécessite une PS5 et le Wi-Fi : pas une console autonome"
+       ]
+      ],
+      [
+       "Écran et autonomie",
+       "",
+       [
+        "Écran OLED → couleurs plus belles",
+        "Autonomie → à vérifier selon les jeux"
+       ]
+      ],
+      [
+       "Accessoires",
+       "",
+       [
+        "Étui, protection d'écran, carte mémoire"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "pc-gamer",
+     "n": "PC gamer",
+     "q": "Quels jeux, et sur quel écran ?",
+     "c": [
+      [
+       "Carte graphique",
+       "Critère n°1 pour jouer.",
+       [
+        "RTX 5050/5060 → jeux en Full HD (1080p)",
+        "RTX 5070 → QHD (1440p)",
+        "RTX 5080/5090 → 4K"
+       ]
+      ],
+      [
+       "Processeur et RAM",
+       "",
+       [
+        "Ryzen 5/7 ou Core i5/i7/Ultra → jeu et streaming",
+        "16 Go → minimum, 32 Go → confort"
+       ]
+      ],
+      [
+       "Stockage",
+       "",
+       [
+        "SSD 1 To → les jeux récents dépassent souvent 100 Go"
+       ]
+      ],
+      [
+       "Portable ou fixe",
+       "",
+       [
+        "Portable gamer → transportable, 2 à 3 kg, bruyant en jeu",
+        "Fixe → plus puissant à prix égal, évolutif"
+       ]
+      ],
+      [
+       "Écran",
+       "",
+       [
+        "144 Hz et plus → fluidité dans les jeux rapides"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "casque-gamer",
+     "n": "Casque gamer",
+     "q": "Sur quelle console ou quel PC jouez-vous ?",
+     "c": [
+      [
+       "Compatibilité",
+       "",
+       [
+        "Jack 3,5 mm → universel",
+        "Sans fil Xbox → protocole propre, vérifier la compatibilité",
+        "PS5, Switch, PC → dongle USB 2,4 GHz"
+       ]
+      ],
+      [
+       "Connexion",
+       "",
+       [
+        "2,4 GHz → sans fil, sans latence",
+        "Bluetooth → latence, pas pour le jeu compétitif",
+        "Filaire → aucune batterie à gérer"
+       ]
+      ],
+      [
+       "Son spatial",
+       "",
+       [
+        "3D, Dolby Atmos, DTS:X → entendre d'où viennent les pas"
+       ]
+      ],
+      [
+       "Micro et confort",
+       "",
+       [
+        "Micro antibruit, amovible",
+        "Mousse à mémoire de forme, moins de 300 g → longues sessions",
+        "Autonomie de 20 à 50 h et plus"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "peripheriques",
+     "n": "Souris et clavier gamer",
+     "q": "Quels types de jeux : tir, stratégie, MMO ?",
+     "c": [
+      [
+       "Souris",
+       "",
+       [
+        "Moins de 70 g → jeux de tir rapides",
+        "Capteur précis : 800 à 3 200 DPI utilisés en pratique → la valeur maximale importe peu",
+        "Sans fil 2,4 GHz → sans latence",
+        "Nombreux boutons programmables → MMO, stratégie"
+       ]
+      ],
+      [
+       "Clavier",
+       "",
+       [
+        "Mécanique, switchs linéaires (rouges) → frappe rapide, jeu",
+        "Switchs tactiles (bruns) → polyvalent, jeu et frappe",
+        "Switchs clicky (bleus) → sensation marquée mais bruyant",
+        "Membrane → silencieux, moins cher"
+       ]
+      ],
+      [
+       "Format du clavier",
+       "",
+       [
+        "Sans pavé numérique (TKL) ou 60 % → plus de place pour la souris"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "vr",
+     "n": "Casque de réalité virtuelle",
+     "q": "Avec quoi voulez-vous jouer : sans rien, sur PS5, ou sur PC ?",
+     "c": [
+      [
+       "Type",
+       "",
+       [
+        "Autonome (Meta Quest) → sans PC ni câble, le plus simple",
+        "PS VR2 → nécessite une PS5",
+        "PC VR → nécessite un PC puissant"
+       ]
+      ],
+      [
+       "Qualité d'image",
+       "",
+       [
+        "Résolution par œil et champ de vision → immersion et netteté"
+       ]
+      ],
+      [
+       "Réalité mixte",
+       "",
+       [
+        "Caméras couleur → voir la pièce et y placer des objets virtuels"
+       ]
+      ],
+      [
+       "Conditions d'usage",
+       "",
+       [
+        "Environ 2 × 2 m libres → jeux debout",
+        "Âge minimum → 10 ans (Meta Quest), 12 ans (PS VR2)",
+        "Sessions courtes au début → éviter le mal des transports"
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "u": "Objets connectés",
+   "n": "Objets connectés",
+   "items": [
+    {
+     "id": "trottinette",
+     "n": "Trottinette électrique",
+     "q": "Quel trajet quotidien, quel dénivelé, et quel est votre poids ?",
+     "c": [
+      [
+       "Autonomie",
+       "L'autonomie réelle est d'environ 60 à 70 % de l'annoncée (poids, froid, côtes).",
+       [
+        "20 à 30 km annoncés → trajets courts",
+        "40 à 60 km → trajets quotidiens d'environ 15 km",
+        "70 km et plus → longs trajets"
+       ]
+      ],
+      [
+       "Moteur",
+       "",
+       [
+        "250 à 350 W → ville plate",
+        "500 W et plus → côtes",
+        "Double moteur → tout-terrain"
+       ]
+      ],
+      [
+       "Poids et charge maximale",
+       "",
+       [
+        "12 à 15 kg → se porte dans les transports et les escaliers",
+        "Plus de 20 kg → difficile à porter",
+        "Charge maximale → vérifier qu'elle dépasse le poids du client"
+       ]
+      ],
+      [
+       "Roues et freins",
+       "",
+       [
+        "8,5 pouces → ville, sols lisses",
+        "10 pouces gonflables → confort sur les pavés",
+        "Freins à disque → freinage puissant ; tambour → peu d'entretien"
+       ]
+      ],
+      [
+       "Réglementation",
+       "",
+       [
+        "Bridée à 25 km/h, à partir de 14 ans",
+        "Assurance responsabilité civile obligatoire → à rappeler au client"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "velo",
+     "n": "Vélo électrique",
+     "q": "Quels trajets, quel relief, et où sera-t-il rangé ?",
+     "c": [
+      [
+       "Type",
+       "",
+       [
+        "Ville → cadre bas, panier, garde-boue",
+        "VTC ou route → trajets plus longs",
+        "VTT électrique → chemins",
+        "Pliant → transports en commun, petit logement",
+        "Cargo → enfants, courses"
+       ]
+      ],
+      [
+       "Moteur",
+       "",
+       [
+        "Moteur dans la roue → prix plus bas, ville plate",
+        "Moteur central (pédalier) → assistance naturelle, côtes",
+        "Couple 40 Nm → plat ; 60 à 85 Nm → côtes, VTT"
+       ]
+      ],
+      [
+       "Batterie",
+       "L'autonomie dépend du niveau d'assistance.",
+       [
+        "400 Wh → environ 40 à 70 km",
+        "500 à 700 Wh → environ 60 à 120 km"
+       ]
+      ],
+      [
+       "Sécurité et confort",
+       "",
+       [
+        "Freins à disque hydrauliques → freinage puissant",
+        "Poids de 20 à 28 kg → à porter dans les escaliers ?",
+        "Taille du cadre selon la taille du cycliste"
+       ]
+      ],
+      [
+       "Réglementation",
+       "",
+       [
+        "Assistance jusqu'à 25 km/h",
+        "Antivol et assurance vol → à proposer"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "camera",
+     "n": "Caméra de surveillance",
+     "q": "Intérieur ou extérieur, et y a-t-il une prise à proximité ?",
+     "c": [
+      [
+       "Alimentation",
+       "",
+       [
+        "Secteur → enregistrement continu",
+        "Batterie → installation libre, recharge tous les 1 à 6 mois",
+        "Panneau solaire → plus de recharge"
+       ]
+      ],
+      [
+       "Image",
+       "",
+       [
+        "1080p → voir une silhouette",
+        "2K ou 4K → reconnaître un visage, une plaque",
+        "Vision nocturne couleur → avec projecteur intégré"
+       ]
+      ],
+      [
+       "Détection",
+       "",
+       [
+        "IA personnes, véhicules, animaux → moins de fausses alertes"
+       ]
+      ],
+      [
+       "Stockage",
+       "",
+       [
+        "Carte microSD → sans abonnement",
+        "Cloud → accès aux vidéos même si la caméra est volée, abonnement mensuel"
+       ]
+      ],
+      [
+       "Extérieur et règles",
+       "",
+       [
+        "IP65 et plus → pluie",
+        "Ne pas filmer la voie publique ni chez les voisins"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "assistant",
+     "n": "Assistant vocal et enceinte connectée",
+     "q": "Quel téléphone avez-vous, et avez-vous déjà des objets connectés ?",
+     "c": [
+      [
+       "Écosystème",
+       "",
+       [
+        "Alexa (Amazon) → très large compatibilité domotique",
+        "Google (Nest) → Android, Chromecast",
+        "Siri (HomePod) → iPhone, Apple TV"
+       ]
+      ],
+      [
+       "Écran",
+       "",
+       [
+        "Avec écran → recettes, appels vidéo, images des caméras"
+       ]
+      ],
+      [
+       "Domotique",
+       "",
+       [
+        "Hub intégré (Matter, Zigbee, Thread) → pilote les objets sans boîtier supplémentaire"
+       ]
+      ],
+      [
+       "Vie privée",
+       "",
+       [
+        "Bouton de coupure du micro"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "eclairage",
+     "n": "Éclairage connecté",
+     "q": "Combien d'ampoules, et avez-vous un assistant vocal ?",
+     "c": [
+      [
+       "Connexion",
+       "",
+       [
+        "Wi-Fi → sans boîtier, simple pour quelques ampoules",
+        "Zigbee ou Bluetooth avec pont (Hue) → fiable pour beaucoup d'ampoules",
+        "Matter → compatible avec tous les assistants"
+       ]
+      ],
+      [
+       "Couleur",
+       "",
+       [
+        "Blanc réglable (chaud à froid) → lecture, détente",
+        "Couleur → ambiance, soirées"
+       ]
+      ],
+      [
+       "Luminosité",
+       "",
+       [
+        "470 lm → équivaut à 40 W",
+        "806 lm → 60 W",
+        "1 055 lm → 75 W",
+        "1 521 lm → 100 W"
+       ]
+      ],
+      [
+       "Installation",
+       "",
+       [
+        "Culot E27, E14 ou GU10 → vérifier celui du luminaire",
+        "Laisser l'interrupteur allumé, ou ajouter un interrupteur connecté"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "drone",
+     "n": "Drone",
+     "q": "Pour filmer, ou pour s'amuser ? Le client a-t-il déjà piloté ?",
+     "c": [
+      [
+       "Poids et réglementation",
+       "",
+       [
+        "Moins de 250 g → le plus simple : pas de formation obligatoire ; enregistrement en ligne s'il a une caméra",
+        "Plus de 250 g → formation en ligne et enregistrement obligatoires"
+       ]
+      ],
+      [
+       "Caméra",
+       "",
+       [
+        "4K sur nacelle 3 axes → images stables",
+        "Capteur plus grand → meilleures images au coucher du soleil"
+       ]
+      ],
+      [
+       "Autonomie",
+       "",
+       [
+        "20 à 45 min par batterie → proposer un pack de 3 batteries"
+       ]
+      ],
+      [
+       "Sécurité",
+       "",
+       [
+        "Détection d'obstacles → débutants",
+        "Retour automatique au point de départ"
+       ]
+      ],
+      [
+       "Drone enfant",
+       "",
+       [
+        "Léger, hélices protégées → vol en intérieur"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "station-energie",
+     "n": "Station électrique portable",
+     "q": "Pour le camping, le van, ou en secours à la maison ?",
+     "c": [
+      [
+       "Capacité",
+       "",
+       [
+        "300 Wh → téléphones, ordinateur, camping d'un week-end",
+        "1 000 Wh → mini-réfrigérateur environ 1 journée, outils",
+        "2 000 Wh et plus → secours de la maison (réfrigérateur, box internet)"
+       ]
+      ],
+      [
+       "Puissance de sortie",
+       "Elle doit dépasser celle de l'appareil branché.",
+       [
+        "600 W → petits appareils",
+        "1 800 W et plus → bouilloire, outils"
+       ]
+      ],
+      [
+       "Recharge",
+       "",
+       [
+        "Panneau solaire → autonomie énergétique",
+        "Recharge rapide → environ 80 % en 1 h"
+       ]
+      ],
+      [
+       "Durée de vie",
+       "",
+       [
+        "Batterie LiFePO4 → 3 000 cycles et plus",
+        "Fonction onduleur → bascule automatique en cas de coupure"
        ]
       ]
      ]

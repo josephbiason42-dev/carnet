@@ -1265,8 +1265,9 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
     <div class="seg" id="pr-nav" role="group" aria-label="Affichage" hidden><button type="button" data-pt="guide" aria-pressed="true">Fiches conseil</button><button type="button" data-pt="list" aria-pressed="false">Produits</button></div>
     <div id="pr-tab-guide">
       <div class="panel">
-        <input id="gd-q" type="search" placeholder="Rechercher : « café », « cheveux », « animaux »…" autocomplete="off" aria-label="Rechercher une fiche conseil" style="margin-bottom:10px">
-        <div class="chips" id="gd-fam" style="margin-bottom:12px"></div>
+        <input id="gd-q" type="search" placeholder="Rechercher dans tous les rayons : « OLED », « cheveux », « Infinity »…" autocomplete="off" aria-label="Rechercher une fiche conseil" style="margin-bottom:10px">
+        <div class="chips" id="gd-uni" style="margin-bottom:8px"></div>
+        <div class="chips" id="gd-fam" style="margin-bottom:12px;padding-top:8px;border-top:1px solid var(--line)"></div>
         <div id="gd-list"><p class="empty">Chargement des fiches…</p></div>
       </div>
     </div>
@@ -5075,15 +5076,22 @@ function gdTab(t){
   document.querySelectorAll("#pr-nav [data-pt]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pt===t))});
   if(t==="guide"){$("#pr-cmpbar").hidden=true;gdLoad(renderGuides)}else renderProd();
 }
+var GD_U=["Petit électroménager","Gros électroménager","TV - Image - Son","Informatique - Tablette","Smartphone - Téléphonie","Console - Gaming","Objets connectés","Boulanger Infinity"];
 function renderGuides(){
-  var D=gdui.data;if(!D)return;var q=normQ(gdui.q);
-  $("#gd-fam").innerHTML='<button type="button" class="chip'+(gdui.fam==="all"?" on":"")+'" data-gf="all">Tout</button>'+D.families.map(function(f,i){return '<button type="button" class="chip'+(gdui.fam===String(i)?" on":"")+'" data-gf="'+i+'">'+esc(f.n)+'</button>'}).join("");
-  var h=(gdui.fam==="all"&&!q)?'<article class="gdc rx"><div class="gdc-f">Pour tout le rayon</div><h3>Les 4 réflexes</h3><ol class="gd-c">'+D.reflexes.map(function(r){return '<li>'+esc(r)+'</li>'}).join("")+'</ol></article>':"";
-  D.families.forEach(function(f,i){
-    if(gdui.fam!=="all"&&gdui.fam!==String(i))return;
+  var D=gdui.data;if(!D)return;var q=normQ(gdui.q);if(!gdui.uni)gdui.uni=GD_U[0];
+  var fams=D.families.map(function(f,i){f._i=i;return f});
+  var us=GD_U.filter(function(u){return fams.some(function(f){return f.u===u})});
+  $("#gd-uni").innerHTML=us.map(function(u){var n=0;fams.forEach(function(f){if(f.u===u)n+=f.items.length});return '<button type="button" class="chip'+(!q&&gdui.uni===u?" on":"")+'" data-gu="'+esc(u)+'">'+esc(u)+' <span>'+n+'</span></button>'}).join("");
+  var inU=fams.filter(function(f){return f.u===gdui.uni});
+  $("#gd-fam").innerHTML=(!q&&inU.length>1)?'<button type="button" class="chip'+(gdui.fam==="all"?" on":"")+'" data-gf="all">Tout</button>'+inU.map(function(f){return '<button type="button" class="chip'+(gdui.fam===String(f._i)?" on":"")+'" data-gf="'+f._i+'">'+esc(f.n)+'</button>'}).join(""):"";
+  $("#gd-fam").hidden=!$("#gd-fam").innerHTML;
+  var h=(!q&&gdui.fam==="all"&&gdui.uni!=="Boulanger Infinity")?'<article class="gdc rx"><div class="gdc-f">Pour tous les rayons</div><h3>Les 4 réflexes</h3><ol class="gd-c">'+D.reflexes.map(function(r){return '<li>'+esc(r)+'</li>'}).join("")+'</ol></article>':"";
+  fams.forEach(function(f){
+    if(!q){if(f.u!==gdui.uni)return;if(gdui.fam!=="all"&&gdui.fam!==String(f._i))return}
     f.items.forEach(function(g){
-      if(q){var hay=normQ([g.n,f.n,g.q,g.c.map(function(c){return c.join(" ")}).join(" ")].join(" "));if(q.split(/\s+/).some(function(w){return hay.indexOf(w)<0}))return}
-      h+='<article class="gdc" id="gd-'+esc(g.id)+'"><div class="gdc-f">'+esc(f.n)+'</div><h3>'+esc(g.n)+'</h3>'+
+      if(q){var hay=normQ([g.n,f.n,f.u,g.q,g.c.map(function(c){return [c[0],c[1]].concat(c[2]||[]).join(" ")}).join(" ")].join(" "));if(q.split(/\s+/).some(function(w){return hay.indexOf(w)<0}))return}
+      var lab=f.n===f.u?f.u:(q?f.u+" · "+f.n:f.n);
+      h+='<article class="gdc" id="gd-'+esc(g.id)+'"><div class="gdc-f">'+esc(lab)+'</div><h3>'+esc(g.n)+'</h3>'+
         '<p class="gd-q"><span>'+esc(g.ql||"La question qui tranche")+'</span>'+esc(g.q)+'</p>'+
         '<ol class="gd-c">'+g.c.map(function(c){return '<li><b>'+esc(c[0])+'</b>'+(c[1]?'<span>'+esc(c[1])+'</span>':'')+((c[2]||[]).length?'<ul class="gd-l">'+c[2].map(function(l){var k=l.indexOf(" → ");if(l.indexOf("→ ")===0)return '<li><i>→</i> '+esc(l.slice(2))+'</li>';return '<li>'+(k>0?'<em>'+esc(l.slice(0,k))+'</em> <i>→</i> '+esc(l.slice(k+3)):esc(l))+'</li>'}).join("")+'</ul>':'')+'</li>'}).join("")+'</ol></article>';
     });
@@ -5092,6 +5100,7 @@ function renderGuides(){
 }
 $("#pr-nav").addEventListener("click",function(e){var b=e.target.closest("[data-pt]");if(b)gdTab(b.dataset.pt)});
 $("#gd-fam").addEventListener("click",function(e){var b=e.target.closest("[data-gf]");if(!b)return;gdui.fam=b.dataset.gf;renderGuides()});
+$("#gd-uni").addEventListener("click",function(e){var b=e.target.closest("[data-gu]");if(!b)return;gdui.uni=b.dataset.gu;gdui.fam="all";if(gdui.q){gdui.q="";$("#gd-q").value=""}renderGuides();window.scrollTo(0,0)});
 var gdT=null;$("#gd-q").addEventListener("input",function(){gdui.q=this.value;clearTimeout(gdT);gdT=setTimeout(renderGuides,150)});
 // fiche produit
 var pvDlg=$("#pv-dialog");
@@ -5183,7 +5192,7 @@ $("#pc-close").addEventListener("click",function(){dlgClose(pcDlg)});
 function renderProdCard(){
   var el=$("#card-prod");if(!el)return;
   el.innerHTML='<div class="k-title">Fiches conseil<span class="k-chip">Boulanger</span></div>'+
-    '<div style="margin-top:auto"><div class="k-big">37</div><div class="k-lbl">fiches · critères produits et Boulanger Infinity</div></div>'+
+    '<div style="margin-top:auto"><div class="k-big">78</div><div class="k-lbl">fiches · tous les univers Boulanger</div></div>'+
     '<span class="k-open">Ouvrir →</span>';
 }
 /* ---------- effets : ciel, confettis, chiffres, transitions ---------- */
