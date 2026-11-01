@@ -381,7 +381,10 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .gd-q{font-size:.92rem; line-height:1.45; padding:10px 12px; border-radius:10px; background:rgba(91,140,255,.10); border:1px solid rgba(91,140,255,.3); margin:0 0 12px}
 .gd-q span{display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--accent); margin-bottom:3px}
 .gd-c{margin:0; padding-left:1.3rem; display:flex; flex-direction:column; gap:8px}
-.gd-c li{font-size:.9rem; line-height:1.4} .gd-c li b{display:block} .gd-c li span{color:var(--muted); font-size:.85rem}
+.gd-c li{font-size:.9rem; line-height:1.4} .gd-c li b{display:block} .gd-c li span{color:var(--muted); font-size:.85rem; display:block}
+.gd-l{list-style:none; margin:5px 0 0; padding:0; display:flex; flex-direction:column; gap:3px}
+.gd-l li{font-size:.84rem; line-height:1.35; padding:4px 8px; border-radius:7px; background:var(--soft)}
+.gd-l li em{font-style:normal; font-weight:700; color:var(--ink)} .gd-l li i{font-style:normal; color:var(--muted)}
 .gd-rx{margin:0 0 12px; padding-left:1.2rem; font-size:.86rem; line-height:1.45; color:var(--muted)}
 #pr-nav{margin:10px 0 12px}
 .pv-obj{font-size:.9rem; line-height:1.45; padding:10px 12px; border-radius:10px; background:rgba(255,179,138,.08); border:1px solid rgba(255,179,138,.25); margin:0}
@@ -1258,8 +1261,8 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
   <!-- RÉGLAGES -->
   <section class="view" id="v-prod" aria-label="Produits">
     <button class="back" type="button" data-go="home">← Accueil</button>
-    <div class="phead" style="margin:0"><h2 style="text-align:left">Produits</h2><button class="plus" type="button" id="pr-add" aria-label="Ajouter un produit" title="Ajouter un produit">+</button></div>
-    <div class="seg" id="pr-nav" role="group" aria-label="Affichage"><button type="button" data-pt="guide" aria-pressed="true">Fiches conseil</button><button type="button" data-pt="list" aria-pressed="false">Produits</button></div>
+    <div class="phead" style="margin:0"><h2 style="text-align:left">Fiches conseil</h2><button class="plus" type="button" hidden id="pr-add" aria-label="Ajouter un produit" title="Ajouter un produit">+</button></div>
+    <div class="seg" id="pr-nav" role="group" aria-label="Affichage" hidden><button type="button" data-pt="guide" aria-pressed="true">Fiches conseil</button><button type="button" data-pt="list" aria-pressed="false">Produits</button></div>
     <div id="pr-tab-guide">
       <div class="panel">
         <input id="gd-q" type="search" placeholder="Rechercher : « café », « cheveux », « animaux »…" autocomplete="off" aria-label="Rechercher une fiche conseil" style="margin-bottom:10px">
@@ -1958,7 +1961,7 @@ function setTab(t){
   document.querySelectorAll(".gnav button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.gt===t?"true":"false")});
 }
 var GRP={home:["home","rev"],money:["fin","shop"],body:["cal","body","meds"],work:["plan","job","prod"],know:["lib","p30"]};
-var TABN={fin:"Finances",shop:"Courses",meds:"Médicaments",home:"Accueil",rev:"Bilan du mois",cal:"Calories",body:"Pesée",plan:"Planning",job:"Candidatures",prod:"Produits",lib:"Bibliothèque",p30:"Projet 30"};
+var TABN={fin:"Finances",shop:"Courses",meds:"Médicaments",home:"Accueil",rev:"Bilan du mois",cal:"Calories",body:"Pesée",plan:"Planning",job:"Candidatures",prod:"Fiches conseil",lib:"Bibliothèque",p30:"Projet 30"};
 ui.lastIn={};
 function grpOf(t){for(var k in GRP)if(GRP[k].indexOf(t)>=0)return k;return null}
 document.querySelectorAll(".back,.sbtn").forEach(function(b){b.addEventListener("click",function(){
@@ -4164,7 +4167,7 @@ function fillPlanCfg(){
   $("#plc-days").innerHTML=N.map(function(n,i){return '<label>'+n+'<select data-sd="'+i+'" aria-label="Sport le '+n+'">'+O.map(function(o){return '<option value="'+o[0]+'"'+((c.days[i]||"")===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select></label>'}).join("");
 }
 /* ---------- personnalisation de l'accueil (glisser-déposer) ---------- */
-var HCARDS=[["hello","Bonjour","l"],["date","Aujourd'hui","s"],["fin","Finances","l"],["cal","Calories","s"],["job","Candidatures","l"],["body","Pesée","s"],["p30","Projet 30","l"],["lib","Lecture","s"],["rev","Bilan du mois","s"],["prod","Produits","s"],["meds","Médicaments","s"]];
+var HCARDS=[["hello","Bonjour","l"],["date","Aujourd'hui","s"],["fin","Finances","l"],["cal","Calories","s"],["job","Candidatures","l"],["body","Pesée","s"],["p30","Projet 30","l"],["lib","Lecture","s"],["rev","Bilan du mois","s"],["prod","Fiches conseil","s"],["meds","Médicaments","s"]];
 var HSIZE={s:"Petite",l:"Grande",f:"Pleine largeur"},HNEXT={s:"l",l:"f",f:"s"};
 var hEdit=false,hDrag=null,hSuppress=false;
 function homeCfg(){
@@ -5068,7 +5071,7 @@ function gdLoad(cb){
     .catch(function(){$("#gd-list").innerHTML='<p class="empty">Impossible de charger les fiches : vérifie ta connexion.</p>'}).then(function(){gdui.loading=false});
 }
 function gdTab(t){
-  gdui.tab=t;$("#pr-tab-guide").hidden=t!=="guide";$("#pr-tab-list").hidden=t==="guide";$("#pr-add").hidden=t==="guide";
+  t="guide";gdui.tab=t;$("#pr-tab-guide").hidden=t!=="guide";$("#pr-tab-list").hidden=t==="guide";$("#pr-add").hidden=t==="guide";
   document.querySelectorAll("#pr-nav [data-pt]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pt===t))});
   if(t==="guide"){$("#pr-cmpbar").hidden=true;gdLoad(renderGuides)}else renderProd();
 }
@@ -5081,8 +5084,8 @@ function renderGuides(){
     f.items.forEach(function(g){
       if(q){var hay=normQ([g.n,f.n,g.q,g.c.map(function(c){return c.join(" ")}).join(" ")].join(" "));if(q.split(/\s+/).some(function(w){return hay.indexOf(w)<0}))return}
       h+='<article class="gdc" id="gd-'+esc(g.id)+'"><div class="gdc-f">'+esc(f.n)+'</div><h3>'+esc(g.n)+'</h3>'+
-        '<p class="gd-q"><span>La question qui tranche</span>'+esc(g.q)+'</p>'+
-        '<ol class="gd-c">'+g.c.map(function(c){return '<li><b>'+esc(c[0])+'</b>'+(c[1]?'<span>'+esc(c[1])+'</span>':'')+'</li>'}).join("")+'</ol></article>';
+        '<p class="gd-q"><span>'+esc(g.ql||"La question qui tranche")+'</span>'+esc(g.q)+'</p>'+
+        '<ol class="gd-c">'+g.c.map(function(c){return '<li><b>'+esc(c[0])+'</b>'+(c[1]?'<span>'+esc(c[1])+'</span>':'')+((c[2]||[]).length?'<ul class="gd-l">'+c[2].map(function(l){var k=l.indexOf(" → ");if(l.indexOf("→ ")===0)return '<li><i>→</i> '+esc(l.slice(2))+'</li>';return '<li>'+(k>0?'<em>'+esc(l.slice(0,k))+'</em> <i>→</i> '+esc(l.slice(k+3)):esc(l))+'</li>'}).join("")+'</ul>':'')+'</li>'}).join("")+'</ol></article>';
     });
   });
   $("#gd-list").innerHTML=h?'<div class="gd-grid">'+h+'</div>':'<p class="empty">Aucune fiche ne correspond à ta recherche.</p>';
@@ -5180,7 +5183,7 @@ $("#pc-close").addEventListener("click",function(){dlgClose(pcDlg)});
 function renderProdCard(){
   var el=$("#card-prod");if(!el)return;
   el.innerHTML='<div class="k-title">Fiches conseil<span class="k-chip">Boulanger</span></div>'+
-    '<div style="margin-top:auto"><div class="k-big">30</div><div class="k-lbl">catégories · critères pour orienter le client</div></div>'+
+    '<div style="margin-top:auto"><div class="k-big">37</div><div class="k-lbl">fiches · critères produits et Boulanger Infinity</div></div>'+
     '<span class="k-open">Ouvrir →</span>';
 }
 /* ---------- effets : ciel, confettis, chiffres, transitions ---------- */

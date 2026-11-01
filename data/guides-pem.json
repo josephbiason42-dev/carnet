@@ -10,181 +10,563 @@
  ],
  "families": [
   {
+   "n": "Boulanger Infinity",
+   "items": [
+    {
+     "id": "inf-bref",
+     "n": "Le Club Infinity en bref",
+     "ql": "Accroche",
+     "q": "Si un de vos appareils tombait en panne demain, qui paierait la réparation ?",
+     "c": [
+      [
+       "Ce que c'est",
+       "Une assurance panne (contrat n°4033, assureur Cardif) : réparation illimitée de tous les appareils de l'univers choisi, achetés chez Boulanger ou ailleurs.",
+       []
+      ],
+      [
+       "Prix",
+       "Relevés sur boulanger.com le 01/11/2026.",
+       [
+        "1 univers → 11,99 €/mois",
+        "2 univers → 16,99 €/mois",
+        "3 univers → 21,99 €/mois"
+       ]
+      ],
+      [
+       "Ce qui est inclus",
+       "",
+       [
+        "Diagnostic, déplacement, pièces et main-d'œuvre → 0 € à payer pour le client",
+        "Appareil irréparable → bon d'achat Boulanger (valeur selon l'enseigne et la date d'achat)",
+        "Nombre de réparations illimité → plafond de 10 000 € par année d'assurance"
+       ]
+      ],
+      [
+       "Engagement",
+       "",
+       [
+        "12 mois, puis reconduction → résiliable au 03 59 35 69 40"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "inf-univers",
+     "n": "Les 3 univers",
+     "ql": "Question à poser",
+     "q": "Quels appareils vous seraient le plus pénibles à remplacer ?",
+     "c": [
+      [
+       "Électroménager",
+       "Gros et petit électroménager : l'univers à proposer au rayon PEM.",
+       [
+        "Gros électroménager → lave-linge, réfrigérateur, lave-vaisselle, four, plaque, hotte, cave à vin",
+        "Cuisine → expresso et broyeur, robot pâtissier et multifonction, air fryer, blender, multicuiseur, bouilloire, grille-pain",
+        "Entretien → aspirateurs, robot laveur, centrale vapeur, fer, défroisseur, nettoyeur vapeur, machine à coudre",
+        "Beauté-santé → sèche-cheveux, lisseur, brosse soufflante, rasoir, épilateur, brosse à dents, pèse-personne, tensiomètre",
+        "Air et confort → ventilateur, climatiseur mobile, purificateur, déshumidificateur, chauffage soufflant"
+       ]
+      ],
+      [
+       "Multimédia et Image & Son",
+       "Vérifier la liste exacte de chaque univers sur boulanger.com.",
+       [
+        "TV, barre de son, home cinéma, ordinateur portable, tablette → à proposer quand le client a aussi ces équipements",
+        "Univers Multimédia → Norton 360 Deluxe inclus sans surcoût"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "inf-avantages",
+     "n": "Les avantages inclus",
+     "ql": "Accroche",
+     "q": "En plus des réparations, vous avez tous les avantages du Club+ offerts.",
+     "c": [
+      [
+       "Avantages Club+ offerts",
+       "Le Club+ seul coûte 14,99 €/an.",
+       [
+        "Livraison offerte sur tous les achats → y compris la livraison express",
+        "2 % cagnottés à chaque achat → réutilisables en magasin",
+        "Offres réservées aux membres et chèque anniversaire de 6 €",
+        "Accès prioritaire au service client (3011)"
+       ]
+      ],
+      [
+       "Formule 3 univers",
+       "",
+       [
+        "Visite d'un expert à domicile 1 fois par an → bilan des appareils et conseils pour les faire durer"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "inf-argu",
+     "n": "Argumenter en rayon petit électroménager",
+     "ql": "Question à poser",
+     "q": "Combien d'appareils avez-vous à la maison qui ne sont plus sous garantie ?",
+     "c": [
+      [
+       "Faire le compte des appareils",
+       "Un foyer a souvent une dizaine d'appareils de petit électroménager : tous couverts par 1 seul univers.",
+       [
+        "Machine à café + aspirateur + centrale vapeur + robot cuiseur → tous couverts pour 11,99 €/mois",
+        "Appareils anciens ou achetés ailleurs → couverts aussi"
+       ]
+      ],
+      [
+       "Comparer avec le coût d'une réparation",
+       "Pièce + main-d'œuvre peuvent atteindre 20 à 50 % du prix du neuf.",
+       [
+        "Aspirateur balai à 500 € → une réparation de 100 à 250 €, soit 8 à 20 mois d'abonnement",
+        "Expresso broyeur à 800 € → une seule panne de pompe ou de broyeur peut couvrir des mois d'abonnement"
+       ]
+      ],
+      [
+       "Relier au produit vendu",
+       "",
+       [
+        "Produit premium (Dyson, broyeur, robot cuiseur) → protéger l'investissement",
+        "Client qui achète souvent chez Boulanger → livraison offerte et cagnotte rentabilisent déjà une partie"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "inf-objections",
+     "n": "Répondre aux objections",
+     "ql": "Écouter d'abord",
+     "q": "Reformuler l'objection avant d'y répondre.",
+     "c": [
+      [
+       "« Mes appareils ne tombent jamais en panne »",
+       "",
+       [
+        "→ Un seul univers couvre tous les appareils de la maison : la probabilité qu'aucun ne tombe en panne dans l'année est faible"
+       ]
+      ],
+      [
+       "« Je les ai achetés ailleurs »",
+       "",
+       [
+        "→ Couverts aussi. Seul un appareil acheté hors Boulanger après l'adhésion a une franchise de 39 € ou 79 €"
+       ]
+      ],
+      [
+       "« J'ai déjà la garantie 2 ans »",
+       "",
+       [
+        "→ Infinity couvre aussi les appareils dont la garantie est terminée, et ajoute livraison offerte et cagnotte"
+       ]
+      ],
+      [
+       "« Encore un abonnement »",
+       "",
+       [
+        "→ 12 mois d'engagement, puis résiliable. 11,99 € par mois, c'est moins qu'une seule réparation"
+       ]
+      ],
+      [
+       "Point d'honnêteté",
+       "Ne pas survendre : c'est une assurance panne.",
+       [
+        "Couvre la panne → pas la casse accidentelle, ni le mauvais usage",
+        "Exclusions et conditions → dans la notice d'information, à remettre au client"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "inf-smartphone",
+     "n": "Club Infinity Smartphone",
+     "ql": "Question à poser",
+     "q": "Votre téléphone actuel, vous l'avez déjà fait réparer ou remplacer ?",
+     "c": [
+      [
+       "Formules",
+       "À souscrire au moment de l'achat du smartphone. Vérifier les tarifs en caisse.",
+       [
+        "Solo (1 téléphone, à partir de 15,99 €/mois) → 2 sinistres par an dont 1 vol, plafond de 2 000 € par an",
+        "Famille → sinistres illimités, jusqu'à 5 téléphones du foyer, plafond de 3 000 € par an ; adhésion obligatoirement le jour de l'achat chez Boulanger"
+       ]
+      ],
+      [
+       "Ce qui est couvert",
+       "",
+       [
+        "Casse, oxydation, panne, vol caractérisé",
+        "Batterie remplacée → dès qu'elle tient moins de 80 % de sa capacité d'origine"
+       ]
+      ],
+      [
+       "Inclus le jour de l'adhésion",
+       "",
+       [
+        "Film de protection écran sur mesure posé en magasin → protège des rayures, pas de la casse",
+        "AppleCare Services → pour un iPhone",
+        "Norton 360 for Mobile",
+        "Avantages Club Infinity → livraison offerte, 2 % cagnottés"
+       ]
+      ],
+      [
+       "Conditions",
+       "",
+       [
+        "Téléphone de moins de 3 ans à l'adhésion, entre 50 et 2 500 €",
+        "Neuf, d'exposition ou reconditionné avec facture → pas d'achat entre particuliers"
+       ]
+      ]
+     ]
+    },
+    {
+     "id": "inf-sav",
+     "n": "Déclarer une panne et gérer le contrat",
+     "ql": "À retenir",
+     "q": "Le client garde le même réflexe : appeler, Boulanger s'occupe de tout.",
+     "c": [
+      [
+       "Déclarer une panne (Maison)",
+       "",
+       [
+        "09 69 32 32 23 → appel non surtaxé, 7j/7 de 8 h à 22 h",
+        "Appli Boulanger → gérer ses produits, suivre ses réparations"
+       ]
+      ],
+      [
+       "Questions sur le contrat, résiliation",
+       "",
+       [
+        "03 59 35 69 40 → du lundi au samedi, de 10 h à 20 h"
+       ]
+      ],
+      [
+       "Smartphone",
+       "",
+       [
+        "Sinistre (casse, vol, panne) → assurancesboulanger.com"
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  {
    "n": "Entretien de la maison",
    "items": [
     {
      "id": "aspi-balai",
      "n": "Aspirateur balai",
-     "cat": "aspi",
-     "q": "Quelle surface, et vous avez des animaux ?",
+     "q": "Quelle surface, quels sols, et vous avez des animaux ?",
      "c": [
       [
-       "Puissance d'aspiration en airwatts (AW)",
-       "Pas en watts. Sous 100 AW c'est un appoint, à partir de 150 AW ça remplace un traîneau."
+       "Puissance d'aspiration (AW)",
+       "À comparer en airwatts, pas en watts moteur.",
+       [
+        "Moins de 100 AW → aspirateur d'appoint : miettes, sols durs, petit appartement",
+        "100 à 150 AW → aspirateur principal d'un appartement, tapis ras",
+        "150 à 200 AW → remplace un traîneau : moquettes, tapis épais",
+        "Plus de 200 AW → grande maison, poils d'animaux incrustés dans les tapis"
+       ]
       ],
       [
-       "Autonomie réelle en mode normal",
-       "Le chiffre affiché est souvent mesuré en mode Eco, sans brosse motorisée."
+       "Autonomie",
+       "Le chiffre annoncé est mesuré en mode Eco sans brosse motorisée. En Boost, compter 6 à 15 min.",
+       [
+        "30 à 40 min → studio ou T2",
+        "45 à 60 min → T3 ou T4, environ 80 m²",
+        "Plus de 60 min ou batterie amovible → maison de 100 m² et plus"
+       ]
       ],
       [
-       "Poids et prise en main",
-       "Important pour les escaliers et l'aspiration en hauteur."
+       "Poids",
+       "Il compte dès qu'on aspire en hauteur ou dans les escaliers.",
+       [
+        "Moins de 2,5 kg → escaliers, plafonds, toiles d'araignée sans fatigue",
+        "2,5 à 3 kg → poids standard",
+        "Plus de 3 kg → fatigant à bout de bras, à faire essayer en magasin"
+       ]
       ],
       [
-       "Brosse",
-       "Anti-emmêlement si animaux ou cheveux longs, LED pour voir la poussière."
+       "Capacité du bac",
+       "",
+       [
+        "0,3 à 0,5 L → à vider à chaque passage",
+        "0,5 à 0,8 L → standard",
+        "1 L et plus, ou base de vidage → animaux, grande surface, allergiques (pas de contact avec la poussière)"
+       ]
       ],
       [
-       "Bac et filtration",
-       "Capacité du bac, filtre HEPA pour les allergiques."
+       "Brosse et filtration",
+       "",
+       [
+        "Brosse anti-emmêlement → cheveux longs et poils ne s'enroulent pas",
+        "Brosse LED ou laser → révèle la poussière fine sur les sols durs",
+        "Rouleau doux → parquet fragile",
+        "Filtre HEPA → retient les pollens et allergènes : allergiques, asthmatiques"
+       ]
       ]
      ]
     },
     {
      "id": "aspi-traineau",
      "n": "Aspirateur traîneau",
-     "cat": "aspi",
      "q": "Allergies dans le foyer ? Plutôt sols durs ou moquettes ?",
      "c": [
       [
        "Avec ou sans sac",
-       "Avec sac : plus hygiénique pour les allergiques. Sans sac : pas de consommable à racheter."
+       "",
+       [
+        "Avec sac (3 à 5 L, environ 1 mois) → hygiénique, pas de contact avec la poussière : allergiques",
+        "Sans sac → pas de sacs à racheter, mais bac à vider et filtre à laver"
+       ]
       ],
       [
-       "Niveau sonore (dB)",
-       "Sous 70 dB, il est vraiment silencieux."
+       "Puissance moteur",
+       "Limitée à 900 W par la réglementation européenne : la puissance ne départage plus vraiment, regarder la classe et les brosses.",
+       []
+      ],
+      [
+       "Niveau sonore",
+       "",
+       [
+        "Moins de 65 dB → très silencieux, on peut parler pendant l'aspiration",
+        "65 à 75 dB → normal",
+        "Plus de 75 dB → bruyant, à éviter en appartement le soir"
+       ]
+      ],
+      [
+       "Rayon d'action (câble + tube)",
+       "",
+       [
+        "8 à 10 m → une prise par pièce",
+        "12 m et plus → tout un étage sans changer de prise"
+       ]
       ],
       [
        "Brosses fournies",
-       "Parquet, tapis, spéciale animaux."
-      ],
-      [
-       "Rayon d'action",
-       "Câble + tube : évite de changer de prise à chaque pièce."
+       "",
+       [
+        "Brosse parquet à poils doux → ne raye pas",
+        "Turbo-brosse → poils d'animaux sur tapis et canapé"
+       ]
       ]
      ]
     },
     {
      "id": "aspi-robot",
      "n": "Robot aspirateur",
-     "cat": "aspi",
      "q": "Vous voulez ne plus toucher à rien, ou juste un entretien quotidien ?",
      "c": [
       [
        "Navigation",
-       "Lidar ou caméra = cartographie précise ; gyroscope = déplacement au hasard."
+       "",
+       [
+        "Gyroscope → se déplace au hasard, pour une seule pièce",
+        "Lidar (laser) → cartographie, zones interdites, nettoyage pièce par pièce",
+        "Caméra ou IA → évite câbles, chaussettes et déjections d'animaux"
+       ]
+      ],
+      [
+       "Puissance d'aspiration (Pa)",
+       "",
+       [
+        "2 000 à 4 000 Pa → sols durs, entretien quotidien",
+        "5 000 à 8 000 Pa → tapis ras, poils d'animaux",
+        "10 000 Pa et plus → tapis épais, poils incrustés"
+       ]
       ],
       [
        "Station",
-       "Vidage automatique, lavage et séchage des serpillières : c'est elle qui fait la différence de prix."
+       "C'est elle qui fait la différence de prix.",
+       [
+        "Base de charge seule → bac à vider tous les 1 à 2 jours",
+        "Vidage automatique → environ 1 à 2 mois sans vider",
+        "Station tout-en-un → vide, remplit, lave et sèche les serpillières : il ne reste qu'à changer l'eau"
+       ]
       ],
       [
        "Lavage",
-       "Serpillières rotatives et relevables (tapis) ou simple patin."
+       "",
+       [
+        "Patin fixe → humidifie seulement",
+        "Serpillières rotatives avec pression → frottent les taches",
+        "Serpillières relevables (7 à 10 mm et plus) → ne mouillent pas les tapis"
+       ]
       ],
       [
-       "Franchissement de seuils et détection d'obstacles",
-       "Hauteur en cm, détection des câbles et des déjections d'animaux."
-      ],
-      [
-       "Puissance (Pa) puis autonomie",
-       "À rapporter à la surface du logement."
+       "Franchissement de seuils",
+       "",
+       [
+        "Jusqu'à 2 cm → seuils classiques",
+        "4 cm et plus → barres de seuil épaisses, tapis épais, logements sur plusieurs niveaux de sol"
+       ]
       ]
      ]
     },
     {
      "id": "aspi-laveur",
      "n": "Aspirateur laveur",
-     "cat": "aspi",
-     "q": "Quelle surface de sols durs à laver ?",
+     "q": "Quelle surface de sols durs à laver, et y a-t-il des enfants ou des animaux ?",
      "c": [
       [
        "Autonettoyage et séchage du rouleau",
-       "Sans ça, le rouleau sent mauvais."
+       "",
+       [
+        "Autonettoyage seul → il faut laisser sécher le rouleau",
+        "Autonettoyage + séchage à air chaud → pas d'odeur ni de moisissure"
+       ]
       ],
       [
-       "Surface couverte",
-       "Par réservoir et par charge."
-      ],
-      [
-       "Poids et finesse",
-       "Pour passer sous les meubles."
+       "Réservoirs et autonomie",
+       "Vérifier la surface annoncée par le fabricant.",
+       [
+        "Environ 0,5 L d'eau propre → appartement",
+        "0,8 L et plus avec 40 à 50 min d'autonomie → grande maison sans recharger"
+       ]
       ],
       [
        "Eau froide ou eau chaude",
-       "L'eau chaude dégraisse mieux."
+       "",
+       [
+        "Eau froide → salissures du quotidien",
+        "Eau chaude (60 à 80 °C) → graisse de cuisine, taches sèches"
+       ]
+      ],
+      [
+       "Poids et maniabilité",
+       "4 à 5 kg en moyenne, mais l'appareil avance tout seul.",
+       [
+        "Mise à plat à 180° → passe sous le lit et le canapé"
+       ]
       ]
      ]
     },
     {
      "id": "vapeur",
      "n": "Nettoyeur vapeur",
-     "cat": null,
      "q": "Quelles surfaces : sols, joints, vitres, salle de bain ?",
      "c": [
       [
-       "Pression (bars) et temps de chauffe",
-       ""
+       "Pression",
+       "",
+       [
+        "3 bars → sols",
+        "4 à 5 bars → joints de carrelage, graisse, salle de bain"
+       ]
       ],
       [
-       "Autonomie",
-       "Capacité du réservoir."
+       "Temps de chauffe",
+       "",
+       [
+        "Balai vapeur : environ 30 s → nettoyage rapide",
+        "Cylindre : 5 à 8 min → grand nettoyage, plus de puissance"
+       ]
       ],
       [
-       "Polyvalence",
-       "Balai seul ou combiné avec un nettoyeur à main pour joints, vitres et salle de bain."
+       "Réservoir",
+       "",
+       [
+        "0,3 à 0,5 L → 15 à 20 min de vapeur",
+        "1 L et plus → 45 min et plus ; un réservoir rechargeable en cours d'usage évite d'attendre"
+       ]
+      ],
+      [
+       "Accessoires",
+       "La vapeur désinfecte sans produit chimique.",
+       [
+        "Raclette → vitres",
+        "Brosses rondes → joints, robinetterie",
+        "Bonnette → canapé, matelas"
+       ]
       ]
      ]
     },
     {
      "id": "repassage",
      "n": "Centrale vapeur et fer à repasser",
-     "cat": "linge",
-     "q": "Combien de linge par semaine, et beaucoup de chemises ? Au-delà d'une machine par semaine, la centrale s'impose.",
+     "q": "Combien de linge par semaine, et beaucoup de chemises ?",
      "c": [
       [
-       "Débit vapeur continu (g/min) et effet pressing (g)",
-       "C'est ce qui fait la vitesse de repassage, pas les watts."
+       "Débit vapeur continu",
+       "C'est lui qui fait la vitesse de repassage, plus que les watts.",
+       [
+        "Fer 30 à 50 g/min → petit volume, quelques chemises",
+        "Centrale 100 à 130 g/min → linge d'une famille, chaque semaine",
+        "Centrale 140 g/min et plus → grandes quantités, draps, jeans"
+       ]
       ],
       [
-       "Pression (bars)",
-       "Pour une centrale vapeur."
+       "Effet pressing (coup de vapeur)",
+       "",
+       [
+        "150 à 250 g (fer) → plis courants",
+        "300 à 500 g et plus (centrale) → plis marqués, lin, coton épais"
+       ]
       ],
       [
-       "Gestion du calcaire",
-       "Collecteur, cartouche, ou eau du robinet acceptée."
+       "Pression (centrale)",
+       "",
+       [
+        "5 à 6 bars → entrée de gamme, linge fin",
+        "7 à 8 bars → traverse les épaisseurs : repasser un seul côté",
+        "9 bars et plus → repassage intensif"
+       ]
       ],
       [
-       "Semelle",
-       "Glisse et résistance aux rayures."
+       "Calcaire et réservoir",
+       "",
+       [
+        "Collecteur ou cartouche anticalcaire → indispensable si l'eau est calcaire",
+        "Réservoir de 1,5 à 2 L, remplissable pendant l'usage → pas d'interruption"
+       ]
       ],
       [
-       "Poids du fer et arrêt automatique",
-       ""
+       "Arrêt automatique et poids du fer",
+       "",
+       [
+        "Arrêt automatique → sécurité si on oublie le fer",
+        "Fer léger → moins de fatigue au poignet"
+       ]
       ]
      ]
     },
     {
      "id": "defroisseur",
      "n": "Défroisseur",
-     "cat": "linge",
-     "q": "Retouches rapides à la maison ou en voyage ?",
+     "q": "Retouches rapides à la maison, ou en voyage ?",
      "c": [
       [
+       "Format",
+       "",
+       [
+        "À main → retouche d'une chemise, voyage",
+        "Vertical sur pied → robe, chemise ou rideau en entier"
+       ]
+      ],
+      [
        "Temps de chauffe",
-       ""
+       "",
+       [
+        "25 à 45 s → prêt pendant qu'on s'habille"
+       ]
       ],
       [
        "Débit vapeur",
-       ""
+       "",
+       [
+        "20 à 30 g/min → retouches",
+        "35 à 50 g/min → vêtement complet, tissus épais"
+       ]
       ],
       [
        "Réservoir",
-       ""
-      ],
-      [
-       "Format",
-       "Vertical sur pied, ou à main pour les retouches et le voyage."
+       "",
+       [
+        "0,1 à 0,25 L (à main) → environ 10 min",
+        "1,5 L (vertical) → 45 min et plus"
+       ]
       ]
      ]
     }
@@ -196,72 +578,120 @@
     {
      "id": "cafe",
      "n": "Machine à café",
-     "cat": "cafe",
      "q": "Combien de cafés par jour, et plutôt expresso ou boissons lactées ?",
      "c": [
       [
-       "Type",
-       "Expresso broyeur : meilleur goût et coût par tasse le plus bas, achat plus cher. Capsules : simplicité, coût par tasse élevé. Filtre : grandes quantités."
+       "Type et coût par tasse",
+       "Faire le calcul avec le client : 3 cafés par jour, c'est environ 1 000 tasses par an.",
+       [
+        "Expresso broyeur → café frais, environ 0,15 à 0,25 € la tasse : plusieurs centaines d'euros économisés par an face aux capsules",
+        "Capsules → simple et propre, environ 0,35 à 0,60 € la tasse : idéal pour 1 à 2 cafés par jour",
+        "Filtre → grandes quantités, réunions, famille"
+       ]
       ],
       [
        "Boissons lactées",
-       "Système lait automatique (one touch) ou buse vapeur manuelle."
+       "",
+       [
+        "Buse vapeur → mousse façon barista, pour qui aime faire soi-même",
+        "Système lait automatique → cappuccino ou latte en une touche",
+        "Pas de système lait → expresso et café long uniquement"
+       ]
       ],
       [
-       "Volume quotidien",
-       "Taille du réservoir d'eau et du bac à grains."
+       "Pression",
+       "Un expresso s'extrait autour de 9 bars : 15 ou 19 bars est une valeur maximale de pompe. Ne pas départager deux machines sur ce chiffre.",
+       []
+      ],
+      [
+       "Réservoir et bac à grains",
+       "",
+       [
+        "1 à 1,2 L → 1 à 2 personnes",
+        "1,7 à 2 L → famille, télétravail",
+        "Bac de 250 g → environ 30 cafés"
+       ]
       ],
       [
        "Entretien",
-       "Groupe amovible, détartrage automatique."
-      ],
-      [
-       "Coût par tasse",
-       "Faire le calcul sur un an avec le client."
+       "",
+       [
+        "Groupe café amovible → se rince sous l'eau",
+        "Détartrage et rinçage automatiques → moins de contraintes"
+       ]
       ]
      ]
     },
     {
      "id": "bouilloire",
      "n": "Bouilloire",
-     "cat": null,
-     "q": "Thé, infusions ou simple eau chaude ?",
+     "q": "Thé, infusions, ou simplement de l'eau chaude ?",
      "c": [
       [
-       "Capacité",
-       ""
-      ],
-      [
        "Réglage de température",
-       "Pour le thé vert et les infusions."
+       "",
+       [
+        "70 à 80 °C → thé vert, thé blanc (pas d'amertume)",
+        "90 à 95 °C → café filtre manuel, oolong",
+        "100 °C → thé noir, infusions, eau pour cuisiner"
+       ]
       ],
       [
-       "Matériau",
-       "Inox, verre ou plastique."
+       "Capacité",
+       "",
+       [
+        "1 L → environ 4 tasses",
+        "1,7 L → famille, plusieurs boissons d'un coup"
+       ]
       ],
       [
-       "Filtre anticalcaire",
-       ""
+       "Puissance",
+       "",
+       [
+        "2 200 à 3 000 W → 1 L chauffé en 2 à 3 min"
+       ]
+      ],
+      [
+       "Matériau et options",
+       "",
+       [
+        "Inox → robuste, garde la chaleur",
+        "Verre → on voit le calcaire",
+        "Maintien au chaud → deuxième tasse chaude 30 min plus tard"
+       ]
       ]
      ]
     },
     {
      "id": "grille-pain",
      "n": "Grille-pain",
-     "cat": null,
      "q": "Quel pain : de mie, de campagne, bagels ?",
      "c": [
       [
        "Fentes",
-       "Courtes ou longues, larges pour le pain de campagne ou les bagels."
+       "",
+       [
+        "Fentes larges (3,5 cm et plus) → pain de campagne, bagels, brioche",
+        "Fente longue → grandes tranches de pain de campagne",
+        "4 fentes → famille, tout le monde servi en même temps"
+       ]
+      ],
+      [
+       "Puissance",
+       "",
+       [
+        "800 à 1 000 W → 2 tranches",
+        "1 500 à 1 800 W → 4 tranches"
+       ]
       ],
       [
        "Fonctions",
-       "Décongélation, réchauffage, maintien au chaud."
-      ],
-      [
-       "Régularité du brunissage",
-       ""
+       "",
+       [
+        "Décongélation → pain sorti du congélateur",
+        "Bagel → grille un seul côté",
+        "Réchauffe-viennoiseries → croissants tièdes"
+       ]
       ]
      ]
     }
@@ -273,268 +703,421 @@
     {
      "id": "airfryer",
      "n": "Air fryer",
-     "cat": "air",
      "q": "Pour combien de personnes, et uniquement des frites ou toute la cuisine ?",
      "c": [
       [
-       "Capacité adaptée au foyer",
-       "3 à 4 L pour 1 à 2 personnes, 5 à 6 L pour une famille de 4."
+       "Capacité",
+       "",
+       [
+        "2 à 3 L → 1 à 2 personnes",
+        "4 à 5 L → 3 à 4 personnes",
+        "6 L et plus ou double panier → famille de 4 à 6, poulet entier"
+       ]
       ],
       [
        "Un ou deux paniers",
-       "Deux aliments en même temps, avec cuissons synchronisées."
+       "",
+       [
+        "Double panier → viande et légumes en même temps, finis à la même minute"
+       ]
+      ],
+      [
+       "Puissance",
+       "",
+       [
+        "1 400 à 1 700 W → standard",
+        "2 000 W et plus → grands volumes sans rallonger la cuisson"
+       ]
       ],
       [
        "Fonctions",
-       "Grill, déshydratation, réchauffage."
+       "",
+       [
+        "Grill → saisir la viande",
+        "Déshydratation → chips de fruits, légumes séchés",
+        "Fenêtre de cuisson → surveiller sans ouvrir"
+       ]
       ],
       [
-       "Nettoyage",
-       "Paniers qui passent au lave-vaisselle."
-      ],
-      [
-       "Encombrement",
-       "Place sur le plan de travail."
+       "Entretien",
+       "",
+       [
+        "Panier passant au lave-vaisselle → nettoyage sans effort"
+       ]
       ]
      ]
     },
     {
      "id": "multicuiseur",
      "n": "Multicuiseur (type Cookeo)",
-     "cat": "cuis",
      "q": "Peu de temps pour cuisiner en semaine ?",
      "c": [
       [
        "Cuisson sous pression",
-       "C'est le gain de temps."
+       "",
+       [
+        "Jusqu'à 3 fois plus rapide → un bœuf bourguignon en environ 40 min au lieu de plusieurs heures"
+       ]
       ],
       [
-       "Recettes guidées et appli",
-       "Idéal pour les débutants."
+       "Capacité",
+       "",
+       [
+        "3 à 4 L → 2 à 4 personnes",
+        "6 L → jusqu'à 6 personnes, batch cooking"
+       ]
       ],
       [
-       "Capacité de la cuve",
-       ""
+       "Recettes guidées et connexion",
+       "",
+       [
+        "Recettes intégrées → pas à pas pour les débutants",
+        "Connecté (appli) → recettes illimitées, mises à jour"
+       ]
       ],
       [
-       "Départ différé et maintien au chaud",
-       ""
+       "Fonctions",
+       "",
+       [
+        "Dorer → saisir avant de mijoter, dans la même cuve",
+        "Départ différé et maintien au chaud → repas prêt en rentrant du travail"
+       ]
       ]
      ]
     },
     {
      "id": "patissier",
      "n": "Robot pâtissier",
-     "cat": "cuis",
-     "q": "Pâtisserie ou repas du quotidien ?",
+     "q": "Pâtisserie occasionnelle, pain et brioche réguliers, ou grosses quantités ?",
      "c": [
       [
-       "Puissance et stabilité",
-       "Pour les pâtes lourdes (pain, brioche)."
+       "Puissance et transmission",
+       "La puissance seule ne suffit pas : une bonne transmission compte autant.",
+       [
+        "500 à 800 W → génoises, crèmes, pâtes à crêpes, chantilly",
+        "1 000 à 1 200 W → pâte à pain et brioche régulièrement",
+        "1 500 W et plus → grosses quantités de pâte lourde"
+       ]
       ],
       [
        "Capacité du bol",
-       ""
-      ],
-      [
-       "Accessoires fournis et en option",
-       "Hachoir, laminoir, blender : c'est l'écosystème du robot."
+       "",
+       [
+        "3 à 4 L → environ 500 g de farine, 1 à 2 personnes",
+        "4,5 à 5 L → environ 1 kg de farine, famille",
+        "6 à 7 L → grandes quantités, réceptions"
+       ]
       ],
       [
        "Mouvement planétaire",
-       "Pour un mélange homogène."
+       "",
+       [
+        "Le fouet tourne et parcourt tout le bol → mélange homogène, rien ne reste sur les bords"
+       ]
+      ],
+      [
+       "Accessoires",
+       "C'est l'écosystème du robot, à présenter.",
+       [
+        "Hachoir → viande, steak haché maison",
+        "Laminoir → pâtes fraîches",
+        "Blender ou râpe → un seul moteur pour tout"
+       ]
       ]
      ]
     },
     {
      "id": "cuiseur",
      "n": "Robot cuiseur multifonction",
-     "cat": "cuis",
-     "q": "Pâtisserie ou repas du quotidien ?",
+     "q": "Il doit cuisiner à votre place, ou juste vous aider ?",
      "c": [
       [
-       "Fonction chauffe",
-       "Avec la température maximale."
+       "Température maximale",
+       "",
+       [
+        "Jusqu'à 100 °C → soupes, sauces, cuisson vapeur",
+        "120 à 130 °C → faire revenir les oignons, rissoler",
+        "160 °C → saisir, caraméliser"
+       ]
       ],
       [
-       "Recettes guidées",
-       ""
+       "Capacité utile",
+       "",
+       [
+        "Environ 2 L → 4 personnes",
+        "3 L → 6 personnes"
+       ]
       ],
       [
-       "Programmes automatiques",
-       ""
+       "Recettes guidées et écran",
+       "",
+       [
+        "Écran tactile avec pas à pas → le robot règle temps, température et vitesse"
+       ]
       ],
       [
-       "Capacité",
-       ""
+       "Balance intégrée et vitesse",
+       "",
+       [
+        "Balance intégrée → on pèse directement dans le bol",
+        "Vitesse élevée → sucre glace, purée de fruits secs"
+       ]
       ]
      ]
     },
     {
      "id": "blender",
      "n": "Blender",
-     "cat": null,
-     "q": "Smoothies, soupes ou glace pilée ?",
+     "q": "Smoothies, glace pilée, soupes ou beurre d'oléagineux ?",
      "c": [
       [
-       "Puissance et vitesse",
-       "Pour la glace pilée et les fruits congelés."
+       "Puissance",
+       "",
+       [
+        "300 à 600 W → smoothies de fruits frais, milkshakes",
+        "800 à 1 200 W → glace pilée, fruits congelés",
+        "1 500 W et plus → noix, beurre de cacahuète, légumes durs, soupe chaude par friction"
+       ]
       ],
       [
        "Bol",
-       "Verre ou tritan, et sa capacité."
+       "",
+       [
+        "Verre → ne se raye pas, supporte le chaud, plus lourd",
+        "Tritan → léger, incassable"
+       ]
       ],
       [
        "Fonction chauffante",
-       "Pour les soupes."
+       "",
+       [
+        "Soupe prête dans le bol en 20 à 30 min, sans casserole"
+       ]
       ],
       [
        "Version nomade",
-       "Avec gourdes."
+       "",
+       [
+        "300 à 400 W avec gourde → smoothie à emporter, mixé dans la gourde"
+       ]
       ]
      ]
     },
     {
      "id": "mixeur",
      "n": "Mixeur plongeant",
-     "cat": null,
      "q": "Soupes, purées ou petites préparations ?",
      "c": [
       [
        "Puissance",
-       ""
+       "",
+       [
+        "300 à 500 W → soupes, compotes",
+        "700 à 1 000 W → purées épaisses, légumes durs",
+        "1 000 W et plus → hachage de noix, glaçons selon le modèle"
+       ]
       ],
       [
-       "Pied en inox",
-       ""
+       "Pied",
+       "",
+       [
+        "Pied en inox → plongeable dans une casserole chaude sans risque"
+       ]
       ],
       [
        "Accessoires",
-       "Fouet, hachoir."
+       "",
+       [
+        "Fouet → blancs en neige, chantilly",
+        "Hachoir → oignons, herbes, viande crue",
+        "Presse-purée → purée sans effet élastique"
+       ]
       ],
       [
-       "Vitesses et touche turbo",
-       ""
+       "Vitesses",
+       "",
+       [
+        "Vitesse variable + turbo → démarrer doucement, pas d'éclaboussures"
+       ]
       ]
      ]
     },
     {
      "id": "jus",
      "n": "Extracteur de jus, centrifugeuse, presse-agrumes",
-     "cat": null,
-     "q": "Agrumes seulement, ou fruits et légumes ?",
+     "q": "Agrumes seulement, ou fruits et légumes ? Jus bu tout de suite ou conservé ?",
      "c": [
       [
-       "Extracteur",
-       "Rotation lente : plus de jus et plus de vitamines, mais plus lent."
+       "Technologie",
+       "",
+       [
+        "Extracteur (rotation lente, 40 à 80 tr/min) → plus de jus, plus de vitamines, se conserve 24 à 48 h, marche avec épinards et herbes",
+        "Centrifugeuse (plus de 10 000 tr/min) → un verre en 1 min, à boire tout de suite (oxydation)",
+        "Presse-agrumes électrique → oranges, citrons, pamplemousses uniquement"
+       ]
       ],
       [
-       "Centrifugeuse",
-       "Rapide, mais le jus s'oxyde vite."
+       "Goulotte",
+       "",
+       [
+        "7 à 8 cm et plus → pomme entière, moins de découpe"
+       ]
       ],
       [
-       "Largeur de la goulotte",
-       "Fruits entiers ou à découper."
-      ],
-      [
-       "Facilité de nettoyage",
-       "Premier motif d'abandon de ces appareils."
+       "Nettoyage",
+       "Premier motif d'abandon de ces appareils.",
+       [
+        "Peu de pièces, brosse fournie, pièces au lave-vaisselle → appareil vraiment utilisé"
+       ]
       ]
      ]
     },
     {
      "id": "micro-ondes",
      "n": "Micro-ondes",
-     "cat": null,
      "q": "Réchauffer seulement, ou aussi cuire et gratiner ?",
      "c": [
       [
        "Type",
-       "Solo pour réchauffer, grill pour gratiner, combiné (chaleur tournante) pour remplacer un four."
+       "",
+       [
+        "Solo → réchauffer, décongeler",
+        "Grill → gratiner, rendre croustillant",
+        "Combiné (chaleur tournante) → gâteaux, rôtis : remplace un four"
+       ]
       ],
       [
        "Volume",
-       "20 L pour 1 à 2 personnes, 25 L et plus pour une famille."
-      ],
-      [
-       "Plateau tournant ou sole plate",
-       "La sole plate est plus facile à nettoyer."
+       "",
+       [
+        "17 à 20 L → 1 assiette, 1 à 2 personnes",
+        "23 à 25 L → plat familial",
+        "28 à 32 L et plus → poulet entier en combiné"
+       ]
       ],
       [
        "Puissance micro-ondes",
-       ""
+       "",
+       [
+        "700 W → réchauffage",
+        "800 à 1 000 W → cuisson rapide"
+       ]
+      ],
+      [
+       "Plateau tournant ou sole plate",
+       "",
+       [
+        "Sole plate → plats rectangulaires, nettoyage facile"
+       ]
       ]
      ]
     },
     {
      "id": "mini-four",
      "n": "Mini-four",
-     "cat": null,
      "q": "Logement sans four ? Pour combien de personnes ?",
      "c": [
       [
        "Volume",
-       ""
+       "",
+       [
+        "10 à 20 L → 1 à 2 personnes, petite pizza, gratin individuel",
+        "25 à 35 L → pizza de 30 cm, poulet",
+        "40 L et plus → famille, cuisson sur 2 niveaux : remplace un four"
+       ]
       ],
       [
        "Chaleur tournante",
-       ""
+       "",
+       [
+        "Cuisson homogène → pâtisserie, plusieurs plats à la fois"
+       ]
       ],
       [
        "Température maximale",
-       ""
+       "",
+       [
+        "230 à 250 °C → pizza croustillante, gratin doré"
+       ]
       ],
       [
        "Plaques de cuisson intégrées",
-       "Utile dans un logement sans cuisine équipée."
+       "",
+       [
+        "Four + 2 plaques → cuisine complète pour un studio"
+       ]
       ]
      ]
     },
     {
      "id": "convivial",
      "n": "Raclette, plancha, gaufrier, crêpière",
-     "cat": null,
-     "q": "Pour combien de convives ?",
+     "q": "Pour combien de convives, et pour quels repas ?",
      "c": [
       [
        "Nombre de convives",
-       ""
+       "",
+       [
+        "2 poêlons → duo",
+        "6 à 8 poêlons → famille",
+        "10 à 12 poêlons → soirée entre amis"
+       ]
       ],
       [
-       "Plaques amovibles et lavables",
-       "Au lave-vaisselle."
+       "Polyvalence",
+       "",
+       [
+        "Raclette avec plaque grill ou pierre → cuire la viande en même temps",
+        "Plaques interchangeables (gaufres, croque, crêpes) → un appareil pour plusieurs repas"
+       ]
       ],
       [
-       "Revêtement",
-       ""
+       "Puissance",
+       "",
+       [
+        "Plancha 2 000 à 2 500 W → saisit la viande sans la faire bouillir",
+        "Gaufrier 1 000 W et plus → 2 gaufres en quelques minutes"
+       ]
       ],
       [
-       "Thermostat réglable",
-       ""
+       "Entretien",
+       "",
+       [
+        "Plaques amovibles au lave-vaisselle → nettoyage rapide après la soirée"
+       ]
       ]
      ]
     },
     {
      "id": "fait-maison",
      "n": "Machine à pain, yaourtière, sorbetière",
-     "cat": null,
      "q": "Que voulez-vous faire maison, et en quelle quantité ?",
      "c": [
       [
-       "Capacité",
-       "Poids du pain, nombre de pots."
+       "Machine à pain",
+       "",
+       [
+        "Pain de 500 g → 1 à 2 personnes",
+        "Pain de 1 à 1,5 kg → famille",
+        "Programme sans gluten → intolérants",
+        "Départ différé (13 à 15 h) → pain chaud au réveil"
+       ]
       ],
       [
-       "Programmes",
-       "Sans gluten, confiture, brioche."
-      ],
-      [
-       "Départ différé",
-       ""
+       "Yaourtière",
+       "",
+       [
+        "6 à 8 pots → quelques jours pour 2 personnes",
+        "Programme fromage blanc ou yaourt grec → plus de variété"
+       ]
       ],
       [
        "Sorbetière",
-       "Bol à congeler à l'avance, ou turbine autonome pour une glace tout de suite."
+       "",
+       [
+        "Bol à congeler 12 à 24 h avant → prix bas, il faut anticiper",
+        "Turbine à compresseur → glace en 30 à 60 min, sans anticiper, plusieurs parfums d'affilée"
+       ]
       ]
      ]
     }
@@ -546,152 +1129,258 @@
     {
      "id": "seche-cheveux",
      "n": "Sèche-cheveux",
-     "cat": "beaute",
-     "q": "Quel type de cheveux, et quel résultat recherché ?",
+     "q": "Quel type de cheveux, et quel résultat : séchage rapide, brushing, boucles ?",
      "c": [
       [
-       "Moteur",
-       "AC (pro, durable) ou DC (léger). La vitesse du flux d'air compte plus que les watts."
+       "Puissance et moteur",
+       "",
+       [
+        "1 600 à 1 800 W → cheveux courts, voyage",
+        "2 000 à 2 400 W → cheveux longs ou épais",
+        "Moteur AC → professionnel, durable, plus lourd",
+        "Moteur numérique → léger, sèche vite avec un air puissant, sans chaleur excessive"
+       ]
       ],
       [
        "Technologie ionique",
-       "Contre les frisottis."
+       "",
+       [
+        "Ions → cheveux lisses et brillants, moins de frisottis"
+       ]
       ],
       [
        "Réglages",
-       "Chaleur, vitesse, touche air froid."
+       "",
+       [
+        "3 températures + 2 vitesses → adapter aux cheveux fins ou épais",
+        "Air froid → fixe le brushing"
+       ]
       ],
       [
        "Accessoires",
-       "Diffuseur pour les cheveux bouclés."
+       "",
+       [
+        "Concentrateur fin → brushing lisse",
+        "Diffuseur → définit les boucles sans les casser"
+       ]
       ],
       [
        "Poids",
-       ""
+       "",
+       [
+        "Moins de 500 g → pas de fatigue au bras sur cheveux longs"
+       ]
       ]
      ]
     },
     {
      "id": "lisseur",
      "n": "Lisseur, boucleur, brosse soufflante",
-     "cat": "beaute",
      "q": "Quel type de cheveux, et quel résultat recherché ?",
      "c": [
       [
-       "Plaques",
-       "Céramique pour cheveux fins, titane pour cheveux épais."
+       "Température",
+       "",
+       [
+        "150 à 180 °C → cheveux fins, abîmés ou décolorés",
+        "180 à 200 °C → cheveux normaux",
+        "200 à 230 °C → cheveux épais ou crépus"
+       ]
       ],
       [
-       "Réglage de température",
-       "Protège les cheveux."
+       "Plaques",
+       "",
+       [
+        "Céramique → chaleur douce et homogène",
+        "Titane → monte vite, efficace sur cheveux épais",
+        "Ionique ou tourmaline → moins de frisottis"
+       ]
       ],
       [
        "Largeur des plaques",
-       "Selon la longueur des cheveux."
+       "",
+       [
+        "2 à 2,5 cm → cheveux courts, frange, boucles au lisseur",
+        "3 à 4 cm et plus → cheveux longs et épais"
+       ]
       ],
       [
-       "Temps de chauffe",
-       ""
+       "Diamètre du boucleur",
+       "",
+       [
+        "19 mm → boucles serrées",
+        "25 mm → boucles classiques",
+        "32 à 38 mm → ondulations souples"
+       ]
+      ],
+      [
+       "Brosse soufflante, multi-styler",
+       "",
+       [
+        "Brosse soufflante → sèche et donne du volume en un geste",
+        "Multi-styler à air → boucles et lissage avec moins de chaleur"
+       ]
       ]
      ]
     },
     {
      "id": "brosse-dents",
      "n": "Brosse à dents électrique",
-     "cat": "beaute",
      "q": "Gencives sensibles ? Brosse partagée en famille ?",
      "c": [
       [
        "Technologie",
-       "Oscillo-rotative ou sonique."
+       "",
+       [
+        "Oscillo-rotative (tête ronde) → entoure chaque dent, enlève bien la plaque",
+        "Sonique (tête allongée, plusieurs dizaines de milliers de mouvements/min) → nettoie entre les dents par vibrations, plus douce"
+       ]
       ],
       [
        "Capteur de pression",
-       "Protège les gencives."
+       "",
+       [
+        "Alerte quand on appuie trop → protège gencives et émail"
+       ]
       ],
       [
        "Minuteur et modes",
-       "Gencives sensibles, blancheur."
+       "",
+       [
+        "Minuteur 2 min + signal toutes les 30 s → brossage complet",
+        "Mode gencives sensibles → brossage doux",
+        "Mode blancheur → polit les taches"
+       ]
       ],
       [
        "Autonomie",
-       ""
+       "",
+       [
+        "2 semaines → usage maison",
+        "1 mois et plus + étui → voyage"
+       ]
       ],
       [
-       "Prix des brossettes",
-       "C'est le vrai coût sur la durée."
+       "Brossettes",
+       "À changer tous les 3 mois : c'est le vrai coût sur la durée.",
+       [
+        "Pour 2 personnes → environ 8 brossettes par an à racheter"
+       ]
       ]
      ]
     },
     {
      "id": "tondeuse",
      "n": "Tondeuse et rasoir",
-     "cat": "beaute",
-     "q": "Barbe courte ou longue ? Peau sensible ?",
+     "q": "Barbe courte ou longue ? Peau sensible ? Rasage tous les jours ?",
      "c": [
       [
+       "Plage et précision de coupe",
+       "",
+       [
+        "0,5 à 10 mm → barbe courte, barbe de 3 jours",
+        "Jusqu'à 20 mm et plus → barbe longue",
+        "Réglage tous les 0,2 à 0,5 mm → dégradés précis"
+       ]
+      ],
+      [
        "Usage",
-       "Barbe, cheveux, corps ou multi-usage."
+       "",
+       [
+        "Barbe → contours et longueur",
+        "Cheveux → sabots de 3 à 25 mm",
+        "Multi-usage → visage, nez, oreilles, corps avec un seul appareil"
+       ]
       ],
       [
-       "Hauteurs de coupe",
-       "Plage et nombre de réglages."
+       "Autonomie et étanchéité",
+       "",
+       [
+        "60 à 120 min → plusieurs semaines sans recharge",
+        "Charge rapide 5 min → dépannage pour une coupe",
+        "Étanche → utilisable sous la douche, rinçage à l'eau"
+       ]
       ],
       [
-       "Sans fil et étanche",
-       "Pour une utilisation sous la douche."
-      ],
-      [
-       "Lames",
-       "Inox, titane, autoaffûtage."
-      ],
-      [
-       "Rasoir",
-       "Rotatif : barbe dure, rasage en tous sens. Grille : peau sensible, rasage de près."
+       "Rasoir : rotatif ou grille",
+       "",
+       [
+        "Rotatif → suit les contours, barbe de plusieurs jours, rasage dans tous les sens",
+        "Grille → rasage de près quotidien, peau sensible, lignes nettes"
+       ]
       ]
      ]
     },
     {
      "id": "epilation",
      "n": "Épilateur et lumière pulsée (IPL)",
-     "cat": "beaute",
      "q": "Quelles zones, et quelle couleur de peau et de poils ?",
      "c": [
       [
-       "Compatibilité phototype",
-       "Point clé pour l'IPL, à vérifier en premier."
+       "Compatibilité IPL",
+       "Point à vérifier en premier.",
+       [
+        "Poils foncés sur peau claire à mate → efficace",
+        "Poils blancs, blonds ou roux → inefficace",
+        "Peau très foncée → selon le modèle, vérifier le tableau des phototypes"
+       ]
       ],
       [
-       "Nombre de flashs",
-       "Durée de vie de l'appareil."
+       "Nombre de flashs et résultats",
+       "",
+       [
+        "Plusieurs centaines de milliers de flashs → des années d'usage sur tout le corps",
+        "Résultats visibles après 3 à 4 séances, puis entretien toutes les 4 à 8 semaines"
+       ]
       ],
       [
        "Têtes fournies",
-       "Visage, aisselles, maillot."
+       "",
+       [
+        "Tête précision → visage, maillot",
+        "Grande tête → jambes en quelques minutes"
+       ]
       ],
       [
-       "Sec ou sous l'eau",
-       "Pour un épilateur."
+       "Épilateur électrique",
+       "",
+       [
+        "20 à 40 pinces → plus de pinces, épilation plus rapide",
+        "Utilisable sous l'eau → moins douloureux",
+        "Résultat pendant 3 à 4 semaines"
+       ]
       ]
      ]
     },
     {
      "id": "pese",
      "n": "Pèse-personne",
-     "cat": null,
-     "q": "Suivre seulement le poids, ou aussi la masse grasse ?",
+     "q": "Suivre seulement le poids, ou aussi la composition du corps ?",
      "c": [
       [
        "Mesures",
-       "Poids seul ou impédancemètre (masse grasse, muscle)."
+       "",
+       [
+        "Poids seul → suivi simple",
+        "Impédancemètre → masse grasse, muscle, eau, os : suivi d'une perte de poids ou d'un programme sportif",
+        "Impédancemètre déconseillé aux porteurs de pacemaker et aux femmes enceintes"
+       ]
       ],
       [
-       "Appli connectée",
-       ""
+       "Précision et portée",
+       "",
+       [
+        "Graduation 50 g → suivi fin",
+        "Portée 180 kg et plus → toutes morphologies"
+       ]
       ],
       [
-       "Nombre d'utilisateurs reconnus",
-       ""
+       "Appli et utilisateurs",
+       "",
+       [
+        "Appli connectée → courbes d'évolution automatiques",
+        "Jusqu'à 8 utilisateurs reconnus → toute la famille"
+       ]
       ]
      ]
     }
@@ -703,76 +1392,119 @@
     {
      "id": "air",
      "n": "Purificateur, déshumidificateur, humidificateur",
-     "cat": null,
-     "q": "Taille de la pièce ? Allergies, humidité ou air sec ?",
+     "q": "Quelle pièce et quelle surface ? Allergies, humidité, ou air sec ?",
      "c": [
       [
-       "Surface couverte",
-       "Ou CADR (m3/h) pour un purificateur."
+       "Purificateur : débit d'air purifié (CADR)",
+       "",
+       [
+        "Pièce de 20 m² → au moins 200 m³/h",
+        "Pièce de 40 m² → au moins 400 m³/h"
+       ]
       ],
       [
        "Filtres",
-       "HEPA pour pollens et poussières, charbon pour les odeurs ; prix des filtres de rechange."
+       "Penser au prix des filtres de rechange.",
+       [
+        "HEPA H13 → pollens, poussières, poils : allergiques",
+        "Charbon actif → odeurs, fumée de cuisine ou de tabac"
+       ]
       ],
       [
-       "Niveau sonore en mode nuit",
-       ""
+       "Déshumidificateur : capacité",
+       "Humidité idéale : 40 à 60 %.",
+       [
+        "10 à 12 L/jour → chambre, petit appartement",
+        "20 L/jour et plus → cave, grande surface, séchage du linge"
+       ]
       ],
       [
-       "Capacité (L/jour)",
-       "Pour un déshumidificateur."
+       "Niveau sonore",
+       "",
+       [
+        "Moins de 30 dB en mode nuit → utilisable dans une chambre"
+       ]
       ]
      ]
     },
     {
      "id": "clim",
      "n": "Ventilateur et climatiseur mobile",
-     "cat": null,
-     "q": "Surface de la pièce ? C'est pour une chambre ?",
+     "q": "Quelle surface, et c'est pour une chambre ?",
      "c": [
       [
-       "Ventilateur",
-       "Silence et oscillation."
+       "Puissance frigorifique (climatiseur)",
+       "Environ 100 W par m² pour une hauteur sous plafond standard.",
+       [
+        "2 000 W (7 000 BTU) → environ 20 m²",
+        "2 600 W (9 000 BTU) → 25 à 30 m²",
+        "3 500 W (12 000 BTU) → environ 35 m²"
+       ]
       ],
       [
-       "Puissance frigorifique",
-       "Adaptée à la surface, environ 100 W par m²."
-      ],
-      [
-       "Classe énergétique",
-       ""
+       "Installation",
+       "",
+       [
+        "Gaine par la fenêtre + kit de calfeutrage → sinon l'air chaud rentre et l'appareil perd son efficacité"
+       ]
       ],
       [
        "Niveau sonore",
-       ""
+       "",
+       [
+        "Climatiseur mobile 50 à 65 dB → à vérifier pour une chambre",
+        "Ventilateur 30 à 50 dB en mode nuit"
+       ]
       ],
       [
-       "Gaine et kit fenêtre",
-       "Point d'installation à vérifier avec le client."
+       "Type de ventilateur",
+       "",
+       [
+        "Colonne → peu de place au sol",
+        "Sur pied → plus de souffle, grande pièce",
+        "Oscillation, télécommande, minuterie → confort la nuit",
+        "Rafraîchisseur d'air → baisse de quelques degrés seulement, ne remplace pas un climatiseur"
+       ]
       ]
      ]
     },
     {
      "id": "chauffage",
      "n": "Chauffage d'appoint",
-     "cat": null,
-     "q": "Usage ponctuel ou continu ? Quelle pièce ?",
+     "q": "Quelle pièce, et usage ponctuel ou plusieurs heures ?",
      "c": [
       [
-       "Usage",
-       "Soufflant : chaleur immédiate. Bain d'huile : chaleur douce et durable. Céramique : entre les deux."
-      ],
-      [
        "Puissance selon la surface",
-       "Environ 100 W par m²."
+       "Environ 100 W par m².",
+       [
+        "1 000 W → environ 10 m²",
+        "2 000 W → environ 20 m²"
+       ]
       ],
       [
-       "Thermostat et programmation",
-       ""
+       "Type",
+       "",
+       [
+        "Soufflant → chaud en quelques secondes : salle de bain le matin, bureau",
+        "Bain d'huile → chauffe lentement mais garde la chaleur : chambre, plusieurs heures",
+        "Céramique → entre les deux, chaleur rapide et plus douce"
+       ]
+      ],
+      [
+       "Réglages",
+       "",
+       [
+        "Thermostat → maintient la température, consomme moins",
+        "Mode hors-gel, programmation → pièces peu utilisées"
+       ]
       ],
       [
        "Sécurités",
-       "Anti-basculement, anti-surchauffe."
+       "",
+       [
+        "Anti-basculement et anti-surchauffe → enfants, animaux",
+        "Protection IP adaptée → obligatoire en salle de bain"
+       ]
       ]
      ]
     }
