@@ -1,0 +1,782 @@
+{
+ "app": "carnet-joseph",
+ "kind": "guides",
+ "updated": "2026-11",
+ "reflexes": [
+  "Calculer le coût d'usage, pas seulement le prix d'achat : capsules, filtres, brossettes.",
+  "Vérifier la place disponible chez le client.",
+  "Regarder l'indice de réparabilité et la durée de disponibilité des pièces.",
+  "Proposer le complément logique : détartrant, filtres, batterie supplémentaire, garantie."
+ ],
+ "families": [
+  {
+   "n": "Entretien de la maison",
+   "items": [
+    {
+     "id": "aspi-balai",
+     "n": "Aspirateur balai",
+     "cat": "aspi",
+     "q": "Quelle surface, et vous avez des animaux ?",
+     "c": [
+      [
+       "Puissance d'aspiration en airwatts (AW)",
+       "Pas en watts. Sous 100 AW c'est un appoint, à partir de 150 AW ça remplace un traîneau."
+      ],
+      [
+       "Autonomie réelle en mode normal",
+       "Le chiffre affiché est souvent mesuré en mode Eco, sans brosse motorisée."
+      ],
+      [
+       "Poids et prise en main",
+       "Important pour les escaliers et l'aspiration en hauteur."
+      ],
+      [
+       "Brosse",
+       "Anti-emmêlement si animaux ou cheveux longs, LED pour voir la poussière."
+      ],
+      [
+       "Bac et filtration",
+       "Capacité du bac, filtre HEPA pour les allergiques."
+      ]
+     ]
+    },
+    {
+     "id": "aspi-traineau",
+     "n": "Aspirateur traîneau",
+     "cat": "aspi",
+     "q": "Allergies dans le foyer ? Plutôt sols durs ou moquettes ?",
+     "c": [
+      [
+       "Avec ou sans sac",
+       "Avec sac : plus hygiénique pour les allergiques. Sans sac : pas de consommable à racheter."
+      ],
+      [
+       "Niveau sonore (dB)",
+       "Sous 70 dB, il est vraiment silencieux."
+      ],
+      [
+       "Brosses fournies",
+       "Parquet, tapis, spéciale animaux."
+      ],
+      [
+       "Rayon d'action",
+       "Câble + tube : évite de changer de prise à chaque pièce."
+      ]
+     ]
+    },
+    {
+     "id": "aspi-robot",
+     "n": "Robot aspirateur",
+     "cat": "aspi",
+     "q": "Vous voulez ne plus toucher à rien, ou juste un entretien quotidien ?",
+     "c": [
+      [
+       "Navigation",
+       "Lidar ou caméra = cartographie précise ; gyroscope = déplacement au hasard."
+      ],
+      [
+       "Station",
+       "Vidage automatique, lavage et séchage des serpillières : c'est elle qui fait la différence de prix."
+      ],
+      [
+       "Lavage",
+       "Serpillières rotatives et relevables (tapis) ou simple patin."
+      ],
+      [
+       "Franchissement de seuils et détection d'obstacles",
+       "Hauteur en cm, détection des câbles et des déjections d'animaux."
+      ],
+      [
+       "Puissance (Pa) puis autonomie",
+       "À rapporter à la surface du logement."
+      ]
+     ]
+    },
+    {
+     "id": "aspi-laveur",
+     "n": "Aspirateur laveur",
+     "cat": "aspi",
+     "q": "Quelle surface de sols durs à laver ?",
+     "c": [
+      [
+       "Autonettoyage et séchage du rouleau",
+       "Sans ça, le rouleau sent mauvais."
+      ],
+      [
+       "Surface couverte",
+       "Par réservoir et par charge."
+      ],
+      [
+       "Poids et finesse",
+       "Pour passer sous les meubles."
+      ],
+      [
+       "Eau froide ou eau chaude",
+       "L'eau chaude dégraisse mieux."
+      ]
+     ]
+    },
+    {
+     "id": "vapeur",
+     "n": "Nettoyeur vapeur",
+     "cat": null,
+     "q": "Quelles surfaces : sols, joints, vitres, salle de bain ?",
+     "c": [
+      [
+       "Pression (bars) et temps de chauffe",
+       ""
+      ],
+      [
+       "Autonomie",
+       "Capacité du réservoir."
+      ],
+      [
+       "Polyvalence",
+       "Balai seul ou combiné avec un nettoyeur à main pour joints, vitres et salle de bain."
+      ]
+     ]
+    },
+    {
+     "id": "repassage",
+     "n": "Centrale vapeur et fer à repasser",
+     "cat": "linge",
+     "q": "Combien de linge par semaine, et beaucoup de chemises ? Au-delà d'une machine par semaine, la centrale s'impose.",
+     "c": [
+      [
+       "Débit vapeur continu (g/min) et effet pressing (g)",
+       "C'est ce qui fait la vitesse de repassage, pas les watts."
+      ],
+      [
+       "Pression (bars)",
+       "Pour une centrale vapeur."
+      ],
+      [
+       "Gestion du calcaire",
+       "Collecteur, cartouche, ou eau du robinet acceptée."
+      ],
+      [
+       "Semelle",
+       "Glisse et résistance aux rayures."
+      ],
+      [
+       "Poids du fer et arrêt automatique",
+       ""
+      ]
+     ]
+    },
+    {
+     "id": "defroisseur",
+     "n": "Défroisseur",
+     "cat": "linge",
+     "q": "Retouches rapides à la maison ou en voyage ?",
+     "c": [
+      [
+       "Temps de chauffe",
+       ""
+      ],
+      [
+       "Débit vapeur",
+       ""
+      ],
+      [
+       "Réservoir",
+       ""
+      ],
+      [
+       "Format",
+       "Vertical sur pied, ou à main pour les retouches et le voyage."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "n": "Café et petit-déjeuner",
+   "items": [
+    {
+     "id": "cafe",
+     "n": "Machine à café",
+     "cat": "cafe",
+     "q": "Combien de cafés par jour, et plutôt expresso ou boissons lactées ?",
+     "c": [
+      [
+       "Type",
+       "Expresso broyeur : meilleur goût et coût par tasse le plus bas, achat plus cher. Capsules : simplicité, coût par tasse élevé. Filtre : grandes quantités."
+      ],
+      [
+       "Boissons lactées",
+       "Système lait automatique (one touch) ou buse vapeur manuelle."
+      ],
+      [
+       "Volume quotidien",
+       "Taille du réservoir d'eau et du bac à grains."
+      ],
+      [
+       "Entretien",
+       "Groupe amovible, détartrage automatique."
+      ],
+      [
+       "Coût par tasse",
+       "Faire le calcul sur un an avec le client."
+      ]
+     ]
+    },
+    {
+     "id": "bouilloire",
+     "n": "Bouilloire",
+     "cat": null,
+     "q": "Thé, infusions ou simple eau chaude ?",
+     "c": [
+      [
+       "Capacité",
+       ""
+      ],
+      [
+       "Réglage de température",
+       "Pour le thé vert et les infusions."
+      ],
+      [
+       "Matériau",
+       "Inox, verre ou plastique."
+      ],
+      [
+       "Filtre anticalcaire",
+       ""
+      ]
+     ]
+    },
+    {
+     "id": "grille-pain",
+     "n": "Grille-pain",
+     "cat": null,
+     "q": "Quel pain : de mie, de campagne, bagels ?",
+     "c": [
+      [
+       "Fentes",
+       "Courtes ou longues, larges pour le pain de campagne ou les bagels."
+      ],
+      [
+       "Fonctions",
+       "Décongélation, réchauffage, maintien au chaud."
+      ],
+      [
+       "Régularité du brunissage",
+       ""
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "n": "Cuisson et préparation",
+   "items": [
+    {
+     "id": "airfryer",
+     "n": "Air fryer",
+     "cat": "air",
+     "q": "Pour combien de personnes, et uniquement des frites ou toute la cuisine ?",
+     "c": [
+      [
+       "Capacité adaptée au foyer",
+       "3 à 4 L pour 1 à 2 personnes, 5 à 6 L pour une famille de 4."
+      ],
+      [
+       "Un ou deux paniers",
+       "Deux aliments en même temps, avec cuissons synchronisées."
+      ],
+      [
+       "Fonctions",
+       "Grill, déshydratation, réchauffage."
+      ],
+      [
+       "Nettoyage",
+       "Paniers qui passent au lave-vaisselle."
+      ],
+      [
+       "Encombrement",
+       "Place sur le plan de travail."
+      ]
+     ]
+    },
+    {
+     "id": "multicuiseur",
+     "n": "Multicuiseur (type Cookeo)",
+     "cat": "cuis",
+     "q": "Peu de temps pour cuisiner en semaine ?",
+     "c": [
+      [
+       "Cuisson sous pression",
+       "C'est le gain de temps."
+      ],
+      [
+       "Recettes guidées et appli",
+       "Idéal pour les débutants."
+      ],
+      [
+       "Capacité de la cuve",
+       ""
+      ],
+      [
+       "Départ différé et maintien au chaud",
+       ""
+      ]
+     ]
+    },
+    {
+     "id": "patissier",
+     "n": "Robot pâtissier",
+     "cat": "cuis",
+     "q": "Pâtisserie ou repas du quotidien ?",
+     "c": [
+      [
+       "Puissance et stabilité",
+       "Pour les pâtes lourdes (pain, brioche)."
+      ],
+      [
+       "Capacité du bol",
+       ""
+      ],
+      [
+       "Accessoires fournis et en option",
+       "Hachoir, laminoir, blender : c'est l'écosystème du robot."
+      ],
+      [
+       "Mouvement planétaire",
+       "Pour un mélange homogène."
+      ]
+     ]
+    },
+    {
+     "id": "cuiseur",
+     "n": "Robot cuiseur multifonction",
+     "cat": "cuis",
+     "q": "Pâtisserie ou repas du quotidien ?",
+     "c": [
+      [
+       "Fonction chauffe",
+       "Avec la température maximale."
+      ],
+      [
+       "Recettes guidées",
+       ""
+      ],
+      [
+       "Programmes automatiques",
+       ""
+      ],
+      [
+       "Capacité",
+       ""
+      ]
+     ]
+    },
+    {
+     "id": "blender",
+     "n": "Blender",
+     "cat": null,
+     "q": "Smoothies, soupes ou glace pilée ?",
+     "c": [
+      [
+       "Puissance et vitesse",
+       "Pour la glace pilée et les fruits congelés."
+      ],
+      [
+       "Bol",
+       "Verre ou tritan, et sa capacité."
+      ],
+      [
+       "Fonction chauffante",
+       "Pour les soupes."
+      ],
+      [
+       "Version nomade",
+       "Avec gourdes."
+      ]
+     ]
+    },
+    {
+     "id": "mixeur",
+     "n": "Mixeur plongeant",
+     "cat": null,
+     "q": "Soupes, purées ou petites préparations ?",
+     "c": [
+      [
+       "Puissance",
+       ""
+      ],
+      [
+       "Pied en inox",
+       ""
+      ],
+      [
+       "Accessoires",
+       "Fouet, hachoir."
+      ],
+      [
+       "Vitesses et touche turbo",
+       ""
+      ]
+     ]
+    },
+    {
+     "id": "jus",
+     "n": "Extracteur de jus, centrifugeuse, presse-agrumes",
+     "cat": null,
+     "q": "Agrumes seulement, ou fruits et légumes ?",
+     "c": [
+      [
+       "Extracteur",
+       "Rotation lente : plus de jus et plus de vitamines, mais plus lent."
+      ],
+      [
+       "Centrifugeuse",
+       "Rapide, mais le jus s'oxyde vite."
+      ],
+      [
+       "Largeur de la goulotte",
+       "Fruits entiers ou à découper."
+      ],
+      [
+       "Facilité de nettoyage",
+       "Premier motif d'abandon de ces appareils."
+      ]
+     ]
+    },
+    {
+     "id": "micro-ondes",
+     "n": "Micro-ondes",
+     "cat": null,
+     "q": "Réchauffer seulement, ou aussi cuire et gratiner ?",
+     "c": [
+      [
+       "Type",
+       "Solo pour réchauffer, grill pour gratiner, combiné (chaleur tournante) pour remplacer un four."
+      ],
+      [
+       "Volume",
+       "20 L pour 1 à 2 personnes, 25 L et plus pour une famille."
+      ],
+      [
+       "Plateau tournant ou sole plate",
+       "La sole plate est plus facile à nettoyer."
+      ],
+      [
+       "Puissance micro-ondes",
+       ""
+      ]
+     ]
+    },
+    {
+     "id": "mini-four",
+     "n": "Mini-four",
+     "cat": null,
+     "q": "Logement sans four ? Pour combien de personnes ?",
+     "c": [
+      [
+       "Volume",
+       ""
+      ],
+      [
+       "Chaleur tournante",
+       ""
+      ],
+      [
+       "Température maximale",
+       ""
+      ],
+      [
+       "Plaques de cuisson intégrées",
+       "Utile dans un logement sans cuisine équipée."
+      ]
+     ]
+    },
+    {
+     "id": "convivial",
+     "n": "Raclette, plancha, gaufrier, crêpière",
+     "cat": null,
+     "q": "Pour combien de convives ?",
+     "c": [
+      [
+       "Nombre de convives",
+       ""
+      ],
+      [
+       "Plaques amovibles et lavables",
+       "Au lave-vaisselle."
+      ],
+      [
+       "Revêtement",
+       ""
+      ],
+      [
+       "Thermostat réglable",
+       ""
+      ]
+     ]
+    },
+    {
+     "id": "fait-maison",
+     "n": "Machine à pain, yaourtière, sorbetière",
+     "cat": null,
+     "q": "Que voulez-vous faire maison, et en quelle quantité ?",
+     "c": [
+      [
+       "Capacité",
+       "Poids du pain, nombre de pots."
+      ],
+      [
+       "Programmes",
+       "Sans gluten, confiture, brioche."
+      ],
+      [
+       "Départ différé",
+       ""
+      ],
+      [
+       "Sorbetière",
+       "Bol à congeler à l'avance, ou turbine autonome pour une glace tout de suite."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "n": "Soin de la personne",
+   "items": [
+    {
+     "id": "seche-cheveux",
+     "n": "Sèche-cheveux",
+     "cat": "beaute",
+     "q": "Quel type de cheveux, et quel résultat recherché ?",
+     "c": [
+      [
+       "Moteur",
+       "AC (pro, durable) ou DC (léger). La vitesse du flux d'air compte plus que les watts."
+      ],
+      [
+       "Technologie ionique",
+       "Contre les frisottis."
+      ],
+      [
+       "Réglages",
+       "Chaleur, vitesse, touche air froid."
+      ],
+      [
+       "Accessoires",
+       "Diffuseur pour les cheveux bouclés."
+      ],
+      [
+       "Poids",
+       ""
+      ]
+     ]
+    },
+    {
+     "id": "lisseur",
+     "n": "Lisseur, boucleur, brosse soufflante",
+     "cat": "beaute",
+     "q": "Quel type de cheveux, et quel résultat recherché ?",
+     "c": [
+      [
+       "Plaques",
+       "Céramique pour cheveux fins, titane pour cheveux épais."
+      ],
+      [
+       "Réglage de température",
+       "Protège les cheveux."
+      ],
+      [
+       "Largeur des plaques",
+       "Selon la longueur des cheveux."
+      ],
+      [
+       "Temps de chauffe",
+       ""
+      ]
+     ]
+    },
+    {
+     "id": "brosse-dents",
+     "n": "Brosse à dents électrique",
+     "cat": "beaute",
+     "q": "Gencives sensibles ? Brosse partagée en famille ?",
+     "c": [
+      [
+       "Technologie",
+       "Oscillo-rotative ou sonique."
+      ],
+      [
+       "Capteur de pression",
+       "Protège les gencives."
+      ],
+      [
+       "Minuteur et modes",
+       "Gencives sensibles, blancheur."
+      ],
+      [
+       "Autonomie",
+       ""
+      ],
+      [
+       "Prix des brossettes",
+       "C'est le vrai coût sur la durée."
+      ]
+     ]
+    },
+    {
+     "id": "tondeuse",
+     "n": "Tondeuse et rasoir",
+     "cat": "beaute",
+     "q": "Barbe courte ou longue ? Peau sensible ?",
+     "c": [
+      [
+       "Usage",
+       "Barbe, cheveux, corps ou multi-usage."
+      ],
+      [
+       "Hauteurs de coupe",
+       "Plage et nombre de réglages."
+      ],
+      [
+       "Sans fil et étanche",
+       "Pour une utilisation sous la douche."
+      ],
+      [
+       "Lames",
+       "Inox, titane, autoaffûtage."
+      ],
+      [
+       "Rasoir",
+       "Rotatif : barbe dure, rasage en tous sens. Grille : peau sensible, rasage de près."
+      ]
+     ]
+    },
+    {
+     "id": "epilation",
+     "n": "Épilateur et lumière pulsée (IPL)",
+     "cat": "beaute",
+     "q": "Quelles zones, et quelle couleur de peau et de poils ?",
+     "c": [
+      [
+       "Compatibilité phototype",
+       "Point clé pour l'IPL, à vérifier en premier."
+      ],
+      [
+       "Nombre de flashs",
+       "Durée de vie de l'appareil."
+      ],
+      [
+       "Têtes fournies",
+       "Visage, aisselles, maillot."
+      ],
+      [
+       "Sec ou sous l'eau",
+       "Pour un épilateur."
+      ]
+     ]
+    },
+    {
+     "id": "pese",
+     "n": "Pèse-personne",
+     "cat": null,
+     "q": "Suivre seulement le poids, ou aussi la masse grasse ?",
+     "c": [
+      [
+       "Mesures",
+       "Poids seul ou impédancemètre (masse grasse, muscle)."
+      ],
+      [
+       "Appli connectée",
+       ""
+      ],
+      [
+       "Nombre d'utilisateurs reconnus",
+       ""
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "n": "Confort de la maison",
+   "items": [
+    {
+     "id": "air",
+     "n": "Purificateur, déshumidificateur, humidificateur",
+     "cat": null,
+     "q": "Taille de la pièce ? Allergies, humidité ou air sec ?",
+     "c": [
+      [
+       "Surface couverte",
+       "Ou CADR (m3/h) pour un purificateur."
+      ],
+      [
+       "Filtres",
+       "HEPA pour pollens et poussières, charbon pour les odeurs ; prix des filtres de rechange."
+      ],
+      [
+       "Niveau sonore en mode nuit",
+       ""
+      ],
+      [
+       "Capacité (L/jour)",
+       "Pour un déshumidificateur."
+      ]
+     ]
+    },
+    {
+     "id": "clim",
+     "n": "Ventilateur et climatiseur mobile",
+     "cat": null,
+     "q": "Surface de la pièce ? C'est pour une chambre ?",
+     "c": [
+      [
+       "Ventilateur",
+       "Silence et oscillation."
+      ],
+      [
+       "Puissance frigorifique",
+       "Adaptée à la surface, environ 100 W par m²."
+      ],
+      [
+       "Classe énergétique",
+       ""
+      ],
+      [
+       "Niveau sonore",
+       ""
+      ],
+      [
+       "Gaine et kit fenêtre",
+       "Point d'installation à vérifier avec le client."
+      ]
+     ]
+    },
+    {
+     "id": "chauffage",
+     "n": "Chauffage d'appoint",
+     "cat": null,
+     "q": "Usage ponctuel ou continu ? Quelle pièce ?",
+     "c": [
+      [
+       "Usage",
+       "Soufflant : chaleur immédiate. Bain d'huile : chaleur douce et durable. Céramique : entre les deux."
+      ],
+      [
+       "Puissance selon la surface",
+       "Environ 100 W par m²."
+      ],
+      [
+       "Thermostat et programmation",
+       ""
+      ],
+      [
+       "Sécurités",
+       "Anti-basculement, anti-surchauffe."
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

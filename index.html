@@ -366,6 +366,18 @@ button.card:hover .k-open,button.card:focus-visible .k-open{opacity:1; transform
 .pv-specs{display:grid; grid-template-columns:1fr 1fr; gap:6px 18px}
 .pv-specs div{display:flex; justify-content:space-between; gap:8px; font-size:.88rem; padding:5px 0; border-bottom:1px solid var(--line)}
 .pv-specs span{color:var(--muted)}
+.gd{border:1px solid var(--line); border-radius:12px; margin:0 0 8px; background:var(--bg)}
+.gd>summary{list-style:none; cursor:pointer; padding:12px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px}
+.gd>summary::-webkit-details-marker{display:none}
+.gd>summary b{font-size:.98rem} .gd>summary small{color:var(--muted); font-size:.74rem; white-space:nowrap}
+.gd>summary::after{content:"+"; font:600 1.1rem var(--body); color:var(--muted)} .gd[open]>summary::after{content:"−"}
+.gd-body{padding:0 14px 14px}
+.gd-q{font-size:.92rem; line-height:1.45; padding:10px 12px; border-radius:10px; background:rgba(91,140,255,.10); border:1px solid rgba(91,140,255,.3); margin:0 0 12px}
+.gd-q span{display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--accent); margin-bottom:3px}
+.gd-c{margin:0; padding-left:1.3rem; display:flex; flex-direction:column; gap:8px}
+.gd-c li{font-size:.9rem; line-height:1.4} .gd-c li b{display:block} .gd-c li span{color:var(--muted); font-size:.85rem}
+.gd-rx{margin:0 0 12px; padding-left:1.2rem; font-size:.86rem; line-height:1.45; color:var(--muted)}
+#pr-nav{margin:10px 0 12px}
 .pv-obj{font-size:.9rem; line-height:1.45; padding:10px 12px; border-radius:10px; background:rgba(255,179,138,.08); border:1px solid rgba(255,179,138,.25); margin:0}
 .pc-wrap{overflow-x:auto}
 table.pc{width:100%; border-collapse:collapse; font-size:.86rem}
@@ -1241,6 +1253,15 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
   <section class="view" id="v-prod" aria-label="Produits">
     <button class="back" type="button" data-go="home">← Accueil</button>
     <div class="phead" style="margin:0"><h2 style="text-align:left">Produits</h2><button class="plus" type="button" id="pr-add" aria-label="Ajouter un produit" title="Ajouter un produit">+</button></div>
+    <div class="seg" id="pr-nav" role="group" aria-label="Affichage"><button type="button" data-pt="list" aria-pressed="true">Produits</button><button type="button" data-pt="guide" aria-pressed="false">Fiches conseil</button></div>
+    <div id="pr-tab-guide" hidden>
+      <div class="panel">
+        <input id="gd-q" type="search" placeholder="Rechercher : « café », « cheveux », « animaux »…" autocomplete="off" aria-label="Rechercher une fiche conseil" style="margin-bottom:10px">
+        <div class="chips" id="gd-fam" style="margin-bottom:12px"></div>
+        <div id="gd-list"><p class="empty">Chargement des fiches…</p></div>
+      </div>
+    </div>
+    <div id="pr-tab-list">
     <div class="panel" id="pr-seed" hidden>
       <h3>Petit électroménager</h3>
       <p class="note" style="margin-bottom:10px">Ajoute une sélection de 52 produits phares (aspirateurs, café, robots cuiseurs, airfryers, repassage, beauté) avec caractéristiques, arguments de vente et objections. Prix indicatifs, à vérifier en magasin.</p>
@@ -1254,6 +1275,7 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
         <button class="link" type="button" id="pr-freset" style="margin-top:6px">Réinitialiser les filtres</button></details>
       <div class="phead" style="margin:6px 0 0"><span class="note" id="pr-count"></span><select id="pr-sort" aria-label="Trier" style="width:auto"><option value="fav">Favoris d'abord</option><option value="pa">Prix croissant</option><option value="pd">Prix décroissant</option><option value="br">Marque</option></select></div>
       <div id="pr-list"></div>
+    </div>
     </div>
     <div id="pr-cmpbar" hidden></div>
   </section>
@@ -4942,6 +4964,7 @@ var PCAT={
   beaute:{n:"Beauté",f:[["type","Type","sel",["Sèche-cheveux","Multi-styler","Lisseur","Rasoir / tondeuse","Brosse à dents","Épilateur"]],["puissance","Puissance","num","W"]],acc:["Embouts et accessoires","Lames ou brossettes de rechange"]}
 };
 var pui={cat:"all",q:"",sort:"fav",flt:{},cmp:[],open:null};
+var gdui={tab:"list",fam:"all",q:"",data:null,loading:false,open:null};
 function pAll(){return state.products}
 function pFind(id){return state.products.filter(function(p){return p.id===id})[0]}
 function pName(p){return (p.brand?p.brand+" ":"")+p.model}
@@ -5002,7 +5025,7 @@ function renderProd(){
       '<label class="pcmp" title="Comparer"><input type="checkbox" data-pact="cmp"'+(on?" checked":"")+' aria-label="Comparer '+esc(pName(p))+'"><span>Comparer</span></label></span></div></div>'}).join(""):'<p class="empty">'+(P.length?"Aucun produit ne correspond à ta recherche.":"Aucun produit pour l'instant.")+'</p>';
   // barre comparer
   pui.cmp=pui.cmp.filter(function(id){return !!pFind(id)});
-  $("#pr-cmpbar").hidden=pui.cmp.length<1;
+  $("#pr-cmpbar").hidden=pui.cmp.length<1||gdui.tab==="guide";
   $("#pr-cmpbar").innerHTML='<span>'+pui.cmp.length+' / 3 sélectionné'+(pui.cmp.length>1?"s":"")+'</span><button type="button" class="link" data-cb="clear" style="color:var(--muted)">Vider</button><button type="button" class="primary" data-cb="go"'+(pui.cmp.length<2?" disabled":"")+' style="padding:9px 16px">Comparer</button>';
 }
 $("#pr-cats").addEventListener("click",function(e){var b=e.target.closest("[data-pc]");if(!b)return;pui.cat=b.dataset.pc;Object.keys(pui.flt).forEach(function(k){if(k.indexOf("s_")===0)delete pui.flt[k]});if(pui.flt.brand)delete pui.flt.brand;$("#pr-filters").innerHTML="";renderProd()});
@@ -5032,6 +5055,49 @@ $("#pr-seed-btn").addEventListener("click",function(){
     persist("products");renderProd();renderHome();toast(n+" produits ajoutés. Prix indicatifs : à vérifier en magasin.");
   }).catch(function(){toast("Impossible de charger la sélection : vérifie ta connexion.")}).then(function(){btn.disabled=false});
 });
+// fiches conseil
+function gdLoad(cb){
+  if(gdui.data){cb&&cb();return}if(gdui.loading)return;gdui.loading=true;
+  fetch("data/guides-pem.json",{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){gdui.data=j;cb&&cb()})
+    .catch(function(){$("#gd-list").innerHTML='<p class="empty">Impossible de charger les fiches : vérifie ta connexion.</p>'}).then(function(){gdui.loading=false});
+}
+function gdTab(t){
+  gdui.tab=t;$("#pr-tab-guide").hidden=t!=="guide";$("#pr-tab-list").hidden=t==="guide";$("#pr-add").hidden=t==="guide";
+  document.querySelectorAll("#pr-nav [data-pt]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pt===t))});
+  if(t==="guide"){$("#pr-cmpbar").hidden=true;gdLoad(renderGuides)}else renderProd();
+}
+function renderGuides(){
+  var D=gdui.data;if(!D)return;var q=normQ(gdui.q),P=pAll(),n=0;
+  $("#gd-fam").innerHTML='<button type="button" class="chip'+(gdui.fam==="all"?" on":"")+'" data-gf="all">Tout</button>'+D.families.map(function(f,i){return '<button type="button" class="chip'+(gdui.fam===String(i)?" on":"")+'" data-gf="'+i+'">'+esc(f.n)+'</button>'}).join("");
+  var h=(gdui.fam==="all"&&!q)?'<details class="gd"><summary><b>Les 4 réflexes pour tout le rayon</b></summary><div class="gd-body"><ol class="gd-rx">'+D.reflexes.map(function(r){return '<li>'+esc(r)+'</li>'}).join("")+'</ol></div></details>':"";
+  D.families.forEach(function(f,i){
+    if(gdui.fam!=="all"&&gdui.fam!==String(i))return;
+    f.items.forEach(function(g){
+      if(q){var hay=normQ([g.n,f.n,g.q,g.c.map(function(c){return c.join(" ")}).join(" ")].join(" "));if(q.split(/\s+/).some(function(w){return hay.indexOf(w)<0}))return}
+      n++;var np=g.cat?P.filter(function(p){return p.cat===g.cat}).length:0;
+      h+='<details class="gd" data-gid="'+esc(g.id)+'"'+(gdui.open===g.id?" open":"")+'><summary><b>'+esc(g.n)+'</b><small>'+esc(f.n)+'</small></summary><div class="gd-body">'+
+        '<p class="gd-q"><span>La question qui tranche</span>'+esc(g.q)+'</p>'+
+        '<div class="ai-sec">Points de comparaison, par ordre d\'importance</div><ol class="gd-c">'+g.c.map(function(c){return '<li><b>'+esc(c[0])+'</b>'+(c[1]?'<span>'+esc(c[1])+'</span>':'')+'</li>'}).join("")+'</ol>'+
+        (g.cat?'<button class="ghost sm" type="button" data-gcat="'+esc(g.cat)+'" style="margin-top:12px">Voir les produits '+esc((PCAT[g.cat]||{}).n||"")+(np?" ("+np+")":"")+' →</button>':'')+
+        '</div></details>';
+    });
+  });
+  $("#gd-list").innerHTML=h||'<p class="empty">Aucune fiche ne correspond à ta recherche.</p>';
+  if(!h)return;if(q&&n===1){var d=$("#gd-list details[data-gid]");if(d)d.open=true}
+}
+function gdFor(p){
+  var t=(p.specs||{}).type||"",m={aspi:/robot/i.test(t)?"aspi-robot":/tra[iî]neau/i.test(t)?"aspi-traineau":/laveur/i.test(t)?"aspi-laveur":"aspi-balai",
+    cafe:"cafe",air:"airfryer",linge:/d[ée]froisseur/i.test(t)?"defroisseur":"repassage",
+    cuis:/p[âa]tissier/i.test(t)?"patissier":/multicuiseur/i.test(t)?"multicuiseur":"cuiseur",
+    beaute:/s[èe]che/i.test(t)?"seche-cheveux":/(lisseur|styler)/i.test(t)?"lisseur":/(rasoir|tondeuse)/i.test(t)?"tondeuse":/dents/i.test(t)?"brosse-dents":/[ée]pil/i.test(t)?"epilation":null};
+  return m[p.cat]||null;
+}
+function gdOpen(id){gdui.fam="all";gdui.q="";$("#gd-q").value="";gdui.open=id;dlgClose(pvDlg);gdTab("guide");gdLoad(function(){renderGuides();var d=$('#gd-list [data-gid="'+id+'"]');if(d)d.scrollIntoView({block:"start",behavior:"smooth"})})}
+$("#pr-nav").addEventListener("click",function(e){var b=e.target.closest("[data-pt]");if(b)gdTab(b.dataset.pt)});
+$("#gd-fam").addEventListener("click",function(e){var b=e.target.closest("[data-gf]");if(!b)return;gdui.fam=b.dataset.gf;renderGuides()});
+var gdT=null;$("#gd-q").addEventListener("input",function(){gdui.q=this.value;clearTimeout(gdT);gdT=setTimeout(renderGuides,150)});
+$("#gd-list").addEventListener("toggle",function(e){var d=e.target;if(d.dataset&&d.dataset.gid&&d.open)gdui.open=d.dataset.gid},true);
+$("#gd-list").addEventListener("click",function(e){var b=e.target.closest("[data-gcat]");if(!b)return;pui.cat=b.dataset.gcat;pui.flt={};$("#pr-filters").innerHTML="";gdTab("list")});
 // fiche produit
 var pvDlg=$("#pv-dialog");
 function dlgOpen(D){if(D.showModal)D.showModal();else D.setAttribute("open","")}
@@ -5049,6 +5115,7 @@ function pvRender(){
   if(specs)h+='<div class="ai-sec" style="margin-top:14px">Caractéristiques</div><div class="pv-specs">'+specs+'</div>';
   if((p.args||[]).length)h+='<div class="ai-sec" style="margin-top:14px">Arguments de vente</div><ul class="rv-pts">'+p.args.map(function(a){return '<li class="good">'+esc(a)+'</li>'}).join("")+'</ul>';
   if(p.obj)h+='<div class="ai-sec" style="margin-top:14px">Objections et points d\'attention</div><p class="pv-obj">'+esc(p.obj)+'</p>';
+  var gid=gdFor(p);if(gid)h+='<button class="ghost sm" type="button" data-pv="guide" style="margin-top:14px">Fiche conseil de la catégorie →</button>';
   h+='<div class="ai-sec" style="margin-top:14px">À proposer avec</div><div class="chips">'+acc.map(function(a){return '<span class="pchip">'+esc(a)+'</span>'}).join("")+'</div>';
   h+='<label class="ai-sec" for="pv-notes" style="display:block;margin-top:14px">Mes notes</label><textarea id="pv-notes" placeholder="Retours clients, prix promo, stock, astuces de démo…" style="font:15px/1.4 var(--body);min-height:80px">'+esc(p.notes||"")+'</textarea>'+
     '<div class="btnrow" style="margin-top:12px"><button class="ghost sm" type="button" data-pv="edit">Modifier la fiche</button><button class="ghost sm" type="button" data-pv="del" style="color:var(--bad)">Supprimer</button></div>';
@@ -5059,6 +5126,7 @@ $("#pv-body").addEventListener("input",function(e){if(e.target.id!=="pv-notes")r
 $("#pv-body").addEventListener("click",function(e){
   var b=e.target.closest("[data-pv]");if(!b)return;var p=pFind(pui.open);if(!p)return;var a=b.dataset.pv;
   if(a==="close")dlgClose(pvDlg);
+  else if(a==="guide"){var g=gdFor(p);if(g)gdOpen(g)}
   else if(a==="fav"){p.fav=!p.fav;persist("products");pvRender();renderProd();renderHome()}
   else if(a==="cmp"){var i=pui.cmp.indexOf(p.id);if(i>=0)pui.cmp.splice(i,1);else if(pui.cmp.length<3)pui.cmp.push(p.id);else{toast("3 produits maximum à comparer.");return}pvRender();renderProd()}
   else if(a==="price"){var v=window.prompt("Prix constaté (€)",p.price!=null?String(p.price).replace(".",","):"");if(v==null)return;var n=num(v);if(!(n>0)){toast("Prix invalide.");return}p.price=Math.round(n*100)/100;p.priceAt=today();persist("products");pvRender();renderProd()}
