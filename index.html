@@ -2185,8 +2185,10 @@ function finCalc(m){
     else projOut+=sp+pd;
   });
   var projIn=inc+pendIn,proj=projIn-projOut;
-  var bi=bankInfo(),endBank=bi&&m===today().slice(0,7)?bi.est+pendIn-pendOut-budLeft:null;
-  return {items:items,inc:inc,out:out,byCat:byCat,bal:inc-out,pend:pend,pendIn:pendIn,pendOut:pendOut,pendCat:pendCat,bud:bud,catSet:catSet,isPast:isPast,
+  var td=today(),fut=m===td.slice(0,7)?items.filter(function(x){return x.date>td}):[],futIn=0,futOut=0;
+  fut.forEach(function(x){if(x.type==="in")futIn+=x.amount;else futOut+=x.amount});
+  var bi=bankInfo(),endBank=bi&&m===td.slice(0,7)?bi.est+pendIn-pendOut-budLeft+futIn-futOut:null;
+  return {fut:fut,futIn:futIn,futOut:futOut,items:items,inc:inc,out:out,byCat:byCat,bal:inc-out,pend:pend,pendIn:pendIn,pendOut:pendOut,pendCat:pendCat,bud:bud,catSet:catSet,isPast:isPast,
     projOut:projOut,budLeft:budLeft,budTotal:budTotal,budSpent:budSpent,projIn:projIn,proj:proj,bank:bi,endBank:endBank};
 }
 function renderFin(){
@@ -2210,16 +2212,17 @@ function renderFin(){
   }else if(!allRec().length&&!Object.keys(bud).length){
     fc.innerHTML='<h3>Prévisionnel</h3><p class="note">Ajoute tes dépenses récurrentes (loyer, abonnements, salaire…) et fixe tes budgets par catégorie : je calcule ici ce qu\'il te restera en fin de mois.</p>';
   }else{
-    var bi=bankInfo(),useBank=bi&&ui.month===today().slice(0,7),endBank=useBank?bi.est+pendIn-pendOut-budLeft:0;
+    var bi=bankInfo(),useBank=bi&&ui.month===today().slice(0,7),endBank=useBank?C.endBank:0;
     var h='<div class="fc-lines">';
     h+='<div><span>Entrées'+(pendIn?' (dont '+eur.format(pendIn)+' à venir)':'')+'</span><span class="good">+ '+eur.format(projIn)+'</span></div>';
     h+='<div><span>Déjà dépensé</span><span>− '+eur.format(out)+'</span></div>';
     if(pendOut)h+='<div><span>Récurrentes à venir</span><span>− '+eur.format(pendOut)+'</span></div>';
     if(budLeft)h+='<div><span>Reste de budget à dépenser</span><span>− '+eur.format(budLeft)+'</span></div>';
     h+='</div>';
-    if(pend.length){
+    var upc=pend.concat(C.fut.map(function(x){return {r:{label:x.label||x.cat,cat:x.cat,type:x.type,amount:x.amount},date:x.date}})).sort(function(a,b){return a.date<b.date?-1:1});
+    if(upc.length){
       h+='<div class="day" style="margin-top:14px">À venir</div>';
-      pend.forEach(function(p){
+      upc.forEach(function(p){
         h+='<div class="row"><div class="lbl">'+esc(p.r.label)+'<small>'+esc(dayLabel(p.date))+' · '+esc(p.r.cat)+'</small></div><span class="num '+(p.r.type==="in"?"good":"")+'">'+(p.r.type==="in"?"+ ":"− ")+eur.format(p.r.amount)+'</span><span></span></div>';
       });
     }
@@ -2333,7 +2336,7 @@ $("#fe-form").addEventListener("submit",function(e){
 function rav(){
   var t=today(),m=t.slice(0,7),C=finCalc(m);
   if(!C.bank&&!C.inc&&!C.pendIn)return null;
-  var base=C.bank?C.bank.est:C.inc-C.out,avail=base+C.pendIn-C.pendOut,days=daysIn(m)-(+t.slice(8))+1;
+  var base=C.bank?C.bank.est+C.futIn-C.futOut:C.inc-C.out,avail=base+C.pendIn-C.pendOut,days=daysIn(m)-(+t.slice(8))+1;
   return {avail:avail,days:days,perDay:avail/days,budLeft:C.budLeft,bank:!!C.bank};
 }
 function ravHTML(R){
