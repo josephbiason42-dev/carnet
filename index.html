@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Dashboard</title>
 <meta name="theme-color" content="#05070d">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -993,6 +993,9 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
 #ptr.spin{transition:transform .2s, opacity .15s} #ptr.spin svg{animation:ptrspin .7s linear infinite}
 @keyframes ptrspin{to{transform:rotate(360deg)}}
 @media (min-width:760px){#ptr{display:none}}
+
+/* iPhone : pas de zoom automatique quand on touche un champ (police >= 16 px) */
+@media (pointer:coarse){ input,select,textarea,.cap input,.pw-row input,.pw-row select,.pl-sd select{font-size:16px!important} }
 </style>
 </head>
 <body data-tab="home">
