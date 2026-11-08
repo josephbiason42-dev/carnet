@@ -198,7 +198,7 @@ body.has-tray .tray{bottom:calc(78px + var(--safe-b))}
 .inf{margin-top:10px; border-radius:var(--r); background:var(--s1); border:1px solid var(--line); overflow:hidden}
 .inf>button{all:unset; box-sizing:border-box; width:100%; cursor:pointer; display:block; padding:14px 16px; font-weight:800}
 .inf>button small{display:block; margin-top:3px; font-weight:600; color:var(--muted); font-size:.85rem}
-.inf .ib{display:none; padding:0 16px 14px} .inf.open .ib{display:block}
+.inf .inf-b{display:none; padding:0 16px 14px} .inf.open .inf-b{display:block}
 .inf h4{margin:12px 0 4px; font-size:.95rem; color:var(--acc)}
 .inf p{margin:0 0 6px; color:var(--muted); font-size:.92rem}
 .inf ul{margin:0; padding-left:18px; display:flex; flex-direction:column; gap:5px; font-size:.95rem}
@@ -454,7 +454,7 @@ function infHTML(){
   var h='<div class="lhead"><h1>♾️ Club Infinity</h1><span>'+f.items.length+' fiches</span></div>'+
     '<div class="svc">Assurance panne : réparation illimitée de tous les appareils de l\'univers choisi, achetés chez Boulanger ou ailleurs. Toujours remettre la notice d\'information au client.</div>';
   h+=f.items.map(function(it,i){var o=ui.infOpen[i];
-    return '<div class="inf'+(o?" open":"")+(/prix/i.test(JSON.stringify(it.c||""))?" int":"")+'"><button type="button" data-inf="'+i+'" aria-expanded="'+!!o+'">'+esc(it.n)+(it.q?'<small>'+esc(it.ql||"À demander")+' : « '+esc(it.q)+' »</small>':'')+'</button><div class="ib">'+
+    return '<div class="inf'+(o?" open":"")+(/prix/i.test(JSON.stringify(it.c||""))?" int":"")+'"><button type="button" data-inf="'+i+'" aria-expanded="'+!!o+'">'+esc(it.n)+(it.q?'<small>'+esc(it.ql||"À demander")+' : « '+esc(it.q)+' »</small>':'')+'</button><div class="inf-b">'+
       (it.q?'<div class="inf-hook">« '+esc(it.q)+' »</div>':'')+
       (it.c||[]).map(function(c){return '<h4>'+esc(c[0])+'</h4>'+(c[1]?'<p>'+esc(c[1])+'</p>':'')+((c[2]||[]).length?'<ul>'+c[2].map(function(x){return '<li>'+infLine(x)+'</li>'}).join("")+'</ul>':'')}).join("")+
     '</div></div>'}).join("");
