@@ -1,0 +1,586 @@
+{
+ "app": "rayon",
+ "updated": "2026-11-08",
+ "types": {
+  "aspi|Balai sans fil": {
+   "quest": [
+    "Quelle surface, et combien de niveaux ?",
+    "Plutôt sols durs, tapis ou moquette ?",
+    "Des animaux ou des allergies dans le foyer ?",
+    "Vous l'utilisez tous les jours ou pour un grand ménage par semaine ?"
+   ],
+   "demo": "Mettre l'appareil en main au client, puis le passer en mode aspirateur à main : il juge lui-même le poids et la prise en main.",
+   "entretien": "Vider le bac après chaque usage, rincer le filtre environ une fois par mois, couper les cheveux enroulés sur la brosse si elle n'est pas anti-enroulement.",
+   "usage": "Pas de sac. Prévoir à terme une batterie de remplacement (souvent après plusieurs années) et éventuellement un filtre : vérifier les prix des pièces."
+  },
+  "aspi|Robot laveur": {
+   "quest": [
+    "Quelle surface, et combien de pièces ou d'étages ?",
+    "Beaucoup de tapis, de seuils ou de câbles au sol ?",
+    "Des animaux qui perdent leurs poils ?",
+    "Vous voulez juste aspirer ou aussi laver les sols ?"
+   ],
+   "demo": "Montrer l'appli : carte du logement, zones interdites, programmation pendant que le client est au travail.",
+   "entretien": "La station vide le bac et lave les serpillières. Vider le sac de la station et le bac d'eau sale régulièrement, nettoyer les brosses environ une fois par mois.",
+   "usage": "Consommables à prévoir : sacs de station, serpillières, brosses latérales, filtres et produit de lavage. Vérifier le prix d'un kit de rechange avant de vendre."
+  },
+  "cafe|Grain automatique": {
+   "quest": [
+    "Combien de cafés par jour, et pour combien de personnes ?",
+    "Plutôt café noir ou boissons lactées (cappuccino, latte) ?",
+    "Vous achetez aujourd'hui des capsules ? Combien par semaine ?",
+    "Quelle place sur le plan de travail ?"
+   ],
+   "demo": "Faire couler un café et un cappuccino si la machine de démo le permet. Montrer le démontage du groupe café ou du carafe à lait.",
+   "entretien": "Rincer le circuit lait après chaque boisson lactée, détartrer quand la machine le demande, et rincer le groupe café chaque semaine s'il est amovible.",
+   "usage": "Le café en grain revient beaucoup moins cher à la tasse que les capsules. Ajouter le détartrant et éventuellement des filtres à eau. Faire le calcul avec l'outil Calcul."
+  },
+  "cafe|Capsules": {
+   "quest": [
+    "Combien de cafés par jour ?",
+    "Quelles capsules achetez-vous déjà ?",
+    "Vous voulez du lait mousseux ?"
+   ],
+   "demo": "Insister sur la simplicité : une capsule, un bouton, aucun réglage.",
+   "entretien": "Vider le bac à capsules, détartrer régulièrement selon la dureté de l'eau.",
+   "usage": "Machine peu chère à l'achat, mais chaque capsule coûte nettement plus cher qu'une tasse de café en grain. Faire le calcul sur 3 ans avec l'outil Calcul."
+  },
+  "cuis|Robot cuiseur": {
+   "quest": [
+    "Pour combien de personnes cuisinez-vous ?",
+    "Vous cuisinez tous les jours ou surtout le week-end ?",
+    "Vous voulez des recettes guidées pas à pas ?",
+    "Plutôt plats du quotidien ou pâtisserie ?"
+   ],
+   "demo": "Montrer une recette guidée et le nettoyage du bol. Rappeler qu'il remplace plusieurs appareils (mixeur, cuiseur vapeur, robot).",
+   "entretien": "Bol et accessoires lavables, programme de pré-nettoyage sur la plupart des modèles. Vérifier l'état des joints de temps en temps.",
+   "usage": "Pas de consommable. Abonnement aux recettes éventuel selon la marque, à vérifier."
+  },
+  "cuis|Multicuiseur": {
+   "quest": [
+    "Pour combien de personnes ?",
+    "Vous voulez gagner du temps en semaine ?",
+    "Des recettes guidées vous aideraient ?"
+   ],
+   "demo": "Montrer la cuisson sous pression : un plat mijoté en quelques dizaines de minutes au lieu de plusieurs heures.",
+   "entretien": "Cuve amovible, joint du couvercle à nettoyer et à changer de temps en temps.",
+   "usage": "Pas de consommable. Prévoir à terme un joint de rechange."
+  },
+  "cuis|Robot pâtissier": {
+   "quest": [
+    "Vous faites beaucoup de pâtisserie et de pâtes à pain ?",
+    "Quelles quantités ?",
+    "Vous voulez qu'il cuise aussi ?"
+   ],
+   "demo": "Montrer les accessoires (crochet, fouet, batteur) et la stabilité du moteur.",
+   "entretien": "Bol et accessoires au lave-vaisselle selon les modèles.",
+   "usage": "Pas de consommable. Accessoires en option (hachoir, laminoir…)."
+  },
+  "air": {
+   "quest": [
+    "Pour combien de personnes ?",
+    "Vous voulez cuire deux aliments en même temps (viande et frites) ?",
+    "Quelle place sur le plan de travail ?",
+    "Vous l'utiliseriez à la place du four ?"
+   ],
+   "demo": "Montrer la taille du tiroir avec un plat réel en tête et le nettoyage du panier.",
+   "entretien": "Panier antiadhésif à laver après usage, souvent compatible lave-vaisselle. Éviter les éponges abrasives.",
+   "usage": "Consomme moins d'énergie qu'un four pour de petites quantités. Pas de consommable obligatoire (papier cuisson en option)."
+  },
+  "linge|Centrale vapeur": {
+   "quest": [
+    "Combien de repassage par semaine (famille, chemises) ?",
+    "Des textiles délicats (soie, synthétique) ?",
+    "Où repassez-vous : le bruit compte ?",
+    "L'eau de chez vous est-elle calcaire ?"
+   ],
+   "demo": "Faire défroisser un tissu froissé avec le coup de vapeur, puis repasser une chemise sur la table de démo.",
+   "entretien": "Détartrer régulièrement (collecteur ou programme selon la marque) : c'est la première cause de panne.",
+   "usage": "Pas de consommable, sauf éventuellement les produits anticalcaire selon le modèle."
+  },
+  "beaute|Sèche-cheveux": {
+   "quest": [
+    "Quel type de cheveux : fins, épais, bouclés ?",
+    "Vous séchez tous les jours ?",
+    "Vous cherchez surtout la rapidité ou à abîmer moins vos cheveux ?"
+   ],
+   "demo": "Faire sentir le flux d'air et le poids en main ; montrer les embouts aimantés si présents.",
+   "entretien": "Nettoyer le filtre d'entrée d'air régulièrement : un filtre encrassé fait chauffer l'appareil.",
+   "usage": "Pas de consommable."
+  },
+  "beaute|Multi-styler": {
+   "quest": [
+    "Que voulez-vous faire : sécher, boucler, lisser, du volume ?",
+    "Type de cheveux : fins, épais, longs ?",
+    "Combien de temps prenez-vous le matin ?"
+   ],
+   "demo": "Montrer l'effet Coanda ou l'embout boucleur sur une mèche si possible.",
+   "entretien": "Nettoyer le filtre régulièrement.",
+   "usage": "Pas de consommable. Embouts supplémentaires en option."
+  },
+  "beaute|Rasoir / tondeuse": {
+   "quest": [
+    "Barbe de quelques jours, barbe longue ou rasage de près ?",
+    "Peau sensible ?",
+    "Visage seulement ou aussi le corps ?"
+   ],
+   "demo": "Montrer les sabots et la lame qui suit les courbes.",
+   "entretien": "Rincer la lame après usage.",
+   "usage": "Lames de rechange à prévoir régulièrement : vérifier leur prix et leur durée."
+  }
+ },
+ "products": {
+  "p001": {
+   "pour": "Grands logements, animaux, client qui veut la meilleure puissance de la gamme Dyson.",
+   "cons": [
+    "Prix élevé",
+    "Plus lourd qu'un balai d'entrée de gamme"
+   ]
+  },
+  "p002": {
+   "pour": "Même client que le V16, avec beaucoup de sols durs à laver.",
+   "cons": [
+    "Le plus cher de la gamme",
+    "Inutile si la maison est surtout en tapis"
+   ]
+  },
+  "p003": {
+   "pour": "Client exigeant qui veut détecter et compter la poussière, filtration poussée.",
+   "cons": [
+    "Prix élevé",
+    "Format différent des autres Dyson : le faire prendre en main"
+   ]
+  },
+  "p004": {
+   "pour": "Logement moyen à grand, client qui veut la techno Dyson à un prix plus accessible.",
+   "cons": [
+    "Autonomie plus courte que les V16",
+    "Bac plus petit"
+   ]
+  },
+  "p005": {
+   "pour": "Petit logement ou premier Dyson à petit budget.",
+   "cons": [
+    "Moins puissant et moins autonome que les modèles récents",
+    "Pas de capteur de poussière"
+   ]
+  },
+  "p006": {
+   "pour": "Client qui veut aspirer et laver avec un seul appareil, avec un tube flexible pour passer sous les meubles.",
+   "cons": [
+    "Prix à vérifier en rayon",
+    "Plus encombrant qu'un balai simple"
+   ]
+  },
+  "p007": {
+   "pour": "Petit budget, petit logement, ménage d'appoint.",
+   "cons": [
+    "Moins puissant",
+    "Pas spécial animaux"
+   ]
+  },
+  "p008": {
+   "pour": "Client avec animaux qui cherche une alternative à Dyson.",
+   "cons": [
+    "Prix et autonomie à vérifier en rayon"
+   ]
+  },
+  "p009": {
+   "pour": "Client qui veut un robot qui lave vraiment les sols durs.",
+   "cons": [
+    "Station encombrante",
+    "Consommables à racheter"
+   ]
+  },
+  "p010": {
+   "pour": "Client qui veut un robot haut de gamme qui passe partout.",
+   "cons": [
+    "Prix élevé à vérifier",
+    "Station encombrante"
+   ]
+  },
+  "p011": {
+   "pour": "Client technophile : bras articulé qui ramasse les petits objets au sol.",
+   "cons": [
+    "Très haut de gamme",
+    "Technologie récente : bien expliquer les limites"
+   ]
+  },
+  "p012": {
+   "pour": "Client qui veut un robot laveur complet, bon rapport équipement/prix dans la gamme Roborock.",
+   "cons": [
+    "Station encombrante",
+    "Consommables à racheter"
+   ]
+  },
+  "p013": {
+   "pour": "Client qui veut un robot laveur avec station tout automatique.",
+   "cons": [
+    "Station encombrante",
+    "Prix à vérifier en rayon"
+   ]
+  },
+  "p014": {
+   "pour": "Premier broyeur à café, buveur de café noir, petit budget.",
+   "cons": [
+    "Buse vapeur manuelle : le lait demande un coup de main",
+    "Peu de recettes en un bouton"
+   ]
+  },
+  "p015": {
+   "pour": "Famille qui boit beaucoup de boissons lactées, chaudes et froides.",
+   "cons": [
+    "Prix élevé",
+    "Plus encombrante"
+   ]
+  },
+  "p016": {
+   "pour": "Amateur de cappuccinos qui veut un nettoyage du lait très simple.",
+   "cons": [
+    "Prix à vérifier en rayon"
+   ]
+  },
+  "p017": {
+   "pour": "Entrée de gamme avec lait automatique, simple au quotidien.",
+   "cons": [
+    "Moins de recettes que la 5400"
+   ]
+  },
+  "p018": {
+   "pour": "Client exigeant sur le goût et la personnalisation des boissons.",
+   "cons": [
+    "Haut de gamme : prix à vérifier"
+   ]
+  },
+  "p019": {
+   "pour": "Client déjà en Nespresso qui veut du lait mousseux.",
+   "cons": [
+    "Coût à la tasse élevé avec les capsules"
+   ]
+  },
+  "p020": {
+   "pour": "Petit budget, buveur de café occasionnel, compatible capsules L'OR et Nespresso.",
+   "cons": [
+    "Pas de lait",
+    "Coût à la tasse des capsules"
+   ]
+  },
+  "p021": {
+   "pour": "Client qui veut le robot cuiseur de référence avec recettes guidées.",
+   "cons": [
+    "Vendu en priorité par Vorwerk : vérifier la disponibilité en magasin",
+    "Prix élevé"
+   ]
+  },
+  "p022": {
+   "pour": "Client qui cuisine beaucoup et veut un appareil robuste avec de nombreux accessoires.",
+   "cons": [
+    "Prix élevé",
+    "Encombrant"
+   ]
+  },
+  "p023": {
+   "pour": "Famille qui veut un robot cuiseur grande capacité à prix plus doux.",
+   "cons": [
+    "Pas de balance intégrée",
+    "Pas connecté"
+   ]
+  },
+  "p024": {
+   "pour": "Client qui veut un robot cuiseur avec recettes guidées sur écran.",
+   "cons": [
+    "Prix à vérifier en rayon"
+   ]
+  },
+  "p025": {
+   "pour": "Famille pressée en semaine : plats mijotés rapides et recettes guidées.",
+   "cons": [
+    "Ne remplace pas un robot pour mixer et hacher"
+   ]
+  },
+  "p026": {
+   "pour": "Client qui veut un multicuiseur connecté avec écran tactile.",
+   "cons": [
+    "Ne remplace pas un robot pour mixer et hacher"
+   ]
+  },
+  "p027": {
+   "pour": "Passionné de pâtisserie et de pain qui veut aussi cuire dans le bol.",
+   "cons": [
+    "Prix élevé",
+    "Lourd et encombrant"
+   ]
+  },
+  "p028": {
+   "pour": "Famille : un grand tiroir qui se sépare en deux zones.",
+   "cons": [
+    "Encombrant"
+   ]
+  },
+  "p029": {
+   "pour": "Famille avec peu de place : deux tiroirs l'un au-dessus de l'autre.",
+   "cons": [
+    "Hauteur à vérifier sous les meubles"
+   ]
+  },
+  "p030": {
+   "pour": "Couple ou petite famille, appareil polyvalent.",
+   "cons": [
+    "Un seul tiroir"
+   ]
+  },
+  "p031": {
+   "pour": "Petit logement ou étudiant : compact et le bac en verre passe au four et au frigo.",
+   "cons": [
+    "Petite capacité"
+   ]
+  },
+  "p032": {
+   "pour": "Grande capacité à petit prix.",
+   "cons": [
+    "Un seul tiroir",
+    "Encombrant"
+   ]
+  },
+  "p033": {
+   "pour": "Famille qui veut cuire deux aliments différents en même temps, avec fonction grill.",
+   "cons": [
+    "Encombrant"
+   ]
+  },
+  "p034": {
+   "pour": "Petit budget, premier airfryer.",
+   "cons": [
+    "Fonctions simples"
+   ]
+  },
+  "p035": {
+   "pour": "Famille qui veut deux tiroirs chez Philips.",
+   "cons": [
+    "Encombrant"
+   ]
+  },
+  "p036": {
+   "pour": "Famille qui veut un grand tiroir unique.",
+   "cons": [
+    "Un seul tiroir"
+   ]
+  },
+  "p037": {
+   "pour": "Gros volume de repassage, client qui veut le haut de gamme Calor.",
+   "cons": [
+    "Prix élevé",
+    "Lourd à ranger"
+   ]
+  },
+  "p038": {
+   "pour": "Client qui a peur de brûler ses textiles : aucun réglage de température.",
+   "cons": [
+    "Prix à vérifier en rayon"
+   ]
+  },
+  "p039": {
+   "pour": "Client qui veut voir les plis : semelle éclairée, vapeur très puissante.",
+   "cons": [
+    "Réservoir plus petit"
+   ]
+  },
+  "p040": {
+   "pour": "Gros volume de repassage, grand réservoir.",
+   "cons": [
+    "Encombrante"
+   ]
+  },
+  "p041": {
+   "pour": "Client qui veut une centrale sans réglage, puissante et rapide.",
+   "cons": [
+    "Prix à vérifier en rayon"
+   ]
+  },
+  "p042": {
+   "pour": "Repassage régulier en famille, sans réglage.",
+   "cons": [
+    "Moins puissante que les modèles Elite"
+   ]
+  },
+  "p043": {
+   "pour": "Client qui veut une centrale sans réglage, puissante et rapide.",
+   "cons": [
+    "Prix à vérifier en rayon"
+   ]
+  },
+  "p044": {
+   "pour": "Client qui repasse dans une pièce de vie : centrale silencieuse.",
+   "cons": [
+    "Prix élevé"
+   ]
+  },
+  "p045": {
+   "pour": "Cheveux fragilisés ou client qui veut le haut de gamme : adapte la chaleur automatiquement.",
+   "cons": [
+    "Prix élevé"
+   ]
+  },
+  "p046": {
+   "pour": "Client qui veut un séchage rapide et silencieux avec des embouts aimantés.",
+   "cons": [
+    "Prix élevé"
+   ]
+  },
+  "p047": {
+   "pour": "Client qui veut sécher et coiffer (boucles, volume) avec un seul appareil.",
+   "cons": [
+    "Prix élevé",
+    "Prise en main à montrer"
+   ]
+  },
+  "p048": {
+   "pour": "Client qui veut une alternative à Dyson : séchage et coiffage, moins cher.",
+   "cons": [
+    "Plus bruyant que Dyson selon les avis, à vérifier en démo"
+   ]
+  },
+  "p049": {
+   "pour": "Client qui hésite avec l'Airwrap mais a un budget plus serré.",
+   "cons": [
+    "Prix à vérifier en rayon"
+   ]
+  },
+  "p050": {
+   "pour": "Petit budget, séchage rapide avec protection de la chaleur.",
+   "cons": [
+    "Plus lourd et plus bruyant qu'un haut de gamme"
+   ]
+  },
+  "p051": {
+   "pour": "Petit budget, cheveux qui frisottent : ionique.",
+   "cons": [
+    "Prix à vérifier en rayon"
+   ]
+  },
+  "p052": {
+   "pour": "Barbe de quelques jours et contours nets, peau sensible.",
+   "cons": [
+    "Pas un rasage de très près",
+    "Lames à racheter"
+   ]
+  }
+ },
+ "objections": [
+  {
+   "o": "C'est moins cher sur Internet",
+   "r": [
+    "Comprendre : « Vous l'avez vu à quel prix, et sur quel site ? »",
+    "Vérifier que c'est bien le même modèle et le même vendeur (pas une marketplace)",
+    "Mettre en avant ce que le magasin apporte : conseil, prise en main, SAV sur place, retrait immédiat",
+    "Vérifier si un alignement de prix est possible selon la politique du magasin : demander au responsable"
+   ],
+   "tags": "prix internet amazon"
+  },
+  {
+   "o": "Je vais réfléchir",
+   "r": [
+    "« Bien sûr. Qu'est-ce qui vous fait encore hésiter ? »",
+    "Reformuler le besoin et les 2 ou 3 arguments qui y répondent",
+    "Proposer de réserver ou de noter la référence",
+    "Ne pas insister : laisser une bonne impression pour qu'il revienne vers vous"
+   ],
+   "tags": "reflechir hesite plus tard"
+  },
+  {
+   "o": "C'est trop cher",
+   "r": [
+    "« Par rapport à quel budget ? »",
+    "Ramener le prix à l'usage : coût par jour sur la durée de vie (outil Calcul)",
+    "Proposer l'alternative moins chère dans la fiche (« Moins cher »)",
+    "Rappeler les facilités de paiement si elles existent (conditions en vigueur)"
+   ],
+   "tags": "cher budget prix"
+  },
+  {
+   "o": "J'ai lu des avis négatifs",
+   "r": [
+    "« Qu'est-ce qui revenait dans ces avis ? »",
+    "Répondre précisément au point soulevé : usage mal adapté, défaut corrigé, version différente",
+    "Proposer la démo pour qu'il juge par lui-même",
+    "Rappeler le SAV et les garanties"
+   ],
+   "tags": "avis negatif"
+  },
+  {
+   "o": "Je n'ai pas besoin d'une garantie",
+   "r": [
+    "« Vous avez déjà eu une panne hors garantie ? Combien ça vous a coûté ? »",
+    "Comparer le prix d'une réparation (pièces, main-d'œuvre, déplacement) au prix de la garantie",
+    "Rester factuel et ne pas forcer : il doit sentir que c'est son choix"
+   ],
+   "tags": "garantie infinity assurance"
+  },
+  {
+   "o": "J'attends le Black Friday / les soldes",
+   "r": [
+    "« Vous avez besoin de l'appareil pour quand ? »",
+    "Rappeler que tous les produits ne sont pas en promo et que les stocks partent vite",
+    "Proposer de noter la référence et de le prévenir s'il y a une offre",
+    "Si le produit est déjà en promo, le dire clairement"
+   ],
+   "tags": "black friday soldes promo attendre"
+  },
+  {
+   "o": "Je dois en parler à mon/ma conjoint(e)",
+   "r": [
+    "« Qu'est-ce qui compte le plus pour lui ou elle ? »",
+    "Résumer en 3 points les arguments à lui transmettre",
+    "Proposer de revenir ensemble pour une démo",
+    "Donner la référence exacte et le prix"
+   ],
+   "tags": "conjoint femme mari parler"
+  },
+  {
+   "o": "Mon ancien appareil fonctionne encore",
+   "r": [
+    "« Qu'est-ce qui vous a donné envie de regarder un nouveau modèle ? »",
+    "Montrer ce qui change concrètement : temps gagné, résultat, bruit, consommation",
+    "Parler de reprise ou de recyclage de l'ancien appareil si le magasin le propose"
+   ],
+   "tags": "ancien fonctionne encore"
+  },
+  {
+   "o": "Je ne connais pas cette marque",
+   "r": [
+    "Expliquer en une phrase qui est la marque et son point fort",
+    "Montrer les caractéristiques et la démo plutôt que le nom",
+    "Rappeler que le SAV et la garantie passent par le magasin"
+   ],
+   "tags": "marque inconnue chinoise"
+  },
+  {
+   "o": "C'est trop compliqué pour moi",
+   "r": [
+    "« Qu'est-ce qui vous paraît compliqué ? »",
+    "Montrer l'usage de base en 2 gestes",
+    "Orienter vers un modèle plus simple si besoin (sans réglage, un seul bouton)",
+    "Proposer l'aide à la prise en main si le magasin en propose"
+   ],
+   "tags": "complique technologie"
+  },
+  {
+   "o": "Je n'ai pas la place",
+   "r": [
+    "« Quelle place avez-vous exactement ? »",
+    "Donner les dimensions et montrer les modèles compacts",
+    "Mettre en avant ce qu'il remplace (plusieurs appareils en un)"
+   ],
+   "tags": "place encombrant"
+  },
+  {
+   "o": "Je regarde juste",
+   "r": [
+    "« Avec plaisir. Vous cherchez pour remplacer un appareil ou pour un nouvel usage ? »",
+    "Donner une info utile sans pression (nouveauté, comparatif)",
+    "Rester disponible : « Je suis dans le rayon si besoin. »"
+   ],
+   "tags": "regarde juste"
+  }
+ ]
+}
