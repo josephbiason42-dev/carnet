@@ -1996,6 +1996,485 @@
     "note": 4,
     "n": 79
    }
+  },
+  {
+   "id": "p086",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "ECAM22.115.B",
+   "price": 339.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 4,
+    "reservoir": 1.8,
+    "bac_grains": "250 g"
+   },
+   "args": [
+    "Système Cappuccino pour une mousse crémeuse parfaite",
+    "4 recettes + eau chaude, grain et moulu"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399022911",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 9
+   }
+  },
+  {
+   "id": "p087",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Aromis EP8757/20",
+   "price": 999.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique"
+   },
+   "args": [
+    "Système de lait LatteGo Pro, sans tuyau, nettoyage en quelques secondes",
+    "2 cafés en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8720389064807",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 18
+   }
+  },
+  {
+   "id": "p088",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "LatteGo EP5447/90",
+   "price": 769.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 12
+   },
+   "args": [
+    "Enregistrez vos préférences dans un profil pour chacune des 12 recettes",
+    "1 ou 2 cafés ou boissons lactées en même temps",
+    "Programme de nettoyage intégré"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8710103931324",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 64
+   }
+  },
+  {
+   "id": "p089",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "EP1220/00 Noir Mat",
+   "price": 259.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 3
+   },
+   "args": [
+    "12 niveaux de mouture réglables",
+    "1 ou 2 cafés en même temps",
+    "Mousse de lait avec la buse"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8710103894667",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 79
+   }
+  },
+  {
+   "id": "p090",
+   "cat": "cafe",
+   "brand": "Jura",
+   "model": "E4 Piano Black",
+   "price": 829,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Non",
+    "recettes": 4
+   },
+   "args": [
+    "Simplicité d'utilisation, présélection de ses préférences d'arôme",
+    "1 ou 2 cafés en même temps",
+    "Programme de nettoyage intégré"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "2 pastilles de nettoyage ; 1 cuillère à café moulu ; 1 chiffon microfibre ; 1 cartouche filtrante ; 1 languette",
+   "ean": "7610917154357",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 26
+   }
+  },
+  {
+   "id": "p091",
+   "cat": "cafe",
+   "brand": "Jura",
+   "model": "Chauffe-tasses",
+   "price": 207.94,
+   "specs": {
+    "type": "Accessoire"
+   },
+   "args": [
+    "Chauffe les tasses avant le café : l'espresso reste chaud plus longtemps",
+    "Complément haut de gamme pour une machine Jura"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "7610917722297",
+   "releve": "2026-11-08",
+   "seed": true
+  },
+  {
+   "id": "p092",
+   "cat": "cafe",
+   "brand": "Jura",
+   "model": "J8 Midnight Silver",
+   "price": 1899,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 20,
+    "lactees": 1
+   },
+   "args": [
+    "Fonction Sweet Foam qui aromatise la mousse de lait",
+    "Écran couleur tactile, 20 recettes",
+    "Wi-Fi connect et 2 réservoirs de sirop inclus"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "Wi-Fi connect ; 2 réservoirs de sirop ; pastilles de nettoyage ; cuillère",
+   "ean": "7610917154715",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 2,
+    "n": 2
+   }
+  },
+  {
+   "id": "p093",
+   "cat": "cafe",
+   "brand": "Ninja",
+   "model": "AE1052EU",
+   "price": 899.99,
+   "specs": {
+    "type": "Grain automatique"
+   },
+   "args": [
+    "Technologie qui donne un expresso parfait sans réglage manuel",
+    "1 ou 2 cafés en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "0622356379786",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 18
+   }
+  },
+  {
+   "id": "p094",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Intuition YY5058FD",
+   "price": 999.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 10,
+    "lactees": 8
+   },
+   "args": [
+    "21 recettes de boissons chaudes ou froides",
+    "Ultra silencieuse",
+    "Écran couleur tactile, 1 ou 2 boissons lactées en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "3700342456783",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 65
+   }
+  },
+  {
+   "id": "p095",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "EA875E10",
+   "price": 899.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 7,
+    "lactees": 5
+   },
+   "args": [
+    "Technologie Quattro Force pour un expresso parfait à chaque tasse",
+    "Écran couleur tactile",
+    "1 ou 2 boissons lactées en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "3016661159510",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 5,
+    "n": 21
+   }
+  },
+  {
+   "id": "p096",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Sensation Lait EA912HF1",
+   "price": 599.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 3,
+    "lactees": 3
+   },
+   "args": [
+    "Technologie Milk Maestro : mousse de lait parfaite et personnalisable",
+    "Carafe à lait intégrée",
+    "1 ou 2 cafés en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "3016661178924",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 52
+   }
+  },
+  {
+   "id": "p097",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Intensity Milk EA5028E0",
+   "price": 379.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique"
+   },
+   "args": [
+    "Personnalisation avec 5 boissons et mousse réglable",
+    "2 cafés en même temps",
+    "Programme de nettoyage intégré"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "3016667200193",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 37
+   }
+  },
+  {
+   "id": "p098",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "ECAM310.80.SB",
+   "price": 599.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 13,
+    "lactees": 5
+   },
+   "args": [
+    "Technologie LatteCrema Hot pour une mousse de lait parfaite",
+    "Écran couleur tactile, 13 recettes",
+    "1 ou 2 cafés en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399023149",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 71
+   }
+  },
+  {
+   "id": "p099",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Magnifica FEB2981.TB",
+   "price": 699.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 3,
+    "lactees": 2
+   },
+   "args": [
+    "Personnalisation de la longueur en tasse et des boissons",
+    "1 ou 2 cafés en même temps, dont Cappuccino"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399022256",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 99
+   }
+  },
+  {
+   "id": "p100",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "FEB22.82.SB",
+   "price": 599.99,
+   "specs": {
+    "type": "Grain automatique",
+    "reservoir": 1.8
+   },
+   "args": [
+    "Allie simplicité et performance"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399028074",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 75
+   }
+  },
+  {
+   "id": "p101",
+   "cat": "cafe",
+   "brand": "Sage",
+   "model": "Barista (avec broyeur)",
+   "price": 829.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "pieces": "5 ans (après fin de fabrication)"
+   },
+   "args": [
+    "Dosage intelligent avec broyeur conique intégré et 25 réglages de mouture",
+    "15 bars, 1 ou 2 tasses",
+    "Pour le client qui veut faire son café comme un barista"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "9356973097917",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 25
+   }
+  },
+  {
+   "id": "p102",
+   "cat": "cafe",
+   "brand": "Sage",
+   "model": "Bouilloire Soft Top",
+   "price": 99.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2400,
+    "pieces": "5 ans"
+   },
+   "args": [
+    "Finition métallisée premium avec détails chromés",
+    "Rotation 360° sur son socle, arrêt automatique",
+    "1,7 L, 2400 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "9312432031035",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 3
+   }
+  },
+  {
+   "id": "p103",
+   "cat": "cafe",
+   "brand": "Sage",
+   "model": "Barista Touch",
+   "price": 799.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "pieces": "5 ans"
+   },
+   "args": [
+    "Large écran couleur tactile pour préparer son café en toute simplicité",
+    "Broyeur intégré, 15 bars, 1 ou 2 tasses",
+    "Promo : 1 249 € → 799,99 €"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "9312432030151",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 3.5,
+    "n": 13
+   }
   }
  ]
 }

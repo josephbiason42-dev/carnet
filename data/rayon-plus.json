@@ -154,6 +154,33 @@
    "demo": "Montrer la légèreté et la longueur du câble.",
    "entretien": "Vider le bac et rincer le filtre régulièrement.",
    "usage": "Pas de batterie à remplacer."
+  },
+  "cafe|Expresso manuel": {
+   "quest": [
+    "Le client veut-il faire son café lui-même, comme au café ?",
+    "Il boit surtout de l'expresso ou des boissons lactées ?",
+    "Il est prêt à apprendre à régler la mouture et à mousser le lait ?"
+   ],
+   "demo": "Faire un expresso devant le client : mouture, tassage, extraction, puis mousser le lait à la buse.",
+   "entretien": "Nettoyer le porte-filtre et la buse après chaque usage, détartrer régulièrement.",
+   "usage": "Café en grain : coût à la tasse bas. Détartrant et filtres à prévoir."
+  },
+  "cafe|Bouilloire": {
+   "quest": [
+    "Quelle quantité d'eau à la fois ?",
+    "Vous voulez régler la température (thé) ?"
+   ],
+   "demo": "Montrer la rotation sur le socle et la prise en main.",
+   "entretien": "Détartrer régulièrement selon la dureté de l'eau.",
+   "usage": "Pas de consommable."
+  },
+  "cafe|Accessoire": {
+   "quest": [
+    "Quelle machine avez-vous ?"
+   ],
+   "demo": "Vérifier la compatibilité avec la machine du client.",
+   "entretien": "",
+   "usage": ""
   }
  },
  "products": {
@@ -698,6 +725,121 @@
    "pour": "Premier broyeur à petit prix (promo Black Friday).",
    "cons": [
     "Fonctions simples"
+   ]
+  },
+  "p086": {
+   "pour": "Premier broyeur qui fait aussi le cappuccino à la buse, petit budget.",
+   "cons": [
+    "Mousse de lait manuelle",
+    "Peu d'avis (9)"
+   ]
+  },
+  "p087": {
+   "pour": "Client haut de gamme qui veut le lait automatique le plus simple à nettoyer.",
+   "cons": [
+    "Prix élevé"
+   ]
+  },
+  "p088": {
+   "pour": "Famille avec plusieurs buveurs : profils et 12 recettes.",
+   "cons": [
+    "Prix moyen-haut"
+   ]
+  },
+  "p089": {
+   "pour": "Premier broyeur Philips à petit prix (promo).",
+   "cons": [
+    "Lait à la buse, seulement 3 recettes"
+   ]
+  },
+  "p090": {
+   "pour": "Puriste du café noir qui veut la qualité Jura.",
+   "cons": [
+    "Pas de lait",
+    "Prix élevé pour un modèle sans lait"
+   ]
+  },
+  "p091": {
+   "pour": "Client Jura qui veut un café toujours bien chaud.",
+   "cons": [
+    "Accessoire cher"
+   ]
+  },
+  "p092": {
+   "pour": "Client très haut de gamme : écran, Wi-Fi, mousse aromatisée.",
+   "cons": [
+    "Seulement 2 avis, note faible (2/5) : à surveiller",
+    "Très cher"
+   ]
+  },
+  "p093": {
+   "pour": "Client qui veut un expresso de qualité sans se compliquer avec les réglages.",
+   "cons": [
+    "Prix élevé",
+    "Système lait à vérifier en rayon"
+   ]
+  },
+  "p094": {
+   "pour": "Client qui veut le maximum de boissons, chaudes et froides, et une machine silencieuse.",
+   "cons": [
+    "Prix élevé"
+   ]
+  },
+  "p095": {
+   "pour": "Client exigeant, très bien noté (5/5).",
+   "cons": [
+    "Prix élevé",
+    "21 avis seulement"
+   ]
+  },
+  "p096": {
+   "pour": "Amateur de lait mousseux avec carafe intégrée, milieu de gamme.",
+   "cons": [
+    "3 recettes café seulement"
+   ]
+  },
+  "p097": {
+   "pour": "Client qui veut le lait automatique à petit prix.",
+   "cons": [
+    "Bouton manuel, pas d'écran"
+   ]
+  },
+  "p098": {
+   "pour": "Famille qui boit beaucoup de lait : 13 recettes, écran couleur.",
+   "cons": [
+    "Encombrante"
+   ]
+  },
+  "p099": {
+   "pour": "Client qui veut personnaliser ses boissons lactées, très bien noté (99 avis).",
+   "cons": [
+    "Seulement 3 recettes café"
+   ]
+  },
+  "p100": {
+   "pour": "Client qui veut la Magnifica en finition argent.",
+   "cons": [
+    "Système lait à vérifier en rayon"
+   ]
+  },
+  "p101": {
+   "pour": "Passionné qui veut faire son expresso lui-même, comme un barista.",
+   "cons": [
+    "Demande un apprentissage",
+    "Pas automatique"
+   ]
+  },
+  "p102": {
+   "pour": "Client qui veut une bouilloire design assortie à sa machine Sage (promo).",
+   "cons": [
+    "Peu d'avis (3)"
+   ]
+  },
+  "p103": {
+   "pour": "Client qui veut le geste barista avec l'aide d'un écran tactile (grosse promo).",
+   "cons": [
+    "Note moyenne (3,5/5)",
+    "Demande un apprentissage"
    ]
   }
  },
