@@ -145,6 +145,15 @@
    "demo": "Vérifier la compatibilité avec le modèle du client avant la vente.",
    "entretien": "",
    "usage": ""
+  },
+  "aspi|Balai filaire": {
+   "quest": [
+    "Quelle surface ?",
+    "C'est pour un usage principal ou d'appoint ?"
+   ],
+   "demo": "Montrer la légèreté et la longueur du câble.",
+   "entretien": "Vider le bac et rincer le filtre régulièrement.",
+   "usage": "Pas de batterie à remplacer."
   }
  },
  "products": {
@@ -589,6 +598,106 @@
    "pour": "Grand logement, très bien noté (100 avis), puissance qui s'adapte seule.",
    "cons": [
     "Haut de gamme Rowenta : comparer avec le 16.60"
+   ]
+  },
+  "p070": {
+   "pour": "Client qui ne veut plus toucher la poussière, alternative à Samsung avec station.",
+   "cons": [
+    "Lourd : 3,7 kg"
+   ]
+  },
+  "p071": {
+   "pour": "Client qui veut léger (1,6 kg) et grosse autonomie à prix moyen.",
+   "cons": [
+    "Pièces détachées 5 ans",
+    "Peu d'avis"
+   ]
+  },
+  "p072": {
+   "pour": "Client avec animaux et grande surface, très réparable.",
+   "cons": [
+    "Moins équipé que le 75E Pro Extra (pas de serpillière)"
+   ]
+  },
+  "p073": {
+   "pour": "Petit budget qui veut quand même une station de vidage.",
+   "cons": [
+    "Pièces détachées 2 ans seulement"
+   ]
+  },
+  "p074": {
+   "pour": "Client avec animaux qui veut une alternative Shark moins chère.",
+   "cons": [
+    "Pièces 7 ans",
+    "Réparabilité 7,9"
+   ]
+  },
+  "p075": {
+   "pour": "Petit budget qui veut une grosse autonomie : 2 batteries incluses.",
+   "cons": [
+    "Réparabilité 7,6"
+   ]
+  },
+  "p076": {
+   "pour": "Petit budget avec animaux, marque française réparable 15 ans.",
+   "cons": [
+    "Autonomie 45 min",
+    "Peu d'avis"
+   ]
+  },
+  "p077": {
+   "pour": "Petit logement, client qui veut léger et durable.",
+   "cons": [
+    "Pas de brosse motorisée"
+   ]
+  },
+  "p078": {
+   "pour": "Petit budget qui veut un écran et une mini brosse pour le canapé.",
+   "cons": [
+    "Réparabilité 7,1"
+   ]
+  },
+  "p079": {
+   "pour": "Tout petit budget, rangement sans percer le mur.",
+   "cons": [
+    "Pièces 2 ans",
+    "Autonomie 40 min"
+   ]
+  },
+  "p080": {
+   "pour": "Premier prix sans fil, studio ou appoint.",
+   "cons": [
+    "Faible puissance (68 AW)"
+   ]
+  },
+  "p081": {
+   "pour": "Budget minimum, appoint ou studio, pas de batterie à changer.",
+   "cons": [
+    "Filaire : câble à brancer"
+   ]
+  },
+  "p082": {
+   "pour": "Amateur de café qui veut personnaliser ses boissons, très bien noté (372 avis).",
+   "cons": [
+    "Pas de recette lactée automatique visible : vérifier le système lait en rayon"
+   ]
+  },
+  "p083": {
+   "pour": "Client qui veut la simplicité du tactile à prix moyen (265 avis).",
+   "cons": [
+    "Moins de recettes que la FEB3535"
+   ]
+  },
+  "p084": {
+   "pour": "Amateur de latte qui veut le lait en un clic.",
+   "cons": [
+    "Peu d'avis (32)"
+   ]
+  },
+  "p085": {
+   "pour": "Premier broyeur à petit prix (promo Black Friday).",
+   "cons": [
+    "Fonctions simples"
    ]
   }
  },

@@ -115,23 +115,33 @@
    "cat": "aspi",
    "brand": "Dyson",
    "model": "V8 Cyclone",
-   "price": 299,
+   "price": 249,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 60,
     "puissance": "150 AW",
     "hepa": "oui",
     "animaux": "oui",
-    "station": "non"
+    "station": "non",
+    "poids": 2.7,
+    "repar": 7.9,
+    "pieces": "3 ans (après fin de commercialisation)"
    },
    "args": [
+    "3 modes réglables, aspiration puissante et constante sans perte",
     "L'entrée de gamme Dyson : marque premium à moins de 300 €",
     "Batterie amovible",
     "Léger et maniable pour un appartement"
    ],
    "obj": "Moins puissant que les V15/V16 : à orienter vers un petit logement",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "ean": "5025155136195",
+   "avis": {
+    "note": 4.5,
+    "n": 35
+   },
+   "releve": "2026-11-08"
   },
   {
    "id": "p006",
@@ -1525,6 +1535,467 @@
    },
    "releve": "2026-11-08",
    "seed": true
+  },
+  {
+   "id": "p070",
+   "cat": "aspi",
+   "brand": "Shark",
+   "model": "PowerDetect IP3251EUT (station de vidage)",
+   "price": 499,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 70,
+    "poids": 3.7,
+    "tension": 21.6,
+    "repar": 8.2,
+    "pieces": "13 ans",
+    "station": "oui"
+   },
+   "args": [
+    "Aspiration puissante et vidage automatique du bac : nettoyage sans effort",
+    "Tube pliable : aspirer sans se baisser",
+    "Jusqu'à 1 h 10 d'autonomie, brosse motorisée"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "Station avec vidage automatique de la poussière",
+   "ean": "0622356283717",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 56
+   }
+  },
+  {
+   "id": "p071",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "V20 Pro",
+   "price": 399,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 90,
+    "poids": 1.6,
+    "bac": 0.5,
+    "tension": 30,
+    "repar": 8.5,
+    "pieces": "5 ans (après fin de fabrication)"
+   },
+   "args": [
+    "Capteur de saleté : la puissance s'ajuste automatiquement",
+    "Jusqu'à 1 h 30 d'autonomie",
+    "Pour les sols, meubles et hauteurs"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "Brosse motorisée avec éclairage LED ; accessoire combiné ; mini brosse motorisée ; support de recharge",
+   "ean": "6978515255427",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 9
+   }
+  },
+  {
+   "id": "p072",
+   "cat": "aspi",
+   "brand": "Samsung",
+   "model": "Jet 75E Pet",
+   "price": 349,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 60,
+    "puissance": "200 AW",
+    "poids": 2.6,
+    "bac": 0.8,
+    "tension": 21.6,
+    "repar": 9,
+    "pieces": "10 ans",
+    "animaux": "oui"
+   },
+   "args": [
+    "Autonomie suffisante pour les grandes surfaces",
+    "Brosse Turbo Action et mini brosse Pet Tool pour les poils",
+    "Très réparable : 9/10, pièces 10 ans"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "Brosse Turbo Action ; mini brosse Pet Tool",
+   "ean": "8806095108889",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 62
+   }
+  },
+  {
+   "id": "p073",
+   "cat": "aspi",
+   "brand": "Essentiel B",
+   "model": "EVCSK500 Easy (station de vidage)",
+   "price": 299.99,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 55,
+    "repar": 8.8,
+    "pieces": "2 ans",
+    "station": "oui"
+   },
+   "args": [
+    "Station de vidage automatique du bac : hygiène parfaite",
+    "Brosse motorisée",
+    "Pour les sols, meubles et hauteurs"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "Station avec vidage automatique de la poussière",
+   "ean": "3497674189945",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 21
+   }
+  },
+  {
+   "id": "p074",
+   "cat": "aspi",
+   "brand": "Shark",
+   "model": "IZ380EUT PowerPro Pet",
+   "price": 279,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 60,
+    "poids": 3.1,
+    "bac": 2,
+    "repar": 7.9,
+    "pieces": "7 ans",
+    "animaux": "oui"
+   },
+   "args": [
+    "Nettoyage intelligent qui s'adapte à toutes les surfaces",
+    "Aspire aussi les débris en marche arrière",
+    "Tube Flexology pour passer sous les meubles"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "0622356316545",
+   "releve": "2026-11-08",
+   "seed": true
+  },
+  {
+   "id": "p075",
+   "cat": "aspi",
+   "brand": "Essentiel B",
+   "model": "EAMU 288 Easy",
+   "price": 279.99,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 90,
+    "poids": 2.3,
+    "bac": 0.4,
+    "tension": 28.8,
+    "repar": 7.6,
+    "pieces": "10 ans"
+   },
+   "args": [
+    "Batterie supplémentaire incluse pour prolonger l'autonomie (jusqu'à 90 min)",
+    "Station d'accueil et de chargement",
+    "Léger : 2,3 kg"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "Brosse motorisée avec éclairage LED ; brosse meuble ; suceur long ; mini brosse motorisée ; batterie supplémentaire ; station de charge et de rangement ; accessoire de nettoyage des brosses",
+   "ean": "3497674174194",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 126
+   }
+  },
+  {
+   "id": "p076",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Pert RH6A83WO",
+   "price": 179.99,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 45,
+    "poids": 2.0,
+    "bac": 0.44,
+    "tension": 18,
+    "repar": 8.6,
+    "pieces": "15 ans",
+    "animaux": "oui"
+   },
+   "args": [
+    "Très léger et maniable",
+    "Mini turbo brosse pour les poils d'animaux",
+    "Pièces détachées 15 ans"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "Mini turbo brosse",
+   "ean": "3221616131361",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 3.5,
+    "n": 9
+   }
+  },
+  {
+   "id": "p077",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Pert 7.60",
+   "price": 199,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 45,
+    "poids": 2.0,
+    "repar": 8,
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Puissance et légèreté : seulement 2 kg et 45 min d'autonomie",
+    "Tube pliable : aspirer sans se baisser"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "Support de charge à fixer au mur",
+   "ean": "3221616122239",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 108
+   }
+  },
+  {
+   "id": "p078",
+   "cat": "aspi",
+   "brand": "Essentiel B",
+   "model": "EAMU 216 Easy",
+   "price": 179.99,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 45,
+    "puissance": "121 AW",
+    "poids": 2.1,
+    "bac": 0.4,
+    "tension": 21.6,
+    "repar": 7.1,
+    "pieces": "10 ans"
+   },
+   "args": [
+    "Écran tactile pour choisir parmi 4 vitesses",
+    "Mini brosse motorisée pour aspirer les canapés",
+    "Pour les sols, meubles et hauteurs"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "Brosse motorisée avec éclairage LED ; mini brosse ; suceur long ; support de charge",
+   "ean": "3497674174170",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 3.5,
+    "n": 129
+   }
+  },
+  {
+   "id": "p079",
+   "cat": "aspi",
+   "brand": "Essentiel B",
+   "model": "EVCSK200 Easy",
+   "price": 139.99,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 40,
+    "poids": 2.4,
+    "bac": 0.4,
+    "tension": 25.9,
+    "repar": 8,
+    "pieces": "2 ans"
+   },
+   "args": [
+    "Brosse anti-emmêlement",
+    "Position parking : tient debout, pas besoin de percer le mur"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "3497674189938",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 73
+   }
+  },
+  {
+   "id": "p080",
+   "cat": "aspi",
+   "brand": "Essentiel B",
+   "model": "EAMU 216 Easy2",
+   "price": 99.99,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 45,
+    "puissance": "68 AW",
+    "poids": 2.5,
+    "bac": 0.5,
+    "tension": 21.6
+   },
+   "args": [
+    "Autonomie élevée pour aspirer toutes les pièces en une fois",
+    "Électrobrosse avec éclairage LED",
+    "Le moins cher des balais sans fil : très bien noté (168 avis)"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "3497674169367",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 168
+   }
+  },
+  {
+   "id": "p081",
+   "cat": "aspi",
+   "brand": "Listo",
+   "model": "LSVCCD-1 (filaire)",
+   "price": 39,
+   "specs": {
+    "type": "Balai filaire",
+    "poids": 2.0,
+    "bac": 0.4,
+    "repar": 7,
+    "pieces": "5 ans"
+   },
+   "args": [
+    "Balai filaire : pas de batterie, aspiration sans limite de temps",
+    "Prix d'entrée de gamme"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "",
+   "releve": "2026-11-08",
+   "seed": true
+  },
+  {
+   "id": "p082",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Dinamica FEB3535.SB",
+   "price": 549.99,
+   "specs": {
+    "type": "Grain automatique",
+    "recettes": 6
+   },
+   "args": [
+    "Fonction My Menu : personnaliser et enregistrer ses boissons favorites",
+    "Écran tactile, 1 ou 2 cafés en même temps",
+    "Programme de nettoyage intégré"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399331457",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 372
+   }
+  },
+  {
+   "id": "p083",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Dinamica FEB3515.B",
+   "price": 429.99,
+   "specs": {
+    "type": "Grain automatique",
+    "recettes": 4
+   },
+   "args": [
+    "Simplicité d'utilisation grâce au panneau de commande tactile",
+    "1 ou 2 cafés en même temps, dont Americano et Cappuccino",
+    "Programme de nettoyage intégré"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399331440",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 265
+   }
+  },
+  {
+   "id": "p084",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Magnifica FEB2291.TB",
+   "price": 499.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique"
+   },
+   "args": [
+    "Expresso fraîchement moulu et latte en un clic",
+    "1 ou 2 cafés en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399035461",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 32
+   }
+  },
+  {
+   "id": "p085",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Magnifica FEB22.21.B",
+   "price": 299.99,
+   "specs": {
+    "type": "Grain automatique",
+    "recettes": 4
+   },
+   "args": [
+    "Café fraîchement moulu, en toute simplicité, à un prix accessible",
+    "1 ou 2 cafés en même temps, dont Americano et Cappuccino",
+    "Bouton digital et programme de nettoyage intégré"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399026032",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4,
+    "n": 79
+   }
   }
  ]
 }
