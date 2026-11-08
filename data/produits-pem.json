@@ -129,7 +129,6 @@
    },
    "args": [
     "3 modes réglables, aspiration puissante et constante sans perte",
-    "L'entrée de gamme Dyson : marque premium à moins de 300 €",
     "Batterie amovible",
     "Léger et maniable pour un appartement"
    ],
@@ -141,7 +140,7 @@
     "note": 4.5,
     "n": 35
    },
-   "releve": "2026-11-08"
+   "releve": "2026-11-09"
   },
   {
    "id": "p006",
@@ -645,12 +644,12 @@
     "tiroirs": "1"
    },
    "args": [
-    "7,5 L pour moins de 80 € : jusqu'à 8 personnes",
     "Marque française"
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-09"
   },
   {
    "id": "p033",
@@ -935,12 +934,11 @@
    "specs": {
     "type": "Sèche-cheveux"
    },
-   "args": [
-    "4 embouts, alternative au Dyson à moins de 200 €"
-   ],
+   "args": [],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-09"
   },
   {
    "id": "p049",
@@ -1902,18 +1900,23 @@
    "price": 549.99,
    "specs": {
     "type": "Grain automatique",
-    "recettes": 6
+    "recettes": 6,
+    "lait": "Buse vapeur",
+    "reservoir": 1.8,
+    "bac_grains": "300 g",
+    "mouture": 13
    },
    "args": [
-    "Fonction My Menu : personnaliser et enregistrer ses boissons favorites",
-    "Écran tactile, 1 ou 2 cafés en même temps",
-    "Programme de nettoyage intégré"
+    "6 recettes café + eau chaude, fonction My Menu pour enregistrer ses favoris",
+    "Buse vapeur manuelle pour faire mousser le lait (cappuccino)",
+    "Café en grains ou moulu, 13 niveaux de mouture",
+    "1 ou 2 cafés en même temps, programme de nettoyage intégré"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "8004399331457",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4,
@@ -1928,18 +1931,21 @@
    "price": 429.99,
    "specs": {
     "type": "Grain automatique",
-    "recettes": 4
+    "recettes": 4,
+    "lait": "Buse vapeur",
+    "reservoir": 1.8
    },
    "args": [
-    "Simplicité d'utilisation grâce au panneau de commande tactile",
-    "1 ou 2 cafés en même temps, dont Americano et Cappuccino",
-    "Programme de nettoyage intégré"
+    "4 recettes café (expresso, café, long, lungo) + eau chaude",
+    "Buse vapeur manuelle pour cappuccino et latte",
+    "Café en grains ou moulu, panneau tactile rétroéclairé",
+    "1 ou 2 cafés en même temps, programme de nettoyage intégré"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "8004399331440",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4,
@@ -1975,22 +1981,27 @@
    "id": "p085",
    "cat": "cafe",
    "brand": "De'Longhi",
-   "model": "Magnifica FEB22.21.B",
+   "model": "Magnifica Start FEB22.21.B",
    "price": 299.99,
    "specs": {
     "type": "Grain automatique",
-    "recettes": 4
+    "recettes": 3,
+    "lait": "Buse vapeur",
+    "reservoir": 1.8,
+    "pression": 15,
+    "mouture": 13
    },
    "args": [
-    "Café fraîchement moulu, en toute simplicité, à un prix accessible",
-    "1 ou 2 cafés en même temps, dont Americano et Cappuccino",
-    "Bouton digital et programme de nettoyage intégré"
+    "3 recettes café en accès direct + vapeur, interface tactile",
+    "Buse vapeur pour mousser le lait ou faire de l'eau chaude",
+    "Pré-infusion, 13 niveaux de mouture, 15 bars",
+    "1 ou 2 cafés en même temps, prix d'entrée de gamme grain"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "8004399026032",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4,
@@ -2183,20 +2194,27 @@
    "id": "p093",
    "cat": "cafe",
    "brand": "Ninja",
-   "model": "AE1052EU",
+   "model": "AutoBarista Pro AE1052EU",
    "price": 899.99,
    "specs": {
-    "type": "Grain automatique"
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "reservoir": 2.4,
+    "recettes": 13,
+    "pression": 19,
+    "bac_grains": "340 g"
    },
    "args": [
-    "Technologie qui donne un expresso parfait sans réglage manuel",
-    "1 ou 2 cafés en même temps"
+    "GrindIQ : la mouture s'ajuste toute seule au grain et à la boisson",
+    "13 programmes chauds et froids (expresso, filtre, cold brew…)",
+    "Système lait intégré + buse, grand écran couleur",
+    "Réservoir 2,4 L, pression 19 bars"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "0622356379786",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4,
@@ -2374,20 +2392,25 @@
    "id": "p100",
    "cat": "cafe",
    "brand": "De'Longhi",
-   "model": "FEB22.82.SB",
+   "model": "Magnifica Start FEB22.82.SB",
    "price": 599.99,
    "specs": {
     "type": "Grain automatique",
-    "reservoir": 1.8
+    "reservoir": 1.8,
+    "lait": "Automatique",
+    "recettes": 4
    },
    "args": [
-    "Allie simplicité et performance"
+    "Carafe LatteCrema Hot : cappuccino et latte en une touche",
+    "4 boissons en accès direct + eau chaude",
+    "Nettoyage automatique du circuit lait",
+    "1 ou 2 cafés en même temps, finition argent"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "8004399028074",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4,
@@ -2464,14 +2487,13 @@
    },
    "args": [
     "Large écran couleur tactile pour préparer son café en toute simplicité",
-    "Broyeur intégré, 15 bars, 1 ou 2 tasses",
-    "Promo : 1 249 € → 799,99 €"
+    "Broyeur intégré, 15 bars, 1 ou 2 tasses"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "9312432030151",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 3.5,
@@ -2502,7 +2524,7 @@
    "id": "p105",
    "cat": "cafe",
    "brand": "De'Longhi",
-   "model": "Dinamica FEB3895.TB",
+   "model": "Dinamica Plus FEB3895.TB",
    "price": 999.99,
    "specs": {
     "type": "Grain automatique",
@@ -2511,15 +2533,16 @@
     "lactees": 13
    },
    "args": [
-    "Écran tactile pour un accès rapide aux boissons",
+    "Double carafe LatteCrema Hot, dont une isotherme (lait au frigo)",
     "10 recettes café et 13 recettes lactées",
+    "Grand écran tactile, profils et fonction My",
     "1 ou 2 cafés en même temps"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "5011423008363",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4.5,
@@ -2682,14 +2705,13 @@
    },
    "args": [
     "Broyeur intégré : jusqu'à 25 tasses de café",
-    "Contrôle de la température réglable",
-    "Promo : 729,99 € → 499,99 €"
+    "Contrôle de la température réglable"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "9312432030144",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4.5,
@@ -2750,18 +2772,23 @@
    "model": "5KSM70SHXEAC",
    "price": 599,
    "specs": {
-    "type": "Robot pâtissier"
+    "type": "Robot pâtissier",
+    "capacite": 6.6,
+    "vitesses": 11,
+    "puissance": 375,
+    "pieces": "2 ans"
    },
    "args": [
-    "Robot pâtissier très grande capacité, 1 bol fourni",
-    "Promo : 999,99 € → 599 €",
-    "Très bien noté (5/5)"
+    "Bol de 6,6 L à relevage (bowl-lift) : grosses fournées de pâte",
+    "11 vitesses, moteur 375 W",
+    "Fouet, crochet pétrisseur et batteur plat fournis",
+    "Coloris Almond Cream, très bien noté"
    ],
    "obj": "",
    "acc": "",
-   "incl": "",
+   "incl": "Bol 6,6 L, fouet, crochet pétrisseur, batteur plat",
    "ean": "8003437630774",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 5,

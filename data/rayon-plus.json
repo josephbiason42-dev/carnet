@@ -704,15 +704,15 @@
    ]
   },
   "p082": {
-   "pour": "Amateur de café qui veut personnaliser ses boissons, très bien noté (372 avis).",
+   "pour": "Amateur de café qui veut personnaliser ses boissons et faire un cappuccino de temps en temps.",
    "cons": [
-    "Pas de recette lactée automatique visible : vérifier le système lait en rayon"
+    "Buse vapeur manuelle : la mousse demande un peu de pratique"
    ]
   },
   "p083": {
-   "pour": "Client qui veut la simplicité du tactile à prix moyen (265 avis).",
+   "pour": "Premier achat grain, surtout orienté café, lait occasionnel.",
    "cons": [
-    "Moins de recettes que la FEB3535"
+    "Buse vapeur manuelle, pas de recette lactée en une touche"
    ]
   },
   "p084": {
@@ -722,9 +722,10 @@
    ]
   },
   "p085": {
-   "pour": "Premier broyeur à petit prix (promo Black Friday).",
+   "pour": "Premier achat grain au meilleur prix, buveur de café noir.",
    "cons": [
-    "Fonctions simples"
+    "Buse vapeur manuelle",
+    "Pas d'écran, 3 recettes seulement"
    ]
   },
   "p086": {
@@ -773,10 +774,10 @@
    ]
   },
   "p093": {
-   "pour": "Client qui veut un expresso de qualité sans se compliquer avec les réglages.",
+   "pour": "Client exigeant qui veut un café réglé tout seul, chaud ou froid.",
    "cons": [
     "Prix élevé",
-    "Système lait à vérifier en rayon"
+    "Lourde (16 kg) et encombrante"
    ]
   },
   "p094": {
@@ -817,9 +818,9 @@
    ]
   },
   "p100": {
-   "pour": "Client qui veut la Magnifica en finition argent.",
+   "pour": "Client qui veut ses cappuccinos en une touche sans y mettre le prix d'une Dinamica.",
    "cons": [
-    "Système lait à vérifier en rayon"
+    "4 boissons seulement, pas d'écran"
    ]
   },
   "p101": {
@@ -849,7 +850,7 @@
    ]
   },
   "p105": {
-   "pour": "Famille gourmande de boissons lactées : 13 recettes au lait.",
+   "pour": "Famille gourmande de boissons lactées : 13 recettes au lait, carafe isotherme.",
    "cons": [
     "Prix élevé"
    ]
@@ -906,10 +907,10 @@
    ]
   },
   "p114": {
-   "pour": "Pâtissier passionné qui veut une grande capacité, grosse promo.",
+   "pour": "Pâtissier passionné ou grande famille : bol 6,6 L, pétrit les grosses pâtes.",
    "cons": [
-    "4 avis seulement",
-    "Encombrant et lourd"
+    "Encombrant et lourd (environ 16 kg)",
+    "Peu d'avis pour l'instant"
    ]
   }
  },
