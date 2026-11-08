@@ -1008,6 +1008,11 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
 .pg-ad{position:absolute; left:3px; right:3px; top:3px; z-index:2; display:flex; flex-direction:column; gap:2px}
 .pg-adc{all:unset; box-sizing:border-box; cursor:pointer; font-size:.68rem; font-weight:700; padding:2px 6px; border-radius:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; background:color-mix(in srgb, var(--pc) 30%, rgba(24,26,32,.95)); border-left:3px solid var(--pc)}
 .pg-empty.low{top:44px}
+.ct-box{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.ct-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.88rem;color:var(--muted)}
+#ct-form{margin-top:10px;display:flex;flex-direction:column;gap:10px}
+.ct-mac{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#ct-form .btnrow{display:flex;gap:8px}#ct-form .btnrow .primary{flex:1}
 </style>
 </head>
 <body data-tab="home">
@@ -1183,7 +1188,7 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
       <div id="cal-def"></div>
     </div>
 
-    <form class="panel" id="cal-form" novalidate>
+    <form class="panel" id="cal-form" novalidate hidden>
       <div class="grid">
         <label for="c-meal">Repas<select id="c-meal"></select></label>
         <label for="c-kcal">Calories (kcal)<input id="c-kcal" inputmode="numeric" placeholder="450" autocomplete="off"></label>
@@ -1202,7 +1207,7 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
       <button class="primary" type="submit">Ajouter au journal</button>
     </form>
 
-    <div class="panel"><h3>Journal du jour</h3><div id="cal-list"></div></div>
+    <div class="panel" id="cal-jr" hidden><h3>Journal du jour</h3><div id="cal-list"></div></div>
     <div class="panel"><h3>Les 7 derniers jours</h3><div id="cal-week"></div></div>
   </section>
 
@@ -2954,12 +2959,14 @@ function renderRevCard(){
 /* ---------- calories ---------- */
 var MEALS=["Petit-déjeuner","Déjeuner","Collation","Dîner"];
 function defaultMeal(){var ms=meals();if(ms!==MEALS)return ms[0];var h=new Date().getHours();return h<11?MEALS[0]:h<15?MEALS[1]:h<18?MEALS[2]:MEALS[3]}
-function dayItems(d){return (state.cal[d.slice(0,7)]||[]).filter(function(x){return x.date===d})}
+function dayItems(d){var L=(state.cal[d.slice(0,7)]||[]).filter(function(x){return x.date===d}),T=L.filter(function(x){return x.total});return T.length?[T[T.length-1]]:L}
+function dayTotItem(d){var L=(state.cal[d.slice(0,7)]||[]).filter(function(x){return x.date===d&&x.total});return L[L.length-1]||null}
+var calEditing=false;
 function dayTotal(d){var k=0,p=0,c=0,f=0,hc=false,hf=false;dayItems(d).forEach(function(x){k+=x.kcal||0;p+=x.prot||0;if(x.carb!=null){c+=x.carb;hc=true}if(x.fat!=null){f+=x.fat;hf=true}});return {kcal:k,prot:p,carb:c,fat:f,hasC:hc,hasF:hf}}
 function g1(v){var n=num(v);return v!==""&&n>=0?Math.round(n*10)/10:null}
 function macroTxt(x){var a=[];if(x.prot)a.push("P "+nf1.format(x.prot)+" g");if(x.carb!=null)a.push("G "+nf1.format(x.carb)+" g");if(x.fat!=null)a.push("L "+nf1.format(x.fat)+" g");return a.join(" · ")}
-$("#d-prev").addEventListener("click",function(){ui.day=addDays(ui.day,-1);renderCal()});
-$("#d-next").addEventListener("click",function(){ui.day=addDays(ui.day,1);renderCal()});
+$("#d-prev").addEventListener("click",function(){ui.day=addDays(ui.day,-1);calEditing=false;renderCal()});
+$("#d-next").addEventListener("click",function(){ui.day=addDays(ui.day,1);calEditing=false;renderCal()});
 $("#cal-form").addEventListener("submit",function(e){
   e.preventDefault();
   var k=num($("#c-kcal").value);
@@ -3074,9 +3081,30 @@ function renderCal(){
   }
   var showMac=!!(t.prot||t.hasC||t.hasF);
   h+=(showMac?'':'<span class="num">Protéines '+intf.format(t.prot)+(pg?" / "+intf.format(pg):"")+' g</span>')+'</div>';
-  if(showMac){var tot=t.prot*4+t.carb*4+t.fat*9;
+  if(showMac){var tot=t.kcal>0?t.kcal:t.prot*4+t.carb*4+t.fat*9;
     h+='<div class="mac-row">'+[["Protéines",t.prot,"#5b8cff",4],["Glucides",t.carb,"#ffb547",4],["Lipides",t.fat,"#f472b6",9]].map(function(m){return '<div class="mac"><small>'+m[0]+'</small><b>'+nf1.format(Math.round(m[1]*10)/10)+(m[0]==="Protéines"&&pg?' <span class="u">/ '+intf.format(pg)+'</span>':'')+' g</b><span class="mac-bar"><i style="width:'+(tot?Math.round(m[1]*m[3]/tot*100):0)+'%;background:'+m[2]+'"></i></span><em>'+(tot?Math.round(m[1]*m[3]/tot*100):0)+' % des kcal</em></div>'}).join("")+'</div>';}
+  var TI=dayTotItem(ui.day),oldN=TI?0:dayItems(ui.day).length,ced=calEditing||(!TI&&!oldN);
+  h+='<div class="ct-box"><div class="ct-top"><span>'+(TI?'Total saisi'+(TI.at?' à '+new Date(TI.at).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}):''):(oldN?oldN+' aliment'+(oldN>1?'s':'')+' noté'+(oldN>1?'s':''):'Aucun total pour ce jour'))+'</span>'+(!ced?'<button class="link" type="button" id="ct-edit">'+(TI||oldN?'Mettre à jour':'Saisir le total')+'</button>':'')+'</div>';
+  if(ced){
+    var v=function(x){return x!=null&&x!==""?String(x).replace(".",","):""};
+    h+='<form id="ct-form" novalidate><label for="ct-kcal">Total calories (Foodvisor)<input id="ct-kcal" inputmode="numeric" placeholder="ex. 1 850" autocomplete="off" value="'+(TI?TI.kcal:(t.kcal||""))+'"></label>'+
+      '<div class="ct-mac"><label for="ct-p">Prot. (g)<input id="ct-p" inputmode="decimal" autocomplete="off" value="'+v(TI?TI.prot:"")+'"></label><label for="ct-g">Gluc. (g)<input id="ct-g" inputmode="decimal" autocomplete="off" value="'+v(TI?TI.carb:"")+'"></label><label for="ct-l">Lip. (g)<input id="ct-l" inputmode="decimal" autocomplete="off" value="'+v(TI?TI.fat:"")+'"></label></div>'+
+      '<div class="btnrow"><button class="primary" type="submit">Enregistrer</button>'+(TI||oldN?'<button class="ghost" type="button" id="ct-cancel">Annuler</button>':'')+'</div></form>';
+  }
+  h+='</div>';
   $("#cal-sum").innerHTML=h;
+  var ce=$("#ct-edit");if(ce)ce.addEventListener("click",function(){calEditing=true;renderCal();var i=$("#ct-kcal");i.focus();i.select()});
+  var cc=$("#ct-cancel");if(cc)cc.addEventListener("click",function(){calEditing=false;renderCal()});
+  var cf=$("#ct-form");if(cf)cf.addEventListener("submit",function(e){
+    e.preventDefault();var raw=$("#ct-kcal").value.trim(),k=num(raw);
+    if(raw===""||!(k>=0)){flash("#ct-kcal");toast("Indique le total de calories du jour");return}
+    var m=ui.day.slice(0,7),L=state.cal[m]=state.cal[m]||[],old=dayTotItem(ui.day);
+    var it={id:old?old.id:newId(),date:ui.day,meal:"Total",name:"Total du jour",kcal:Math.round(k),total:true,at:Date.now(),prot:0};
+    var p=g1($("#ct-p").value.trim()),cb=g1($("#ct-g").value.trim()),ft=g1($("#ct-l").value.trim());if(p!=null)it.prot=p;if(cb!=null)it.carb=cb;if(ft!=null)it.fat=ft;
+    state.cal[m]=L.filter(function(x){return !(x.date===ui.day&&x.total)});state.cal[m].push(it);
+    calEditing=false;persist("cal-"+m);renderCal();
+    toast("Total enregistré : "+intf.format(it.kcal)+" kcal");
+  });
   var gs=$("#go-set");if(gs)gs.addEventListener("click",function(){setTab("set");$("#s-kcal").focus()});
 
   var items=dayItems(ui.day),m=ui.day.slice(0,7),html="";
