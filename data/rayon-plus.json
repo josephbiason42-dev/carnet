@@ -636,8 +636,8 @@
   "p071": {
    "pour": "Client qui veut léger (1,6 kg) et grosse autonomie à prix moyen.",
    "cons": [
-    "Pièces détachées 5 ans",
-    "Peu d'avis"
+    "Pas de station d'auto-vidage",
+    "Bloc moteur peu ergonomique selon les tests"
    ]
   },
   "p072": {
@@ -655,8 +655,8 @@
   "p074": {
    "pour": "Client avec animaux qui veut une alternative Shark moins chère.",
    "cons": [
-    "Pièces 7 ans",
-    "Réparabilité 7,9"
+    "Assez lourd (3,5 kg)",
+    "Bruyant en mode boost"
    ]
   },
   "p075": {
@@ -824,7 +824,7 @@
    ]
   },
   "p101": {
-   "pour": "Passionné qui veut faire son expresso lui-même, comme un barista.",
+   "pour": "Futur barista maison qui veut un porte-filtre sans galérer sur le dosage.",
    "cons": [
     "Demande un apprentissage",
     "Pas automatique"
@@ -881,7 +881,7 @@
    ]
   },
   "p110": {
-   "pour": "Client qui veut le geste barista guidé par un écran, pièces 10 ans.",
+   "pour": "Client qui veut s'initier au barista avec un vrai guidage, sans rater sa mousse.",
    "cons": [
     "Demande un apprentissage"
    ]
@@ -894,16 +894,16 @@
    ]
   },
   "p112": {
-   "pour": "Passionné qui veut aussi des cafés froids.",
+   "pour": "Amateur de cafés glacés et de lattes, qui veut le geste barista sans la difficulté.",
    "cons": [
-    "Très cher",
-    "3 avis seulement"
+    "Prix élevé",
+    "Encore peu d'avis"
    ]
   },
   "p113": {
-   "pour": "Amateur de thé qui veut une infusion parfaite.",
+   "pour": "Amateur de thé en vrac qui veut une infusion parfaite sans surveiller.",
    "cons": [
-    "Étiquette peu lisible : vérifier le prix et les avis"
+    "Vérifier la version en rayon : Compact (1 L) ou classique (1,5 L)"
    ]
   },
   "p114": {

@@ -1050,7 +1050,7 @@
     "type": "Balai sans fil",
     "autonomie": 120,
     "puissance": "315 AW",
-    "poids": 1.8,
+    "poids": 3.1,
     "bac": 0.65,
     "tension": 25.2,
     "repar": 9.4,
@@ -1058,9 +1058,10 @@
     "animaux": "oui"
    },
    "args": [
-    "Puissance qui s'adapte automatiquement au type de sol et optimise l'autonomie",
-    "Jusqu'à 2 h d'autonomie",
-    "Tube Flex pour passer sous les meubles"
+    "315 AW : le plus puissant de la gamme Rowenta",
+    "Jusqu'à 2 h d'autonomie, puissance auto selon le sol",
+    "Tube Flex pour passer sous les meubles",
+    "Seulement 1,8 kg en mode aspirateur à main"
    ],
    "obj": "",
    "acc": "",
@@ -1070,7 +1071,7 @@
     "note": 4,
     "n": 38
    },
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true
   },
   {
@@ -1198,7 +1199,6 @@
     "type": "Balai sans fil",
     "autonomie": 60,
     "poids": 3.1,
-    "bac": 2,
     "repar": 7.9,
     "pieces": "7 ans"
    },
@@ -1214,7 +1214,7 @@
     "note": 4,
     "n": 9
    },
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true
   },
   {
@@ -1574,22 +1574,24 @@
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 90,
-    "poids": 1.6,
+    "poids": 3.1,
     "bac": 0.5,
     "tension": 30,
     "repar": 8.5,
-    "pieces": "5 ans (après fin de fabrication)"
+    "pieces": "5 ans (après fin de fabrication)",
+    "puissance": "210 AW"
    },
    "args": [
-    "Capteur de saleté : la puissance s'ajuste automatiquement",
-    "Jusqu'à 1 h 30 d'autonomie",
-    "Pour les sols, meubles et hauteurs"
+    "210 AW, capteur de saleté : la puissance s'ajuste toute seule",
+    "Bras GapFree : nettoie les bords jusqu'à 0 mm",
+    "Jusqu'à 1 h 30 d'autonomie, batterie amovible",
+    "Bloc moteur de 1,6 kg seulement, filtre HEPA"
    ],
    "obj": "",
    "acc": "",
    "incl": "Brosse motorisée avec éclairage LED ; accessoire combiné ; mini brosse motorisée ; support de recharge",
    "ean": "6978515255427",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4.5,
@@ -1666,23 +1668,26 @@
    "price": 279,
    "specs": {
     "type": "Balai sans fil",
-    "autonomie": 60,
-    "poids": 3.1,
-    "bac": 2,
+    "autonomie": 50,
+    "poids": 3.5,
+    "bac": 0.7,
     "repar": 7.9,
     "pieces": "7 ans",
-    "animaux": "oui"
+    "animaux": "oui",
+    "puissance": "75 AW",
+    "tension": 21.6
    },
    "args": [
-    "Nettoyage intelligent qui s'adapte à toutes les surfaces",
-    "Aspire aussi les débris en marche arrière",
-    "Tube Flexology pour passer sous les meubles"
+    "Brosse motorisée anti-emmêlement spéciale poils d'animaux",
+    "Puissance qui s'adapte au sol, brosse éclairée LED",
+    "Tube Flexology pliable : passe sous les meubles et tient debout seul",
+    "Jusqu'à 50 min d'autonomie, bac 0,7 L"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "0622356316545",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true
   },
   {
@@ -2421,7 +2426,7 @@
    "id": "p101",
    "cat": "cafe",
    "brand": "Sage",
-   "model": "Barista (avec broyeur)",
+   "model": "the Barista Express Impress SES876",
    "price": 829.99,
    "specs": {
     "type": "Expresso manuel",
@@ -2430,15 +2435,16 @@
     "pieces": "5 ans (après fin de fabrication)"
    },
    "args": [
-    "Dosage intelligent avec broyeur conique intégré et 25 réglages de mouture",
-    "15 bars, 1 ou 2 tasses",
+    "Dosage intelligent + tassage assisté : la bonne dose à chaque fois",
+    "Broyeur conique intégré, 25 réglages de mouture",
+    "Buse vapeur manuelle pour le latte art",
     "Pour le client qui veut faire son café comme un barista"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "9356973097917",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4,
@@ -2667,24 +2673,28 @@
    "id": "p110",
    "cat": "cafe",
    "brand": "De'Longhi",
-   "model": "La Specialista EC9455.M",
+   "model": "La Specialista Touch EC9455.M",
    "price": 699.99,
    "specs": {
     "type": "Expresso manuel",
-    "lait": "Buse vapeur",
+    "lait": "Buse vapeur auto",
     "pression": 15,
-    "pieces": "10 ans"
+    "pieces": "10 ans",
+    "reservoir": 1.7,
+    "puissance": 1450,
+    "bac_grains": "180 g"
    },
    "args": [
-    "Écran tactile immersif de 3,5 pouces",
-    "Cafés chauds et froids",
+    "Écran tactile qui guide pas à pas vers l'expresso parfait",
+    "Buse Auto LatteArt : texture le lait toute seule (lait végétal aussi)",
+    "Cafés chauds et froids (Cold Brew)",
     "Broyeur intégré, 15 bars, pièces 10 ans"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "8004399029064",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4.5,
@@ -2722,24 +2732,26 @@
    "id": "p112",
    "cat": "cafe",
    "brand": "Sage",
-   "model": "the Barista (cafés froids)",
+   "model": "the Barista Touch Impress Cold SES882",
    "price": 1299.99,
    "specs": {
     "type": "Expresso manuel",
-    "lait": "Buse vapeur",
+    "lait": "Automatique",
     "pression": 15,
-    "pieces": "5 ans"
+    "pieces": "5 ans",
+    "reservoir": 2
    },
    "args": [
-    "Cafés froids en programmes prédéfinis : Cold Brew et expresso froid",
-    "Café en grain et café moulu",
-    "15 bars, 1 ou 2 tasses"
+    "Cold Brew en moins de 3 min et expresso froid en un bouton",
+    "Tassage assisté Impress : dose et tasse à la place du client",
+    "Auto MilQ : mousse de lait automatique, lait végétal compris",
+    "Écran tactile qui guide, 30 réglages de mouture"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true,
    "avis": {
     "note": 4.5,
@@ -2750,19 +2762,21 @@
    "id": "p113",
    "cat": "cafe",
    "brand": "Sage",
-   "model": "Tea Maker (théière)",
+   "model": "the Tea Maker",
    "price": 169.99,
    "specs": {
     "type": "Bouilloire"
    },
    "args": [
-    "Théière électrique : infuse le thé à la bonne température et au bon temps"
+    "Le panier à thé descend et remonte tout seul : jamais de thé trop infusé",
+    "Température et intensité préréglées selon le type de thé",
+    "Maintien au chaud 60 min, fonction bouilloire classique"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "",
-   "releve": "2026-11-08",
+   "releve": "2026-11-09",
    "seed": true
   },
   {
