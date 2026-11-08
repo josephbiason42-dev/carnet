@@ -204,6 +204,8 @@ body.has-tray .tray{bottom:calc(78px + var(--safe-b))}
 .inf ul{margin:0; padding-left:18px; display:flex; flex-direction:column; gap:5px; font-size:.95rem}
 .inf ul b{color:#fff}
 .inf-h2{margin:22px 0 4px; font-size:1.1rem}
+.hint-s{margin:0 0 4px; color:var(--muted); font-size:.88rem}
+.inf.hk .inf-hook{margin:8px 0 0}
 .inf-hook{margin:6px 0 2px; padding:10px 12px; border-radius:10px; background:rgba(255,181,71,.1); font-weight:700}
 .ob{margin-top:10px; border-radius:var(--r); background:var(--s1); border:1px solid var(--line); overflow:hidden}
 .ob>button{all:unset; box-sizing:border-box; cursor:pointer; width:100%; padding:14px 16px; display:flex; justify-content:space-between; gap:10px; font-weight:800}
@@ -275,7 +277,7 @@ var PCAT={
 var BUD=[["","Tous prix"],["0-100","< 100 €"],["100-200","100–200 €"],["200-400","200–400 €"],["400-99999","400 € et +"]];
 
 var P=[],G=null,X=null,src="";
-var ui={tab:"prod",adv:{cat:null,i:0,a:{}},obq:"",obOpen:{},infOpen:{},cbase:null,cat:null,type:"",bud:"",sort:"",q:"",open:null,list:[],client:false,cmp:lsGet("rayon-cmp")||[],fav:lsGet("rayon-fav")||{},seen:lsGet("rayon-seen")||[]};
+var ui={tab:"prod",adv:{cat:null,i:0,a:{}},obq:"",obOpen:{},infOpen:{},hkOpen:{},cbase:null,cat:null,type:"",bud:"",sort:"",q:"",open:null,list:[],client:false,cmp:lsGet("rayon-cmp")||[],fav:lsGet("rayon-fav")||{},seen:lsGet("rayon-seen")||[]};
 
 /* ----- données : copie locale du Dashboard, puis Supabase, sinon sélection de base ----- */
 var FILE=null;
@@ -454,6 +456,8 @@ function infHTML(){
   if(!f||!f.items)return '<div class="lhead"><h1>♾️ Club Infinity</h1></div><p class="empty">Fiches Infinity en cours de chargement…</p>';
   var h='<div class="lhead"><h1>♾️ Club Infinity</h1><span>'+f.items.length+' fiches</span></div>'+
     '<div class="svc">Assurance panne : réparation illimitée de tous les appareils de l\'univers choisi, achetés chez Boulanger ou ailleurs. Toujours remettre la notice d\'information au client.</div>';
+  var HK=(X&&X.infHooks)||[];
+  if(HK.length)h+='<h2 class="inf-h2">🎯 Fiche client ouverte : quelle accroche ?</h2><p class="hint-s">Repère sa situation, lance la phrase, puis écoute.</p>'+HK.map(function(k,i){var o=ui.hkOpen[i];return '<div class="inf hk'+(o?" open":"")+'"><button type="button" data-hk="'+i+'" aria-expanded="'+!!o+'">'+(k.ic?k.ic+' ':'')+esc(k.s)+'</button><div class="inf-b">'+k.a.map(function(a){return /^«/.test(a)?'<div class="inf-hook">'+esc(a)+'</div>':'<p>'+esc(a)+'</p>'}).join("")+'</div></div>'}).join("")+'<h2 class="inf-h2">📚 Fiches Infinity</h2>';
   h+=f.items.map(function(it,i){var o=ui.infOpen[i];
     return '<div class="inf'+(o?" open":"")+(/prix/i.test(JSON.stringify(it.c||""))?" int":"")+'"><button type="button" data-inf="'+i+'" aria-expanded="'+!!o+'">'+esc(it.n)+(it.q?'<small>'+esc(it.ql||"À demander")+' : « '+esc(it.q)+' »</small>':'')+'</button><div class="inf-b">'+
       (it.q?'<div class="inf-hook">« '+esc(it.q)+' »</div>':'')+
@@ -509,6 +513,7 @@ $("#main").addEventListener("click",function(e){
   var an=e.target.closest("[data-ans]");if(an){var Q=ADV[ui.adv.cat].qs;ui.adv.a[Q[ui.adv.i].k]=an.dataset.ans;ui.adv.i++;render();window.scrollTo(0,0);return}
   var av=e.target.closest("[data-adv]");if(av){var A=ui.adv,k=av.dataset.adv;if(k==="back"){if(A.i)A.i--;else A.cat=null}else if(k==="skip")A.i++;else if(k==="edit")A.i=0;else if(k==="reset")ui.adv={cat:null,i:0,a:{}};render();return}
   var rc=e.target.closest(".rc[data-id]");if(rc){openSheet(rc.dataset.id,[].slice.call(document.querySelectorAll(".rc[data-id]")).map(function(x){return x.dataset.id}));return}
+  var hk=e.target.closest("[data-hk]");if(hk){var k4=hk.dataset.hk;ui.hkOpen[k4]=!ui.hkOpen[k4];hk.parentNode.classList.toggle("open",!!ui.hkOpen[k4]);hk.setAttribute("aria-expanded",String(!!ui.hkOpen[k4]));return}
   var io=e.target.closest("[data-inf]");if(io){var k3=io.dataset.inf;ui.infOpen[k3]=!ui.infOpen[k3];io.parentNode.classList.toggle("open",!!ui.infOpen[k3]);io.setAttribute("aria-expanded",String(!!ui.infOpen[k3]));return}
   var ob=e.target.closest("[data-ob]");if(ob){var k2=ob.dataset.ob;ui.obOpen[k2]=!ui.obOpen[k2];ob.parentNode.classList.toggle("open",!!ui.obOpen[k2]);ob.setAttribute("aria-expanded",String(!!ui.obOpen[k2]));return}
   var cn=e.target.closest("[data-n]");if(cn){ui.cn=+cn.dataset.n;document.querySelectorAll("#c-n [data-n]").forEach(function(x){x.setAttribute("aria-pressed",String(x===cn))});calcRun();return}

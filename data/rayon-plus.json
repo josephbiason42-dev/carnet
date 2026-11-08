@@ -1159,5 +1159,104 @@
    "tags": "infinity seulement un appareil ce produit uniquement",
    "inf": true
   }
+ ],
+ "infHooks": [
+  {
+   "s": "Il a déjà acheté plusieurs appareils chez nous",
+   "ic": "🧾",
+   "a": [
+    "« Je vois votre lave-linge et votre aspirateur dans votre historique : ils ont quel âge aujourd'hui ? »",
+    "« Avec tout ce que vous avez déjà chez vous, un seul abonnement couvrirait l'ensemble. Je vous montre ? »"
+   ]
+  },
+  {
+   "s": "Ses appareils ont plus de 2 ans (garantie finie)",
+   "ic": "⏳",
+   "a": [
+    "« Votre lave-vaisselle date de 2022 : il n'est plus garanti. S'il tombait en panne demain, vous feriez comment ? »",
+    "« Une fois la garantie finie, la moindre panne est à votre charge : pièces, main-d'œuvre, déplacement. »"
+   ]
+  },
+  {
+   "s": "Il est membre Club ou Club+",
+   "ic": "⭐",
+   "a": [
+    "« Vous êtes déjà au Club+ : avec Infinity, il est offert, et vous gagnez la réparation illimitée en plus. »",
+    "« Vous payez déjà vos livraisons ? Avec Infinity, elles sont toutes offertes, même en express. »"
+   ]
+  },
+  {
+   "s": "Il a une cagnotte ou achète souvent",
+   "ic": "💰",
+   "a": [
+    "« Vous cagnottez déjà : avec Infinity, c'est 2 % sur chaque achat. »",
+    "« Vous venez souvent chez nous : entre la livraison offerte et la cagnotte, une partie de l'abonnement se rembourse toute seule. »"
+   ]
+  },
+  {
+   "s": "Il a eu une réparation ou un SAV récemment",
+   "ic": "🔧",
+   "a": [
+    "« Je vois que votre machine est passée en réparation : ça vous a coûté combien ? »",
+    "« Pour ne plus jamais avoir de mauvaise surprise sur une réparation : Infinity prend tout en charge, pièces et main-d'œuvre. »"
+   ]
+  },
+  {
+   "s": "Il achète un appareil haut de gamme aujourd'hui",
+   "ic": "💎",
+   "a": [
+    "« Vous investissez dans une belle machine : vous comptez la garder combien de temps ? »",
+    "« Une panne de pompe ou de broyeur hors garantie, ça peut vite coûter cher. Avec Infinity, c'est réglé, et vos autres appareils aussi. »"
+   ]
+  },
+  {
+   "s": "Il remplace un appareil tombé en panne",
+   "ic": "♻️",
+   "a": [
+    "« Il est tombé en panne comment, l'ancien ? Vous avez essayé de le faire réparer ? »",
+    "« La prochaine fois, au lieu de racheter, on le répare : c'est exactement ce que fait Infinity. »"
+   ]
+  },
+  {
+   "s": "Famille ou grand foyer (beaucoup d'appareils)",
+   "ic": "👨‍👩‍👧",
+   "a": [
+    "« Avec les enfants, les appareils tournent tous les jours : combien vous en avez à la maison ? »",
+    "« Plus il y a d'appareils, plus Infinity est rentable : c'est le même prix que vous en ayez 5 ou 20. »"
+   ]
+  },
+  {
+   "s": "Il vient d'emménager ou s'équipe",
+   "ic": "🏠",
+   "a": [
+    "« Vous vous installez ? C'est le bon moment pour protéger tout l'équipement d'un coup. »",
+    "« Tout ce que vous achetez aujourd'hui chez nous est couvert sans franchise. »"
+   ]
+  },
+  {
+   "s": "Il a aussi du multimédia ou une TV dans son historique",
+   "ic": "📺",
+   "a": [
+    "« Je vois aussi une TV et un ordinateur : avec 2 ou 3 univers, toute la maison est protégée. »",
+    "À utiliser seulement si l'électroménager l'intéresse déjà : ne pas tout proposer d'un coup."
+   ]
+  },
+  {
+   "s": "Fiche vide ou nouveau client",
+   "ic": "👋",
+   "a": [
+    "« Vous connaissez le Club Boulanger ? Il y a une formule qui répare tous vos appareils, même achetés ailleurs. »",
+    "« Combien d'appareils vous avez à la maison qui ne sont plus sous garantie ? »"
+   ]
+  },
+  {
+   "s": "Il est déjà adhérent Infinity",
+   "ic": "✅",
+   "a": [
+    "Ne pas revendre : vérifier son univers et rappeler ses avantages (livraison offerte, cagnotte).",
+    "« Votre nouvel appareil sera couvert automatiquement par votre univers Électroménager. »",
+    "S'il n'a qu'un univers et des TV ou ordinateurs dans son historique : proposer le 2e univers."
+   ]
+  }
  ]
 }
