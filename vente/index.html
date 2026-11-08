@@ -306,7 +306,7 @@ function filtered(){
 }
 function cardHTML(p,q){
   var ks=keySpecs(p,3);
-  return '<button type="button" class="card" data-id="'+esc(p.id)+'"><div class="c-top"><div><div class="c-brand">'+hl(p.brand||"",q)+'</div><div class="c-model">'+hl(p.model,q)+'</div></div><div class="c-price">'+price(p)+'</div></div>'+
+  return '<button type="button" class="card" data-id="'+esc(p.id)+'"><div class="c-top"><div><div class="c-brand">'+hl(p.brand||"",q)+'</div><div class="c-model">'+hl(p.model,q)+'</div></div></div>'+
     (ks.length?'<div class="c-specs">'+ks.map(function(s){return '<span>'+esc(s)+'</span>'}).join("")+'</div>':'')+
     (p.args&&p.args[0]?'<div class="c-arg">'+hl(p.args[0],q)+'</div>':'')+(ui.fav[p.id]?'<span class="c-fav" aria-label="Favori">★</span>':'')+'</button>';
 }
@@ -338,7 +338,7 @@ function render(){
     var seen=ui.seen.map(find).filter(Boolean).slice(0,8);
     if(seen.length)h+='<h2>Vus récemment</h2><div class="hrow">'+seen.map(function(p){return cardHTML(p)}).join("")+'</div>';
     if(G&&G.reflexes&&G.reflexes.length)h+='<h2>Réflexes avant de conclure</h2><div class="refl">'+G.reflexes.map(function(r,i){return '<div><b>'+(i+1)+'.</b> '+esc(r)+'</div>'}).join("")+'</div>';
-    h+='<p class="foot">'+P.length+' produits · source : '+esc(src)+'. Prix indicatifs : vérifie l\'étiquette en rayon. Pour modifier une fiche ou ajouter un produit, passe par Produits dans le Dashboard.</p>';
+    h+='<p class="foot">'+P.length+' produits · source : '+esc(src)+'. Pour modifier une fiche ou ajouter un produit, passe par Produits dans le Dashboard.</p>';
   }
   m.innerHTML=h;
   renderTray();
@@ -413,7 +413,7 @@ function advHTML(){
     return h}
   var R=advScore(A.cat,A.a);
   var sum=Q.map(function(q){var o=q.o.filter(function(x){return x[0]===A.a[q.k]})[0];return o?o[1]:null}).filter(Boolean).join(" · ");
-  h+='<p class="summ">'+PCAT[A.cat].ic+' '+esc(sum||"Aucune réponse")+'</p><div class="reco">'+R.map(function(x,i){var p=x.p;return '<button type="button" class="rc'+(i===0?" top1":"")+'" data-id="'+esc(p.id)+'"><span class="rk">'+(i===0?"Le plus adapté":"Alternative "+i)+'</span><div class="c-top"><div><div class="c-brand">'+esc(p.brand||"")+'</div><div class="c-model">'+esc(p.model)+'</div></div><div class="c-price">'+price(p)+'</div></div>'+(x.why.length||x.warn.length?'<div class="why">'+x.why.map(function(w){return '<span>✓ '+esc(w)+'</span>'}).join("")+x.warn.map(function(w){return '<span class="w">! '+esc(w)+'</span>'}).join("")+'</div>':'')+(p.args&&p.args[0]?'<div class="c-arg">'+esc(p.args[0])+'</div>':'')+'</button>'}).join("")+'</div>';
+  h+='<p class="summ">'+PCAT[A.cat].ic+' '+esc(sum||"Aucune réponse")+'</p><div class="reco">'+R.map(function(x,i){var p=x.p;return '<button type="button" class="rc'+(i===0?" top1":"")+'" data-id="'+esc(p.id)+'"><span class="rk">'+(i===0?"Le plus adapté":"Alternative "+i)+'</span><div class="c-top"><div><div class="c-brand">'+esc(p.brand||"")+'</div><div class="c-model">'+esc(p.model)+'</div></div></div>'+(x.why.length||x.warn.length?'<div class="why">'+x.why.map(function(w){return '<span>✓ '+esc(w)+'</span>'}).join("")+x.warn.map(function(w){return '<span class="w">! '+esc(w)+'</span>'}).join("")+'</div>':'')+(p.args&&p.args[0]?'<div class="c-arg">'+esc(p.args[0])+'</div>':'')+'</button>'}).join("")+'</div>';
   h+='<div class="adv-nav"><button type="button" class="chip" data-adv="edit">‹ Modifier les réponses</button><button type="button" class="chip" data-adv="reset">Nouveau client</button></div>';
   return h;
 }
@@ -491,7 +491,6 @@ function sheetHTML(p){
   var C=PCAT[p.cat],sp=p.specs||{},h="";
   h+='<div class="sh-cat">'+C.ic+' '+esc(C.n)+(sp.type?' · '+esc(sp.type):'')+'<span class="client-tag">Mode client</span></div>';
   h+='<h1 class="sh-title"><small>'+esc(p.brand||"")+'</small>'+esc(p.model)+'</h1>';
-  h+='<div class="sh-price"><b>'+price(p)+'</b><span>prix indicatif</span></div>';
   var xp=xP(p),xt=xT(p);
   if(xp&&xp.pour)h+='<div class="pour"><small>Pour qui</small>'+esc(xp.pour)+'</div>';
   if(xt&&xt.quest&&xt.quest.length)h+='<section class="sec int"><h3>Questions à poser</h3><ol class="qs">'+xt.quest.map(function(q){return '<li>'+esc(q)+'</li>'}).join("")+'</ol></section>';
@@ -507,7 +506,7 @@ function sheetHTML(p){
   var acc=String(p.acc||"").split(/\s*[;,\n]\s*/).filter(Boolean);if(!acc.length)acc=C.acc||[];
   h+='<section class="sec int"><h3>À proposer avec</h3><div class="adds">'+acc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div>'+(services(p)?'<div style="margin-top:10px">'+services(p)+'</div>':'')+'</section>';
   var alts=alternatives(p);
-  if(alts.length)h+='<section class="sec"><h3>Alternatives</h3><div class="alts">'+alts.map(function(a){return '<button type="button" class="alt" data-alt="'+esc(a.p.id)+'"><small>'+a.l+'</small><b>'+esc(pName(a.p))+'</b><em>'+price(a.p)+(a.p.price!=null&&p.price!=null?' <span class="muted">('+(a.p.price>p.price?"+":"−")+eur.format(Math.abs(a.p.price-p.price))+')</span>':'')+'</em></button>'}).join("")+'</div></section>';
+  if(alts.length)h+='<section class="sec"><h3>Alternatives</h3><div class="alts">'+alts.map(function(a){return '<button type="button" class="alt" data-alt="'+esc(a.p.id)+'"><small>'+a.l+'</small><b>'+esc(pName(a.p))+'</b></button>'}).join("")+'</div></section>';
   if(p.notes)h+='<section class="sec int"><h3>Mes notes</h3><div class="notes">'+esc(p.notes)+'</div></section>';
   return h;
 }
@@ -536,7 +535,7 @@ function bindSheet(){
       else if(a==="fav"){if(ui.fav[ui.open])delete ui.fav[ui.open];else ui.fav[ui.open]=1;lsSet("rayon-fav",ui.fav);openSheet(ui.open,null,true);toast(ui.fav[ui.open]?"Ajouté aux favoris":"Retiré des favoris")}
       else if(a==="cmp"){cmpToggle(ui.open);openSheet(ui.open,null,true)}
       return}
-    var cl=e.target.closest("[data-calc]");if(cl){var pp=find(cl.dataset.calc);ui.cbase=pp?{a:pp.price||"",name:pName(pp)}:null;closeSheet();ui.tab="calc";render();window.scrollTo(0,0);return}
+    var cl=e.target.closest("[data-calc]");if(cl){var pp=find(cl.dataset.calc);ui.cbase=pp?{a:"",name:pName(pp)}:null;closeSheet();ui.tab="calc";render();window.scrollTo(0,0);return}
     var al=e.target.closest("[data-alt]");if(al){if(sheetList.indexOf(al.dataset.alt)<0)sheetList=[al.dataset.alt];openSheet(al.dataset.alt,null,true)}
   });
   var x0=null,y0=0;
@@ -556,14 +555,13 @@ function openCmp(){
   var row=function(lbl,vals,best){return '<tr><td>'+esc(lbl)+'</td>'+vals.map(function(v,i){return '<td class="'+(best===i?"best":"")+'">'+v+'</td>'}).join("")+'</tr>'};
   var pr=L.map(function(p){return p.price}),minP=Math.min.apply(null,pr.filter(function(x){return x!=null}));
   var h='<div class="cmp-wrap"><table class="cmp"><thead><tr><th></th>'+L.map(function(p){return '<th><small>'+esc(p.brand||"")+'</small>'+esc(p.model)+'<br><button type="button" class="rm" data-rm="'+esc(p.id)+'">Retirer</button></th>'}).join("")+'</tr></thead><tbody>';
-  var okP=pr.filter(function(x){return x!=null});h+=row("Prix",L.map(price),okP.length>1&&Math.min.apply(null,okP)!==Math.max.apply(null,okP)?pr.indexOf(minP):-1);
   keys.forEach(function(f){
     var raw=L.map(function(p){return (p.specs||{})[f[0]]}),vals=raw.map(function(v){var s=specVal(f,v);return s?esc(s.t):'<span class="muted">—</span>'}),best=-1;
     if(f[2]==="num"){var nums=raw.map(function(v){return typeof v==="number"?v:null});var ok=nums.filter(function(v){return v!=null});if(ok.length>1&&Math.min.apply(null,ok)!==Math.max.apply(null,ok)){var tgt=f[4]==="min"?Math.min.apply(null,ok):Math.max.apply(null,ok);best=nums.indexOf(tgt)}}
     h+=row(f[1],vals,best);
   });
   h+=row("Point fort",L.map(function(p){return esc((p.args||[])[0]||"—")}),-1);
-  h+='</tbody></table></div><p class="foot">En vert : la meilleure valeur sur la ligne (prix et poids : le plus bas).</p>';
+  h+='</tbody></table></div><p class="foot">En vert : la meilleure valeur sur la ligne (poids : le plus bas).</p>';
   if(!sheetEl){sheetEl=document.createElement("div");sheetEl.className="sheet";sheetEl.setAttribute("role","dialog");sheetEl.setAttribute("aria-modal","true");sheetEl.setAttribute("aria-label","Comparateur");document.body.appendChild(sheetEl);bindSheet();history.pushState({sheet:1,cat:ui.cat},"")}
   ui.open="__cmp__";sheetList=ui.cmp.slice();
   sheetEl.innerHTML='<div class="sh-bar"><button class="ib" type="button" data-sh="close" aria-label="Fermer">←</button><span class="sh-pos">Comparateur</span></div><div class="sh">'+h+'</div>';
