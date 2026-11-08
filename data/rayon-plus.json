@@ -1029,6 +1029,135 @@
     "Rester disponible : « Je suis dans le rayon si besoin. »"
    ],
    "tags": "regarde juste"
+  },
+  {
+   "o": "C'est trop cher, encore un abonnement",
+   "r": [
+    "« Je comprends. Combien d'appareils avez-vous à la maison ? » Faire le compte ensemble : café, aspirateur, fer, robot… tous couverts par 1 seul univers",
+    "Ramener au mois et par appareil : avec 6 appareils, ça revient à environ 2 € par appareil et par mois",
+    "Comparer avec une seule réparation hors garantie : souvent 20 à 50 % du prix du neuf (pièces + main-d'œuvre)",
+    "Rappeler ce qui est inclus en plus : livraison offerte, 2 % cagnottés, accès prioritaire au service client"
+   ],
+   "tags": "infinity prix cher abonnement mois cout",
+   "inf": true
+  },
+  {
+   "o": "Mon appareil est neuf, il a déjà 2 ans de garantie",
+   "r": [
+    "« Tout à fait, pendant 2 ans la garantie légale s'en occupe. »",
+    "Infinity ne couvre pas qu'un appareil : il couvre aussi tous ceux de la maison qui ne sont plus garantis",
+    "Et quand la garantie de celui-ci s'arrêtera, il restera couvert tant que le contrat court",
+    "Les avantages Club+ (livraison, cagnotte) servent dès aujourd'hui"
+   ],
+   "tags": "infinity garantie neuf 2 ans legale",
+   "inf": true
+  },
+  {
+   "o": "Mes appareils ne tombent jamais en panne",
+   "r": [
+    "« Tant mieux ! Ils ont quel âge en moyenne ? »",
+    "Plus un foyer a d'appareils, plus il y a de chances que l'un d'eux lâche dans l'année",
+    "Une panne arrive rarement au bon moment : machine à café le matin, aspirateur avant des invités…",
+    "Si le client est vraiment peu équipé, ne pas insister : ce n'est peut-être pas pour lui"
+   ],
+   "tags": "infinity jamais panne fiable solide",
+   "inf": true
+  },
+  {
+   "o": "Les assurances, ça ne paie jamais",
+   "r": [
+    "Ne pas promettre plus que le contrat : « Je vous montre exactement ce qui est couvert. »",
+    "Ouvrir la notice ensemble : panne couverte, diagnostic, déplacement, pièces et main-d'œuvre inclus",
+    "Expliquer le cas irréparable : un bon d'achat Boulanger est proposé (valeur selon les conditions de la notice)",
+    "Préciser que la réparation est gérée par Boulanger : le client a un interlocuteur, pas un formulaire perdu"
+   ],
+   "tags": "infinity arnaque assurance paie jamais confiance",
+   "inf": true
+  },
+  {
+   "o": "Je ne veux pas m'engager",
+   "r": [
+    "Être transparent : l'engagement est de 12 mois, ensuite c'est résiliable",
+    "Le client dispose d'un droit de rétractation après l'adhésion (délai précisé dans la notice)",
+    "« Sur un an, une seule réparation suffit souvent à rentabiliser l'abonnement »",
+    "Laisser la notice au client s'il veut y réfléchir chez lui"
+   ],
+   "tags": "infinity engagement engager resilier 12 mois",
+   "inf": true
+  },
+  {
+   "o": "Et si je le casse ou qu'on me le vole ?",
+   "r": [
+    "Être honnête : Infinity Maison couvre la panne, pas la casse accidentelle ni le vol",
+    "Une chute, un liquide renversé… vérifier dans la notice avant de répondre, ne jamais improviser",
+    "Pour un smartphone, c'est le Club Infinity Smartphone qui couvre casse, oxydation et vol",
+    "Mieux vaut perdre une vente que créer un client mécontent qui se sentira trompé"
+   ],
+   "tags": "infinity casse vol chute accident tombe",
+   "inf": true
+  },
+  {
+   "o": "J'ai déjà une assurance (habitation, carte bancaire)",
+   "r": [
+    "« Bonne idée de vérifier. Votre contrat couvre-t-il les pannes, ou seulement le vol et les dégâts ? »",
+    "Les assurances habitation couvrent surtout l'incendie, le dégât des eaux ou le vol, rarement la panne d'un appareil",
+    "Les extensions de garantie des cartes bancaires ont souvent des conditions (achat payé avec la carte, durée limitée)",
+    "S'il est déjà bien couvert, le respecter : pas besoin de payer deux fois"
+   ],
+   "tags": "infinity assurance habitation carte bancaire visa mastercard deja",
+   "inf": true
+  },
+  {
+   "o": "Je l'ai acheté ailleurs / mes appareils sont vieux",
+   "r": [
+    "Les appareils achetés ailleurs et les anciens sont couverts aussi",
+    "Préciser la seule nuance : un appareil acheté hors Boulanger après l'adhésion a une franchise de 39 € ou 79 €",
+    "Ce sont justement les vieux appareils, hors garantie, qui profitent le plus du contrat"
+   ],
+   "tags": "infinity ailleurs vieux ancien amazon autre magasin",
+   "inf": true
+  },
+  {
+   "o": "Je préfère réparer moi-même ou acheter du neuf",
+   "r": [
+    "« Vous êtes bricoleur ? » Si oui, respecter le choix pour les petites pannes",
+    "Rappeler que les pannes électroniques (carte, moteur, pompe) sont rarement réparables soi-même",
+    "Réparer plutôt que racheter, c'est moins de déchets et souvent moins cher",
+    "Pas d'insistance si le client a un vrai point de vue"
+   ],
+   "tags": "infinity reparer moi meme bricoleur neuf jeter",
+   "inf": true
+  },
+  {
+   "o": "Ça va prendre des semaines pour réparer",
+   "r": [
+    "Ne pas promettre de délai précis : il dépend de la panne et des pièces",
+    "Mentionner le diagnostic en ligne ou à domicile et l'accès prioritaire au service client",
+    "Expliquer que la déclaration se fait par téléphone (7j/7) ou dans l'appli Boulanger, avec suivi de la réparation"
+   ],
+   "tags": "infinity delai attente longtemps semaines reparation",
+   "inf": true
+  },
+  {
+   "o": "Je prendrai Infinity plus tard",
+   "r": [
+    "« Pas de souci. » L'adhésion peut se faire à tout moment, en magasin ou sur boulanger.com",
+    "Signaler la franchise pour les appareils achetés ailleurs après l'adhésion : ceux achetés aujourd'hui chez Boulanger n'en ont pas",
+    "Proposer de noter les infos ou remettre la notice",
+    "Ne pas forcer : un client qui revient de lui-même est un client qui reste"
+   ],
+   "tags": "infinity plus tard reflechir apres",
+   "inf": true
+  },
+  {
+   "o": "Je veux juste couvrir cet appareil-là",
+   "r": [
+    "Expliquer le principe : on ne couvre pas un appareil, mais un univers entier (Électroménager = gros et petit électroménager)",
+    "« Pour le même prix, votre lave-linge, frigo et micro-ondes sont couverts aussi »",
+    "Si le client n'a vraiment qu'un appareil à protéger, comparer honnêtement avec le coût probable d'une réparation"
+   ],
+   "tags": "infinity seulement un appareil ce produit uniquement",
+   "inf": true
   }
  ]
 }

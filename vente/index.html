@@ -203,6 +203,7 @@ body.has-tray .tray{bottom:calc(78px + var(--safe-b))}
 .inf p{margin:0 0 6px; color:var(--muted); font-size:.92rem}
 .inf ul{margin:0; padding-left:18px; display:flex; flex-direction:column; gap:5px; font-size:.95rem}
 .inf ul b{color:#fff}
+.inf-h2{margin:22px 0 4px; font-size:1.1rem}
 .inf-hook{margin:6px 0 2px; padding:10px 12px; border-radius:10px; background:rgba(255,181,71,.1); font-weight:700}
 .ob{margin-top:10px; border-radius:var(--r); background:var(--s1); border:1px solid var(--line); overflow:hidden}
 .ob>button{all:unset; box-sizing:border-box; cursor:pointer; width:100%; padding:14px 16px; display:flex; justify-content:space-between; gap:10px; font-weight:800}
@@ -458,6 +459,8 @@ function infHTML(){
       (it.q?'<div class="inf-hook">« '+esc(it.q)+' »</div>':'')+
       (it.c||[]).map(function(c){return '<h4>'+esc(c[0])+'</h4>'+(c[1]?'<p>'+esc(c[1])+'</p>':'')+((c[2]||[]).length?'<ul>'+c[2].map(function(x){return '<li>'+infLine(x)+'</li>'}).join("")+'</ul>':'')}).join("")+
     '</div></div>'}).join("");
+  var L=(X&&X.objections)||[],IO=L.filter(function(o){return o.inf});
+  if(IO.length)h+='<h2 class="inf-h2">💬 Objections clients ('+IO.length+')</h2>'+IO.map(function(o){var k=L.indexOf(o);return '<div class="ob'+(ui.obOpen[k]?" open":"")+'"><button type="button" data-ob="'+k+'" aria-expanded="'+!!ui.obOpen[k]+'">« '+esc(o.o)+' »</button><ol>'+o.r.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ol></div>'}).join("");
   return h+'<p class="foot">Infos publiques relevées sur boulanger.com. En cas de doute, la notice et la grille tarifaire du magasin font foi.</p>';
 }
 function infSheet(p){
@@ -472,7 +475,7 @@ function objHTML(){
   var L=(X&&X.objections)||[],q=norm(ui.obq);
   var F=L.filter(function(o){return !q||norm(o.o+" "+o.tags+" "+o.r.join(" ")).indexOf(q)>=0});
   return '<div class="lhead"><h1>💬 Objections</h1><span>'+L.length+' réponses prêtes</span></div><input class="fsrch" id="ob-q" type="search" placeholder="Chercher : prix, internet, garantie, réfléchir…" value="'+esc(ui.obq)+'" aria-label="Chercher une objection">'+
-    F.map(function(o,i){var k=L.indexOf(o);return '<div class="ob'+(ui.obOpen[k]?" open":"")+'"><button type="button" data-ob="'+k+'" aria-expanded="'+!!ui.obOpen[k]+'">« '+esc(o.o)+' »</button><ol>'+o.r.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ol></div>'}).join("")+(F.length?'':'<p class="empty">Aucune objection trouvée.</p>')+
+    F.map(function(o,i){var k=L.indexOf(o);return '<div class="ob'+(ui.obOpen[k]?" open":"")+'"><button type="button" data-ob="'+k+'" aria-expanded="'+!!ui.obOpen[k]+'">'+(o.inf?'♾️ ':'')+'« '+esc(o.o)+' »</button><ol>'+o.r.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ol></div>'}).join("")+(F.length?'':'<p class="empty">Aucune objection trouvée.</p>')+
     '<p class="foot">Les objections propres à chaque produit sont dans sa fiche, rubrique « Si le client hésite ».</p>';
 }
 function calcHTML(){
