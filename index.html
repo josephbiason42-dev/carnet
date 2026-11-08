@@ -2963,9 +2963,9 @@ $("#d-next").addEventListener("click",function(){ui.day=addDays(ui.day,1);render
 $("#cal-form").addEventListener("submit",function(e){
   e.preventDefault();
   var k=num($("#c-kcal").value);
-  if(!(k>0)){flash("#c-kcal");return}
+  if(!(k>=0)){flash("#c-kcal");toast("Indique les calories (0 si l'aliment n'en a pas)");return}
   var name=$("#c-name").value.trim();
-  if(!name){flash("#c-name");return}
+  if(!name){flash("#c-name");toast("Donne un nom à l'aliment");return}
   var p=num($("#c-prot").value);
   var item={id:newId(),date:ui.day,meal:$("#c-meal").value,name:name,kcal:Math.round(k),prot:p>=0?Math.round(p*10)/10:0};
   var cb=g1($("#c-carb").value.trim()),ft=g1($("#c-fat").value.trim());if(cb!=null)item.carb=cb;if(ft!=null)item.fat=ft;
@@ -5835,7 +5835,7 @@ $("#ff-res").addEventListener("input",function(e){if(e.target.id==="ff-qty")ffCa
 $("#ff-res").addEventListener("click",function(e){
   var q=e.target.closest("[data-ffq]");if(q){$("#ff-qty").value=nf1.format(+q.dataset.ffq);ffCalc();return}
   if(e.target.id!=="ff-use"||ff.mode==="shop")return;var x=ff.prod,g=num($("#ff-qty").value);if(!x||!(g>0)){flash("#ff-qty");return}
-  $("#c-name").value=(x.name+(x.brand?" ("+x.brand+")":"")).slice(0,60)+"";$("#c-kcal").value=Math.round(x.kcal*g/100);$("#c-prot").value=x.prot!=null?nf1.format(x.prot*g/100):"";$("#c-carb").value=x.carb!=null?nf1.format(x.carb*g/100):"";$("#c-fat").value=x.fat!=null?nf1.format(x.fat*g/100):"";
+  $("#c-name").value=((x.name||(x.brand?"":"Produit "+(x.code||"scanné")))+(x.brand?(x.name?" ("+x.brand+")":x.brand):"")).slice(0,60);$("#c-kcal").value=Math.round(x.kcal*g/100);$("#c-prot").value=x.prot!=null?nf1.format(x.prot*g/100):"";$("#c-carb").value=x.carb!=null?nf1.format(x.carb*g/100):"";$("#c-fat").value=x.fat!=null?nf1.format(x.fat*g/100):"";
   var R=(state.settings.offRecent||[]).filter(function(r){return r.code!==x.code||!x.code});R.unshift({code:x.code,name:x.name,brand:x.brand,kcal:x.kcal,prot:x.prot,carb:x.carb,sugar:x.sugar,fat:x.fat,serving:x.serving,qty:x.qty});state.settings.offRecent=R.slice(0,15);persist("settings");
   ffClose();$("#c-kcal").focus();toast("Calories et macros remplies : choisis le repas puis « Ajouter au journal ».");
 });
