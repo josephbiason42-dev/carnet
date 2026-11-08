@@ -1258,5 +1258,61 @@
     "S'il n'a qu'un univers et des TV ou ordinateurs dans son historique : proposer le 2e univers."
    ]
   }
- ]
+ ],
+ "infLevers": {
+  "do": [
+   [
+    "⏱️",
+    "Le bon moment",
+    "Après qu'il a choisi son produit, pas avant : « Et pour le protéger, vous avez prévu quoi ? »"
+   ],
+   [
+    "❓",
+    "Questions avant arguments",
+    "Lui faire compter ses appareils et leur âge : ce qu'il dit lui-même le convainc."
+   ],
+   [
+    "🎬",
+    "Faire visualiser",
+    "« Si votre machine lâchait demain matin, vous feriez comment ? »"
+   ],
+   [
+    "⚓",
+    "Ancrer avec la réparation",
+    "Annoncer d'abord le coût d'une réparation (20 à 50 % du neuf), ensuite le prix mensuel."
+   ],
+   [
+    "✂️",
+    "Fractionner",
+    "Parler par mois et par appareil : « environ 2 € par appareil » plutôt qu'un total annuel."
+   ],
+   [
+    "👍",
+    "Les petits oui",
+    "« Vous aimez garder vos appareils longtemps ? » Chaque oui facilite le suivant."
+   ],
+   [
+    "👥",
+    "Preuve sociale vraie",
+    "« La plupart des adhérents choisissent l'univers électroménager. » (3 sur 4)"
+   ],
+   [
+    "🤝",
+    "Réciprocité",
+    "Un bon conseil produit d'abord : c'est lui qui rend le client réceptif ensuite."
+   ],
+   [
+    "🔎",
+    "Dire les limites",
+    "« Par contre, ça ne couvre pas la casse. » La franchise crée la confiance."
+   ]
+  ],
+  "dont": [
+   "Fausse urgence (« l'offre s'arrête ce soir »)",
+   "Faire peur avec des pannes exagérées",
+   "Taire l'engagement de 12 mois ou les exclusions",
+   "Insister après 2 refus clairs"
+  ],
+  "note": "C'est une assurance : le contrat doit correspondre au besoin du client. Un client mal conseillé se rétracte, résilie ou se plaint."
+ }
 }
