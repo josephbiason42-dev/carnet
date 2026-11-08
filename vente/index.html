@@ -214,6 +214,11 @@ body.has-tray .tray{bottom:calc(78px + var(--safe-b))}
 .res{margin-top:12px; padding:12px 14px; border-radius:12px; background:rgba(255,181,71,.08); border:1px solid rgba(255,181,71,.2); font-size:.95rem}
 .res b{font-size:1.35rem; color:var(--acc)}
 .res small{display:block; color:var(--muted); font-size:.78rem; margin-top:4px}
+
+.c-rate{font-size:.78rem; font-weight:700; color:#ffd89a} .c-rate span{color:var(--muted); font-weight:600}
+.badges{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+.bdg{font-size:.8rem; font-weight:700; padding:5px 10px; border-radius:9px; background:var(--s2); border:1px solid var(--line)}
+.bdg.rp{border-color:var(--rc); color:var(--rc)}
 </style>
 </head>
 <body>
@@ -250,7 +255,7 @@ function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 
 /* ----- définitions des catégories (identiques au Dashboard) ----- */
 var PCAT={
-  aspi:{n:"Aspirateurs",ic:"🧹",c:"#7aa7ff",syn:"aspirateur balai robot sol menage",f:[["type","Type","sel"],["autonomie","Autonomie","num","min"],["puissance","Puissance","txt"],["poids","Poids","num","kg","min"],["bac","Bac","num","L"],["hepa","Filtre HEPA","bool"],["animaux","Spécial animaux","bool"],["station","Station","bool"]],acc:["Batterie supplémentaire","Filtres de rechange","Brosses et accessoires"]},
+  aspi:{n:"Aspirateurs",ic:"🧹",c:"#7aa7ff",syn:"aspirateur balai robot sol menage",f:[["type","Type","sel"],["autonomie","Autonomie","num","min"],["puissance","Puissance","txt"],["poids","Poids","num","kg","min"],["bac","Bac","num","L"],["hepa","Filtre HEPA","bool"],["animaux","Spécial animaux","bool"],["laveur","Lave les sols","bool"],["station","Station","bool"],["repar","Réparabilité","num","/10"],["pieces","Pièces détachées","txt"],["tension","Tension batterie","num","V"]],acc:["Batterie supplémentaire","Filtres de rechange","Brosses et accessoires"]},
   cafe:{n:"Café",ic:"☕",c:"#c08457",syn:"cafe expresso machine broyeur capsule",f:[["type","Type","sel"],["lait","Lait","sel"],["pression","Pression","num","bar"],["reservoir","Réservoir","num","L"],["puissance","Puissance","num","W"]],acc:["Kit d'entretien et détartrant","Café en grain ou capsules","Tasses et verres"]},
   cuis:{n:"Cuisine",ic:"🍲",c:"#f472b6",syn:"robot cuiseur multicuiseur patissier cuisine",f:[["type","Type","sel"],["capacite","Capacité","num","L"],["temp","Température max","num","°C"],["connecte","Connecté","bool"],["balance","Balance intégrée","bool"]],acc:["Accessoires (panier vapeur, découpe)","Livre de recettes"]},
   air:{n:"Airfryers",ic:"🍟",c:"#ffb547",syn:"airfryer friteuse sans huile air fryer",f:[["capacite","Capacité","num","L"],["tiroirs","Tiroirs","txt"],["puissance","Puissance","num","W"]],acc:["Papier cuisson et moules silicone","Grille et accessoires"]},
@@ -263,12 +268,24 @@ var P=[],G=null,X=null,src="";
 var ui={tab:"prod",adv:{cat:null,i:0,a:{}},obq:"",obOpen:{},cbase:null,cat:null,type:"",bud:"",sort:"",q:"",open:null,list:[],client:false,cmp:lsGet("rayon-cmp")||[],fav:lsGet("rayon-fav")||{},seen:lsGet("rayon-seen")||[]};
 
 /* ----- données : copie locale du Dashboard, puis Supabase, sinon sélection de base ----- */
-function setP(list,from){P=(list||[]).filter(function(p){return p&&p.model&&PCAT[p.cat]});src=from;render()}
+var FILE=null;
+function mergeFile(list){
+  if(!FILE)return list;var by={};list.forEach(function(p){by[p.id]=p});
+  FILE.forEach(function(f){var d=by[f.id];
+    if(!d){list.push(f);return}
+    if(f.releve&&(!d.releve||d.releve<f.releve)){["price","specs","args","incl","ean","avis","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}
+    else ["incl","ean","avis"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
+  });
+  return list;
+}
+var RAW=[];
+function setP(list,from){if(list)RAW=JSON.parse(JSON.stringify(list));if(from)src=from;P=mergeFile(JSON.parse(JSON.stringify(RAW))).filter(function(p){return p&&p.model&&PCAT[p.cat]});P.forEach(function(p){delete p._h});render()}
 function load(){
   var st=lsGet("carnet-joseph-v1");
   if(st&&Array.isArray(st.products)&&st.products.length)setP(st.products,"Dashboard");
   var cfg=window.CARNET_CONFIG||{},s=lsGet("carnet-session"),c2=lsGet("carnet-cfg")||{},url=(cfg.supabaseUrl&&cfg.supabaseUrl.indexOf("COLLE")<0?cfg.supabaseUrl:c2.url)||"",key=(cfg.supabaseKey&&cfg.supabaseKey.indexOf("COLLE")<0?cfg.supabaseKey:c2.key)||"";
-  var fromFile=function(){return fetch("../data/produits-pem.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(j){if(!P.length)setP(j.items,"sélection de base")}).catch(function(){if(!P.length)render()})};
+  var fromFile=function(){return Promise.resolve()};
+  fetch("../data/produits-pem.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(j){FILE=j.items||[];if(RAW.length)setP(null);else setP([],"sélection de base")}).catch(function(){if(!P.length)render()});
   if(s&&s.access_token&&url&&key){
     fetch(url.replace(/\/+$/,"")+"/rest/v1/carnet_docs?select=body&key=eq.products",{headers:{apikey:key,Authorization:"Bearer "+s.access_token}})
       .then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(rows){var it=rows&&rows[0]&&rows[0].body&&rows[0].body.items;if(Array.isArray(it)&&it.length)setP(it,"Dashboard");else if(!P.length)return fromFile()}).catch(function(){if(!P.length)return fromFile()});
@@ -287,7 +304,7 @@ function specVal(f,v){
   return {t:String(v)};
 }
 function keySpecs(p,n){var C=PCAT[p.cat],out=[];C.f.forEach(function(f){if(out.length>=n)return;var v=specVal(f,(p.specs||{})[f[0]]);if(!v)return;if(f[2]==="bool"){if(v.cls==="yes")out.push(f[1])}else out.push(f[0]==="type"?v.t:v.t)});return out}
-function hay(p){if(!p._h)p._h=norm([p.brand,p.model,PCAT[p.cat].n,PCAT[p.cat].syn,JSON.stringify(p.specs||{}),(p.args||[]).join(" "),p.price].join(" "));return p._h}
+function hay(p){if(!p._h)p._h=norm([p.brand,p.model,p.ean||"",PCAT[p.cat].n,PCAT[p.cat].syn,JSON.stringify(p.specs||{}),(p.args||[]).join(" "),p.price].join(" "));return p._h}
 function matches(p,q){var w=norm(q).split(/\s+/).filter(Boolean);var h=hay(p);return w.every(function(x){return h.indexOf(x)>=0})}
 function hl(t,q){var s=esc(t);if(!q)return s;norm(q).split(/\s+/).filter(function(w){return w.length>1}).forEach(function(w){var n=norm(s),i=n.indexOf(w);if(i>=0&&n.length===s.length)s=s.slice(0,i)+"<mark>"+s.slice(i,i+w.length)+"</mark>"+s.slice(i+w.length)});return s}
 function filtered(){
@@ -308,7 +325,7 @@ function cardHTML(p,q){
   var ks=keySpecs(p,3);
   return '<button type="button" class="card" data-id="'+esc(p.id)+'"><div class="c-top"><div><div class="c-brand">'+hl(p.brand||"",q)+'</div><div class="c-model">'+hl(p.model,q)+'</div></div></div>'+
     (ks.length?'<div class="c-specs">'+ks.map(function(s){return '<span>'+esc(s)+'</span>'}).join("")+'</div>':'')+
-    (p.args&&p.args[0]?'<div class="c-arg">'+hl(p.args[0],q)+'</div>':'')+(ui.fav[p.id]?'<span class="c-fav" aria-label="Favori">★</span>':'')+'</button>';
+    (p.args&&p.args[0]?'<div class="c-arg">'+hl(p.args[0],q)+'</div>':'')+(p.avis&&p.avis.n?'<div class="c-rate">★ '+nf.format(p.avis.note)+' <span>('+p.avis.n+' avis)</span>'+((p.specs||{}).repar?' · 🔧 '+nf.format(p.specs.repar)+'/10':'')+'</div>':'')+(ui.fav[p.id]?'<span class="c-fav" aria-label="Favori">★</span>':'')+'</button>';
 }
 
 /* ----- écrans ----- */
@@ -362,11 +379,13 @@ function yes(v){return v===true||/^(oui|yes|true|1)$/i.test(String(v||""))}
 function num(v){var n=parseFloat(String(v==null?"":v).replace(",","."));return isNaN(n)?null:n}
 var ADV={
  aspi:{qs:[{k:"mode",q:"Comment veut-il faire le ménage ?",o:[["balai","Il passe l'aspirateur lui-même"],["robot","Que ce soit fait à sa place"]]},{k:"surf",q:"Taille du logement ?",o:[["s","Petit (moins de 50 m²)"],["m","Moyen"],["l","Grand (plus de 100 m²)"]]},{k:"pets",q:"Des animaux qui perdent leurs poils ?",o:[["y","Oui"],["n","Non"]]},{k:"sol",q:"Quels sols ?",o:[["dur","Surtout carrelage, parquet"],["tapis","Beaucoup de tapis, moquette"],["mix","Un peu de tout"]]},BQ],
-  sc:function(p,a,r){var t=T_(p);if(a.mode==="robot"){if(/robot/i.test(t))r.add(4,"Robot : le ménage se fait seul");else r.add(-6)}else if(a.mode==="balai"){if(/balai/i.test(t))r.add(4,"Balai sans fil");else r.add(-6)}
+  sc:function(p,a,r){var t=T_(p);if(a.mode==="robot"){if(/robot/i.test(t))r.add(4,"Robot : le ménage se fait seul");else r.add(-6)}else if(a.mode==="balai"){if(/balai/i.test(t))r.add(4,"Balai sans fil");else if(/laveur de sols/i.test(t))r.add(-2,"Laveur seul, pas un aspirateur",1);else r.add(-6)}
+   if(p.avis&&p.avis.n>=50&&p.avis.note>=4.5)r.add(.5,"Très bien noté ("+p.avis.n+" avis)");
    var au=num((p.specs||{}).autonomie);if(a.surf==="l"){if(au>=60)r.add(2,au+" min d'autonomie");else if(/robot/i.test(t))r.add(1,"Station : autonomie gérée seule");else if(au!=null&&au<50)r.add(-1,"Autonomie juste pour un grand logement",1)}
    if(a.surf==="s"&&p.price!=null&&p.price<=350)r.add(1,"Suffisant pour un petit logement");
    if(a.pets==="y"){if(yes((p.specs||{}).animaux))r.add(2,"Spécial animaux");else r.add(-2,"Pas pensé pour les poils",1)}
-   if(a.sol==="dur"){if(/laveur|aqua|submarine/i.test(t+" "+p.model))r.add(2,"Aspire et lave les sols durs")}
+   if(a.sol==="dur"){if(yes((p.specs||{}).laveur)||/laveur|aqua|submarine/i.test(t+" "+p.model))r.add(2,"Lave les sols durs")}
+   var rp=num((p.specs||{}).repar);if(rp!=null&&rp>=9)r.add(.5,"Très réparable ("+nf.format(rp)+"/10)");
    if(a.sol==="tapis"){var pw=num((p.specs||{}).puissance);if(pw&&/aw/i.test((p.specs||{}).puissance||"")&&pw>=230)r.add(1,"Forte puissance pour les tapis")}
    if(yes((p.specs||{}).hepa))r.add(.5,"Filtre HEPA")}},
  cafe:{qs:[{k:"drink",q:"Qu'est-ce qu'il boit surtout ?",o:[["noir","Café noir, expresso"],["lait","Cappuccino, latte"],["mix","Les deux"]]},{k:"cups",q:"Combien de cafés par jour à la maison ?",o:[["1","1 ou 2"],["3","3 ou plus"]]},{k:"fmt",q:"Grain ou capsules ?",o:[["grain","Café en grain, fraîchement moulu"],["caps","Capsules, le plus simple"],["any","Il ne sait pas"]]},BQ],
@@ -395,7 +414,7 @@ var ADV={
    if(a.hair==="fins"&&/nural|thermoprotect|supersonic|airwrap/i.test(p.model))r.add(1,"Protège les cheveux de la chaleur")}}
 };
 function advScore(cat,a){
-  var L=P.filter(function(p){return p.cat===cat}).map(function(p){
+  var L=P.filter(function(p){return p.cat===cat&&T_(p)!=="Accessoire"}).map(function(p){
     var r={s:0,why:[],warn:[],add:function(n,t,w){this.s+=n;if(t){if(w||n<0)this.warn.push(t);else this.why.push(t)}}};
     ADV[cat].sc(p,a,r);
     if(a.bud){var b=a.bud.split("-"),lo=+b[0],hi=+b[1];if(p.price==null){r.s-=.5;r.warn.push("Prix à vérifier")}else if(p.price>=lo&&p.price<hi)r.add(2,"Dans le budget");else if(p.price<lo)r.add(.5,"Sous le budget");else r.add(-3,"Au-dessus du budget",1)}
@@ -476,7 +495,7 @@ $("#q").addEventListener("keydown",function(e){if(e.key==="Enter"){this.blur();i
 /* ----- fiche produit ----- */
 var sheetList=null;
 function alternatives(p){
-  var same=P.filter(function(x){return x.id!==p.id&&x.cat===p.cat&&x.price!=null}),st=(p.specs||{}).type;
+  var same=P.filter(function(x){return x.id!==p.id&&x.cat===p.cat&&x.price!=null&&(x.specs||{}).type!=="Accessoire"}),st=(p.specs||{}).type;
   var pool=st?same.filter(function(x){return (x.specs||{}).type===st}):same;if(pool.length<2)pool=same;
   var lo=null,hi=null;if(p.price==null)return [];
   pool.forEach(function(x){if(x.price<p.price&&(!lo||x.price>lo.price))lo=x;if(x.price>p.price&&(!hi||x.price<hi.price))hi=x});
@@ -491,6 +510,8 @@ function sheetHTML(p){
   var C=PCAT[p.cat],sp=p.specs||{},h="";
   h+='<div class="sh-cat">'+C.ic+' '+esc(C.n)+(sp.type?' · '+esc(sp.type):'')+'<span class="client-tag">Mode client</span></div>';
   h+='<h1 class="sh-title"><small>'+esc(p.brand||"")+'</small>'+esc(p.model)+'</h1>';
+  var sp0=p.specs||{};
+  if((p.avis&&p.avis.n)||sp0.repar!=null)h+='<div class="badges">'+(p.avis&&p.avis.n?'<span class="bdg">★ '+nf.format(p.avis.note)+' / 5 · '+p.avis.n+' avis</span>':'')+(sp0.repar!=null?'<span class="bdg rp" style="--rc:'+(sp0.repar>=8?"#22c55e":sp0.repar>=6?"#a3e635":"#facc15")+'">🔧 Réparabilité '+nf.format(sp0.repar)+'/10</span>':'')+(sp0.pieces?'<span class="bdg">Pièces : '+esc(sp0.pieces)+'</span>':'')+'</div>';
   var xp=xP(p),xt=xT(p);
   if(xp&&xp.pour)h+='<div class="pour"><small>Pour qui</small>'+esc(xp.pour)+'</div>';
   if(xt&&xt.quest&&xt.quest.length)h+='<section class="sec int"><h3>Questions à poser</h3><ol class="qs">'+xt.quest.map(function(q){return '<li>'+esc(q)+'</li>'}).join("")+'</ol></section>';
@@ -503,6 +524,8 @@ function sheetHTML(p){
   if(xt&&(xt.entretien||xt.usage))h+='<section class="sec"><h3>Au quotidien</h3><div class="two">'+(xt.entretien?'<div><small>Entretien</small><span class="ptxt">'+esc(xt.entretien)+'</span></div>':'')+(xt.usage?'<div><small>Coût d\'usage</small><span class="ptxt">'+esc(xt.usage)+'</span></div>':'')+'</div><button type="button" class="lnk int" data-calc="'+esc(p.id)+'">Calculer le coût sur plusieurs années →</button></section>';
   var obj=String(p.obj||"").split(/\s*;\s*|\n+/).filter(Boolean);
   if(obj.length)h+='<section class="sec int"><h3>Si le client hésite</h3><div class="objs">'+obj.map(function(o){var x=o.split(/\s*→\s*/);return '<div class="obj">'+(x.length>1?'<b>'+esc(cap(x[0]))+'</b>'+esc(cap(x.slice(1).join(" → "))):esc(cap(o)))+'</div>'}).join("")+'</div></section>';
+  var inc=String(p.incl||"").split(/\s*;\s*/).filter(Boolean);
+  if(inc.length)h+='<section class="sec"><h3>Dans la boîte</h3><div class="adds">'+inc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div></section>';
   var acc=String(p.acc||"").split(/\s*[;,\n]\s*/).filter(Boolean);if(!acc.length)acc=C.acc||[];
   h+='<section class="sec int"><h3>À proposer avec</h3><div class="adds">'+acc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div>'+(services(p)?'<div style="margin-top:10px">'+services(p)+'</div>':'')+'</section>';
   var alts=alternatives(p);

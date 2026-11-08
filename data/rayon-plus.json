@@ -127,6 +127,24 @@
    "demo": "Montrer les sabots et la lame qui suit les courbes.",
    "entretien": "Rincer la lame après usage.",
    "usage": "Lames de rechange à prévoir régulièrement : vérifier leur prix et leur durée."
+  },
+  "aspi|Laveur de sols": {
+   "quest": [
+    "Quelle surface de sols durs à laver ?",
+    "Vous avez déjà un aspirateur ?",
+    "Des enfants ou des animaux qui salissent souvent ?"
+   ],
+   "demo": "Montrer la séparation eau sale / débris et l'autonettoyage du rouleau sur la station.",
+   "entretien": "Vider l'eau sale après chaque usage, lancer l'autonettoyage sur la station.",
+   "usage": "Produit nettoyant pour sol à racheter. Rouleau à remplacer avec le temps."
+  },
+  "aspi|Accessoire": {
+   "quest": [
+    "Quel modèle d'aspirateur avez-vous exactement ?"
+   ],
+   "demo": "Vérifier la compatibilité avec le modèle du client avant la vente.",
+   "entretien": "",
+   "usage": ""
   }
  },
  "products": {
@@ -463,6 +481,114 @@
    "cons": [
     "Pas un rasage de très près",
     "Lames à racheter"
+   ]
+  },
+  "p053": {
+   "pour": "Petit budget qui veut une marque française et beaucoup d'accessoires.",
+   "cons": [
+    "Bac plus petit que les haut de gamme"
+   ]
+  },
+  "p054": {
+   "pour": "Client avec animaux qui veut une grosse autonomie (jusqu'à 2 h) et le tube Flex.",
+   "cons": [
+    "Plus cher que les autres X-Force"
+   ]
+  },
+  "p055": {
+   "pour": "Client qui a déjà un X-Force et veut une brosse neuve ou plus performante.",
+   "cons": [
+    "Peu d'avis clients pour l'instant"
+   ]
+  },
+  "p056": {
+   "pour": "Client qui veut aspirer et laver en un passage, sans se baisser.",
+   "cons": [
+    "Plus lourd (3,2 kg)"
+   ]
+  },
+  "p057": {
+   "pour": "Grand logement : deux batteries incluses pour 1 h 30.",
+   "cons": [
+    "Lourd : 4,1 kg"
+   ]
+  },
+  "p058": {
+   "pour": "Budget autour de 300 € avec le tube Flex, très bien noté.",
+   "cons": [
+    "Bac plus petit (0,44 L)"
+   ]
+  },
+  "p059": {
+   "pour": "Client qui veut une alternative à Dyson qui s'adapte seule aux sols.",
+   "cons": [
+    "Pièces détachées 7 ans seulement",
+    "Réparabilité plus faible (7,9)"
+   ]
+  },
+  "p060": {
+   "pour": "Petit logement, client qui veut un appareil ultra léger et fin pour le quotidien.",
+   "cons": [
+    "Autonomie courte (30 min)",
+    "Tout petit bac (0,08 L)"
+   ]
+  },
+  "p061": {
+   "pour": "Entrée de gamme Dyson avec brosses anti-cheveux et HEPA.",
+   "cons": [
+    "Tube non pliable"
+   ]
+  },
+  "p062": {
+   "pour": "Client Dyson qui veut aspirer et laver les sols durs à un prix contenu.",
+   "cons": [
+    "Pièces détachées 3 ans seulement",
+    "Réparabilité 7,7"
+   ]
+  },
+  "p063": {
+   "pour": "Client exigeant qui veut voir et mesurer la poussière, très bien noté (421 avis).",
+   "cons": [
+    "Le plus cher du rayon balais",
+    "Pièces détachées 3 ans"
+   ]
+  },
+  "p064": {
+   "pour": "Client avec beaucoup de sols durs qui veut un vrai lavage, en complément d'un aspirateur.",
+   "cons": [
+    "N'aspire pas les tapis : c'est un laveur",
+    "Avis clients mitigés (3/5)"
+   ]
+  },
+  "p065": {
+   "pour": "Client allergique ou qui ne veut plus toucher la poussière : station de vidage.",
+   "cons": [
+    "Station encombrante"
+   ]
+  },
+  "p066": {
+   "pour": "Client qui veut une station de vidage et une 2e batterie incluse.",
+   "cons": [
+    "Peu d'avis",
+    "Moins puissant que Samsung ou Dyson au même prix"
+   ]
+  },
+  "p067": {
+   "pour": "Client avec animaux et sols durs qui veut aussi laver.",
+   "cons": [
+    "Pièces détachées non communiquées"
+   ]
+  },
+  "p068": {
+   "pour": "Client qui veut le plus réparable (9,7/10) avec un capteur qui dit quand c'est propre.",
+   "cons": [
+    "Lourd : 3,7 kg"
+   ]
+  },
+  "p069": {
+   "pour": "Grand logement, très bien noté (100 avis), puissance qui s'adapte seule.",
+   "cons": [
+    "Haut de gamme Rowenta : comparer avec le 16.60"
    ]
   }
  },
