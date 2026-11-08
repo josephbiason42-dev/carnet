@@ -996,6 +996,18 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
 
 /* iPhone : pas de zoom automatique quand on touche un champ (police >= 16 px) */
 @media (pointer:coarse){ input,select,textarea,.cap input,.pw-row input,.pw-row select,.pl-sd select{font-size:16px!important} }
+
+/* import agenda */
+.pi-err{color:#fca5a5; font-size:.88rem; margin:10px 0 0}
+.pi-sum{display:flex; flex-direction:column; gap:3px; padding:12px 14px; border-radius:14px; background:rgba(255,255,255,.05); margin-bottom:10px}
+.pi-sum b{font-size:1.05rem} .pi-sum>span{font-size:.84rem; color:var(--muted)}
+.pi-cnt{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px} .pi-cnt .chip{display:inline-flex; align-items:center; gap:6px; font-size:.78rem}
+.pi-list{max-height:min(46vh,420px); overflow:auto; padding-right:4px}
+.pi-row{display:grid; grid-template-columns:auto 92px 1fr; gap:8px; align-items:center; padding:6px 0; font-size:.88rem; border-top:1px solid var(--line)}
+.pi-t{color:var(--muted); font-variant-numeric:tabular-nums; font-size:.8rem} .pi-n small{color:var(--muted)}
+.pg-ad{position:absolute; left:3px; right:3px; top:3px; z-index:2; display:flex; flex-direction:column; gap:2px}
+.pg-adc{all:unset; box-sizing:border-box; cursor:pointer; font-size:.68rem; font-weight:700; padding:2px 6px; border-radius:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; background:color-mix(in srgb, var(--pc) 30%, rgba(24,26,32,.95)); border-left:3px solid var(--pc)}
+.pg-empty.low{top:44px}
 </style>
 </head>
 <body data-tab="home">
@@ -1043,6 +1055,7 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
           <div class="pl-menu" id="pl-menu" hidden>
             <button type="button" id="pl-suggest">Placer mes séances de sport</button>
             <button type="button" id="pl-copy">Copier les horaires de la semaine dernière</button>
+            <button type="button" id="pl-imp-open">Importer un agenda (.ics)</button>
             <button type="button" id="pl-cfg-open">Réglages du planning</button>
           </div>
         </div>
@@ -1492,6 +1505,23 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
   <div class="phead"><h3 id="tj-h">Itinéraire</h3><button class="mclose" type="button" id="tj-close" aria-label="Fermer">×</button></div>
   <div id="tj-body"></div>
   <p class="note tj-foot"><span id="tj-upd"></span> · <button type="button" class="linkbtn" id="tj-refresh">Actualiser</button> · Horaires TER : <a href="https://numerique.sncf.com/startup/api/" target="_blank" rel="noopener">API SNCF</a></p>
+</dialog>
+<dialog class="modal" id="pi-dialog" aria-labelledby="pi-h" style="width:min(520px,calc(100vw - 32px))">
+  <div class="phead"><h3 id="pi-h">Importer un agenda</h3><button class="mclose" type="button" id="pi-close" aria-label="Fermer">×</button></div>
+  <div id="pi-step1">
+    <p class="note" style="margin-top:0">Choisis un fichier agenda (.ics), par exemple celui que Claude t'a préparé, un export de Google Agenda ou de Calendrier. Tu peux aussi coller son contenu.</p>
+    <input type="file" id="pi-file" accept=".ics,.ical,.json,text/calendar,application/json" hidden>
+    <button class="primary" type="button" id="pi-pick" style="width:100%">Choisir un fichier</button>
+    <label for="pi-text" style="margin-top:12px">ou colle le contenu ici<textarea id="pi-text" rows="4" placeholder="BEGIN:VCALENDAR…"></textarea></label>
+    <button class="ghost" type="button" id="pi-read" style="margin-top:8px">Lire le contenu collé</button>
+    <p class="pi-err" id="pi-err" hidden></p>
+  </div>
+  <div id="pi-step2" hidden>
+    <div class="pi-sum" id="pi-sum"></div>
+    <div class="pi-list" id="pi-list"></div>
+    <label class="check" for="pi-replace" id="pi-replace-l" style="margin-top:12px"><input type="checkbox" id="pi-replace" checked> Remplacer ce que j'avais déjà importé de cet agenda</label>
+    <div class="pd-foot"><button class="ghost" type="button" id="pi-back">Retour</button><button class="primary" type="button" id="pi-go">Importer</button></div>
+  </div>
 </dialog>
 <dialog class="modal" id="pb-dialog" aria-labelledby="pb-h" style="width:min(460px,calc(100vw - 32px))">
   <div class="phead"><h3 id="pb-h">Nouveau bloc</h3><button class="mclose" type="button" id="pb-close" aria-label="Fermer">×</button></div>
@@ -3821,7 +3851,7 @@ function workH(D){if(!D||D.kind!=="work"||!D.start||!D.end)return 0;var m=tmin(D
 function dayItemsP(d){
   var D=pday(d),it=[];if(!D)return it;
   if(D.kind==="work"&&D.start&&D.end){if(D.shifts&&D.shifts.length>1)D.shifts.forEach(function(x){it.push({t:"work",start:x[0],end:x[1],label:"Travail",fixed:true})});else it.push({t:"work",start:D.start,end:D.end,label:"Travail"+(D.pause?" (pause "+D.pause+" min)":""),fixed:true})}
-  (D.blocks||[]).forEach(function(b){it.push(b)});
+  (D.blocks||[]).forEach(function(b){if(!b.allDay&&b.start)it.push(b)});
   return it.sort(function(a,b){return (tmin(a.start)||0)-(tmin(b.start)||0)});
 }
 function plSave(){persist("plan");renderPlan();renderHome()}
@@ -4035,8 +4065,10 @@ function renderPlan(){
       if(x.t==="work")b+='<button type="button" class="pg-b pt-work'+sz+'" data-wk="'+d+'" style="'+pos+'"><span class="pg-bt">Travail</span><span class="pg-bh">'+tm+(D.pause&&!(D.shifts&&D.shifts.length>1)?' · pause '+durTxt(+D.pause):'')+'</span></button>';
       else b+='<div class="pg-b '+PT[x.t].c+sz+(x.done?" done":"")+'" style="'+pos+'"><button type="button" class="pg-bb" data-blk="'+esc(x.id)+'" data-d="'+d+'"><span class="pg-bt">'+esc(x.label||PT[x.t].n)+'</span><span class="pg-bh">'+tm+'</span></button><button type="button" class="pg-ck" data-tog="'+esc(x.id)+'" data-d="'+d+'" aria-label="'+(x.done?"Marquer comme non fait":"Marquer comme fait")+'" aria-pressed="'+!!x.done+'"></button></div>';
     });
-    if(!kind)b+='<button type="button" class="pg-empty" data-day="'+d+'"><span>+</span>Saisir la journée</button>';
-    else if(kind!=="work")b+='<span class="pg-off">'+(kind==="off"?"Repos":"Congé")+'</span>';
+    var ad=D?(D.blocks||[]).filter(function(x){return x.allDay}):[];
+    if(ad.length)b+='<div class="pg-ad">'+ad.map(function(x){return '<button type="button" class="pg-adc '+PT[x.t].c+'" data-blk="'+esc(x.id)+'" data-d="'+d+'">'+esc(x.label||PT[x.t].n)+'</button>'}).join("")+'</div>';
+    if(!kind&&!it.length)b+='<button type="button" class="pg-empty'+(ad.length?" low":"")+'" data-day="'+d+'"><span>+</span>Saisir la journée</button>';
+    else if(kind&&kind!=="work")b+='<span class="pg-off">'+(kind==="off"?"Repos":"Congé")+'</span>';
     if(d===t&&nm>=lo&&nm<=hi)b+='<span class="pg-now" style="top:'+y(nm)+'px"></span>';
     var st=!kind?'<span class="muted">À saisir</span>':kind==="work"?esc(D.start&&D.end?D.start+"–"+D.end:"?")+' <span class="muted">· '+nf1.format(workH(D))+' h</span>':'<span class="ok">'+(kind==="off"?"Repos":"Congé")+'</span>';
     return '<div class="pg-col'+(d===t?" today":"")+(d===plui.sel?" sel":"")+(kind&&kind!=="work"?" off":"")+'"><div class="pg-head"><button type="button" class="pg-dh" data-day="'+d+'" aria-label="Modifier la journée"><b><span class="pg-wd">'+wdShort(d)+'</span><span class="pg-wl">'+cap(parseYmd(d).toLocaleDateString("fr-FR",{weekday:"long"}))+'</span> '+parseYmd(d).getDate()+'</b><span class="pg-st">'+st+'</span></button><button type="button" class="pg-add" data-add="'+d+'" aria-label="Ajouter un bloc">+</button></div>'+
@@ -4059,6 +4091,107 @@ function plMenuSet(o){plMenu.hidden=!o;$("#pl-more").setAttribute("aria-expanded
 $("#pl-more").addEventListener("click",function(e){e.stopPropagation();plMenuSet(plMenu.hidden)});
 document.addEventListener("click",function(e){if(!plMenu.hidden&&!e.target.closest(".pl-more"))plMenuSet(false)});
 plMenu.addEventListener("click",function(e){if(e.target.closest("button"))plMenuSet(false)});
+
+/* ---------- import d'agenda (.ics / JSON) ---------- */
+var piData=null;
+function icsUnesc(v){return String(v||"").replace(/\\n/gi,"\n").replace(/\\([,;\\])/g,"$1").trim()}
+function icsDate(v,params){
+  v=String(v||"").trim();var m=v.match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2})?(Z)?)?$/);if(!m)return null;
+  if(!m[4]||/VALUE=DATE(?!-)/i.test(params||""))return {d:m[1]+"-"+m[2]+"-"+m[3],allDay:true};
+  if(m[7]){var dt=new Date(Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0)));return {d:dt.getFullYear()+"-"+pad(dt.getMonth()+1)+"-"+pad(dt.getDate()),m:dt.getHours()*60+dt.getMinutes()}}
+  return {d:m[1]+"-"+m[2]+"-"+m[3],m:(+m[4])*60+(+m[5])};
+}
+function icsDur(v){var m=String(v||"").match(/P(?:(\d+)W)?(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?)?/);if(!m)return null;return ((+m[1]||0)*7*1440)+((+m[2]||0)*1440)+((+m[3]||0)*60)+(+m[4]||0)}
+function icsType(summary,cats){
+  var x=(cats+" "+summary).toLowerCase();
+  if(/\b(work|travail)\b|boulanger|boulot|prise de poste|shift/.test(x))return "work";
+  if(/\bsport\b|muscu|fitness|salle de sport|\bgym\b|course à pied|footing|\brun\b|séance|cardio|natation/.test(x))return "sport";
+  if(/lecture|\blire\b|livre|\bread\b/.test(x))return "read";
+  if(/jour profond|deep work|\bfocus\b|projet 30|\bp30\b/.test(x))return "A";
+  if(/jour éclaté|jour eclate/.test(x))return "B";
+  return "perso";
+}
+var ICSD={MO:1,TU:2,WE:3,TH:4,FR:5,SA:6,SU:0};
+function icsParse(txt){
+  var lines=String(txt).replace(/\r\n/g,"\n").replace(/\n[ \t]/g,"").split("\n"),cal="",evs=[],cur=null,inAlarm=false;
+  lines.forEach(function(l){
+    if(/^BEGIN:VEVENT/i.test(l)){cur={ex:[]};return}if(/^END:VEVENT/i.test(l)){if(cur)evs.push(cur);cur=null;return}
+    if(/^BEGIN:VALARM/i.test(l)){inAlarm=true;return}if(/^END:VALARM/i.test(l)){inAlarm=false;return}
+    var i=l.indexOf(":");if(i<0)return;var head=l.slice(0,i),val=l.slice(i+1),name=head.split(";")[0].toUpperCase(),params=head.slice(name.length);
+    if(!cur){if(name==="X-WR-CALNAME")cal=icsUnesc(val);return}
+    if(inAlarm)return;
+    if(name==="SUMMARY")cur.title=icsUnesc(val);else if(name==="UID")cur.uid=val.trim();else if(name==="CATEGORIES")cur.cats=icsUnesc(val);
+    else if(name==="LOCATION")cur.loc=icsUnesc(val);else if(name==="DTSTART")cur.ds=icsDate(val,params);else if(name==="DTEND")cur.de=icsDate(val,params);
+    else if(name==="DURATION")cur.dur=icsDur(val);else if(name==="RRULE")cur.rr=val;else if(name==="STATUS")cur.status=val.trim().toUpperCase();
+    else if(name==="EXDATE")val.split(",").forEach(function(v){var x=icsDate(v,params);if(x)cur.ex.push(x.d)});
+  });
+  var out=[];
+  evs.forEach(function(e,k){
+    if(!e.ds||e.status==="CANCELLED")return;
+    var allDay=!!e.ds.allDay,len;
+    if(allDay)len=e.de?Math.max(1,Math.round((parseYmd(e.de.d)-parseYmd(e.ds.d))/864e5)):1;
+    else len=e.de&&!e.de.allDay?Math.round((parseYmd(e.de.d)-parseYmd(e.ds.d))/6e4)+e.de.m-e.ds.m:(e.dur!=null?e.dur:60);
+    var base={uid:e.uid||("ev"+k),title:e.title||"Sans titre",t:icsType(e.title||"",e.cats||""),loc:e.loc||""};
+    function push(d){
+      if(e.ex.indexOf(d)>=0)return;
+      if(allDay){for(var j=0;j<len&&j<31;j++)out.push(Object.assign({},base,{date:addDays(d,j),allDay:true}));return}
+      var st=e.ds.m,en=Math.min(24*60-1,st+Math.max(5,len));out.push(Object.assign({},base,{date:d,start:tfmt(st),end:tfmt(en)}));
+    }
+    if(!e.rr){push(e.ds.d);return}
+    var R={};e.rr.split(";").forEach(function(x){var q=x.split("=");R[q[0].toUpperCase()]=q[1]});
+    var fq=R.FREQ,iv=+R.INTERVAL||1,cnt=R.COUNT?+R.COUNT:null,un=R.UNTIL?icsDate(R.UNTIL,"").d:addDays(e.ds.d,365),by=R.BYDAY?R.BYDAY.split(",").map(function(x){return ICSD[x.slice(-2)]}):null,n=0,d=e.ds.d,guard=0;
+    if(un>addDays(today(),400))un=addDays(today(),400);
+    if(fq==="DAILY"){while(d<=un&&(!cnt||n<cnt)&&guard++<800){push(d);n++;d=addDays(d,iv)}}
+    else if(fq==="WEEKLY"){var w0=monday(d),days=by||[parseYmd(d).getDay()];
+      for(var w=w0;w<=un&&guard++<300;w=addDays(w,7*iv)){for(var j=0;j<7;j++){var dd=addDays(w,j);if(days.indexOf(parseYmd(dd).getDay())<0||dd<e.ds.d||dd>un)continue;if(cnt&&n>=cnt)break;push(dd);n++}if(cnt&&n>=cnt)break}}
+    else if(fq==="MONTHLY"){while(d<=un&&(!cnt||n<cnt)&&guard++<60){push(d);n++;var pd=parseYmd(d);pd.setMonth(pd.getMonth()+iv);d=pd.getFullYear()+"-"+pad(pd.getMonth()+1)+"-"+pad(pd.getDate())}}
+    else push(e.ds.d);
+  });
+  return {name:cal||"Agenda importé",events:out};
+}
+function agendaParse(txt){
+  txt=String(txt||"").trim();
+  if(/^\s*[\[{]/.test(txt)){var j=JSON.parse(txt),L=Array.isArray(j)?j:(j.events||[]);
+    return {name:(!Array.isArray(j)&&(j.agenda||j.name))||"Agenda importé",events:L.filter(function(e){return e&&e.date&&/^\d{4}-\d{2}-\d{2}$/.test(e.date)}).map(function(e,k){var t=PT[e.type]?e.type:icsType(e.title||"",e.type||"");
+      return e.start?{uid:e.uid||e.id||("j"+k),title:e.title||"Sans titre",t:t,date:e.date,start:e.start,end:e.end||tfmt(tmin(e.start)+60)}:{uid:e.uid||e.id||("j"+k),title:e.title||"Sans titre",t:t,date:e.date,allDay:true}})}}
+  if(!/BEGIN:VCALENDAR|BEGIN:VEVENT/i.test(txt))throw new Error("Ce n'est pas un fichier agenda (.ics) reconnu.");
+  return icsParse(txt);
+}
+function piShow(step){$("#pi-step1").hidden=step!==1;$("#pi-step2").hidden=step!==2}
+function piOpen(){piData=null;$("#pi-text").value="";$("#pi-file").value="";$("#pi-err").hidden=true;piShow(1);var dl=$("#pi-dialog");if(dl.showModal)dl.showModal();else dl.setAttribute("open","")}
+function piLoad(txt){
+  try{piData=agendaParse(txt)}catch(err){$("#pi-err").textContent=err.message||"Fichier illisible.";$("#pi-err").hidden=false;return}
+  var E=piData.events.sort(function(a,b){return (a.date+(a.start||"")).localeCompare(b.date+(b.start||""))});
+  if(!E.length){$("#pi-err").textContent="Aucun événement trouvé dans ce fichier.";$("#pi-err").hidden=false;return}
+  var had=Object.keys(state.plan).some(function(d){return (state.plan[d].blocks||[]).some(function(b){return b.src===piData.name})});
+  $("#pi-replace-l").hidden=!had;
+  var cnt={};E.forEach(function(e){cnt[e.t]=(cnt[e.t]||0)+1});
+  $("#pi-sum").innerHTML='<b>'+esc(piData.name)+'</b><span>'+E.length+' événement'+(E.length>1?"s":"")+' · du '+parseYmd(E[0].date).toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+' au '+parseYmd(E[E.length-1].date).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"numeric"})+'</span><div class="pi-cnt">'+Object.keys(cnt).map(function(t){return '<span class="chip '+PT[t].c+'"><span class="pl-dot"></span>'+PT[t].n+' · '+cnt[t]+'</span>'}).join("")+'</div>';
+  var h="",last="";E.slice(0,60).forEach(function(e){if(e.date!==last){h+='<div class="day">'+esc(dayLabel(e.date))+'</div>';last=e.date}
+    h+='<div class="pi-row"><span class="pl-dot '+PT[e.t].c+'"></span><span class="pi-t">'+(e.allDay?"Journée":esc(e.start)+"–"+esc(e.end))+'</span><span class="pi-n">'+esc(e.title)+(e.t==="work"?' <small>→ horaires de travail</small>':'')+'</span></div>'});
+  if(E.length>60)h+='<p class="note">… et '+(E.length-60)+' autres.</p>';
+  $("#pi-list").innerHTML=h;$("#pi-go").textContent="Importer "+E.length+" événement"+(E.length>1?"s":"");piShow(2);
+}
+$("#pl-imp-open").addEventListener("click",piOpen);
+$("#pi-close").addEventListener("click",function(){$("#pi-dialog").close()});
+$("#pi-pick").addEventListener("click",function(){$("#pi-file").value="";$("#pi-file").click()});
+$("#pi-file").addEventListener("change",function(){var f=this.files&&this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){piLoad(r.result)};r.readAsText(f)});
+$("#pi-read").addEventListener("click",function(){var t=$("#pi-text").value.trim();if(!t){flash("#pi-text");return}piLoad(t)});
+$("#pi-back").addEventListener("click",function(){piShow(1)});
+$("#pi-go").addEventListener("click",function(){
+  if(!piData)return;var src=piData.name,n=0,w=0;
+  if($("#pi-replace").checked&&!$("#pi-replace-l").hidden)Object.keys(state.plan).forEach(function(d){var D=state.plan[d];if(D.blocks)D.blocks=D.blocks.filter(function(b){return b.src!==src||b.done})});
+  piData.events.forEach(function(e){
+    var D=pdayW(e.date);
+    if(e.t==="work"&&!e.allDay){if(!D.kind||D.kind==="work"){D.kind="work";if(D.src===src||!D.start){D.start=e.start;D.end=e.end}else{D.start=D.start<e.start?D.start:e.start;D.end=D.end>e.end?D.end:e.end}if(D.pause==null)D.pause=tmin(e.end)-tmin(e.start)>360?60:0;D.src=src;delete D.shifts;w++}return}
+    var ex=D.blocks.filter(function(b){return b.uid===e.uid&&b.src===src})[0],blk={t:e.t,label:e.title,src:src,uid:e.uid};
+    if(e.allDay)blk.allDay=true;else{blk.start=e.start;blk.end=e.end}
+    if(ex)Object.assign(ex,blk);else{blk.id=newId();blk.done=false;D.blocks.push(blk)}n++;
+  });
+  var first=piData.events[0].date;plui.week=monday(first);plui.sel=first;
+  $("#pi-dialog").close();plSave();
+  toast(n+" événement"+(n>1?"s":"")+" importé"+(n>1?"s":"")+(w?" et "+w+" journée"+(w>1?"s":"")+" de travail":"")+" depuis « "+src+" »");
+});
 $("#pl-cfg-open").addEventListener("click",function(){var c=$("#pl-cfg");c.open=true;c.scrollIntoView({behavior:"smooth",block:"start"})});
 $("#pl-suggest").addEventListener("click",function(){var m=suggestWeek(plui.week);plSave();toast(m)});
 $("#pl-copy").addEventListener("click",function(){
@@ -4191,7 +4324,7 @@ $("#pb-close").addEventListener("click",function(){bDlg.close()});
 $("#pb-save").addEventListener("click",function(){
   var s0=$("#pb-start").value,e0=$("#pb-end").value;if(!s0){flash("#pb-start");return}if(e0&&tmin(e0)<=tmin(s0)){flash("#pb-end");return}
   var t=bDlg.dataset.t,l=$("#pb-label").value.trim()||(t==="sport"?"Muscu — Fitness Park":PT[t].n),D=pdayW(plui.blk.d);
-  if(plui.blk.id)D.blocks.forEach(function(b){if(b.id===plui.blk.id){b.t=t;b.label=l;b.start=s0;b.end=e0;b.done=$("#pb-done").checked;delete b.auto}});
+  if(plui.blk.id)D.blocks.forEach(function(b){if(b.id===plui.blk.id){b.t=t;b.label=l;b.start=s0;b.end=e0;b.done=$("#pb-done").checked;delete b.auto;delete b.allDay}});
   else D.blocks.push({id:newId(),t:t,start:s0,end:e0,label:l,done:false});
   bDlg.close();plSave();
 });
