@@ -841,6 +841,76 @@
     "Note moyenne (3,5/5)",
     "Demande un apprentissage"
    ]
+  },
+  "p104": {
+   "pour": "Client qui a déjà une De'Longhi compatible et veut des boissons lactées.",
+   "cons": [
+    "Compatibilité à vérifier"
+   ]
+  },
+  "p105": {
+   "pour": "Famille gourmande de boissons lactées : 13 recettes au lait.",
+   "cons": [
+    "Prix élevé"
+   ]
+  },
+  "p106": {
+   "pour": "Client qui veut des cafés glacés et Cold Brew, très bien noté (89 avis).",
+   "cons": [
+    "Prix élevé",
+    "Encombrante"
+   ]
+  },
+  "p107": {
+   "pour": "Client qui veut un écran tactile simple et beaucoup de recettes, noté 5/5.",
+   "cons": [
+    "Prix élevé"
+   ]
+  },
+  "p108": {
+   "pour": "Client qui alterne plusieurs cafés (corsé, déca) : bacs interchangeables.",
+   "cons": [
+    "Prix moyen-haut"
+   ]
+  },
+  "p109": {
+   "pour": "Même idée que la Rivelia (2 bacs) un peu moins chère.",
+   "cons": [
+    "Peu d'avis (12)"
+   ]
+  },
+  "p110": {
+   "pour": "Client qui veut le geste barista guidé par un écran, pièces 10 ans.",
+   "cons": [
+    "Demande un apprentissage"
+   ]
+  },
+  "p111": {
+   "pour": "Premier pas vers l'expresso barista à prix promo.",
+   "cons": [
+    "9 bars : demande de bien régler la mouture",
+    "Apprentissage"
+   ]
+  },
+  "p112": {
+   "pour": "Passionné qui veut aussi des cafés froids.",
+   "cons": [
+    "Très cher",
+    "3 avis seulement"
+   ]
+  },
+  "p113": {
+   "pour": "Amateur de thé qui veut une infusion parfaite.",
+   "cons": [
+    "Étiquette peu lisible : vérifier le prix et les avis"
+   ]
+  },
+  "p114": {
+   "pour": "Pâtissier passionné qui veut une grande capacité, grosse promo.",
+   "cons": [
+    "4 avis seulement",
+    "Encombrant et lourd"
+   ]
   }
  },
  "objections": [

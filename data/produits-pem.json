@@ -2322,18 +2322,20 @@
    "specs": {
     "type": "Grain automatique",
     "lait": "Automatique",
-    "recettes": 13,
-    "lactees": 5
+    "recettes": 11,
+    "lactees": 5,
+    "bac_grains": "250 g",
+    "reservoir": 1.9
    },
    "args": [
     "Technologie LatteCrema Hot pour une mousse de lait parfaite",
-    "Écran couleur tactile, 13 recettes",
+    "Carafe à lait, 11 recettes + eau chaude",
     "1 ou 2 cafés en même temps"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
-   "ean": "8004399023149",
+   "ean": "8004399029149",
    "releve": "2026-11-08",
    "seed": true,
    "avis": {
@@ -2474,6 +2476,296 @@
    "avis": {
     "note": 3.5,
     "n": 13
+   }
+  },
+  {
+   "id": "p104",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Carafe à lait LatteCrema Upgrade Set",
+   "price": 99.99,
+   "specs": {
+    "type": "Accessoire"
+   },
+   "args": [
+    "Ajoute la carafe à lait LatteCrema sur une machine compatible",
+    "Vérifier la compatibilité avec le QR code du présentoir"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399028159",
+   "releve": "2026-11-08",
+   "seed": true
+  },
+  {
+   "id": "p105",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Dinamica FEB3895.TB",
+   "price": 999.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 10,
+    "lactees": 13
+   },
+   "args": [
+    "Écran tactile pour un accès rapide aux boissons",
+    "10 recettes café et 13 recettes lactées",
+    "1 ou 2 cafés en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "5011423008363",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 42
+   }
+  },
+  {
+   "id": "p106",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Eletta Explore ECAM450.65.S",
+   "price": 999.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 42,
+    "bac_grains": "300 g",
+    "reservoir": 1.8
+   },
+   "args": [
+    "Cold Extraction : boissons glacées et Cold Brew",
+    "42 recettes",
+    "Carafe à lait"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399026216",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 89
+   }
+  },
+  {
+   "id": "p107",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Magnifica FEB3270.TB",
+   "price": 899.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 15,
+    "bac_grains": "250 g",
+    "reservoir": 1.9
+   },
+   "args": [
+    "18 recettes personnalisables avec écran tactile",
+    "Mousse parfaite et interface intuitive",
+    "Carafe à lait, très bien noté (5/5)"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399032613",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 5,
+    "n": 40
+   }
+  },
+  {
+   "id": "p108",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Rivelia FEB4435 (blanc, beige, noir)",
+   "price": 699.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "bac_grains": "2 bacs interchangeables"
+   },
+   "args": [
+    "Technologie Bean Adapt : règle mouture, dose et température selon le grain",
+    "Bacs à grains interchangeables : changer de café en un geste",
+    "Carafe LatteCrema, existe en 3 coloris"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399027626 8004399027633 8004399027640",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 87
+   }
+  },
+  {
+   "id": "p109",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "FEB4255.BXL",
+   "price": 649.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 10,
+    "bac_grains": "2 × 250 g",
+    "reservoir": 1.8
+   },
+   "args": [
+    "Système Bean Switch : personnalisation café infinie",
+    "2 bacs à grains interchangeables",
+    "Carafe à lait"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399038486",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 12
+   }
+  },
+  {
+   "id": "p110",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "La Specialista EC9455.M",
+   "price": 699.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "pieces": "10 ans"
+   },
+   "args": [
+    "Écran tactile immersif de 3,5 pouces",
+    "Cafés chauds et froids",
+    "Broyeur intégré, 15 bars, pièces 10 ans"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8004399029064",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 20
+   }
+  },
+  {
+   "id": "p111",
+   "cat": "cafe",
+   "brand": "Sage",
+   "model": "Barista (9 bars)",
+   "price": 499.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 9,
+    "pieces": "5 ans"
+   },
+   "args": [
+    "Broyeur intégré : jusqu'à 25 tasses de café",
+    "Contrôle de la température réglable",
+    "Promo : 729,99 € → 499,99 €"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "9312432030144",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 25
+   }
+  },
+  {
+   "id": "p112",
+   "cat": "cafe",
+   "brand": "Sage",
+   "model": "the Barista (cafés froids)",
+   "price": 1299.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "pieces": "5 ans"
+   },
+   "args": [
+    "Cafés froids en programmes prédéfinis : Cold Brew et expresso froid",
+    "Café en grain et café moulu",
+    "15 bars, 1 ou 2 tasses"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 4.5,
+    "n": 3
+   }
+  },
+  {
+   "id": "p113",
+   "cat": "cafe",
+   "brand": "Sage",
+   "model": "Tea Maker (théière)",
+   "price": 169.99,
+   "specs": {
+    "type": "Bouilloire"
+   },
+   "args": [
+    "Théière électrique : infuse le thé à la bonne température et au bon temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "",
+   "releve": "2026-11-08",
+   "seed": true
+  },
+  {
+   "id": "p114",
+   "cat": "cuis",
+   "brand": "KitchenAid",
+   "model": "5KSM70SHXEAC",
+   "price": 599,
+   "specs": {
+    "type": "Robot pâtissier"
+   },
+   "args": [
+    "Robot pâtissier très grande capacité, 1 bol fourni",
+    "Promo : 999,99 € → 599 €",
+    "Très bien noté (5/5)"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "ean": "8003437630774",
+   "releve": "2026-11-08",
+   "seed": true,
+   "avis": {
+    "note": 5,
+    "n": 4
    }
   }
  ]
