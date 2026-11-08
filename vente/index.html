@@ -159,7 +159,7 @@ body.client .client-tag{display:inline-block}
 .foot a{color:var(--muted)}
 
 /* onglets */
-.tabs{position:fixed; left:0; right:0; bottom:0; z-index:40; display:grid; grid-template-columns:repeat(4,1fr); padding:6px 8px calc(6px + var(--safe-b)); background:rgba(14,16,22,.97); border-top:1px solid var(--line)}
+.tabs{position:fixed; left:0; right:0; bottom:0; z-index:40; display:grid; grid-template-columns:repeat(5,1fr); padding:6px 8px calc(6px + var(--safe-b)); background:rgba(14,16,22,.97); border-top:1px solid var(--line)}
 .tabs button{all:unset; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:2px; padding:6px 0; border-radius:12px; font-size:.72rem; font-weight:700; color:var(--muted)}
 .tabs button span{font-size:1.2rem; line-height:1}
 .tabs button[aria-current="page"]{color:var(--acc); background:rgba(255,181,71,.1)}
@@ -195,6 +195,15 @@ body.has-tray .tray{bottom:calc(78px + var(--safe-b))}
 .why{display:flex; flex-wrap:wrap; gap:5px} .why span{font-size:.76rem; font-weight:700; padding:3px 8px; border-radius:7px; background:rgba(74,222,128,.12); color:#a7f3c0} .why span.w{background:rgba(248,113,113,.12); color:#fecaca}
 .summ{font-size:.86rem; color:var(--muted); margin-top:10px}
 /* objections */
+.inf{margin-top:10px; border-radius:var(--r); background:var(--s1); border:1px solid var(--line); overflow:hidden}
+.inf>button{all:unset; box-sizing:border-box; width:100%; cursor:pointer; display:block; padding:14px 16px; font-weight:800}
+.inf>button small{display:block; margin-top:3px; font-weight:600; color:var(--muted); font-size:.85rem}
+.inf .ib{display:none; padding:0 16px 14px} .inf.open .ib{display:block}
+.inf h4{margin:12px 0 4px; font-size:.95rem; color:var(--acc)}
+.inf p{margin:0 0 6px; color:var(--muted); font-size:.92rem}
+.inf ul{margin:0; padding-left:18px; display:flex; flex-direction:column; gap:5px; font-size:.95rem}
+.inf ul b{color:#fff}
+.inf-hook{margin:6px 0 2px; padding:10px 12px; border-radius:10px; background:rgba(255,181,71,.1); font-weight:700}
 .ob{margin-top:10px; border-radius:var(--r); background:var(--s1); border:1px solid var(--line); overflow:hidden}
 .ob>button{all:unset; box-sizing:border-box; cursor:pointer; width:100%; padding:14px 16px; display:flex; justify-content:space-between; gap:10px; font-weight:800}
 .ob>button::after{content:"+"; color:var(--muted); font-size:1.2rem; line-height:1}
@@ -237,7 +246,7 @@ body.has-tray .tray{bottom:calc(78px + var(--safe-b))}
 
 <main class="wrap" id="main"></main>
 
-<nav class="tabs" id="tabs" aria-label="Sections"><button type="button" data-tab="prod" aria-current="page"><span>🗂</span>Produits</button><button type="button" data-tab="adv"><span>🧭</span>Conseiller</button><button type="button" data-tab="obj"><span>💬</span>Objections</button><button type="button" data-tab="calc"><span>🧮</span>Calcul</button></nav>
+<nav class="tabs" id="tabs" aria-label="Sections"><button type="button" data-tab="prod" aria-current="page"><span>🗂</span>Produits</button><button type="button" data-tab="adv"><span>🧭</span>Conseiller</button><button type="button" data-tab="obj"><span>💬</span>Objections</button><button type="button" data-tab="calc"><span>🧮</span>Calcul</button><button type="button" data-tab="inf"><span>♾️</span>Infinity</button></nav>
 <div class="tray" id="tray" hidden><span id="tray-t"></span><button class="go" type="button" id="tray-go">Comparer</button><button class="x" type="button" id="tray-x" aria-label="Vider le comparateur">×</button></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -265,7 +274,7 @@ var PCAT={
 var BUD=[["","Tous prix"],["0-100","< 100 €"],["100-200","100–200 €"],["200-400","200–400 €"],["400-99999","400 € et +"]];
 
 var P=[],G=null,X=null,src="";
-var ui={tab:"prod",adv:{cat:null,i:0,a:{}},obq:"",obOpen:{},cbase:null,cat:null,type:"",bud:"",sort:"",q:"",open:null,list:[],client:false,cmp:lsGet("rayon-cmp")||[],fav:lsGet("rayon-fav")||{},seen:lsGet("rayon-seen")||[]};
+var ui={tab:"prod",adv:{cat:null,i:0,a:{}},obq:"",obOpen:{},infOpen:{},cbase:null,cat:null,type:"",bud:"",sort:"",q:"",open:null,list:[],client:false,cmp:lsGet("rayon-cmp")||[],fav:lsGet("rayon-fav")||{},seen:lsGet("rayon-seen")||[]};
 
 /* ----- données : copie locale du Dashboard, puis Supabase, sinon sélection de base ----- */
 var FILE=null;
@@ -335,6 +344,7 @@ function render(){
   if(!P.length){m.innerHTML='<p class="empty">Chargement des produits…</p>';return}
   if(ui.tab==="adv"&&!ui.q){m.innerHTML=advHTML();renderTray();return}
   if(ui.tab==="obj"&&!ui.q){m.innerHTML=objHTML();renderTray();return}
+  if(ui.tab==="inf"&&!ui.q){m.innerHTML=infHTML();renderTray();return}
   if(ui.tab==="calc"&&!ui.q){m.innerHTML=calcHTML();calcRun();renderTray();return}
   if(ui.q){
     var L=filtered();ui.list=L.map(function(p){return p.id});
@@ -436,6 +446,28 @@ function advHTML(){
   h+='<div class="adv-nav"><button type="button" class="chip" data-adv="edit">‹ Modifier les réponses</button><button type="button" class="chip" data-adv="reset">Nouveau client</button></div>';
   return h;
 }
+function infFam(){return G&&G.families?G.families.filter(function(f){return /infinity/i.test(f.n||f.u||"")})[0]:null}
+function infLine(x){var a=String(x).split(/\s*→\s*/);return a.length>1?'<b>'+esc(a[0])+'</b> → '+esc(a.slice(1).join(" → ")):esc(x)}
+function infHTML(){
+  var f=infFam();
+  if(!f||!f.items)return '<div class="lhead"><h1>♾️ Club Infinity</h1></div><p class="empty">Fiches Infinity en cours de chargement…</p>';
+  var h='<div class="lhead"><h1>♾️ Club Infinity</h1><span>'+f.items.length+' fiches</span></div>'+
+    '<div class="svc">Assurance panne : réparation illimitée de tous les appareils de l\'univers choisi, achetés chez Boulanger ou ailleurs. Toujours remettre la notice d\'information au client.</div>';
+  h+=f.items.map(function(it,i){var o=ui.infOpen[i];
+    return '<div class="inf'+(o?" open":"")+(/prix/i.test(JSON.stringify(it.c||""))?" int":"")+'"><button type="button" data-inf="'+i+'" aria-expanded="'+!!o+'">'+esc(it.n)+(it.q?'<small>'+esc(it.ql||"À demander")+' : « '+esc(it.q)+' »</small>':'')+'</button><div class="ib">'+
+      (it.q?'<div class="inf-hook">« '+esc(it.q)+' »</div>':'')+
+      (it.c||[]).map(function(c){return '<h4>'+esc(c[0])+'</h4>'+(c[1]?'<p>'+esc(c[1])+'</p>':'')+((c[2]||[]).length?'<ul>'+c[2].map(function(x){return '<li>'+infLine(x)+'</li>'}).join("")+'</ul>':'')}).join("")+
+    '</div></div>'}).join("");
+  return h+'<p class="foot">Infos publiques relevées sur boulanger.com. En cas de doute, la notice et la grille tarifaire du magasin font foi.</p>';
+}
+function infSheet(p){
+  if(!infFam()||(p.specs||{}).type==="Accessoire")return "";
+  var pr=+p.price||0,h='<section class="sec int"><h3>♾️ Club Infinity</h3><div class="svc">';
+  if(pr>=60){var a=Math.max(1,Math.round(pr*.2/11.99)),b=Math.max(a+1,Math.round(pr*.5/11.99));
+    h+='Une réparation hors garantie coûte souvent 20 à 50 % du neuf, soit environ <b>'+a+' à '+b+' mois</b> d\'abonnement 1 univers.<br>';}
+  h+='Couvert par l\'univers <b>Électroménager</b>, avec tous les autres appareils de la maison.<br><button type="button" class="lnk" data-gotab="inf">Voir l\'argumentaire Infinity →</button></div></section>';
+  return h;
+}
 function objHTML(){
   var L=(X&&X.objections)||[],q=norm(ui.obq);
   var F=L.filter(function(o){return !q||norm(o.o+" "+o.tags+" "+o.r.join(" ")).indexOf(q)>=0});
@@ -474,6 +506,7 @@ $("#main").addEventListener("click",function(e){
   var an=e.target.closest("[data-ans]");if(an){var Q=ADV[ui.adv.cat].qs;ui.adv.a[Q[ui.adv.i].k]=an.dataset.ans;ui.adv.i++;render();window.scrollTo(0,0);return}
   var av=e.target.closest("[data-adv]");if(av){var A=ui.adv,k=av.dataset.adv;if(k==="back"){if(A.i)A.i--;else A.cat=null}else if(k==="skip")A.i++;else if(k==="edit")A.i=0;else if(k==="reset")ui.adv={cat:null,i:0,a:{}};render();return}
   var rc=e.target.closest(".rc[data-id]");if(rc){openSheet(rc.dataset.id,[].slice.call(document.querySelectorAll(".rc[data-id]")).map(function(x){return x.dataset.id}));return}
+  var io=e.target.closest("[data-inf]");if(io){var k3=io.dataset.inf;ui.infOpen[k3]=!ui.infOpen[k3];io.parentNode.classList.toggle("open",!!ui.infOpen[k3]);io.setAttribute("aria-expanded",String(!!ui.infOpen[k3]));return}
   var ob=e.target.closest("[data-ob]");if(ob){var k2=ob.dataset.ob;ui.obOpen[k2]=!ui.obOpen[k2];ob.parentNode.classList.toggle("open",!!ui.obOpen[k2]);ob.setAttribute("aria-expanded",String(!!ui.obOpen[k2]));return}
   var cn=e.target.closest("[data-n]");if(cn){ui.cn=+cn.dataset.n;document.querySelectorAll("#c-n [data-n]").forEach(function(x){x.setAttribute("aria-pressed",String(x===cn))});calcRun();return}
   var ex=e.target.closest("[data-ex]");if(ex){$("#c-ac").value="0";$("#c-b").value="85";$("#c-bc").value=String(Math.round(2*30*0.45));if(!$("#c-a").value)$("#c-a").value="315";$("#c-ac").value=String(Math.round(2*30*0.15));calcRun();toast("Exemple : 2 cafés/jour, grain ≈ 0,15 € et capsule ≈ 0,45 € la tasse (à ajuster)");return}
@@ -527,7 +560,7 @@ function sheetHTML(p){
   var inc=String(p.incl||"").split(/\s*;\s*/).filter(Boolean);
   if(inc.length)h+='<section class="sec"><h3>Dans la boîte</h3><div class="adds">'+inc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div></section>';
   var acc=String(p.acc||"").split(/\s*[;,\n]\s*/).filter(Boolean);if(!acc.length)acc=C.acc||[];
-  h+='<section class="sec int"><h3>À proposer avec</h3><div class="adds">'+acc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div>'+(services(p)?'<div style="margin-top:10px">'+services(p)+'</div>':'')+'</section>';
+  h+='<section class="sec int"><h3>À proposer avec</h3><div class="adds">'+acc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div>'+(services(p)?'<div style="margin-top:10px">'+services(p)+'</div>':'')+'</section>'+infSheet(p);
   var alts=alternatives(p);
   if(alts.length)h+='<section class="sec"><h3>Alternatives</h3><div class="alts">'+alts.map(function(a){return '<button type="button" class="alt" data-alt="'+esc(a.p.id)+'"><small>'+a.l+'</small><b>'+esc(pName(a.p))+'</b></button>'}).join("")+'</div></section>';
   if(p.notes)h+='<section class="sec int"><h3>Mes notes</h3><div class="notes">'+esc(p.notes)+'</div></section>';
@@ -558,6 +591,7 @@ function bindSheet(){
       else if(a==="fav"){if(ui.fav[ui.open])delete ui.fav[ui.open];else ui.fav[ui.open]=1;lsSet("rayon-fav",ui.fav);openSheet(ui.open,null,true);toast(ui.fav[ui.open]?"Ajouté aux favoris":"Retiré des favoris")}
       else if(a==="cmp"){cmpToggle(ui.open);openSheet(ui.open,null,true)}
       return}
+    var gt=e.target.closest("[data-gotab]");if(gt){closeSheet();ui.tab=gt.dataset.gotab;render();window.scrollTo(0,0);return}
     var cl=e.target.closest("[data-calc]");if(cl){var pp=find(cl.dataset.calc);ui.cbase=pp?{a:"",name:pName(pp)}:null;closeSheet();ui.tab="calc";render();window.scrollTo(0,0);return}
     var al=e.target.closest("[data-alt]");if(al){if(sheetList.indexOf(al.dataset.alt)<0)sheetList=[al.dataset.alt];openSheet(al.dataset.alt,null,true)}
   });
