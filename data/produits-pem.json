@@ -514,15 +514,23 @@
    "price": 449,
    "specs": {
     "type": "Multicuiseur",
-    "capacite": 4.3,
-    "connecte": "oui"
+    "pieces": "15 ans",
+    "capacite": 6.5,
+    "modes": 20,
+    "recettes": "Illimitées (appli)",
+    "connecte": "oui",
+    "puissance": 1600
    },
    "args": [
-    "20 modes de cuisson + fonction airfryer intégrée",
-    "Cuisson rapide sous pression"
+    "Le seul Cookeo avec airfryer intégré : pas besoin d'acheter l'Extra Crisp",
+    "20 modes de cuisson, le plus complet de la gamme",
+    "Pale de mélange (selon version) : remue certains plats tout seul",
+    "Rissolage plus puissant que les autres Cookeo, Wi-Fi + appli MyMoulinex"
    ],
-   "obj": "Ne mixe pas : si le client veut hacher/mixer → robot cuiseur",
+   "obj": "6,5 L affichés mais environ 4,3 L utiles : à peine plus qu'un Cookeo 6 L. Ne coupe pas les ingrédients → sinon robot cuiseur",
    "acc": "",
+   "incl": "Cuve 6,5 L, couvercle pression, couvercle airfryer",
+   "releve": "2026-11-09",
    "seed": true
   },
   {
@@ -530,17 +538,26 @@
    "cat": "cuis",
    "brand": "Moulinex",
    "model": "Cookeo Touch Wifi",
-   "price": null,
+   "price": 399,
    "specs": {
     "type": "Multicuiseur",
-    "connecte": "oui"
+    "pieces": "15 ans",
+    "capacite": 6,
+    "modes": 13,
+    "recettes": "250 + illimitées (appli)",
+    "connecte": "oui",
+    "puissance": 1600
    },
    "args": [
-    "Recettes guidées sur écran tactile",
-    "Le multicuiseur le plus connu"
+    "Écran tactile couleur 4,3\" inclinable, recettes en photos pas à pas",
+    "13 modes de cuisson, Wi-Fi et mises à jour",
+    "Le best-seller de la gamme",
+    "Pilotage à distance avec l'appli MyMoulinex"
    ],
-   "obj": "",
-   "acc": "",
+   "obj": "Airfryer seulement avec l'Extra Crisp vendu à part",
+   "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
+   "incl": "Cuve 6 L, panier vapeur, livret de recettes",
+   "releve": "2026-11-09",
    "seed": true
   },
   {
@@ -2808,6 +2825,258 @@
     "note": 5,
     "n": 4
    }
+  },
+  {
+   "id": "p115",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo+ 80 recettes CE854B10",
+   "price": 249,
+   "specs": {
+    "type": "Multicuiseur",
+    "pieces": "15 ans",
+    "capacite": 6,
+    "modes": 6,
+    "recettes": "80",
+    "connecte": "non",
+    "puissance": 1600
+   },
+   "args": [
+    "Le Cookeo d'entrée de gamme : l'essentiel de la cuisson sous pression",
+    "6 modes de cuisson, 80 recettes guidées",
+    "Cuve 6 L pour 6 personnes, va au lave-vaisselle",
+    "Souvent en promo"
+   ],
+   "obj": "Pas de connexion : 80 recettes seulement",
+   "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
+   "incl": "Cuve 6 L, panier vapeur, livret de recettes",
+   "releve": "2026-11-09",
+   "seed": true
+  },
+  {
+   "id": "p116",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo+ 150 recettes",
+   "price": 249,
+   "specs": {
+    "type": "Multicuiseur",
+    "pieces": "15 ans",
+    "capacite": 6,
+    "modes": 6,
+    "recettes": "150",
+    "connecte": "non",
+    "puissance": 1600
+   },
+   "args": [
+    "150 recettes intégrées, guidage pas à pas à l'écran",
+    "6 modes : sous pression, dorer, mijoter, vapeur, réchauffer, maintien au chaud",
+    "Cuve 6 L pour 6 personnes",
+    "Existe en plusieurs coloris"
+   ],
+   "obj": "Écran simple à molette, pas de photos",
+   "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
+   "incl": "Cuve 6 L, panier vapeur, livret de recettes",
+   "releve": "2026-11-09",
+   "seed": true
+  },
+  {
+   "id": "p117",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Mini CE880410",
+   "price": 179,
+   "specs": {
+    "type": "Multicuiseur",
+    "pieces": "15 ans",
+    "capacite": 3,
+    "modes": 6,
+    "recettes": "150",
+    "connecte": "non"
+   },
+   "args": [
+    "Cuve 3 L (environ 2 L utiles) : idéal pour 1 à 2 personnes",
+    "150 recettes intégrées",
+    "Compact, tient dans une petite cuisine",
+    "Jusqu'à 80 % d'énergie en moins qu'une cuisson classique (donnée constructeur)"
+   ],
+   "obj": "Trop petit dès 3 personnes. Pas compatible Extra Crisp",
+   "acc": "",
+   "incl": "Cuve 3 L, panier vapeur",
+   "releve": "2026-11-09",
+   "seed": true
+  },
+  {
+   "id": "p118",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo+ Connect CE857800",
+   "price": 299,
+   "specs": {
+    "type": "Multicuiseur",
+    "pieces": "15 ans",
+    "capacite": 6,
+    "modes": 6,
+    "recettes": "200 + appli",
+    "connecte": "oui"
+   },
+   "args": [
+    "Bluetooth : envoie de nouvelles recettes depuis l'appli Mon Cookeo",
+    "200 recettes",
+    "Cuve 6 L familiale"
+   ],
+   "obj": "Bluetooth seulement : le téléphone doit être à côté (pas de Wi-Fi)",
+   "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
+   "incl": "Cuve 6 L, panier vapeur, livret de recettes",
+   "releve": "2026-11-09",
+   "seed": true
+  },
+  {
+   "id": "p119",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Wi-Fi 8en1 CE952AF0",
+   "price": null,
+   "specs": {
+    "type": "Multicuiseur",
+    "pieces": "15 ans",
+    "capacite": 6,
+    "modes": 8,
+    "recettes": "Illimitées (appli)",
+    "connecte": "oui"
+   },
+   "args": [
+    "Wi-Fi : accès illimité aux recettes de l'appli MyMoulinex",
+    "8 modes de cuisson",
+    "Réparable 15 ans"
+   ],
+   "obj": "Pas d'écran tactile : les recettes se suivent surtout sur l'appli",
+   "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
+   "incl": "Cuve 6 L, panier vapeur, livret de recettes",
+   "releve": "2026-11-09",
+   "seed": true
+  },
+  {
+   "id": "p120",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Wi-Fi 9en1",
+   "price": 229,
+   "specs": {
+    "type": "Multicuiseur",
+    "pieces": "15 ans",
+    "capacite": 6,
+    "modes": 9,
+    "recettes": "Illimitées (appli)",
+    "connecte": "oui"
+   },
+   "args": [
+    "Wi-Fi à petit prix : recettes illimitées via l'appli",
+    "9 modes de cuisson",
+    "Cuve 6 L"
+   ],
+   "obj": "Pas d'écran tactile",
+   "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
+   "incl": "Cuve 6 L, panier vapeur, livret de recettes",
+   "releve": "2026-11-09",
+   "seed": true
+  },
+  {
+   "id": "p121",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Wi-Fi 10en1",
+   "price": 249,
+   "specs": {
+    "type": "Multicuiseur",
+    "pieces": "15 ans",
+    "capacite": 6,
+    "modes": 10,
+    "recettes": "Illimitées (appli)",
+    "connecte": "oui"
+   },
+   "args": [
+    "10 modes de cuisson, Wi-Fi",
+    "Recettes illimitées via l'appli MyMoulinex",
+    "Cuve 6 L"
+   ],
+   "obj": "Pas d'écran tactile",
+   "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
+   "incl": "Cuve 6 L, panier vapeur, livret de recettes",
+   "releve": "2026-11-09",
+   "seed": true
+  },
+  {
+   "id": "p122",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Touch Pro CE943410",
+   "price": 379,
+   "specs": {
+    "type": "Multicuiseur",
+    "pieces": "15 ans",
+    "capacite": 6,
+    "modes": 13,
+    "recettes": "Illimitées (appli)",
+    "connecte": "oui",
+    "balance": "oui"
+   },
+   "args": [
+    "Balance intégrée : on pèse directement dans la cuve",
+    "Écran tactile, préchauffage plus rapide",
+    "13 modes, Wi-Fi",
+    "Existe en pack avec l'Extra Crisp"
+   ],
+   "obj": "La balance n'a d'intérêt que si le client suit des recettes précises (pâtisserie)",
+   "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
+   "incl": "Cuve 6 L, panier vapeur, livret de recettes",
+   "releve": "2026-11-09",
+   "seed": true
+  },
+  {
+   "id": "p123",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Touch Mini Wifi",
+   "price": 169,
+   "specs": {
+    "type": "Multicuiseur",
+    "pieces": "15 ans",
+    "capacite": 3,
+    "modes": 13,
+    "recettes": "Illimitées (appli)",
+    "connecte": "oui"
+   },
+   "args": [
+    "Écran tactile 4,3\" et Wi-Fi dans une cuve 3 L",
+    "13 modes : les fonctions du Touch pour 2 personnes"
+   ],
+   "obj": "Pas compatible Extra Crisp. Souvent en rupture : vérifier le stock",
+   "acc": "",
+   "incl": "Cuve 3 L, panier vapeur",
+   "releve": "2026-11-09",
+   "seed": true
+  },
+  {
+   "id": "p124",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Extra Crisp (couvercle airfryer Cookeo)",
+   "price": 89,
+   "specs": {
+    "type": "Accessoire",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Transforme un Cookeo 6 L en airfryer : frites, nuggets, gratins dorés",
+    "Compatible Cookeo+, Simplicity, Wi-Fi, Touch et Touch Pro (6 L)",
+    "Pas besoin d'un airfryer en plus sur le plan de travail"
+   ],
+   "obj": "Pas compatible Mini ni Touch Mini. Il faut secouer à la main en cours de cuisson. Inutile avec l'Infinity",
+   "acc": "",
+   "incl": "Couvercle airfryer",
+   "releve": "2026-11-09",
+   "seed": true
   }
  ]
 }

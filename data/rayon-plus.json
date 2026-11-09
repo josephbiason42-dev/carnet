@@ -181,6 +181,15 @@
    "demo": "Vérifier la compatibilité avec la machine du client.",
    "entretien": "",
    "usage": ""
+  },
+  "cuis|Accessoire": {
+   "quest": [
+    "Quel Cookeo avez-vous (6 L ou Mini) ?",
+    "Vous voulez remplacer un airfryer ou en éviter un en plus ?"
+   ],
+   "demo": "Montrer comment le couvercle se pose à la place du couvercle pression.",
+   "entretien": "Panier et grille au lave-vaisselle.",
+   "usage": "Pas de consommable."
   }
  },
  "products": {
@@ -347,15 +356,16 @@
    ]
   },
   "p025": {
-   "pour": "Famille pressée en semaine : plats mijotés rapides et recettes guidées.",
+   "pour": "Client qui veut un seul appareil : cuisson rapide ET airfryer, et qui aime varier.",
    "cons": [
-    "Ne remplace pas un robot pour mixer et hacher"
+    "Le plus cher de la gamme",
+    "Capacité utile proche d'un Cookeo 6 L"
    ]
   },
   "p026": {
-   "pour": "Client qui veut un multicuiseur connecté avec écran tactile.",
+   "pour": "Client qui veut être guidé en images, cuisinier curieux au quotidien.",
    "cons": [
-    "Ne remplace pas un robot pour mixer et hacher"
+    "Airfryer seulement avec l'Extra Crisp"
    ]
   },
   "p027": {
@@ -911,6 +921,68 @@
    "cons": [
     "Encombrant et lourd (environ 16 kg)",
     "Peu d'avis pour l'instant"
+   ]
+  },
+  "p115": {
+   "pour": "Premier Cookeo à petit budget, famille qui veut l'essentiel.",
+   "cons": [
+    "80 recettes seulement, pas connecté"
+   ]
+  },
+  "p116": {
+   "pour": "Famille qui veut l'essentiel avec plus de recettes, sans appli.",
+   "cons": [
+    "Pas connecté, écran sans photos"
+   ]
+  },
+  "p117": {
+   "pour": "Personne seule ou couple, petite cuisine.",
+   "cons": [
+    "Trop petit pour une famille",
+    "Pas d'Extra Crisp possible"
+   ]
+  },
+  "p118": {
+   "pour": "Famille qui veut de nouvelles recettes via le téléphone, sans payer le Wi-Fi.",
+   "cons": [
+    "Bluetooth : portée limitée"
+   ]
+  },
+  "p119": {
+   "pour": "Client à l'aise avec le smartphone qui veut des recettes illimitées.",
+   "cons": [
+    "Pas d'écran tactile"
+   ]
+  },
+  "p120": {
+   "pour": "Le Wi-Fi au meilleur prix, pour suivre les recettes sur l'appli.",
+   "cons": [
+    "Pas d'écran tactile"
+   ]
+  },
+  "p121": {
+   "pour": "Wi-Fi + un mode de plus que le 9en1.",
+   "cons": [
+    "Pas d'écran tactile"
+   ]
+  },
+  "p122": {
+   "pour": "Client précis, pâtissier, qui veut peser sans sortir la balance.",
+   "cons": [
+    "Plus cher que le Touch Wifi pour la seule balance"
+   ]
+  },
+  "p123": {
+   "pour": "Couple qui veut le confort de l'écran tactile en petit format.",
+   "cons": [
+    "Souvent indisponible",
+    "Pas d'Extra Crisp"
+   ]
+  },
+  "p124": {
+   "pour": "Client qui a déjà un Cookeo 6 L et veut un airfryer sans encombrer.",
+   "cons": [
+    "Brassage manuel en cours de cuisson"
    ]
   }
  },
