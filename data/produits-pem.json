@@ -320,7 +320,9 @@
    ],
    "obj": "Lait manuel avec la buse : si le client veut du latte en une touche → Eletta ou LatteGo",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "uniq": "La machine à grain la plus vendue : simple, robuste, la valeur sûre",
+   "releve": "2026-11-11"
   },
   {
    "id": "p015",
@@ -339,7 +341,9 @@
    ],
    "obj": "Plus encombrante et plus chère",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "uniq": "Fait aussi des boissons froides : Cold Brew et mousse de lait froide",
+   "releve": "2026-11-11"
   },
   {
    "id": "p016",
@@ -357,7 +361,9 @@
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "uniq": "Profils utilisateurs + lait LatteGo en 2 pièces sans tuyau",
+   "releve": "2026-11-11"
   },
   {
    "id": "p017",
@@ -375,7 +381,9 @@
    ],
    "obj": "Moins de boissons que la 5400",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "uniq": "Le lait automatique le moins cher chez Philips, LatteGo sans tuyau",
+   "releve": "2026-11-11"
   },
   {
    "id": "p018",
@@ -393,7 +401,9 @@
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "uniq": "Le haut de gamme Saeco : finitions premium et boissons très personnalisables",
+   "releve": "2026-11-11"
   },
   {
    "id": "p019",
@@ -1938,12 +1948,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399331457",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 372
-   }
+   },
+   "uniq": "Dinamica à buse avec menu « My » pour enregistrer ses cafés préférés"
   },
   {
    "id": "p083",
@@ -1967,12 +1978,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399331440",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 265
-   }
+   },
+   "uniq": "La Dinamica la plus simple : 4 cafés, dont un vrai café long"
   },
   {
    "id": "p084",
@@ -1992,12 +2004,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399035461",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 32
-   }
+   },
+   "uniq": "Le lait en un clic au prix d'une machine d'entrée de gamme"
   },
   {
    "id": "p085",
@@ -2023,12 +2036,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399026032",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 79
-   }
+   },
+   "uniq": "La machine à grain De'Longhi la moins chère du rayon"
   },
   {
    "id": "p086",
@@ -2051,12 +2065,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399022911",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 9
-   }
+   },
+   "uniq": "Une Magnifica S avec buse Cappuccino : mousse plus facile à réussir"
   },
   {
    "id": "p087",
@@ -2076,12 +2091,13 @@
    "acc": "",
    "incl": "",
    "ean": "8720389064807",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 18
-   }
+   },
+   "uniq": "Le haut de gamme Philips : lait LatteGo sans tuyau, 2 cafés à la fois"
   },
   {
    "id": "p088",
@@ -2103,12 +2119,13 @@
    "acc": "",
    "incl": "",
    "ean": "8710103931324",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 64
-   }
+   },
+   "uniq": "Chaque membre de la famille enregistre ses réglages pour 12 recettes"
   },
   {
    "id": "p089",
@@ -2130,12 +2147,13 @@
    "acc": "",
    "incl": "",
    "ean": "8710103894667",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 79
-   }
+   },
+   "uniq": "La machine à grain la moins chère du rayon"
   },
   {
    "id": "p090",
@@ -2157,12 +2175,13 @@
    "acc": "",
    "incl": "2 pastilles de nettoyage ; 1 cuillère à café moulu ; 1 chiffon microfibre ; 1 cartouche filtrante ; 1 languette",
    "ean": "7610917154357",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 26
-   }
+   },
+   "uniq": "Jura suisse sans lait : pour les puristes du café noir"
   },
   {
    "id": "p091",
@@ -2205,12 +2224,13 @@
    "acc": "",
    "incl": "Wi-Fi connect ; 2 réservoirs de sirop ; pastilles de nettoyage ; cuillère",
    "ean": "7610917154715",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 2,
     "n": 2
-   }
+   },
+   "uniq": "Sweet Foam : la seule à aromatiser la mousse de lait avec du sirop"
   },
   {
    "id": "p093",
@@ -2236,12 +2256,13 @@
    "acc": "",
    "incl": "",
    "ean": "0622356379786",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 18
-   }
+   },
+   "uniq": "GrindIQ : règle seule la mouture, et fait expresso, filtre et cold brew"
   },
   {
    "id": "p094",
@@ -2264,12 +2285,13 @@
    "acc": "",
    "incl": "",
    "ean": "3700342456783",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 65
-   }
+   },
+   "uniq": "La plus silencieuse du rayon, avec 21 boissons chaudes et froides"
   },
   {
    "id": "p095",
@@ -2292,12 +2314,13 @@
    "acc": "",
    "incl": "",
    "ean": "3016661159510",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 5,
     "n": 21
-   }
+   },
+   "uniq": "Quattro Force : un expresso régulier tasse après tasse"
   },
   {
    "id": "p096",
@@ -2320,12 +2343,13 @@
    "acc": "",
    "incl": "",
    "ean": "3016661178924",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 52
-   }
+   },
+   "uniq": "Milk Maestro : une mousse de lait réglable selon ses goûts"
   },
   {
    "id": "p097",
@@ -2346,12 +2370,13 @@
    "acc": "",
    "incl": "",
    "ean": "3016667200193",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 37
-   }
+   },
+   "uniq": "Le lait automatique Krups au prix doux"
   },
   {
    "id": "p098",
@@ -2376,12 +2401,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399029149",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 71
-   }
+   },
+   "uniq": "Carafe LatteCrema Hot qui se range au frigo, 11 recettes"
   },
   {
    "id": "p099",
@@ -2403,12 +2429,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399022256",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 99
-   }
+   },
+   "uniq": "On règle la longueur exacte de chaque boisson dans sa tasse"
   },
   {
    "id": "p100",
@@ -2432,12 +2459,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399028074",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 75
-   }
+   },
+   "uniq": "La carafe à lait automatique au prix d'une Magnifica Start"
   },
   {
    "id": "p101",
@@ -2461,12 +2489,13 @@
    "acc": "",
    "incl": "",
    "ean": "9356973097917",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 25
-   }
+   },
+   "uniq": "Tassage assisté Impress : le geste barista sans rater sa dose"
   },
   {
    "id": "p102",
@@ -2516,12 +2545,13 @@
    "acc": "",
    "incl": "",
    "ean": "9312432030151",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 3.5,
     "n": 13
-   }
+   },
+   "uniq": "Machine barista manuelle guidée par un grand écran tactile"
   },
   {
    "id": "p104",
@@ -2565,12 +2595,13 @@
    "acc": "",
    "incl": "",
    "ean": "5011423008363",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 42
-   }
+   },
+   "uniq": "La seule avec 2 carafes, dont une isotherme pour le lait"
   },
   {
    "id": "p106",
@@ -2594,12 +2625,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399026216",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 89
-   }
+   },
+   "uniq": "La plus de recettes (42), dont Cold Brew et boissons glacées"
   },
   {
    "id": "p107",
@@ -2623,12 +2655,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399032613",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 5,
     "n": 40
-   }
+   },
+   "uniq": "18 recettes sur écran tactile, parmi les mieux notées"
   },
   {
    "id": "p108",
@@ -2650,12 +2683,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399027626 8004399027633 8004399027640",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 87
-   }
+   },
+   "uniq": "Bean Adapt + 2 bacs à grains : change de café en un geste"
   },
   {
    "id": "p109",
@@ -2679,12 +2713,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399038486",
-   "releve": "2026-11-08",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 12
-   }
+   },
+   "uniq": "Bean Switch : 2 bacs à grains interchangeables, prix plus doux que la Rivelia"
   },
   {
    "id": "p110",
@@ -2711,12 +2746,13 @@
    "acc": "",
    "incl": "",
    "ean": "8004399029064",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 20
-   }
+   },
+   "uniq": "Machine à porte-filtre dont la buse fait la mousse de lait toute seule"
   },
   {
    "id": "p111",
@@ -2738,12 +2774,13 @@
    "acc": "",
    "incl": "",
    "ean": "9312432030144",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 25
-   }
+   },
+   "uniq": "Le porte-filtre Sage d'entrée de gamme, température réglable"
   },
   {
    "id": "p112",
@@ -2768,12 +2805,13 @@
    "acc": "",
    "incl": "",
    "ean": "",
-   "releve": "2026-11-09",
+   "releve": "2026-11-11",
    "seed": true,
    "avis": {
     "note": 4.5,
     "n": 3
-   }
+   },
+   "uniq": "Cold Brew en moins de 3 min + mousse de lait automatique"
   },
   {
    "id": "p113",

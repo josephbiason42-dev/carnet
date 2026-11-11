@@ -169,6 +169,7 @@ body.has-tray .tray{bottom:calc(78px + var(--safe-b))}
 .tray{bottom:calc(78px + var(--safe-b))!important}
 /* fiche enrichie */
 .pour{margin-top:12px; padding:12px 14px; border-radius:14px; background:rgba(255,181,71,.08); border:1px solid rgba(255,181,71,.22); font-size:.98rem; font-weight:600}
+.pour.uniq{background:rgba(91,140,255,.1); border-color:rgba(91,140,255,.3)} .pour.uniq small{color:#a9c1ff}
 .pour small{display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:#ffd89a; font-weight:800; margin-bottom:2px}
 .qs{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:6px; font-size:.95rem}
 .cons{display:flex; flex-direction:column; gap:6px}
@@ -288,7 +289,7 @@ function mergeFile(list){
   if(!FILE)return list;var by={};list.forEach(function(p){by[p.id]=p});
   FILE.forEach(function(f){var d=by[f.id];
     if(!d){list.push(f);return}
-    if(f.releve&&(!d.releve||d.releve<f.releve)){["price","specs","args","incl","ean","avis","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}
+    if(f.releve&&(!d.releve||d.releve<f.releve)){["model","price","specs","args","obj","acc","incl","ean","avis","uniq","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}else if(f.uniq&&!d.uniq)d.uniq=f.uniq;
     else ["incl","ean","avis"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
   });
   return list;
@@ -560,6 +561,7 @@ function sheetHTML(p){
   var sp0=p.specs||{};
   if((p.avis&&p.avis.n)||sp0.repar!=null)h+='<div class="badges">'+(p.avis&&p.avis.n?'<span class="bdg">★ '+nf.format(p.avis.note)+' / 5 · '+p.avis.n+' avis</span>':'')+(sp0.repar!=null?'<span class="bdg rp" style="--rc:'+(sp0.repar>=8?"#22c55e":sp0.repar>=6?"#a3e635":"#facc15")+'">🔧 Réparabilité '+nf.format(sp0.repar)+'/10</span>':'')+(sp0.pieces?'<span class="bdg">Pièces : '+esc(sp0.pieces)+'</span>':'')+'</div>';
   var xp=xP(p),xt=xT(p);
+  if(p.uniq)h+='<div class="pour uniq"><small>✨ Son point unique</small>'+esc(p.uniq)+'</div>';
   if(xp&&xp.pour)h+='<div class="pour"><small>Pour qui</small>'+esc(xp.pour)+'</div>';
   if(xt&&xt.quest&&xt.quest.length)h+='<section class="sec int"><h3>Questions à poser</h3><ol class="qs">'+xt.quest.map(function(q){return '<li>'+esc(q)+'</li>'}).join("")+'</ol></section>';
   if(p.args&&p.args.length)h+='<section class="sec"><h3>L\'essentiel</h3><ol class="args">'+p.args.map(function(a){return '<li>'+esc(a)+'</li>'}).join("")+'</ol></section>';
