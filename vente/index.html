@@ -290,8 +290,8 @@ function mergeFile(list){
   if(!FILE)return list;var by={};list.forEach(function(p){by[p.id]=p});
   FILE.forEach(function(f){var d=by[f.id];
     if(!d){list.push(f);return}
-    if(f.releve&&(!d.releve||d.releve<f.releve)){["model","price","specs","args","obj","acc","incl","ean","avis","uniq","uniqUse","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}else{if(f.uniq&&!d.uniq)d.uniq=f.uniq;if(f.uniqUse&&!d.uniqUse)d.uniqUse=f.uniqUse}
-    else ["incl","ean","avis"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
+    if(f.releve&&(!d.releve||d.releve<f.releve)){["model","price","specs","args","obj","acc","incl","ean","avis","uniq","uniqUse","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}
+    else ["incl","ean","avis","uniq","uniqUse"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
   });
   return list;
 }
