@@ -4209,16 +4209,24 @@ $("#pi-back").addEventListener("click",function(){piShow(1)});
 $("#pi-go").addEventListener("click",function(){
   if(!piData)return;var src=piData.name,n=0,w=0;
   if($("#pi-replace").checked&&!$("#pi-replace-l").hidden)Object.keys(state.plan).forEach(function(d){var D=state.plan[d];if(D.blocks)D.blocks=D.blocks.filter(function(b){return b.src!==src||b.done})});
+  var WK={};piData.events.forEach(function(e){if(e.t==="work"&&!e.allDay)(WK[e.date]=WK[e.date]||[]).push([e.start,e.end])});
+  Object.keys(WK).forEach(function(d){var D=pdayW(d);if(D.kind&&D.kind!=="work")return;
+    var sh=WK[d].sort(function(x,y){return x[0].localeCompare(y[0])});
+    if(D.kind==="work"&&D.start&&D.src!==src){var old=D.shifts&&D.shifts.length?D.shifts:[[D.start,D.end]];sh=old.concat(sh).sort(function(x,y){return x[0].localeCompare(y[0])})}
+    var m=[];sh.forEach(function(x){var l=m[m.length-1];if(l&&x[0]<=l[1]){if(x[1]>l[1])l[1]=x[1]}else m.push([x[0],x[1]])});
+    D.kind="work";D.start=m[0][0];D.end=m[m.length-1][1];D.src=src;
+    if(m.length>1){D.shifts=m;D.pause=m.slice(1).reduce(function(a,x,i){return a+tmin(x[0])-tmin(m[i][1])},0)}else{delete D.shifts;D.pause=tmin(D.end)-tmin(D.start)>360?60:0}
+    w++});
   piData.events.forEach(function(e){
     var D=pdayW(e.date);
-    if(e.t==="work"&&!e.allDay){if(!D.kind||D.kind==="work"){D.kind="work";if(D.src===src||!D.start){D.start=e.start;D.end=e.end}else{D.start=D.start<e.start?D.start:e.start;D.end=D.end>e.end?D.end:e.end}if(D.pause==null)D.pause=tmin(e.end)-tmin(e.start)>360?60:0;D.src=src;delete D.shifts;w++}return}
+    if(e.t==="work"&&!e.allDay)return;
     var ex=D.blocks.filter(function(b){return b.uid===e.uid&&b.src===src})[0],blk={t:e.t,label:e.title,src:src,uid:e.uid};
     if(e.allDay)blk.allDay=true;else{blk.start=e.start;blk.end=e.end}
     if(ex)Object.assign(ex,blk);else{blk.id=newId();blk.done=false;D.blocks.push(blk)}n++;
   });
   var first=piData.events[0].date;plui.week=monday(first);plui.sel=first;
   $("#pi-dialog").close();plSave();
-  toast(n+" événement"+(n>1?"s":"")+" importé"+(n>1?"s":"")+(w?" et "+w+" journée"+(w>1?"s":"")+" de travail":"")+" depuis « "+src+" »");
+  toast((n?n+" événement"+(n>1?"s":"")+" importé"+(n>1?"s":"")+(w?" et ":""):"")+(w?w+" journée"+(w>1?"s":"")+" de travail"+(n?"":" importée"+(w>1?"s":"")):"")+" depuis « "+src+" »");
 });
 $("#pl-cfg-open").addEventListener("click",function(){var c=$("#pl-cfg");c.open=true;c.scrollIntoView({behavior:"smooth",block:"start"})});
 $("#pl-suggest").addEventListener("click",function(){var m=suggestWeek(plui.week);plSave();toast(m)});
