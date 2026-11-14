@@ -220,6 +220,48 @@
    "demo": "Montrer la grille viennoiseries et le bouton décongélation.",
    "entretien": "Vider le tiroir à miettes chaque semaine.",
    "usage": "Ne jamais décoincer le pain avec un couteau métallique."
+  },
+  "photo|Compact": {
+   "quest": [
+    "Vous photographiez quoi surtout : vacances, soirées, enfants ?",
+    "Qu'est-ce qui ne vous suffit plus avec votre téléphone ?",
+    "Vous avez besoin de zoomer, ou plutôt de vous filmer ?",
+    "Il doit tenir dans une poche ?"
+   ],
+   "demo": "Mettre l'appareil en main, zoomer à fond sur un objet au bout du rayon, puis comparer avec le zoom du smartphone du client.",
+   "entretien": "Recharger la batterie, ranger dans un étui pour protéger l'écran et l'objectif, vider la carte sur l'ordinateur ou le téléphone.",
+   "usage": "Carte mémoire souvent non fournie : la proposer systématiquement. Une batterie de rechange double l'autonomie."
+  },
+  "photo|Bridge": {
+   "quest": [
+    "Vous photographiez de loin : animaux, sport, oiseaux, la lune ?",
+    "Vous voulez tout en automatique, ou apprendre les réglages ?",
+    "Le poids vous gêne ?",
+    "Batterie ou piles : vous serez loin d'une prise ?"
+   ],
+   "demo": "Zoomer à fond sur un détail à l'autre bout du magasin (une étiquette prix), montrer la stabilisation en tenant l'appareil à bout de bras.",
+   "entretien": "Cache objectif toujours remis, objectif nettoyé avec un chiffon microfibre, batterie (ou piles rechargeables) chargée avant de partir.",
+   "usage": "Carte SD non fournie. Batterie de rechange ou piles rechargeables NiMH + chargeur selon le modèle. Un sac ou un étui."
+  },
+  "photo|Étanche": {
+   "quest": [
+    "Vous allez l'utiliser où : piscine, mer, ski, rando ?",
+    "Jusqu'à quelle profondeur ?",
+    "Vous voulez récupérer les photos sur votre téléphone ?"
+   ],
+   "demo": "Montrer la trappe à double verrouillage et le joint, expliquer qu'on la ferme avant chaque baignade.",
+   "entretien": "Après la mer ou la piscine : rincer à l'eau douce trappe fermée, sécher avant d'ouvrir, vérifier qu'aucun grain de sable n'est sur le joint.",
+   "usage": "Carte microSD à prévoir. Une dragonne flottante évite de le perdre au fond de l'eau."
+  },
+  "photo|Argentique": {
+   "quest": [
+    "Vous avez déjà utilisé un appareil à pellicule ?",
+    "C'est pour le rendu « film », ou pour offrir ?",
+    "Vous savez où faire développer vos pellicules ?"
+   ],
+   "demo": "Montrer le chargement de la pellicule (automatique) et le compteur de vues sur le dessus.",
+   "entretien": "Changer les 2 piles AAA quand le flash faiblit, ne jamais ouvrir le dos avant la fin du rembobinage.",
+   "usage": "Budget à annoncer : une pellicule par film + le développement. Proposer des pellicules et des piles AAA."
   }
  },
  "products": {
@@ -2782,6 +2824,66 @@
   "p438": {
    "pour": "Client qui veut du grain frais en toute simplicité.",
    "cons": []
+  },
+  "p439": {
+   "pour": "Ado, vlog, selfies, client qui veut un look rétro et un appareil prêt à l'emploi.",
+   "cons": [
+    "Pas de zoom optique",
+    "Petit capteur : moins bon de nuit qu'un smartphone récent"
+   ]
+  },
+  "p440": {
+   "pour": "Premier appareil, vacances, cadeau : le client qui veut zoomer mieux qu'avec son téléphone.",
+   "cons": [
+    "Pas de stabilisateur optique",
+    "Autofocus lent, pas de Wi-Fi",
+    "Carte SD non fournie"
+   ]
+  },
+  "p441": {
+   "pour": "Plage, piscine, ski, enfants : le client qui ne veut pas avoir peur de casser ou de noyer son appareil.",
+   "cons": [
+    "Écran 2,7\" un peu petit",
+    "Qualité en baisse en intérieur",
+    "Wi-Fi parfois lent selon le téléphone"
+   ]
+  },
+  "p442": {
+   "pour": "Débutant qui veut apprendre la photo et un vrai zoom, voyageur loin des prises.",
+   "cons": [
+    "Pas de Wi-Fi ni de viseur",
+    "Piles alcalines coûteuses à la longue : vendre des rechargeables"
+   ]
+  },
+  "p443": {
+   "pour": "Client qui veut un gros zoom et de l'autonomie, sans se soucier du partage sur téléphone.",
+   "cons": [
+    "Pas de Wi-Fi ni de viseur",
+    "444 g"
+   ]
+  },
+  "p444": {
+   "pour": "Animaux, oiseaux, sport : gros zoom et partage sur le téléphone.",
+   "cons": [
+    "508 g, encombrant",
+    "Pas de viseur"
+   ]
+  },
+  "p445": {
+   "pour": "Passionné qui veut le plus gros zoom, un viseur et le RAW.",
+   "cons": [
+    "588 g",
+    "Écran fixe",
+    "Petit capteur : limité de nuit face à un hybride"
+   ]
+  },
+  "p446": {
+   "pour": "Amateur de rendu pellicule, cadeau original pour un ado ou un jeune adulte.",
+   "cons": [
+    "Coût de la pellicule et du développement",
+    "Flash faible en intérieur",
+    "Pas de résultat immédiat"
+   ]
   }
  },
  "objections": [
@@ -4481,6 +4583,234 @@
      "qui": "Viennoiseries",
      "besoin": "Croissants chauds",
      "choix": "Grille viennoiseries intégrée"
+    }
+   ]
+  },
+  "photo|Compact": {
+   "q": "« Qu'est-ce qui ne vous suffit plus avec votre téléphone ? Vous avez besoin de zoomer ? »",
+   "crit": [
+    {
+     "n": "Zoom optique",
+     "k": "zoom",
+     "look": "Boîte : « 5X Optical Zoom ». Attention au zoom numérique (x4, x6) : ce n'est qu'un recadrage.",
+     "rep": "Aucun : comme un téléphone · x5 : rapprocher un sujet · x25 et plus : bridge",
+     "why": "Le vrai avantage face au smartphone.",
+     "use": "Le zoom optique rapproche le sujet avec les lentilles : l'image reste nette. Le zoom numérique agrandit les pixels, comme quand on zoome sur une photo de téléphone : ça devient flou."
+    },
+    {
+     "n": "Écran",
+     "k": "ecran",
+     "look": "Fiche : taille et « inclinable ».",
+     "rep": "Écran fixe : photo classique · inclinable 180° : selfie, vlog",
+     "why": "Pour se filmer ou se prendre en photo.",
+     "use": "Un écran qui se retourne vers l'avant permet de se voir pendant qu'on filme : indispensable pour le vlog."
+    },
+    {
+     "n": "Stabilisation",
+     "k": "stab",
+     "look": "Fiche : « optique » (OIS) ou « numérique ».",
+     "rep": "Numérique : basique · optique : nettement moins de flou",
+     "why": "Évite les photos floues, surtout en zoom.",
+     "use": "Plus on zoome, plus le moindre tremblement se voit. La stabilisation optique compense avec l'objectif ; la numérique recadre l'image et fait moins bien."
+    },
+    {
+     "n": "Résolution",
+     "k": "mpx",
+     "look": "Boîte : MP ou Mpx.",
+     "rep": "13 à 20 Mpx suffisent pour imprimer en 20 × 30",
+     "why": "Argument souvent surestimé par le client.",
+     "use": "Sur un petit capteur, plus de mégapixels n'améliore pas la photo. Ce qui compte : le zoom optique et la stabilisation."
+    },
+    {
+     "n": "Carte mémoire",
+     "k": "carte",
+     "look": "Boîte : « SD » ou « microSD », et « carte incluse » ou non.",
+     "rep": "Non fournie sur la plupart des modèles",
+     "why": "Sans carte, l'appareil est presque inutilisable.",
+     "use": "La mémoire interne ne tient que quelques photos. Vérifier le format (SD ou microSD) et vendre la bonne carte : 32 ou 64 Go suffisent."
+    }
+   ],
+   "piege": "Vendre un compact à quelqu'un qui a un smartphone récent et ne zoome jamais : il sera déçu. Le compact se justifie par le zoom optique, l'écran selfie ou le fait de lâcher son téléphone.",
+   "profils": [
+    {
+     "qui": "Ado, cadeau",
+     "besoin": "Simple, tendance",
+     "choix": "Compact rétro (C1) ou FZ55 coloré"
+    },
+    {
+     "qui": "Vacances en famille",
+     "besoin": "Zoomer, poche",
+     "choix": "Compact zoom x5 (FZ55)"
+    },
+    {
+     "qui": "Vlog, selfie",
+     "besoin": "Se voir",
+     "choix": "Écran inclinable 180° (C1)"
+    },
+    {
+     "qui": "Senior",
+     "besoin": "Facile, gros boutons",
+     "choix": "Bridge AZ255 plutôt qu'un compact aux boutons minuscules"
+    }
+   ]
+  },
+  "photo|Bridge": {
+   "q": "« Vous photographiez de loin : animaux, sport, la lune ? Vous voulez apprendre les réglages ? »",
+   "crit": [
+    {
+     "n": "Zoom optique",
+     "k": "zoom",
+     "look": "Boîte : « 25X », « 42X », « 65X ». La focale maxi est donnée en mm.",
+     "rep": "x25 (600 mm) : animaux du parc, sport · x40 à x50 : oiseaux · x65 (1560 mm) : très loin, la lune",
+     "why": "Le premier critère de choix d'un bridge.",
+     "use": "600 mm, c'est voir un visage à 20 m ; 1500 mm, un oiseau en haut d'un arbre. Plus le zoom est fort, plus il faut stabiliser et de la lumière."
+    },
+    {
+     "n": "Stabilisation optique",
+     "k": "stab",
+     "look": "Boîte : « OIS ».",
+     "rep": "Indispensable au-delà de x20",
+     "why": "Sans elle, les photos en zoom sont floues.",
+     "use": "À fort zoom, le moindre tremblement est multiplié. L'OIS compense en bougeant une lentille."
+    },
+    {
+     "n": "Alimentation",
+     "k": "alim",
+     "look": "Fiche : « piles AA » ou « batterie Li-ion ».",
+     "rep": "Piles AA : trouvables partout · batterie : plus légère, rechargeable en USB",
+     "why": "Autonomie en voyage.",
+     "use": "Avec des piles AA, on n'a jamais de panne loin d'une prise. Conseiller des piles rechargeables NiMH : environ 500 photos au lieu de 280."
+    },
+    {
+     "n": "Viseur",
+     "k": "viseur",
+     "look": "Fiche : « viseur électronique » (EVF).",
+     "rep": "Sans viseur : écran seul · avec viseur : cadrage en plein soleil",
+     "why": "Confort en extérieur.",
+     "use": "Au soleil l'écran devient difficile à lire. Appareil contre le visage, on tient aussi plus stable."
+    },
+    {
+     "n": "Wi-Fi",
+     "k": "wifi",
+     "look": "Boîte : logo Wi-Fi, appli PIXPRO Remote Viewer.",
+     "rep": "Sans : transfert par câble · avec : photos envoyées sur le téléphone",
+     "why": "Partage rapide.",
+     "use": "Le Wi-Fi permet d'envoyer les photos sur le téléphone pour les partager, et de déclencher à distance."
+    },
+    {
+     "n": "Poids",
+     "k": "poids",
+     "look": "Fiche : poids sans accessoires.",
+     "rep": "Moins de 350 g : léger · 500 g et plus : se porte en bandoulière",
+     "why": "Un appareil trop lourd reste à la maison.",
+     "use": "Faire porter l'appareil au client : s'il trouve ça lourd en magasin, il ne l'emmènera pas en balade."
+    }
+   ],
+   "piege": "Vendre un bridge à quelqu'un qui veut surtout photographier en intérieur ou de nuit : le petit capteur fait du bruit en basse lumière. Pour ça, il faut un hybride.",
+   "profils": [
+    {
+     "qui": "Débutant qui veut apprendre",
+     "besoin": "Zoom + réglages",
+     "choix": "AZ255 (piles AA, modes P/A/S/M)"
+    },
+    {
+     "qui": "Animaux, oiseaux",
+     "besoin": "Très gros zoom",
+     "choix": "AZ528 ou AZ653"
+    },
+    {
+     "qui": "Voyage, rando",
+     "besoin": "Autonomie",
+     "choix": "AZ255 (piles) ou pack AZ425 avec 2e batterie"
+    },
+    {
+     "qui": "Photographe en plein soleil",
+     "besoin": "Cadrer facilement",
+     "choix": "AZ653 (viseur électronique)"
+    }
+   ]
+  },
+  "photo|Étanche": {
+   "q": "« Vous allez l'utiliser où, et jusqu'à quelle profondeur ? »",
+   "crit": [
+    {
+     "n": "Profondeur",
+     "k": "etanche",
+     "look": "Boîte : « waterproof 15 m ».",
+     "rep": "15 m : piscine, snorkeling, plongée loisir peu profonde",
+     "why": "Au-delà, il faut un caisson.",
+     "use": "La profondeur annoncée est valable trappe bien fermée et joint propre. Pour la plongée plus profonde, un caisson est nécessaire."
+    },
+    {
+     "n": "Antichoc",
+     "k": "etanche",
+     "look": "Boîte : « shockproof 2 m ».",
+     "rep": "2 m : chute depuis la main ou d'un sac",
+     "why": "Usage ski, rando, enfants.",
+     "use": "Il résiste à une chute de 2 m : pratique pour les enfants ou les sports."
+    },
+    {
+     "n": "Wi-Fi",
+     "k": "wifi",
+     "look": "Boîte : logo Wi-Fi.",
+     "rep": "Photos envoyées sur le téléphone",
+     "why": "Partager depuis la plage.",
+     "use": "On transfère sur le téléphone sans câble ni ordinateur."
+    }
+   ],
+   "piege": "Oublier de rappeler l'entretien : un grain de sable sur le joint, et l'eau entre. Rinçage à l'eau douce après la mer.",
+   "profils": [
+    {
+     "qui": "Famille à la plage",
+     "besoin": "Robuste, simple",
+     "choix": "WPZ2"
+    },
+    {
+     "qui": "Ski, rando",
+     "besoin": "Antichoc",
+     "choix": "WPZ2"
+    }
+   ]
+  },
+  "photo|Argentique": {
+   "q": "« Vous cherchez le rendu pellicule ? Vous avez déjà fait développer des films ? »",
+   "crit": [
+    {
+     "n": "Format",
+     "k": "capteur",
+     "look": "Boîte : « 35 mm », « half frame » (demi-format).",
+     "rep": "35 mm plein format : 24 à 36 vues par film · demi-format : le double, en plus petit",
+     "why": "Nombre de photos par pellicule.",
+     "use": "Le Snapic A1 est en plein format : une pellicule de 24 poses donne 24 photos."
+    },
+    {
+     "n": "Automatismes",
+     "k": "",
+     "look": "Fiche : avancement et rembobinage automatiques.",
+     "rep": "Automatique : aucun risque de voiler le film",
+     "why": "Rassure le débutant.",
+     "use": "L'appareil charge, avance et rembobine seul : le client ne peut pas abîmer sa pellicule par erreur."
+    },
+    {
+     "n": "Coût d'usage",
+     "k": "",
+     "look": "Rayon : prix d'une pellicule et du développement.",
+     "rep": "Chaque film = pellicule + développement",
+     "why": "Coût caché à annoncer honnêtement.",
+     "use": "Le prix de l'appareil n'est que le début : annoncer le coût d'un film développé pour éviter un client déçu."
+    }
+   ],
+   "piege": "Vendre un argentique sans parler du prix des pellicules et du développement.",
+   "profils": [
+    {
+     "qui": "Ado ou jeune adulte, tendance rétro",
+     "besoin": "Le rendu film",
+     "choix": "Snapic A1"
+    },
+    {
+     "qui": "Cadeau",
+     "besoin": "Original",
+     "choix": "Snapic A1 + pellicules"
     }
    ]
   }
