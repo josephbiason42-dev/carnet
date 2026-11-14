@@ -1,7 +1,7 @@
 {
  "app": "carnet-joseph",
  "kind": "products",
- "updated": "2026-11-08",
+ "updated": "2026-11-14",
  "items": [
   {
    "id": "p001",
@@ -912,16 +912,28 @@
    "price": 449,
    "specs": {
     "type": "Sèche-cheveux",
-    "puissance": 1600
+    "puissance": 1600,
+    "moteur": "Numérique (Hyperdymium)",
+    "ionique": "oui",
+    "controle": "Capteur de distance : baisse la chaleur près du cuir chevelu",
+    "reglages": "3 vitesses, 4 chaleurs + air froid",
+    "poids": 660,
+    "embouts": "Magnétiques, reconnus automatiquement (diffuseur, concentrateur, embout lissant… selon version)"
    },
    "args": [
-    "Capteur qui baisse la chaleur près du cuir chevelu",
-    "Mémorise les réglages selon l'embout",
-    "Moteur numérique très léger"
+    "Mode protection du cuir chevelu : la chaleur baisse automatiquement quand on s'approche de la tête",
+    "Reconnaît chaque embout magnétique et mémorise vos réglages",
+    "Moteur numérique dans le manche : léger (environ 660 g) et rapide",
+    "Se met en veille quand on le pose (accéléromètre)",
+    "3 vitesses, 4 chaleurs et air froid"
    ],
-   "obj": "Prix : rappeler la durabilité et la protection du cheveu",
+   "obj": "Prix → rappeler qu'il protège le cheveu et le cuir chevelu au quotidien ; comparer avec le Supersonic HD07 si le client n'a pas besoin des capteurs",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "incl": "Embouts magnétiques selon la version (ex. diffuseur Wave+Curl, concentrateur, embout lissant, peigne, embout de séchage doux) ; vérifier le contenu de la boîte en rayon",
+   "uniq": "Un capteur mesure la distance avec la tête et baisse la chaleur près du cuir chevelu ; il reconnaît chaque embout et retrouve les derniers réglages utilisés",
+   "uniqUse": "Pas besoin de toucher aux boutons : on change d'embout et le séchoir se règle tout seul, sans brûler le cuir chevelu",
+   "releve": "2026-11-14"
   },
   {
    "id": "p046",
@@ -931,14 +943,27 @@
    "price": 420,
    "specs": {
     "type": "Sèche-cheveux",
-    "puissance": 1600
+    "puissance": 1600,
+    "moteur": "Numérique (Dyson V9)",
+    "ionique": "oui",
+    "controle": "Mesure la température de l'air 40 fois par seconde",
+    "reglages": "3 vitesses, 4 températures (100, 80, 60 et 28 °C)",
+    "poids": 650,
+    "embouts": "Magnétiques (concentrateur, diffuseur, embout anti-frisottis, peigne, séchage doux selon version)"
    },
    "args": [
-    "Le Supersonic classique : séchage rapide, contrôle de la chaleur"
+    "Moteur numérique Dyson V9 : séchage rapide et puissant",
+    "Régulation de la température plus de 40 fois par seconde",
+    "4 températures dont un air froid constant (28 °C) pour fixer",
+    "Embouts magnétiques qui se changent en un geste"
    ],
-   "obj": "",
+   "obj": "Différence avec le Nural → le Nural ajoute le capteur de distance et la mémoire des embouts ; si le client n'en a pas besoin, le HD07 suffit",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "incl": "Embouts magnétiques selon la version : vérifier le contenu de la boîte en rayon",
+   "uniq": "Le Supersonic classique : contrôle intelligent de la température 40 fois par seconde, sans les capteurs de distance du Nural",
+   "uniqUse": "Séchage rapide sans chaleur extrême, pour moins cher que le Nural",
+   "releve": "2026-11-14"
   },
   {
    "id": "p047",
@@ -964,13 +989,29 @@
    "model": "SpeedStyle Pro FLEX 4-en-1 HD542EU",
    "price": 187,
    "specs": {
-    "type": "Sèche-cheveux"
+    "type": "Sèche-cheveux",
+    "puissance": 1700,
+    "moteur": "Numérique",
+    "ionique": "oui",
+    "controle": "Température régulée, jamais au-dessus de 110 °C + mode Scalp Shield (cuir chevelu)",
+    "reglages": "3 vitesses, 4 chaleurs + air froid",
+    "poids": 660,
+    "embouts": "4 : turbo concentrateur, brosse QuickSmooth, diffuseur DefrizzFast, outil FrizzFighter"
    },
-   "args": [],
-   "obj": "",
+   "args": [
+    "Alternative à Dyson : moteur numérique haute vitesse, environ 2 fois moins cher",
+    "Température contrôlée, ne dépasse jamais 110 °C",
+    "Mode Scalp Shield pour protéger le cuir chevelu",
+    "Règle chaleur et débit automatiquement selon l'embout",
+    "Poignée pliable : moitié moins encombrant"
+   ],
+   "obj": "« C'est un Dyson en moins cher ? » → même technologie de moteur numérique et contrôle de chaleur, mais pas le capteur de distance du Nural ; faire la démo du bruit",
    "acc": "",
    "seed": true,
-   "releve": "2026-11-09"
+   "releve": "2026-11-14",
+   "incl": "Turbo concentrateur, brosse QuickSmooth, diffuseur DefrizzFast, outil de finition FrizzFighter",
+   "uniq": "Sa poignée se plie pour réduire sa taille de moitié, et il règle automatiquement chaleur et débit selon l'embout",
+   "uniqUse": "Facile à ranger ou à emporter en voyage, avec 4 embouts pour sécher, lisser ou définir les boucles"
   },
   {
    "id": "p049",
@@ -997,15 +1038,27 @@
    "price": null,
    "specs": {
     "type": "Sèche-cheveux",
-    "puissance": 2300
+    "puissance": 2300,
+    "moteur": "Classique (CC)",
+    "ionique": "oui",
+    "controle": "ThermoProtect : protection contre la surchauffe",
+    "reglages": "6 réglages de température et vitesse + air froid (à vérifier sur l'étiquette)",
+    "embouts": "Concentrateur (diffuseur selon version)"
    },
    "args": [
-    "Ionique, température uniforme : cheveux fins ou colorés",
-    "Bon prix"
+    "2 300 W : séchage rapide",
+    "Ionique : moins de frisottis, plus de brillance",
+    "Protection ThermoProtect contre la surchauffe",
+    "Touche air froid pour fixer la coiffure",
+    "Très bon rapport qualité-prix"
    ],
-   "obj": "",
+   "obj": "« Pourquoi payer un Dyson ? » → pour un usage occasionnel, celui-ci suffit ; le haut de gamme apporte la légèreté, le silence et le contrôle intelligent de la chaleur",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "incl": "Concentrateur ; diffuseur selon la version : vérifier en rayon",
+   "uniq": "Ionique et protection contre la surchauffe, avec un flux puissant de 2 300 W, à petit prix",
+   "uniqUse": "Le séchoir du quotidien pour une famille qui veut sécher vite sans abîmer les cheveux",
+   "releve": "2026-11-14"
   },
   {
    "id": "p051",
@@ -1014,14 +1067,27 @@
    "model": "Satin Hair 7 IONTEC",
    "price": null,
    "specs": {
-    "type": "Sèche-cheveux"
+    "type": "Sèche-cheveux",
+    "puissance": 2200,
+    "moteur": "Classique",
+    "ionique": "oui",
+    "controle": "Satin Protect : un bouton limite la température à 70 °C en gardant le débit",
+    "reglages": "3 températures, 2 vitesses + air froid",
+    "embouts": "Concentrateur (diffuseur selon version : HD730 avec, HD710 sans)"
    },
    "args": [
-    "Ionique, bon rapport qualité/prix"
+    "IONTEC : des millions d'ions contre l'électricité statique et les frisottis",
+    "Satin Protect : 70 °C maximum sur un bouton, flux d'air conservé",
+    "2 200 W, 3 températures, 2 vitesses, air froid",
+    "Filtre arrière amovible pour l'entretien"
    ],
-   "obj": "",
+   "obj": "Peu connu face à Dyson → mettre en avant le bouton Satin Protect, un vrai argument de protection à petit prix",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "incl": "Concentrateur ; diffuseur uniquement sur la version HD730 : vérifier la référence",
+   "uniq": "Satin Protect : sur un bouton, la température est limitée à 70 °C sans perdre la puissance du flux d'air",
+   "uniqUse": "Pour sécher tous les jours des cheveux colorés ou fragiles sans risque de les abîmer",
+   "releve": "2026-11-14"
   },
   {
    "id": "p052",

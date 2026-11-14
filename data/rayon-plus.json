@@ -480,15 +480,17 @@
    ]
   },
   "p045": {
-   "pour": "Cheveux fragilisés ou client qui veut le haut de gamme : adapte la chaleur automatiquement.",
+   "pour": "Cheveux colorés, fragiles ou séchés tous les jours ; client qui veut le haut de gamme et ne plus rien régler.",
    "cons": [
-    "Prix élevé"
+    "Prix élevé",
+    "Les capteurs ne servent pas à tout le monde : comparer avec le HD07"
    ]
   },
   "p046": {
-   "pour": "Client qui veut un séchage rapide et silencieux avec des embouts aimantés.",
+   "pour": "Client qui veut le séchage rapide et léger de Dyson sans payer les capteurs du Nural.",
    "cons": [
-    "Prix élevé"
+    "Prix élevé",
+    "Résultats moins convaincants sur cheveux crépus et très épais selon un test"
    ]
   },
   "p047": {
@@ -499,9 +501,10 @@
    ]
   },
   "p048": {
-   "pour": "Client qui veut une alternative à Dyson : séchage et coiffage, moins cher.",
+   "pour": "Client qui hésite avec Dyson mais a un budget plus serré, ou qui veut un séchoir pliable.",
    "cons": [
-    "Plus bruyant que Dyson selon les avis, à vérifier en démo"
+    "Pas de capteur de distance comme le Nural",
+    "Bruit à comparer en démo"
    ]
   },
   "p049": {
@@ -511,15 +514,16 @@
    ]
   },
   "p050": {
-   "pour": "Petit budget, séchage rapide avec protection de la chaleur.",
+   "pour": "Petit budget, famille, usage quotidien sans exigence de légèreté.",
    "cons": [
-    "Plus lourd et plus bruyant qu'un haut de gamme"
+    "Plus lourd et plus bruyant qu'un moteur numérique"
    ]
   },
   "p051": {
-   "pour": "Petit budget, cheveux qui frisottent : ionique.",
+   "pour": "Cheveux colorés ou fragiles avec un petit budget : le bouton 70 °C protège.",
    "cons": [
-    "Prix à vérifier en rayon"
+    "Moins léger et moins silencieux qu'un moteur numérique",
+    "Diffuseur seulement sur la version HD730"
    ]
   },
   "p052": {
@@ -1961,7 +1965,7 @@
    "crit": [
     {
      "n": "Type de moteur",
-     "k": "",
+     "k": "moteur",
      "look": "Fiche : moteur DC, AC (pro) ou numérique.",
      "rep": "DC : classique · AC : plus durable · numérique : rapide, léger, silencieux",
      "why": "Le vrai écart entre 40 € et 400 €."
@@ -1975,28 +1979,28 @@
     },
     {
      "n": "Contrôle de la chaleur",
-     "k": "",
+     "k": "controle",
      "look": "Fiche : capteurs, « ThermoProtect », « Nural ».",
      "rep": "Capteurs = la chaleur baisse près du cuir chevelu",
      "why": "Argument pour les cheveux colorés ou abîmés."
     },
     {
      "n": "Ionique",
-     "k": "",
+     "k": "ionique",
      "look": "Fiche : « ionique ».",
      "rep": "Moins de frisottis, plus de brillance",
      "why": "Pour cheveux secs ou qui frisent."
     },
     {
      "n": "Embouts",
-     "k": "",
+     "k": "embouts",
      "look": "Boîte : concentrateur, diffuseur, embouts coiffants.",
      "rep": "Diffuseur = cheveux bouclés · concentrateur = lisser",
      "why": "Adapter au type de cheveux."
     },
     {
      "n": "Poids et bruit",
-     "k": "",
+     "k": "poids",
      "look": "Fiche : poids (g), niveau sonore.",
      "rep": "Léger et silencieux = confort du quotidien",
      "why": "Faire tenir l'appareil en main."
