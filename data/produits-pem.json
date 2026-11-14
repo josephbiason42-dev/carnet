@@ -3281,11 +3281,15 @@
     "puissance": 2100,
     "moteur": "AC (professionnel)",
     "reglages": "2 vitesses, 3 températures + air froid",
-    "embouts": "Concentrateur fin"
+    "embouts": "Concentrateur fin",
+    "ionique": "oui",
+    "poids": 600
    },
    "args": [
-    "Moteur AC professionnel, la marque des salons de coiffure",
-    "2 100 W"
+    "Moteur professionnel 2 100 W, la marque des salons",
+    "Ionique : cheveux lisses et brillants",
+    "Filtre à air amovible pour l'entretien",
+    "Compatible avec le diffuseur ghd (vendu à part)"
    ],
    "obj": "",
    "acc": "",
@@ -3754,25 +3758,27 @@
    "id": "p142",
    "cat": "beaute",
    "brand": "ghd",
-   "model": "Helios (noir, blanc, prune)",
+   "model": "Helios (noir, blanc, prune, éditions limitées)",
    "price": 183.2,
    "specs": {
     "type": "Sèche-cheveux",
     "puissance": 2200,
-    "moteur": "DC professionnel",
+    "moteur": "Sans balais (brushless), 2 200 W",
     "reglages": "3 vitesses, 3 températures + air froid",
     "embouts": "Concentrateur fin",
-    "ionique": "oui"
+    "ionique": "oui",
+    "poids": 520
    },
    "args": [
-    "La marque des coiffeurs, moteur DC professionnel 2 200 W",
-    "Ionique",
-    "Plusieurs coloris"
+    "La marque des coiffeurs : moteur brushless 2 200 W, flux d'air de 120 km/h",
+    "Ionique : moins de frisottis, plus de brillance",
+    "Léger : 520 g sans embout ni cordon, cordon pro de 3 m",
+    "Plusieurs coloris, dont des éditions limitées"
    ],
    "obj": "Différence avec le ghd Speed → le Speed est plus rapide (4 vitesses) et plus cher",
    "acc": "",
    "seed": true,
-   "ref": "1243047 / 9000923610 / 9000923609",
+   "ref": "1243047 / 1243000 / 9000923610 / 9000923609 / 9000923619",
    "uniq": "Le séchoir professionnel de ghd, la marque des salons",
    "uniqUse": "Un brushing de salon à la maison, avec une marque que les coiffeurs utilisent",
    "releve": "2026-11-14",
@@ -3817,17 +3823,21 @@
     "moteur": "DC professionnel",
     "reglages": "4 vitesses, 4 températures + air froid",
     "embouts": "Concentrateur fin",
-    "ionique": "oui"
+    "ionique": "oui",
+    "poids": 600,
+    "controle": "Technologie Halo à double flux : les cheveux restent jusqu'à 20 °C plus frais"
    },
    "args": [
     "Le séchoir le plus rapide de ghd",
-    "4 vitesses, 4 températures, ionique"
+    "Technologie Halo : cheveux jusqu'à 20 °C plus frais, on peut sécher près des racines",
+    "4 réglages de température et de vitesse, air froid, ionique",
+    "600 g sans embout ni cordon, cordon pro de 3 m"
    ],
    "obj": "",
    "acc": "",
    "seed": true,
-   "ref": "9000932203 / 9000932201",
-   "uniq": "Le séchoir ultra-rapide de ghd, concurrent direct de Dyson",
+   "ref": "9000932203 / 9000932201 / 9000932202",
+   "uniq": "La technologie Halo à double flux d'air garde les cheveux jusqu'à 20 °C plus frais qu'un séchoir classique",
    "uniqUse": "Gagner du temps chaque matin sur des cheveux longs ou épais",
    "releve": "2026-11-14",
    "incl": "Concentrateur fin · vendu par un partenaire (marketplace)"
@@ -3844,21 +3854,24 @@
     "moteur": "Numérique (sans balais)",
     "reglages": "3 vitesses, 4 températures",
     "embouts": "Concentrateur fin (et embouts coiffants)",
-    "ionique": "oui"
+    "ionique": "oui",
+    "poids": 400
    },
    "args": [
     "Sèche et coiffe : alternative abordable aux multistyles",
     "Moteur numérique, ionique",
-    "4,2/5 sur 81 avis"
+    "4,2/5 sur 81 avis",
+    "Packs disponibles avec un embout en plus (lissant, volume, anti-mèches rebelles, cheveux bouclés…)",
+    "Garantie constructeur 3 ans"
    ],
    "obj": "",
    "acc": "",
    "seed": true,
-   "ref": "1203550",
+   "ref": "1203550 / 1227671 / 1227672 / 1227673 / 1227674 / 1227675 / 1227676",
    "uniq": "Un multistyler à moteur numérique à 130 €",
    "uniqUse": "Sécher, lisser et donner du volume avec un seul appareil",
    "releve": "2026-11-14",
-   "incl": "Concentrateur fin (et embouts coiffants)",
+   "incl": "2 embouts (lissant et volume/mise en forme) ; packs Boulanger avec un embout supplémentaire",
    "avis": {
     "note": 4.2,
     "n": 81
