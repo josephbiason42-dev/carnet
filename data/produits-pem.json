@@ -601,10 +601,12 @@
    "cat": "air",
    "brand": "Ninja",
    "model": "Foodi FlexDrawer AF500EU",
-   "price": 165,
+   "price": 169.99,
    "specs": {
     "capacite": 10.4,
-    "tiroirs": "1 tiroir modulable"
+    "tiroirs": "1 tiroir modulable",
+    "puissance": 2470,
+    "programmes": 7
    },
    "args": [
     "Grand tiroir de 10,4 L séparable en 2 zones",
@@ -612,7 +614,13 @@
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "ref": "1195705",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 650
+   }
   },
   {
    "id": "p029",
@@ -653,10 +661,12 @@
    "cat": "air",
    "brand": "Ninja",
    "model": "CRISPi portable 4-en-1",
-   "price": 109,
+   "price": 129.99,
    "specs": {
-    "capacite": 3.8,
-    "tiroirs": "1"
+    "capacite": 6.1,
+    "tiroirs": "2 (3,8 + 2,3 L, en verre)",
+    "puissance": 1700,
+    "programmes": 4
    },
    "args": [
     "Cuve en verre : on voit la cuisson et on sert directement",
@@ -664,7 +674,9 @@
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "ref": "1244108 / 1244110 / 1244121",
+   "releve": "2026-11-14"
   },
   {
    "id": "p032",
@@ -689,9 +701,12 @@
    "cat": "air",
    "brand": "Moulinex",
    "model": "Dual Easy Fry & Grill",
-   "price": null,
+   "price": 129.0,
    "specs": {
-    "tiroirs": "2"
+    "tiroirs": "2 (5,2 + 3,1 L)",
+    "capacite": 8.3,
+    "puissance": 2450,
+    "programmes": 8
    },
    "args": [
     "Deux tiroirs + fonction grill",
@@ -699,7 +714,13 @@
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "ref": "1197129",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 193
+   }
   },
   {
    "id": "p034",
@@ -1107,7 +1128,7 @@
    "model": "OneBlade",
    "price": null,
    "specs": {
-    "type": "Rasoir / tondeuse"
+    "type": "Tondeuse"
    },
    "args": [
     "Rase, taille et dessine la barbe avec une seule lame",
@@ -2619,7 +2640,8 @@
     "type": "Bouilloire",
     "reservoir": 1.7,
     "puissance": 2400,
-    "pieces": "5 ans"
+    "pieces": "5 ans",
+    "temp": "À vérifier"
    },
    "args": [
     "Finition métallisée premium avec détails chromés",
@@ -4674,6 +4696,4688 @@
    "avis": {
     "note": 3.6,
     "n": 25
+   }
+  },
+  {
+   "id": "p172",
+   "cat": "air",
+   "brand": "Ninja",
+   "model": "CRISPi PRO 7-en-1 AS101 (gris, beige, vert)",
+   "price": 199.0,
+   "specs": {
+    "capacite": 8,
+    "tiroirs": "2",
+    "puissance": 2100,
+    "programmes": 7,
+    "fenetre": "Oui"
+   },
+   "args": [
+    "Capacité 8 L, 2 bacs",
+    "Fenêtre pour surveiller la cuisson sans ouvrir",
+    "7 programmes, 2100 W",
+    "4,5/5 sur 42 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236310 / 1236308 / 1236333",
+   "uniq": "Bacs en verre avec fenêtre : on voit la cuisson et le bac passe du four au frigo",
+   "uniqUse": "Cuire, servir et conserver dans le même plat",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 42
+   }
+  },
+  {
+   "id": "p173",
+   "cat": "air",
+   "brand": "Ninja",
+   "model": "Foodi Dual DZ901EU 9,5 L",
+   "price": 149.0,
+   "specs": {
+    "capacite": 9.5,
+    "tiroirs": "2 (4,75 + 4,75 L)",
+    "puissance": 2470,
+    "programmes": 6
+   },
+   "args": [
+    "Capacité 9,5 L, 2 bacs",
+    "6 programmes, 2470 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236334",
+   "uniq": "Deux tiroirs égaux de 4,75 L à prix contenu",
+   "uniqUse": "Viande dans un tiroir, frites dans l'autre, prêts en même temps",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 16
+   }
+  },
+  {
+   "id": "p174",
+   "cat": "air",
+   "brand": "Ninja",
+   "model": "Air Fryer Max AF170EU",
+   "price": 89.99,
+   "specs": {
+    "capacite": 6.2,
+    "tiroirs": "1",
+    "puissance": 1750,
+    "programmes": 6
+   },
+   "args": [
+    "Capacité 6,2 L, 1 bac",
+    "6 programmes, 1750 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1244122",
+   "uniq": "Un grand tiroir unique de 6,2 L, simple et efficace",
+   "uniqUse": "Les frites pour 3 à 4 personnes en une seule fournée",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p175",
+   "cat": "air",
+   "brand": "Ninja",
+   "model": "Crispi Pro AS104 Mocha",
+   "price": 199.99,
+   "specs": {
+    "capacite": 5.7,
+    "tiroirs": "1",
+    "puissance": 2000,
+    "programmes": 6
+   },
+   "args": [
+    "Capacité 5,7 L, 1 bac",
+    "6 programmes, 2000 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1248197",
+   "uniq": "La gamme Crispi en un seul bac de 5,7 L",
+   "uniqUse": "Pour qui veut le concept Crispi sans deux bacs",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p176",
+   "cat": "air",
+   "brand": "Philips",
+   "model": "Airfryer NA211/00 Série 2000 3,2 L",
+   "price": null,
+   "specs": {
+    "capacite": 3.2,
+    "tiroirs": "1",
+    "fenetre": "Oui"
+   },
+   "args": [
+    "Capacité 3,2 L, 1 bac",
+    "Fenêtre pour surveiller la cuisson sans ouvrir",
+    "4,7/5 sur 95 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1203743",
+   "uniq": "Le petit Philips avec fenêtre, pour 1 à 2 personnes",
+   "uniqUse": "Petite cuisine, petites portions",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 95
+   }
+  },
+  {
+   "id": "p177",
+   "cat": "air",
+   "brand": "Philips",
+   "model": "Airfryer NA221/00 Série 2000 4,2 L",
+   "price": 119.99,
+   "specs": {
+    "capacite": 4.2,
+    "tiroirs": "1",
+    "fenetre": "Oui"
+   },
+   "args": [
+    "Capacité 4,2 L, 1 bac",
+    "Fenêtre pour surveiller la cuisson sans ouvrir",
+    "4,6/5 sur 109 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1203683",
+   "uniq": "Format 4,2 L avec fenêtre et verre doseur fourni",
+   "uniqUse": "Un couple ou une personne seule qui cuisine souvent",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 109
+   }
+  },
+  {
+   "id": "p178",
+   "cat": "air",
+   "brand": "Philips",
+   "model": "Airfryer NA231/00 Série 2000 6,2 L",
+   "price": 79.99,
+   "specs": {
+    "capacite": 6.2,
+    "tiroirs": "1",
+    "puissance": 1700,
+    "programmes": 9,
+    "fenetre": "Oui"
+   },
+   "args": [
+    "Capacité 6,2 L, 1 bac",
+    "Fenêtre pour surveiller la cuisson sans ouvrir",
+    "9 programmes, 1700 W",
+    "4,6/5 sur 139 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1203628",
+   "uniq": "Le Philips familial avec fenêtre, en forte promo (139,99 → 79,99 €)",
+   "uniqUse": "La famille de 4 au meilleur prix",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 139
+   }
+  },
+  {
+   "id": "p179",
+   "cat": "air",
+   "brand": "Philips",
+   "model": "Airfryer NA332/00 Série 3000 6,2 L",
+   "price": 139.99,
+   "specs": {
+    "capacite": 6.2,
+    "tiroirs": "1",
+    "puissance": 1700,
+    "programmes": 12,
+    "fenetre": "Oui"
+   },
+   "args": [
+    "Capacité 6,2 L, 1 bac",
+    "Fenêtre pour surveiller la cuisson sans ouvrir",
+    "12 programmes, 1700 W",
+    "4,6/5 sur 35 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218701",
+   "uniq": "6,2 L avec fenêtre et 12 programmes",
+   "uniqUse": "Plus de recettes guidées que la Série 2000",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 35
+   }
+  },
+  {
+   "id": "p180",
+   "cat": "air",
+   "brand": "Philips",
+   "model": "Airfryer NA462/70 Vertical Duo 10 L",
+   "price": 169.99,
+   "specs": {
+    "capacite": 10,
+    "tiroirs": "2 superposés (5 + 5 L)",
+    "puissance": 2750,
+    "programmes": 6,
+    "fenetre": "Oui"
+   },
+   "args": [
+    "Capacité 10 L, 2 bacs",
+    "Fenêtre pour surveiller la cuisson sans ouvrir",
+    "6 programmes, 2750 W",
+    "4,4/5 sur 26 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1228961",
+   "uniq": "Deux bacs l'un sur l'autre : 10 L sans occuper plus de place en largeur",
+   "uniqUse": "Grande famille, petit plan de travail",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 26
+   }
+  },
+  {
+   "id": "p181",
+   "cat": "air",
+   "brand": "Philips",
+   "model": "Airfryer XL HD9280/60 Série 5000",
+   "price": 146.36,
+   "specs": {
+    "tiroirs": "1",
+    "puissance": 2000
+   },
+   "args": [
+    "4,8/5 sur 55 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1200088",
+   "uniq": "Philips XL connecté : jusqu'à 1,2 kg de frites",
+   "uniqUse": "Famille qui veut piloter depuis l'appli",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 55
+   }
+  },
+  {
+   "id": "p182",
+   "cat": "air",
+   "brand": "Philips",
+   "model": "Airfryer NA547/07 Série 5000 vapeur 7,2 L",
+   "price": 238.81,
+   "specs": {
+    "capacite": 7.2,
+    "tiroirs": "1",
+    "puissance": 2000,
+    "programmes": 12,
+    "vapeur": "Oui"
+   },
+   "args": [
+    "Capacité 7,2 L, 1 bac",
+    "Fonction vapeur en plus de l'air chaud",
+    "12 programmes, 2000 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1239640",
+   "uniq": "Cuisson à l'air chaud ET à la vapeur dans un seul bac",
+   "uniqUse": "Légumes et poisson vapeur, frites croustillantes : un seul appareil",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 6
+   }
+  },
+  {
+   "id": "p183",
+   "cat": "air",
+   "brand": "Philips",
+   "model": "Airfryer NA555/00 Série 5000 double panier + vapeur 9 L",
+   "price": 269.99,
+   "specs": {
+    "capacite": 9,
+    "tiroirs": "2 (3 + 6 L)",
+    "puissance": 2750,
+    "programmes": 12,
+    "vapeur": "Oui"
+   },
+   "args": [
+    "Capacité 9 L, 2 bacs",
+    "Fonction vapeur en plus de l'air chaud",
+    "12 programmes, 2750 W",
+    "4,6/5 sur 43 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1219021",
+   "uniq": "Double panier et fonction vapeur : le plus complet de Philips",
+   "uniqUse": "Un plat vapeur et un plat croustillant en même temps",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 43
+   }
+  },
+  {
+   "id": "p184",
+   "cat": "air",
+   "brand": "Philips",
+   "model": "Airfryer NA565/02 Série 5000 vapeur",
+   "price": 299.99,
+   "specs": {
+    "tiroirs": "1",
+    "puissance": 1700,
+    "programmes": 12,
+    "vapeur": "Oui"
+   },
+   "args": [
+    "Fonction vapeur en plus de l'air chaud",
+    "12 programmes, 1700 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1248340",
+   "uniq": "Le dernier Philips vapeur (capacité à vérifier sur l'étiquette : la fiche est contradictoire)",
+   "uniqUse": "Cuisine saine vapeur + air chaud",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 1
+   }
+  },
+  {
+   "id": "p185",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Easy Fry Essential Nube EZ130A20 3,5 L",
+   "price": 49.99,
+   "specs": {
+    "capacite": 3.5,
+    "tiroirs": "1",
+    "puissance": 1430
+   },
+   "args": [
+    "Capacité 3,5 L, 1 bac",
+    "4,6/5 sur 22 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1195440",
+   "uniq": "Le plus simple : molettes, pas de programme",
+   "uniqUse": "Personne qui veut juste des frites sans se compliquer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 22
+   }
+  },
+  {
+   "id": "p186",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Easy Fry Compact YY5745FB 3 L",
+   "price": 49.99,
+   "specs": {
+    "capacite": 3,
+    "tiroirs": "1",
+    "puissance": 1300,
+    "programmes": 10
+   },
+   "args": [
+    "Capacité 3 L, 1 bac",
+    "10 programmes, 1300 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240844",
+   "uniq": "Petit format 3 L à petit prix",
+   "uniqUse": "Étudiant, personne seule",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p187",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Easy Fry Max 5 L EZ245A20 beige",
+   "price": 59.99,
+   "specs": {
+    "capacite": 5,
+    "tiroirs": "1",
+    "puissance": 1500,
+    "programmes": 10
+   },
+   "args": [
+    "Capacité 5 L, 1 bac",
+    "10 programmes, 1500 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240841",
+   "uniq": "5 L et 10 programmes à moins de 60 €",
+   "uniqUse": "Couple ou petite famille, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p188",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Easy Fry EZ2468F0 5 L",
+   "price": 69.99,
+   "specs": {
+    "capacite": 5,
+    "tiroirs": "1",
+    "puissance": 1500,
+    "programmes": 10
+   },
+   "args": [
+    "Capacité 5 L, 1 bac",
+    "10 programmes, 1500 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1245393",
+   "uniq": "5 L, 10 programmes, à moitié prix (139,99 → 69,99 €)",
+   "uniqUse": "Petite famille, petit budget",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p189",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Easy Fry Mega YY5586FB 7,5 L",
+   "price": 69.99,
+   "specs": {
+    "capacite": 7.5,
+    "tiroirs": "1",
+    "puissance": 2020,
+    "programmes": 8
+   },
+   "args": [
+    "Capacité 7,5 L, 1 bac",
+    "8 programmes, 2020 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1248683",
+   "uniq": "7,5 L en un seul grand bac pour moins de 70 €",
+   "uniqUse": "Grande famille, gros volumes à petit prix",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p190",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Easy Fry Mega Compact EZ866HF1 7,5 L",
+   "price": 89.99,
+   "specs": {
+    "capacite": 7.5,
+    "tiroirs": "1",
+    "puissance": 2020,
+    "programmes": 9
+   },
+   "args": [
+    "Capacité 7,5 L, 1 bac",
+    "9 programmes, 2020 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1243293",
+   "uniq": "7,5 L dans un format annoncé compact",
+   "uniqUse": "Grosses quantités, place limitée",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p191",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Crisp Go FY7014E0",
+   "price": 119.99,
+   "specs": {
+    "capacite": 5.2,
+    "tiroirs": "2 (3,8 + 1,4 L)",
+    "puissance": 1700,
+    "programmes": 4
+   },
+   "args": [
+    "Capacité 5,2 L, 2 bacs",
+    "4 programmes, 1700 W",
+    "4,4/5 sur 25 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1245392",
+   "uniq": "Un grand bac et un petit bac d'appoint",
+   "uniqUse": "Le plat principal et un petit accompagnement",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 25
+   }
+  },
+  {
+   "id": "p192",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Easy Fry Dual XXL EZ942HF0 11 L",
+   "price": 129.99,
+   "specs": {
+    "capacite": 11,
+    "tiroirs": "2 (6,5 + 4,5 L)",
+    "puissance": 2700,
+    "programmes": 7
+   },
+   "args": [
+    "Capacité 11 L, 2 bacs",
+    "7 programmes, 2700 W",
+    "4,5/5 sur 138 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1210262",
+   "uniq": "11 L sur deux bacs : la plus grande capacité Moulinex",
+   "uniqUse": "Famille nombreuse, repas complet d'un coup",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 138
+   }
+  },
+  {
+   "id": "p193",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Easy Fry Crispy Stack Dual EZ7568F0 10 L",
+   "price": 139.99,
+   "specs": {
+    "capacite": 10,
+    "tiroirs": "2 superposés (6 + 4 L)",
+    "puissance": 2700,
+    "programmes": 8
+   },
+   "args": [
+    "Capacité 10 L, 2 bacs",
+    "8 programmes, 2700 W",
+    "4,7/5 sur 21 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1243297",
+   "uniq": "Deux bacs superposés : 10 L en largeur réduite",
+   "uniqUse": "Grande famille avec peu de place",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 21
+   }
+  },
+  {
+   "id": "p194",
+   "cat": "air",
+   "brand": "Moulinex",
+   "model": "Ever Fry Dual Flex EZ9278F0 9 L (ou + pince YY6047FB)",
+   "price": 139.99,
+   "specs": {
+    "capacite": 9,
+    "tiroirs": "1 bac à séparateur (5,5 + 3,5 L)",
+    "puissance": 2700,
+    "programmes": 6
+   },
+   "args": [
+    "Capacité 9 L, bac séparable",
+    "6 programmes, 2700 W",
+    "4,6/5 sur 25 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1243294 / 1249916",
+   "uniq": "Un grand bac qu'on peut séparer en deux",
+   "uniqUse": "Un gros poulet entier OU deux préparations",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 25
+   }
+  },
+  {
+   "id": "p195",
+   "cat": "air",
+   "brand": "Cosori",
+   "model": "TwinFry Compact Céramique Flex 8,6 L",
+   "price": 159.0,
+   "specs": {
+    "capacite": 8.6,
+    "tiroirs": "1 bac à séparateur (2 × 4,3 L)",
+    "puissance": 2700,
+    "programmes": 5
+   },
+   "args": [
+    "Capacité 8,6 L, bac séparable",
+    "5 programmes, 2700 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1238613",
+   "uniq": "Revêtement céramique et bac séparable",
+   "uniqUse": "Client attentif au revêtement (céramique)",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 10
+   }
+  },
+  {
+   "id": "p196",
+   "cat": "air",
+   "brand": "Cosori",
+   "model": "Twinfry Pro 10 L (classique ou céramique)",
+   "price": 189.99,
+   "specs": {
+    "capacite": 10,
+    "tiroirs": "1 bac à séparateur (2 × 5 L)",
+    "puissance": 2800,
+    "programmes": 6
+   },
+   "args": [
+    "Capacité 10 L, bac séparable",
+    "6 programmes, 2800 W",
+    "4,9/5 sur 37 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1237489 / 1237455",
+   "uniq": "10 L séparables, 2 800 W, existe en version céramique",
+   "uniqUse": "Grande famille, un grand plat ou deux petits",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.9,
+    "n": 37
+   }
+  },
+  {
+   "id": "p197",
+   "cat": "air",
+   "brand": "Cosori",
+   "model": "Turbo Tower Chef Edition 10,8 L",
+   "price": 219.99,
+   "specs": {
+    "capacite": 10.8,
+    "tiroirs": "2 superposés",
+    "puissance": 2630,
+    "programmes": 7
+   },
+   "args": [
+    "Capacité 10,8 L, 2 bacs",
+    "7 programmes, 2630 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1239662",
+   "uniq": "Deux paniers en tour, panier céramique",
+   "uniqUse": "Gros volumes avec peu de place en largeur",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 2
+   }
+  },
+  {
+   "id": "p198",
+   "cat": "air",
+   "brand": "Cosori",
+   "model": "Turbo Tower Pro Smart 10,8 L",
+   "price": 279.99,
+   "specs": {
+    "capacite": 10.8,
+    "tiroirs": "2 superposés",
+    "puissance": 2630,
+    "programmes": 7
+   },
+   "args": [
+    "Capacité 10,8 L, 2 bacs",
+    "7 programmes, 2630 W",
+    "4,9/5 sur 76 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1222082",
+   "uniq": "La tour Cosori connectée, très bien notée (4,9/5)",
+   "uniqUse": "Gros volumes, pilotage depuis l'appli",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.9,
+    "n": 76
+   }
+  },
+  {
+   "id": "p199",
+   "cat": "air",
+   "brand": "Cosori",
+   "model": "ICONIC Single 6,2 L connecté",
+   "price": 249.99,
+   "specs": {
+    "capacite": 6.2,
+    "tiroirs": "1",
+    "puissance": 1725,
+    "programmes": 6
+   },
+   "args": [
+    "Capacité 6,2 L, 1 bac",
+    "6 programmes, 1725 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1233856",
+   "uniq": "Bac unique de 6,2 L, connecté",
+   "uniqUse": "Client qui veut un airfryer haut de gamme connecté",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 10
+   }
+  },
+  {
+   "id": "p200",
+   "cat": "air",
+   "brand": "Bosch",
+   "model": "Série 2 MAF24AB0 4,1 L",
+   "price": 56.99,
+   "specs": {
+    "capacite": 4.1,
+    "tiroirs": "1",
+    "puissance": 1300,
+    "programmes": 6
+   },
+   "args": [
+    "Capacité 4,1 L, 1 bac",
+    "6 programmes, 1300 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1248377",
+   "uniq": "Bosch d'entrée de gamme, 4,1 L",
+   "uniqUse": "Couple, petit budget, confiance dans la marque",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p201",
+   "cat": "air",
+   "brand": "Dreame",
+   "model": "Tasti 5-en-1 (gris ou vert)",
+   "price": 94.0,
+   "specs": {
+    "tiroirs": "2 (2,5 + 4,5 L)",
+    "puissance": 1500,
+    "programmes": 5,
+    "fenetre": "Oui",
+    "vapeur": "Oui"
+   },
+   "args": [
+    "Fenêtre pour surveiller la cuisson sans ouvrir",
+    "Fonction vapeur en plus de l'air chaud",
+    "5 programmes, 1500 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1233739 / 1239029",
+   "uniq": "Deux bacs, fenêtre ET fonction vapeur à moins de 100 €",
+   "uniqUse": "Le plus de fonctions pour un petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 5
+   }
+  },
+  {
+   "id": "p202",
+   "cat": "air",
+   "brand": "Listo",
+   "model": "LAF1 Single Touch 5,2 L",
+   "price": 39.99,
+   "specs": {
+    "capacite": 5.2,
+    "tiroirs": "1",
+    "puissance": 1500,
+    "programmes": 13
+   },
+   "args": [
+    "Capacité 5,2 L, 1 bac",
+    "13 programmes, 1500 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8011699",
+   "uniq": "Le moins cher du rayon : 5,2 L pour 39,99 €",
+   "uniqUse": "Premier airfryer, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 11
+   }
+  },
+  {
+   "id": "p203",
+   "cat": "air",
+   "brand": "Essentiel B",
+   "model": "EAF4 Dual Heat 7,6 L",
+   "price": 99.99,
+   "specs": {
+    "capacite": 7.6,
+    "tiroirs": "1",
+    "puissance": 2800,
+    "programmes": 8
+   },
+   "args": [
+    "Capacité 7,6 L, 1 bac",
+    "8 programmes, 2800 W",
+    "4,7/5 sur 30 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8011702",
+   "uniq": "Marque Boulanger, chauffe haut et bas, 2 800 W",
+   "uniqUse": "Famille qui veut éviter de retourner les aliments",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 30
+   }
+  },
+  {
+   "id": "p204",
+   "cat": "air",
+   "brand": "Essentiel B",
+   "model": "EAF5 Flex Megazone XXL 11 L",
+   "price": 149.99,
+   "specs": {
+    "capacite": 11,
+    "tiroirs": "1 bac à séparateur (2 × 5,5 L)",
+    "puissance": 2800,
+    "programmes": 12
+   },
+   "args": [
+    "Capacité 11 L, bac séparable",
+    "12 programmes, 2800 W",
+    "4,4/5 sur 71 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8011693",
+   "uniq": "Marque Boulanger, 11 L séparables",
+   "uniqUse": "Famille nombreuse, un plat géant ou deux plats",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 71
+   }
+  },
+  {
+   "id": "p205",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "OneBlade QP6542/15",
+   "price": 64.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,4 mm",
+    "hauteurs": 14,
+    "autonomie": 90,
+    "charge": "1 h",
+    "lavable": "Entièrement lavable"
+   },
+   "args": [
+    "Précision 0,4 mm, 14 hauteurs de coupe",
+    "Autonomie 90 min, charge 1 h",
+    "Entièrement lavable",
+    "4,5/5 sur 48 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1211807",
+   "uniq": "Une lame qui tond, taille les contours et rase sans irriter",
+   "uniqUse": "Barbe de 3 jours nette et contours propres avec un seul appareil",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 48
+   }
+  },
+  {
+   "id": "p206",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "OneBlade Pro 360 QP6552/15",
+   "price": 69.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,4 mm",
+    "hauteurs": 20,
+    "autonomie": 120,
+    "charge": "1 h",
+    "lavable": "Entièrement lavable"
+   },
+   "args": [
+    "Précision 0,4 mm, 20 hauteurs de coupe",
+    "Autonomie 120 min, charge 1 h",
+    "Entièrement lavable",
+    "4,5/5 sur 24 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1211808",
+   "uniq": "La OneBlade Pro : lame 360° et 20 hauteurs",
+   "uniqUse": "Pour qui veut doser précisément la longueur de sa barbe",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 24
+   }
+  },
+  {
+   "id": "p207",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "OneBlade QP6652/61",
+   "price": 114.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,4 mm",
+    "hauteurs": 20,
+    "autonomie": 120,
+    "charge": "1 h",
+    "lavable": "Entièrement lavable"
+   },
+   "args": [
+    "Précision 0,4 mm, 20 hauteurs de coupe",
+    "Autonomie 120 min, charge 1 h",
+    "Entièrement lavable",
+    "4,8/5 sur 29 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1211809",
+   "uniq": "Le haut de gamme OneBlade, très bien noté",
+   "uniqUse": "Rasage, tonte et contours au top",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 29
+   }
+  },
+  {
+   "id": "p208",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Multigroom MG3935/15 Series 3000",
+   "price": 34.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "1 mm",
+    "hauteurs": 9,
+    "autonomie": 70,
+    "charge": "8 h",
+    "lavable": "Lames lavables"
+   },
+   "args": [
+    "Précision 1 mm, 9 hauteurs de coupe",
+    "Autonomie 70 min, charge 8 h",
+    "Lames lavables",
+    "4,4/5 sur 24 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1226371",
+   "uniq": "Tondeuse multi-usages à petit prix",
+   "uniqUse": "Barbe et cheveux à la maison, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 24
+   }
+  },
+  {
+   "id": "p209",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Multigroom MG3945/15 Series 3000",
+   "price": 42.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "1 mm",
+    "hauteurs": 10,
+    "autonomie": 90,
+    "charge": "4 h",
+    "lavable": "Lames lavables"
+   },
+   "args": [
+    "Précision 1 mm, 10 hauteurs de coupe",
+    "Autonomie 90 min, charge 4 h",
+    "Lames lavables"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1226372",
+   "uniq": "La Series 3000 avec plus d'autonomie (90 min)",
+   "uniqUse": "Usage régulier barbe + cheveux",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 16
+   }
+  },
+  {
+   "id": "p210",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Multigroom MG7921/15 Series 7000",
+   "price": 59.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,2 mm",
+    "hauteurs": 19,
+    "autonomie": 120,
+    "charge": "1 h",
+    "lavable": "Étanche, entièrement lavable",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,2 mm, 19 hauteurs de coupe",
+    "Autonomie 120 min, charge 1 h",
+    "Étanche, entièrement lavable",
+    "4,4/5 sur 25 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1226374",
+   "uniq": "Précision 0,2 mm, étanche, 120 min",
+   "uniqUse": "Visage, cheveux et corps sous la douche",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 25
+   }
+  },
+  {
+   "id": "p211",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Multigroom MG7941/15 Series 7000",
+   "price": 79.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,2 mm",
+    "hauteurs": 22,
+    "autonomie": 120,
+    "charge": "1 h",
+    "lavable": "Étanche, entièrement lavable",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,2 mm, 22 hauteurs de coupe",
+    "Autonomie 120 min, charge 1 h",
+    "Étanche, entièrement lavable"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1226375",
+   "uniq": "Series 7000 avec plus de sabots (10)",
+   "uniqUse": "Pour tout tondre, du visage au corps",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 12
+   }
+  },
+  {
+   "id": "p212",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Multigroom MG9531/15 Series 9000",
+   "price": 89.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,2 mm",
+    "hauteurs": 27,
+    "autonomie": 120,
+    "charge": "1 h",
+    "lavable": "Étanche, entièrement lavable",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,2 mm, 27 hauteurs de coupe",
+    "Autonomie 120 min, charge 1 h",
+    "Étanche, entièrement lavable"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1226377",
+   "uniq": "27 hauteurs, très bien notée (4,9/5)",
+   "uniqUse": "Le client exigeant qui veut une longueur précise",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.9,
+    "n": 15
+   }
+  },
+  {
+   "id": "p213",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Multigroom MG9557/15 Series 9000",
+   "price": 109.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,2 mm",
+    "hauteurs": 27,
+    "autonomie": 120,
+    "charge": "1 h",
+    "lavable": "Étanche",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,2 mm, 27 hauteurs de coupe",
+    "Autonomie 120 min, charge 1 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1226376",
+   "uniq": "Le kit Series 9000 le plus complet : 12 sabots",
+   "uniqUse": "Tous les usages, de la barbe au corps",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 6
+   }
+  },
+  {
+   "id": "p214",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "All-in-One AIO3560",
+   "price": 34.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,5 à 21 mm",
+    "hauteurs": 14,
+    "autonomie": 50,
+    "charge": "10 h",
+    "lavable": "Lames lavables"
+   },
+   "args": [
+    "Précision 0,5 à 21 mm, 14 hauteurs de coupe",
+    "Autonomie 50 min, charge 10 h",
+    "Lames lavables",
+    "4,1/5 sur 49 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218034",
+   "uniq": "Braun multi-usages d'entrée de gamme",
+   "uniqUse": "Petit budget, usage occasionnel",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 49
+   }
+  },
+  {
+   "id": "p215",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "All-in-One AIO5560",
+   "price": 79.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,5 à 21 mm",
+    "hauteurs": 14,
+    "autonomie": 120,
+    "charge": "1 h 30",
+    "lavable": "Lames lavables"
+   },
+   "args": [
+    "Précision 0,5 à 21 mm, 14 hauteurs de coupe",
+    "Autonomie 120 min, charge 1 h 30",
+    "Lames lavables",
+    "4,6/5 sur 28 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218035",
+   "uniq": "120 min d'autonomie, 7 sabots",
+   "uniqUse": "Usage régulier barbe + cheveux",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 28
+   }
+  },
+  {
+   "id": "p216",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "All-in-One AIO7560",
+   "price": 119.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,5 à 21 mm",
+    "hauteurs": 14,
+    "autonomie": 120,
+    "charge": "1 h 30",
+    "lavable": "Étanche",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,5 à 21 mm, 14 hauteurs de coupe",
+    "Autonomie 120 min, charge 1 h 30",
+    "Étanche",
+    "4,2/5 sur 36 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218036",
+   "uniq": "La AIO étanche, pour la douche",
+   "uniqUse": "Barbe, cheveux et corps sous la douche",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 36
+   }
+  },
+  {
+   "id": "p217",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Series 9 AIO9540F1",
+   "price": 159.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,5 à 21 mm",
+    "hauteurs": 14,
+    "lavable": "Étanche",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,5 à 21 mm, 14 hauteurs de coupe",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1246420",
+   "uniq": "Le haut de gamme Braun, 11 sabots",
+   "uniqUse": "Client qui veut le kit Braun le plus complet",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p218",
+   "cat": "beaute",
+   "brand": "Babyliss",
+   "model": "MT726E 8-en-1 Titanium",
+   "price": 23.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,4 mm",
+    "hauteurs": 6,
+    "autonomie": 60,
+    "charge": "8 h",
+    "lavable": "Étanche",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,4 mm, 6 hauteurs de coupe",
+    "Autonomie 60 min, charge 8 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1167340",
+   "uniq": "Kit 8-en-1 à très petit prix",
+   "uniqUse": "Petit budget (avis clients faibles : à dire)",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 2.6,
+    "n": 5
+   }
+  },
+  {
+   "id": "p219",
+   "cat": "beaute",
+   "brand": "Babyliss",
+   "model": "MT812E 11-en-1",
+   "price": 59.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,5 mm",
+    "hauteurs": 4,
+    "autonomie": 240,
+    "charge": "3 h",
+    "lavable": "Étanche",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,5 mm, 4 hauteurs de coupe",
+    "Autonomie 240 min, charge 3 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1215832",
+   "uniq": "240 min d'autonomie",
+   "uniqUse": "Client qui ne veut pas recharger souvent",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.7,
+    "n": 7
+   }
+  },
+  {
+   "id": "p220",
+   "cat": "beaute",
+   "brand": "Babyliss",
+   "model": "Black Lithium MT814E 11-en-1",
+   "price": 69.9,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,5 à 33 mm",
+    "hauteurs": 6,
+    "lavable": "Étanche",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,5 à 33 mm, 6 hauteurs de coupe",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1239623",
+   "uniq": "Coupe jusqu'à 33 mm",
+   "uniqUse": "Barbe plus longue ou cheveux mi-longs",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 1
+   }
+  },
+  {
+   "id": "p221",
+   "cat": "beaute",
+   "brand": "Babyliss",
+   "model": "Super-X Metal MT996E",
+   "price": 99.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0 à 5 mm",
+    "hauteurs": 12,
+    "autonomie": 300,
+    "charge": "3 h",
+    "lavable": "Lames inox et acier japonais"
+   },
+   "args": [
+    "Précision 0 à 5 mm, 12 hauteurs de coupe",
+    "Autonomie 300 min, charge 3 h",
+    "Lames inox et acier japonais",
+    "3,7/5 sur 59 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1158122",
+   "uniq": "Corps métal et 300 min d'autonomie",
+   "uniqUse": "Client qui veut du robuste et une très longue autonomie",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.7,
+    "n": 59
+   }
+  },
+  {
+   "id": "p222",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "Multishape ER-CKL2",
+   "price": 79.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,5 mm",
+    "hauteurs": 58,
+    "autonomie": 70,
+    "charge": "1 h",
+    "lavable": "Étanche",
+    "etanche": true
+   },
+   "args": [
+    "Précision 0,5 mm, 58 hauteurs de coupe",
+    "Autonomie 70 min, charge 1 h",
+    "Étanche",
+    "4,4/5 sur 29 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1179228",
+   "uniq": "Système modulable : on change la tête selon l'usage",
+   "uniqUse": "Client qui veut un seul manche et plusieurs têtes",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 29
+   }
+  },
+  {
+   "id": "p223",
+   "cat": "beaute",
+   "brand": "Wahl",
+   "model": "All In One",
+   "price": 24.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0,3 mm",
+    "hauteurs": 9,
+    "autonomie": 110,
+    "lavable": "Lames lavables"
+   },
+   "args": [
+    "Précision 0,3 mm, 9 hauteurs de coupe",
+    "Autonomie 110 min",
+    "Lames lavables"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1241104",
+   "uniq": "Kit complet à petit prix, 8 sabots",
+   "uniqUse": "Petit budget",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p224",
+   "cat": "beaute",
+   "brand": "Essentiel B",
+   "model": "ETMF1 Urban",
+   "price": 25.99,
+   "specs": {
+    "type": "Tondeuse",
+    "precision": "0 à 5 mm",
+    "hauteurs": 3,
+    "autonomie": 60,
+    "charge": "1 h 30",
+    "lavable": "Lames lavables"
+   },
+   "args": [
+    "Précision 0 à 5 mm, 3 hauteurs de coupe",
+    "Autonomie 60 min, charge 1 h 30",
+    "Lames lavables"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8011352",
+   "uniq": "Marque Boulanger, tondeuse simple",
+   "uniqUse": "Entretien basique de la barbe",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 15
+   }
+  },
+  {
+   "id": "p225",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Series 1000 S1142/00",
+   "price": 39.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 40,
+    "charge": "8 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 40 min, charge 8 h",
+    "Étanche",
+    "4,3/5 sur 24 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1196071",
+   "uniq": "Le rasoir Philips le moins cher",
+   "uniqUse": "Rasage de dépannage ou premier rasoir",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 24
+   }
+  },
+  {
+   "id": "p226",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Series X3003/00",
+   "price": 54.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 40,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 40 min, charge 1 h",
+    "Étanche",
+    "4,3/5 sur 26 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1196059",
+   "uniq": "Tête flexible dans 4 directions",
+   "uniqUse": "Petit budget, suit bien les courbes",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 26
+   }
+  },
+  {
+   "id": "p227",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Series 3000X X3052/00",
+   "price": 59.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 45,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 45 min, charge 1 h",
+    "Étanche",
+    "4,3/5 sur 23 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1196060",
+   "uniq": "Tondeuse rétractable pour les pattes",
+   "uniqUse": "Rasage et finitions",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 23
+   }
+  },
+  {
+   "id": "p228",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Series 5000 S5466/17",
+   "price": 65.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 50,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 50 min, charge 1 h",
+    "Étanche",
+    "4,6/5 sur 26 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1181045",
+   "uniq": "Affichage LED, bien noté (exclusivité internet)",
+   "uniqUse": "Commande en ligne",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 26
+   }
+  },
+  {
+   "id": "p229",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Series 3000 S3143/00",
+   "price": 69.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "4,3/5 sur 111 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1195263",
+   "uniq": "Valeur sûre : 111 avis",
+   "uniqUse": "Rasage quotidien, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 111
+   }
+  },
+  {
+   "id": "p230",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Series 3000 S3344/13",
+   "price": 89.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true,
+    "station": "Socle de charge"
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "Socle de charge",
+    "4,3/5 sur 59 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1196057",
+   "uniq": "Avec socle de charge",
+   "uniqUse": "Rasage quotidien, toujours chargé",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 59
+   }
+  },
+  {
+   "id": "p231",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Series 5000 S5885 (/25 ou /50)",
+   "price": 99.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "4,3/5 sur 118 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1189515 / 1246882",
+   "uniq": "SkinIQ : s'adapte à la peau",
+   "uniqUse": "Peau qui irrite facilement",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 118
+   }
+  },
+  {
+   "id": "p232",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Series 5000 S5887/50",
+   "price": 139.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "4,4/5 sur 60 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1189516",
+   "uniq": "Tondeuse de précision intégrée",
+   "uniqUse": "Rasage et contours de barbe",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 60
+   }
+  },
+  {
+   "id": "p233",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Series 7000 S7885/55",
+   "price": 189.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "4,6/5 sur 34 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1211810",
+   "uniq": "Têtes 360° pour peau sensible",
+   "uniqUse": "Rasage de près sans irritation",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 34
+   }
+  },
+  {
+   "id": "p234",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Série 9000 X9000/30",
+   "price": 259.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "4,3/5 sur 30 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218792",
+   "uniq": "Le haut de gamme Philips accessible",
+   "uniqUse": "Rasage quotidien très près",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 30
+   }
+  },
+  {
+   "id": "p235",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "Prestige XP9202/10",
+   "price": 279.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218793",
+   "uniq": "Réglage par IA (exclusivité internet)",
+   "uniqUse": "Client technophile",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 18
+   }
+  },
+  {
+   "id": "p236",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "i9000 Prestige Ultra XP9400/31",
+   "price": 399.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif 3 têtes",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif 3 têtes",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "4,8/5 sur 31 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218795",
+   "uniq": "Le plus haut de gamme Philips, SkinIQ Pro",
+   "uniqUse": "Barbe dure et peau sensible, budget élevé",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 31
+   }
+  },
+  {
+   "id": "p237",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Series 3 300s",
+   "price": 49.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 30,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Grille",
+    "Autonomie 30 min, charge 1 h",
+    "Étanche",
+    "4,2/5 sur 46 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1225095",
+   "uniq": "Le Braun à grille le moins cher",
+   "uniqUse": "Rasage simple, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 46
+   }
+  },
+  {
+   "id": "p238",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Series 5 52-N1500s",
+   "price": 59.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 50,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Grille",
+    "Autonomie 50 min, charge 1 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1246419",
+   "uniq": "Series 5 à moins de 60 € (139,99 → 59,99 €)",
+   "uniqUse": "Très bon rapport qualité-prix en ce moment",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p239",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Series 5 52-B1000s",
+   "price": 124.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 50,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Grille",
+    "Autonomie 50 min, charge 1 h",
+    "Étanche",
+    "4/5 sur 42 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1225096",
+   "uniq": "Mode turbo pour les barbes denses",
+   "uniqUse": "Barbe épaisse",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 42
+   }
+  },
+  {
+   "id": "p240",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Series 5 52-B7200cc Clean&Charge",
+   "price": 189.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 50,
+    "charge": "1 h",
+    "etanche": true,
+    "station": "Station de nettoyage"
+   },
+   "args": [
+    "Grille",
+    "Autonomie 50 min, charge 1 h",
+    "Étanche",
+    "Station de nettoyage",
+    "4,1/5 sur 26 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1225097",
+   "uniq": "Station qui nettoie et recharge",
+   "uniqUse": "Client qui veut zéro entretien",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 26
+   }
+  },
+  {
+   "id": "p241",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Series 7 72-G1200s",
+   "price": 249.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true,
+    "station": "Station de nettoyage"
+   },
+   "args": [
+    "Grille",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "Station de nettoyage",
+    "4,6/5 sur 29 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1225100",
+   "uniq": "SensoAdapt et tête flexible 360°",
+   "uniqUse": "Barbe de plusieurs jours, peau sensible",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 29
+   }
+  },
+  {
+   "id": "p242",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Series 7 72-G7200cc Clean&Charge",
+   "price": 284.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true,
+    "station": "Station de nettoyage"
+   },
+   "args": [
+    "Grille",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "Station de nettoyage",
+    "4,6/5 sur 25 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1225111",
+   "uniq": "Series 7 + station de nettoyage",
+   "uniqUse": "Rasage de près, entretien automatique",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 25
+   }
+  },
+  {
+   "id": "p243",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Series 9 9660cc Clean&Charge",
+   "price": 439.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true,
+    "station": "Station de nettoyage"
+   },
+   "args": [
+    "Grille",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "Station de nettoyage",
+    "4,7/5 sur 43 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1225114",
+   "uniq": "Le Series 9 réputé pour raser le plus près",
+   "uniqUse": "Le client qui veut le meilleur rasage de près",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 43
+   }
+  },
+  {
+   "id": "p244",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Series 9 9675cc Clean&Charge",
+   "price": 549.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true,
+    "station": "Station + étui de recharge"
+   },
+   "args": [
+    "Grille",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "Station + étui de recharge",
+    "4,6/5 sur 21 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1225115",
+   "uniq": "Series 9 avec étui qui recharge en voyage",
+   "uniqUse": "Grand voyageur",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 21
+   }
+  },
+  {
+   "id": "p245",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "S9110 Sport",
+   "price": 229.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Grille",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1245783",
+   "uniq": "Entièrement lavable",
+   "uniqUse": "Rasage sous la douche",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 9
+   }
+  },
+  {
+   "id": "p246",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Nevo 11000C",
+   "price": 349.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true,
+    "station": "Station de nettoyage"
+   },
+   "args": [
+    "Grille",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "Station de nettoyage"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1245739",
+   "uniq": "Le dernier haut de gamme Braun, en promo (599,99 → 349,99 €)",
+   "uniqUse": "Client premium",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 12
+   }
+  },
+  {
+   "id": "p247",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "ES-CM3B 3 lames",
+   "price": 99.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille 3 lames",
+    "autonomie": 45,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Grille 3 lames",
+    "Autonomie 45 min, charge 1 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1213169",
+   "uniq": "Lames en acier japonais",
+   "uniqUse": "Barbe dure",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 10
+   }
+  },
+  {
+   "id": "p248",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "ES-LV69 5 lames",
+   "price": 104.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille 5 lames",
+    "autonomie": 50,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Grille 5 lames",
+    "Autonomie 50 min, charge 1 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1246309",
+   "uniq": "5 lames et détecteur de densité, en promo",
+   "uniqUse": "Barbe dense, rasage rapide",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p249",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "ES-LT4B 3 lames",
+   "price": 129.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille 3 lames",
+    "autonomie": 45,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Grille 3 lames",
+    "Autonomie 45 min, charge 1 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1197301",
+   "uniq": "Idéal pour les barbes dures",
+   "uniqUse": "Barbe dure",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 16
+   }
+  },
+  {
+   "id": "p250",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "ES-LV6U 5 lames",
+   "price": 199.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille 5 lames",
+    "autonomie": 60,
+    "charge": "50 min",
+    "etanche": true
+   },
+   "args": [
+    "Grille 5 lames",
+    "Autonomie 60 min, charge 50 min",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1178215",
+   "uniq": "5 lames",
+   "uniqUse": "Barbe dense",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 5
+   }
+  },
+  {
+   "id": "p251",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "ES-LS9A",
+   "price": 499.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille 6 lames",
+    "autonomie": 50,
+    "charge": "1 h",
+    "etanche": true,
+    "station": "Station de nettoyage"
+   },
+   "args": [
+    "Grille 6 lames",
+    "Autonomie 50 min, charge 1 h",
+    "Étanche",
+    "Station de nettoyage"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1198146",
+   "uniq": "Tête Multi-Flex 22D, le haut de gamme Panasonic",
+   "uniqUse": "Client premium",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 5
+   }
+  },
+  {
+   "id": "p252",
+   "cat": "beaute",
+   "brand": "Babyliss",
+   "model": "Super-X Metal FS996SE",
+   "price": 79.9,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Grille",
+    "autonomie": 60,
+    "charge": "3 h",
+    "etanche": true
+   },
+   "args": [
+    "Grille",
+    "Autonomie 60 min, charge 3 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1239902",
+   "uniq": "Corps métal, lame en acier japonais",
+   "uniqUse": "Client qui veut un rasoir robuste",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p253",
+   "cat": "beaute",
+   "brand": "Babyliss",
+   "model": "Super-X Metal FS996DE",
+   "price": 99.9,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif",
+    "autonomie": 120,
+    "charge": "3 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif",
+    "Autonomie 120 min, charge 3 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1239901",
+   "uniq": "120 min d'autonomie",
+   "uniqUse": "Peu de recharges",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p254",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "HS5980/15 série 5000 (crâne)",
+   "price": 79.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Pour le crâne",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Pour le crâne",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240188",
+   "uniq": "Rasoir spécial crâne",
+   "uniqUse": "Client qui se rase la tête",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p255",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "HS7980/15 série 7000 (crâne)",
+   "price": 99.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Pour le crâne",
+    "autonomie": 90,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Pour le crâne",
+    "Autonomie 90 min, charge 1 h",
+    "Étanche"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240168",
+   "uniq": "Spécial crâne, 90 min d'autonomie",
+   "uniqUse": "Client qui se rase la tête souvent",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 7
+   }
+  },
+  {
+   "id": "p256",
+   "cat": "beaute",
+   "brand": "Essentiel B",
+   "model": "EHS2 (crâne)",
+   "price": 49.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Pour le crâne (5 têtes)",
+    "autonomie": 60,
+    "charge": "1 h 30"
+   },
+   "args": [
+    "Pour le crâne (5 têtes)",
+    "Autonomie 60 min, charge 1 h 30",
+    "4,3/5 sur 31 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8011846",
+   "uniq": "Marque Boulanger, 5 têtes articulées pour le crâne",
+   "uniqUse": "Rasage du crâne, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 31
+   }
+  },
+  {
+   "id": "p257",
+   "cat": "beaute",
+   "brand": "Essentiel B",
+   "model": "ERT 2 Trio Soft",
+   "price": 29.99,
+   "specs": {
+    "type": "Rasoir",
+    "tete": "Rotatif",
+    "autonomie": 60,
+    "charge": "1 h",
+    "etanche": true
+   },
+   "args": [
+    "Rotatif",
+    "Autonomie 60 min, charge 1 h",
+    "Étanche",
+    "3,7/5 sur 178 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8004174",
+   "uniq": "Marque Boulanger, très petit prix",
+   "uniqUse": "Dépannage ou voyage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.7,
+    "n": 178
+   }
+  },
+  {
+   "id": "p258",
+   "cat": "beaute",
+   "brand": "Essentiel B",
+   "model": "EEE2 Epilys",
+   "price": 22.99,
+   "specs": {
+    "type": "Épilateur",
+    "autonomie": 60,
+    "etanche": false
+   },
+   "args": [
+    "Autonomie 60 min"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8012107",
+   "uniq": "Marque Boulanger, le moins cher",
+   "uniqUse": "Petit budget, premier épilateur",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 2,
+    "n": 1
+   }
+  },
+  {
+   "id": "p259",
+   "cat": "beaute",
+   "brand": "Calor",
+   "model": "Skin Spirit EP2904C0",
+   "price": 39.99,
+   "specs": {
+    "type": "Épilateur",
+    "etanche": false
+   },
+   "args": [],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1203602",
+   "uniq": "Billes de massage anti-douleur, capte les poils de 0,5 mm",
+   "uniqUse": "Jambes uniquement",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 4
+   }
+  },
+  {
+   "id": "p260",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "BRE247/00",
+   "price": 42.99,
+   "specs": {
+    "type": "Épilateur",
+    "etanche": false,
+    "alim": "Illimitée (filaire)"
+   },
+   "args": [
+    "Illimitée (filaire)"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240169",
+   "uniq": "Filaire : jamais à plat, éclairage LED",
+   "uniqUse": "Client qui oublie de recharger",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 16
+   }
+  },
+  {
+   "id": "p261",
+   "cat": "beaute",
+   "brand": "Calor",
+   "model": "Silence Soft EP5624C0 filaire",
+   "price": 49.99,
+   "specs": {
+    "type": "Épilateur",
+    "etanche": false,
+    "alim": "Illimitée (filaire)"
+   },
+   "args": [
+    "Illimitée (filaire)",
+    "3,9/5 sur 33 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1203603",
+   "uniq": "Rouleaux massants anti-douleur et éclairage de la zone",
+   "uniqUse": "Peau sensible à la douleur",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.9,
+    "n": 33
+   }
+  },
+  {
+   "id": "p262",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Silk-épil 3 SE3-202",
+   "price": 59.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 20,
+    "etanche": false
+   },
+   "args": [
+    "20 pincettes"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236215",
+   "uniq": "Le Braun d'entrée de gamme",
+   "uniqUse": "Premier épilateur",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p263",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Silk-épil 5 SE5-011",
+   "price": 69.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 28,
+    "autonomie": 40,
+    "etanche": true
+   },
+   "args": [
+    "28 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 40 min",
+    "4,6/5 sur 27 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236216",
+   "uniq": "Étanche avec rouleaux massants",
+   "uniqUse": "Épilation sous la douche, moins douloureuse",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 27
+   }
+  },
+  {
+   "id": "p264",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Silk-épil 7 SE7-041",
+   "price": 79.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 40,
+    "autonomie": 40,
+    "etanche": true
+   },
+   "args": [
+    "40 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 40 min",
+    "4,9/5 sur 28 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236218",
+   "uniq": "40 pincettes, très bien noté (4,9/5)",
+   "uniqUse": "Le meilleur rapport qualité-prix Braun",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.9,
+    "n": 28
+   }
+  },
+  {
+   "id": "p265",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Silk-épil 5 SE5-041",
+   "price": 84.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 28,
+    "autonomie": 40,
+    "etanche": true
+   },
+   "args": [
+    "28 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 40 min"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236217",
+   "uniq": "Lumière intelligente pour voir les poils fins",
+   "uniqUse": "Poils fins ou clairs",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 2,
+    "n": 1
+   }
+  },
+  {
+   "id": "p266",
+   "cat": "beaute",
+   "brand": "Calor",
+   "model": "Skin Respect EP8064C0",
+   "price": 94.99,
+   "specs": {
+    "type": "Épilateur",
+    "etanche": true
+   },
+   "args": [
+    "Étanche : utilisable sous la douche (moins douloureux)"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1203604",
+   "uniq": "100 % étanche, billes de massage",
+   "uniqUse": "Épilation sous la douche",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 13
+   }
+  },
+  {
+   "id": "p267",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "ES-EY30",
+   "price": 99.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 60
+   },
+   "args": [
+    "60 pincettes",
+    "4,6/5 sur 22 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1217172",
+   "uniq": "60 pincettes et tête pivotante à 90°",
+   "uniqUse": "Épilation rapide : moins de passages",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 22
+   }
+  },
+  {
+   "id": "p268",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "BRE711/00 Série 8000",
+   "price": 119.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 32,
+    "autonomie": 60,
+    "etanche": true
+   },
+   "args": [
+    "32 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 60 min"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240170",
+   "uniq": "Étanche, 60 min d'autonomie",
+   "uniqUse": "Épilation sous la douche",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 15
+   }
+  },
+  {
+   "id": "p269",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Silk-épil 9 SES9-080 (coffret)",
+   "price": 121.92,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 40,
+    "autonomie": 50,
+    "etanche": true
+   },
+   "args": [
+    "40 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 50 min"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1243106",
+   "uniq": "Tête pivotante, 8 accessoires",
+   "uniqUse": "Kit complet",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p270",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "ES-EY70",
+   "price": 129.99,
+   "specs": {
+    "type": "Épilateur"
+   },
+   "args": [
+    "4,7/5 sur 40 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1217173",
+   "uniq": "4 têtes interchangeables",
+   "uniqUse": "Plusieurs zones, un seul appareil",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 40
+   }
+  },
+  {
+   "id": "p271",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "ES-EY90",
+   "price": 149.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 60,
+    "autonomie": 30,
+    "etanche": true
+   },
+   "args": [
+    "60 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 30 min",
+    "4,1/5 sur 20 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1190197",
+   "uniq": "60 pincettes, double tête flexible, 8 accessoires",
+   "uniqUse": "Épilation rapide",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 20
+   }
+  },
+  {
+   "id": "p272",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Silk-épil 9 SES9-030",
+   "price": 169.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 40,
+    "autonomie": 50,
+    "etanche": true
+   },
+   "args": [
+    "40 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 50 min"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236219",
+   "uniq": "Le Silk-épil 9 de base : 40 pincettes, étanche",
+   "uniqUse": "Peau douce plusieurs semaines",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 19
+   }
+  },
+  {
+   "id": "p273",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Silk-épil 9 SES9-061",
+   "price": 199.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 40,
+    "autonomie": 50,
+    "etanche": true
+   },
+   "args": [
+    "40 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 50 min",
+    "4,8/5 sur 21 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236220",
+   "uniq": "Smart Light, 7 accessoires",
+   "uniqUse": "Poils fins, plusieurs zones",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 21
+   }
+  },
+  {
+   "id": "p274",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Silk-épil 9 SES9-060 3D Flex",
+   "price": 249.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 40,
+    "autonomie": 50,
+    "etanche": true
+   },
+   "args": [
+    "40 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 50 min",
+    "4,8/5 sur 23 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236231",
+   "uniq": "Tête flexible 3D qui suit genoux et chevilles",
+   "uniqUse": "Épilation précise des zones difficiles",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 23
+   }
+  },
+  {
+   "id": "p275",
+   "cat": "beaute",
+   "brand": "Philips",
+   "model": "BRE738/00 Kit bien-être",
+   "price": 269.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 32,
+    "autonomie": 60,
+    "etanche": true
+   },
+   "args": [
+    "32 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 60 min"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240201",
+   "uniq": "Kit avec tête visage, technologie ProGuide",
+   "uniqUse": "Corps et visage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 15
+   }
+  },
+  {
+   "id": "p276",
+   "cat": "beaute",
+   "brand": "Braun",
+   "model": "Silk-épil 9 SES9-481 3D Flex Skin Spa",
+   "price": 299.99,
+   "specs": {
+    "type": "Épilateur",
+    "pincettes": 40,
+    "autonomie": 50,
+    "etanche": true
+   },
+   "args": [
+    "40 pincettes",
+    "Étanche : utilisable sous la douche (moins douloureux)",
+    "Autonomie 50 min",
+    "5/5 sur 21 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236232",
+   "uniq": "Le plus complet : 9 accessoires dont soin de la peau",
+   "uniqUse": "Cadeau haut de gamme",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 21
+   }
+  },
+  {
+   "id": "p277",
+   "cat": "cafe",
+   "brand": "Listo",
+   "model": "BL L6b",
+   "price": 9.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2200,
+    "temp": "Non"
+   },
+   "args": [
+    "1,7 L, 2200 W",
+    "4,4/5 sur 27 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8010555",
+   "uniq": "La moins chère du rayon",
+   "uniqUse": "Dépannage, location",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 27
+   }
+  },
+  {
+   "id": "p278",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "EBL18i inox 1 L",
+   "price": 20.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1,
+    "puissance": 2200,
+    "temp": "Non",
+    "matiere": "Inox"
+   },
+   "args": [
+    "1 L, 2200 W",
+    "Corps en inox",
+    "4,6/5 sur 169 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8008753",
+   "uniq": "Petite bouilloire inox à petit prix",
+   "uniqUse": "Personne seule, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 169
+   }
+  },
+  {
+   "id": "p279",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "EBL19B",
+   "price": 19.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2200,
+    "temp": "Non"
+   },
+   "args": [
+    "1,7 L, 2200 W",
+    "4,7/5 sur 32 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8010022",
+   "uniq": "1,7 L pour 19,99 €",
+   "uniqUse": "Famille, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 32
+   }
+  },
+  {
+   "id": "p280",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "EBL 17 inox",
+   "price": 34.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2200,
+    "temp": "Oui",
+    "matiere": "Inox"
+   },
+   "args": [
+    "1,7 L, 2200 W",
+    "Température réglable : Oui",
+    "Corps en inox",
+    "4,4/5 sur 497 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8008434",
+   "uniq": "Température réglable pour moins de 35 € (497 avis)",
+   "uniqUse": "Amateur de thé, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 497
+   }
+  },
+  {
+   "id": "p281",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "Kettle Daily EBDK / EBDK1",
+   "price": 34.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2200,
+    "temp": "Non"
+   },
+   "args": [
+    "1,7 L, 2200 W",
+    "4,5/5 sur 117 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8012200 / 8012197",
+   "uniq": "Assortie au grille-pain Daily",
+   "uniqUse": "Ensemble petit-déjeuner assorti",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 117
+   }
+  },
+  {
+   "id": "p282",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "HD9318/20 Daily 1,7 L",
+   "price": 21.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2200,
+    "temp": "Non"
+   },
+   "args": [
+    "1,7 L, 2200 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1182968",
+   "uniq": "Philips simple et bien noté",
+   "uniqUse": "Usage quotidien, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 5
+   }
+  },
+  {
+   "id": "p283",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "HD9411 Série 3000 (bleu ou blanc)",
+   "price": 24.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2200,
+    "temp": "Non"
+   },
+   "args": [
+    "1,7 L, 2200 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218999 / 1219000",
+   "uniq": "Très bien notée, assortie au grille-pain Série 3000",
+   "uniqUse": "Ensemble assorti à petit prix",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.9,
+    "n": 10
+   }
+  },
+  {
+   "id": "p284",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "HD9350/90 Métal 1,7 L",
+   "price": 26.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2200,
+    "temp": "Non",
+    "matiere": "Inox"
+   },
+   "args": [
+    "1,7 L, 2200 W",
+    "Corps en inox",
+    "4,4/5 sur 26 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1108770",
+   "uniq": "Corps en inox, sans goût de plastique",
+   "uniqUse": "Client qui veut de l'inox",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 26
+   }
+  },
+  {
+   "id": "p285",
+   "cat": "cafe",
+   "brand": "Tefal",
+   "model": "Includeo KI533811",
+   "price": 29.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1,
+    "puissance": 2400,
+    "temp": "Non"
+   },
+   "args": [
+    "1 L, 2400 W",
+    "4,6/5 sur 80 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1160144",
+   "uniq": "1 L et 2 400 W : très rapide",
+   "uniqUse": "Personne seule pressée",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 80
+   }
+  },
+  {
+   "id": "p286",
+   "cat": "cafe",
+   "brand": "Tefal",
+   "model": "Smart'n Light KO854830 1 L",
+   "price": 46.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1,
+    "puissance": 1800,
+    "temp": "Oui"
+   },
+   "args": [
+    "1 L, 1800 W",
+    "Température réglable : Oui"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1176578",
+   "uniq": "Températures réglables affichées",
+   "uniqUse": "Thé et tisanes",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 19
+   }
+  },
+  {
+   "id": "p287",
+   "cat": "cafe",
+   "brand": "Moulinex",
+   "model": "Soleil BY320A10 ivoire",
+   "price": 36.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2400,
+    "temp": "Non"
+   },
+   "args": [
+    "1,7 L, 2400 W",
+    "4,4/5 sur 74 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1119642",
+   "uniq": "Design rétro, assortie au grille-pain Soleil",
+   "uniqUse": "Ensemble petit-déjeuner rétro",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 74
+   }
+  },
+  {
+   "id": "p288",
+   "cat": "cafe",
+   "brand": "Riviera et Bar",
+   "model": "Ella BBT710",
+   "price": 49.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1,
+    "puissance": 2000,
+    "temp": "Oui"
+   },
+   "args": [
+    "1 L, 2000 W",
+    "Température réglable : Oui",
+    "4,6/5 sur 32 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1145472",
+   "uniq": "Température réglable, 1 L",
+   "uniqUse": "Amateur de thé, petit foyer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 32
+   }
+  },
+  {
+   "id": "p289",
+   "cat": "cafe",
+   "brand": "Riviera et Bar",
+   "model": "BBT368",
+   "price": 59.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1,
+    "puissance": 2000,
+    "temp": "Oui"
+   },
+   "args": [
+    "1 L, 2000 W",
+    "Température réglable : Oui"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1227437",
+   "uniq": "Température réglable",
+   "uniqUse": "Thé et tisanes",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 4
+   }
+  },
+  {
+   "id": "p290",
+   "cat": "cafe",
+   "brand": "Riviera et Bar",
+   "model": "Serena BT541A blanc nacré",
+   "price": 64.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2200,
+    "temp": "Accès direct 60/80/100 °C"
+   },
+   "args": [
+    "1,7 L, 2200 W",
+    "Température réglable : Accès direct 60/80/100 °C",
+    "4,5/5 sur 202 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1048374",
+   "uniq": "3 températures en accès direct, 202 avis",
+   "uniqUse": "Thé vert, biberon, café soluble",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 202
+   }
+  },
+  {
+   "id": "p291",
+   "cat": "cafe",
+   "brand": "Simeo",
+   "model": "BVI175",
+   "price": 59.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.2,
+    "puissance": 2200,
+    "temp": "Oui"
+   },
+   "args": [
+    "1,2 L, 2200 W",
+    "Température réglable : Oui",
+    "4,3/5 sur 61 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1127158",
+   "uniq": "Température réglable",
+   "uniqUse": "Amateur de thé",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 61
+   }
+  },
+  {
+   "id": "p292",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "BW871DF0",
+   "price": 69.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 1500,
+    "temp": "6 réglages de 40 à 100 °C"
+   },
+   "args": [
+    "1,7 L, 1500 W",
+    "Température réglable : 6 réglages de 40 à 100 °C",
+    "4,5/5 sur 20 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1237903",
+   "uniq": "6 températures de 40 à 100 °C",
+   "uniqUse": "Thé, biberon",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 20
+   }
+  },
+  {
+   "id": "p293",
+   "cat": "cafe",
+   "brand": "Sweiss",
+   "model": "Vintage KTL8 beige",
+   "price": 38.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.8,
+    "puissance": 2200,
+    "temp": "Non"
+   },
+   "args": [
+    "1,8 L, 2200 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1237881",
+   "uniq": "Look vintage à petit prix",
+   "uniqUse": "Alternative déco à Smeg",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p294",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "Mini KLF05 0,8 L (blanc, crème, noir, rose)",
+   "price": 139.0,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 0.8,
+    "puissance": 1400,
+    "temp": "Non"
+   },
+   "args": [
+    "0,8 L, 1400 W",
+    "4,6/5 sur 113 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1163846 / 1163845 / 1163788 / 1163844",
+   "uniq": "La mini Smeg 0,8 L",
+   "uniqUse": "Personne seule ou petite cuisine qui veut le design Smeg",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 113
+   }
+  },
+  {
+   "id": "p295",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "KLF03 1,7 L (inox, or mat, noir, crème, blanc)",
+   "price": 179.0,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2400,
+    "temp": "Non"
+   },
+   "args": [
+    "1,7 L, 2400 W",
+    "4,6/5 sur 168 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1238360 / 1153371 / 1095928 / 1095922 / 1095938",
+   "uniq": "L'icône rétro Smeg (dès 129,99 € selon le coloris)",
+   "uniqUse": "Cuisine déco, assortie au grille-pain Smeg",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 168
+   }
+  },
+  {
+   "id": "p296",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "KLF04 1,7 L (crème, noir)",
+   "price": 209.0,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2400,
+    "temp": "À vérifier sur l'étiquette"
+   },
+   "args": [
+    "1,7 L, 2400 W",
+    "Température réglable : À vérifier sur l'étiquette",
+    "4,6/5 sur 116 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1095943 / 1095948",
+   "uniq": "La KLF03 en version plus haut de gamme",
+   "uniqUse": "Client Smeg qui veut la version supérieure",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 116
+   }
+  },
+  {
+   "id": "p297",
+   "cat": "cafe",
+   "brand": "KitchenAid",
+   "model": "Artisan 5KEK1522 1,5 L",
+   "price": 249.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.5,
+    "puissance": 2400,
+    "temp": "Selon modèle (réf. 1036450 et 1100498 : oui)"
+   },
+   "args": [
+    "1,5 L, 2400 W",
+    "Température réglable : Selon modèle (réf. 1036450 et 1100498 : oui)",
+    "4,7/5 sur 24 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "154150 / 1140304 / 1145153 / 1036905 / 1036450 / 1100498",
+   "uniq": "Design KitchenAid, nombreux coloris",
+   "uniqUse": "Client KitchenAid, cuisine assortie",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 24
+   }
+  },
+  {
+   "id": "p298",
+   "cat": "cafe",
+   "brand": "KitchenAid",
+   "model": "5KEK1701 1,7 L température réglable",
+   "price": 199.99,
+   "specs": {
+    "type": "Bouilloire",
+    "reservoir": 1.7,
+    "puissance": 2400,
+    "temp": "Oui (7 niveaux)"
+   },
+   "args": [
+    "1,7 L, 2400 W",
+    "Température réglable : Oui (7 niveaux)"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1215901 / 1215891 / 1215880",
+   "uniq": "KitchenAid à température réglable, 1,7 L",
+   "uniqUse": "Amateur de thé, design KitchenAid",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p299",
+   "cat": "cafe",
+   "brand": "Listo",
+   "model": "TT L2b",
+   "price": 9.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 700,
+    "positions": 5
+   },
+   "args": [
+    "2 fentes, 2 toasts, 700 W",
+    "5 niveaux de dorage",
+    "3,3/5 sur 41 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8010367",
+   "uniq": "Le moins cher du rayon",
+   "uniqUse": "Dépannage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.3,
+    "n": 41
+   }
+  },
+  {
+   "id": "p300",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "EGP10B",
+   "price": 19.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 750,
+    "positions": 5,
+    "fonctions": "Décongélation, réchauffage"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 750 W",
+    "5 niveaux de dorage",
+    "Décongélation, réchauffage",
+    "4,4/5 sur 98 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8010259",
+   "uniq": "Simple et bien noté pour 19,99 €",
+   "uniqUse": "Petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 98
+   }
+  },
+  {
+   "id": "p301",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "EGP5 longue fente",
+   "price": 19.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "1 longue fente",
+    "toasts": 2,
+    "puissance": 850,
+    "positions": 6,
+    "fonctions": "Décongélation, réchauffage, annulation"
+   },
+   "args": [
+    "1 longue fente, 2 toasts, 850 W",
+    "6 niveaux de dorage",
+    "Décongélation, réchauffage, annulation"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8011981",
+   "uniq": "Une longue fente à petit prix",
+   "uniqUse": "Pain de mie long, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 7
+   }
+  },
+  {
+   "id": "p302",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "EGP 24 vert sauge",
+   "price": 29.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 850,
+    "positions": 7,
+    "fonctions": "Décongélation, réchauffage, brunissage rapide, bagel"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 850 W",
+    "7 niveaux de dorage",
+    "Décongélation, réchauffage, brunissage rapide, bagel",
+    "4,3/5 sur 376 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8012208",
+   "uniq": "Coloris tendance, 376 avis",
+   "uniqUse": "Petit budget avec un peu de style",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 376
+   }
+  },
+  {
+   "id": "p303",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "EGP 2i Ciabatta gris minéral",
+   "price": 29.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes larges",
+    "toasts": 4,
+    "puissance": 1500,
+    "positions": 7,
+    "fonctions": "Décongélation, réchauffage, maintien au chaud, grille baguette, centrage, bagel"
+   },
+   "args": [
+    "2 fentes larges, 4 toasts, 1500 W",
+    "7 niveaux de dorage",
+    "Décongélation, réchauffage, maintien au chaud, grille baguette, centrage, bagel",
+    "4/5 sur 450 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8006641",
+   "uniq": "4 toasts d'un coup pour moins de 30 €",
+   "uniqUse": "Famille pressée le matin",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 450
+   }
+  },
+  {
+   "id": "p304",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "Toaster Daily EBDT1",
+   "price": 34.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 800,
+    "positions": 7,
+    "fonctions": "Décongélation, réchauffage, brunissage rapide"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 800 W",
+    "7 niveaux de dorage",
+    "Décongélation, réchauffage, brunissage rapide",
+    "4,5/5 sur 117 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8012196",
+   "uniq": "Assorti à la bouilloire Daily",
+   "uniqUse": "Ensemble assorti",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 117
+   }
+  },
+  {
+   "id": "p305",
+   "cat": "cafe",
+   "brand": "Essentiel B",
+   "model": "ETT 9R Memphis rouge",
+   "price": 35.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 850,
+    "positions": 7,
+    "fonctions": "Décongélation, réchauffage, centrage, brunissage rapide"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 850 W",
+    "7 niveaux de dorage",
+    "Décongélation, réchauffage, centrage, brunissage rapide",
+    "4,3/5 sur 691 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8004986",
+   "uniq": "Le plus noté du rayon (691 avis)",
+   "uniqUse": "Valeur sûre",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 691
+   }
+  },
+  {
+   "id": "p306",
+   "cat": "cafe",
+   "brand": "Tefal",
+   "model": "TL302110 simple fente",
+   "price": 23.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "1 longue fente",
+    "toasts": 2,
+    "puissance": 850,
+    "positions": 7,
+    "fonctions": "Décongélation, réchauffage, centrage, brunissage rapide"
+   },
+   "args": [
+    "1 longue fente, 2 toasts, 850 W",
+    "7 niveaux de dorage",
+    "Décongélation, réchauffage, centrage, brunissage rapide",
+    "4,5/5 sur 27 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1173934",
+   "uniq": "Longue fente Tefal à petit prix",
+   "uniqUse": "Pain de campagne en longues tranches",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 27
+   }
+  },
+  {
+   "id": "p307",
+   "cat": "cafe",
+   "brand": "Tefal",
+   "model": "Includeo TT533811",
+   "price": 35.4,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 850,
+    "positions": 7,
+    "fonctions": "Grille baguette, centrage"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 850 W",
+    "7 niveaux de dorage",
+    "Grille baguette, centrage",
+    "4,8/5 sur 129 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1160145",
+   "uniq": "Grille baguette incluse, très bien noté",
+   "uniqUse": "Viennoiseries et baguette le matin",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 129
+   }
+  },
+  {
+   "id": "p308",
+   "cat": "cafe",
+   "brand": "Moulinex",
+   "model": "A154 noir",
+   "price": 25.6,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 4,
+    "puissance": 760,
+    "positions": 1,
+    "fonctions": "Annulation"
+   },
+   "args": [
+    "2 fentes, 4 toasts, 760 W",
+    "Annulation",
+    "4,4/5 sur 85 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "154385",
+   "uniq": "4 toasts, ultra simple",
+   "uniqUse": "Famille, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 85
+   }
+  },
+  {
+   "id": "p309",
+   "cat": "cafe",
+   "brand": "Moulinex",
+   "model": "Morning LS2M0B10 longue fente",
+   "price": 34.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "1 longue fente",
+    "toasts": 2,
+    "puissance": 1000,
+    "positions": 7,
+    "fonctions": "Centrage, annulation"
+   },
+   "args": [
+    "1 longue fente, 2 toasts, 1000 W",
+    "7 niveaux de dorage",
+    "Centrage, annulation",
+    "4,6/5 sur 88 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1194077",
+   "uniq": "Longue fente bien notée",
+   "uniqUse": "Pain long",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 88
+   }
+  },
+  {
+   "id": "p310",
+   "cat": "cafe",
+   "brand": "Moulinex",
+   "model": "Morning LT2M0B10 2 fentes",
+   "price": 34.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 850,
+    "positions": 7,
+    "fonctions": "Centrage, annulation"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 850 W",
+    "7 niveaux de dorage",
+    "Centrage, annulation",
+    "4,5/5 sur 24 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1194082",
+   "uniq": "Simple et fiable",
+   "uniqUse": "Usage quotidien",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 24
+   }
+  },
+  {
+   "id": "p311",
+   "cat": "cafe",
+   "brand": "Moulinex",
+   "model": "Soleil LT300A10 ivoire",
+   "price": 36.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes larges",
+    "toasts": 2,
+    "puissance": 850,
+    "positions": 7,
+    "fonctions": "Décongélation, réchauffage, centrage"
+   },
+   "args": [
+    "2 fentes larges, 2 toasts, 850 W",
+    "7 niveaux de dorage",
+    "Décongélation, réchauffage, centrage",
+    "4,5/5 sur 238 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1119641",
+   "uniq": "Design rétro, assorti à la bouilloire Soleil",
+   "uniqUse": "Ensemble rétro à petit prix",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 238
+   }
+  },
+  {
+   "id": "p312",
+   "cat": "cafe",
+   "brand": "Moulinex",
+   "model": "Subito LT5S08E0 2 fentes",
+   "price": 39.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 1200,
+    "positions": 7,
+    "fonctions": "Décongélation, réchauffage, centrage"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 1200 W",
+    "7 niveaux de dorage",
+    "Décongélation, réchauffage, centrage",
+    "4,3/5 sur 68 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218188",
+   "uniq": "1 200 W : grille vite",
+   "uniqUse": "Matins pressés",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 68
+   }
+  },
+  {
+   "id": "p313",
+   "cat": "cafe",
+   "brand": "Moulinex",
+   "model": "Subito LS5S08E0 longue fente",
+   "price": 39.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "1 longue fente",
+    "toasts": 2,
+    "puissance": 1430,
+    "positions": 7,
+    "fonctions": "Décongélation, réchauffage, centrage"
+   },
+   "args": [
+    "1 longue fente, 2 toasts, 1430 W",
+    "7 niveaux de dorage",
+    "Décongélation, réchauffage, centrage",
+    "4,2/5 sur 75 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218189",
+   "uniq": "Longue fente puissante (1 430 W)",
+   "uniqUse": "Pain long, rapide",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 75
+   }
+  },
+  {
+   "id": "p314",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "HD2581 Daily (noir ou blanc)",
+   "price": 26.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 830,
+    "positions": 8,
+    "fonctions": "Décongélation, réchauffage, maintien au chaud, bagel"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 830 W",
+    "8 niveaux de dorage",
+    "Décongélation, réchauffage, maintien au chaud, bagel"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "9000159609 / 9000159610",
+   "uniq": "8 niveaux, maintien au chaud",
+   "uniqUse": "Usage quotidien",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p315",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "HD2511 Série 3000 (bleu ou blanc)",
+   "price": 32.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 830,
+    "fonctions": "Réchauffage viennoiseries, grille baguette, centrage, bagel"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 830 W",
+    "Réchauffage viennoiseries, grille baguette, centrage, bagel"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218997 / 1218998",
+   "uniq": "Grille baguette, assorti à la bouilloire Série 3000",
+   "uniqUse": "Ensemble assorti",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 18
+   }
+  },
+  {
+   "id": "p316",
+   "cat": "cafe",
+   "brand": "Braun",
+   "model": "PurEase HT3100",
+   "price": 40.82,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "1 longue fente",
+    "toasts": 2,
+    "puissance": 1000,
+    "positions": 7,
+    "fonctions": "Décongélation, réchauffage, centrage"
+   },
+   "args": [
+    "1 longue fente, 2 toasts, 1000 W",
+    "7 niveaux de dorage",
+    "Décongélation, réchauffage, centrage",
+    "4,8/5 sur 22 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1099212",
+   "uniq": "Longue fente Braun bien notée",
+   "uniqUse": "Pain long",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 22
+   }
+  },
+  {
+   "id": "p317",
+   "cat": "cafe",
+   "brand": "Riviera et Bar",
+   "model": "Expert QGP660 fente extra-longue",
+   "price": 64.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "1 fente extra-longue",
+    "toasts": 2,
+    "puissance": 1010,
+    "positions": 5,
+    "fonctions": "Grille baguette, centrage, peek & view"
+   },
+   "args": [
+    "1 fente extra-longue, 2 toasts, 1010 W",
+    "5 niveaux de dorage",
+    "Grille baguette, centrage, peek & view"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1173853",
+   "uniq": "Fente extra-longue et vue sur la cuisson",
+   "uniqUse": "Grandes tranches de pain de campagne",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.9,
+    "n": 7
+   }
+  },
+  {
+   "id": "p318",
+   "cat": "cafe",
+   "brand": "Riviera et Bar",
+   "model": "QGA358",
+   "price": 79.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 900,
+    "positions": 9,
+    "fonctions": "Réchauffe viennoiseries, centrage, bagel"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 900 W",
+    "9 niveaux de dorage",
+    "Réchauffe viennoiseries, centrage, bagel"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1227439",
+   "uniq": "9 niveaux de dorage",
+   "uniqUse": "Client exigeant sur le dorage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 4
+   }
+  },
+  {
+   "id": "p319",
+   "cat": "cafe",
+   "brand": "Sweiss",
+   "model": "Vintage beige GRS8",
+   "price": 59.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 850,
+    "positions": 6,
+    "fonctions": "Réchauffe viennoiseries, grille baguette, brunissage rapide, bagel"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 850 W",
+    "6 niveaux de dorage",
+    "Réchauffe viennoiseries, grille baguette, brunissage rapide, bagel"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1237884",
+   "uniq": "Look vintage à petit prix",
+   "uniqUse": "Alternative déco à Smeg",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p320",
+   "cat": "cafe",
+   "brand": "Sweiss",
+   "model": "Vintage baguette GRV9 noir",
+   "price": 69.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 1500,
+    "positions": 6,
+    "fonctions": "Réchauffe viennoiseries, grille baguette, bagel"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 1500 W",
+    "6 niveaux de dorage",
+    "Réchauffe viennoiseries, grille baguette, bagel"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1237889",
+   "uniq": "Grille baguette intégrée",
+   "uniqUse": "Déco + baguette",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p321",
+   "cat": "cafe",
+   "brand": "Sweiss",
+   "model": "Pack grille-pain + bouilloire vintage (vert ou crème)",
+   "price": 79.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes",
+    "toasts": 2,
+    "puissance": 1500,
+    "positions": 6,
+    "fonctions": "Réchauffe viennoiseries, grille baguette, bagel"
+   },
+   "args": [
+    "2 fentes, 2 toasts, 1500 W",
+    "6 niveaux de dorage",
+    "Réchauffe viennoiseries, grille baguette, bagel"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1223321 / 1223322",
+   "uniq": "Le grille-pain ET la bouilloire assortis pour 79,99 €",
+   "uniqUse": "Emménagement, cadeau",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 7
+   }
+  },
+  {
+   "id": "p322",
+   "cat": "cafe",
+   "brand": "Magimix",
+   "model": "Vision 11541 noir",
+   "price": 169.99,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "1 fente",
+    "toasts": 2,
+    "puissance": 1450,
+    "positions": 8,
+    "fonctions": "Peek & view (parois vitrées), grille baguette, maintien au chaud"
+   },
+   "args": [
+    "1 fente, 2 toasts, 1450 W",
+    "8 niveaux de dorage",
+    "Peek & view (parois vitrées), grille baguette, maintien au chaud",
+    "4,7/5 sur 92 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1050505",
+   "uniq": "Parois vitrées : on voit le pain dorer",
+   "uniqUse": "Client qui ne veut plus jamais de toast brûlé",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 92
+   }
+  },
+  {
+   "id": "p323",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "TSF01 2 tranches (nombreux coloris)",
+   "price": 179.0,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes larges",
+    "toasts": 2,
+    "puissance": 950,
+    "positions": 6,
+    "fonctions": "Décongélation, réchauffage, centrage, bagel"
+   },
+   "args": [
+    "2 fentes larges, 2 toasts, 950 W",
+    "6 niveaux de dorage",
+    "Décongélation, réchauffage, centrage, bagel",
+    "4,7/5 sur 305 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1238357 / 1153354 / 1063231 / 1057323 / 1086080 / 1035981 / 1034335 / 1169980 / 1051273",
+   "uniq": "L'icône rétro Smeg (dès 129,99 € selon le coloris)",
+   "uniqUse": "Cuisine déco, assorti à la bouilloire Smeg",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 305
+   }
+  },
+  {
+   "id": "p324",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "TSF02 4 tranches crème",
+   "price": 209.0,
+   "specs": {
+    "type": "Grille-pain",
+    "fentes": "2 fentes larges",
+    "toasts": 4,
+    "puissance": 1500,
+    "positions": 6,
+    "fonctions": "Décongélation, réchauffage, centrage, bagel"
+   },
+   "args": [
+    "2 fentes larges, 4 toasts, 1500 W",
+    "6 niveaux de dorage",
+    "Décongélation, réchauffage, centrage, bagel",
+    "4,9/5 sur 77 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1043153",
+   "uniq": "Smeg 4 tranches, très bien noté",
+   "uniqUse": "Famille qui veut le design Smeg",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.9,
+    "n": 77
    }
   }
  ]

@@ -118,16 +118,6 @@
    "entretien": "Nettoyer le filtre régulièrement.",
    "usage": "Pas de consommable. Embouts supplémentaires en option."
   },
-  "beaute|Rasoir / tondeuse": {
-   "quest": [
-    "Barbe de quelques jours, barbe longue ou rasage de près ?",
-    "Peau sensible ?",
-    "Visage seulement ou aussi le corps ?"
-   ],
-   "demo": "Montrer les sabots et la lame qui suit les courbes.",
-   "entretien": "Rincer la lame après usage.",
-   "usage": "Lames de rechange à prévoir régulièrement : vérifier leur prix et leur durée."
-  },
   "aspi|Laveur de sols": {
    "quest": [
     "Quelle surface de sols durs à laver ?",
@@ -190,6 +180,46 @@
    "demo": "Montrer comment le couvercle se pose à la place du couvercle pression.",
    "entretien": "Panier et grille au lave-vaisselle.",
    "usage": "Pas de consommable."
+  },
+  "beaute|Tondeuse": {
+   "quest": [
+    "Barbe de quelques jours, barbe longue ou rasage de près ?",
+    "Peau sensible ?",
+    "Visage seulement ou aussi le corps ?"
+   ],
+   "demo": "Montrer les sabots et la lame qui suit les courbes.",
+   "entretien": "Rincer la lame après usage.",
+   "usage": "Lames de rechange à prévoir régulièrement : vérifier leur prix et leur durée."
+  },
+  "beaute|Rasoir": {
+   "quest": [
+    "Grille ou têtes rotatives aujourd'hui ?",
+    "Peau sensible ?",
+    "Barbe dure ?"
+   ],
+   "demo": "Montrer la tête flexible et la station de nettoyage.",
+   "entretien": "Rincer ou passer à la station après chaque rasage.",
+   "usage": "Têtes à changer tous les 12 à 18 mois."
+  },
+  "beaute|Épilateur": {
+   "quest": [
+    "Première fois ?",
+    "Sous la douche ou à sec ?",
+    "Quelles zones ?"
+   ],
+   "demo": "Montrer la tête rasoir et les rouleaux massants.",
+   "entretien": "Brosser les pincettes après usage.",
+   "usage": "Mieux vaut épiler après la douche, peau sèche ou sous l'eau si étanche."
+  },
+  "cafe|Grille-pain": {
+   "quest": [
+    "Pain de mie ou pain de boulangerie ?",
+    "Combien de toasts le matin ?",
+    "Viennoiseries ?"
+   ],
+   "demo": "Montrer la grille viennoiseries et le bouton décongélation.",
+   "entretien": "Vider le tiroir à miettes chaque semaine.",
+   "usage": "Ne jamais décoincer le pain avec un couteau métallique."
   }
  },
  "products": {
@@ -1285,6 +1315,884 @@
     "Encombrant",
     "Expresso moins abouti qu'une machine dédiée selon certains avis"
    ]
+  },
+  "p172": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": []
+  },
+  "p173": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail",
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p174": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p175": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p176": {
+   "pour": "Foyer de 1 à 2 personnes.",
+   "cons": []
+  },
+  "p177": {
+   "pour": "Foyer de 1 à 2 personnes.",
+   "cons": []
+  },
+  "p178": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": []
+  },
+  "p179": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": []
+  },
+  "p180": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail"
+   ]
+  },
+  "p181": {
+   "pour": "À voir selon la capacité (étiquette).",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p182": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p183": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail",
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p184": {
+   "pour": "À voir selon la capacité (étiquette).",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p185": {
+   "pour": "Foyer de 1 à 2 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p186": {
+   "pour": "Foyer de 1 à 2 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p187": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p188": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p189": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p190": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p191": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p192": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail",
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p193": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail",
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p194": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail",
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p195": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p196": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail",
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p197": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail",
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p198": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail",
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p199": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p200": {
+   "pour": "Foyer de 1 à 2 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller",
+    "Peu ou pas d'avis clients"
+   ]
+  },
+  "p201": {
+   "pour": "À voir selon la capacité (étiquette).",
+   "cons": []
+  },
+  "p202": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p203": {
+   "pour": "Foyer de 3 à 4 personnes.",
+   "cons": [
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p204": {
+   "pour": "Foyer de 5 personnes et plus.",
+   "cons": [
+    "Encombrant : vérifier la place sur le plan de travail",
+    "Pas de fenêtre : il faut ouvrir pour surveiller"
+   ]
+  },
+  "p205": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": [
+    "Lame à remplacer tous les 4 mois environ : un coût à prévoir"
+   ]
+  },
+  "p206": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": [
+    "Lame à remplacer tous les 4 mois environ : un coût à prévoir"
+   ]
+  },
+  "p207": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": [
+    "Lame à remplacer tous les 4 mois environ : un coût à prévoir"
+   ]
+  },
+  "p208": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p209": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p210": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p211": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p212": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p213": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p214": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": [
+    "Autonomie courte (50 min)"
+   ]
+  },
+  "p215": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p216": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p217": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p218": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": [
+    "Autonomie courte (60 min)",
+    "Avis clients moyens (2,6/5)"
+   ]
+  },
+  "p219": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": [
+    "Avis clients moyens (3,7/5)"
+   ]
+  },
+  "p220": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p221": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": [
+    "Avis clients moyens (3,7/5)"
+   ]
+  },
+  "p222": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p223": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": []
+  },
+  "p224": {
+   "pour": "Barbe et/ou cheveux à entretenir à la maison.",
+   "cons": [
+    "Autonomie courte (60 min)"
+   ]
+  },
+  "p225": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Autonomie courte (40 min)",
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p226": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Autonomie courte (40 min)",
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p227": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p228": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p229": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p230": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p231": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p232": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p233": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p234": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p235": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p236": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p237": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Autonomie courte (30 min)",
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p238": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p239": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p240": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p241": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p242": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p243": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p244": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p245": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p246": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p247": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p248": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p249": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p250": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p251": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p252": {
+   "pour": "Rasage de près, peau sensible.",
+   "cons": [
+    "Avis clients moyens (3,5/5)",
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p253": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p254": {
+   "pour": "Rasage de près du crâne.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p255": {
+   "pour": "Rasage de près du crâne.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p256": {
+   "pour": "Rasage de près du crâne.",
+   "cons": [
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p257": {
+   "pour": "Rasage de près, visage aux courbes marquées.",
+   "cons": [
+    "Avis clients moyens (3,7/5)",
+    "Têtes de rechange à prévoir (environ tous les 12 à 18 mois)"
+   ]
+  },
+  "p258": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": [
+    "Sans système anti-douleur",
+    "Non étanche"
+   ]
+  },
+  "p259": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": [
+    "Jambes uniquement",
+    "Non étanche"
+   ]
+  },
+  "p260": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": [
+    "Filaire : moins pratique",
+    "Non étanche"
+   ]
+  },
+  "p261": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": [
+    "Filaire",
+    "Non étanche"
+   ]
+  },
+  "p262": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": [
+    "Non étanche",
+    "20 pincettes seulement"
+   ]
+  },
+  "p263": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p264": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p265": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": [
+    "Peu d'avis"
+   ]
+  },
+  "p266": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p267": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p268": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p269": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": [
+    "Peu d'avis"
+   ]
+  },
+  "p270": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p271": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": [
+    "Autonomie courte (30 min)"
+   ]
+  },
+  "p272": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p273": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p274": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p275": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p276": {
+   "pour": "Épilation à la racine, peau lisse 3 à 4 semaines.",
+   "cons": []
+  },
+  "p277": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p278": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p279": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p280": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p281": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p282": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p283": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p284": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p285": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p286": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p287": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p288": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p289": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p290": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p291": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p292": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p293": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p294": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température",
+    "Petite contenance (0,8 L)"
+   ]
+  },
+  "p295": {
+   "pour": "Eau chaude au quotidien.",
+   "cons": [
+    "Pas de réglage de température"
+   ]
+  },
+  "p296": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p297": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p298": {
+   "pour": "Thé, tisane, eau chaude.",
+   "cons": []
+  },
+  "p299": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p300": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p301": {
+   "pour": "Pain de mie et tranches longues.",
+   "cons": [
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p302": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p303": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": []
+  },
+  "p304": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p305": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p306": {
+   "pour": "Pain de mie et tranches longues.",
+   "cons": [
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p307": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement"
+   ]
+  },
+  "p308": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p309": {
+   "pour": "Pain de mie et tranches longues.",
+   "cons": [
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p310": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p311": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p312": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p313": {
+   "pour": "Pain de mie et tranches longues.",
+   "cons": [
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p314": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p315": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement"
+   ]
+  },
+  "p316": {
+   "pour": "Pain de mie et tranches longues.",
+   "cons": [
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p317": {
+   "pour": "Pain de mie et tranches longues.",
+   "cons": []
+  },
+  "p318": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p319": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement"
+   ]
+  },
+  "p320": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement"
+   ]
+  },
+  "p321": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement"
+   ]
+  },
+  "p322": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement"
+   ]
+  },
+  "p323": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "2 toasts seulement",
+    "Pas de grille viennoiseries/baguette"
+   ]
+  },
+  "p324": {
+   "pour": "Petit-déjeuner au quotidien.",
+   "cons": [
+    "Pas de grille viennoiseries/baguette"
+   ]
   }
  },
  "objections": [
@@ -2002,7 +2910,7 @@
    "crit": [
     {
      "n": "Réglage de la température",
-     "k": "",
+     "k": "temp",
      "look": "Fiche ou boîte : températures réglables (°C), maintien au chaud.",
      "rep": "Sans réglage : 100 °C · avec : 40 à 100 °C (thé vert, biberon)",
      "why": "Le vrai argument de montée en gamme."
@@ -2023,7 +2931,7 @@
     },
     {
      "n": "Matériaux",
-     "k": "",
+     "k": "matiere",
      "look": "Fiche : inox, verre, plastique sans BPA.",
      "rep": "Inox : robuste · verre : on voit l'eau",
      "why": "Goût de plastique : argument pour l'inox ou le verre."
@@ -2201,10 +3109,17 @@
     },
     {
      "n": "Hublot et fonctions",
-     "k": "",
+     "k": "fenetre",
      "look": "Fiche : hublot, nombre de fonctions (rôtir, déshydrater…).",
      "rep": "Hublot = on surveille sans ouvrir",
      "why": "Confort au quotidien."
+    },
+    {
+     "n": "Fonction vapeur",
+     "k": "vapeur",
+     "look": "Fiche : « vapeur » (Philips Série 5000, Dreame Tasti).",
+     "rep": "Vapeur = légumes et poisson moelleux en plus du croustillant",
+     "why": "Le vrai argument de montée en gamme chez Philips."
     },
     {
      "n": "Revêtement",
@@ -2346,46 +3261,169 @@
    ],
    "piege": "Promettre un résultat de coiffeur dès la première utilisation : il faut un peu de pratique."
   },
-  "beaute|Rasoir / tondeuse": {
-   "q": "« Pour le visage, la barbe, le corps ? Rasage de près ou barbe courte ? »",
+  "beaute|Tondeuse": {
+   "q": "« Barbe courte, barbe longue, ou aussi les cheveux et le corps ? »",
    "crit": [
     {
-     "n": "Usage",
-     "k": "",
-     "look": "Boîte : rasoir, tondeuse barbe, multistyle.",
-     "rep": "Rasoir = rasage de près · tondeuse = barbe courte réglable · multistyle = tout",
-     "why": "Premier tri."
+     "n": "Précision",
+     "k": "precision",
+     "look": "Fiche : précision de coupe (mm).",
+     "rep": "0,2 mm : barbe de 3 jours très nette · 1 mm : entretien simple",
+     "why": "Le critère qui fait la différence sur une barbe courte."
     },
     {
-     "n": "Têtes et lames",
-     "k": "",
-     "look": "Fiche : têtes rotatives ou grille, lames auto-affûtées.",
-     "rep": "Rotatif : contours · grille : rasage précis",
-     "why": "Selon l'habitude du client."
-    },
-    {
-     "n": "Sec et humide",
-     "k": "",
-     "look": "Fiche : « wet & dry », étanche.",
-     "rep": "Utilisable sous la douche, avec mousse",
-     "why": "Peaux sensibles."
+     "n": "Hauteurs et sabots",
+     "k": "hauteurs",
+     "look": "Fiche : nombre de hauteurs, de sabots.",
+     "rep": "Moins de 10 : barbe simple · 20 et plus : longueur au millimètre",
+     "why": "Plus de sabots = plus d'usages (cheveux, corps)."
     },
     {
      "n": "Autonomie",
+     "k": "autonomie",
+     "look": "Fiche : autonomie (min) et temps de charge.",
+     "rep": "60 min : 2 à 3 semaines · 120 min et plus : on oublie le chargeur",
+     "why": "Charge en 8 h = on attend la veille au soir."
+    },
+    {
+     "n": "Étanche / lavable",
+     "k": "lavable",
+     "look": "Fiche : « étanche », « entièrement lavable ».",
+     "rep": "Étanche = sous la douche · lames lavables = rinçage seul",
+     "why": "Hygiène et confort."
+    },
+    {
+     "n": "OneBlade ou multigroom",
      "k": "",
-     "look": "Fiche : autonomie (min), charge rapide.",
-     "rep": "60 min et plus = plusieurs semaines",
+     "look": "Boîte : OneBlade (lame unique) ou tondeuse classique.",
+     "rep": "OneBlade = tond + rase + contours, mais lame à changer · multigroom = tout le corps",
+     "why": "Le coût des lames OneBlade est à annoncer."
+    }
+   ],
+   "piege": "Vendre un kit 12 sabots à quelqu'un qui n'entretient que sa barbe : il paiera pour rien."
+  },
+  "beaute|Rasoir": {
+   "q": "« Vous vous rasez tous les jours ? Peau sensible ? Barbe dure ? »",
+   "crit": [
+    {
+     "n": "Grille ou rotatif",
+     "k": "tete",
+     "look": "Boîte : têtes rotatives (Philips) ou grille (Braun, Panasonic).",
+     "rep": "Rotatif : suit les courbes, peau sensible · grille : rasage très près, lignes nettes",
+     "why": "Le premier tri, selon l'habitude du client."
+    },
+    {
+     "n": "Nombre de lames",
+     "k": "",
+     "look": "Fiche : 3, 5, 6 lames (grille).",
+     "rep": "Plus de lames = moins de passages sur barbe dense",
+     "why": "Barbe dure ou dense."
+    },
+    {
+     "n": "Autonomie",
+     "k": "autonomie",
+     "look": "Fiche : autonomie (min).",
+     "rep": "40 min : 2 semaines · 60 min : 3 semaines",
      "why": "Voyages."
+    },
+    {
+     "n": "Station de nettoyage",
+     "k": "station",
+     "look": "Boîte : Clean&Charge, station.",
+     "rep": "La station nettoie, lubrifie et recharge",
+     "why": "Rasoir toujours propre, têtes qui durent plus."
+    },
+    {
+     "n": "Têtes de rechange",
+     "k": "",
+     "look": "Rayon accessoires : prix de la tête.",
+     "rep": "Changer tous les 12 à 18 mois",
+     "why": "Coût caché à annoncer honnêtement."
+    }
+   ],
+   "piege": "Faire passer un client habitué au rotatif sur une grille sans le prévenir : 2 à 3 semaines d'adaptation."
+  },
+  "beaute|Épilateur": {
+   "q": "« Vous avez déjà utilisé un épilateur ? Sous la douche ou à sec ? Quelles zones ? »",
+   "crit": [
+    {
+     "n": "Étanche",
+     "k": "etanche",
+     "look": "Fiche : « étanche », « Wet & Dry ».",
+     "rep": "Sous l'eau chaude, l'épilation fait moins mal",
+     "why": "L'argument n°1 pour une première fois."
+    },
+    {
+     "n": "Pincettes",
+     "k": "pincettes",
+     "look": "Fiche : nombre de pincettes.",
+     "rep": "20 : entrée de gamme · 40 et plus : moins de passages",
+     "why": "Plus rapide."
+    },
+    {
+     "n": "Anti-douleur",
+     "k": "",
+     "look": "Fiche : rouleaux massants, billes de massage.",
+     "rep": "Massent la peau pour atténuer la sensation",
+     "why": "Rassure les débutantes."
+    },
+    {
+     "n": "Tête flexible / lumière",
+     "k": "",
+     "look": "Fiche : 3D Flex, Smart Light.",
+     "rep": "Tête flexible : genoux, chevilles · lumière : poils fins",
+     "why": "Confort et précision."
     },
     {
      "n": "Accessoires",
      "k": "",
-     "look": "Boîte : sabots, station de nettoyage.",
-     "rep": "Station = nettoie et lubrifie",
-     "why": "Confort et durée de vie."
+     "look": "Boîte : tête rasoir, sabots, tête visage.",
+     "rep": "Tête rasoir = aisselles et maillot sans douleur",
+     "why": "Plusieurs zones, un seul appareil."
     }
    ],
-   "piege": "Oublier le coût des têtes ou lames de rechange."
+   "piege": "Promettre « sans douleur » : la première fois fait mal, ça s'atténue au fil des séances."
+  },
+  "cafe|Grille-pain": {
+   "q": "« Pain de mie ou grandes tranches de pain de boulangerie ? Combien de toasts le matin ? »",
+   "crit": [
+    {
+     "n": "Fentes",
+     "k": "fentes",
+     "look": "Fiche : 2 fentes, 1 longue fente, fentes larges.",
+     "rep": "Longue fente : pain de campagne · fentes larges : tranches épaisses",
+     "why": "Le premier tri selon le pain acheté."
+    },
+    {
+     "n": "Nombre de toasts",
+     "k": "toasts",
+     "look": "Fiche : 2 ou 4 toasts.",
+     "rep": "4 toasts = famille pressée",
+     "why": "Tout le monde mange en même temps."
+    },
+    {
+     "n": "Fonctions",
+     "k": "fonctions",
+     "look": "Fiche : décongélation, réchauffage, grille viennoiseries, bagel.",
+     "rep": "Grille viennoiseries = croissants le dimanche",
+     "why": "Le vrai confort au quotidien."
+    },
+    {
+     "n": "Niveaux de dorage",
+     "k": "positions",
+     "look": "Fiche : nombre de positions.",
+     "rep": "6 à 9 niveaux suffisent · Magimix Vision : on voit dorer",
+     "why": "Toast brûlé = client frustré."
+    },
+    {
+     "n": "Design",
+     "k": "",
+     "look": "Coloris, assorti à une bouilloire.",
+     "rep": "Smeg, Sweiss, Moulinex Soleil, Philips Série 3000 existent en duo",
+     "why": "Proposer la bouilloire assortie : vente additionnelle facile."
+    }
+   ],
+   "piege": "Oublier de proposer la bouilloire assortie : c'est souvent une deuxième vente évidente."
   }
  }
 }
