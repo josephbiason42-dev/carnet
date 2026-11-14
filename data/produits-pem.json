@@ -345,7 +345,8 @@
    "seed": true,
    "uniq": "Fait aussi des boissons froides : Cold Brew et mousse de lait froide",
    "releve": "2026-11-12",
-   "uniqUse": "L'été, il se fait un café glacé à la maison au lieu de l'acheter dehors"
+   "uniqUse": "L'été, il se fait un café glacé à la maison au lieu de l'acheter dehors",
+   "ref": "1187948"
   },
   {
    "id": "p016",
@@ -933,7 +934,12 @@
    "incl": "Embouts magnétiques selon la version (ex. diffuseur Wave+Curl, concentrateur, embout lissant, peigne, embout de séchage doux) ; vérifier le contenu de la boîte en rayon",
    "uniq": "Un capteur mesure la distance avec la tête et baisse la chaleur près du cuir chevelu ; il reconnaît chaque embout et retrouve les derniers réglages utilisés",
    "uniqUse": "Pas besoin de toucher aux boutons : on change d'embout et le séchoir se règle tout seul, sans brûler le cuir chevelu",
-   "releve": "2026-11-14"
+   "releve": "2026-11-14",
+   "ref": "1220099 / 1220025 / 1239690 / 1239691 / 1246147",
+   "avis": {
+    "note": 4.2,
+    "n": 4
+   }
   },
   {
    "id": "p046",
@@ -987,7 +993,7 @@
    "cat": "beaute",
    "brand": "Shark",
    "model": "SpeedStyle Pro FLEX 4-en-1 HD542EU",
-   "price": 187,
+   "price": 199.99,
    "specs": {
     "type": "Sèche-cheveux",
     "puissance": 1700,
@@ -1011,7 +1017,12 @@
    "releve": "2026-11-14",
    "incl": "Turbo concentrateur, brosse QuickSmooth, diffuseur DefrizzFast, outil de finition FrizzFighter",
    "uniq": "Sa poignée se plie pour réduire sa taille de moitié, et il règle automatiquement chaleur et débit selon l'embout",
-   "uniqUse": "Facile à ranger ou à emporter en voyage, avec 4 embouts pour sécher, lisser ou définir les boucles"
+   "uniqUse": "Facile à ranger ou à emporter en voyage, avec 4 embouts pour sécher, lisser ou définir les boucles",
+   "ref": "1217382",
+   "avis": {
+    "note": 4.8,
+    "n": 19
+   }
   },
   {
    "id": "p049",
@@ -2057,7 +2068,8 @@
     "n": 265
    },
    "uniq": "La Dinamica la plus simple : 4 cafés, dont un vrai café long",
-   "uniqUse": "Pour le buveur de café noir qui veut juste un bon expresso ou un café long"
+   "uniqUse": "Pour le buveur de café noir qui veut juste un bon expresso ou un café long",
+   "ref": "1066734"
   },
   {
    "id": "p084",
@@ -2084,7 +2096,8 @@
     "n": 32
    },
    "uniq": "Le lait en un clic au prix d'une machine d'entrée de gamme",
-   "uniqUse": "Le cappuccino du matin sans manipuler une buse vapeur"
+   "uniqUse": "Le cappuccino du matin sans manipuler une buse vapeur",
+   "ref": "1223690"
   },
   {
    "id": "p085",
@@ -2117,7 +2130,8 @@
     "n": 79
    },
    "uniq": "La machine à grain De'Longhi la moins chère du rayon",
-   "uniqUse": "Passer des capsules au grain sans se ruiner, pour un café noir au quotidien"
+   "uniqUse": "Passer des capsules au grain sans se ruiner, pour un café noir au quotidien",
+   "ref": "1182549"
   },
   {
    "id": "p086",
@@ -2147,7 +2161,8 @@
     "n": 9
    },
    "uniq": "Une Magnifica S avec buse Cappuccino : mousse plus facile à réussir",
-   "uniqUse": "Il réussit sa mousse de lait même sans être barista"
+   "uniqUse": "Il réussit sa mousse de lait même sans être barista",
+   "ref": "1240228"
   },
   {
    "id": "p087",
@@ -2232,7 +2247,8 @@
     "n": 79
    },
    "uniq": "La machine à grain la moins chère du rayon",
-   "uniqUse": "Découvrir le café en grain avec le plus petit budget"
+   "uniqUse": "Découvrir le café en grain avec le plus petit budget",
+   "ref": "1169352"
   },
   {
    "id": "p090",
@@ -2261,7 +2277,8 @@
     "n": 26
    },
    "uniq": "Jura suisse sans lait : pour les puristes du café noir",
-   "uniqUse": "Un expresso parfait tous les jours, pour qui ne boit jamais de lait"
+   "uniqUse": "Un expresso parfait tous les jours, pour qui ne boit jamais de lait",
+   "ref": "1170027"
   },
   {
    "id": "p091",
@@ -2344,7 +2361,8 @@
     "n": 18
    },
    "uniq": "GrindIQ : règle seule la mouture, et fait expresso, filtre et cold brew",
-   "uniqUse": "Il met n'importe quel café et la machine trouve le bon réglage ; café filtre le week-end, expresso en semaine"
+   "uniqUse": "Il met n'importe quel café et la machine trouve le bon réglage ; café filtre le week-end, expresso en semaine",
+   "ref": "1237076"
   },
   {
    "id": "p094",
@@ -2462,7 +2480,8 @@
     "n": 37
    },
    "uniq": "Le lait automatique Krups au prix doux",
-   "uniqUse": "Le café au lait automatique pour un budget serré"
+   "uniqUse": "Le café au lait automatique pour un budget serré",
+   "ref": "1236920"
   },
   {
    "id": "p098",
@@ -2494,7 +2513,8 @@
     "n": 71
    },
    "uniq": "Carafe LatteCrema Hot qui se range au frigo, 11 recettes",
-   "uniqUse": "Le lait reste au frigo dans sa carafe : on la sort, on se sert, on la range"
+   "uniqUse": "Le lait reste au frigo dans sa carafe : on la sort, on se sert, on la range",
+   "ref": "1213619"
   },
   {
    "id": "p099",
@@ -2755,7 +2775,8 @@
     "n": 40
    },
    "uniq": "18 recettes sur écran tactile, parmi les mieux notées",
-   "uniqUse": "Toutes les boissons sur un écran, sans chercher dans les menus"
+   "uniqUse": "Toutes les boissons sur un écran, sans chercher dans les menus",
+   "ref": "1209041"
   },
   {
    "id": "p108",
@@ -2815,7 +2836,8 @@
     "n": 12
    },
    "uniq": "Bean Switch : 2 bacs à grains interchangeables, prix plus doux que la Rivelia",
-   "uniqUse": "Changer de café ou passer au déca le soir, en gardant 2 grains différents"
+   "uniqUse": "Changer de café ou passer au déca le soir, en gardant 2 grains différents",
+   "ref": "1240229"
   },
   {
    "id": "p110",
@@ -3214,6 +3236,633 @@
    "incl": "Couvercle airfryer",
    "releve": "2026-11-09",
    "seed": true
+  },
+  {
+   "id": "p125",
+   "cat": "beaute",
+   "brand": "Bellissima",
+   "model": "K9 2500",
+   "price": 29.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2300,
+    "moteur": "Classique (DC)",
+    "reglages": "2 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin, diffuseur large",
+    "ionique": "oui",
+    "poids": 560
+   },
+   "args": [
+    "2 300 W et ionique pour moins de 30 €",
+    "Livré avec concentrateur et diffuseur",
+    "4,7/5 sur 48 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1193441",
+   "uniq": "Le plus puissant des petits prix : 2 300 W, ionique, diffuseur fourni",
+   "uniqUse": "Un séchage rapide au quotidien sans se ruiner, même avec des cheveux bouclés grâce au diffuseur",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin, diffuseur large",
+   "avis": {
+    "note": 4.7,
+    "n": 48
+   }
+  },
+  {
+   "id": "p126",
+   "cat": "beaute",
+   "brand": "ghd",
+   "model": "Professionnel Air",
+   "price": 135.2,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2100,
+    "moteur": "AC (professionnel)",
+    "reglages": "2 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin"
+   },
+   "args": [
+    "Moteur AC professionnel, la marque des salons de coiffure",
+    "2 100 W"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "9000923621",
+   "uniq": "Un séchoir de salon de coiffure : moteur AC professionnel signé ghd",
+   "uniqUse": "Pour un brushing comme chez le coiffeur, avec un appareil fait pour durer",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin · vendu par un partenaire (marketplace)"
+  },
+  {
+   "id": "p127",
+   "cat": "beaute",
+   "brand": "Dyson",
+   "model": "Supersonic R",
+   "price": 399.0,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 1700,
+    "moteur": "Numérique (sans balais)",
+    "reglages": "3 vitesses, 4 températures + air froid",
+    "embouts": "Concentrateur fin, diffuseur large (versions raides à ondulés ou bouclés à frisés)",
+    "poids": 800
+   },
+   "args": [
+    "Le dernier Dyson : moteur numérique, 1 700 W",
+    "Existe en version cheveux raides à ondulés ou bouclés à frisés, avec les embouts adaptés"
+   ],
+   "obj": "Différence avec le Nural → vérifier sur les fiches les nouveautés du R ; le Nural reste le seul avec le capteur de distance mis en avant",
+   "acc": "",
+   "seed": true,
+   "ref": "1220098 / 1220024",
+   "uniq": "La nouvelle génération Supersonic, déclinée selon le type de cheveux (raides à ondulés, ou bouclés à frisés)",
+   "uniqUse": "Le client choisit la version faite pour ses cheveux, avec les bons embouts dans la boîte",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin, diffuseur large (versions raides à ondulés ou bouclés à frisés)",
+   "avis": {
+    "note": 5,
+    "n": 4
+   }
+  },
+  {
+   "id": "p128",
+   "cat": "beaute",
+   "brand": "Calor",
+   "model": "Pro Expert Power Style CV8840C0",
+   "price": 49.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2200,
+    "moteur": "AC (professionnel)",
+    "reglages": "2 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin, diffuseur large",
+    "ionique": "oui",
+    "poids": 830
+   },
+   "args": [
+    "Moteur AC professionnel à 50 € : fait pour durer",
+    "Ionique, 2 200 W",
+    "Concentrateur et diffuseur fournis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1177510",
+   "uniq": "Un moteur AC professionnel, d'habitude réservé aux modèles plus chers, à moins de 50 €",
+   "uniqUse": "Un séchoir robuste pour les cheveux épais ou longs, séchés tous les jours",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin, diffuseur large",
+   "avis": {
+    "note": 4.8,
+    "n": 10
+   }
+  },
+  {
+   "id": "p129",
+   "cat": "beaute",
+   "brand": "BaByliss",
+   "model": "5918PE Sapphire",
+   "price": 34.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2000,
+    "moteur": "DC professionnel",
+    "reglages": "2 vitesses, 3 températures + air froid",
+    "embouts": "Diffuseur large",
+    "poids": 620
+   },
+   "args": [
+    "2 000 W, moteur DC professionnel",
+    "À moitié prix (69,99 € → 34,99 €)"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1247733",
+   "uniq": "Un moteur DC « pro » BaByliss à petit prix, avec diffuseur",
+   "uniqUse": "Pour sécher et définir les boucles sans gros budget",
+   "releve": "2026-11-14",
+   "incl": "Diffuseur large"
+  },
+  {
+   "id": "p130",
+   "cat": "beaute",
+   "brand": "Bellissima",
+   "model": "Numérique Ceramisonic",
+   "price": 69.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 1700,
+    "moteur": "Numérique (sans balais)",
+    "reglages": "3 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin, diffuseur large",
+    "ionique": "oui",
+    "poids": 280
+   },
+   "args": [
+    "Moteur numérique à moins de 70 €",
+    "Ultra léger : 280 g",
+    "Ionique, concentrateur et diffuseur fournis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1233740",
+   "uniq": "Un moteur numérique ultra léger (280 g) à moins de 70 €",
+   "uniqUse": "Moins de fatigue au bras pour un séchage quotidien, pour le prix d'un séchoir classique",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin, diffuseur large",
+   "avis": {
+    "note": 4.7,
+    "n": 6
+   }
+  },
+  {
+   "id": "p131",
+   "cat": "beaute",
+   "brand": "Saint Algue",
+   "model": "Curls Definer",
+   "price": 39.9,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 1700,
+    "moteur": "Classique (DC)",
+    "reglages": "3 vitesses, 3 températures + air froid",
+    "embouts": "Diffuseur large, peigne lisseur (2 têtes)",
+    "poids": 820
+   },
+   "args": [
+    "Pensé pour les cheveux bouclés : diffuseur et peigne lisseur",
+    "3 vitesses, 3 températures"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1228886",
+   "uniq": "Conçu pour les boucles : diffuseur large et peigne lisseur à deux têtes",
+   "uniqUse": "Définir ses boucles à la maison sans frisottis",
+   "releve": "2026-11-14",
+   "incl": "Diffuseur large, peigne lisseur (2 têtes)"
+  },
+  {
+   "id": "p132",
+   "cat": "beaute",
+   "brand": "Bellissima",
+   "model": "Diffon Ion Ceramic",
+   "price": 44.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 700,
+    "moteur": "Classique (DC)",
+    "reglages": "2 vitesses, 2 températures + air froid",
+    "embouts": "Diffuseur large",
+    "ionique": "oui",
+    "poids": 500
+   },
+   "args": [
+    "Diffuseur intégré : le séchoir est fait pour les boucles",
+    "Ionique, chaleur douce"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1221079",
+   "uniq": "Un séchoir-diffuseur : tout l'appareil est pensé pour sécher les boucles en douceur",
+   "uniqUse": "Des boucles définies sans les casser, sur cheveux bouclés ou frisés",
+   "releve": "2026-11-14",
+   "incl": "Diffuseur large",
+   "avis": {
+    "note": 4,
+    "n": 5
+   }
+  },
+  {
+   "id": "p133",
+   "cat": "beaute",
+   "brand": "Calor",
+   "model": "Studio Dry Karl Lagerfeld CV581LC0",
+   "price": 24.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2100,
+    "moteur": "Classique (DC)",
+    "reglages": "2 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin",
+    "ionique": "oui",
+    "poids": 590
+   },
+   "args": [
+    "Le moins cher des ioniques : moins de 25 €",
+    "Design Karl Lagerfeld, idéal en cadeau"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1177508",
+   "uniq": "Un séchoir ionique griffé Karl Lagerfeld à moins de 25 €",
+   "uniqUse": "Un petit cadeau qui fait plaisir, ou un séchoir d'appoint",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin",
+   "avis": {
+    "note": 4.4,
+    "n": 38
+   }
+  },
+  {
+   "id": "p134",
+   "cat": "beaute",
+   "brand": "Valera",
+   "model": "Performer Light Pro 2000 Swiss Selection",
+   "price": 54.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2000,
+    "moteur": "AC et DC",
+    "reglages": "2 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin, diffuseur large",
+    "poids": 470
+   },
+   "args": [
+    "Marque suisse spécialiste des salons",
+    "Léger : 470 g",
+    "Concentrateur et diffuseur fournis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1240436",
+   "uniq": "Une marque suisse de salon de coiffure, légère (470 g), en promotion à -45 %",
+   "uniqUse": "La qualité pro à prix accessible pendant la promotion",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin, diffuseur large",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p135",
+   "cat": "beaute",
+   "brand": "Panasonic",
+   "model": "EH-NA7N",
+   "price": 89.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 1600,
+    "moteur": "Classique (DC)",
+    "reglages": "1 vitesse, 3 températures + air froid",
+    "embouts": "Concentrateur fin, diffuseur large",
+    "ionique": "oui (nanoe)",
+    "poids": 560
+   },
+   "args": [
+    "Technologie nanoe : des particules d'eau qui hydratent le cheveu",
+    "Concentrateur et diffuseur fournis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1237856",
+   "uniq": "La technologie nanoe de Panasonic, qui apporte de l'hydratation au cheveu pendant le séchage",
+   "uniqUse": "Des cheveux plus doux et moins secs après chaque séchage, sur cheveux abîmés ou colorés",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin, diffuseur large",
+   "avis": {
+    "note": 4.2,
+    "n": 5
+   }
+  },
+  {
+   "id": "p136",
+   "cat": "beaute",
+   "brand": "Bellissima",
+   "model": "Numérique Gemini 11918",
+   "price": 79.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 1400,
+    "moteur": "Numérique (sans balais)",
+    "reglages": "3 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin, diffuseur large",
+    "ionique": "oui",
+    "poids": 330
+   },
+   "args": [
+    "Moteur numérique léger (330 g)",
+    "Ionique, concentrateur et diffuseur"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1210261",
+   "uniq": "Moteur numérique et 330 g, avec diffuseur, à moins de 80 €",
+   "uniqUse": "Léger et rapide pour un séchage quotidien",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin, diffuseur large",
+   "avis": {
+    "note": 4.5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p137",
+   "cat": "beaute",
+   "brand": "Calor",
+   "model": "Air Serenity CV1812C0",
+   "price": 29.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 1600,
+    "moteur": "Classique (DC)",
+    "reglages": "2 vitesses, 2 températures + air froid",
+    "embouts": "Concentrateur fin",
+    "poids": 460
+   },
+   "args": [
+    "Léger et simple, à moins de 30 €"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1249128",
+   "uniq": "Un séchoir simple et léger pour l'appoint",
+   "uniqUse": "Le séchoir de voyage, de la salle de sport ou de la chambre d'amis",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin"
+  },
+  {
+   "id": "p138",
+   "cat": "beaute",
+   "brand": "Italian Design",
+   "model": "Sèche-cheveux + diffuseur",
+   "price": 32.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2300,
+    "moteur": "AC (professionnel)",
+    "reglages": "2 vitesses, 3 températures + air froid",
+    "embouts": "Diffuseur large",
+    "poids": 500
+   },
+   "args": [
+    "Moteur AC, 2 300 W, diffuseur fourni"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "9000674744",
+   "uniq": "Moteur AC et 2 300 W à petit prix",
+   "uniqUse": "Un séchoir puissant pour petit budget",
+   "releve": "2026-11-14",
+   "incl": "Diffuseur large · vendu par un partenaire (marketplace)"
+  },
+  {
+   "id": "p139",
+   "cat": "beaute",
+   "brand": "Solis",
+   "model": "AirVolution 280 SE",
+   "price": 109.0,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 1600,
+    "moteur": "AC (professionnel)",
+    "reglages": "3 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin",
+    "poids": 300
+   },
+   "args": [
+    "Marque suisse, très léger : 300 g"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "9000955658",
+   "uniq": "Une marque suisse, un séchoir très léger (300 g)",
+   "uniqUse": "Confort du quotidien grâce à la légèreté",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin · vendu par un partenaire (marketplace)"
+  },
+  {
+   "id": "p140",
+   "cat": "beaute",
+   "brand": "Calor",
+   "model": "Air Motion CF8C20C0",
+   "price": 139.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 1300,
+    "moteur": "Numérique (sans balais)",
+    "reglages": "3 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin",
+    "ionique": "oui",
+    "poids": 300
+   },
+   "args": [
+    "Moteur numérique, 300 g : très léger",
+    "Ionique, 4,4/5 sur 43 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1221006",
+   "uniq": "Le moteur numérique de Calor : 300 g seulement",
+   "uniqUse": "Un séchage rapide sans fatigue au bras, pour moins de la moitié d'un Dyson",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin",
+   "avis": {
+    "note": 4.4,
+    "n": 43
+   }
+  },
+  {
+   "id": "p141",
+   "cat": "beaute",
+   "brand": "Calor",
+   "model": "Maestria CV9920C3",
+   "price": 149.99,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2000,
+    "moteur": "Numérique (sans balais)",
+    "reglages": "3 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin, diffuseur large",
+    "ionique": "oui",
+    "poids": 350
+   },
+   "args": [
+    "Moteur numérique 2 000 W, 350 g",
+    "Ionique, concentrateur et diffuseur",
+    "4,6/5 sur 37 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1214284",
+   "uniq": "Le haut de gamme Calor : moteur numérique puissant (2 000 W) et léger, avec diffuseur",
+   "uniqUse": "L'alternative à Dyson pour tous les types de cheveux, boucles comprises",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin, diffuseur large",
+   "avis": {
+    "note": 4.6,
+    "n": 37
+   }
+  },
+  {
+   "id": "p142",
+   "cat": "beaute",
+   "brand": "ghd",
+   "model": "Helios (noir, blanc, prune)",
+   "price": 183.2,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2200,
+    "moteur": "DC professionnel",
+    "reglages": "3 vitesses, 3 températures + air froid",
+    "embouts": "Concentrateur fin",
+    "ionique": "oui"
+   },
+   "args": [
+    "La marque des coiffeurs, moteur DC professionnel 2 200 W",
+    "Ionique",
+    "Plusieurs coloris"
+   ],
+   "obj": "Différence avec le ghd Speed → le Speed est plus rapide (4 vitesses) et plus cher",
+   "acc": "",
+   "seed": true,
+   "ref": "1243047 / 9000923610 / 9000923609",
+   "uniq": "Le séchoir professionnel de ghd, la marque des salons",
+   "uniqUse": "Un brushing de salon à la maison, avec une marque que les coiffeurs utilisent",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin"
+  },
+  {
+   "id": "p143",
+   "cat": "beaute",
+   "brand": "Solis",
+   "model": "AirVolution 930",
+   "price": 199.0,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 1600,
+    "moteur": "AC (professionnel)",
+    "reglages": "4 vitesses, 4 températures + air froid",
+    "embouts": "Concentrateur fin, diffuseur large",
+    "poids": 320
+   },
+   "args": [
+    "Marque suisse, 4 vitesses et 4 températures",
+    "Léger : 320 g, diffuseur fourni"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "9000955656",
+   "uniq": "Le haut de gamme Solis : 4 vitesses, 4 températures, 320 g",
+   "uniqUse": "Beaucoup de réglages pour adapter le séchage à chaque type de cheveux",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin, diffuseur large · vendu par un partenaire (marketplace)"
+  },
+  {
+   "id": "p144",
+   "cat": "beaute",
+   "brand": "ghd",
+   "model": "Speed (blanc, noir mat)",
+   "price": 299.25,
+   "specs": {
+    "type": "Sèche-cheveux",
+    "puissance": 2100,
+    "moteur": "DC professionnel",
+    "reglages": "4 vitesses, 4 températures + air froid",
+    "embouts": "Concentrateur fin",
+    "ionique": "oui"
+   },
+   "args": [
+    "Le séchoir le plus rapide de ghd",
+    "4 vitesses, 4 températures, ionique"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "9000932203 / 9000932201",
+   "uniq": "Le séchoir ultra-rapide de ghd, concurrent direct de Dyson",
+   "uniqUse": "Gagner du temps chaque matin sur des cheveux longs ou épais",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin · vendu par un partenaire (marketplace)"
+  },
+  {
+   "id": "p145",
+   "cat": "beaute",
+   "brand": "BaByliss",
+   "model": "Air Wand AS6550E",
+   "price": 129.99,
+   "specs": {
+    "type": "Multi-styler",
+    "puissance": 1600,
+    "moteur": "Numérique (sans balais)",
+    "reglages": "3 vitesses, 4 températures",
+    "embouts": "Concentrateur fin (et embouts coiffants)",
+    "ionique": "oui"
+   },
+   "args": [
+    "Sèche et coiffe : alternative abordable aux multistyles",
+    "Moteur numérique, ionique",
+    "4,2/5 sur 81 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1203550",
+   "uniq": "Un multistyler à moteur numérique à 130 €",
+   "uniqUse": "Sécher, lisser et donner du volume avec un seul appareil",
+   "releve": "2026-11-14",
+   "incl": "Concentrateur fin (et embouts coiffants)",
+   "avis": {
+    "note": 4.2,
+    "n": 81
+   }
   }
  ]
 }

@@ -93,6 +93,8 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(-
 .ref-t tr[data-id]:active td{background:var(--s3)}
 .reflink{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:2px 0 10px;font-size:.85rem;color:var(--muted)}
 .reflink button{border:1px solid var(--line2);background:var(--s1);border-radius:999px;padding:6px 11px;font-weight:700;font-size:.82rem}
+.sh-ref{margin:-4px 0 12px;font-size:.82rem;color:var(--muted)}
+.sh-ref a{color:var(--acc);font-weight:700;text-decoration:none}
 .lhead{display:flex; align-items:baseline; gap:10px; margin:14px 2px 8px}
 .lhead h1{font-size:1.4rem; margin:0; letter-spacing:-.02em}
 .lhead span{color:var(--muted); font-weight:600; font-size:.88rem}
@@ -274,7 +276,7 @@ body.has-tray .tray{bottom:calc(78px + var(--safe-b))}
   </div>
   <div class="search">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <input id="q" type="search" placeholder="Marque, modèle, usage… (ex. dyson animaux)" autocomplete="off" enterkeyhint="search" aria-label="Rechercher un produit">
+    <input id="q" type="search" placeholder="Marque, modèle, réf. Boulanger, usage…" autocomplete="off" enterkeyhint="search" aria-label="Rechercher un produit">
     <button class="clr" type="button" id="q-clr" aria-label="Effacer" hidden>×</button>
   </div>
 </div></header>
@@ -317,8 +319,8 @@ function mergeFile(list){
   if(!FILE)return list;var by={};list.forEach(function(p){by[p.id]=p});
   FILE.forEach(function(f){var d=by[f.id];
     if(!d){list.push(f);return}
-    if(f.releve&&(!d.releve||d.releve<f.releve)){["model","price","specs","args","obj","acc","incl","ean","avis","uniq","uniqUse","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}
-    else ["incl","ean","avis","uniq","uniqUse"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
+    if(f.releve&&(!d.releve||d.releve<f.releve)){["model","price","specs","args","obj","acc","incl","ean","ref","avis","uniq","uniqUse","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}
+    else ["incl","ean","ref","avis","uniq","uniqUse"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
   });
   return list;
 }
@@ -348,7 +350,7 @@ function specVal(f,v){
   return {t:String(v)};
 }
 function keySpecs(p,n){var C=PCAT[p.cat],out=[];C.f.forEach(function(f){if(out.length>=n)return;var v=specVal(f,(p.specs||{})[f[0]]);if(!v)return;if(f[2]==="bool"){if(v.cls==="yes")out.push(f[1])}else out.push(f[0]==="type"?v.t:v.t)});return out}
-function hay(p){if(!p._h)p._h=norm([p.brand,p.model,p.ean||"",PCAT[p.cat].n,PCAT[p.cat].syn,JSON.stringify(p.specs||{}),(p.args||[]).join(" "),p.price].join(" "));return p._h}
+function hay(p){if(!p._h)p._h=norm([p.brand,p.model,p.ean||"",p.ref||"",(p.ref||"").replace(/\s/g,""),PCAT[p.cat].n,PCAT[p.cat].syn,JSON.stringify(p.specs||{}),(p.args||[]).join(" "),p.price].join(" "));return p._h}
 function matches(p,q){var w=norm(q).split(/\s+/).filter(Boolean);var h=hay(p);return w.every(function(x){return h.indexOf(x)>=0})}
 function hl(t,q){var s=esc(t);if(!q)return s;norm(q).split(/\s+/).filter(function(w){return w.length>1}).forEach(function(w){var n=norm(s),i=n.indexOf(w);if(i>=0&&n.length===s.length)s=s.slice(0,i)+"<mark>"+s.slice(i,i+w.length)+"</mark>"+s.slice(i+w.length)});return s}
 function filtered(){
@@ -367,7 +369,7 @@ function filtered(){
 }
 function cardHTML(p,q){
   var ks=keySpecs(p,3);
-  return '<button type="button" class="card" data-id="'+esc(p.id)+'"><div class="c-top"><div><div class="c-brand">'+hl(p.brand||"",q)+'</div><div class="c-model">'+hl(p.model,q)+'</div></div></div>'+
+  return '<button type="button" class="card" data-id="'+esc(p.id)+'"><div class="c-top"><div><div class="c-brand">'+hl(p.brand||"",q)+'</div><div class="c-model">'+hl(p.model,q)+'</div>'+(p.ref&&q&&/\d{5}/.test(q)?'<div class="c-brand">Réf. '+hl(p.ref,q)+'</div>':'')+'</div></div>'+
     (ks.length?'<div class="c-specs">'+ks.map(function(s){return '<span>'+esc(s)+'</span>'}).join("")+'</div>':'')+
     (p.args&&p.args[0]?'<div class="c-arg">'+hl(p.args[0],q)+'</div>':'')+(p.avis&&p.avis.n?'<div class="c-rate">★ '+nf.format(p.avis.note)+' <span>('+p.avis.n+' avis)</span>'+((p.specs||{}).repar?' · 🔧 '+nf.format(p.specs.repar)+'/10':'')+'</div>':'')+(ui.fav[p.id]?'<span class="c-fav" aria-label="Favori">★</span>':'')+'</button>';
 }
@@ -607,6 +609,7 @@ function sheetHTML(p){
   var C=PCAT[p.cat],sp=p.specs||{},h="";
   h+='<div class="sh-cat">'+C.ic+' '+esc(C.n)+(sp.type?' · '+esc(sp.type):'')+'<span class="client-tag">Mode client</span></div>';
   h+='<h1 class="sh-title"><small>'+esc(p.brand||"")+'</small>'+esc(p.model)+'</h1>';
+  if(p.ref)h+='<div class="sh-ref">Réf. Boulanger : '+String(p.ref).split(/\s*\/\s*/).map(function(r){return '<a href="https://www.boulanger.com/ref/'+encodeURIComponent(r)+'" target="_blank" rel="noopener">'+esc(r)+'</a>'}).join(" · ")+'</div>';
   var sp0=p.specs||{};
   if((p.avis&&p.avis.n)||sp0.repar!=null)h+='<div class="badges">'+(p.avis&&p.avis.n?'<span class="bdg">★ '+nf.format(p.avis.note)+' / 5 · '+p.avis.n+' avis</span>':'')+(sp0.repar!=null?'<span class="bdg rp" style="--rc:'+(sp0.repar>=8?"#22c55e":sp0.repar>=6?"#a3e635":"#facc15")+'">🔧 Réparabilité '+nf.format(sp0.repar)+'/10</span>':'')+(sp0.pieces?'<span class="bdg">Pièces : '+esc(sp0.pieces)+'</span>':'')+'</div>';
   var xp=xP(p),xt=xT(p);

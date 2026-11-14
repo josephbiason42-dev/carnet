@@ -988,6 +988,136 @@
    "cons": [
     "Brassage manuel en cours de cuisson"
    ]
+  },
+  "p125": {
+   "pour": "Petit budget, étudiant, deuxième séchoir.",
+   "cons": [
+    "Moteur classique : plus bruyant qu'un moteur numérique"
+   ]
+  },
+  "p126": {
+   "pour": "Client exigeant, habitué des salons, qui veut un moteur pro durable.",
+   "cons": [
+    "Plus lourd qu'un moteur numérique",
+    "Vendu par un partenaire : vérifier la disponibilité"
+   ]
+  },
+  "p127": {
+   "pour": "Client Dyson qui veut le modèle le plus récent, choisi selon son type de cheveux.",
+   "cons": [
+    "Le plus cher du rayon",
+    "Plus lourd que le Nural selon la fiche (800 g contre 660 g)"
+   ]
+  },
+  "p128": {
+   "pour": "Cheveux épais ou longs, usage intensif, petit budget.",
+   "cons": [
+    "Assez lourd : 830 g"
+   ]
+  },
+  "p129": {
+   "pour": "Petit budget, cheveux bouclés (diffuseur).",
+   "cons": [
+    "Ionique non indiqué sur la fiche"
+   ]
+  },
+  "p130": {
+   "pour": "Client qui veut la légèreté d'un moteur numérique sans payer un Dyson.",
+   "cons": [
+    "Marque moins connue : rassurer avec les avis (4,7/5)"
+   ]
+  },
+  "p131": {
+   "pour": "Cheveux bouclés ou frisés, petit budget.",
+   "cons": [
+    "Assez lourd : 820 g",
+    "Pas ionique selon la fiche"
+   ]
+  },
+  "p132": {
+   "pour": "Cheveux bouclés qui veulent un séchage doux, en complément d'un séchoir classique.",
+   "cons": [
+    "700 W : plus lent qu'un séchoir classique, ce n'est pas un séchoir principal pour cheveux longs"
+   ]
+  },
+  "p133": {
+   "pour": "Cadeau, petit budget, appoint.",
+   "cons": [
+    "Pas de diffuseur fourni"
+   ]
+  },
+  "p134": {
+   "pour": "Client qui veut une marque de salon sans payer un ghd.",
+   "cons": [
+    "Marque peu connue du grand public : la présenter comme spécialiste pro"
+   ]
+  },
+  "p135": {
+   "pour": "Cheveux secs, abîmés ou colorés.",
+   "cons": [
+    "Une seule vitesse selon la fiche"
+   ]
+  },
+  "p136": {
+   "pour": "Client qui veut un moteur numérique abordable avec diffuseur.",
+   "cons": [
+    "Peu d'avis pour l'instant"
+   ]
+  },
+  "p137": {
+   "pour": "Usage occasionnel, voyage, petit budget.",
+   "cons": [
+    "Seulement 1 600 W et 2 températures"
+   ]
+  },
+  "p138": {
+   "pour": "Petit budget, vendu par un partenaire.",
+   "cons": [
+    "Vendu par un partenaire (TBC Beauty) : délais et SAV à vérifier"
+   ]
+  },
+  "p139": {
+   "pour": "Client qui veut un séchoir léger de marque premium.",
+   "cons": [
+    "Vendu par un partenaire (Solis) : délais et SAV à vérifier"
+   ]
+  },
+  "p140": {
+   "pour": "Client qui veut un moteur numérique de grande marque, sans le prix d'un Dyson.",
+   "cons": [
+    "Pas de diffuseur fourni"
+   ]
+  },
+  "p141": {
+   "pour": "Client qui hésite avec Dyson et veut un diffuseur, budget autour de 150 €.",
+   "cons": [
+    "Marque moins prestigieuse que Dyson : s'appuyer sur les avis"
+   ]
+  },
+  "p142": {
+   "pour": "Client fidèle à ghd ou habitué des salons.",
+   "cons": [
+    "Le blanc est vendu par Boulanger ; le noir et le prune par un partenaire : vérifier"
+   ]
+  },
+  "p143": {
+   "pour": "Client qui veut beaucoup de réglages dans un appareil léger.",
+   "cons": [
+    "Vendu par un partenaire (Solis) : délais et SAV à vérifier"
+   ]
+  },
+  "p144": {
+   "pour": "Client qui hésite entre Dyson et ghd, cheveux longs.",
+   "cons": [
+    "Vendu par un partenaire : vérifier",
+    "Prix proche d'un Dyson"
+   ]
+  },
+  "p145": {
+   "pour": "Client qui veut un multistyler sans payer un Dyson Airwrap ou un Shark FlexStyle.",
+   "cons": [
+    "Vérifier les embouts dans la boîte"
+   ]
   }
  },
  "objections": [
