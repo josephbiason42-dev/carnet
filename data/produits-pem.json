@@ -45,7 +45,7 @@
    "cat": "aspi",
    "brand": "Dyson",
    "model": "V16 Piston Animal Submarine",
-   "price": 849,
+   "price": 699.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 70,
@@ -62,7 +62,13 @@
    ],
    "obj": "Si le client a surtout des tapis, la version sans Submarine suffit (150 € de moins)",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14",
+   "ref": "1226622",
+   "avis": {
+    "note": 2.9,
+    "n": 8
+   }
   },
   {
    "id": "p003",
@@ -115,7 +121,7 @@
    "cat": "aspi",
    "brand": "Dyson",
    "model": "V8 Cyclone",
-   "price": 249,
+   "price": 249.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 60,
@@ -137,23 +143,26 @@
    "seed": true,
    "ean": "5025155136195",
    "avis": {
-    "note": 4.5,
+    "note": 4.4,
     "n": 35
    },
-   "releve": "2026-11-09"
+   "releve": "2026-11-14",
+   "ref": "1239158"
   },
   {
    "id": "p006",
    "cat": "aspi",
    "brand": "Rowenta",
-   "model": "X-Force Flex 12.60 Aqua",
-   "price": null,
+   "model": "X-Force Flex 12.60 Aqua 4-en-1 RH98C0WO",
+   "price": 399.99,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 45,
     "hepa": "non",
     "animaux": "oui",
-    "station": "non"
+    "station": "non",
+    "poids": 3.1,
+    "laveur": "oui"
    },
    "args": [
     "Tube Flex qui se plie : aspire sous les meubles sans se baisser",
@@ -162,7 +171,13 @@
    ],
    "obj": "Autonomie très réduite en puissance max (environ 5 min)",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14",
+   "ref": "1189518",
+   "avis": {
+    "note": 4.7,
+    "n": 17
+   }
   },
   {
    "id": "p007",
@@ -208,12 +223,13 @@
    "cat": "aspi",
    "brand": "Ecovacs",
    "model": "Deebot T90 Pro Omni",
-   "price": 549,
+   "price": 449.0,
    "specs": {
     "type": "Robot laveur",
     "puissance": "30 000 Pa",
     "animaux": "oui",
-    "station": "oui"
+    "station": "oui",
+    "autonomie": 185
    },
    "args": [
     "Lavage par rouleau : meilleur résultat qu'une serpillière qui tourne",
@@ -222,7 +238,13 @@
    ],
    "obj": "Prévoir la place de la station et l'entretien (sacs, eau)",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14",
+   "ref": "1236147",
+   "avis": {
+    "note": 4.6,
+    "n": 41
+   }
   },
   {
    "id": "p010",
@@ -330,10 +352,14 @@
    "cat": "cafe",
    "brand": "De'Longhi",
    "model": "Eletta Explore ECAM450.65.G",
-   "price": null,
+   "price": 829.99,
    "specs": {
     "type": "Grain automatique",
-    "lait": "Automatique"
+    "lait": "Automatique",
+    "recettes": 42,
+    "reservoir": 1.8,
+    "bac_grains": "300 g",
+    "broyeur": "Acier"
    },
    "args": [
     "Boissons chaudes ET froides (cold brew, lait froid)",
@@ -344,9 +370,13 @@
    "acc": "",
    "seed": true,
    "uniq": "Fait aussi des boissons froides : Cold Brew et mousse de lait froide",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "uniqUse": "L'été, il se fait un café glacé à la maison au lieu de l'acheter dehors",
-   "ref": "1187948"
+   "ref": "1187948",
+   "avis": {
+    "note": 4.7,
+    "n": 89
+   }
   },
   {
    "id": "p016",
@@ -419,7 +449,10 @@
    "price": null,
    "specs": {
     "type": "Capsules",
-    "lait": "Mousseur"
+    "lait": "Mousseur",
+    "reservoir": 1,
+    "pression": 19,
+    "puissance": 1710
    },
    "args": [
     "Compacte et design",
@@ -427,7 +460,8 @@
    ],
    "obj": "Coût à la tasse plus élevé que le grain : à mentionner si gros consommateur",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14"
   },
   {
    "id": "p020",
@@ -452,17 +486,21 @@
    "cat": "cuis",
    "brand": "Vorwerk",
    "model": "Thermomix TM7",
-   "price": null,
+   "price": 1599.0,
    "specs": {
     "type": "Robot cuiseur",
-    "connecte": "oui"
+    "connecte": "oui",
+    "capacite": 2.2,
+    "temp": 160,
+    "balance": "oui"
    },
    "args": [
     "Référence du marché, énorme base de recettes Cookidoo"
    ],
    "obj": "⚠ Vendu par Vorwerk en direct, pas chez Boulanger : savoir le comparer à Magimix Cook Expert et Moulinex Companion",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14"
   },
   {
    "id": "p022",
@@ -513,27 +551,31 @@
    "price": null,
    "specs": {
     "type": "Robot cuiseur",
-    "connecte": "oui"
+    "connecte": "oui",
+    "capacite": 4.5,
+    "temp": 150,
+    "balance": "non"
    },
    "args": [
     "Version connectée à écran tactile, recettes guidées"
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14"
   },
   {
    "id": "p025",
    "cat": "cuis",
    "brand": "Moulinex",
-   "model": "Cookeo Infinity",
-   "price": 449,
+   "model": "Cookeo Infinity CE9828F0 (avec pale)",
+   "price": 449.99,
    "specs": {
     "type": "Multicuiseur",
     "pieces": "15 ans",
     "capacite": 6.5,
     "modes": 20,
-    "recettes": "Illimitées (appli)",
+    "recettes": "150",
     "connecte": "oui",
     "puissance": 1600
    },
@@ -546,21 +588,26 @@
    "obj": "6,5 L affichés mais environ 4,3 L utiles : à peine plus qu'un Cookeo 6 L. Ne coupe pas les ingrédients → sinon robot cuiseur",
    "acc": "",
    "incl": "Cuve 6,5 L, couvercle pression, couvercle airfryer",
-   "releve": "2026-11-09",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1226980",
+   "avis": {
+    "note": 4.5,
+    "n": 130
+   }
   },
   {
    "id": "p026",
    "cat": "cuis",
    "brand": "Moulinex",
-   "model": "Cookeo Touch Wifi",
-   "price": 399,
+   "model": "Cookeo Touch Wifi CE902800",
+   "price": 299.99,
    "specs": {
     "type": "Multicuiseur",
     "pieces": "15 ans",
     "capacite": 6,
     "modes": 13,
-    "recettes": "250 + illimitées (appli)",
+    "recettes": "250",
     "connecte": "oui",
     "puissance": 1600
    },
@@ -573,8 +620,13 @@
    "obj": "Airfryer seulement avec l'Extra Crisp vendu à part",
    "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
    "incl": "Cuve 6 L, panier vapeur, livret de recettes",
-   "releve": "2026-11-09",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1143052",
+   "avis": {
+    "note": 4.6,
+    "n": 250
+   }
   },
   {
    "id": "p027",
@@ -586,7 +638,9 @@
     "type": "Robot pâtissier",
     "capacite": 6.7,
     "temp": 180,
-    "balance": "oui"
+    "balance": "oui",
+    "vitesses": 8,
+    "puissance": 1500
    },
    "args": [
     "Robot pâtissier qui cuit jusqu'à 180 °C",
@@ -594,7 +648,8 @@
    ],
    "obj": "Encombrant et lourd",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14"
   },
   {
    "id": "p028",
@@ -859,11 +914,14 @@
    "cat": "linge",
    "brand": "Philips",
    "model": "PerfectCare Elite Plus GC9682/80",
-   "price": null,
+   "price": 436.11,
    "specs": {
     "type": "Centrale vapeur",
-    "pressing": 440,
-    "sansreglage": "oui"
+    "pressing": 600,
+    "sansreglage": "oui",
+    "pression": 8,
+    "debit": 165,
+    "reservoir": 1.8
    },
    "args": [
     "Sans réglage (OptimalTEMP) : tous les tissus sans trier",
@@ -871,7 +929,13 @@
    ],
    "obj": "Pas d'enrouleur de cordon",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14",
+   "ref": "1099039",
+   "avis": {
+    "note": 4.4,
+    "n": 75
+   }
   },
   {
    "id": "p042",
@@ -897,18 +961,28 @@
    "id": "p043",
    "cat": "linge",
    "brand": "Philips",
-   "model": "PerfectCare 9000 PSG9030",
-   "price": null,
+   "model": "PerfectCare 9000 PSG9030/20",
+   "price": 599.99,
    "specs": {
     "type": "Centrale vapeur",
-    "sansreglage": "oui"
+    "sansreglage": "oui",
+    "pression": 9,
+    "pressing": 720,
+    "debit": 180,
+    "reservoir": 1.8
    },
    "args": [
     "Caméra intégrée qui reconnaît le tissu et adapte la vapeur"
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14",
+   "ref": "1158056",
+   "avis": {
+    "note": 4.7,
+    "n": 46
+   }
   },
   {
    "id": "p044",
@@ -973,7 +1047,7 @@
     "puissance": 1600,
     "moteur": "Numérique (Dyson V9)",
     "ionique": "oui",
-    "controle": "Mesure la température de l'air 40 fois par seconde",
+    "controle": "Intelligent : mesure la température de l'air plus de 40 fois par seconde",
     "reglages": "3 vitesses, 4 températures (100, 80, 60 et 28 °C)",
     "poids": 650,
     "embouts": "Magnétiques (concentrateur, diffuseur, embout anti-frisottis, peigne, séchage doux selon version)"
@@ -997,7 +1071,7 @@
    "cat": "beaute",
    "brand": "Dyson",
    "model": "Airwrap i.d.",
-   "price": null,
+   "price": 649.0,
    "specs": {
     "type": "Multi-styler"
    },
@@ -1007,7 +1081,8 @@
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "releve": "2026-11-14"
   },
   {
    "id": "p048",
@@ -1143,7 +1218,7 @@
    "cat": "aspi",
    "brand": "Rowenta",
    "model": "X-Force Flex 13.60",
-   "price": 259,
+   "price": 259.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 60,
@@ -1152,7 +1227,8 @@
     "bac": 0.65,
     "tension": 25.9,
     "repar": 9.2,
-    "pieces": "15 ans"
+    "pieces": "15 ans",
+    "animaux": "oui"
    },
    "args": [
     "Fabriqué en France",
@@ -1164,18 +1240,19 @@
    "incl": "",
    "ean": "3221616111622",
    "avis": {
-    "note": 4.5,
+    "note": 4.4,
     "n": 243
    },
-   "releve": "2026-11-08",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1201523"
   },
   {
    "id": "p054",
    "cat": "aspi",
    "brand": "Rowenta",
    "model": "X-Force Flex 16.60",
-   "price": 449,
+   "price": 469.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 120,
@@ -1185,7 +1262,8 @@
     "tension": 25.2,
     "repar": 9.4,
     "pieces": "15 ans",
-    "animaux": "oui"
+    "animaux": "oui",
+    "station": "oui"
    },
    "args": [
     "315 AW : le plus puissant de la gamme Rowenta",
@@ -1199,10 +1277,11 @@
    "ean": "3221616163508",
    "avis": {
     "note": 4,
-    "n": 38
+    "n": 39
    },
-   "releve": "2026-11-09",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1234552"
   },
   {
    "id": "p055",
@@ -1232,7 +1311,7 @@
    "id": "p056",
    "cat": "aspi",
    "brand": "Rowenta",
-   "model": "X-Force YY5508FE (tête Aqua)",
+   "model": "X-Force Flex 14.60 Aqua Auto YY5508FE",
    "price": 349.99,
    "specs": {
     "type": "Balai sans fil",
@@ -1253,18 +1332,19 @@
    "incl": "Support de charge à fixer au mur",
    "ean": "3700342479508",
    "avis": {
-    "note": 4.5,
+    "note": 4.3,
     "n": 59
    },
-   "releve": "2026-11-08",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1212795"
   },
   {
    "id": "p057",
    "cat": "aspi",
    "brand": "Rowenta",
-   "model": "X-Force Flex 12.60",
-   "price": 369.99,
+   "model": "X-Force Flex 12.60 Animal Care RH98A3WO (2 batteries)",
+   "price": 399.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 90,
@@ -1272,7 +1352,8 @@
     "bac": 0.6,
     "tension": 25.2,
     "repar": 8.7,
-    "pieces": "15 ans"
+    "pieces": "15 ans",
+    "animaux": "oui"
    },
    "args": [
     "Jusqu'à 1 h 30 d'autonomie grâce à 2 batteries incluses (2 × 45 min)",
@@ -1283,18 +1364,19 @@
    "incl": "2 batteries",
    "ean": "3221616119604",
    "avis": {
-    "note": 4.5,
+    "note": 4.4,
     "n": 28
    },
-   "releve": "2026-11-08",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1207973"
   },
   {
    "id": "p058",
    "cat": "aspi",
    "brand": "Rowenta",
-   "model": "X-Force Flex 10.80",
-   "price": 299,
+   "model": "X-Force Flex 10.80 RH7A73E0",
+   "price": 299.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 60,
@@ -1313,24 +1395,26 @@
    "incl": "",
    "ean": "3221616182035",
    "avis": {
-    "note": 5,
-    "n": 28
+    "note": 4.3,
+    "n": 39
    },
-   "releve": "2026-11-08",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1238446"
   },
   {
    "id": "p059",
    "cat": "aspi",
    "brand": "Shark",
-   "model": "PowerDetect Speed",
-   "price": 299,
+   "model": "PowerDetect Speed IA1241FR",
+   "price": 199.99,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 60,
     "poids": 3.1,
     "repar": 7.9,
-    "pieces": "7 ans"
+    "pieces": "7 ans",
+    "animaux": "oui"
    },
    "args": [
     "Nettoyage intelligent qui s'adapte à toutes les surfaces",
@@ -1344,8 +1428,9 @@
     "note": 4,
     "n": 9
    },
-   "releve": "2026-11-09",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1238954"
   },
   {
    "id": "p060",
@@ -1383,7 +1468,7 @@
    "cat": "aspi",
    "brand": "Dyson",
    "model": "V10 Konical",
-   "price": 349,
+   "price": 349.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 60,
@@ -1391,7 +1476,8 @@
     "tension": 25.2,
     "repar": 9.1,
     "pieces": "13 ans (après fin de commercialisation)",
-    "hepa": "oui"
+    "hepa": "oui",
+    "animaux": "oui"
    },
    "args": [
     "Moteur numérique : aspiration constante sur tous types de sols",
@@ -1406,8 +1492,9 @@
     "note": 4,
     "n": 12
    },
-   "releve": "2026-11-08",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1241517"
   },
   {
    "id": "p062",
@@ -1448,7 +1535,7 @@
    "cat": "aspi",
    "brand": "Dyson",
    "model": "V15 Detect Absolute",
-   "price": 799,
+   "price": 549.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 60,
@@ -1471,11 +1558,12 @@
    "incl": "Suceur long ; brosse Digital Motorbar ; brosse Optic Fluffy ; accessoire combiné ; station murale de charge et de rangement ; chargeur",
    "ean": "5025155081754",
    "avis": {
-    "note": 4.5,
+    "note": 4.7,
     "n": 421
    },
-   "releve": "2026-11-08",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1241521"
   },
   {
    "id": "p064",
@@ -1510,8 +1598,8 @@
    "id": "p065",
    "cat": "aspi",
    "brand": "Samsung",
-   "model": "Jet VS80F28EFP (station de vidage)",
-   "price": 499,
+   "model": "Bespoke AI Jet Lite Complete VS80F28EFP (station de vidage)",
+   "price": 499.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 60,
@@ -1537,8 +1625,9 @@
     "note": 4.5,
     "n": 45
    },
-   "releve": "2026-11-08",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1219860"
   },
   {
    "id": "p066",
@@ -1640,13 +1729,14 @@
    "id": "p069",
    "cat": "aspi",
    "brand": "Rowenta",
-   "model": "X-Force Flex 14.80",
-   "price": 499,
+   "model": "X-Force Flex 14.80 RH9B74WO",
+   "price": 499.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 90,
     "repar": 9.3,
-    "pieces": "15 ans"
+    "pieces": "15 ans",
+    "poids": 4.4
    },
    "args": [
     "Très grande puissance d'aspiration qui s'ajuste automatiquement au type de sol",
@@ -1659,10 +1749,11 @@
    "ean": "3221616128613",
    "avis": {
     "note": 4.5,
-    "n": 100
+    "n": 101
    },
-   "releve": "2026-11-08",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1218560"
   },
   {
    "id": "p070",
@@ -1765,7 +1856,7 @@
    "id": "p073",
    "cat": "aspi",
    "brand": "Essentiel B",
-   "model": "EVCSK500 Easy (station de vidage)",
+   "model": "EVCSK500 Easy Tech Zero Dust (station de vidage)",
    "price": 299.99,
    "specs": {
     "type": "Balai sans fil",
@@ -1783,12 +1874,13 @@
    "acc": "",
    "incl": "Station avec vidage automatique de la poussière",
    "ean": "3497674189945",
-   "releve": "2026-11-08",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
     "note": 4,
     "n": 21
-   }
+   },
+   "ref": "8011599"
   },
   {
    "id": "p074",
@@ -1887,12 +1979,12 @@
    "id": "p077",
    "cat": "aspi",
    "brand": "Rowenta",
-   "model": "X-Pert 7.60",
-   "price": 199,
+   "model": "X-Pert 7.60 RH6A37WO (brosse LED)",
+   "price": 129.0,
    "specs": {
     "type": "Balai sans fil",
     "autonomie": 45,
-    "poids": 2.0,
+    "poids": 2.3,
     "repar": 8,
     "pieces": "15 ans"
    },
@@ -1904,12 +1996,13 @@
    "acc": "",
    "incl": "Support de charge à fixer au mur",
    "ean": "3221616122239",
-   "releve": "2026-11-08",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4,
-    "n": 108
-   }
+    "note": 5,
+    "n": 3
+   },
+   "ref": "1242961"
   },
   {
    "id": "p078",
@@ -1921,7 +2014,7 @@
     "type": "Balai sans fil",
     "autonomie": 45,
     "puissance": "121 AW",
-    "poids": 2.1,
+    "poids": 2.11,
     "bac": 0.4,
     "tension": 21.6,
     "repar": 7.1,
@@ -1936,7 +2029,7 @@
    "acc": "",
    "incl": "Brosse motorisée avec éclairage LED ; mini brosse ; suceur long ; support de charge",
    "ean": "3497674174170",
-   "releve": "2026-11-08",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
     "note": 3.5,
@@ -2065,12 +2158,14 @@
    "cat": "cafe",
    "brand": "De'Longhi",
    "model": "Dinamica FEB3515.B",
-   "price": 429.99,
+   "price": 499.99,
    "specs": {
     "type": "Grain automatique",
     "recettes": 4,
     "lait": "Buse vapeur",
-    "reservoir": 1.8
+    "reservoir": 1.8,
+    "bac_grains": "300 g",
+    "broyeur": "Acier"
    },
    "args": [
     "4 recettes café (expresso, café, long, lungo) + eau chaude",
@@ -2082,11 +2177,11 @@
    "acc": "",
    "incl": "",
    "ean": "8004399331440",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4,
-    "n": 265
+    "note": 4.2,
+    "n": 285
    },
    "uniq": "La Dinamica la plus simple : 4 cafés, dont un vrai café long",
    "uniqUse": "Pour le buveur de café noir qui veut juste un bon expresso ou un café long",
@@ -2097,10 +2192,14 @@
    "cat": "cafe",
    "brand": "De'Longhi",
    "model": "Magnifica FEB2291.TB",
-   "price": 499.99,
+   "price": 399.99,
    "specs": {
     "type": "Grain automatique",
-    "lait": "Automatique"
+    "lait": "Automatique",
+    "recettes": 4,
+    "reservoir": 1.8,
+    "bac_grains": "250 g",
+    "broyeur": "Acier"
    },
    "args": [
     "Expresso fraîchement moulu et latte en un clic",
@@ -2110,7 +2209,7 @@
    "acc": "",
    "incl": "",
    "ean": "8004399035461",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
     "note": 4,
@@ -2118,7 +2217,7 @@
    },
    "uniq": "Le lait en un clic au prix d'une machine d'entrée de gamme",
    "uniqUse": "Le cappuccino du matin sans manipuler une buse vapeur",
-   "ref": "1223690"
+   "ref": "1223690 / 1223711"
   },
   {
    "id": "p085",
@@ -2132,7 +2231,9 @@
     "lait": "Buse vapeur",
     "reservoir": 1.8,
     "pression": 15,
-    "mouture": 13
+    "mouture": 13,
+    "bac_grains": "250 g",
+    "broyeur": "Acier"
    },
    "args": [
     "3 recettes café en accès direct + vapeur, interface tactile",
@@ -2144,10 +2245,10 @@
    "acc": "",
    "incl": "",
    "ean": "8004399026032",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4,
+    "note": 4.2,
     "n": 79
    },
    "uniq": "La machine à grain De'Longhi la moins chère du rayon",
@@ -2165,7 +2266,8 @@
     "lait": "Buse vapeur",
     "recettes": 4,
     "reservoir": 1.8,
-    "bac_grains": "250 g"
+    "bac_grains": "250 g",
+    "broyeur": "Acier"
    },
    "args": [
     "Système Cappuccino pour une mousse crémeuse parfaite",
@@ -2175,7 +2277,7 @@
    "acc": "",
    "incl": "",
    "ean": "8004399022911",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
     "note": 4.5,
@@ -2246,11 +2348,14 @@
    "cat": "cafe",
    "brand": "Philips",
    "model": "EP1220/00 Noir Mat",
-   "price": 259.99,
+   "price": 309.99,
    "specs": {
     "type": "Grain automatique",
     "lait": "Buse vapeur",
-    "recettes": 3
+    "recettes": 2,
+    "reservoir": 1.8,
+    "bac_grains": "275 g",
+    "broyeur": "Céramique"
    },
    "args": [
     "12 niveaux de mouture réglables",
@@ -2261,11 +2366,11 @@
    "acc": "",
    "incl": "",
    "ean": "8710103894667",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4,
-    "n": 79
+    "note": 4.2,
+    "n": 77
    },
    "uniq": "La machine à grain la moins chère du rayon",
    "uniqUse": "Découvrir le café en grain avec le plus petit budget",
@@ -2356,14 +2461,15 @@
    "cat": "cafe",
    "brand": "Ninja",
    "model": "AutoBarista Pro AE1052EU",
-   "price": 899.99,
+   "price": 699.99,
    "specs": {
     "type": "Grain automatique",
     "lait": "Automatique",
     "reservoir": 2.4,
     "recettes": 13,
-    "pression": 19,
-    "bac_grains": "340 g"
+    "pression": 15,
+    "bac_grains": "340 g",
+    "broyeur": "Acier"
    },
    "args": [
     "GrindIQ : la mouture s'ajuste toute seule au grain et à la boisson",
@@ -2375,10 +2481,10 @@
    "acc": "",
    "incl": "",
    "ean": "0622356379786",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4,
+    "note": 3.9,
     "n": 18
    },
    "uniq": "GrindIQ : règle seule la mouture, et fait expresso, filtre et cold brew",
@@ -2450,12 +2556,15 @@
    "cat": "cafe",
    "brand": "Krups",
    "model": "Sensation Lait EA912HF1",
-   "price": 599.99,
+   "price": 449.99,
    "specs": {
     "type": "Grain automatique",
     "lait": "Automatique",
-    "recettes": 3,
-    "lactees": 3
+    "recettes": 6,
+    "lactees": 3,
+    "reservoir": 1.7,
+    "bac_grains": "260 g",
+    "broyeur": "Acier"
    },
    "args": [
     "Technologie Milk Maestro : mousse de lait parfaite et personnalisable",
@@ -2466,14 +2575,15 @@
    "acc": "",
    "incl": "",
    "ean": "3016661178924",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4.5,
+    "note": 4.4,
     "n": 52
    },
    "uniq": "Milk Maestro : une mousse de lait réglable selon ses goûts",
-   "uniqUse": "Il règle sa mousse plus ou moins épaisse selon qu'il fait un cappuccino ou un latte"
+   "uniqUse": "Il règle sa mousse plus ou moins épaisse selon qu'il fait un cappuccino ou un latte",
+   "ref": "1211964"
   },
   {
    "id": "p097",
@@ -2509,14 +2619,15 @@
    "cat": "cafe",
    "brand": "De'Longhi",
    "model": "ECAM310.80.SB",
-   "price": 599.99,
+   "price": 499.99,
    "specs": {
     "type": "Grain automatique",
     "lait": "Automatique",
     "recettes": 11,
     "lactees": 5,
     "bac_grains": "250 g",
-    "reservoir": 1.9
+    "reservoir": 1.9,
+    "broyeur": "Acier"
    },
    "args": [
     "Technologie LatteCrema Hot pour une mousse de lait parfaite",
@@ -2527,7 +2638,7 @@
    "acc": "",
    "incl": "",
    "ean": "8004399029149",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
     "note": 4.5,
@@ -2602,7 +2713,7 @@
    "cat": "cafe",
    "brand": "Sage",
    "model": "the Barista Express Impress SES876",
-   "price": 829.99,
+   "price": 649.99,
    "specs": {
     "type": "Expresso manuel",
     "lait": "Buse vapeur",
@@ -2620,7 +2731,7 @@
    "acc": "",
    "incl": "",
    "ean": "9356973097917",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
     "note": 4,
@@ -2628,7 +2739,7 @@
    },
    "uniq": "Tassage assisté Impress : le geste barista sans rater sa dose",
    "uniqUse": "Il veut le plaisir du geste barista sans rater son café chaque matin",
-   "ref": "1214820"
+   "ref": "1214820 / 1181409 / 1192085"
   },
   {
    "id": "p102",
@@ -2715,12 +2826,15 @@
    "cat": "cafe",
    "brand": "De'Longhi",
    "model": "Dinamica Plus FEB3895.TB",
-   "price": 999.99,
+   "price": 649.99,
    "specs": {
     "type": "Grain automatique",
     "lait": "Automatique",
-    "recettes": 10,
-    "lactees": 13
+    "recettes": 24,
+    "lactees": 13,
+    "reservoir": 1.8,
+    "bac_grains": "300 g",
+    "broyeur": "Acier"
    },
    "args": [
     "Double carafe LatteCrema Hot, dont une isotherme (lait au frigo)",
@@ -2732,27 +2846,29 @@
    "acc": "",
    "incl": "",
    "ean": "5011423008363",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4.5,
+    "note": 4.6,
     "n": 42
    },
    "uniq": "La seule avec 2 carafes, dont une isotherme pour le lait",
-   "uniqUse": "Le lait reste au frais sur le plan de travail tout le petit-déjeuner"
+   "uniqUse": "Le lait reste au frais sur le plan de travail tout le petit-déjeuner",
+   "ref": "1208880"
   },
   {
    "id": "p106",
    "cat": "cafe",
    "brand": "De'Longhi",
    "model": "Eletta Explore ECAM450.65.S",
-   "price": 999.99,
+   "price": 769.99,
    "specs": {
     "type": "Grain automatique",
     "lait": "Automatique",
     "recettes": 42,
     "bac_grains": "300 g",
-    "reservoir": 1.8
+    "reservoir": 1.8,
+    "broyeur": "Acier"
    },
    "args": [
     "Cold Extraction : boissons glacées et Cold Brew",
@@ -2763,14 +2879,15 @@
    "acc": "",
    "incl": "",
    "ean": "8004399026216",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4.5,
+    "note": 4.7,
     "n": 89
    },
    "uniq": "La plus de recettes (42), dont Cold Brew et boissons glacées",
-   "uniqUse": "Pour qui varie tout le temps : chaud en hiver, glacé en été, une boisson différente chaque jour"
+   "uniqUse": "Pour qui varie tout le temps : chaud en hiver, glacé en été, une boisson différente chaque jour",
+   "ref": "1187902"
   },
   {
    "id": "p107",
@@ -2837,14 +2954,15 @@
    "id": "p109",
    "cat": "cafe",
    "brand": "De'Longhi",
-   "model": "FEB4255.BXL",
+   "model": "Rivelia Start FEB4255.BXL",
    "price": 649.99,
    "specs": {
     "type": "Grain automatique",
     "lait": "Automatique",
     "recettes": 10,
     "bac_grains": "2 × 250 g",
-    "reservoir": 1.8
+    "reservoir": 1.4,
+    "broyeur": "Acier"
    },
    "args": [
     "Système Bean Switch : personnalisation café infinie",
@@ -2855,10 +2973,10 @@
    "acc": "",
    "incl": "",
    "ean": "8004399038486",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4.5,
+    "note": 4.7,
     "n": 12
    },
    "uniq": "Bean Switch : 2 bacs à grains interchangeables, prix plus doux que la Rivelia",
@@ -2905,31 +3023,36 @@
    "id": "p111",
    "cat": "cafe",
    "brand": "Sage",
-   "model": "Barista (9 bars)",
+   "model": "the Barista Express",
    "price": 499.99,
    "specs": {
     "type": "Expresso manuel",
     "lait": "Buse vapeur",
-    "pression": 9,
+    "pression": 15,
     "pieces": "5 ans",
-    "broyeur": "Intégré (conique)"
+    "broyeur": "Intégré (acier)",
+    "reservoir": 2,
+    "bac_grains": "250 g"
    },
    "args": [
-    "Broyeur intégré : jusqu'à 25 tasses de café",
-    "Contrôle de la température réglable"
+    "Broyeur intégré : du grain à la tasse",
+    "Buse vapeur manuelle pour le latte art",
+    "Réservoir 2 L, bac à grains 250 g",
+    "4,4/5 sur 25 avis"
    ],
    "obj": "",
    "acc": "",
    "incl": "",
    "ean": "9312432030144",
-   "releve": "2026-11-12",
+   "releve": "2026-11-14",
    "seed": true,
    "avis": {
-    "note": 4.5,
+    "note": 4.4,
     "n": 25
    },
-   "uniq": "Le porte-filtre Sage d'entrée de gamme, température réglable",
-   "uniqUse": "Premier pas vers le porte-filtre pour qui veut apprendre à doser et tasser"
+   "uniq": "La Sage porte-filtre avec broyeur intégré la plus vendue",
+   "uniqUse": "Premier pas vers le porte-filtre pour qui veut apprendre à doser et tasser",
+   "ref": "1148232"
   },
   {
    "id": "p112",
@@ -3020,7 +3143,7 @@
    "cat": "cuis",
    "brand": "Moulinex",
    "model": "Cookeo+ 80 recettes CE854B10",
-   "price": 249,
+   "price": 249.99,
    "specs": {
     "type": "Multicuiseur",
     "pieces": "15 ans",
@@ -3039,8 +3162,13 @@
    "obj": "Pas de connexion : 80 recettes seulement",
    "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
    "incl": "Cuve 6 L, panier vapeur, livret de recettes",
-   "releve": "2026-11-09",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1190643",
+   "avis": {
+    "note": 4.7,
+    "n": 85
+   }
   },
   {
    "id": "p116",
@@ -3074,7 +3202,7 @@
    "cat": "cuis",
    "brand": "Moulinex",
    "model": "Cookeo Mini CE880410",
-   "price": 179,
+   "price": 179.99,
    "specs": {
     "type": "Multicuiseur",
     "pieces": "15 ans",
@@ -3092,8 +3220,13 @@
    "obj": "Trop petit dès 3 personnes. Pas compatible Extra Crisp",
    "acc": "",
    "incl": "Cuve 3 L, panier vapeur",
-   "releve": "2026-11-09",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1237358",
+   "avis": {
+    "note": 4,
+    "n": 1
+   }
   },
   {
    "id": "p118",
@@ -3125,7 +3258,7 @@
    "cat": "cuis",
    "brand": "Moulinex",
    "model": "Cookeo Wi-Fi 8en1 CE952AF0",
-   "price": null,
+   "price": 199.0,
    "specs": {
     "type": "Multicuiseur",
     "pieces": "15 ans",
@@ -3142,8 +3275,13 @@
    "obj": "Pas d'écran tactile : les recettes se suivent surtout sur l'appli",
    "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
    "incl": "Cuve 6 L, panier vapeur, livret de recettes",
-   "releve": "2026-11-09",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1241442",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
   },
   {
    "id": "p120",
@@ -3200,13 +3338,13 @@
    "cat": "cuis",
    "brand": "Moulinex",
    "model": "Cookeo Touch Pro CE943410",
-   "price": 379,
+   "price": 479.99,
    "specs": {
     "type": "Multicuiseur",
     "pieces": "15 ans",
     "capacite": 6,
     "modes": 13,
-    "recettes": "Illimitées (appli)",
+    "recettes": "250",
     "connecte": "oui",
     "balance": "oui"
    },
@@ -3219,8 +3357,13 @@
    "obj": "La balance n'a d'intérêt que si le client suit des recettes précises (pâtisserie)",
    "acc": "Extra Crisp (couvercle airfryer) vendu à part, compatible avec les Cookeo 6 L",
    "incl": "Cuve 6 L, panier vapeur, livret de recettes",
-   "releve": "2026-11-09",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1195439",
+   "avis": {
+    "note": 4.7,
+    "n": 102
+   }
   },
   {
    "id": "p123",
@@ -3250,8 +3393,8 @@
    "id": "p124",
    "cat": "cuis",
    "brand": "Moulinex",
-   "model": "Extra Crisp (couvercle airfryer Cookeo)",
-   "price": 89,
+   "model": "Extra Crisp EZ150800 (couvercle airfryer Cookeo)",
+   "price": 73.99,
    "specs": {
     "type": "Accessoire",
     "pieces": "15 ans"
@@ -3264,8 +3407,13 @@
    "obj": "Pas compatible Mini ni Touch Mini. Il faut secouer à la main en cours de cuisson. Inutile avec l'Infinity",
    "acc": "",
    "incl": "Couvercle airfryer",
-   "releve": "2026-11-09",
-   "seed": true
+   "releve": "2026-11-14",
+   "seed": true,
+   "ref": "1160603",
+   "avis": {
+    "note": 4.7,
+    "n": 326
+   }
   },
   {
    "id": "p125",
@@ -4495,7 +4643,7 @@
    "cat": "cafe",
    "brand": "Philips",
    "model": "Baristina BAR300 (réf. /00 et /03)",
-   "price": 319.99,
+   "price": 299.99,
    "specs": {
     "type": "Expresso manuel",
     "lait": "Non",
@@ -4511,14 +4659,14 @@
    "obj": "",
    "acc": "",
    "seed": true,
-   "ref": "1202927 / 1207277",
+   "ref": "1202927 / 1207277 / 1202930",
    "uniq": "Le porte-filtre simplifié : on tourne la poignée, la machine moud, tasse et fait couler le café",
    "uniqUse": "Le goût du grain moulu à la minute, sans apprendre le geste du barista",
    "releve": "2026-11-14",
    "incl": "",
    "avis": {
-    "note": 4.1,
-    "n": 95
+    "note": 4.2,
+    "n": 144
    }
   },
   {
@@ -9378,6 +9526,3535 @@
    "avis": {
     "note": 4.9,
     "n": 77
+   }
+  },
+  {
+   "id": "p325",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Série 2300 EP2320/41 gris cachemire",
+   "price": 299.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 2,
+    "reservoir": 1.8,
+    "bac_grains": "275 g",
+    "broyeur": "Céramique"
+   },
+   "args": [
+    "2 recettes",
+    "Réservoir 1,8 L, bac à grains 275 g",
+    "Broyeur céramique",
+    "Buse vapeur pour le lait"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1246439",
+   "uniq": "L'entrée de gamme Philips à broyeur céramique",
+   "uniqUse": "Expresso et café long, simple et silencieux",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p326",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Série 2300 LatteGo EP2334/10",
+   "price": 369.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 3,
+    "reservoir": 1.8,
+    "bac_grains": "275 g",
+    "broyeur": "Céramique"
+   },
+   "args": [
+    "3 recettes",
+    "Réservoir 1,8 L, bac à grains 275 g",
+    "Broyeur céramique",
+    "Buse vapeur pour le lait"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1197213",
+   "uniq": "Philips Série 2300 avec 3 recettes",
+   "uniqUse": "Premier pas vers le café en grain",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 7
+   }
+  },
+  {
+   "id": "p327",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Série 3300 EP3321/40",
+   "price": 349.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 4,
+    "reservoir": 1.8,
+    "bac_grains": "275 g",
+    "broyeur": "Céramique"
+   },
+   "args": [
+    "4 recettes",
+    "Réservoir 1,8 L, bac à grains 275 g",
+    "Broyeur céramique",
+    "Système lait automatique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1201048",
+   "uniq": "Broyeur céramique et boissons lactées",
+   "uniqUse": "Cappuccino facile, broyeur durable",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 9
+   }
+  },
+  {
+   "id": "p328",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Série 3300 EP3329/70 noir mat",
+   "price": 359.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 5,
+    "reservoir": 1.8,
+    "bac_grains": "275 g",
+    "broyeur": "Céramique"
+   },
+   "args": [
+    "5 recettes",
+    "Réservoir 1,8 L, bac à grains 275 g",
+    "Broyeur céramique",
+    "Buse vapeur pour le lait",
+    "4,4/5 sur 123 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1197110",
+   "uniq": "5 recettes, broyeur céramique, 123 avis",
+   "uniqUse": "Valeur sûre Philips",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 123
+   }
+  },
+  {
+   "id": "p329",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Série 4400 LatteGo EP4441/50",
+   "price": 479.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 14,
+    "reservoir": 1.8,
+    "bac_grains": "275 g",
+    "broyeur": "Céramique"
+   },
+   "args": [
+    "14 recettes",
+    "Réservoir 1,8 L, bac à grains 275 g",
+    "Broyeur céramique",
+    "Système lait automatique",
+    "4,9/5 sur 20 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1239794",
+   "uniq": "LatteGo : le système lait qui se rince en 15 secondes, 14 recettes",
+   "uniqUse": "Cappuccino tous les jours sans corvée de nettoyage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.9,
+    "n": 20
+   }
+  },
+  {
+   "id": "p330",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Magnifica S ECAM 22.140.B",
+   "price": 259.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 4,
+    "reservoir": 1.8,
+    "bac_grains": "250 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "4 recettes",
+    "Réservoir 1,8 L, bac à grains 250 g",
+    "Broyeur acier",
+    "Buse vapeur pour le lait",
+    "4,3/5 sur 449 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "858487",
+   "uniq": "La Magnifica S : 449 avis, la référence d'entrée de gamme",
+   "uniqUse": "Premier expresso broyeur fiable",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 449
+   }
+  },
+  {
+   "id": "p331",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Magnifica Start Color FEB2252.SB argent",
+   "price": 399.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 4,
+    "reservoir": 1.8,
+    "bac_grains": "250 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "4 recettes",
+    "Réservoir 1,8 L, bac à grains 250 g",
+    "Broyeur acier",
+    "Buse vapeur pour le lait"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1223688",
+   "uniq": "Magnifica Start avec buse vapeur",
+   "uniqUse": "Café et cappuccino maison",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 14
+   }
+  },
+  {
+   "id": "p332",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Magnifica Evo FEB2942.TB titane",
+   "price": 399.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 5,
+    "reservoir": 1.8,
+    "bac_grains": "250 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "5 recettes",
+    "Réservoir 1,8 L, bac à grains 250 g",
+    "Broyeur acier",
+    "Buse vapeur pour le lait",
+    "4,4/5 sur 71 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1166116",
+   "uniq": "Magnifica Evo : 5 recettes + eau chaude",
+   "uniqUse": "Bon équilibre prix/fonctions",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 71
+   }
+  },
+  {
+   "id": "p333",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Dinamica ECAM350.35.SB",
+   "price": 429.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 4,
+    "reservoir": 1.8,
+    "bac_grains": "300 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "4 recettes",
+    "Réservoir 1,8 L, bac à grains 300 g",
+    "Broyeur acier",
+    "Buse vapeur pour le lait",
+    "4,2/5 sur 372 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1238145",
+   "uniq": "Dinamica : 372 avis, bac à grains 300 g",
+   "uniqUse": "Gros consommateur de café",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 372
+   }
+  },
+  {
+   "id": "p334",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Autentica ETAM 29.510.B",
+   "price": 353.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 2,
+    "reservoir": 1.4,
+    "bac_grains": "200 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "2 recettes",
+    "Réservoir 1,4 L, bac à grains 200 g",
+    "Broyeur acier",
+    "Buse vapeur pour le lait",
+    "4,8/5 sur 81 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1034327",
+   "uniq": "Très compacte (format étroit), 4,8/5",
+   "uniqUse": "Petite cuisine",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 81
+   }
+  },
+  {
+   "id": "p335",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Rivelia Latte FEB4455 (beige, blanc, gris, noir)",
+   "price": 799.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 16,
+    "reservoir": 1.4,
+    "bac_grains": "2 × 250 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "16 recettes",
+    "Réservoir 1,4 L, bac à grains 2 × 250 g",
+    "Broyeur acier",
+    "Système lait automatique",
+    "4,6/5 sur 99 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1193470 / 1193469 / 1193491 / 1193468",
+   "uniq": "Deux bacs à grains interchangeables : on change de café en 2 secondes",
+   "uniqUse": "Un café corsé le matin, un décaféiné le soir",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 99
+   }
+  },
+  {
+   "id": "p336",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Eletta Ultra ECAM470.85.MB",
+   "price": 999.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 52,
+    "reservoir": 1.8,
+    "bac_grains": "280 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "52 recettes",
+    "Réservoir 1,8 L, bac à grains 280 g",
+    "Broyeur acier",
+    "Système lait automatique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236292",
+   "uniq": "52 recettes, silencieuse",
+   "uniqUse": "Toute la famille, toutes les boissons",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 12
+   }
+  },
+  {
+   "id": "p337",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "PrimaDonna Aromatic ECAM630.55.SSM",
+   "price": 1399.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 42,
+    "reservoir": 2.2,
+    "bac_grains": "500 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "42 recettes",
+    "Réservoir 2,2 L, bac à grains 500 g",
+    "Broyeur acier",
+    "Système lait automatique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1218721",
+   "uniq": "Haut de gamme : bac 500 g, réservoir 2,2 L",
+   "uniqUse": "Gros consommateurs, client premium",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.9,
+    "n": 14
+   }
+  },
+  {
+   "id": "p338",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Intensity EA5008E0",
+   "price": 259.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 4,
+    "reservoir": 1.7,
+    "bac_grains": "260 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "4 recettes",
+    "Réservoir 1,7 L, bac à grains 260 g",
+    "Broyeur acier",
+    "Buse vapeur pour le lait",
+    "4,8/5 sur 32 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236919",
+   "uniq": "Krups simple et très bien noté (4,8/5)",
+   "uniqUse": "Café noir au quotidien, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 32
+   }
+  },
+  {
+   "id": "p339",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Coffee Crush SA401LE0",
+   "price": 299.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Non",
+    "recettes": 3,
+    "reservoir": 1.8,
+    "bac_grains": "150 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "3 recettes",
+    "Réservoir 1,8 L, bac à grains 150 g",
+    "Broyeur acier",
+    "Pas de système lait",
+    "4,3/5 sur 37 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236918",
+   "uniq": "Ultra compacte, sans buse vapeur",
+   "uniqUse": "Café noir uniquement, petite cuisine",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 37
+   }
+  },
+  {
+   "id": "p340",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Coffee Crush Experience SA403BE0",
+   "price": 349.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 6,
+    "reservoir": 1.8,
+    "bac_grains": "150 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "6 recettes",
+    "Réservoir 1,8 L, bac à grains 150 g",
+    "Broyeur acier",
+    "Buse vapeur pour le lait",
+    "4,1/5 sur 84 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1235195",
+   "uniq": "Ultra compacte avec buse vapeur",
+   "uniqUse": "Petite cuisine qui veut aussi le lait",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 84
+   }
+  },
+  {
+   "id": "p341",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Sensation Elite EA918GE0",
+   "price": 649.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 30,
+    "reservoir": 1.7,
+    "bac_grains": "260 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "30 recettes",
+    "Réservoir 1,7 L, bac à grains 260 g",
+    "Broyeur acier",
+    "Système lait automatique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1236981",
+   "uniq": "30 recettes avec carafe à lait",
+   "uniqUse": "Amateur de boissons lactées",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p342",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "Collezione BCC11BLMEU",
+   "price": 479.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 1,
+    "reservoir": 1.4,
+    "bac_grains": "150 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "1 recettes",
+    "Réservoir 1,4 L, bac à grains 150 g",
+    "Broyeur acier",
+    "Buse vapeur pour le lait"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1201577",
+   "uniq": "Le design Smeg en machine à grain",
+   "uniqUse": "Client qui veut le look Smeg",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3,
+    "n": 4
+   }
+  },
+  {
+   "id": "p343",
+   "cat": "cafe",
+   "brand": "Jura",
+   "model": "A8 Piano Black",
+   "price": 999.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 18,
+    "reservoir": 0.8,
+    "bac_grains": "140 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "18 recettes",
+    "Réservoir 0,8 L, bac à grains 140 g",
+    "Broyeur acier",
+    "Système lait automatique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1246651",
+   "uniq": "Jura compacte, 18 recettes",
+   "uniqUse": "Qualité Jura dans un petit format",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p344",
+   "cat": "cafe",
+   "brand": "Jura",
+   "model": "E6 Dark Inox",
+   "price": 999.0,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 17,
+    "reservoir": 1.9,
+    "bac_grains": "280 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "17 recettes",
+    "Réservoir 1,9 L, bac à grains 280 g",
+    "Broyeur acier",
+    "Système lait automatique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1243500",
+   "uniq": "Jura E6 avec système lait",
+   "uniqUse": "Qualité suisse, cappuccino",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p345",
+   "cat": "cafe",
+   "brand": "Jura",
+   "model": "E8 Cosmic Black",
+   "price": 1349.0,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 27,
+    "reservoir": 1.9,
+    "bac_grains": "280 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "27 recettes",
+    "Réservoir 1,9 L, bac à grains 280 g",
+    "Broyeur acier",
+    "Système lait automatique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1228998",
+   "uniq": "27 recettes Jura",
+   "uniqUse": "Toute la famille",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p346",
+   "cat": "cafe",
+   "brand": "Jura",
+   "model": "W4 Dark Inox",
+   "price": 1789.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Non",
+    "recettes": 10,
+    "reservoir": 3,
+    "bac_grains": "500 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "10 recettes",
+    "Réservoir 3 L, bac à grains 500 g",
+    "Broyeur acier",
+    "Pas de système lait"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1249031",
+   "uniq": "Réservoir 3 L et bac 500 g : pensée pour le bureau",
+   "uniqUse": "Petit bureau ou grosse consommation de café noir",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p347",
+   "cat": "cafe",
+   "brand": "Jura",
+   "model": "Z10 (Aluminium White ou Diamond Black)",
+   "price": 2299.0,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 50,
+    "reservoir": 2.4,
+    "bac_grains": "280 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "50 recettes",
+    "Réservoir 2,4 L, bac à grains 280 g",
+    "Broyeur acier",
+    "Système lait automatique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1231665 / 1243499",
+   "uniq": "Le très haut de gamme Jura : boissons chaudes et froides",
+   "uniqUse": "Client premium exigeant",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p348",
+   "cat": "aspi",
+   "brand": "Ecovacs",
+   "model": "Deebot T50 Omni Gen3",
+   "price": 234.99,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 170,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 2 h 50",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1238891",
+   "uniq": "Le robot laveur avec station complète le moins cher",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 12
+   }
+  },
+  {
+   "id": "p349",
+   "cat": "aspi",
+   "brand": "Ecovacs",
+   "model": "Deebot T50 Pro Omni Gen3",
+   "price": 299.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 195,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 3 h 15",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1238860",
+   "uniq": "Station tout-en-un à prix contenu",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 16
+   }
+  },
+  {
+   "id": "p350",
+   "cat": "aspi",
+   "brand": "Ecovacs",
+   "model": "Deebot T90 Max Pro Omni Care Kit",
+   "price": 479.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 250,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 4 h 10",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1246193",
+   "uniq": "Station qui vide, lave et sèche",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p351",
+   "cat": "aspi",
+   "brand": "Ecovacs",
+   "model": "Deebot T90S Pro Omni Care Kit",
+   "price": 549.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 300,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 5 h 00",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1246150",
+   "uniq": "5 h d'autonomie",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p352",
+   "cat": "aspi",
+   "brand": "Ecovacs",
+   "model": "Deebot X12S OmniCyclone",
+   "price": 899.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 300,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 5 h 00",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1246191",
+   "uniq": "Le haut de gamme Ecovacs",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 5
+   }
+  },
+  {
+   "id": "p353",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "D30 Ultra",
+   "price": 299.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 240,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 4 h 00",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1239692",
+   "uniq": "Station complète sous 300 €",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.7,
+    "n": 11
+   }
+  },
+  {
+   "id": "p354",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "L10S Ultra Gen3",
+   "price": 319.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 180,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 3 h 00",
+    "Station : vide le bac et gère l'eau",
+    "4,8/5 sur 130 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1233543",
+   "uniq": "Très bien noté (130 avis), station complète",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 130
+   }
+  },
+  {
+   "id": "p355",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "L50 Ultra AE",
+   "price": 429.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 240,
+    "puissance": "28 000 Pa",
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 4 h 00",
+    "Station : vide le bac et gère l'eau",
+    "28 000 Pa",
+    "4,4/5 sur 31 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1238294",
+   "uniq": "28 000 Pa",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 31
+   }
+  },
+  {
+   "id": "p356",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "L50s Pro Ultra",
+   "price": 499.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 240,
+    "puissance": "30 000 Pa",
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 4 h 00",
+    "Station : vide le bac et gère l'eau",
+    "30 000 Pa",
+    "4,9/5 sur 165 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1238293",
+   "uniq": "Le best-seller : 4,9/5 sur 165 avis, 30 000 Pa",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.9,
+    "n": 165
+   }
+  },
+  {
+   "id": "p357",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "Matrix10 Pro",
+   "price": 559.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 240,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 4 h 00",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1242635",
+   "uniq": "Gamme Matrix",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p358",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "Aqua10 Ultra Roller Complete",
+   "price": 649.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 165,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 2 h 45",
+    "Station : vide le bac et gère l'eau",
+    "4,3/5 sur 132 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1228329",
+   "uniq": "Lavage par rouleau au lieu de serpillières",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 132
+   }
+  },
+  {
+   "id": "p359",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "MatriX10 Ultra",
+   "price": 649.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 170,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 2 h 50",
+    "Station : vide le bac et gère l'eau",
+    "4,3/5 sur 48 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1228695",
+   "uniq": "Gamme Matrix haut de gamme",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 48
+   }
+  },
+  {
+   "id": "p360",
+   "cat": "aspi",
+   "brand": "Roborock",
+   "model": "Q7 Pro Max+",
+   "price": 168.99,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 195,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 3 h 15",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1243158",
+   "uniq": "Station de vidage à petit prix (pas de lavage auto des serpillières)",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p361",
+   "cat": "aspi",
+   "brand": "Roborock",
+   "model": "Qrevo Edge 2X",
+   "price": 479.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 190,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 3 h 10",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1242632",
+   "uniq": "Station complète Roborock",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 8
+   }
+  },
+  {
+   "id": "p362",
+   "cat": "aspi",
+   "brand": "Roborock",
+   "model": "Qrevo Curv 2 FlowX",
+   "price": 479.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 220,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 3 h 40",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1234554",
+   "uniq": "Gamme Curv",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 4
+   }
+  },
+  {
+   "id": "p363",
+   "cat": "aspi",
+   "brand": "Roborock",
+   "model": "Qrevo 2 ProX",
+   "price": 699.99,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 250,
+    "puissance": "25 000 Pa",
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 4 h 10",
+    "Station : vide le bac et gère l'eau",
+    "25 000 Pa"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1248612",
+   "uniq": "25 000 Pa",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p364",
+   "cat": "aspi",
+   "brand": "Roborock",
+   "model": "Saros 20X",
+   "price": 799.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 180,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 3 h 00",
+    "Station : vide le bac et gère l'eau",
+    "4,5/5 sur 26 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1234994",
+   "uniq": "Haut de gamme Roborock",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 26
+   }
+  },
+  {
+   "id": "p365",
+   "cat": "aspi",
+   "brand": "Narwal",
+   "model": "Flow 2 Complete",
+   "price": 799.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 255,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 4 h 15",
+    "Station : vide le bac et gère l'eau"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1244467",
+   "uniq": "Lave à l'eau chaude",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p366",
+   "cat": "aspi",
+   "brand": "Dyson",
+   "model": "Spot+Scrub AI",
+   "price": 799.0,
+   "specs": {
+    "type": "Robot laveur",
+    "autonomie": 210,
+    "station": "oui",
+    "animaux": "oui",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 3 h 30",
+    "Station : vide le bac et gère l'eau",
+    "3,9/5 sur 31 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1232015",
+   "uniq": "Le robot laveur Dyson, détection des taches par IA",
+   "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.9,
+    "n": 31
+   }
+  },
+  {
+   "id": "p367",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "Z30",
+   "price": 310.74,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 90,
+    "poids": 2.2,
+    "animaux": "oui"
+   },
+   "args": [
+    "Autonomie 90 min",
+    "Poids 2,2 kg",
+    "4,1/5 sur 33 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1209571",
+   "uniq": "Léger (2,2 kg) avec 90 min d'autonomie",
+   "uniqUse": "Grand logement sans recharger",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 33
+   }
+  },
+  {
+   "id": "p368",
+   "cat": "aspi",
+   "brand": "Dyson",
+   "model": "V8 Cyclone Fluffy + kit de nettoyage",
+   "price": 299.0,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 60,
+    "poids": 2.6,
+    "animaux": "oui"
+   },
+   "args": [
+    "Autonomie 60 min",
+    "Poids 2,6 kg"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1250155",
+   "uniq": "La V8 avec brosse Fluffy pour sols durs",
+   "uniqUse": "Parquet et carrelage",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p369",
+   "cat": "aspi",
+   "brand": "Tineco",
+   "model": "Floor One S5 Max",
+   "price": 249.99,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 50,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 50 min",
+    "Aspire et lave en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1241523",
+   "uniq": "Aspire et lave en un seul passage",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 5
+   }
+  },
+  {
+   "id": "p370",
+   "cat": "aspi",
+   "brand": "Tineco",
+   "model": "Floor One S7 Steam",
+   "price": 329.99,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 80,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 80 min",
+    "Aspire et lave en même temps",
+    "Eau chaude ou vapeur contre les taches incrustées",
+    "4,4/5 sur 39 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1229601",
+   "uniq": "Lave à la vapeur ou à l'eau chaude",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 39
+   }
+  },
+  {
+   "id": "p371",
+   "cat": "aspi",
+   "brand": "Tineco",
+   "model": "Floor One S7 Max Pro",
+   "price": 369.99,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 60,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 60 min",
+    "Aspire et lave en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1235914",
+   "uniq": "Aspire et lave en un seul passage",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 17
+   }
+  },
+  {
+   "id": "p372",
+   "cat": "aspi",
+   "brand": "Tineco",
+   "model": "Floor One S9 Artist Premium",
+   "price": 399.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 50,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 50 min",
+    "Aspire et lave en même temps",
+    "4,4/5 sur 98 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1220954",
+   "uniq": "Aspire et lave en un seul passage",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 98
+   }
+  },
+  {
+   "id": "p373",
+   "cat": "aspi",
+   "brand": "Tineco",
+   "model": "Floor One S9 Artist Steam Pro",
+   "price": 599.99,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 90,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 90 min",
+    "Aspire et lave en même temps",
+    "Eau chaude ou vapeur contre les taches incrustées"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1235915",
+   "uniq": "Lave à la vapeur ou à l'eau chaude",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 19
+   }
+  },
+  {
+   "id": "p374",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "T12 Pro",
+   "price": 229.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 60,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 60 min",
+    "Aspire et lave en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1241520",
+   "uniq": "Aspire et lave en un seul passage",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 7
+   }
+  },
+  {
+   "id": "p375",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "H15 Pro Heat",
+   "price": 379.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 45,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 45 min",
+    "Aspire et lave en même temps",
+    "Eau chaude ou vapeur contre les taches incrustées",
+    "3,8/5 sur 186 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1222235",
+   "uniq": "Lave à la vapeur ou à l'eau chaude",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.8,
+    "n": 186
+   }
+  },
+  {
+   "id": "p376",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "T16 Pro Heat R",
+   "price": 469.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 60,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 60 min",
+    "Aspire et lave en même temps",
+    "Eau chaude ou vapeur contre les taches incrustées"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1243162",
+   "uniq": "Lave à la vapeur ou à l'eau chaude",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 9
+   }
+  },
+  {
+   "id": "p377",
+   "cat": "aspi",
+   "brand": "Dreame",
+   "model": "T16 Pro Steam",
+   "price": 529.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 70,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 70 min",
+    "Aspire et lave en même temps",
+    "Eau chaude ou vapeur contre les taches incrustées"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1247156",
+   "uniq": "Lave à la vapeur ou à l'eau chaude",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p378",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X Clean 7 Pro GZ5856E0",
+   "price": 279.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 60,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 60 min",
+    "Aspire et lave en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1248574",
+   "uniq": "Aspire et lave en un seul passage",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 15
+   }
+  },
+  {
+   "id": "p379",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Clean 12 GZ7257E0",
+   "price": 479.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 60,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 60 min",
+    "Aspire et lave en même temps",
+    "4,8/5 sur 52 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1235166",
+   "uniq": "Aspire et lave en un seul passage",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 52
+   }
+  },
+  {
+   "id": "p380",
+   "cat": "aspi",
+   "brand": "Roborock",
+   "model": "F25 Select Steam",
+   "price": 339.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 80,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 80 min",
+    "Aspire et lave en même temps",
+    "Eau chaude ou vapeur contre les taches incrustées"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240613",
+   "uniq": "Lave à la vapeur ou à l'eau chaude",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 6
+   }
+  },
+  {
+   "id": "p381",
+   "cat": "aspi",
+   "brand": "Roborock",
+   "model": "F25 Ultra",
+   "price": 399.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 60,
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 60 min",
+    "Aspire et lave en même temps",
+    "4,4/5 sur 29 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1229261",
+   "uniq": "Aspire et lave en un seul passage",
+   "uniqUse": "Taches collantes et sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 29
+   }
+  },
+  {
+   "id": "p382",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Power Pro Compact 200 SV6212C0",
+   "price": 89.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6.3,
+    "debit": 120,
+    "pressing": 380,
+    "reservoir": 1.7
+   },
+   "args": [
+    "Pression 6,3 bars, vapeur continue 120 g/min",
+    "Coup de vapeur 380 g/min",
+    "Réservoir 1,7 L amovible",
+    "3,4/5 sur 25 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1237221",
+   "uniq": "6,3 bars et 380 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.4,
+    "n": 25
+   }
+  },
+  {
+   "id": "p383",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "Série 3000 PSG3000/30",
+   "price": 96.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6,
+    "debit": 140,
+    "pressing": 350,
+    "reservoir": 1.4
+   },
+   "args": [
+    "Pression 6 bars, vapeur continue 140 g/min",
+    "Coup de vapeur 350 g/min",
+    "Réservoir 1,4 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1213947",
+   "uniq": "6 bars et 350 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.9,
+    "n": 11
+   }
+  },
+  {
+   "id": "p384",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "Série 3000 PSG3001/30",
+   "price": 109.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6,
+    "debit": 140,
+    "pressing": 350,
+    "reservoir": 1.4
+   },
+   "args": [
+    "Pression 6 bars, vapeur continue 140 g/min",
+    "Coup de vapeur 350 g/min",
+    "Réservoir 1,4 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1235043",
+   "uniq": "6 bars et 350 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 2,
+    "n": 1
+   }
+  },
+  {
+   "id": "p385",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "Série 2000 PSG2000/20",
+   "price": 120.33,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6,
+    "debit": 130,
+    "reservoir": 1.4
+   },
+   "args": [
+    "Pression 6 bars, vapeur continue 130 g/min",
+    "Réservoir 1,4 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1205108",
+   "uniq": "6 bars",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.8,
+    "n": 6
+   }
+  },
+  {
+   "id": "p386",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "SV8027C0",
+   "price": 129.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6.5,
+    "debit": 125,
+    "pressing": 400,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 6,5 bars, vapeur continue 125 g/min",
+    "Coup de vapeur 400 g/min",
+    "Réservoir 1,8 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240712",
+   "uniq": "6,5 bars et 400 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 1,
+    "n": 1
+   }
+  },
+  {
+   "id": "p387",
+   "cat": "linge",
+   "brand": "Essentiel B",
+   "model": "ECVD 3001 Steam'gliss 2",
+   "price": 129.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 7,
+    "debit": 120,
+    "pressing": 200,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 7 bars, vapeur continue 120 g/min",
+    "Coup de vapeur 200 g/min",
+    "Réservoir 1,8 L amovible",
+    "4,5/5 sur 90 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "8010376",
+   "uniq": "7 bars et 200 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 90
+   }
+  },
+  {
+   "id": "p388",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Express Vision Steam SV8156C0",
+   "price": 149.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 8,
+    "debit": 130,
+    "pressing": 600,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 8 bars, vapeur continue 130 g/min",
+    "Coup de vapeur 600 g/min",
+    "Réservoir 1,8 L amovible",
+    "4,1/5 sur 27 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1230854",
+   "uniq": "8 bars et 600 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 27
+   }
+  },
+  {
+   "id": "p389",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "Série 4000 PSG4040/80",
+   "price": 159.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6.5,
+    "debit": 140,
+    "pressing": 500,
+    "reservoir": 1.7
+   },
+   "args": [
+    "Pression 6,5 bars, vapeur continue 140 g/min",
+    "Coup de vapeur 500 g/min",
+    "Réservoir 1,7 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1246666",
+   "uniq": "6,5 bars et 500 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p390",
+   "cat": "linge",
+   "brand": "Braun",
+   "model": "CareStyle 3 IS3257BK",
+   "price": 169.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 7.5,
+    "debit": 130,
+    "pressing": 500,
+    "reservoir": 1.8,
+    "sansreglage": "oui"
+   },
+   "args": [
+    "Pression 7,5 bars, vapeur continue 130 g/min",
+    "Coup de vapeur 500 g/min",
+    "Réservoir 1,8 L amovible",
+    "Sans réglage : une seule température pour tous les tissus"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1229608",
+   "uniq": "7,5 bars et 500 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 10
+   }
+  },
+  {
+   "id": "p391",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "Série 6000 PSG6026/20",
+   "price": 169.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6.5,
+    "debit": 150,
+    "pressing": 500,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 6,5 bars, vapeur continue 150 g/min",
+    "Coup de vapeur 500 g/min",
+    "Réservoir 1,8 L amovible",
+    "4,2/5 sur 25 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1184565",
+   "uniq": "6,5 bars et 500 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 25
+   }
+  },
+  {
+   "id": "p392",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "PSG6023/20",
+   "price": 174.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6.5,
+    "debit": 150,
+    "pressing": 500,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 6,5 bars, vapeur continue 150 g/min",
+    "Coup de vapeur 500 g/min",
+    "Réservoir 1,8 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1244236",
+   "uniq": "6,5 bars et 500 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p393",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Express Power SV8111C0",
+   "price": 179.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6.2,
+    "debit": 120,
+    "pressing": 430,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 6,2 bars, vapeur continue 120 g/min",
+    "Coup de vapeur 430 g/min",
+    "Réservoir 1,8 L amovible",
+    "3,8/5 sur 64 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1190218",
+   "uniq": "6,2 bars et 430 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 3.8,
+    "n": 64
+   }
+  },
+  {
+   "id": "p394",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Power Pro Compact 300 SV6222C0",
+   "price": 179.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6.8,
+    "debit": 130,
+    "pressing": 430,
+    "reservoir": 1.7
+   },
+   "args": [
+    "Pression 6,8 bars, vapeur continue 130 g/min",
+    "Coup de vapeur 430 g/min",
+    "Réservoir 1,7 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1250183",
+   "uniq": "6,8 bars et 430 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14"
+  },
+  {
+   "id": "p395",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "PerfectCare Compact Série 6000 PSG6066/20",
+   "price": 199.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 8,
+    "debit": 150,
+    "pressing": 600,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 8 bars, vapeur continue 150 g/min",
+    "Coup de vapeur 600 g/min",
+    "Réservoir 1,8 L amovible",
+    "4/5 sur 161 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1177858",
+   "uniq": "8 bars et 600 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 161
+   }
+  },
+  {
+   "id": "p396",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Express Vision SV8153C0",
+   "price": 199.81,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 6.9,
+    "debit": 130,
+    "pressing": 490,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 6,9 bars, vapeur continue 130 g/min",
+    "Coup de vapeur 490 g/min",
+    "Réservoir 1,8 L amovible",
+    "4,2/5 sur 178 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1190219",
+   "uniq": "6,9 bars et 490 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 178
+   }
+  },
+  {
+   "id": "p397",
+   "cat": "linge",
+   "brand": "Polti",
+   "model": "Vaporella Instant VI50.50",
+   "price": 199.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 8,
+    "debit": 140,
+    "pressing": 600,
+    "reservoir": 2
+   },
+   "args": [
+    "Pression 8 bars, vapeur continue 140 g/min",
+    "Coup de vapeur 600 g/min",
+    "Réservoir 2 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1186448",
+   "uniq": "8 bars et 600 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 16
+   }
+  },
+  {
+   "id": "p398",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Pro Express Eco GV9E22C0",
+   "price": 219.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 7.6,
+    "debit": 140,
+    "pressing": 550,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 7,6 bars, vapeur continue 140 g/min",
+    "Coup de vapeur 550 g/min",
+    "Réservoir 1,8 L amovible",
+    "4,5/5 sur 46 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1211283",
+   "uniq": "7,6 bars et 550 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 46
+   }
+  },
+  {
+   "id": "p399",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Pro Express Ultimate GV9558C0",
+   "price": 229.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 8,
+    "debit": 130,
+    "pressing": 550,
+    "reservoir": 1.9
+   },
+   "args": [
+    "Pression 8 bars, vapeur continue 130 g/min",
+    "Coup de vapeur 550 g/min",
+    "Réservoir 1,9 L amovible",
+    "4,7/5 sur 95 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1213768",
+   "uniq": "8 bars et 550 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 95
+   }
+  },
+  {
+   "id": "p400",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Pro Express Eco GV9E20C0",
+   "price": 234.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 7.5,
+    "debit": 140,
+    "pressing": 560,
+    "reservoir": 1.8
+   },
+   "args": [
+    "Pression 7,5 bars, vapeur continue 140 g/min",
+    "Coup de vapeur 560 g/min",
+    "Réservoir 1,8 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1235169",
+   "uniq": "7,5 bars et 560 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 4
+   }
+  },
+  {
+   "id": "p401",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "PerfectCare Série 7000 PSG7200/20",
+   "price": 279.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 8.5,
+    "debit": 160,
+    "pressing": 600,
+    "reservoir": 1.5
+   },
+   "args": [
+    "Pression 8,5 bars, vapeur continue 160 g/min",
+    "Coup de vapeur 600 g/min",
+    "Réservoir 1,5 L amovible",
+    "4,7/5 sur 34 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1222270",
+   "uniq": "8,5 bars et 600 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 34
+   }
+  },
+  {
+   "id": "p402",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "PerfectCare Série 7000 PSG7300/70",
+   "price": 379.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 8.5,
+    "debit": 170,
+    "pressing": 650,
+    "reservoir": 1.5
+   },
+   "args": [
+    "Pression 8,5 bars, vapeur continue 170 g/min",
+    "Coup de vapeur 650 g/min",
+    "Réservoir 1,5 L amovible",
+    "4,6/5 sur 29 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1222282",
+   "uniq": "8,5 bars et 650 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 29
+   }
+  },
+  {
+   "id": "p403",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Pro Express Ultimate 2 GV9721C0",
+   "price": 399.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 7.9,
+    "debit": 170,
+    "pressing": 600,
+    "reservoir": 1.2
+   },
+   "args": [
+    "Pression 7,9 bars, vapeur continue 170 g/min",
+    "Coup de vapeur 600 g/min",
+    "Réservoir 1,2 L amovible",
+    "4,6/5 sur 82 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1177791",
+   "uniq": "7,9 bars et 600 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 82
+   }
+  },
+  {
+   "id": "p404",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "Série 8000 PSG8300 (noir/rose gold ou bordeaux)",
+   "price": 429.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 9,
+    "debit": 215,
+    "pressing": 850,
+    "reservoir": 1.4,
+    "sansreglage": "oui"
+   },
+   "args": [
+    "Pression 9 bars, vapeur continue 215 g/min",
+    "Coup de vapeur 850 g/min",
+    "Réservoir 1,4 L amovible",
+    "Sans réglage : une seule température pour tous les tissus"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1235042 / 1235255",
+   "uniq": "9 bars et 850 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 16
+   }
+  },
+  {
+   "id": "p405",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Pro Express Vision GV9820C0",
+   "price": 449.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 9,
+    "debit": 180,
+    "pressing": 750,
+    "reservoir": 1
+   },
+   "args": [
+    "Pression 9 bars, vapeur continue 180 g/min",
+    "Coup de vapeur 750 g/min",
+    "Réservoir 1 L amovible",
+    "4,3/5 sur 62 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1167366",
+   "uniq": "9 bars et 750 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 62
+   }
+  },
+  {
+   "id": "p406",
+   "cat": "linge",
+   "brand": "Philips",
+   "model": "Série 8000 PSG8200/70",
+   "price": 449.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 9,
+    "debit": 215,
+    "pressing": 750,
+    "reservoir": 1.4,
+    "sansreglage": "oui"
+   },
+   "args": [
+    "Pression 9 bars, vapeur continue 215 g/min",
+    "Coup de vapeur 750 g/min",
+    "Réservoir 1,4 L amovible",
+    "Sans réglage : une seule température pour tous les tissus"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1235254",
+   "uniq": "9 bars et 750 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p407",
+   "cat": "linge",
+   "brand": "Calor",
+   "model": "Pro Express Vision Max Steam GV9920C0",
+   "price": 549.99,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 9,
+    "debit": 215,
+    "pressing": 850,
+    "reservoir": 1.2
+   },
+   "args": [
+    "Pression 9 bars, vapeur continue 215 g/min",
+    "Coup de vapeur 850 g/min",
+    "Réservoir 1,2 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1233853",
+   "uniq": "9 bars et 850 g/min de coup de vapeur",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 17
+   }
+  },
+  {
+   "id": "p408",
+   "cat": "linge",
+   "brand": "Laurastar",
+   "model": "Lift Pure White",
+   "price": 449.0,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 3.5,
+    "debit": 80,
+    "reservoir": 1.1
+   },
+   "args": [
+    "Pression 3,5 bars, vapeur continue 80 g/min",
+    "Réservoir 1,1 L amovible",
+    "4,4/5 sur 82 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "146778",
+   "uniq": "Vapeur fine et sèche, design premium : le repassage « haut de gamme »",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 82
+   }
+  },
+  {
+   "id": "p409",
+   "cat": "linge",
+   "brand": "Laurastar",
+   "model": "Lift Xtra (Titan ou Midnight Blue)",
+   "price": 499.0,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 3.5,
+    "debit": 80,
+    "reservoir": 1.1
+   },
+   "args": [
+    "Pression 3,5 bars, vapeur continue 80 g/min",
+    "Réservoir 1,1 L amovible",
+    "4,5/5 sur 64 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1122825 / 1242675",
+   "uniq": "Vapeur fine et sèche, design premium : le repassage « haut de gamme »",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 64
+   }
+  },
+  {
+   "id": "p410",
+   "cat": "linge",
+   "brand": "Laurastar",
+   "model": "Lift Plus Silky Beige",
+   "price": 499.0,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 3.5,
+    "debit": 80,
+    "reservoir": 1.1
+   },
+   "args": [
+    "Pression 3,5 bars, vapeur continue 80 g/min",
+    "Réservoir 1,1 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1242677",
+   "uniq": "Vapeur fine et sèche, design premium : le repassage « haut de gamme »",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 11
+   }
+  },
+  {
+   "id": "p411",
+   "cat": "linge",
+   "brand": "Laurastar",
+   "model": "Lift 1980",
+   "price": 649.0,
+   "specs": {
+    "type": "Centrale vapeur",
+    "pression": 3.5,
+    "debit": 80,
+    "reservoir": 1.1
+   },
+   "args": [
+    "Pression 3,5 bars, vapeur continue 80 g/min",
+    "Réservoir 1,1 L amovible"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1160563",
+   "uniq": "Vapeur fine et sèche, design premium : le repassage « haut de gamme »",
+   "uniqUse": "Repasser une pile de linge deux fois plus vite qu'au fer",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 8
+   }
+  },
+  {
+   "id": "p412",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo+ CE85B8F0 noir",
+   "price": 169.99,
+   "specs": {
+    "type": "Multicuiseur",
+    "capacite": 6,
+    "modes": 6,
+    "recettes": "180",
+    "connecte": "non",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "6 L, 6 modes de cuisson",
+    "180 recettes guidées"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1247211",
+   "uniq": "Cookeo+ avec 180 recettes à moins de 170 €",
+   "uniqUse": "Le plat est prêt sans surveiller la cuisson",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 12
+   }
+  },
+  {
+   "id": "p413",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo+ CE85BA10 blanc",
+   "price": 179.99,
+   "specs": {
+    "type": "Multicuiseur",
+    "capacite": 6,
+    "modes": 6,
+    "recettes": "180",
+    "connecte": "non",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "6 L, 6 modes de cuisson",
+    "180 recettes guidées",
+    "4,5/5 sur 72 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1189377",
+   "uniq": "Le Cookeo+ classique, 180 recettes",
+   "uniqUse": "Le plat est prêt sans surveiller la cuisson",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 72
+   }
+  },
+  {
+   "id": "p414",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Simplicity CE821 (terracotta, gris foncé, gris clair, blanc)",
+   "price": 199.99,
+   "specs": {
+    "type": "Multicuiseur",
+    "capacite": 6,
+    "modes": 6,
+    "recettes": "150",
+    "connecte": "non",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "6 L, 6 modes de cuisson",
+    "150 recettes guidées",
+    "4,7/5 sur 34 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1248510 / 1248572 / 1248571 / 1244655",
+   "uniq": "Le nouveau Cookeo simple, 150 recettes guidées",
+   "uniqUse": "Le plat est prêt sans surveiller la cuisson",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 34
+   }
+  },
+  {
+   "id": "p415",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Simplicity + Extra Crisp CE82X1F0",
+   "price": 249.99,
+   "specs": {
+    "type": "Multicuiseur",
+    "capacite": 6,
+    "modes": 6,
+    "recettes": "150",
+    "connecte": "non",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "6 L, 6 modes de cuisson",
+    "150 recettes guidées",
+    "Extra Crisp inclus",
+    "4,7/5 sur 29 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1244535",
+   "uniq": "Simplicity livré avec le couvercle airfryer",
+   "uniqUse": "Le plat est prêt sans surveiller la cuisson",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 29
+   }
+  },
+  {
+   "id": "p416",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo connecté Wi-Fi 8-en-1 CE952810 noir",
+   "price": 239.99,
+   "specs": {
+    "type": "Multicuiseur",
+    "capacite": 6,
+    "modes": 9,
+    "recettes": "150",
+    "connecte": "oui",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "6 L, 9 modes de cuisson",
+    "150 recettes guidées",
+    "Wi-Fi : recettes depuis l'appli",
+    "4,8/5 sur 34 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1210264",
+   "uniq": "Connecté Wi-Fi, très bien noté",
+   "uniqUse": "Le plat est prêt sans surveiller la cuisson",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 34
+   }
+  },
+  {
+   "id": "p417",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Agility Wi-Fi 9-en-1 + Extra Crisp YY5449FB",
+   "price": 279.99,
+   "specs": {
+    "type": "Multicuiseur",
+    "capacite": 6,
+    "modes": 9,
+    "recettes": "150",
+    "connecte": "oui",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "6 L, 9 modes de cuisson",
+    "150 recettes guidées",
+    "Wi-Fi : recettes depuis l'appli",
+    "Extra Crisp inclus",
+    "4,6/5 sur 34 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1220102",
+   "uniq": "Connecté + couvercle airfryer",
+   "uniqUse": "Le plat est prêt sans surveiller la cuisson",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 34
+   }
+  },
+  {
+   "id": "p418",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Wi-Fi 9-en-1 + Extra Crisp YY5855FB blanc",
+   "price": 349.99,
+   "specs": {
+    "type": "Multicuiseur",
+    "capacite": 6,
+    "modes": 9,
+    "recettes": "150",
+    "connecte": "oui",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "6 L, 9 modes de cuisson",
+    "150 recettes guidées",
+    "Wi-Fi : recettes depuis l'appli",
+    "Extra Crisp inclus"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1231923",
+   "uniq": "Version blanche sans pale, avec airfryer",
+   "uniqUse": "Le plat est prêt sans surveiller la cuisson",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 3
+   }
+  },
+  {
+   "id": "p419",
+   "cat": "cuis",
+   "brand": "Moulinex",
+   "model": "Cookeo Touch Wifi + Extra Crisp YY5479FB",
+   "price": 479.99,
+   "specs": {
+    "type": "Multicuiseur",
+    "capacite": 6,
+    "modes": 13,
+    "recettes": "250",
+    "connecte": "oui",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "6 L, 13 modes de cuisson",
+    "250 recettes guidées",
+    "Wi-Fi : recettes depuis l'appli",
+    "Extra Crisp inclus"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1211468",
+   "uniq": "Écran tactile + airfryer",
+   "uniqUse": "Le plat est prêt sans surveiller la cuisson",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 16
+   }
+  },
+  {
+   "id": "p420",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Pert 5.80",
+   "price": 159.99,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 40,
+    "poids": 2.4,
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Autonomie 40 min, poids 2,4 kg",
+    "Pièces détachées Rowenta 15 ans"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1247283",
+   "uniq": "Le X-Pert d'entrée de gamme, léger",
+   "uniqUse": "Tout le logement sans fil, réparable 15 ans",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p421",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Force Flex 9.60 Kit Allergie RH2039WO",
+   "price": 189.47,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 45,
+    "poids": 2.2,
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Autonomie 45 min, poids 2,2 kg",
+    "Pièces détachées Rowenta 15 ans",
+    "4,2/5 sur 71 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1187025",
+   "uniq": "Kit Allergie, tube flexible pour passer sous les meubles",
+   "uniqUse": "Tout le logement sans fil, réparable 15 ans",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 71
+   }
+  },
+  {
+   "id": "p422",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Force Flex 10.80 RH7A32E0",
+   "price": 179.0,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 60,
+    "poids": 2.5,
+    "puissance": "120 AW",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Autonomie 60 min, poids 2,5 kg",
+    "120 AW",
+    "Pièces détachées Rowenta 15 ans"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240311",
+   "uniq": "Tube flexible, 120 AW en Boost",
+   "uniqUse": "Tout le logement sans fil, réparable 15 ans",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 2.8,
+    "n": 5
+   }
+  },
+  {
+   "id": "p423",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Force 8.80 RH1872E0",
+   "price": 239.99,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 45,
+    "poids": 2.7,
+    "puissance": "100 AW",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Autonomie 45 min, poids 2,7 kg",
+    "100 AW",
+    "Pièces détachées Rowenta 15 ans",
+    "4,2/5 sur 23 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1235165",
+   "uniq": "100 AW, 45 min",
+   "uniqUse": "Tout le logement sans fil, réparable 15 ans",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 23
+   }
+  },
+  {
+   "id": "p424",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Force Flex 12.60 Kit Animal RH98A9WO",
+   "price": 349.0,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 45,
+    "poids": 4.1,
+    "pieces": "15 ans",
+    "animaux": "oui"
+   },
+   "args": [
+    "Autonomie 45 min, poids 4,1 kg",
+    "Pièces détachées Rowenta 15 ans",
+    "4,3/5 sur 120 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1183974",
+   "uniq": "Kit animaux complet, 120 avis",
+   "uniqUse": "Tout le logement sans fil, réparable 15 ans",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 120
+   }
+  },
+  {
+   "id": "p425",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Force Flex 14.80 Aqua RH9BC1WO",
+   "price": 549.0,
+   "specs": {
+    "type": "Balai sans fil",
+    "autonomie": 90,
+    "poids": 5.3,
+    "pieces": "15 ans",
+    "laveur": "oui"
+   },
+   "args": [
+    "Autonomie 90 min, poids 5,3 kg",
+    "Pièces détachées Rowenta 15 ans"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1240306",
+   "uniq": "La 14.80 avec tête qui lave",
+   "uniqUse": "Tout le logement sans fil, réparable 15 ans",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 10
+   }
+  },
+  {
+   "id": "p426",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X Clean 2 GZ2251E0",
+   "price": 168.99,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 35,
+    "laveur": "oui",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Autonomie 35 min",
+    "Aspire et lave en même temps"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1232453",
+   "uniq": "Aspire et lave en un passage, marque française réparable",
+   "uniqUse": "Sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4,
+    "n": 3
+   }
+  },
+  {
+   "id": "p427",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X Clean 7 GZ5736E0",
+   "price": 399.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 50,
+    "laveur": "oui",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Autonomie 50 min",
+    "Aspire et lave en même temps",
+    "4,3/5 sur 54 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1230318",
+   "uniq": "Aspire et lave en un passage, marque française réparable",
+   "uniqUse": "Sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 54
+   }
+  },
+  {
+   "id": "p428",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X Clean 10 GZ7035WO",
+   "price": 499.0,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 60,
+    "laveur": "oui",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Autonomie 60 min",
+    "Aspire et lave en même temps",
+    "4,1/5 sur 404 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1212793",
+   "uniq": "Aspire et lave en un passage, marque française réparable",
+   "uniqUse": "Sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.1,
+    "n": 404
+   }
+  },
+  {
+   "id": "p429",
+   "cat": "aspi",
+   "brand": "Rowenta",
+   "model": "X-Clean Vision Pro GZ7136E0",
+   "price": 549.99,
+   "specs": {
+    "type": "Laveur de sols",
+    "autonomie": 60,
+    "laveur": "oui",
+    "pieces": "15 ans"
+   },
+   "args": [
+    "Autonomie 60 min",
+    "Aspire et lave en même temps",
+    "4,4/5 sur 25 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1248573",
+   "uniq": "Aspire et lave en un passage, marque française réparable",
+   "uniqUse": "Sols durs propres en un passage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.4,
+    "n": 25
+   }
+  },
+  {
+   "id": "p430",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Magnifica S Smart FEB2533.TB",
+   "price": 399.0,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 4,
+    "reservoir": 1.8,
+    "bac_grains": "250 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "4 recettes",
+    "Réservoir 1,8 L, bac à grains 250 g",
+    "Broyeur acier",
+    "4,3/5 sur 712 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1129871",
+   "uniq": "La plus notée du rayon : 712 avis",
+   "uniqUse": "Valeur sûre à recommander les yeux fermés",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 712
+   }
+  },
+  {
+   "id": "p431",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Série 2200 EP2224/10 gris cachemire",
+   "price": 279.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 2,
+    "reservoir": 1.8,
+    "bac_grains": "275 g",
+    "broyeur": "Céramique"
+   },
+   "args": [
+    "2 recettes",
+    "Réservoir 1,8 L, bac à grains 275 g",
+    "Broyeur céramique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1180840",
+   "uniq": "Philips entrée de gamme, broyeur céramique",
+   "uniqUse": "Expresso et café long, petit budget",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.5,
+    "n": 18
+   }
+  },
+  {
+   "id": "p432",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Série 4400 LatteGo EP4446/70",
+   "price": 669.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 14,
+    "reservoir": 1.8,
+    "bac_grains": "275 g",
+    "broyeur": "Céramique"
+   },
+   "args": [
+    "14 recettes",
+    "Réservoir 1,8 L, bac à grains 275 g",
+    "Broyeur céramique"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1203781",
+   "uniq": "LatteGo 14 recettes",
+   "uniqUse": "Cappuccino sans corvée de nettoyage",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.7,
+    "n": 3
+   }
+  },
+  {
+   "id": "p433",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Eletta Explore ECAM450.86.T titanium",
+   "price": 1099.99,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 42,
+    "reservoir": 1.8,
+    "bac_grains": "300 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "42 recettes",
+    "Réservoir 1,8 L, bac à grains 300 g",
+    "Broyeur acier"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1187949",
+   "uniq": "Eletta Explore version titane",
+   "uniqUse": "Boissons chaudes et froides",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.3,
+    "n": 12
+   }
+  },
+  {
+   "id": "p434",
+   "cat": "cafe",
+   "brand": "Dreame",
+   "model": "Ecceluxe Slim",
+   "price": 499.0,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Automatique",
+    "recettes": 5,
+    "reservoir": 1.5,
+    "bac_grains": "150 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "5 recettes",
+    "Réservoir 1,5 L, bac à grains 150 g",
+    "Broyeur acier"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1241208",
+   "uniq": "Machine à grain très fine",
+   "uniqUse": "Petite cuisine",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p435",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "EGF03 (crème ou noir)",
+   "price": 799.0,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Buse vapeur",
+    "recettes": 1,
+    "reservoir": 2.4,
+    "bac_grains": "250 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "1 recettes",
+    "Réservoir 2,4 L, bac à grains 250 g",
+    "Broyeur acier"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1198515 / 1198513",
+   "uniq": "Smeg semi-pro : réservoir 2,4 L",
+   "uniqUse": "Client design qui veut un vrai expresso",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 5,
+    "n": 1
+   }
+  },
+  {
+   "id": "p436",
+   "cat": "cafe",
+   "brand": "Melitta",
+   "model": "Caffeo Solo Pure E 950-222",
+   "price": 389.13,
+   "specs": {
+    "type": "Grain automatique",
+    "lait": "Non",
+    "recettes": 2,
+    "reservoir": 1.8,
+    "bac_grains": "270 g",
+    "broyeur": "Acier"
+   },
+   "args": [
+    "2 recettes",
+    "Réservoir 1,8 L, bac à grains 270 g",
+    "Broyeur acier",
+    "4,2/5 sur 20 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1074185",
+   "uniq": "Très étroite (20 cm), café noir uniquement",
+   "uniqUse": "Petite cuisine, café noir",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.2,
+    "n": 20
+   }
+  },
+  {
+   "id": "p437",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Baristina BAR302/20 + porte-filtre bois",
+   "price": 249.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "pression": 16,
+    "reservoir": 1.2,
+    "broyeur": "Intégré"
+   },
+   "args": [
+    "Moud, tasse et extrait en un geste",
+    "16 bars, réservoir 1,2 L",
+    "4,6/5 sur 23 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1202932",
+   "uniq": "La Baristina la moins chère, avec porte-filtre en bois",
+   "uniqUse": "Grain moulu à la minute sans geste barista",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.6,
+    "n": 23
+   }
+  },
+  {
+   "id": "p438",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Baristina BAR303/60 + mousseur à lait",
+   "price": 419.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "pression": 16,
+    "reservoir": 1.2,
+    "broyeur": "Intégré",
+    "lait": "Mousseur"
+   },
+   "args": [
+    "Moud, tasse et extrait en un geste",
+    "16 bars, réservoir 1,2 L",
+    "4,8/5 sur 20 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "incl": "",
+   "seed": true,
+   "ref": "1202934",
+   "uniq": "Baristina livrée avec un mousseur à lait",
+   "uniqUse": "Grain moulu à la minute sans geste barista",
+   "releve": "2026-11-14",
+   "avis": {
+    "note": 4.8,
+    "n": 20
    }
   }
  ]
