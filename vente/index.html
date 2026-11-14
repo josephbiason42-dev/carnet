@@ -66,6 +66,33 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(-
 .refl div b{color:var(--acc)}
 
 /* liste */
+.ref{margin:4px 0 12px;border:1px solid var(--line2);border-radius:var(--r);background:var(--s1);overflow:hidden}
+.ref>summary{list-style:none;cursor:pointer;padding:13px 15px;display:flex;align-items:center;gap:10px;font-weight:800}
+.ref>summary::-webkit-details-marker{display:none}
+.ref>summary small{color:var(--muted);font-weight:600;margin-left:auto;font-size:.8rem}
+.ref>summary:after{content:"▾";color:var(--acc);transition:transform .2s}
+.ref[open]>summary:after{transform:rotate(180deg)}
+.ref-b{padding:0 15px 14px}
+.ref-q{margin:0 0 12px;padding:11px 13px;border-radius:12px;background:var(--s2);font-size:.92rem}
+.ref-q b{display:block;color:var(--acc);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.ref-c{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;counter-reset:rc}
+.ref-c li{counter-increment:rc;padding:11px 12px 11px 42px;border-radius:12px;background:var(--s2);position:relative;font-size:.88rem}
+.ref-c li:before{content:counter(rc);position:absolute;left:12px;top:11px;width:21px;height:21px;border-radius:50%;background:var(--acc);color:#111;font-weight:800;font-size:.78rem;display:grid;place-items:center}
+.ref-c b{display:block;font-size:.95rem;margin-bottom:4px}
+.ref-c span{display:block;margin-top:3px;color:var(--muted)}
+.ref-c span i{font-style:normal;color:var(--ink);font-weight:700}
+.ref-p{margin:12px 0 0;padding:10px 12px;border-radius:12px;border:1px solid rgba(248,113,113,.35);color:#fecaca;font-size:.88rem}
+.ref h3{font-size:.95rem;margin:16px 0 8px}
+.ref-t{overflow-x:auto;margin:0 -15px;padding:0 15px}
+.ref-t table{border-collapse:collapse;font-size:.82rem;min-width:100%}
+.ref-t th,.ref-t td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.ref-t th{color:var(--muted);font-weight:700;white-space:nowrap}
+.ref-t td:first-child{font-weight:700;min-width:120px}
+.ref-t td.u{color:var(--muted);min-width:180px}
+.ref-t tr[data-id]{cursor:pointer}
+.ref-t tr[data-id]:active td{background:var(--s3)}
+.reflink{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:2px 0 10px;font-size:.85rem;color:var(--muted)}
+.reflink button{border:1px solid var(--line2);background:var(--s1);border-radius:999px;padding:6px 11px;font-weight:700;font-size:.82rem}
 .lhead{display:flex; align-items:baseline; gap:10px; margin:14px 2px 8px}
 .lhead h1{font-size:1.4rem; margin:0; letter-spacing:-.02em}
 .lhead span{color:var(--muted); font-weight:600; font-size:.88rem}
@@ -282,7 +309,7 @@ var PCAT={
 var BUD=[["","Tous prix"],["0-100","< 100 €"],["100-200","100–200 €"],["200-400","200–400 €"],["400-99999","400 € et +"]];
 
 var P=[],G=null,X=null,src="";
-var ui={tab:"prod",adv:{cat:null,i:0,a:{}},obq:"",obOpen:{},infOpen:{},hkOpen:{},cbase:null,cat:null,type:"",bud:"",sort:"",q:"",open:null,list:[],client:false,cmp:lsGet("rayon-cmp")||[],fav:lsGet("rayon-fav")||{},seen:lsGet("rayon-seen")||[]};
+var ui={refOpen:null,tab:"prod",adv:{cat:null,i:0,a:{}},obq:"",obOpen:{},infOpen:{},hkOpen:{},cbase:null,cat:null,type:"",bud:"",sort:"",q:"",open:null,list:[],client:false,cmp:lsGet("rayon-cmp")||[],fav:lsGet("rayon-fav")||{},seen:lsGet("rayon-seen")||[]};
 
 /* ----- données : copie locale du Dashboard, puis Supabase, sinon sélection de base ----- */
 var FILE=null;
@@ -346,6 +373,21 @@ function cardHTML(p,q){
 }
 
 /* ----- écrans ----- */
+
+/* ----- fiche référence : critères pour différencier les modèles d'un type ----- */
+function refKey(cat,type){if(!X||!X.refs)return null;if(type&&X.refs[cat+"|"+type])return cat+"|"+type;if(X.refs[cat])return cat;return null}
+function refHTML(key,L){
+  var R=X.refs[key],C=PCAT[key.split("|")[0]],t=key.split("|")[1]||C.n,op=ui.refOpen===key;
+  var h='<details class="ref" data-ref="'+esc(key)+'"'+(op?' open':'')+'><summary>📋 Fiche référence<small>'+esc(t)+' · '+R.crit.length+' critères</small></summary><div class="ref-b">';
+  h+='<p class="ref-q"><b>La question qui tranche</b>'+esc(R.q)+'</p><ol class="ref-c">'+R.crit.map(function(c){return '<li><b>'+esc(c.n)+'</b><span><i>Où regarder :</i> '+esc(c.look)+'</span><span><i>Repères :</i> '+esc(c.rep)+'</span><span><i>Pour le client :</i> '+esc(c.why)+'</span></li>'}).join("")+'</ol>';
+  if(R.piege)h+='<p class="ref-p">⚠️ Piège à éviter : '+esc(R.piege)+'</p>';
+  var cols=[];R.crit.forEach(function(c){if(!c.k||cols.length>=4)return;var f=null;C.f.forEach(function(x){if(x[0]===c.k)f=x});if(f&&L.some(function(p){return specVal(f,(p.specs||{})[c.k])}))cols.push(f)});
+  if(L.length>1){
+    h+='<h3>Les modèles du rayon sur ces critères</h3><div class="ref-t"><table><thead><tr><th>Modèle</th>'+cols.map(function(f){return '<th>'+esc(f[1])+'</th>'}).join("")+'<th>Ce qui le distingue</th></tr></thead><tbody>'+
+      L.map(function(p){return '<tr data-id="'+esc(p.id)+'"><td>'+esc(pName(p))+'</td>'+cols.map(function(f){var v=specVal(f,(p.specs||{})[f[0]]);return '<td>'+(v?esc(v.t):'—')+'</td>'}).join("")+'<td class="u">'+esc(p.uniq||(p.args&&p.args[0])||"")+'</td></tr>'}).join("")+'</tbody></table></div><p class="foot" style="margin:8px 0 0">Touche une ligne pour ouvrir la fiche du produit. « — » : donnée pas encore relevée.</p>';
+  }
+  return h+'</div></details>';
+}
 function render(){
   var m=$("#main"),h="";
   document.querySelectorAll("#tabs [data-tab]").forEach(function(b){if(b.dataset.tab===ui.tab)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
@@ -364,6 +406,9 @@ function render(){
     var tk=Object.keys(types);
     if(tk.length>1)h+='<div class="chips" role="group" aria-label="Type"><button type="button" class="chip" data-type="" aria-pressed="'+(!ui.type)+'">Tous</button>'+tk.map(function(t){return '<button type="button" class="chip" data-type="'+esc(t)+'" aria-pressed="'+(ui.type===t)+'">'+esc(t)+' · '+types[t]+'</button>'}).join("")+'</div>';
     h+='<div class="chips" role="group" aria-label="Budget">'+BUD.map(function(b){return '<button type="button" class="chip" data-bud="'+b[0]+'" aria-pressed="'+(ui.bud===b[0])+'">'+b[1]+'</button>'}).join("")+'<button type="button" class="chip sort" data-sort="1" aria-pressed="'+(!!ui.sort)+'">'+(ui.sort==="desc"?"Prix ↓":ui.sort==="asc"?"Prix ↑":"Trier par prix")+'</button></div>';
+    var rk=refKey(ui.cat,ui.type||(tk.length===1?tk[0]:""));
+    if(rk&&(ui.type||tk.length<=1))h+=refHTML(rk,L2);
+    else if(X&&X.refs){var rt=tk.filter(function(t){return X.refs[ui.cat+"|"+t]});if(rt.length)h+='<div class="reflink">📋 Fiches référence :'+rt.map(function(t){return '<button type="button" data-reftype="'+esc(t)+'">'+esc(t)+'</button>'}).join("")+'</div>'}
     h+='<div class="list">'+L2.map(function(p){return cardHTML(p)}).join("")+'</div>'+(L2.length?'':'<p class="empty">Aucun produit avec ces filtres.</p>');
   }else{
     ui.list=[];
@@ -378,7 +423,10 @@ function render(){
   m.innerHTML=h;
   renderTray();
 }
+$("#main").addEventListener("toggle",function(e){var d=e.target;if(d.classList&&d.classList.contains("ref"))ui.refOpen=d.open?d.dataset.ref:null},true);
 $("#main").addEventListener("click",function(e){
+  var rt=e.target.closest("[data-reftype]");if(rt){ui.type=rt.dataset.reftype;ui.refOpen=refKey(ui.cat,ui.type);render();return}
+  var tr=e.target.closest(".ref-t tr[data-id]");if(tr){openSheet(tr.dataset.id,ui.list);return}
   var c=e.target.closest("[data-cat]");if(c){ui.cat=c.dataset.cat;ui.type="";ui.bud="";ui.sort="";go();return}
   var t=e.target.closest("[data-type]");if(t){ui.type=t.dataset.type;render();return}
   var b=e.target.closest("[data-bud]");if(b){ui.bud=b.dataset.bud;render();return}

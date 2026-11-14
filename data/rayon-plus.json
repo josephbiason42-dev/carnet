@@ -1,6 +1,6 @@
 {
  "app": "rayon",
- "updated": "2026-11-08",
+ "updated": "2026-11-14",
  "types": {
   "aspi|Balai sans fil": {
    "quest": [
@@ -1386,5 +1386,698 @@
    "Insister après 2 refus clairs"
   ],
   "note": "C'est une assurance : le contrat doit correspondre au besoin du client. Un client mal conseillé se rétracte, résilie ou se plaint."
+ },
+ "refs": {
+  "aspi|Balai sans fil": {
+   "q": "« Ce sera votre aspirateur principal, ou d'appoint ? Quelle surface, et des tapis ou des animaux ? »",
+   "crit": [
+    {
+     "n": "Puissance d'aspiration",
+     "k": "puissance",
+     "look": "Fiche produit : chiffre en AW (air watts). Les W de l'étiquette = consommation, pas la force.",
+     "rep": "Moins de 100 AW : appoint · 150 à 250 AW : polyvalent · plus de 250 AW : tapis, moquettes, animaux",
+     "why": "Décide s'il peut remplacer un traîneau sur les tapis."
+    },
+    {
+     "n": "Autonomie réelle",
+     "k": "autonomie",
+     "look": "Boîte : « jusqu'à X min ». C'est en mode éco, souvent sans brosse motorisée.",
+     "rep": "Mode boost : souvent 8 à 15 min · 40 min et plus en éco = un grand logement",
+     "why": "Toujours dire la vérité sur le boost : c'est ce qui évite les retours."
+    },
+    {
+     "n": "Batterie amovible",
+     "k": "tension",
+     "look": "Fiche : « batterie amovible / interchangeable », et la tension en V.",
+     "rep": "Amovible = on double l'autonomie avec une 2e batterie, et on la change facilement à l'usure",
+     "why": "La batterie s'use en premier : argument Infinity et vente complémentaire."
+    },
+    {
+     "n": "Brosse anti-emmêlement",
+     "k": "animaux",
+     "look": "Boîte ou fiche : « anti-enroulement », « démêlante », « spécial animaux ».",
+     "rep": "Indispensable : cheveux longs, poils d'animaux",
+     "why": "Évite de couper les cheveux enroulés à la main chaque semaine."
+    },
+    {
+     "n": "Poids et prise en main",
+     "k": "poids",
+     "look": "Fiche : poids total en kg. Le mieux : le mettre en main.",
+     "rep": "2,5 à 3,5 kg · moteur en haut = pratique en hauteur, plus lourd au poignet",
+     "why": "Le client décide souvent en le tenant : fais toujours la démo."
+    },
+    {
+     "n": "Filtration",
+     "k": "hepa",
+     "look": "Fiche : « HEPA », « système étanche ».",
+     "rep": "HEPA + étanche = air rejeté propre",
+     "why": "Argument clé pour les allergiques et les foyers avec bébé."
+    }
+   ],
+   "piege": "Comparer les watts de la boîte : ils indiquent la consommation, pas l'aspiration."
+  },
+  "aspi|Robot laveur": {
+   "q": "« Vous voulez vous en occuper combien de fois par mois ? Des tapis, des seuils, des animaux ? »",
+   "crit": [
+    {
+     "n": "Navigation",
+     "k": "",
+     "look": "Fiche : « LiDAR » (tourelle sur le dessus), « caméra », « évitement d'obstacles IA ».",
+     "rep": "Gyroscope : petite pièce · LiDAR : plan du logement, plusieurs étages · + caméra IA : évite câbles, chaussettes, déjections",
+     "why": "Le critère n°1 : c'est lui qui fait un robot méthodique ou un robot qui se cogne."
+    },
+    {
+     "n": "Aspiration",
+     "k": "puissance",
+     "look": "Fiche : chiffre en Pa (pascals).",
+     "rep": "2 000 à 4 000 Pa : sols durs · 5 000 Pa et plus : tapis, poils",
+     "why": "Utile pour comparer, mais à tranche égale la navigation compte plus."
+    },
+    {
+     "n": "Type de lavage",
+     "k": "",
+     "look": "Fiche : serpillières rotatives, rouleau, extensible, relevage (mm).",
+     "rep": "Serpillière fixe = humidifie · rotatives = frottent · rouleau = lave à l'eau propre en continu · relevage = tapis épargnés",
+     "why": "Première question pour trier le rayon : serpillières ou rouleau ?"
+    },
+    {
+     "n": "Station",
+     "k": "station",
+     "look": "Fiche : vidage auto, lavage eau chaude (°C), séchage air chaud, remplissage, raccord à l'eau.",
+     "rep": "Vidage seul · station complète (lave, sèche, remplit) · raccordement à l'arrivée d'eau",
+     "why": "Presque tous vident leur bac : la différence de prix est dans le lavage."
+    },
+    {
+     "n": "Seuils et hauteur",
+     "k": "",
+     "look": "Fiche : seuil franchissable (cm) et hauteur du robot (cm).",
+     "rep": "Seuils : 2 cm standard, 4 à 9 cm haut de gamme · hauteur sous 9 cm = passe sous plus de meubles",
+     "why": "Fais mesurer au client ses seuils et le dessous de son canapé."
+    },
+    {
+     "n": "Brosse anti-emmêlement",
+     "k": "animaux",
+     "look": "Fiche : « anti-emmêlement », « ZeroTangle », « HyperStream »…",
+     "rep": "Indispensable avec des animaux ou des cheveux longs",
+     "why": "Évite de démêler la brosse chaque semaine."
+    }
+   ],
+   "piege": "Dire « ils ont tous une station » : c'est vrai, mais elles ne font pas toutes la même chose."
+  },
+  "aspi|Laveur de sols": {
+   "q": "« Vous avez surtout des sols durs ? Vous voulez aspirer et laver en un seul passage ? »",
+   "crit": [
+    {
+     "n": "Aspire et lave en même temps",
+     "k": "laveur",
+     "look": "Fiche : « aspirateur laveur », « 2 en 1 ».",
+     "rep": "Aspire les miettes et lave en un seul passage",
+     "why": "Gain de temps énorme pour la cuisine et les familles."
+    },
+    {
+     "n": "Autonomie",
+     "k": "autonomie",
+     "look": "Fiche : autonomie en minutes.",
+     "rep": "30 à 45 min : appartement · plus : grande maison",
+     "why": "Il doit finir tout le sol d'une traite."
+    },
+    {
+     "n": "Autonettoyage",
+     "k": "",
+     "look": "Fiche : « autonettoyage », séchage du rouleau à l'air chaud.",
+     "rep": "Avec séchage = pas de mauvaises odeurs",
+     "why": "C'est ce qui évite la corvée après usage."
+    },
+    {
+     "n": "Réservoirs",
+     "k": "",
+     "look": "Fiche : eau propre et eau sale, en L.",
+     "rep": "Plus grand = moins d'arrêts pour remplir",
+     "why": "Important pour les grandes surfaces."
+    },
+    {
+     "n": "Poids",
+     "k": "poids",
+     "look": "Fiche : poids en kg.",
+     "rep": "Moins lourd = moins de fatigue",
+     "why": "Mettre en main : ce sont des appareils assez lourds."
+    }
+   ],
+   "piege": "Le proposer pour des moquettes : il est fait pour les sols durs."
+  },
+  "aspi|Balai filaire": {
+   "q": "« Vous avez une grande surface à faire d'un coup, sans vous soucier de la batterie ? »",
+   "crit": [
+    {
+     "n": "Pas de batterie",
+     "k": "",
+     "look": "Fiche : « filaire », longueur du câble.",
+     "rep": "Autonomie illimitée, pas de batterie qui s'use",
+     "why": "Moins cher, et rien à remplacer avec le temps."
+    },
+    {
+     "n": "Longueur du câble",
+     "k": "",
+     "look": "Fiche : longueur en m.",
+     "rep": "Plus long = moins de changements de prise",
+     "why": "À vérifier pour une grande maison."
+    },
+    {
+     "n": "Poids",
+     "k": "poids",
+     "look": "Fiche : poids en kg.",
+     "rep": "Léger = pratique au quotidien",
+     "why": "Mettre en main."
+    },
+    {
+     "n": "Bac",
+     "k": "bac",
+     "look": "Fiche : contenance en L.",
+     "rep": "Plus grand = moins de vidages",
+     "why": "Utile avec animaux."
+    }
+   ],
+   "piege": "Le comparer à un sans-fil sur la liberté de mouvement : c'est son point faible."
+  },
+  "cafe|Grain automatique": {
+   "q": "« Café noir, ou aussi avec du lait ? Et le lait, vous voulez le faire vous-même ou en un bouton ? »",
+   "crit": [
+    {
+     "n": "Système lait",
+     "k": "lait",
+     "look": "Fiche : « buse vapeur », « carafe à lait », « LatteGo », « LatteCrema ».",
+     "rep": "Aucun : café noir · buse vapeur : on mousse soi-même · carafe : cappuccino en un bouton",
+     "why": "C'est le plus gros écart de prix du rayon."
+    },
+    {
+     "n": "Nombre de recettes",
+     "k": "recettes",
+     "look": "Fiche : « X recettes » (cafés et boissons lactées).",
+     "rep": "2 à 5 : l'essentiel · 10 à 16 : polyvalent · 40 et plus : gourmand",
+     "why": "Plus de recettes = plus de choix, pas un meilleur café."
+    },
+    {
+     "n": "Réglages et profils",
+     "k": "mouture",
+     "look": "Fiche : niveaux de mouture, intensité, température, profils utilisateurs.",
+     "rep": "Profils = chacun retrouve son café · Bean Adapt / réglage auto = rien à régler",
+     "why": "Pour un foyer à plusieurs, les profils évitent de tout re-régler."
+    },
+    {
+     "n": "Broyeur",
+     "k": "",
+     "look": "Fiche : broyeur céramique ou acier.",
+     "rep": "Céramique (Philips) : plus silencieux · acier : standard, robuste",
+     "why": "Bon argument pour ceux qui se lèvent tôt."
+    },
+    {
+     "n": "Bac à grains et réservoir",
+     "k": "reservoir",
+     "look": "Fiche : bac à grains (g), réservoir (L), parfois 2 bacs.",
+     "rep": "1,8 L et 250 g : standard · 2 bacs = alterner deux cafés (ex. décaféiné)",
+     "why": "Moins de remplissages au quotidien."
+    },
+    {
+     "n": "Entretien",
+     "k": "",
+     "look": "Fiche : groupe café amovible, carafe au lave-vaisselle, filtre AquaClean.",
+     "rep": "Groupe amovible = rinçage sous le robinet · carafe lavable = hygiène du lait",
+     "why": "Ce qui fait regretter ou non l'achat au bout de 6 mois."
+    }
+   ],
+   "piege": "Vendre une machine à carafe à quelqu'un qui boit son café noir : il paie pour rien."
+  },
+  "cafe|Capsules": {
+   "q": "« Petits expressos ou grandes tasses ? Vous voulez pouvoir acheter des capsules compatibles moins chères ? »",
+   "crit": [
+    {
+     "n": "Système de capsules",
+     "k": "",
+     "look": "Boîte : Nespresso Original, Nespresso Vertuo, Dolce Gusto…",
+     "rep": "Original : expresso, capsules compatibles moins chères · Vertuo : toutes tailles jusqu'au mug, capsules propriétaires",
+     "why": "Le choix du système engage le client pour des années de capsules."
+    },
+    {
+     "n": "Tailles de tasse",
+     "k": "",
+     "look": "Fiche : tailles proposées (ristretto, lungo, mug, carafe).",
+     "rep": "2 tailles : expresso · 4 à 5 tailles : du ristretto au mug",
+     "why": "Le client qui boit des grandes tasses s'oriente vers Vertuo."
+    },
+    {
+     "n": "Lait",
+     "k": "lait",
+     "look": "Fiche : Aeroccino fourni, lait intégré, buse vapeur.",
+     "rep": "Sans lait · Aeroccino (mousseur) · lait intégré en un bouton (Lattissima)",
+     "why": "Le lait intégré fait passer de l'entrée au milieu de gamme."
+    },
+    {
+     "n": "Taille et finitions",
+     "k": "",
+     "look": "Fiche : dimensions, réservoir, matériaux.",
+     "rep": "Compacte (Essenza, Pop) · métal et plus robuste (Pixie, CitiZ)",
+     "why": "Petite cuisine ou machine qui reste sur le plan de travail."
+    },
+    {
+     "n": "Coût à la tasse",
+     "k": "",
+     "look": "Prix moyen d'une capsule du système choisi.",
+     "rep": "Capsules compatibles Original : moins chères · Vertuo : plus chères",
+     "why": "Faire le calcul : c'est souvent la vraie dépense sur 2 ans."
+    }
+   ],
+   "piege": "Oublier de dire que les capsules Vertuo n'ont pas de compatibles."
+  },
+  "cafe|Expresso manuel": {
+   "q": "« Vous aimez prendre le temps de faire votre café, comme un barista ? »",
+   "crit": [
+    {
+     "n": "Broyeur intégré",
+     "k": "bac_grains",
+     "look": "Fiche : « broyeur intégré », nombre de réglages.",
+     "rep": "Avec broyeur = café du grain moulu à la minute · sans = acheter un moulin à part",
+     "why": "Sans broyeur, prévoir un moulin : le café pré-moulu donne un résultat moyen."
+    },
+    {
+     "n": "Contrôle de la température",
+     "k": "",
+     "look": "Fiche : « PID », température réglable.",
+     "rep": "PID = température stable = goût constant",
+     "why": "Ce qui distingue une vraie machine d'amateur."
+    },
+    {
+     "n": "Buse vapeur",
+     "k": "lait",
+     "look": "Fiche : buse vapeur, pichet fourni.",
+     "rep": "Buse puissante = micro-mousse pour le latte art",
+     "why": "Pour les amateurs de cappuccino."
+    },
+    {
+     "n": "Aide au réglage",
+     "k": "",
+     "look": "Fiche : manomètre, dosage assisté, mode automatique.",
+     "rep": "Manomètre et aides = apprentissage plus facile",
+     "why": "Rassure le débutant : il y a une courbe d'apprentissage."
+    },
+    {
+     "n": "Porte-filtre",
+     "k": "",
+     "look": "Fiche : diamètre en mm (54, 58).",
+     "rep": "58 mm = format pro, plus d'accessoires",
+     "why": "Argument pour le passionné qui veut évoluer."
+    }
+   ],
+   "piege": "La vendre à quelqu'un qui veut de la simplicité : il faut plusieurs tasses pour trouver le bon réglage."
+  },
+  "cafe|Bouilloire": {
+   "q": "« Vous faites surtout du thé, des tisanes, ou de l'eau pour le biberon ? »",
+   "crit": [
+    {
+     "n": "Réglage de la température",
+     "k": "",
+     "look": "Fiche ou boîte : températures réglables (°C), maintien au chaud.",
+     "rep": "Sans réglage : 100 °C · avec : 40 à 100 °C (thé vert, biberon)",
+     "why": "Le vrai argument de montée en gamme."
+    },
+    {
+     "n": "Capacité",
+     "k": "reservoir",
+     "look": "Fiche : en L.",
+     "rep": "1 L : seul ou couple · 1,7 L : famille",
+     "why": "Moins de remplissages."
+    },
+    {
+     "n": "Puissance",
+     "k": "puissance",
+     "look": "Étiquette : en W.",
+     "rep": "2 000 à 2 400 W = l'eau chauffe en 2 à 3 minutes",
+     "why": "Ici, plus de watts = plus rapide."
+    },
+    {
+     "n": "Matériaux",
+     "k": "",
+     "look": "Fiche : inox, verre, plastique sans BPA.",
+     "rep": "Inox : robuste · verre : on voit l'eau",
+     "why": "Goût de plastique : argument pour l'inox ou le verre."
+    },
+    {
+     "n": "Filtre anticalcaire",
+     "k": "",
+     "look": "Fiche : filtre amovible.",
+     "rep": "Amovible = se rince facilement",
+     "why": "Utile en région calcaire."
+    }
+   ],
+   "piege": "Faire payer le réglage de température à quelqu'un qui ne boit que du café soluble."
+  },
+  "cuis|Multicuiseur": {
+   "q": "« Vous êtes combien à table ? Vous voulez de nouvelles recettes en permanence ? Vous avez déjà un airfryer ? »",
+   "crit": [
+    {
+     "n": "Capacité",
+     "k": "capacite",
+     "look": "Fiche : en L.",
+     "rep": "3 L : 1 à 2 personnes · 6 L : famille",
+     "why": "Premier tri du rayon."
+    },
+    {
+     "n": "Modes de cuisson",
+     "k": "modes",
+     "look": "Fiche : nombre de modes (pression, mijoter, dorer, vapeur…).",
+     "rep": "6 modes : l'essentiel · 9 à 13 : polyvalent · 16 à 20 : avec airfryer",
+     "why": "Plus de modes = plus de plats possibles."
+    },
+    {
+     "n": "Recettes et Wi-Fi",
+     "k": "connecte",
+     "look": "Fiche : nombre de recettes, Wi-Fi, recettes illimitées.",
+     "rep": "80 à 180 intégrées · Wi-Fi = recettes illimitées et mises à jour",
+     "why": "Le Wi-Fi fait la différence à prix proche."
+    },
+    {
+     "n": "Extra Crisp / airfryer",
+     "k": "",
+     "look": "Boîte : couvercle Extra Crisp fourni, ou airfryer intégré (Infinity).",
+     "rep": "Couvercle à part = dorer et croustiller · Infinity = airfryer intégré",
+     "why": "Évite d'acheter un airfryer en plus."
+    },
+    {
+     "n": "Confort d'usage",
+     "k": "balance",
+     "look": "Fiche : écran tactile, balance, pale de mélange.",
+     "rep": "Écran tactile = recette guidée · balance = on pèse dans la cuve · pale = remue toute seule",
+     "why": "C'est ce qui justifie le haut de gamme."
+    }
+   ],
+   "piege": "Comparer deux Cookeo+ sans regarder le nombre de recettes : il varie du simple au double à prix proche."
+  },
+  "cuis|Robot cuiseur": {
+   "q": "« Vous voulez qu'il cuisine à votre place, ou juste vous aider à préparer ? »",
+   "crit": [
+    {
+     "n": "Cuisson et température max",
+     "k": "temp",
+     "look": "Fiche : température max (°C).",
+     "rep": "Jusqu'à 120 °C : mijoter · 130 à 160 °C : rissoler, dorer",
+     "why": "Plus la température monte, plus on peut saisir."
+    },
+    {
+     "n": "Capacité du bol",
+     "k": "capacite",
+     "look": "Fiche : capacité utile (L).",
+     "rep": "2 L utiles : 4 personnes · 3 L : grande famille",
+     "why": "Attention à la capacité utile, pas totale."
+    },
+    {
+     "n": "Recettes guidées et Wi-Fi",
+     "k": "connecte",
+     "look": "Fiche : écran, Wi-Fi, application.",
+     "rep": "Écran + Wi-Fi = recettes pas à pas illimitées",
+     "why": "Le vrai confort : on suit l'écran."
+    },
+    {
+     "n": "Balance intégrée",
+     "k": "balance",
+     "look": "Fiche : « balance intégrée ».",
+     "rep": "Pèse directement dans le bol",
+     "why": "Moins de vaisselle, recettes plus simples."
+    },
+    {
+     "n": "Accessoires",
+     "k": "",
+     "look": "Boîte : panier vapeur, découpe, fouet…",
+     "rep": "Plus d'accessoires = plus de préparations",
+     "why": "À comparer à prix égal."
+    }
+   ],
+   "piege": "Le vendre comme un simple blender chauffant : c'est un investissement, à justifier par l'usage quotidien."
+  },
+  "cuis|Robot pâtissier": {
+   "q": "« Plutôt gâteaux, ou aussi pain et brioche ? Il restera sur le plan de travail ? »",
+   "crit": [
+    {
+     "n": "Robustesse (métal)",
+     "k": "",
+     "look": "Fiche : corps en métal ou plastique, poids.",
+     "rep": "Métal + lourd = stable avec les pâtes lourdes, dure des années",
+     "why": "Pour le pain et la brioche, c'est indispensable."
+    },
+    {
+     "n": "Capacité de pétrissage",
+     "k": "capacite",
+     "look": "Fiche : bol (L) et « jusqu'à X kg de pâte ».",
+     "rep": "4 à 5,5 L : famille · 6 L et plus : grosses fournées",
+     "why": "Plus parlant que les watts."
+    },
+    {
+     "n": "Mouvement planétaire",
+     "k": "",
+     "look": "Fiche : « mouvement planétaire ».",
+     "rep": "Le fouet tourne et fait le tour du bol : rien ne reste au fond",
+     "why": "À vérifier sur l'entrée de gamme."
+    },
+    {
+     "n": "Garantie moteur",
+     "k": "pieces",
+     "look": "Fiche ou boîte : garantie moteur (ans).",
+     "rep": "Garantie longue = la marque a confiance",
+     "why": "Le meilleur indice de qualité du moteur."
+    },
+    {
+     "n": "Accessoires",
+     "k": "",
+     "look": "Boîte : fouet, crochet, feuille + options (blender, hachoir, laminoir).",
+     "rep": "Plus d'accessoires = plus polyvalent",
+     "why": "Souvent l'écart de prix au sein d'une même marque."
+    },
+    {
+     "n": "Vitesses",
+     "k": "vitesses",
+     "look": "Fiche : nombre de vitesses, démarrage progressif.",
+     "rep": "Vitesse lente pour incorporer, rapide pour monter",
+     "why": "Le démarrage progressif évite les projections."
+    }
+   ],
+   "piege": "Comparer les watts : un KitchenAid à 300 W pétrit aussi bien qu'un robot affiché 1 200 W."
+  },
+  "air": {
+   "q": "« Vous êtes combien à la maison ? Vous voulez cuire deux aliments en même temps ? »",
+   "crit": [
+    {
+     "n": "Capacité",
+     "k": "capacite",
+     "look": "Fiche : capacité en L.",
+     "rep": "3 à 4 L : 1 à 2 personnes · 5 à 6 L : 3 à 4 personnes · 8 à 10 L : 5 et plus",
+     "why": "Le premier tri : trop petit = cuisson en plusieurs fois."
+    },
+    {
+     "n": "Tiroirs",
+     "k": "tiroirs",
+     "look": "Fiche : 1 tiroir, 2 tiroirs, tiroir modulable.",
+     "rep": "2 tiroirs ou modulable = viande et frites en même temps",
+     "why": "Gain de temps pour un repas complet."
+    },
+    {
+     "n": "Sync / Match",
+     "k": "",
+     "look": "Fiche : « Sync », « Match », « finish ».",
+     "rep": "Sync = les deux tiroirs finissent ensemble",
+     "why": "Le plat et l'accompagnement sont prêts en même temps."
+    },
+    {
+     "n": "Chauffe haut et bas",
+     "k": "",
+     "look": "Fiche : double résistance, « Dual Blaze ».",
+     "rep": "Chaleur en haut et en bas = pas besoin de retourner",
+     "why": "Cuisson plus homogène."
+    },
+    {
+     "n": "Hublot et fonctions",
+     "k": "",
+     "look": "Fiche : hublot, nombre de fonctions (rôtir, déshydrater…).",
+     "rep": "Hublot = on surveille sans ouvrir",
+     "why": "Confort au quotidien."
+    },
+    {
+     "n": "Revêtement",
+     "k": "",
+     "look": "Fiche : céramique, antiadhésif, « sans PFAS ».",
+     "rep": "Céramique sans PFAS = argument santé · antiadhésif = plus facile à nettoyer",
+     "why": "Demander si le client fait attention à la composition."
+    }
+   ],
+   "piege": "Oublier de vérifier la place sur le plan de travail : les 10 L sont très encombrants."
+  },
+  "linge|Centrale vapeur": {
+   "q": "« Vous repassez beaucoup, ou juste quelques chemises ? Des vêtements épais ? »",
+   "crit": [
+    {
+     "n": "Pression",
+     "k": "pression",
+     "look": "Fiche : pression en bars.",
+     "rep": "5 à 6 bars : usage courant · 7 à 8 bars et plus : linge épais, gros volumes",
+     "why": "La pression fait pénétrer la vapeur dans le tissu."
+    },
+    {
+     "n": "Coup de vapeur",
+     "k": "pressing",
+     "look": "Fiche : coup de vapeur (g/min).",
+     "rep": "300 à 500 g/min : courant · plus : plis tenaces",
+     "why": "Moins de passages sur un même pli."
+    },
+    {
+     "n": "Sans réglage",
+     "k": "sansreglage",
+     "look": "Fiche : « sans réglage », « une seule température ».",
+     "rep": "Une température pour tous les tissus = pas de risque de brûler",
+     "why": "Le confort et la sécurité, surtout pour les débutants."
+    },
+    {
+     "n": "Réservoir",
+     "k": "reservoir",
+     "look": "Fiche : capacité (L), remplissable en continu.",
+     "rep": "1,5 L et plus = une grosse panière sans remplir",
+     "why": "Utile pour les gros volumes."
+    },
+    {
+     "n": "Anticalcaire",
+     "k": "",
+     "look": "Fiche : collecteur, cartouche, autonettoyage.",
+     "rep": "Collecteur facile = machine qui dure",
+     "why": "Le calcaire est la 1re cause de panne."
+    },
+    {
+     "n": "Poids du fer",
+     "k": "",
+     "look": "Fiche : poids du fer seul.",
+     "rep": "Fer léger = moins de fatigue",
+     "why": "Mettre le fer en main."
+    }
+   ],
+   "piege": "Ne parler que de la pression : le coup de vapeur et l'anticalcaire comptent autant."
+  },
+  "beaute|Sèche-cheveux": {
+   "q": "« Vous avez quel type de cheveux ? Vous les séchez tous les jours ? »",
+   "crit": [
+    {
+     "n": "Type de moteur",
+     "k": "",
+     "look": "Fiche : moteur DC, AC (pro) ou numérique.",
+     "rep": "DC : classique · AC : plus durable · numérique : rapide, léger, silencieux",
+     "why": "Le vrai écart entre 40 € et 400 €."
+    },
+    {
+     "n": "Débit d'air et puissance",
+     "k": "puissance",
+     "look": "Étiquette : W · fiche : vitesse d'air.",
+     "rep": "1 800 à 2 400 W en classique · un moteur numérique sèche aussi vite avec moins de W",
+     "why": "C'est le débit d'air qui sèche vite, plus que la chaleur."
+    },
+    {
+     "n": "Contrôle de la chaleur",
+     "k": "",
+     "look": "Fiche : capteurs, « ThermoProtect », « Nural ».",
+     "rep": "Capteurs = la chaleur baisse près du cuir chevelu",
+     "why": "Argument pour les cheveux colorés ou abîmés."
+    },
+    {
+     "n": "Ionique",
+     "k": "",
+     "look": "Fiche : « ionique ».",
+     "rep": "Moins de frisottis, plus de brillance",
+     "why": "Pour cheveux secs ou qui frisent."
+    },
+    {
+     "n": "Embouts",
+     "k": "",
+     "look": "Boîte : concentrateur, diffuseur, embouts coiffants.",
+     "rep": "Diffuseur = cheveux bouclés · concentrateur = lisser",
+     "why": "Adapter au type de cheveux."
+    },
+    {
+     "n": "Poids et bruit",
+     "k": "",
+     "look": "Fiche : poids (g), niveau sonore.",
+     "rep": "Léger et silencieux = confort du quotidien",
+     "why": "Faire tenir l'appareil en main."
+    }
+   ],
+   "piege": "Comparer seulement les watts : un Dyson à 1 600 W sèche plus vite qu'un modèle à 2 300 W."
+  },
+  "beaute|Multi-styler": {
+   "q": "« Vous voulez sécher et coiffer avec un seul appareil ? Quel type de coiffure ? »",
+   "crit": [
+    {
+     "n": "Fonctions",
+     "k": "",
+     "look": "Boîte : sécher, lisser, boucler, volume.",
+     "rep": "Plus d'embouts = plus de coiffures",
+     "why": "Remplace plusieurs appareils."
+    },
+    {
+     "n": "Technologie",
+     "k": "",
+     "look": "Fiche : effet Coanda (les boucles s'enroulent seules), chaleur contrôlée.",
+     "rep": "Coanda = boucles sans chaleur extrême",
+     "why": "Argument pour préserver les cheveux."
+    },
+    {
+     "n": "Embouts fournis",
+     "k": "",
+     "look": "Boîte : liste des embouts.",
+     "rep": "Vérifier les embouts selon la longueur et le type de cheveux",
+     "why": "Éviter un retour faute du bon embout."
+    },
+    {
+     "n": "Facilité d'usage",
+     "k": "",
+     "look": "Démo, poids, embouts magnétiques.",
+     "rep": "Changement d'embout rapide = usage quotidien",
+     "why": "Proposer une démo."
+    }
+   ],
+   "piege": "Promettre un résultat de coiffeur dès la première utilisation : il faut un peu de pratique."
+  },
+  "beaute|Rasoir / tondeuse": {
+   "q": "« Pour le visage, la barbe, le corps ? Rasage de près ou barbe courte ? »",
+   "crit": [
+    {
+     "n": "Usage",
+     "k": "",
+     "look": "Boîte : rasoir, tondeuse barbe, multistyle.",
+     "rep": "Rasoir = rasage de près · tondeuse = barbe courte réglable · multistyle = tout",
+     "why": "Premier tri."
+    },
+    {
+     "n": "Têtes et lames",
+     "k": "",
+     "look": "Fiche : têtes rotatives ou grille, lames auto-affûtées.",
+     "rep": "Rotatif : contours · grille : rasage précis",
+     "why": "Selon l'habitude du client."
+    },
+    {
+     "n": "Sec et humide",
+     "k": "",
+     "look": "Fiche : « wet & dry », étanche.",
+     "rep": "Utilisable sous la douche, avec mousse",
+     "why": "Peaux sensibles."
+    },
+    {
+     "n": "Autonomie",
+     "k": "",
+     "look": "Fiche : autonomie (min), charge rapide.",
+     "rep": "60 min et plus = plusieurs semaines",
+     "why": "Voyages."
+    },
+    {
+     "n": "Accessoires",
+     "k": "",
+     "look": "Boîte : sabots, station de nettoyage.",
+     "rep": "Station = nettoie et lubrifie",
+     "why": "Confort et durée de vie."
+    }
+   ],
+   "piege": "Oublier le coût des têtes ou lames de rechange."
+  }
  }
 }
