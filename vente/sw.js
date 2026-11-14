@@ -1,5 +1,5 @@
 // Rayon : garde l'appli disponible hors ligne (réseau d'abord, cache si pas de réseau).
-const CACHE = "rayon-v25";
+const CACHE = "rayon-v26";
 const FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-180.png", "../config.js", "../data/produits-pem.json", "../data/guides-pem.json", "../data/rayon-plus.json"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener("activate", e => {

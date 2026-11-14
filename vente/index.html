@@ -95,6 +95,7 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(-
 .reflink button{border:1px solid var(--line2);background:var(--s1);border-radius:999px;padding:6px 11px;font-weight:700;font-size:.82rem}
 .sh-ref{margin:-4px 0 12px;font-size:.82rem;color:var(--muted)}
 .sh-ref a{color:var(--acc);font-weight:700;text-decoration:none}
+.ref-u{background:rgba(255,181,71,.08);border-left:3px solid var(--acc);padding:4px 8px;border-radius:4px}.ref-pr{margin:12px 0;display:grid;gap:6px}.ref-pr>b{font-size:.9rem}.ref-pr div{display:grid;gap:2px;padding:8px 10px;border:1px solid var(--line,#2a2f3a);border-radius:8px}.ref-pr span{font-weight:700}.ref-pr small{color:var(--muted)}.ref-pr em{font-style:normal;color:var(--acc);font-weight:600}
 .lhead{display:flex; align-items:baseline; gap:10px; margin:14px 2px 8px}
 .lhead h1{font-size:1.4rem; margin:0; letter-spacing:-.02em}
 .lhead span{color:var(--muted); font-weight:600; font-size:.88rem}
@@ -381,7 +382,8 @@ function refKey(cat,type){if(!X||!X.refs)return null;if(type&&X.refs[cat+"|"+typ
 function refHTML(key,L){
   var R=X.refs[key],C=PCAT[key.split("|")[0]],t=key.split("|")[1]||C.n,op=ui.refOpen===key;
   var h='<details class="ref" data-ref="'+esc(key)+'"'+(op?' open':'')+'><summary>📋 Fiche référence<small>'+esc(t)+' · '+R.crit.length+' critères</small></summary><div class="ref-b">';
-  h+='<p class="ref-q"><b>La question qui tranche</b>'+esc(R.q)+'</p><ol class="ref-c">'+R.crit.map(function(c){return '<li><b>'+esc(c.n)+'</b><span><i>Où regarder :</i> '+esc(c.look)+'</span><span><i>Repères :</i> '+esc(c.rep)+'</span><span><i>Pour le client :</i> '+esc(c.why)+'</span></li>'}).join("")+'</ol>';
+  h+='<p class="ref-q"><b>La question qui tranche</b>'+esc(R.q)+'</p><ol class="ref-c">'+R.crit.map(function(c){return '<li><b>'+esc(c.n)+'</b>'+(c.use?'<span class="ref-u"><i>À quoi ça sert :</i> '+esc(c.use)+'</span>':'')+'<span><i>Où regarder :</i> '+esc(c.look)+'</span><span><i>Repères :</i> '+esc(c.rep)+'</span><span><i>Pour le client :</i> '+esc(c.why)+'</span></li>'}).join("")+'</ol>';
+  if(R.profils&&R.profils.length)h+='<div class="ref-pr"><b>Quel client, quel choix</b>'+R.profils.map(function(x){return '<div><span>'+esc(x.qui)+'</span><small>'+esc(x.besoin)+'</small><em>→ '+esc(x.choix)+'</em></div>'}).join('')+'</div>';
   if(R.piege)h+='<p class="ref-p">⚠️ Piège à éviter : '+esc(R.piege)+'</p>';
   var cols=[];R.crit.forEach(function(c){if(!c.k||cols.length>=4)return;var f=null;C.f.forEach(function(x){if(x[0]===c.k)f=x});if(f&&L.some(function(p){return specVal(f,(p.specs||{})[c.k])}))cols.push(f)});
   if(L.length>1){
