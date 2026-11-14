@@ -1118,6 +1118,173 @@
    "cons": [
     "Vérifier les embouts dans la boîte"
    ]
+  },
+  "p146": {
+   "pour": "Premier porte-filtre, petite cuisine, petit budget.",
+   "cons": [
+    "Pas de broyeur : acheter du café moulu ou un moulin",
+    "Réservoir de 1 L à remplir souvent"
+   ]
+  },
+  "p147": {
+   "pour": "Client qui veut un porte-filtre fiable et simple, plébiscité par les avis.",
+   "cons": [
+    "Pas de broyeur intégré"
+   ]
+  },
+  "p148": {
+   "pour": "Amateur de cappuccino qui veut apprendre le latte art.",
+   "cons": [
+    "Pas de broyeur intégré",
+    "Réservoir de 1 L"
+   ]
+  },
+  "p149": {
+   "pour": "Client qui veut la Dedica la plus complète et un joli coloris.",
+   "cons": [
+    "Pas de broyeur intégré",
+    "Fonctions froides à vérifier sur la boîte"
+   ]
+  },
+  "p150": {
+   "pour": "Client qui achète du café en grain et veut se lancer dans le porte-filtre.",
+   "cons": [
+    "Deux appareils sur le plan de travail"
+   ]
+  },
+  "p151": {
+   "pour": "Client qui veut un porte-filtre simple et un réservoir plus grand.",
+   "cons": [
+    "Pas de broyeur intégré"
+   ]
+  },
+  "p152": {
+   "pour": "Amateur qui achète du grain et veut un porte-filtre complet.",
+   "cons": [
+    "Plus d'apprentissage qu'une machine automatique"
+   ]
+  },
+  "p153": {
+   "pour": "Petit budget, première machine à porte-filtre.",
+   "cons": [
+    "Marque moins connue",
+    "Pas de broyeur"
+   ]
+  },
+  "p154": {
+   "pour": "Petit budget, client qui a déjà des dosettes souples.",
+   "cons": [
+    "Pas de broyeur intégré"
+   ]
+  },
+  "p155": {
+   "pour": "Client Krups qui veut un porte-filtre plus abouti.",
+   "cons": [
+    "Pas de broyeur intégré"
+   ]
+  },
+  "p156": {
+   "pour": "Petit espace, une à deux personnes.",
+   "cons": [
+    "Réservoir de 0,6 L : à remplir très souvent"
+   ]
+  },
+  "p157": {
+   "pour": "Client qui veut le design Smeg et un vrai expresso.",
+   "cons": [
+    "Prix lié au design",
+    "Pas de broyeur"
+   ]
+  },
+  "p158": {
+   "pour": "Client Smeg qui aime le lait mais veut de la simplicité.",
+   "cons": [
+    "Pas de broyeur"
+   ]
+  },
+  "p159": {
+   "pour": "Client Smeg qui aime le café froid.",
+   "cons": [
+    "Pas de broyeur"
+   ]
+  },
+  "p160": {
+   "pour": "Client qui veut la qualité Sage sans broyeur ni grand budget.",
+   "cons": [
+    "Pas de broyeur"
+   ]
+  },
+  "p161": {
+   "pour": "Amateur de cappuccino qui veut la simplicité.",
+   "cons": [
+    "Pas de broyeur",
+    "Peu d'avis (3,3/5 sur 3)"
+   ]
+  },
+  "p162": {
+   "pour": "Client qui veut un porte-filtre à broyeur sans encombrement.",
+   "cons": [
+    "Vérifier les fonctions exactes en rayon"
+   ]
+  },
+  "p163": {
+   "pour": "Client qui hésite entre Sage et Ninja.",
+   "cons": [
+    "Peu d'avis",
+    "Fonctions à vérifier en rayon"
+   ]
+  },
+  "p164": {
+   "pour": "Client Ninja qui veut le grain moulu à la minute.",
+   "cons": [
+    "Peu d'informations : vérifier la fiche en rayon"
+   ]
+  },
+  "p165": {
+   "pour": "Client qui veut du grain frais en toute simplicité, petite cuisine.",
+   "cons": [
+    "Pas de buse vapeur sur ce modèle (vérifier)"
+   ]
+  },
+  "p166": {
+   "pour": "Client Baristina qui veut un peu plus de confort.",
+   "cons": [
+    "Différences exactes avec la BAR300 à vérifier sur l'étiquette"
+   ]
+  },
+  "p167": {
+   "pour": "Client Baristina qui veut le modèle le plus complet.",
+   "cons": [
+    "Fonctions exactes à vérifier en rayon"
+   ]
+  },
+  "p168": {
+   "pour": "Foyer où l'on boit à la fois du filtre et de l'expresso.",
+   "cons": [
+    "Encombrant",
+    "Expresso moins abouti qu'une machine dédiée selon certains avis"
+   ]
+  },
+  "p169": {
+   "pour": "Foyer où l'on boit à la fois du filtre et de l'expresso.",
+   "cons": [
+    "Encombrant",
+    "Expresso moins abouti qu'une machine dédiée selon certains avis"
+   ]
+  },
+  "p170": {
+   "pour": "Foyer où l'on boit à la fois du filtre et de l'expresso.",
+   "cons": [
+    "Encombrant",
+    "Expresso moins abouti qu'une machine dédiée selon certains avis"
+   ]
+  },
+  "p171": {
+   "pour": "Foyer où l'on boit à la fois du filtre et de l'expresso.",
+   "cons": [
+    "Encombrant",
+    "Expresso moins abouti qu'une machine dédiée selon certains avis"
+   ]
   }
  },
  "objections": [
@@ -1787,14 +1954,21 @@
    "crit": [
     {
      "n": "Broyeur intégré",
-     "k": "bac_grains",
+     "k": "broyeur",
      "look": "Fiche : « broyeur intégré », nombre de réglages.",
      "rep": "Avec broyeur = café du grain moulu à la minute · sans = acheter un moulin à part",
      "why": "Sans broyeur, prévoir un moulin : le café pré-moulu donne un résultat moyen."
     },
     {
+     "n": "Pression et dosettes",
+     "k": "pression",
+     "look": "Fiche : pression (bars) et types de café acceptés (moulu, dosettes papier ESE, dosettes souples).",
+     "rep": "15 bars suffisent pour un bon expresso · dosettes ESE = expresso sans doser ni tasser",
+     "why": "Les bars au-delà de 15 sont surtout un argument marketing : ne pas comparer seulement là-dessus."
+    },
+    {
      "n": "Contrôle de la température",
-     "k": "",
+     "k": "chauffe",
      "look": "Fiche : « PID », température réglable.",
      "rep": "PID = température stable = goût constant",
      "why": "Ce qui distingue une vraie machine d'amateur."

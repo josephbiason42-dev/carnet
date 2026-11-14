@@ -2586,7 +2586,8 @@
     "type": "Expresso manuel",
     "lait": "Buse vapeur",
     "pression": 15,
-    "pieces": "5 ans (après fin de fabrication)"
+    "pieces": "5 ans (après fin de fabrication)",
+    "broyeur": "Intégré (conique)"
    },
    "args": [
     "Dosage intelligent + tassage assisté : la bonne dose à chaque fois",
@@ -2605,7 +2606,8 @@
     "n": 25
    },
    "uniq": "Tassage assisté Impress : le geste barista sans rater sa dose",
-   "uniqUse": "Il veut le plaisir du geste barista sans rater son café chaque matin"
+   "uniqUse": "Il veut le plaisir du geste barista sans rater son café chaque matin",
+   "ref": "1214820"
   },
   {
    "id": "p102",
@@ -2645,7 +2647,8 @@
     "type": "Expresso manuel",
     "lait": "Buse vapeur",
     "pression": 15,
-    "pieces": "5 ans"
+    "pieces": "5 ans",
+    "broyeur": "Intégré"
    },
    "args": [
     "Large écran couleur tactile pour préparer son café en toute simplicité",
@@ -2662,7 +2665,8 @@
     "n": 13
    },
    "uniq": "Machine barista manuelle guidée par un grand écran tactile",
-   "uniqUse": "Il apprend à faire un vrai expresso, l'écran lui montre chaque étape"
+   "uniqUse": "Il apprend à faire un vrai expresso, l'écran lui montre chaque étape",
+   "ref": "1148235"
   },
   {
    "id": "p104",
@@ -2852,7 +2856,8 @@
     "pieces": "10 ans",
     "reservoir": 1.7,
     "puissance": 1450,
-    "bac_grains": "180 g"
+    "bac_grains": "180 g",
+    "broyeur": "Intégré"
    },
    "args": [
     "Écran tactile qui guide pas à pas vers l'expresso parfait",
@@ -2871,7 +2876,8 @@
     "n": 20
    },
    "uniq": "Machine à porte-filtre dont la buse fait la mousse de lait toute seule",
-   "uniqUse": "Il fait son café à la main mais la mousse de lait se fait toute seule, même au lait végétal"
+   "uniqUse": "Il fait son café à la main mais la mousse de lait se fait toute seule, même au lait végétal",
+   "ref": "1213223"
   },
   {
    "id": "p111",
@@ -2883,7 +2889,8 @@
     "type": "Expresso manuel",
     "lait": "Buse vapeur",
     "pression": 9,
-    "pieces": "5 ans"
+    "pieces": "5 ans",
+    "broyeur": "Intégré (conique)"
    },
    "args": [
     "Broyeur intégré : jusqu'à 25 tasses de café",
@@ -2900,7 +2907,8 @@
     "n": 25
    },
    "uniq": "Le porte-filtre Sage d'entrée de gamme, température réglable",
-   "uniqUse": "Premier pas vers le porte-filtre pour qui veut apprendre à doser et tasser"
+   "uniqUse": "Premier pas vers le porte-filtre pour qui veut apprendre à doser et tasser",
+   "ref": "1148232"
   },
   {
    "id": "p112",
@@ -2913,7 +2921,8 @@
     "lait": "Automatique",
     "pression": 15,
     "pieces": "5 ans",
-    "reservoir": 2
+    "reservoir": 2,
+    "broyeur": "Intégré"
    },
    "args": [
     "Cold Brew en moins de 3 min et expresso froid en un bouton",
@@ -3875,6 +3884,797 @@
    "avis": {
     "note": 4.2,
     "n": 81
+   }
+  },
+  {
+   "id": "p146",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Dedica EC685.M inox",
+   "price": 139.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1,
+    "broyeur": "Non (café moulu)",
+    "chauffe": "Thermoblock"
+   },
+   "args": [
+    "Le porte-filtre De'Longhi le plus vendu, format très étroit",
+    "15 bars, chauffe rapide Thermoblock",
+    "Buse vapeur pour cappuccino et latte"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1172275",
+   "uniq": "Un vrai expresso à porte-filtre dans un format très compact, pour moins de 150 €",
+   "uniqUse": "Il découvre l'expresso comme au bar sans encombrer son plan de travail",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.1,
+    "n": 57
+   }
+  },
+  {
+   "id": "p147",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Dedica EC695.M inox",
+   "price": 199.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "puissance": 1350,
+    "broyeur": "Non (café moulu)",
+    "chauffe": "Thermoblock",
+    "dosettes": "Café moulu et dosettes papier (ESE)"
+   },
+   "args": [
+    "4,2/5 sur 373 avis : la valeur sûre",
+    "Accepte le café moulu et les dosettes papier",
+    "15 bars, Thermoblock"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1088136",
+   "uniq": "Accepte aussi les dosettes papier : on peut faire un expresso sans doser ni tasser",
+   "uniqUse": "Les jours pressés, une dosette ; le week-end, du café moulu pour le plaisir",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.2,
+    "n": 373
+   }
+  },
+  {
+   "id": "p148",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Dedica Arte EC785.AE + kit barista",
+   "price": 149.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1,
+    "broyeur": "Non (café moulu)",
+    "chauffe": "Thermoblock"
+   },
+   "args": [
+    "Buse vapeur professionnelle pour le latte art",
+    "Livré avec un pichet à lait (kit barista)",
+    "15 bars, format compact"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1177632",
+   "uniq": "La Dedica pensée pour le lait : une buse vapeur pro et un pichet fourni pour s'essayer au latte art",
+   "uniqUse": "Faire des cappuccinos avec de beaux motifs à la maison",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4,
+    "n": 24
+   }
+  },
+  {
+   "id": "p149",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Dedica Duo EC890 (vert, métal, blanc)",
+   "price": 249.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1.1,
+    "broyeur": "Non (café moulu)"
+   },
+   "args": [
+    "Nouvelle Dedica : boissons chaudes et froides selon De'Longhi",
+    "Micromousse de lait de qualité",
+    "3 coloris"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1218194 / 1218192 / 1218193",
+   "uniq": "La Dedica la plus récente, qui ajoute les boissons froides selon la marque",
+   "uniqUse": "L'été, un café froid maison ; l'hiver, un cappuccino",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.4,
+    "n": 19
+   }
+  },
+  {
+   "id": "p150",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Dedica ECKG6821.M Pack Barista (+ moulin)",
+   "price": 299.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1.1,
+    "broyeur": "Moulin électrique séparé fourni"
+   },
+   "args": [
+    "Pack machine Dedica + moulin à café électrique",
+    "Du grain moulu à la minute pour le meilleur goût"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1226173",
+   "uniq": "Le pack complet : la machine et un moulin électrique, pour du café en grain fraîchement moulu",
+   "uniqUse": "Le goût du grain moulu à la minute sans payer une machine à broyeur intégré",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4,
+    "n": 1
+   }
+  },
+  {
+   "id": "p151",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "Linea Classic EM450.M argent",
+   "price": 149.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1.5,
+    "broyeur": "Non (café moulu)",
+    "chauffe": "Thermoblock"
+   },
+   "args": [
+    "Grand réservoir de 1,5 L",
+    "15 bars, Thermoblock",
+    "Design classique en métal"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1218191",
+   "uniq": "Un porte-filtre classique avec un plus grand réservoir que les Dedica",
+   "uniqUse": "Moins de remplissages au quotidien",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.3,
+    "n": 31
+   }
+  },
+  {
+   "id": "p152",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "La Specialista Arte Evo EC9255.M",
+   "price": 449.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1.7,
+    "broyeur": "Intégré",
+    "chauffe": "Thermoblock"
+   },
+   "args": [
+    "Broyeur intégré : du grain à la tasse",
+    "Cold Brew sur la version réf. 1244630",
+    "4,5/5 sur 11 avis"
+   ],
+   "obj": "Différence avec la Specialista Touch → la Touch ajoute l'écran tactile et la buse qui texture le lait toute seule",
+   "acc": "",
+   "seed": true,
+   "ref": "1203681 / 1244630",
+   "uniq": "Le porte-filtre De'Longhi avec broyeur intégré, à prix plus accessible que la Specialista Touch",
+   "uniqUse": "Du café en grain moulu à la minute, avec le geste du barista",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.5,
+    "n": 11
+   }
+  },
+  {
+   "id": "p153",
+   "cat": "cafe",
+   "brand": "Riviera et Bar",
+   "model": "BCE430 compacte inox",
+   "price": 129.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 19,
+    "puissance": 1400,
+    "broyeur": "Non (café moulu)",
+    "dosettes": "Café moulu et dosettes papier"
+   },
+   "args": [
+    "19 bars, 1 ou 2 cafés en même temps",
+    "Accepte le café moulu et les dosettes papier",
+    "À moitié prix (239,99 € → 129,99 €)"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1126512",
+   "uniq": "Le porte-filtre le moins cher du rayon, compact et en inox",
+   "uniqUse": "Un vrai expresso pour un petit budget",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4,
+    "n": 52
+   }
+  },
+  {
+   "id": "p154",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Virtuoso+ XP444C10",
+   "price": 149.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1,
+    "broyeur": "Non (café moulu)",
+    "dosettes": "Café moulu et dosettes souples"
+   },
+   "args": [
+    "15 bars, café moulu et dosettes souples",
+    "Compact"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1194074",
+   "uniq": "Un porte-filtre simple qui accepte aussi les dosettes souples",
+   "uniqUse": "Pour alterner café moulu et dosettes selon le temps disponible",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.1,
+    "n": 44
+   }
+  },
+  {
+   "id": "p155",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Virtuoso+ XP499EE0",
+   "price": 229.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1,
+    "broyeur": "Non (café moulu)",
+    "chauffe": "Thermoblock",
+    "dosettes": "Café moulu et dosettes souples"
+   },
+   "args": [
+    "15 bars, Thermoblock",
+    "Café moulu et dosettes souples",
+    "4,3/5 sur 16 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1239618",
+   "uniq": "La Virtuoso+ haut de gamme, avec chauffe rapide Thermoblock",
+   "uniqUse": "Un expresso rapide le matin",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.3,
+    "n": 16
+   }
+  },
+  {
+   "id": "p156",
+   "cat": "cafe",
+   "brand": "Krups",
+   "model": "Mini Maestro XP350DE0",
+   "price": 129.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 20,
+    "reservoir": 0.6,
+    "broyeur": "Non (café moulu)"
+   },
+   "args": [
+    "Ultra compacte, 20 bars",
+    "Petit réservoir de 0,6 L"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1249580",
+   "uniq": "La plus compacte du rayon, avec 20 bars",
+   "uniqUse": "Idéale pour un studio, un bureau ou une petite cuisine",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.1,
+    "n": 15
+   }
+  },
+  {
+   "id": "p157",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "ECF02 (crème, rose, bleu, vert…)",
+   "price": 299.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1,
+    "broyeur": "Non (café moulu)",
+    "dosettes": "Café moulu ou dosettes papier"
+   },
+   "args": [
+    "Le design rétro Smeg, plusieurs coloris",
+    "15 bars, café moulu ou dosettes papier"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1196997 / 1197403 / 1197370 / 1197402",
+   "uniq": "Le porte-filtre au look années 50, assorti au reste de la gamme Smeg",
+   "uniqUse": "Une machine qui décore la cuisine, assortie à la bouilloire et au grille-pain Smeg",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.1,
+    "n": 9
+   }
+  },
+  {
+   "id": "p158",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "ECF00 + mousseur MFF02 crème",
+   "price": 329.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Mousseur",
+    "pression": 15,
+    "reservoir": 1.4,
+    "broyeur": "Non (café moulu)",
+    "chauffe": "Thermoblock",
+    "dosettes": "Café moulu et dosettes ESE"
+   },
+   "args": [
+    "Pack machine + mousseur à lait Smeg",
+    "15 bars, Thermoblock, 1,4 L"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1246633",
+   "uniq": "Le pack Smeg complet : la machine et le mousseur à lait assorti",
+   "uniqUse": "Cappuccino et latte faciles, sans maîtriser la buse vapeur",
+   "releve": "2026-11-14",
+   "incl": ""
+  },
+  {
+   "id": "p159",
+   "cat": "cafe",
+   "brand": "Smeg",
+   "model": "ECF03 + Cold Brew",
+   "price": 369.0,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1.4,
+    "broyeur": "Non (café moulu)",
+    "chauffe": "Thermoblock",
+    "dosettes": "Café moulu ou dosettes papier"
+   },
+   "args": [
+    "Fait aussi le Cold Brew (café infusé à froid)",
+    "15 bars, Thermoblock, 1,4 L"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1226627",
+   "uniq": "Le Smeg qui fait aussi du café froid (Cold Brew)",
+   "uniqUse": "Un café glacé maison l'été",
+   "releve": "2026-11-14",
+   "incl": ""
+  },
+  {
+   "id": "p160",
+   "cat": "cafe",
+   "brand": "Sage",
+   "model": "Bambino",
+   "price": 299.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 1.3,
+    "broyeur": "Non (café moulu)"
+   },
+   "args": [
+    "La porte d'entrée Sage, très compacte",
+    "Buse vapeur pour la micromousse",
+    "Prête en quelques secondes selon Sage"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1165263",
+   "uniq": "La qualité Sage dans une petite machine, prête très vite",
+   "uniqUse": "Un expresso de qualité barista sans attendre que la machine chauffe",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 3.9,
+    "n": 7
+   }
+  },
+  {
+   "id": "p161",
+   "cat": "cafe",
+   "brand": "Sage",
+   "model": "Bambino Plus",
+   "price": 399.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur auto",
+    "pression": 15,
+    "puissance": 1600,
+    "broyeur": "Non (café moulu)"
+   },
+   "args": [
+    "Buse vapeur automatique : texture et température du lait réglables",
+    "Compacte"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1148231",
+   "uniq": "La Bambino avec une buse qui fait mousser le lait toute seule",
+   "uniqUse": "Un cappuccino de qualité barista sans savoir manier la buse",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 3.3,
+    "n": 3
+   }
+  },
+  {
+   "id": "p162",
+   "cat": "cafe",
+   "brand": "Ninja",
+   "model": "Luxe Café Mini ES352EU",
+   "price": 399.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 9,
+    "reservoir": 1.4,
+    "broyeur": "Intégré"
+   },
+   "args": [
+    "Broyeur intégré, format compact",
+    "Expresso et autres cafés"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1240805",
+   "uniq": "Le Luxe Café en version compacte, avec broyeur intégré",
+   "uniqUse": "Du grain moulu à la minute dans une petite cuisine",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.3,
+    "n": 17
+   }
+  },
+  {
+   "id": "p163",
+   "cat": "cafe",
+   "brand": "Ninja",
+   "model": "Luxe Café Premier Series ES655EU",
+   "price": 549.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 9,
+    "reservoir": 2,
+    "broyeur": "Intégré",
+    "dosettes": "Grain et café moulu"
+   },
+   "args": [
+    "Broyeur intégré, grain ou café moulu",
+    "Grand réservoir de 2 L"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1240806",
+   "uniq": "Le haut de gamme Ninja Luxe Café, grain ou moulu",
+   "uniqUse": "Un expresso assisté et d'autres cafés avec la même machine",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 5,
+    "n": 2
+   }
+  },
+  {
+   "id": "p164",
+   "cat": "cafe",
+   "brand": "Ninja",
+   "model": "AE1001EU",
+   "price": 599.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "reservoir": 2,
+    "broyeur": "Intégré"
+   },
+   "args": [
+    "Broyeur intégré, 15 bars, 2 L",
+    "En promotion (799,99 € → 599,99 €)"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1237077",
+   "uniq": "Porte-filtre Ninja à broyeur intégré, 15 bars",
+   "uniqUse": "À présenter avec la fiche produit : modèle récent",
+   "releve": "2026-11-14",
+   "incl": ""
+  },
+  {
+   "id": "p165",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Baristina BAR300 (réf. /00 et /03)",
+   "price": 319.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Non",
+    "pression": 16,
+    "reservoir": 1.2,
+    "broyeur": "Intégré"
+   },
+   "args": [
+    "Moud, tasse et extrait en un geste de la poignée",
+    "Très compacte",
+    "4,1/5 sur 95 avis"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1202927 / 1207277",
+   "uniq": "Le porte-filtre simplifié : on tourne la poignée, la machine moud, tasse et fait couler le café",
+   "uniqUse": "Le goût du grain moulu à la minute, sans apprendre le geste du barista",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.1,
+    "n": 95
+   }
+  },
+  {
+   "id": "p166",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Baristina BAR320/60",
+   "price": 369.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "pression": 16,
+    "reservoir": 1.2,
+    "broyeur": "Intégré (230 g)"
+   },
+   "args": [
+    "Baristina mieux notée : 4,8/5",
+    "Bac à grains de 230 g"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1219730",
+   "uniq": "Une Baristina plus complète, avec un plus grand bac à grains",
+   "uniqUse": "Moins de remplissages de grains",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4.8,
+    "n": 10
+   }
+  },
+  {
+   "id": "p167",
+   "cat": "cafe",
+   "brand": "Philips",
+   "model": "Baristina BAR400/60",
+   "price": 499.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "pression": 16,
+    "reservoir": 1.2,
+    "broyeur": "Intégré (170 g)"
+   },
+   "args": [
+    "Haut de gamme Baristina"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1219728",
+   "uniq": "Le modèle Baristina le plus haut de gamme",
+   "uniqUse": "À présenter avec la fiche produit",
+   "releve": "2026-11-14",
+   "incl": ""
+  },
+  {
+   "id": "p168",
+   "cat": "cafe",
+   "brand": "Magimix",
+   "model": "11423 combiné expresso + cafetière, chrome mat",
+   "price": 299.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 19,
+    "puissance": 1260,
+    "broyeur": "Non (café moulu)",
+    "dosettes": "Café moulu et dosettes papier"
+   },
+   "args": [
+    "Deux machines en une : expresso à porte-filtre + cafetière filtre 10 tasses",
+    "Pratique quand on reçoit ou en famille"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "147416",
+   "uniq": "L'expresso à porte-filtre et la cafetière filtre dans un seul appareil",
+   "uniqUse": "Une carafe de café filtre pour tout le monde le matin, un expresso dans la journée",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 3.6,
+    "n": 153
+   }
+  },
+  {
+   "id": "p169",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "BCO 261B.1 combiné expresso + cafetière",
+   "price": 154.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "puissance": 1750,
+    "broyeur": "Non (café moulu)",
+    "dosettes": "Café moulu et dosettes papier"
+   },
+   "args": [
+    "Deux machines en une : expresso à porte-filtre + cafetière filtre 10 tasses",
+    "Pratique quand on reçoit ou en famille"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1078622",
+   "uniq": "L'expresso à porte-filtre et la cafetière filtre dans un seul appareil",
+   "uniqUse": "Une carafe de café filtre pour tout le monde le matin, un expresso dans la journée",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 4,
+    "n": 90
+   }
+  },
+  {
+   "id": "p170",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "BCO416.1 combiné expresso + cafetière",
+   "price": 219.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "puissance": 1750,
+    "broyeur": "Non (café moulu)",
+    "dosettes": "Café moulu et dosettes papier"
+   },
+   "args": [
+    "Deux machines en une : expresso à porte-filtre + cafetière filtre 11 tasses",
+    "Pratique quand on reçoit ou en famille"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1108695",
+   "uniq": "L'expresso à porte-filtre et la cafetière filtre dans un seul appareil",
+   "uniqUse": "Une carafe de café filtre pour tout le monde le matin, un expresso dans la journée",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 3.7,
+    "n": 73
+   }
+  },
+  {
+   "id": "p171",
+   "cat": "cafe",
+   "brand": "De'Longhi",
+   "model": "BCO 264.1 combiné expresso + cafetière",
+   "price": 146.99,
+   "specs": {
+    "type": "Expresso manuel",
+    "lait": "Buse vapeur",
+    "pression": 15,
+    "puissance": 1750,
+    "broyeur": "Non (café moulu)",
+    "dosettes": "Café moulu et dosettes papier"
+   },
+   "args": [
+    "Deux machines en une : expresso à porte-filtre + cafetière filtre 10 tasses",
+    "Pratique quand on reçoit ou en famille"
+   ],
+   "obj": "",
+   "acc": "",
+   "seed": true,
+   "ref": "1048947",
+   "uniq": "L'expresso à porte-filtre et la cafetière filtre dans un seul appareil",
+   "uniqUse": "Une carafe de café filtre pour tout le monde le matin, un expresso dans la journée",
+   "releve": "2026-11-14",
+   "incl": "",
+   "avis": {
+    "note": 3.6,
+    "n": 25
    }
   }
  ]
