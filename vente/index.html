@@ -96,6 +96,7 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(-
 .sh-ref{margin:-4px 0 12px;font-size:.82rem;color:var(--muted)}
 .sh-ref a{color:var(--acc);font-weight:700;text-decoration:none}
 .ref-u{background:rgba(255,181,71,.08);border-left:3px solid var(--acc);padding:4px 8px;border-radius:4px}.ref-pr{margin:12px 0;display:grid;gap:6px}.ref-pr>b{font-size:.9rem}.ref-pr div{display:grid;gap:2px;padding:8px 10px;border:1px solid var(--line,#2a2f3a);border-radius:8px}.ref-pr span{font-weight:700}.ref-pr small{color:var(--muted)}.ref-pr em{font-style:normal;color:var(--acc);font-weight:600}
+.tst p{margin:0 0 8px;line-height:1.45}.tst-l{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:4px 0}.tst-l span{font-size:.8rem;padding:3px 8px;border-radius:999px;background:rgba(80,200,120,.12)}.tst-l.bad span{background:rgba(240,90,90,.12)}.tst small{color:var(--muted)}.tst small a{color:var(--acc)}
 .lhead{display:flex; align-items:baseline; gap:10px; margin:14px 2px 8px}
 .lhead h1{font-size:1.4rem; margin:0; letter-spacing:-.02em}
 .lhead span{color:var(--muted); font-weight:600; font-size:.88rem}
@@ -321,8 +322,8 @@ function mergeFile(list){
   if(!FILE)return list;var by={};list.forEach(function(p){by[p.id]=p});
   FILE.forEach(function(f){var d=by[f.id];
     if(!d){list.push(f);return}
-    if(f.releve&&(!d.releve||d.releve<f.releve)){["model","price","specs","args","obj","acc","incl","ean","ref","avis","uniq","uniqUse","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}
-    else ["incl","ean","ref","avis","uniq","uniqUse"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
+    if(f.releve&&(!d.releve||d.releve<f.releve)){["model","price","specs","args","obj","acc","incl","ean","ref","avis","uniq","uniqUse","test","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}
+    else ["incl","ean","ref","avis","uniq","uniqUse","test"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
   });
   return list;
 }
@@ -632,6 +633,7 @@ function sheetHTML(p){
   var specs=C.f.map(function(f){var v=specVal(f,sp[f[0]]);return v&&f[0]!=="type"?'<div class="sp"><small>'+esc(f[1])+'</small><b class="'+(v.cls||"")+'">'+esc(v.t)+'</b></div>':""}).join("");
   Object.keys(sp).forEach(function(k){if(!C.f.some(function(f){return f[0]===k})&&sp[k]!=null&&sp[k]!=="")specs+='<div class="sp"><small>'+esc(k)+'</small><b>'+esc(sp[k])+'</b></div>'});
   if(specs)h+='<section class="sec"><h3>Caractéristiques</h3><div class="specs">'+specs+'</div></section>';
+  if(p.test){var t=p.test;h+='<section class="sec tst"><h3>🧪 En vrai (tests)</h3><p>'+esc(t.txt)+'</p>'+((t.plus||[]).length?'<div class="tst-l"><b>👍</b>'+t.plus.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>':'')+((t.moins||[]).length?'<div class="tst-l bad"><b>👎</b>'+t.moins.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>':'')+'<small>Source : '+(t.src||[]).map(function(x){return '<a href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.n)+'</a>'}).join(' · ')+'</small></section>'}
   if(xp&&xp.cons&&xp.cons.length)h+='<section class="sec int"><h3>Points faibles à connaître</h3><div class="cons">'+xp.cons.map(function(c){return '<div>'+esc(c)+'</div>'}).join("")+'</div></section>';
   if(xt&&xt.demo)h+='<section class="sec int"><h3>Démo en magasin</h3><p class="ptxt" style="margin:0">'+esc(xt.demo)+'</p></section>';
   if(xt&&(xt.entretien||xt.usage))h+='<section class="sec"><h3>Au quotidien</h3><div class="two">'+(xt.entretien?'<div><small>Entretien</small><span class="ptxt">'+esc(xt.entretien)+'</span></div>':'')+(xt.usage?'<div><small>Coût d\'usage</small><span class="ptxt">'+esc(xt.usage)+'</span></div>':'')+'</div><button type="button" class="lnk int" data-calc="'+esc(p.id)+'">Calculer le coût sur plusieurs années →</button></section>';

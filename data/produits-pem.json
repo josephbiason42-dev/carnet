@@ -114,7 +114,31 @@
    ],
    "obj": "Gâchette à maintenir sur certains modèles : vérifier la version",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "test": {
+    "txt": "Testeurs unanimes sur la puissance : un ramassage parfait sur sol dur chez Expert Reviews, très bons résultats sur moquette et contre les poils d'animaux. Lavelab le trouve en revanche bruyant pour son prix.",
+    "plus": [
+     "Aspiration parmi les plus fortes",
+     "Brosse anti-emmêlement efficace",
+     "Laser qui révèle la poussière, compteur de particules"
+    ],
+    "moins": [
+     "Bruyant",
+     "Filtre à laisser sécher 24 h après lavage",
+     "Poids mal réparti (batterie en haut)"
+    ],
+    "src": [
+     {
+      "n": "Expert Reviews",
+      "u": "https://www.expertreviews.co.uk/?p=1413674"
+     },
+     {
+      "n": "Lavelab",
+      "u": "https://lavelab.com/tests/dyson-v15-detect-absolute/"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p005",
@@ -675,6 +699,30 @@
    "avis": {
     "note": 4.8,
     "n": 650
+   },
+   "test": {
+    "txt": "Grande capacité et très bonnes performances de cuisson selon Labo Maison, mais la cuisson est moins homogène quand on sépare le tiroir en deux. Testé 3 mois par Presse-citron : le bac est encombrant (il passe en diagonale dans le lave-vaisselle) et le résultat sur les frites est en retrait.",
+    "plus": [
+     "Grand tiroir modulable (1 ou 2 zones)",
+     "Nettoyage facile (antiadhésif)",
+     "Très bonnes performances générales"
+    ],
+    "moins": [
+     "Frites en retrait",
+     "Encombrant et lourd",
+     "Un peu bruyant, pas de rappel pour secouer"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/cuisine/friteuse-sans-huile-airfryer/ninja-air-fryer-foodi-flex-af500eu"
+     },
+     {
+      "n": "Presse-citron",
+      "u": "https://www.presse-citron.net/test-ninja-foodi-flexdrawer-af500/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -775,6 +823,25 @@
    "avis": {
     "note": 4.6,
     "n": 193
+   },
+   "test": {
+    "txt": "Note de 4,5/5 chez Labo Maison : températures justes, appareil silencieux (50 dB à 1 m) et fonction grill qui fait vraiment la différence. Classé meilleur airfryer 2026 dans leur sélection.",
+    "plus": [
+     "Températures fiables",
+     "Silencieux",
+     "Fonction grill efficace",
+     "2 tiroirs pour un repas complet"
+    ],
+    "moins": [
+     "Pas de fenêtre"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/cuisine/friteuse-sans-huile-airfryer/moulinex-dual-easy-fry-grill/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -1337,7 +1404,26 @@
    },
    "releve": "2026-11-14",
    "seed": true,
-   "ref": "1212795"
+   "ref": "1212795",
+   "test": {
+    "txt": "Noté 92/100 par Haus & Garten Test (version RH99C0) : son vrai point fort reste l'aspiration à sec, le lavage avec la tête Aqua est correct. L'autonomie en puissance max pourrait être plus longue, et l'appareil est un peu lourd pour un simple aspirateur.",
+    "plus": [
+     "Excellente aspiration",
+     "Lave aussi les sols (tête Aqua)",
+     "Écran couleur, réglages complets"
+    ],
+    "moins": [
+     "Autonomie courte en mode max",
+     "Un peu lourd"
+    ],
+    "src": [
+     {
+      "n": "Galaxus / Haus & Garten Test",
+      "u": "https://www.digitec.ch/en/s1/product/rowenta-x-force-1460-aqua-rh99c0wo-vacuum-cleaners-22889777"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p057",
@@ -1563,7 +1649,31 @@
    },
    "releve": "2026-11-14",
    "seed": true,
-   "ref": "1241521"
+   "ref": "1241521",
+   "test": {
+    "txt": "Testeurs unanimes sur la puissance : un ramassage parfait sur sol dur chez Expert Reviews, très bons résultats sur moquette et contre les poils d'animaux. Lavelab le trouve en revanche bruyant pour son prix.",
+    "plus": [
+     "Aspiration parmi les plus fortes",
+     "Brosse anti-emmêlement efficace",
+     "Laser qui révèle la poussière, compteur de particules"
+    ],
+    "moins": [
+     "Bruyant",
+     "Filtre à laisser sécher 24 h après lavage",
+     "Poids mal réparti (batterie en haut)"
+    ],
+    "src": [
+     {
+      "n": "Expert Reviews",
+      "u": "https://www.expertreviews.co.uk/?p=1413674"
+     },
+     {
+      "n": "Lavelab",
+      "u": "https://lavelab.com/tests/dyson-v15-detect-absolute/"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p064",
@@ -2489,7 +2599,31 @@
    },
    "uniq": "GrindIQ : règle seule la mouture, et fait expresso, filtre et cold brew",
    "uniqUse": "Il met n'importe quel café et la machine trouve le bon réglage ; café filtre le week-end, expresso en semaine",
-   "ref": "1237076"
+   "ref": "1237076",
+   "test": {
+    "txt": "Labo Maison (3,8/5) : un expresso parmi les meilleurs des machines automatiques testées, avec une belle crema. En revanche, l'interface est peu pratique pour les réglages et la mousse de lait se verse à la main. Presse-citron : 8/10, mais très encombrante.",
+    "plus": [
+     "Excellent expresso",
+     "Deux bacs à grains",
+     "Mousse de lait automatique"
+    ],
+    "moins": [
+     "Interface de réglage perfectible",
+     "Consomme beaucoup de café",
+     "Encombrante"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/cuisine/cafetiere-expresso-broyeur/ninja-auto-barista-pro/"
+     },
+     {
+      "n": "Presse-citron",
+      "u": "https://www.presse-citron.net/ninja-autobarista-pro-test/"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p094",
@@ -4876,6 +5010,30 @@
    "avis": {
     "note": 4.5,
     "n": 42
+   },
+   "test": {
+    "txt": "Labo Maison : corrige en partie les défauts du premier Crispi, mais la cuisson reste perfectible ; un poulet de 1,2 kg en mode Max Crisp donne un résultat plus que correct. Le Journal du Geek l'a adopté comme appareil principal. Netzwelt n'a pas mesuré les 240 °C annoncés.",
+    "plus": [
+     "Bacs en verre : cuire, servir et conserver",
+     "Température désormais réglable",
+     "Résistance protégée"
+    ],
+    "moins": [
+     "Cuisson perfectible",
+     "N'atteint pas les 240 °C annoncés",
+     "Parties qui restent chaudes : prudence avec les enfants"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/cuisine/friteuse-sans-huile-airfryer/ninja-crispi-pro/"
+     },
+     {
+      "n": "Journal du Geek",
+      "u": "https://www.journaldugeek.com/test/test-ninja-crispi-pro-lair-fryer-en-verre-qui-change-vraiment-la-donne/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -4959,7 +5117,31 @@
    "ref": "1248197",
    "uniq": "La gamme Crispi en un seul bac de 5,7 L",
    "uniqUse": "Pour qui veut le concept Crispi sans deux bacs",
-   "releve": "2026-11-14"
+   "releve": "2026-11-14",
+   "test": {
+    "txt": "Labo Maison : corrige en partie les défauts du premier Crispi, mais la cuisson reste perfectible ; un poulet de 1,2 kg en mode Max Crisp donne un résultat plus que correct. Le Journal du Geek l'a adopté comme appareil principal. Netzwelt n'a pas mesuré les 240 °C annoncés.",
+    "plus": [
+     "Bacs en verre : cuire, servir et conserver",
+     "Température désormais réglable",
+     "Résistance protégée"
+    ],
+    "moins": [
+     "Cuisson perfectible",
+     "N'atteint pas les 240 °C annoncés",
+     "Parties qui restent chaudes : prudence avec les enfants"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/cuisine/friteuse-sans-huile-airfryer/ninja-crispi-pro/"
+     },
+     {
+      "n": "Journal du Geek",
+      "u": "https://www.journaldugeek.com/test/test-ninja-crispi-pro-lair-fryer-en-verre-qui-change-vraiment-la-donne/"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p176",
@@ -5049,6 +5231,25 @@
    "avis": {
     "note": 4.6,
     "n": 139
+   },
+   "test": {
+    "txt": "Labo Maison a testé la version NA230 (même appareil) : simple, chauffe vite et faible bruit, avec fenêtre éclairée. La température oscille de 12 à 13 °C, là où le Moulinex Dual Easy Fry & Grill fait mieux.",
+    "plus": [
+     "Simple à utiliser",
+     "Chauffe rapide",
+     "Peu bruyant",
+     "Fenêtre éclairée"
+    ],
+    "moins": [
+     "Température moins stable que le Moulinex"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/cuisine/friteuse-sans-huile-airfryer/philips-na230/00-airfryer-series-2000"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -5202,6 +5403,29 @@
    "avis": {
     "note": 4.6,
     "n": 43
+   },
+   "test": {
+    "txt": "Test-Achats lui donne 69/100 (« bonne qualité ») : appareil massif de plus de 9 kg, performances de cuisson contrastées. Futura a apprécié sa polyvalence (air chaud + vapeur) et les recettes de l'appli HomeID.",
+    "plus": [
+     "Vapeur + air chaud",
+     "Très polyvalent",
+     "Recettes guidées (appli)"
+    ],
+    "moins": [
+     "Très massif (9 kg)",
+     "Cuisson inégale selon les plats"
+    ],
+    "src": [
+     {
+      "n": "Test-Achats",
+      "u": "https://www.test-achats.be/electromenager/airfryers/news/airfryer-fonction-vapeur"
+     },
+     {
+      "n": "Futura",
+      "u": "https://www.futura-sciences.com/conso/guides-achat/tests-produits-jai-teste-airfryer-philips-series-5000-xxl-na555-00-test-avis-1169/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -5448,6 +5672,24 @@
    "avis": {
     "note": 4.5,
     "n": 138
+   },
+   "test": {
+    "txt": "Testé par Labo Maison (version EZ942BF0) : les aliments n'attachent pas et toutes les pièces passent au lave-vaisselle. Un très bon rapport qualité-prix pour une telle capacité (6 à 10 personnes).",
+    "plus": [
+     "Très grande capacité",
+     "Entretien facile, lave-vaisselle",
+     "Bon rapport qualité-prix"
+    ],
+    "moins": [
+     "Encombrant"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/?p=31254"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -5626,6 +5868,24 @@
    "avis": {
     "note": 4.9,
     "n": 76
+   },
+   "test": {
+    "txt": "Testé par L'Éclaireur Fnac : construction robuste, une grille surélevée crée un 3e niveau de cuisson et les deux tiroirs finissent ensemble. Excellent au test des frites chez Netzwelt.",
+    "plus": [
+     "Très bonnes frites",
+     "3 niveaux de cuisson",
+     "Prend peu de place en largeur"
+    ],
+    "moins": [
+     "Interface en anglais"
+    ],
+    "src": [
+     {
+      "n": "L'Éclaireur Fnac",
+      "u": "https://leclaireur.fnac.com/test/648018-test-cosori-turbo-tower-pro-smart/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -9621,6 +9881,24 @@
    "avis": {
     "note": 4.7,
     "n": 9
+   },
+   "test": {
+    "txt": "Labo Maison a testé la 3300 en version LatteGo (3,2/5) : système lait convaincant, mais un expresso qui manque d'intensité. Le détartrage se lance par une combinaison de touches (il faut la notice).",
+    "plus": [
+     "Broyeur céramique silencieux",
+     "Facile au quotidien"
+    ],
+    "moins": [
+     "Expresso qui manque d'intensité",
+     "Détartrage peu intuitif"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/cuisine/cafetiere-expresso-broyeur/philips-serie-3300-lattego"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -9655,6 +9933,24 @@
    "avis": {
     "note": 4.4,
     "n": 123
+   },
+   "test": {
+    "txt": "Labo Maison a testé la 3300 en version LatteGo (3,2/5) : système lait convaincant, mais un expresso qui manque d'intensité. Le détartrage se lance par une combinaison de touches (il faut la notice).",
+    "plus": [
+     "Broyeur céramique silencieux",
+     "Facile au quotidien"
+    ],
+    "moins": [
+     "Expresso qui manque d'intensité",
+     "Détartrage peu intuitif"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/cuisine/cafetiere-expresso-broyeur/philips-serie-3300-lattego"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -9723,6 +10019,23 @@
    "avis": {
     "note": 4.3,
     "n": 449
+   },
+   "test": {
+    "txt": "N°1 du classement 2026 de Grain d'Expert (9/10) pour son rapport qualité-prix imbattable : la référence de l'entrée de gamme.",
+    "plus": [
+     "Rapport qualité-prix",
+     "Fiable et simple"
+    ],
+    "moins": [
+     "Buse vapeur manuelle"
+    ],
+    "src": [
+     {
+      "n": "Grain d'Expert",
+      "u": "https://graindexpert.fr/comparatifs/meilleures-machines-cafe-grain"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -9790,6 +10103,24 @@
    "avis": {
     "note": 4.4,
     "n": 71
+   },
+   "test": {
+    "txt": "Grain d'Expert (30 jours de test) : les 100 € de plus que la Magnifica S se justifient pour le design et les boutons de boissons ; pour le café en tasse, la Magnifica S fait aussi bien. Testit : nettoyage bien pensé, mousse de lait un peu ferme.",
+    "plus": [
+     "Simple, boutons directs",
+     "Entretien facile"
+    ],
+    "moins": [
+     "Café identique à la Magnifica S, moins chère",
+     "Peut être bruyante"
+    ],
+    "src": [
+     {
+      "n": "Grain d'Expert",
+      "u": "https://graindexpert.fr/tests/delonghi-magnifica-evo"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -9892,6 +10223,26 @@
    "avis": {
     "note": 4.6,
     "n": 99
+   },
+   "test": {
+    "txt": "Labo Maison : compacte, rapide, 16 recettes ; l'entretien se lance depuis l'écran et l'infuseur s'enlève facilement. Homes & Gardens a mesuré un broyage très silencieux.",
+    "plus": [
+     "Deux bacs à grains interchangeables",
+     "Entretien très simple",
+     "Silencieuse"
+    ],
+    "moins": [
+     "Réservoir sans poignée",
+     "Une seule boisson lactée à la fois",
+     "Pas de double expresso en une fois"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/cuisine/cafetiere-expresso-broyeur/delonghi-rivelia-latte/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -10552,6 +10903,30 @@
    "avis": {
     "note": 4.9,
     "n": 165
+   },
+   "test": {
+    "txt": "Très convaincant sur sols durs (Tom's Guide, Testsieger) : bords bien nettoyés et station qui gère tout pendant environ 100 jours. Moins à l'aise sur moquette ; Inside Digital juge le lavage moyen sur taches sèches et relève des chocs contre les pieds de chaise.",
+    "plus": [
+     "Excellent sur sol dur",
+     "Station quasi autonome",
+     "Bon nettoyage des bords"
+    ],
+    "moins": [
+     "Moyen sur moquette",
+     "Lavage moyen sur taches sèches",
+     "Assez haut (10 cm) : passe sous moins de meubles"
+    ],
+    "src": [
+     {
+      "n": "Tom's Guide",
+      "u": "https://tomsguide.com/home/home-appliances/dreame-l50s-pro-ultra-review"
+     },
+     {
+      "n": "Inside Digital",
+      "u": "https://www.inside-digital.de/tests/saugroboter-dreame-l50s-pro-ultra-testbericht"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -11214,6 +11589,25 @@
    "avis": {
     "note": 4.8,
     "n": 52
+   },
+   "test": {
+    "txt": "Successeur du X-Clean 10, testé par Labo Maison : très bonnes performances, station compacte qui recharge, lave et sèche, bac d'eau sale avec filtre à déchets. Le réservoir d'eau propre se remplit par l'arrière.",
+    "plus": [
+     "Très efficace",
+     "Station tout-en-un compacte",
+     "Filtre qui retient les déchets"
+    ],
+    "moins": [
+     "Réservoir accessible par l'arrière",
+     "Le plus cher des Rowenta"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/?p=61759"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -12708,6 +13102,26 @@
    "avis": {
     "note": 4.3,
     "n": 54
+   },
+   "test": {
+    "txt": "Labo Maison : un des laveurs les plus silencieux de sa catégorie (65,5 dB), l'auto-traction le rend facile à pousser et l'éclairage LED montre la saleté. Mais le lavage de la brosse se fait à l'eau froide et le rouleau reste un peu humide après le séchage.",
+    "plus": [
+     "Très silencieux",
+     "Avance tout seul",
+     "Éclairage LED"
+    ],
+    "moins": [
+     "Lavage du rouleau à l'eau froide",
+     "Rouleau encore un peu humide après séchage",
+     "Coupe l'aspiration couché trop à plat"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/entretien/aspirateur-laveur/rowenta-x-clean-7/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -12738,6 +13152,25 @@
    "avis": {
     "note": 4.1,
     "n": 404
+   },
+   "test": {
+    "txt": "4,4/5 chez Labo Maison, l'un de leurs meilleurs rapports qualité-prix : malgré 4,1 kg, la poignée limite la sensation de poids et le mode automatique est très pratique. Le rouleau laisse un petit carré de 0,5 cm dans les coins.",
+    "plus": [
+     "Maniable malgré le poids",
+     "Mode auto pratique",
+     "Brosse lavée et séchée à 65 °C"
+    ],
+    "moins": [
+     "Coins pas parfaits",
+     "Pas d'indicateur de batterie (Journal du Geek)"
+    ],
+    "src": [
+     {
+      "n": "Labo Maison",
+      "u": "https://labomaison.com/test/rowenta-x-clean-10-laspirateur-laveur-franco-chinois/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
