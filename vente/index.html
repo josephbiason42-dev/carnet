@@ -97,6 +97,17 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(-
 .sh-ref a{color:var(--acc);font-weight:700;text-decoration:none}
 .ref-u{background:rgba(255,181,71,.08);border-left:3px solid var(--acc);padding:4px 8px;border-radius:4px}.ref-pr{margin:12px 0;display:grid;gap:6px}.ref-pr>b{font-size:.9rem}.ref-pr div{display:grid;gap:2px;padding:8px 10px;border:1px solid var(--line,#2a2f3a);border-radius:8px}.ref-pr span{font-weight:700}.ref-pr small{color:var(--muted)}.ref-pr em{font-style:normal;color:var(--acc);font-weight:600}
 .tst p{margin:0 0 8px;line-height:1.45}.tst-l{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:4px 0}.tst-l span{font-size:.8rem;padding:3px 8px;border-radius:999px;background:rgba(80,200,120,.12)}.tst-l.bad span{background:rgba(240,90,90,.12)}.tst small{color:var(--muted)}.tst small a{color:var(--acc)}
+.sh-bar.solid{background:var(--bg)}
+.jump{position:sticky;top:58px;z-index:2;display:flex;gap:5px;overflow-x:auto;padding:2px 12px 10px;border-bottom:1px solid var(--line);background:var(--bg);scrollbar-width:none}
+.jump::-webkit-scrollbar{display:none}
+.jump button{flex:1 0 auto;border:1px solid var(--line2);background:var(--s1);color:var(--ink);border-radius:999px;padding:7px 9px;font-weight:700;font-size:.78rem;cursor:pointer}
+.jump button.on{background:var(--acc);border-color:var(--acc);color:#1a1206}
+.jump.inl{position:static;padding:2px 0 12px;border:0;background:none}
+.stage{display:flex;align-items:baseline;gap:8px;margin:26px 2px -6px;font-weight:800;font-size:1.05rem;scroll-margin-top:120px}
+.stage span{width:24px;height:24px;border-radius:50%;background:var(--acc);color:#1a1206;display:grid;place-items:center;font-size:.8rem;flex:0 0 auto;align-self:center}
+.stage i{font-style:normal;color:var(--muted);font-weight:600;font-size:.82rem}
+.sh-price{color:var(--acc)}
+.crumb{all:unset;cursor:pointer;color:var(--acc);font-weight:700;font-size:.86rem;margin:12px 2px 0;display:inline-block}
 .lhead{display:flex; align-items:baseline; gap:10px; margin:14px 2px 8px}
 .lhead h1{font-size:1.4rem; margin:0; letter-spacing:-.02em}
 .lhead span{color:var(--muted); font-weight:600; font-size:.88rem}
@@ -408,13 +419,13 @@ function render(){
   }else if(ui.cat){
     var C=PCAT[ui.cat],types={};P.forEach(function(p){if(p.cat===ui.cat&&p.specs&&p.specs.type)types[p.specs.type]=(types[p.specs.type]||0)+1});
     var L2=filtered();ui.list=L2.map(function(p){return p.id});
-    h='<div class="lhead"><h1>'+C.ic+' '+esc(C.n)+'</h1><span>'+L2.length+' produit'+(L2.length>1?"s":"")+'</span></div>';
+    h='<button type="button" class="crumb" data-crumb="1">‹ Tous les rayons</button><div class="lhead"><h1>'+C.ic+' '+esc(C.n)+'</h1><span>'+L2.length+' produit'+(L2.length>1?"s":"")+'</span></div>';
     var tk=Object.keys(types);
-    if(tk.length>1)h+='<div class="chips" role="group" aria-label="Type"><button type="button" class="chip" data-type="" aria-pressed="'+(!ui.type)+'">Tous</button>'+tk.map(function(t){return '<button type="button" class="chip" data-type="'+esc(t)+'" aria-pressed="'+(ui.type===t)+'">'+esc(t)+' · '+types[t]+'</button>'}).join("")+'</div>';
+    if(tk.length>1)h+='<div class="chips" role="group" aria-label="Type"><button type="button" class="chip" data-type="" aria-pressed="'+(!ui.type)+'">Tous</button>'+tk.map(function(t){return '<button type="button" class="chip" data-type="'+esc(t)+'" aria-pressed="'+(ui.type===t)+'">'+(X&&X.refs&&X.refs[ui.cat+"|"+t]?'📋 ':'')+esc(t)+' · '+types[t]+'</button>'}).join("")+'</div>';
     h+='<div class="chips" role="group" aria-label="Budget">'+BUD.map(function(b){return '<button type="button" class="chip" data-bud="'+b[0]+'" aria-pressed="'+(ui.bud===b[0])+'">'+b[1]+'</button>'}).join("")+'<button type="button" class="chip sort" data-sort="1" aria-pressed="'+(!!ui.sort)+'">'+(ui.sort==="desc"?"Prix ↓":ui.sort==="asc"?"Prix ↑":"Trier par prix")+'</button></div>';
     var rk=refKey(ui.cat,ui.type||(tk.length===1?tk[0]:""));
     if(rk&&(ui.type||tk.length<=1))h+=refHTML(rk,L2);
-    else if(X&&X.refs){var rt=tk.filter(function(t){return X.refs[ui.cat+"|"+t]});if(rt.length)h+='<div class="reflink">📋 Fiches référence :'+rt.map(function(t){return '<button type="button" data-reftype="'+esc(t)+'">'+esc(t)+'</button>'}).join("")+'</div>'}
+    else if(X&&X.refs&&tk.some(function(t){return X.refs[ui.cat+"|"+t]}))h+='<p class="hint-s">📋 = fiche référence : choisis un type pour l\'ouvrir.</p>';
     h+='<div class="list">'+L2.map(function(p){return cardHTML(p)}).join("")+'</div>'+(L2.length?'':'<p class="empty">Aucun produit avec ces filtres.</p>');
   }else{
     ui.list=[];
@@ -431,6 +442,8 @@ function render(){
 }
 $("#main").addEventListener("toggle",function(e){var d=e.target;if(d.classList&&d.classList.contains("ref"))ui.refOpen=d.open?d.dataset.ref:null},true);
 $("#main").addEventListener("click",function(e){
+  var ia=e.target.closest("[data-ianc]");if(ia){var el=document.getElementById("ia-"+ia.dataset.ianc);if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-170,behavior:"smooth"});return}
+  if(e.target.closest("[data-crumb]")){ui.cat=null;ui.type="";go();return}
   var rt=e.target.closest("[data-reftype]");if(rt){ui.type=rt.dataset.reftype;ui.refOpen=refKey(ui.cat,ui.type);render();return}
   var tr=e.target.closest(".ref-t tr[data-id]");if(tr){openSheet(tr.dataset.id,ui.list);return}
   var c=e.target.closest("[data-cat]");if(c){ui.cat=c.dataset.cat;ui.type="";ui.bud="";ui.sort="";go();return}
@@ -523,18 +536,19 @@ function infHTML(){
   var f=infFam();
   if(!f||!f.items)return '<div class="lhead"><h1>♾️ Club Infinity</h1></div><p class="empty">Fiches Infinity en cours de chargement…</p>';
   var h='<div class="lhead"><h1>♾️ Club Infinity</h1><span>'+f.items.length+' fiches</span></div>'+
-    '<div class="svc">Assurance panne : réparation illimitée de tous les appareils de l\'univers choisi, achetés chez Boulanger ou ailleurs. Toujours remettre la notice d\'information au client.</div>';
+    '<nav class="jump inl"><button type="button" data-ianc="lv">🧠 Leviers</button><button type="button" data-ianc="hk">🎯 Accroches</button><button type="button" data-ianc="fi">📄 Fiches</button><button type="button" data-ianc="ob">💬 Objections</button></nav>'+'<div class="svc">Assurance panne : réparation illimitée de tous les appareils de l\'univers choisi, achetés chez Boulanger ou ailleurs. Toujours remettre la notice d\'information au client.</div>';
   var LV=X&&X.infLevers;
-  if(LV)h+='<div class="inf'+(ui.lvOpen?" open":"")+'"><button type="button" data-lv="1" aria-expanded="'+!!ui.lvOpen+'">🧠 Les leviers de vente<small>À relire avant la journée</small></button><div class="inf-b"><ul class="lv">'+LV["do"].map(function(l){return '<li><span>'+l[0]+'</span><div><b>'+esc(l[1])+'</b><p>'+esc(l[2])+'</p></div></li>'}).join("")+'</ul><h4>À éviter</h4><ul class="lv">'+LV.dont.map(function(d){return '<li>❌ '+esc(d)+'</li>'}).join("")+'</ul><p style="margin-top:10px">'+esc(LV.note)+'</p></div></div>';
+  if(LV)h+='<div id="ia-lv"></div><div class="inf'+(ui.lvOpen?" open":"")+'"><button type="button" data-lv="1" aria-expanded="'+!!ui.lvOpen+'">🧠 Les leviers de vente<small>À relire avant la journée</small></button><div class="inf-b"><ul class="lv">'+LV["do"].map(function(l){return '<li><span>'+l[0]+'</span><div><b>'+esc(l[1])+'</b><p>'+esc(l[2])+'</p></div></li>'}).join("")+'</ul><h4>À éviter</h4><ul class="lv">'+LV.dont.map(function(d){return '<li>❌ '+esc(d)+'</li>'}).join("")+'</ul><p style="margin-top:10px">'+esc(LV.note)+'</p></div></div>';
   var HK=(X&&X.infHooks)||[];
-  if(HK.length)h+='<h2 class="inf-h2">🎯 Fiche client ouverte : quelle accroche ?</h2><p class="hint-s">Repère sa situation, lance la phrase, puis écoute.</p>'+HK.map(function(k,i){var o=ui.hkOpen[i];return '<div class="inf hk'+(o?" open":"")+'"><button type="button" data-hk="'+i+'" aria-expanded="'+!!o+'">'+(k.ic?k.ic+' ':'')+esc(k.s)+'</button><div class="inf-b">'+k.a.map(function(a){return /^«/.test(a)?'<div class="inf-hook">'+esc(a)+'</div>':'<p>'+esc(a)+'</p>'}).join("")+'</div></div>'}).join("")+'<h2 class="inf-h2">📚 Fiches Infinity</h2>';
+  if(HK.length)h+='<h2 class="inf-h2" id="ia-hk">🎯 Fiche client ouverte : quelle accroche ?</h2><p class="hint-s">Repère sa situation, lance la phrase, puis écoute.</p>'+HK.map(function(k,i){var o=ui.hkOpen[i];return '<div class="inf hk'+(o?" open":"")+'"><button type="button" data-hk="'+i+'" aria-expanded="'+!!o+'">'+(k.ic?k.ic+' ':'')+esc(k.s)+'</button><div class="inf-b">'+k.a.map(function(a){return /^«/.test(a)?'<div class="inf-hook">'+esc(a)+'</div>':'<p>'+esc(a)+'</p>'}).join("")+'</div></div>'}).join("")+'<h2 class="inf-h2">📚 Fiches Infinity</h2>';
+  h+='<h2 class="inf-h2" id="ia-fi">📄 Fiches par situation</h2>';
   h+=f.items.map(function(it,i){var o=ui.infOpen[i];
     return '<div class="inf'+(o?" open":"")+(/prix/i.test(JSON.stringify(it.c||""))?" int":"")+'"><button type="button" data-inf="'+i+'" aria-expanded="'+!!o+'">'+esc(it.n)+(it.q?'<small>'+esc(it.ql||"À demander")+' : « '+esc(it.q)+' »</small>':'')+'</button><div class="inf-b">'+
       (it.q?'<div class="inf-hook">« '+esc(it.q)+' »</div>':'')+
       (it.c||[]).map(function(c){return '<h4>'+esc(c[0])+'</h4>'+(c[1]?'<p>'+esc(c[1])+'</p>':'')+((c[2]||[]).length?'<ul>'+c[2].map(function(x){return '<li>'+infLine(x)+'</li>'}).join("")+'</ul>':'')}).join("")+
     '</div></div>'}).join("");
   var L=(X&&X.objections)||[],IO=L.filter(function(o){return o.inf});
-  if(IO.length)h+='<h2 class="inf-h2">💬 Objections clients ('+IO.length+')</h2>'+IO.map(function(o){var k=L.indexOf(o);return '<div class="ob'+(ui.obOpen[k]?" open":"")+'"><button type="button" data-ob="'+k+'" aria-expanded="'+!!ui.obOpen[k]+'">« '+esc(o.o)+' »</button><ol>'+o.r.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ol></div>'}).join("");
+  if(IO.length)h+='<h2 class="inf-h2" id="ia-ob">💬 Objections clients ('+IO.length+')</h2>'+IO.map(function(o){var k=L.indexOf(o);return '<div class="ob'+(ui.obOpen[k]?" open":"")+'"><button type="button" data-ob="'+k+'" aria-expanded="'+!!ui.obOpen[k]+'">« '+esc(o.o)+' »</button><ol>'+o.r.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ol></div>'}).join("");
   return h+'<p class="foot">Infos publiques relevées sur boulanger.com. En cas de doute, la notice et la grille tarifaire du magasin font foi.</p>';
 }
 function infSheet(p){
@@ -619,35 +633,45 @@ function services(p){
   return it&&it.q?'<div class="svc"><b>Garantie / Infinity</b> — à demander : « '+esc(it.q)+' »</div>':"";
 }
 function sheetHTML(p){
-  var C=PCAT[p.cat],sp=p.specs||{},h="";
-  h+='<div class="sh-cat">'+C.ic+' '+esc(C.n)+(sp.type?' · '+esc(sp.type):'')+'<span class="client-tag">Mode client</span></div>';
+  var C=PCAT[p.cat],sp=p.specs||{},h="",S={dec:[],pre:[],ras:[],con:[]};
+  function sec(k,t,body,int){S[k].push({i:!!int,h:'<section class="sec'+(int?" int":"")+'"><h3>'+t+'</h3>'+body+'</section>'})}
+  h+='<div class="sh-cat">'+C.ic+' '+esc(C.n)+(sp.type?' · '+esc(sp.type):'')+(p.price!=null?' · <b class="sh-price">'+price(p)+'</b>':'')+'<span class="client-tag">Mode client</span></div>';
   h+='<h1 class="sh-title"><small>'+esc(p.brand||"")+'</small>'+esc(p.model)+'</h1>';
   if(p.ref)h+='<div class="sh-ref">Réf. Boulanger : '+String(p.ref).split(/\s*\/\s*/).map(function(r){return '<a href="https://www.boulanger.com/ref/'+encodeURIComponent(r)+'" target="_blank" rel="noopener">'+esc(r)+'</a>'}).join(" · ")+'</div>';
-  var sp0=p.specs||{};
-  if((p.avis&&p.avis.n)||sp0.repar!=null)h+='<div class="badges">'+(p.avis&&p.avis.n?'<span class="bdg">★ '+nf.format(p.avis.note)+' / 5 · '+p.avis.n+' avis</span>':'')+(sp0.repar!=null?'<span class="bdg rp" style="--rc:'+(sp0.repar>=8?"#22c55e":sp0.repar>=6?"#a3e635":"#facc15")+'">🔧 Réparabilité '+nf.format(sp0.repar)+'/10</span>':'')+(sp0.pieces?'<span class="bdg">Pièces : '+esc(sp0.pieces)+'</span>':'')+'</div>';
+  if((p.avis&&p.avis.n)||sp.repar!=null)h+='<div class="badges">'+(p.avis&&p.avis.n?'<span class="bdg">★ '+nf.format(p.avis.note)+' / 5 · '+p.avis.n+' avis</span>':'')+(sp.repar!=null?'<span class="bdg rp" style="--rc:'+(sp.repar>=8?"#22c55e":sp.repar>=6?"#a3e635":"#facc15")+'">🔧 Réparabilité '+nf.format(sp.repar)+'/10</span>':'')+(sp.pieces?'<span class="bdg">Pièces : '+esc(sp.pieces)+'</span>':'')+'</div>';
   var xp=xP(p),xt=xT(p);
-  if(p.uniq)h+='<div class="pour uniq"><small>✨ Son point unique</small>'+esc(p.uniq)+(p.uniqUse?'<span class="uu">👉 Au quotidien : '+esc(p.uniqUse)+'</span>':'')+'</div>';
-  if(xp&&xp.pour)h+='<div class="pour"><small>Pour qui</small>'+esc(xp.pour)+'</div>';
-  if(xt&&xt.quest&&xt.quest.length)h+='<section class="sec int"><h3>Questions à poser</h3><ol class="qs">'+xt.quest.map(function(q){return '<li>'+esc(q)+'</li>'}).join("")+'</ol></section>';
-  if(p.args&&p.args.length)h+='<section class="sec"><h3>L\'essentiel</h3><ol class="args">'+p.args.map(function(a){return '<li>'+esc(a)+'</li>'}).join("")+'</ol></section>';
+  /* 1. Découvrir */
+  if(xp&&xp.pour)sec("dec","👤 Pour qui",'<p class="ptxt" style="margin:0">'+esc(xp.pour)+'</p>');
+  if(xt&&xt.quest&&xt.quest.length)sec("dec","❓ Questions à poser",'<ol class="qs">'+xt.quest.map(function(q){return '<li>'+esc(q)+'</li>'}).join("")+'</ol>',1);
+  /* 2. Présenter */
+  if(p.uniq)S.pre.push({i:0,h:'<div class="pour uniq"><small>✨ Son point unique</small>'+esc(p.uniq)+(p.uniqUse?'<span class="uu">👉 Au quotidien : '+esc(p.uniqUse)+'</span>':'')+'</div>'});
+  if(p.args&&p.args.length)sec("pre","⭐ L'essentiel",'<ol class="args">'+p.args.map(function(a){return '<li>'+esc(a)+'</li>'}).join("")+'</ol>');
+  if(xt&&xt.demo)sec("pre","🎬 Démo en magasin",'<p class="ptxt" style="margin:0">'+esc(xt.demo)+'</p>',1);
   var specs=C.f.map(function(f){var v=specVal(f,sp[f[0]]);return v&&f[0]!=="type"?'<div class="sp"><small>'+esc(f[1])+'</small><b class="'+(v.cls||"")+'">'+esc(v.t)+'</b></div>':""}).join("");
   Object.keys(sp).forEach(function(k){if(!C.f.some(function(f){return f[0]===k})&&sp[k]!=null&&sp[k]!=="")specs+='<div class="sp"><small>'+esc(k)+'</small><b>'+esc(sp[k])+'</b></div>'});
-  if(specs)h+='<section class="sec"><h3>Caractéristiques</h3><div class="specs">'+specs+'</div></section>';
-  if(p.test){var t=p.test;h+='<section class="sec tst"><h3>🧪 En vrai (tests)</h3><p>'+esc(t.txt)+'</p>'+((t.plus||[]).length?'<div class="tst-l"><b>👍</b>'+t.plus.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>':'')+((t.moins||[]).length?'<div class="tst-l bad"><b>👎</b>'+t.moins.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>':'')+'<small>Source : '+(t.src||[]).map(function(x){return '<a href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.n)+'</a>'}).join(' · ')+'</small></section>'}
-  if(xp&&xp.cons&&xp.cons.length)h+='<section class="sec int"><h3>Points faibles à connaître</h3><div class="cons">'+xp.cons.map(function(c){return '<div>'+esc(c)+'</div>'}).join("")+'</div></section>';
-  if(xt&&xt.demo)h+='<section class="sec int"><h3>Démo en magasin</h3><p class="ptxt" style="margin:0">'+esc(xt.demo)+'</p></section>';
-  if(xt&&(xt.entretien||xt.usage))h+='<section class="sec"><h3>Au quotidien</h3><div class="two">'+(xt.entretien?'<div><small>Entretien</small><span class="ptxt">'+esc(xt.entretien)+'</span></div>':'')+(xt.usage?'<div><small>Coût d\'usage</small><span class="ptxt">'+esc(xt.usage)+'</span></div>':'')+'</div><button type="button" class="lnk int" data-calc="'+esc(p.id)+'">Calculer le coût sur plusieurs années →</button></section>';
-  var obj=String(p.obj||"").split(/\s*;\s*|\n+/).filter(Boolean);
-  if(obj.length)h+='<section class="sec int"><h3>Si le client hésite</h3><div class="objs">'+obj.map(function(o){var x=o.split(/\s*→\s*/);return '<div class="obj">'+(x.length>1?'<b>'+esc(cap(x[0]))+'</b>'+esc(cap(x.slice(1).join(" → "))):esc(cap(o)))+'</div>'}).join("")+'</div></section>';
+  if(specs)sec("pre","📐 Caractéristiques",'<div class="specs">'+specs+'</div>');
   var inc=String(p.incl||"").split(/\s*;\s*/).filter(Boolean);
-  if(inc.length)h+='<section class="sec"><h3>Dans la boîte</h3><div class="adds">'+inc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div></section>';
+  if(inc.length)sec("pre","📦 Dans la boîte",'<div class="adds">'+inc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div>');
+  /* 3. Rassurer */
+  if(p.test){var t=p.test;sec("ras","🧪 En vrai (tests)",'<p>'+esc(t.txt)+'</p>'+((t.plus||[]).length?'<div class="tst-l"><b>👍</b>'+t.plus.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>':'')+((t.moins||[]).length?'<div class="tst-l bad"><b>👎</b>'+t.moins.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>':'')+'<small>Source : '+(t.src||[]).map(function(x){return '<a href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.n)+'</a>'}).join(' · ')+'</small>');S.ras[S.ras.length-1].h=S.ras[S.ras.length-1].h.replace('class="sec"','class="sec tst"')}
+  if(xp&&xp.cons&&xp.cons.length)sec("ras","⚠️ Points faibles à connaître",'<div class="cons">'+xp.cons.map(function(c){return '<div>'+esc(c)+'</div>'}).join("")+'</div>',1);
+  var obj=String(p.obj||"").split(/\s*;\s*|\n+/).filter(Boolean);
+  if(obj.length)sec("ras","💬 Si le client hésite",'<div class="objs">'+obj.map(function(o){var x=o.split(/\s*→\s*/);return '<div class="obj">'+(x.length>1?'<b>'+esc(cap(x[0]))+'</b>'+esc(cap(x.slice(1).join(" → "))):esc(cap(o)))+'</div>'}).join("")+'</div>',1);
+  if(xt&&(xt.entretien||xt.usage))sec("ras","🧽 Au quotidien",'<div class="two">'+(xt.entretien?'<div><small>Entretien</small><span class="ptxt">'+esc(xt.entretien)+'</span></div>':'')+(xt.usage?'<div><small>Coût d\'usage</small><span class="ptxt">'+esc(xt.usage)+'</span></div>':'')+'</div><button type="button" class="lnk int" data-calc="'+esc(p.id)+'">Calculer le coût sur plusieurs années →</button>');
+  /* 4. Conclure */
   var acc=String(p.acc||"").split(/\s*[;,\n]\s*/).filter(Boolean);if(!acc.length)acc=C.acc||[];
-  h+='<section class="sec int"><h3>À proposer avec</h3><div class="adds">'+acc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div>'+(services(p)?'<div style="margin-top:10px">'+services(p)+'</div>':'')+'</section>'+infSheet(p);
+  if(acc.length||services(p))sec("con","🛒 À proposer avec",'<div class="adds">'+acc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div>'+(services(p)?'<div style="margin-top:10px">'+services(p)+'</div>':''),1);
+  var inf=infSheet(p);if(inf)S.con.push({i:1,h:inf});
   var alts=alternatives(p);
-  if(alts.length)h+='<section class="sec"><h3>Alternatives</h3><div class="alts">'+alts.map(function(a){return '<button type="button" class="alt" data-alt="'+esc(a.p.id)+'"><small>'+a.l+'</small><b>'+esc(pName(a.p))+'</b></button>'}).join("")+'</div></section>';
-  if(p.notes)h+='<section class="sec int"><h3>Mes notes</h3><div class="notes">'+esc(p.notes)+'</div></section>';
+  if(alts.length)sec("con","↕️ Alternatives",'<div class="alts">'+alts.map(function(a){return '<button type="button" class="alt" data-alt="'+esc(a.p.id)+'"><small>'+a.l+'</small><b>'+esc(pName(a.p))+'</b></button>'}).join("")+'</div>');
+  if(p.notes)sec("con","📝 Mes notes",'<div class="notes">'+esc(p.notes)+'</div>',1);
+  STG.forEach(function(g){var L=S[g[0]];if(!L.length)return;var allInt=L.every(function(x){return x.i});
+    h+='<div class="stage'+(allInt?" int":"")+'" id="st-'+g[0]+'"><span>'+g[1]+'</span>'+g[2]+'<i>'+g[3]+'</i></div>'+L.map(function(x){return x.h}).join("")});
   return h;
 }
+var STG=[["dec","1","Découvrir","son besoin"],["pre","2","Présenter","le produit"],["ras","3","Rassurer","lever les doutes"],["con","4","Conclure","compléter la vente"]];
+function jumpBar(){if(!sheetEl)return "";var b=STG.filter(function(g){return sheetEl.querySelector("#st-"+g[0])});
+  return b.length>1?'<nav class="jump" aria-label="Étapes">'+b.map(function(g){var st=sheetEl.querySelector("#st-"+g[0]);return '<button type="button" data-jump="'+g[0]+'"'+(st.classList.contains("int")?' class="int"':'')+'>'+g[1]+'. '+g[2]+'</button>'}).join("")+'</nav>':""}
 function xP(p){return X&&X.products&&X.products[p.id]||null}
 function xT(p){if(!X||!X.types)return null;var t=(p.specs||{}).type;return X.types[p.cat+"|"+t]||X.types[p.cat]||null}
 function cap(s){s=String(s||"");return s.charAt(0).toUpperCase()+s.slice(1)}
@@ -661,6 +685,7 @@ function openSheet(id,list,replace){
   var i=sheetList.indexOf(id),n=sheetList.length,inC=ui.cmp.indexOf(id)>=0;
   sheetEl.setAttribute("aria-label",pName(p));
   sheetEl.innerHTML='<div class="sh-bar"><button class="ib" type="button" data-sh="close" aria-label="Fermer">←</button><button class="ib" type="button" data-sh="prev" aria-label="Produit précédent"'+(i<=0?" disabled":"")+'>‹</button><span class="sh-pos">'+(n>1?(i+1)+" / "+n:"")+'</span><button class="ib" type="button" data-sh="next" aria-label="Produit suivant"'+(i>=n-1?" disabled":"")+'>›</button><button class="ib" type="button" data-sh="fav" aria-pressed="'+!!ui.fav[id]+'" aria-label="Favori">★</button><button class="ib" type="button" data-sh="cmp" aria-pressed="'+inC+'" aria-label="Ajouter au comparateur">⇄</button></div><div class="sh">'+sheetHTML(p)+'</div>';
+  var sb=sheetEl.querySelector(".sh-bar");sb.insertAdjacentHTML("afterend",jumpBar());var jj=sheetEl.querySelector(".jump");if(jj){sb.classList.add("solid");jj.style.top=(sb.offsetHeight-1)+"px"}
   sheetEl.scrollTop=0;document.body.style.overflow="hidden";renderTray();
 }
 function closeSheet(fromPop){if(!sheetEl)return;sheetEl.remove();sheetEl=null;ui.open=null;document.body.style.overflow="";if(!fromPop)history.back();render()}
@@ -673,10 +698,14 @@ function bindSheet(){
       else if(a==="fav"){if(ui.fav[ui.open])delete ui.fav[ui.open];else ui.fav[ui.open]=1;lsSet("rayon-fav",ui.fav);openSheet(ui.open,null,true);toast(ui.fav[ui.open]?"Ajouté aux favoris":"Retiré des favoris")}
       else if(a==="cmp"){cmpToggle(ui.open);openSheet(ui.open,null,true)}
       return}
+    var jb=e.target.closest("[data-jump]");if(jb){var st=sheetEl.querySelector("#st-"+jb.dataset.jump);if(st)sheetEl.scrollTo({top:st.offsetTop-sheetEl.querySelector(".jump").offsetHeight-sheetEl.querySelector(".sh-bar").offsetHeight-6,behavior:"smooth"});return}
     var gt=e.target.closest("[data-gotab]");if(gt){closeSheet();ui.tab=gt.dataset.gotab;render();window.scrollTo(0,0);return}
     var cl=e.target.closest("[data-calc]");if(cl){var pp=find(cl.dataset.calc);ui.cbase=pp?{a:"",name:pName(pp)}:null;closeSheet();ui.tab="calc";render();window.scrollTo(0,0);return}
     var al=e.target.closest("[data-alt]");if(al){if(sheetList.indexOf(al.dataset.alt)<0)sheetList=[al.dataset.alt];openSheet(al.dataset.alt,null,true)}
   });
+  sheetEl.addEventListener("scroll",function(){var j=sheetEl.querySelector(".jump");if(!j)return;var y=sheetEl.scrollTop+j.offsetHeight+sheetEl.querySelector(".sh-bar").offsetHeight+20,cur=null;
+    STG.forEach(function(g){var st=sheetEl.querySelector("#st-"+g[0]);if(st&&st.offsetParent!==null&&st.offsetTop<=y)cur=g[0]});
+    j.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",b.dataset.jump===cur)})},{passive:true});
   var x0=null,y0=0;
   sheetEl.addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
   sheetEl.addEventListener("touchend",function(e){if(x0==null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.6&&!e.target.closest(".cmp-wrap"))step(dx<0?1:-1)},{passive:true});
