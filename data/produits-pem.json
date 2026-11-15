@@ -38,7 +38,30 @@
     "n": 18
    },
    "releve": "2026-11-08",
-   "incl": "Brosse motorisée avec éclairage LED spéciale animaux ; accessoire 2 en 1 ; mini brosse motorisée"
+   "incl": "Brosse motorisée avec éclairage LED spéciale animaux ; accessoire 2 en 1 ; mini brosse motorisée",
+   "test": {
+    "txt": "Ideal Home le considère comme l'anti-emmêlement le plus puissant de Dyson. L'Éclaireur Fnac a mesuré plus de 75 min en mode Éco et salue le compactage du bac. Rtings trouve que la tête à cônes ramasse moins bien sur moquette que la brosse du V15.",
+    "plus": [
+     "Très grande autonomie en Éco",
+     "Bac qui tasse la poussière",
+     "Anti-emmêlement efficace"
+    ],
+    "moins": [
+     "Moins bon sur moquette que le V15",
+     "Très cher"
+    ],
+    "src": [
+     {
+      "n": "L'Éclaireur Fnac",
+      "u": "https://leclaireur.fnac.com/test/640446-test-dyson-v16-piston-animal/"
+     },
+     {
+      "n": "Ideal Home",
+      "u": "https://www.idealhome.co.uk/house-manual/floorcare/dyson-v16-piston-animal-vacuum-cleaner-review"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p002",
@@ -68,6 +91,29 @@
    "avis": {
     "note": 2.9,
     "n": 8
+   },
+   "test": {
+    "txt": "Même aspirateur que le V16 Piston Animal, avec en plus la tête lavante. Rtings lui donne 7,9/10 pour un usage maison complète ; Vacuum Wars mesure 100 % sur son test de nettoyage profond de moquette. L'autonomie en Éco dépasse 75 min (L'Éclaireur Fnac).",
+    "plus": [
+     "Aspire et lave",
+     "Très grande autonomie en Éco",
+     "Excellent dans les rainures"
+    ],
+    "moins": [
+     "Très cher",
+     "Moins bon sur moquette que le V15"
+    ],
+    "src": [
+     {
+      "n": "Rtings",
+      "u": "https://rtings.com/vacuum/reviews/dyson/v16-piston-animal-submarine"
+     },
+     {
+      "n": "Vacuum Wars",
+      "u": "https://vacuumwars.com/dyson-v16-piston-animal-submarine-review/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -171,7 +217,30 @@
     "n": 35
    },
    "releve": "2026-11-14",
-   "ref": "1239158"
+   "ref": "1239158",
+   "test": {
+    "txt": "La version 2025 du V8 : Expert Reviews le trouve bien équilibré, excellent au quotidien et contre les poils d'animaux, un peu moins sur sols durs. Plus d'autonomie et de puissance que l'ancien V8 (TechRadar). Très efficace sur moquette (Mumsnet).",
+    "plus": [
+     "Excellent sur moquette et poils",
+     "Léger, bien équilibré",
+     "Abordable pour un Dyson"
+    ],
+    "moins": [
+     "Moins bon sur sols durs",
+     "Pas d'indicateur de batterie"
+    ],
+    "src": [
+     {
+      "n": "Expert Reviews",
+      "u": "https://www.expertreviews.co.uk/home-garden/vacuums-cleaning/dyson-v8-cyclone-review"
+     },
+     {
+      "n": "TechRadar",
+      "u": "https://www.techradar.com/home/vacuums/dyson-v8-cyclone-review"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p006",
@@ -268,6 +337,29 @@
    "avis": {
     "note": 4.6,
     "n": 41
+   },
+   "test": {
+    "txt": "Journal du Geek : sans doute le meilleur rapport qualité-prix des robots laveurs, avec un lavage au rouleau très bon à environ 800 €. Notebookcheck : lavage qui rivalise avec des modèles plus chers, mais quelques soucis de navigation. Labo Maison le trouve timide sur les bords.",
+    "plus": [
+     "Lavage au rouleau excellent",
+     "Silencieux",
+     "Très bon rapport qualité-prix"
+    ],
+    "moins": [
+     "Moins bon sur les bords",
+     "Navigation parfois hésitante"
+    ],
+    "src": [
+     {
+      "n": "Journal du Geek",
+      "u": "https://www.journaldugeek.com/test/test-ecovacs-deebot-t90-pro-omni-la-preuve-qua-800-euros-on-peut-avoir-un-lavage-au-top/"
+     },
+     {
+      "n": "Notebookcheck",
+      "u": "https://www.notebookcheck.com/Mittelklasse-Saugroboter-laesst-Flaggschiffe-erblassen-Ecovacs-Deebot-T90-Pro-Omni-im-Test.1245255.0.html"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -325,7 +417,30 @@
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "test": {
+    "txt": "Clubic : excellente aspiration sur sols et tapis, lavage impeccable, mode IA utile. Smart Home Fox mesure un des meilleurs résultats d'aspiration de ses tests. Notebookcheck trouve la détection des petits obstacles bonne sans plus (un lacet a été avalé). Labo Maison est plus réservé sur le gain face au Qrevo Curv.",
+    "plus": [
+     "Aspiration excellente",
+     "Très plat (environ 8 cm)",
+     "Lavage sans traces"
+    ],
+    "moins": [
+     "Petits obstacles parfois avalés",
+     "Peu d'écart avec le Qrevo Curv"
+    ],
+    "src": [
+     {
+      "n": "Clubic",
+      "u": "https://www.clubic.com/test-produit-590239-test-roborock-qrevo-curv-2-pro.html"
+     },
+     {
+      "n": "Notebookcheck",
+      "u": "https://www.notebookcheck.net/All-around-improved-vacuum-and-mopping-robot-with-useful-improvements-Roborock-Qrevo-Curv-2-Pro-review.1180300.0.html"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p013",
@@ -344,7 +459,31 @@
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "test": {
+    "txt": "Maniaques retient une aspiration très puissante (19 000 Pa), une double brosse efficace sur tapis et sols durs, un lavage à 75 °C et une navigation précise. Le Café du Geek le voit comme le meilleur rapport qualité-prix de Dreame. Test-Achats juge l'aspiration bonne mais la qualité globale seulement raisonnable.",
+    "plus": [
+     "Très puissant",
+     "Double brosse anti-cheveux",
+     "Lavage eau chaude",
+     "Compatible kit raccordement eau"
+    ],
+    "moins": [
+     "Qualité globale moyenne (Test-Achats)",
+     "Appli riche mais complexe"
+    ],
+    "src": [
+     {
+      "n": "Maniaques",
+      "u": "https://maniaques.fr/test-dreame-l40s-pro-ultra-avis/"
+     },
+     {
+      "n": "Le Café du Geek",
+      "u": "https://lecafedugeek.fr/test-dreame-l40s-pro-ultra-le-meilleur-rapport-qualite-prix-chez-dreame/"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p014",
@@ -1737,7 +1876,27 @@
    },
    "releve": "2026-11-14",
    "seed": true,
-   "ref": "1219860"
+   "ref": "1219860",
+   "test": {
+    "txt": "Testé par Trusted Reviews et Futurezone : léger, maniable et puissant, avec une station qui vide le bac sans contact. La station est volumineuse et ne se fixe pas au mur.",
+    "plus": [
+     "Léger et maniable",
+     "Puissant",
+     "Vidage sans contact",
+     "Filtration HEPA"
+    ],
+    "moins": [
+     "Station encombrante",
+     "Pas de gâchette (bouton marche à prendre en main)"
+    ],
+    "src": [
+     {
+      "n": "Futurezone",
+      "u": "https://futurezone.at/produkte/samsung-bespoke-ai-jet-lite-test-review-erfahrung-staubsauger-reinigungsstation-ki-preis/403038957"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p066",
@@ -1894,6 +2053,30 @@
    "avis": {
     "note": 4.5,
     "n": 56
+   },
+   "test": {
+    "txt": "Phonandroid le juge redoutable sur sols durs comme sur tapis ; Clubic retient sa station 3-en-1, son tube articulé et son aspiration très puissante. Sur les petits tapis, la détection automatique réagit parfois trop tard. Le Café du Geek note un poids plus élevé.",
+    "plus": [
+     "Très efficace sols durs et tapis",
+     "Station de vidage auto",
+     "Tube pliable pour passer sous les meubles",
+     "Bon contre les poils"
+    ],
+    "moins": [
+     "Assez lourd",
+     "Détection tapis un peu lente sur petits tapis"
+    ],
+    "src": [
+     {
+      "n": "Phonandroid",
+      "u": "https://www.phonandroid.com/?p=2626541"
+     },
+     {
+      "n": "Clubic",
+      "u": "https://www.clubic.com/test-produit-570699-test-shark-powerdetect-clean-empty.html"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -10686,6 +10869,28 @@
    "avis": {
     "note": 4.2,
     "n": 16
+   },
+   "test": {
+    "txt": "Homes & Gardens le classe parmi les robots laveurs les plus complets testés, avec un lavage convaincant malgré ses serpillières rondes. Très plat (8,1 cm), il passe sous les meubles bas. Un testeur note qu'il peine avec les cheveux très longs.",
+    "plus": [
+     "Très complet",
+     "Bon lavage",
+     "Très plat : passe sous les meubles"
+    ],
+    "moins": [
+     "Moins bon avec les cheveux très longs"
+    ],
+    "src": [
+     {
+      "n": "Homes & Gardens",
+      "u": "https://www.homesandgardens.com/household/floorcare/ecovacs-deebot-t50-pro-omni-robot-vacuum-review"
+     },
+     {
+      "n": "Smart Home Compared",
+      "u": "https://smarthomecompared.com/robot-vacuums/ecovacs-deebot-t50s-pro-omni"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -10837,6 +11042,31 @@
    "avis": {
     "note": 4.8,
     "n": 130
+   },
+   "test": {
+    "txt": "Très bon rapport qualité-prix selon Notebookcheck : navigation solide même dans les passages étroits, lavage très efficace et très bonne autonomie (Lavelab). En revanche, la brosse principale n'a plus de système anti-cheveux et les petits objets (câbles) le piègent.",
+    "plus": [
+     "Lavage très efficace",
+     "Très bonne autonomie",
+     "Station tout-en-un",
+     "Bon prix"
+    ],
+    "moins": [
+     "Se bloque sur câbles et petits objets",
+     "Brosse sans anti-emmêlement",
+     "Aspiration un peu juste sur tapis"
+    ],
+    "src": [
+     {
+      "n": "Notebookcheck",
+      "u": "https://www.notebookcheck.biz/Test-du-Dreame-L10s-Ultra-Gen-3-aspirateur-robot-tres-complet-pour-un-prix-modique.1191519.0.html"
+     },
+     {
+      "n": "Lavelab",
+      "u": "https://lavelab.com/tests/dreame-l10s-ultra-gen-3/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -11160,6 +11390,30 @@
    "avis": {
     "note": 4.5,
     "n": 26
+   },
+   "test": {
+    "txt": "Testé plusieurs semaines par Galaxus : très bon mais pas parfait. Il franchit des seuils jusqu'à 5 cm grâce à ses pattes, reste très plat (environ 8 cm) et silencieux, et sa cartographie est rapide et précise. Il a pris une tache de ketchup pour un câble et l'a contournée.",
+    "plus": [
+     "Franchit les seuils hauts",
+     "Très plat : passe sous les meubles",
+     "Silencieux",
+     "Excellente navigation"
+    ],
+    "moins": [
+     "Cher",
+     "Consommation en veille élevée"
+    ],
+    "src": [
+     {
+      "n": "Galaxus",
+      "u": "https://www.galaxus.fr/en/page/roborock-saros-20x-review-slim-smart-and-a-great-climber-41897"
+     },
+     {
+      "n": "Netzwelt",
+      "u": "https://www.netzwelt.de/roborock-saros-20x/testbericht.html"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -11247,6 +11501,29 @@
    "avis": {
     "note": 4.1,
     "n": 33
+   },
+   "test": {
+    "txt": "Presse-citron : puissance maximale impressionnante mais qui ne dure pas, insuffisante pour faire tout un logement en mode max ; filtration et entretien sont ses points forts. Le Café du Geek le juge puissant, polyvalent et bien conçu.",
+    "plus": [
+     "Très puissant en mode max",
+     "Filtration et entretien faciles",
+     "Nombreux accessoires"
+    ],
+    "moins": [
+     "Autonomie courte en mode max",
+     "Il faut penser à le recharger"
+    ],
+    "src": [
+     {
+      "n": "Presse-citron",
+      "u": "https://www.presse-citron.net/test-dreame-z30-aspiration-maximale-sinon-rien/"
+     },
+     {
+      "n": "Le Café du Geek",
+      "u": "https://lecafedugeek.fr/test-dreame-z30-laspirateur-balai-sans-fil-ideal/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -11272,7 +11549,30 @@
    "ref": "1250155",
    "uniq": "La V8 avec brosse Fluffy pour sols durs",
    "uniqUse": "Parquet et carrelage",
-   "releve": "2026-11-14"
+   "releve": "2026-11-14",
+   "test": {
+    "txt": "La version 2025 du V8 : Expert Reviews le trouve bien équilibré, excellent au quotidien et contre les poils d'animaux, un peu moins sur sols durs. Plus d'autonomie et de puissance que l'ancien V8 (TechRadar). Très efficace sur moquette (Mumsnet).",
+    "plus": [
+     "Excellent sur moquette et poils",
+     "Léger, bien équilibré",
+     "Abordable pour un Dyson"
+    ],
+    "moins": [
+     "Moins bon sur sols durs",
+     "Pas d'indicateur de batterie"
+    ],
+    "src": [
+     {
+      "n": "Expert Reviews",
+      "u": "https://www.expertreviews.co.uk/home-garden/vacuums-cleaning/dyson-v8-cyclone-review"
+     },
+     {
+      "n": "TechRadar",
+      "u": "https://www.techradar.com/home/vacuums/dyson-v8-cyclone-review"
+     }
+    ],
+    "d": "2026-11-15"
+   }
   },
   {
    "id": "p369",
@@ -11387,6 +11687,30 @@
    "avis": {
     "note": 4.4,
     "n": 98
+   },
+   "test": {
+    "txt": "Clubic Award 2025 du meilleur aspirateur laveur (10/10). Notebookcheck salue les roues motorisées, le nettoyage efficace et l'autonettoyage poussé ; Smart Home Fox : excellent sur sol dur, inadapté aux tapis. Autonomie réelle d'environ 30 min en mode max.",
+    "plus": [
+     "Roues motorisées : avance tout seul",
+     "Nettoie jusqu'aux bords",
+     "Autonettoyage + séchage air chaud"
+    ],
+    "moins": [
+     "Pas pour les tapis",
+     "Environ 30 min en mode max",
+     "Cher hors promo"
+    ],
+    "src": [
+     {
+      "n": "Clubic",
+      "u": "https://clubic.com//actualite-584350-tineco-floor-one-s9-artist-l-aspirateur-laveur-qui-s-impose-comme-la-reference-de-2025.html"
+     },
+     {
+      "n": "Notebookcheck",
+      "u": "https://www.notebookcheck.com/Schicker-Wischsauger-laesst-sich-Flachlegen-Tineco-Floor-One-S9-Artist-im-Praxis-Test.1023904.0.html"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
@@ -11474,6 +11798,30 @@
    "avis": {
     "note": 3.8,
     "n": 186
+   },
+   "test": {
+    "txt": "4,5/5 chez Labo Maison, 8/10 chez Clubic : le mode automatique ajuste aspiration et eau selon la saleté, le lavage à l'eau chaude vient mieux à bout des taches séchées (ketchup), et le bras robotisé nettoie bien les bords. Charge lente (plus de 2 h) et pas d'éclairage LED (Presse-citron).",
+    "plus": [
+     "Eau chaude efficace sur taches tenaces",
+     "Excellents bords et coins",
+     "Mode auto intelligent"
+    ],
+    "moins": [
+     "Recharge lente",
+     "Pas de LED à l'avant",
+     "Filtre à déchets à nettoyer à la main"
+    ],
+    "src": [
+     {
+      "n": "Clubic",
+      "u": "https://www.clubic.com/test-produit-572451-test-dreame-h15-pro-heat.html"
+     },
+     {
+      "n": "L'Éclaireur Fnac",
+      "u": "https://leclaireur.fnac.com/test/611849-test-du-dreame-h15-pro-heat/"
+     }
+    ],
+    "d": "2026-11-15"
    }
   },
   {
