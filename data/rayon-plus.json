@@ -3034,7 +3034,8 @@
     "« Je comprends. Combien d'appareils avez-vous à la maison ? » Faire le compte ensemble : café, aspirateur, fer, robot… tous couverts par 1 seul univers",
     "Ramener au mois et par appareil : avec 6 appareils, ça revient à environ 2 € par appareil et par mois",
     "Comparer avec une seule réparation hors garantie : souvent 20 à 50 % du prix du neuf (pièces + main-d'œuvre)",
-    "Rappeler ce qui est inclus en plus : livraison offerte, 2 % cagnottés, accès prioritaire au service client"
+    "Rappeler ce qui est inclus en plus : livraison offerte, 2 % cagnottés, accès prioritaire au service client",
+    "Dernier levier si autorisé : « Si vous adhérez aujourd'hui, je vous fais l'équivalent de vos premiers mois sur l'appareil » (1 à 2 mois autour de 300 €, environ 6 mois sur un gros produit)"
    ],
    "tags": "infinity prix cher abonnement mois cout",
    "inf": true
@@ -3280,6 +3281,11 @@
  ],
  "infLevers": {
   "do": [
+   [
+    "🎁",
+    "Offrir les premiers mois",
+    "Remise de 1 à 2 mois d'Infinity sur un produit autour de 300 €, environ 6 mois sur un gros produit, uniquement si le client adhère. Il repart avec un appareil moins cher et sa protection « remboursée » pour les premiers mois."
+   ],
    [
     "⏱️",
     "Le bon moment",
@@ -4954,6 +4960,30 @@
      "Contrat, résiliation : 03 59 35 69 40, du lundi au samedi de 10 h à 20 h, ou espace client"
     ]
    ]
+  ]
+ },
+ "infRemise": {
+  "src": "Règle magasin (Grand Quartier), nov. 2026",
+  "mois": 11.99,
+  "bands": [
+   [
+    200,
+    500,
+    1,
+    2
+   ],
+   [
+    500,
+    1000000000.0,
+    6,
+    6
+   ]
+  ],
+  "how": [
+   "Ne l'annonce pas d'entrée : c'est un levier de closing, quand le client hésite sur Infinity ou sur le prix",
+   "Lie-la à l'adhésion : « Si vous prenez Infinity aujourd'hui, je vous fais une remise de l'équivalent de X mois sur l'appareil »",
+   "Traduis en mois offerts, pas en euros : « vos X premiers mois de protection sont offerts »",
+   "Reste dans le cadre autorisé et fais-la valider si besoin avant de l'annoncer"
   ]
  }
 }
