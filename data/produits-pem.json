@@ -61,6 +61,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 3.5,
+    "pos": "Haut de gamme puissant, orienté poils d'animaux.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -114,6 +121,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 3.5,
+    "pos": "Haut de gamme puissant, orienté poils d'animaux.",
+    "g": "Dyson V16 Piston Animal",
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -184,6 +198,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Très puissant, capteur qui compte les particules.",
+    "g": "Dyson V15 Detect Absolute",
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -240,6 +261,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Référence d'entrée de gamme efficace et abordable ; leur choix pour les petits budgets.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -379,7 +407,14 @@
    ],
    "obj": "Prix élevé : comparer avec Qrevo ou Deebot",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "ln": {
+    "n": 4.5,
+    "pos": "Robot ultra-fin haut de gamme.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
+   }
   },
   {
    "id": "p011",
@@ -440,6 +475,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Station arrondie et anti-emmêlement avancé.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -483,6 +525,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Haut de gamme très complet à prix contenu ; cité parmi les meilleurs rapports qualité-prix.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -1679,7 +1728,14 @@
    },
    "releve": "2026-11-14",
    "seed": true,
-   "ref": "1238954"
+   "ref": "1238954",
+   "ln": {
+    "n": 3.5,
+    "pos": "Version testée livrée avec base d'autovidage.",
+    "g": "Shark PowerDetect Speed Clean & Empty IA3241",
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
+   }
   },
   {
    "id": "p060",
@@ -1710,7 +1766,14 @@
     "n": 9
    },
    "releve": "2026-11-08",
-   "seed": true
+   "seed": true,
+   "ln": {
+    "n": 3,
+    "pos": "Format ultra-fin innovant mais manque de puissance d'aspiration.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
+   }
   },
   {
    "id": "p061",
@@ -1836,6 +1899,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Très puissant, capteur qui compte les particules.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -1865,7 +1935,14 @@
     "n": 25
    },
    "releve": "2026-11-08",
-   "seed": true
+   "seed": true,
+   "ln": {
+    "n": 3.5,
+    "pos": "Laveur de sol Dyson à rouleau.",
+    "g": "Dyson Clean+Wash Hygiene",
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
+   }
   },
   {
    "id": "p065",
@@ -2101,6 +2178,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 3.5,
+    "pos": "Détection de la saleté et tube flexible.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -11584,7 +11668,14 @@
    "ref": "1244467",
    "uniq": "Lave à l'eau chaude",
    "uniqUse": "Aspire et lave tout seul, le client n'a presque plus rien à faire",
-   "releve": "2026-11-14"
+   "releve": "2026-11-14",
+   "ln": {
+    "n": 4,
+    "pos": "Nouvelle génération haut de gamme de Narwal.",
+    "g": "Narwal Flow 2",
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
+   }
   },
   {
    "id": "p366",
@@ -11615,6 +11706,13 @@
    "avis": {
     "note": 3.9,
     "n": 31
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Robot aspirateur-laveur avec détection des taches par IA.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -11716,6 +11814,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Référence d'entrée de gamme efficace et abordable.",
+    "g": "Dyson V8 Cyclone",
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -12100,6 +12205,13 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 5,
+    "pos": "Fleuron des laveurs sans fil Rowenta.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
@@ -12158,6 +12270,13 @@
    "avis": {
     "note": 4.4,
     "n": 29
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Haut de gamme de la série F25.",
+    "g": null,
+    "d": "2026-11",
+    "u": "https://www.lesnumeriques.com/entretien-nettoyage-sols.html"
    }
   },
   {
