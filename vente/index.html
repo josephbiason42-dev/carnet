@@ -646,7 +646,7 @@ function pitchHTML(p){
   if(xt&&xt.hook)L.push(["Accroche","« "+xt.hook+" »"]);
   /* 2 différence */
   var args=(p.args||[]).filter(function(x){return !/\bavis\b|moins cher|prix/i.test(x)});
-  var U=p.uniq&&!/\bavis\b|moins ch[eè]re?\b|du rayon/i.test(p.uniq);
+  var U=p.uniq&&!/\bavis\b|moins ch[eè]re?\b|du rayon|petit prix/i.test(p.uniq);
   if(U){L.push(["Sa différence","« Ce qui le distingue : "+lc(p.uniq)+". "+(p.uniqUse?"Concrètement, pour vous : "+lc(p.uniqUse)+".":"")+" »"])}
   else if(p.uniqUse){L.push(["Sa différence","« C'est le bon choix pour : "+lc(p.uniqUse).replace(/\.$/,"")+". »"])}
   else if(args.length){L.push(["Sa différence","« "+args[0]+". »"]);used[0]=1}
