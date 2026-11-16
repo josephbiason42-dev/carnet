@@ -196,6 +196,18 @@ body.client .client-tag{display:inline-block}
 .cmp thead th{font-size:.95rem; font-weight:800}
 .cmp thead th small{display:block; color:var(--muted); font-size:.74rem; text-transform:uppercase}
 .cmp td.best{color:var(--ok); font-weight:800}
+.card.sel{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}.card .c-chk{position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:7px;border:2px solid var(--line2);display:grid;place-items:center;font-weight:900;color:#1a1206}.card.sel .c-chk{background:var(--acc);border-color:var(--acc)}.chip.cmpm[aria-pressed="true"]{background:var(--acc);color:#1a1206;border-color:var(--acc)}
+.cmp tr.sr td{position:static;background:none;color:var(--acc);font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;padding:18px 2px 6px;border-bottom:1px solid var(--line2)}
+.cmp.cmp3,.cmp.cmp2{table-layout:fixed}.cmp.cmp3 th,.cmp.cmp3 td{min-width:0;padding:9px 5px;font-size:.84rem;overflow-wrap:anywhere;hyphens:auto}.cmp.cmp3 th:first-child,.cmp.cmp3 td:first-child{min-width:0;width:72px}
+.cmp.cmp2 th,.cmp.cmp2 td{min-width:0;overflow-wrap:anywhere}.cmp.cmp2 th:first-child,.cmp.cmp2 td:first-child{min-width:0;width:84px}
+.cmp td.worse{color:var(--bad)}
+.cmp .dlt{display:block;color:var(--muted);font-weight:600}
+.cmp-n{all:unset;cursor:pointer;display:block;text-decoration:underline;text-decoration-color:var(--line2)}
+.cmp .wins{display:inline-block;margin-top:4px;padding:1px 7px;border-radius:999px;background:rgba(74,222,128,.15);color:var(--ok);font-size:.75rem;font-weight:800;margin-right:8px}
+.cmp-h{margin:20px 2px 6px;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.verdict{display:grid;gap:6px;padding:12px 14px;border-radius:var(--r);background:var(--s1);border:1px solid var(--line2);margin-top:6px}
+.same{display:flex;flex-wrap:wrap;gap:6px}.same span{padding:6px 10px;border-radius:10px;background:var(--s1);border:1px solid var(--line);font-size:.85rem}.same b{color:var(--muted);font-weight:700;margin-right:4px}
+.cmp-p{margin-top:16px}.cmp-p summary{cursor:pointer;color:var(--muted);font-weight:700}
 .cmp .rm{all:unset; cursor:pointer; color:var(--dim); font-size:.78rem; font-weight:700; margin-top:4px; display:inline-block}
 
 .toast{position:fixed; left:50%; bottom:calc(84px + var(--safe-b)); transform:translateX(-50%) translateY(20px); opacity:0; pointer-events:none; background:#eef1f7; color:#0b0d12; padding:10px 16px; border-radius:12px; font-weight:700; font-size:.88rem; z-index:90; transition:.2s}
@@ -386,7 +398,7 @@ function filtered(){
 }
 function cardHTML(p,q){
   var ks=keySpecs(p,3);
-  return '<button type="button" class="card" data-id="'+esc(p.id)+'"><div class="c-top"><div><div class="c-brand">'+hl(p.brand||"",q)+'</div><div class="c-model">'+hl(p.model,q)+'</div>'+(p.ref&&q&&/\d{5}/.test(q)?'<div class="c-brand">Réf. '+hl(p.ref,q)+'</div>':'')+'</div></div>'+
+  return '<button type="button" class="card'+(ui.cmpMode&&ui.cmp.indexOf(p.id)>=0?' sel':'')+'" data-id="'+esc(p.id)+'">'+(ui.cmpMode?'<span class="c-chk">'+(ui.cmp.indexOf(p.id)>=0?'✓':'')+'</span>':'')+'<div class="c-top"><div><div class="c-brand">'+hl(p.brand||"",q)+'</div><div class="c-model">'+hl(p.model,q)+'</div>'+(p.ref&&q&&/\d{5}/.test(q)?'<div class="c-brand">Réf. '+hl(p.ref,q)+'</div>':'')+'</div></div>'+
     (ks.length?'<div class="c-specs">'+ks.map(function(s){return '<span>'+esc(s)+'</span>'}).join("")+'</div>':'')+
     (p.args&&p.args[0]?'<div class="c-arg">'+hl(p.args[0],q)+'</div>':'')+(p.avis&&p.avis.n?'<div class="c-rate">★ '+nf.format(p.avis.note)+' <span>('+p.avis.n+' avis)</span>'+((p.specs||{}).repar?' · 🔧 '+nf.format(p.specs.repar)+'/10':'')+'</div>':'')+(ui.fav[p.id]?'<span class="c-fav" aria-label="Favori">★</span>':'')+'</button>';
 }
@@ -425,7 +437,7 @@ function render(){
     h='<button type="button" class="crumb" data-crumb="1">‹ Tous les rayons</button><div class="lhead"><h1>'+C.ic+' '+esc(C.n)+'</h1><span>'+L2.length+' produit'+(L2.length>1?"s":"")+'</span></div>';
     var tk=Object.keys(types);
     if(tk.length>1)h+='<div class="chips" role="group" aria-label="Type"><button type="button" class="chip" data-type="" aria-pressed="'+(!ui.type)+'">Tous</button>'+tk.map(function(t){return '<button type="button" class="chip" data-type="'+esc(t)+'" aria-pressed="'+(ui.type===t)+'">'+(X&&X.refs&&X.refs[ui.cat+"|"+t]?'📋 ':'')+esc(t)+' · '+types[t]+'</button>'}).join("")+'</div>';
-    h+='<div class="chips" role="group" aria-label="Budget">'+BUD.map(function(b){return '<button type="button" class="chip" data-bud="'+b[0]+'" aria-pressed="'+(ui.bud===b[0])+'">'+b[1]+'</button>'}).join("")+'<button type="button" class="chip sort" data-sort="1" aria-pressed="'+(!!ui.sort)+'">'+(ui.sort==="desc"?"Prix ↓":ui.sort==="asc"?"Prix ↑":"Trier par prix")+'</button></div>';
+    h+='<div class="chips" role="group" aria-label="Budget">'+BUD.map(function(b){return '<button type="button" class="chip" data-bud="'+b[0]+'" aria-pressed="'+(ui.bud===b[0])+'">'+b[1]+'</button>'}).join("")+'<button type="button" class="chip cmpm" data-cmpm="1" aria-pressed="'+!!ui.cmpMode+'">⇄ '+(ui.cmpMode?'Comparaison : touche 2 ou 3 produits':'Comparer')+'</button>'+'<button type="button" class="chip sort" data-sort="1" aria-pressed="'+(!!ui.sort)+'">'+(ui.sort==="desc"?"Prix ↓":ui.sort==="asc"?"Prix ↑":"Trier par prix")+'</button></div>';
     var rk=refKey(ui.cat,ui.type||(tk.length===1?tk[0]:""));
     if(rk&&(ui.type||tk.length<=1))h+=refHTML(rk,L2);
     else if(X&&X.refs&&tk.some(function(t){return X.refs[ui.cat+"|"+t]}))h+='<p class="hint-s">📋 = fiche référence : choisis un type pour l\'ouvrir.</p>';
@@ -446,13 +458,15 @@ function render(){
 $("#main").addEventListener("toggle",function(e){var d=e.target;if(d.classList&&d.classList.contains("ref"))ui.refOpen=d.open?d.dataset.ref:null},true);
 $("#main").addEventListener("click",function(e){
   var ia=e.target.closest("[data-ianc]");if(ia){var el=document.getElementById("ia-"+ia.dataset.ianc);if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-170,behavior:"smooth"});return}
-  if(e.target.closest("[data-crumb]")){ui.cat=null;ui.type="";go();return}
+  if(e.target.closest("[data-crumb]")){ui.cmpMode=false;ui.cat=null;ui.type="";go();return}
   var rt=e.target.closest("[data-reftype]");if(rt){ui.type=rt.dataset.reftype;ui.refOpen=refKey(ui.cat,ui.type);render();return}
   var tr=e.target.closest(".ref-t tr[data-id]");if(tr){openSheet(tr.dataset.id,ui.list);return}
   var c=e.target.closest("[data-cat]");if(c){ui.cat=c.dataset.cat;ui.type="";ui.bud="";ui.sort="";go();return}
   var t=e.target.closest("[data-type]");if(t){ui.type=t.dataset.type;render();return}
   var b=e.target.closest("[data-bud]");if(b){ui.bud=b.dataset.bud;render();return}
   if(e.target.closest("[data-sort]")){ui.sort=ui.sort===""?"asc":ui.sort==="asc"?"desc":"";render();return}
+  if(e.target.closest("[data-cmpm]")){ui.cmpMode=!ui.cmpMode;if(ui.cmpMode)toast("Touche les produits à comparer");render();return}
+  var k0=e.target.closest(".card[data-id]");if(k0&&ui.cmpMode){cmpToggle(k0.dataset.id);render();if(ui.cmp.length>=3)toast("3 produits sélectionnés : touche « Comparer » en bas");return}
   var k=e.target.closest(".card[data-id]");if(k)openSheet(k.dataset.id,ui.list.length&&ui.list.indexOf(k.dataset.id)>=0?ui.list:null);
 });
 
@@ -613,7 +627,7 @@ window.addEventListener("popstate",function(e){
   if(ui.open){closeSheet(true);return}
   var s=e.state||{};ui.cat=s.cat||null;if(s.tab)ui.tab=s.tab;render();
 });
-$("#home-btn").addEventListener("click",function(){ui.tab="prod";ui.cat=null;ui.q="";$("#q").value="";$("#q-clr").hidden=true;if(ui.open)closeSheet(true);history.pushState({},"");render();window.scrollTo(0,0)});
+$("#home-btn").addEventListener("click",function(){ui.cmpMode=false;ui.tab="prod";ui.cat=null;ui.q="";$("#q").value="";$("#q-clr").hidden=true;if(ui.open)closeSheet(true);history.pushState({},"");render();window.scrollTo(0,0)});
 
 /* ----- recherche ----- */
 var qT;
@@ -766,18 +780,49 @@ function renderTray(){ui.cmp=ui.cmp.filter(find);var n=ui.cmp.length;$("#tray").
 $("#tray-x").addEventListener("click",function(){ui.cmp=[];lsSet("rayon-cmp",ui.cmp);renderTray();if(ui.open&&ui.open!=="__cmp__")openSheet(ui.open,null,true)});
 $("#tray-go").addEventListener("click",function(){if(ui.cmp.length<2){toast("Ajoute au moins 2 produits (bouton ⇄ dans une fiche)");return}openCmp()});
 function openCmp(){
-  var L=ui.cmp.map(find).filter(Boolean),keys=[],seenK={};
-  L.forEach(function(p){PCAT[p.cat].f.forEach(function(f){if(!seenK[f[0]]&&L.some(function(x){return (x.specs||{})[f[0]]!=null}))keys.push(f);seenK[f[0]]=1})});
-  var row=function(lbl,vals,best){return '<tr><td>'+esc(lbl)+'</td>'+vals.map(function(v,i){return '<td class="'+(best===i?"best":"")+'">'+v+'</td>'}).join("")+'</tr>'};
-  var pr=L.map(function(p){return p.price}),minP=Math.min.apply(null,pr.filter(function(x){return x!=null}));
-  var h='<div class="cmp-wrap"><table class="cmp"><thead><tr><th></th>'+L.map(function(p){return '<th><small>'+esc(p.brand||"")+'</small>'+esc(p.model)+'<br><button type="button" class="rm" data-rm="'+esc(p.id)+'">Retirer</button></th>'}).join("")+'</tr></thead><tbody>';
-  keys.forEach(function(f){
-    var raw=L.map(function(p){return (p.specs||{})[f[0]]}),vals=raw.map(function(v){var s=specVal(f,v);return s?esc(s.t):'<span class="muted">—</span>'}),best=-1;
-    if(f[2]==="num"){var nums=raw.map(function(v){return typeof v==="number"?v:null});var ok=nums.filter(function(v){return v!=null});if(ok.length>1&&Math.min.apply(null,ok)!==Math.max.apply(null,ok)){var tgt=f[4]==="min"?Math.min.apply(null,ok):Math.max.apply(null,ok);best=nums.indexOf(tgt)}}
-    h+=row(f[1],vals,best);
+  var L=ui.cmp.map(find).filter(Boolean),n=L.length,wins=L.map(function(){return 0});
+  var cats={};L.forEach(function(p){cats[p.cat]=1});var mixed=Object.keys(cats).length>1;
+  var fields=[],seenK={};L.forEach(function(p){PCAT[p.cat].f.forEach(function(f){if(!seenK[f[0]]&&f[0]!=="type"){seenK[f[0]]=1;fields.push(f)}})});
+  function tr(lbl,cells,cls){return '<tr'+(cls?' class="'+cls+'"':'')+'><td>'+esc(lbl)+'</td>'+cells.map(function(c){return '<td class="'+(c.b?"best":"")+(c.w?" worse":"")+'">'+c.h+'</td>'}).join("")+'</tr>'}
+  function bestOf(nums,low){var ok=nums.filter(function(v){return v!=null});if(ok.length<2)return [];var mn=Math.min.apply(null,ok),mx=Math.max.apply(null,ok);if(mn===mx)return [];var t=low?mn:mx;return nums.map(function(v,i){return v===t?i:-1}).filter(function(i){return i>=0})}
+  var diff="",same=[],part=[];
+  /* essentiel */
+  var pr=L.map(function(p){return p.price!=null?+p.price:null}),bp=bestOf(pr,true),minP=Math.min.apply(null,pr.filter(function(x){return x!=null}));
+  var ess=tr("Prix",L.map(function(p,i){return {h:p.price!=null?'<b>'+price(p)+'</b>'+(p.price>minP?'<small class="dlt">+'+eur.format(p.price-minP)+'</small>':''):'—',b:bp.indexOf(i)>=0}}));
+  bp.forEach(function(i){wins[i]++});
+  var lnN=L.map(function(p){return p.ln?p.ln.n:null});if(lnN.some(function(v){return v!=null})){var bl=bestOf(lnN);bl.forEach(function(i){wins[i]++});ess+=tr("Les Numériques",L.map(function(p,i){return {h:p.ln?nf.format(p.ln.n)+'/5'+(p.ln.g?'*':''):'<span class="muted">non testé</span>',b:bl.indexOf(i)>=0}}))}
+  var av=L.map(function(p){return p.avis&&p.avis.n>=5?p.avis.note:null});if(av.some(function(v){return v!=null})){var ba=bestOf(av);ba.forEach(function(i){wins[i]++});ess+=tr("Avis clients",L.map(function(p,i){return {h:p.avis&&p.avis.n?'★ '+nf.format(p.avis.note)+' <small class="muted">('+p.avis.n+')</small>':'—',b:ba.indexOf(i)>=0}}))}
+  /* critères */
+  fields.forEach(function(f){
+    var raw=L.map(function(p){var v=(p.specs||{})[f[0]];return v===""?null:v});
+    var have=raw.filter(function(v){return v!=null}).length;if(!have)return;
+    var txt=raw.map(function(v){var x=specVal(f,v);return x?x.t:null});
+    if(have<n){part.push(tr(f[1],txt.map(function(t){return {h:t?esc(t):'<span class="muted">?</span>'}})));return}
+    if(txt.every(function(t){return t===txt[0]})){same.push('<span><b>'+esc(f[1])+'</b> '+esc(txt[0])+'</span>');return}
+    var best=[],worse=[];
+    if(f[2]==="num"){var nums=raw.map(function(v){if(typeof v==="number")return v;var m=String(v).replace(",",".").match(/^(\d+(?:\.\d+)?)\s*[×x]\s*(\d+(?:\.\d+)?)/);return m?m[1]*m[2]:parseFloat(String(v).replace(",","."))}).map(function(v){return isNaN(v)?null:v});best=bestOf(nums,f[4]==="min")}
+    else if(f[2]==="bool"){raw.forEach(function(v,i){if(yes(v))best.push(i);else worse.push(i)})}
+    best.forEach(function(i){wins[i]++});
+    diff+=tr(f[1],txt.map(function(t,i){return {h:esc(t),b:best.indexOf(i)>=0,w:worse.indexOf(i)>=0}}));
   });
-  h+=row("Point fort",L.map(function(p){return esc((p.args||[])[0]||"—")}),-1);
-  h+='</tbody></table></div><p class="foot">En vert : la meilleure valeur sur la ligne (poids : le plus bas).</p>';
+  /* qualitatif */
+  var qual=tr("Son point unique",L.map(function(p){return {h:esc(p.uniq||(p.args||[])[0]||"—")}}))+
+    tr("Pour qui",L.map(function(p){var x=xP(p);return {h:esc(x&&x.pour||"—")}}))+
+    tr("Point faible",L.map(function(p){var x=xP(p),c=((x&&x.cons)||[]).filter(function(c){return !/^peu d.avis/i.test(c)})[0]||((p.test||{}).moins||[])[0];return {h:c?esc(c):'<span class="muted">—</span>'}}));
+  /* verdict */
+  var mx=Math.max.apply(null,wins),leaders=wins.map(function(w,i){return w===mx?i:-1}).filter(function(i){return i>=0});
+  var cheap=pr.indexOf(minP),vd=[];
+  if(cheap>=0)vd.push('💶 Le moins cher : <b>'+esc(nameOf(L[cheap]))+'</b>');
+  if(mx>0&&leaders.length===1)vd.push('🏆 Le plus de critères gagnants : <b>'+esc(nameOf(L[leaders[0]]))+'</b> ('+mx+')');
+  else if(mx>0)vd.push('⚖️ Égalité sur les critères gagnants : à départager selon le besoin du client');
+  if(cheap>=0&&mx>0&&leaders.length===1&&leaders[0]!==cheap)vd.push('👉 Question à poser : « Les '+eur.format(L[leaders[0]].price-minP)+' d\'écart, ça vaut le coup pour vous si on regarde les lignes vertes ? »');
+  var head='<thead><tr><th></th>'+L.map(function(p,i){return '<th><small>'+esc(p.brand||"")+'</small><button type="button" class="cmp-n" data-alt="'+esc(p.id)+'">'+esc(p.model)+'</button><span class="wins">'+wins[i]+' ✓</span><button type="button" class="rm" data-rm="'+esc(p.id)+'">Retirer</button></th>'}).join("")+'</tr></thead>';
+  function sr(t){return '<tr class="sr"><td colspan="'+(n+1)+'">'+t+'</td></tr>'}
+  var h=(mixed?'<div class="svc">⚠️ Ces produits viennent de rayons différents : seuls quelques critères sont comparables.</div>':'')+
+    '<div class="verdict">'+vd.map(function(x){return '<div>'+x+'</div>'}).join("")+'</div>'+
+    '<div class="cmp-wrap"><table class="cmp cmp'+n+'">'+head+'<tbody>'+sr("L'essentiel")+ess+(diff?sr("Ce qui les différencie")+diff:'')+sr("Pour bien conseiller")+qual+(part.length?sr("Infos partielles")+part.join(""):'')+'</tbody></table></div>'+
+    (same.length?'<h3 class="cmp-h">Pareil sur '+(n>2?'les '+n:'les deux')+'</h3><div class="same">'+same.join("")+'</div>':'')+
+    '<p class="foot">En vert : le meilleur sur la ligne (prix et poids : le plus bas). En rouge : l\'équipement manque. « ✓ » = nombre de lignes gagnées. Touche un nom pour ouvrir sa fiche.</p>';
   if(!sheetEl){sheetEl=document.createElement("div");sheetEl.className="sheet";sheetEl.setAttribute("role","dialog");sheetEl.setAttribute("aria-modal","true");sheetEl.setAttribute("aria-label","Comparateur");document.body.appendChild(sheetEl);bindSheet();history.pushState({sheet:1,cat:ui.cat},"")}
   ui.open="__cmp__";sheetList=ui.cmp.slice();
   sheetEl.innerHTML='<div class="sh-bar"><button class="ib" type="button" data-sh="close" aria-label="Fermer">←</button><span class="sh-pos">Comparateur</span></div><div class="sh">'+h+'</div>';
