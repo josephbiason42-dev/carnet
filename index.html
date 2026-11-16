@@ -1013,6 +1013,21 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
 #ct-form{margin-top:10px;display:flex;flex-direction:column;gap:10px}
 .ct-mac{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 #ct-form .btnrow{display:flex;gap:8px}#ct-form .btnrow .primary{flex:1}
+.c1-head{font:600 .82rem/1.5 var(--body);color:var(--muted);margin-bottom:10px}
+.c1-goal{display:flex;justify-content:space-between;font-size:.85rem;margin:4px 0}
+.c1-card{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;cursor:pointer;background:rgba(255,255,255,.02)}
+.c1-card:hover{border-color:rgba(255,255,255,.18)}
+.c1-card h4{margin:0;font-size:1rem;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.c1-card h4 small{color:var(--muted);font-weight:600}
+.c1-card p{margin:6px 0 0;color:var(--muted);font-size:.9rem}
+.c1-card .c1-brands{margin-top:6px;font-size:.88rem}
+.c1-sec{margin:18px 0 0;font:700 .78rem/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.c1-tag{font-size:.72rem;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.08)}
+.c1-tag.fort{background:rgba(74,222,128,.15);color:#86efac}.c1-tag.nuance{background:rgba(255,181,71,.15);color:#fcd34d}
+.c1-fs{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}.c1-fs legend{font-size:.85rem;color:var(--muted);margin-bottom:6px;padding:0}
+.c1-chk{flex-direction:row!important;align-items:center;gap:8px}
+.c1-tips summary{cursor:pointer;font-weight:600;font-size:.9rem}.c1-tips ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:.88rem;display:flex;flex-direction:column;gap:4px}
+.c1-quote{font-style:italic;margin-top:6px}
 </style>
 </head>
 <body data-tab="home">
@@ -1248,6 +1263,11 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
     <div class="panel" id="p-top"></div>
     <div class="panel" id="p-retro" hidden></div>
     <div class="panel"><h3>Avancement par condition</h3><div id="p-phases"></div></div>
+    <div class="panel" id="c1-panel">
+      <div class="phead"><h3>📚 Fiches C1</h3><button class="plus" type="button" id="c1-add" aria-label="Ajouter une fiche">＋</button></div>
+      <div class="seg" id="c1-seg" role="group" aria-label="Fiche" style="margin-bottom:12px"><button type="button" data-c1="bias" aria-pressed="true">🧠 Biais cognitifs</button><button type="button" data-c1="vocab" aria-pressed="false">🗣 Vocabulaire</button></div>
+      <div id="c1-body"></div>
+    </div>
     <div class="panel"><h3>Routines continues</h3><div id="p-routines"></div></div>
     <div class="panel">
       <div class="phead"><h3>Les étapes</h3></div>
@@ -1463,6 +1483,39 @@ button.pg-trip.rt:focus-visible{outline:2px solid #9cbcff}
     <button class="ghost" type="button" id="b-del" hidden>Supprimer cette pesée</button>
   </form>
 </dialog>
+<dialog class="modal" id="c1b-dialog" aria-labelledby="c1b-h" style="width:min(640px,calc(100vw - 32px))">
+  <div class="phead"><h3 id="c1b-h">Nouveau biais</h3><button class="mclose" type="button" data-c1close aria-label="Fermer">×</button></div>
+  <form id="c1b-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+    <label for="c1b-name">Nom du biais<input id="c1b-name" maxlength="80" autocomplete="off" placeholder="ex. Effet de contraste"></label>
+    <label for="c1b-def">Définition (1 phrase, mes mots)<textarea id="c1b-def" rows="2"></textarea></label>
+    <label for="c1b-meca">Mécanique mentale (ce qui se passe dans le cerveau du client)<textarea id="c1b-meca" rows="3"></textarea></label>
+    <label for="c1b-src">Source (livre, chapitre, page)<input id="c1b-src" list="c1-books" autocomplete="off" placeholder="ex. Neuromarketing, ch. 3, p. 54"></label>
+    <fieldset class="c1-fs"><legend>Marques qui l'utilisent bien (2-3)</legend>
+      <input id="c1b-g1" placeholder="1. Marque : comment" autocomplete="off" aria-label="Marque 1"><input id="c1b-g2" placeholder="2." autocomplete="off" aria-label="Marque 2"><input id="c1b-g3" placeholder="3." autocomplete="off" aria-label="Marque 3"></fieldset>
+    <label for="c1b-opp">Marques qui pourraient mieux l'utiliser (opportunité)<textarea id="c1b-opp" rows="2"></textarea></label>
+    <label for="c1b-note">Note perso / limite<textarea id="c1b-note" rows="2"></textarea></label>
+    <fieldset class="c1-fs"><legend>Pertinent pour mon angle ?</legend><div class="chips" id="c1b-pert"><button type="button" class="chip" data-pert="fort">Fort</button><button type="button" class="chip" data-pert="sec">Secondaire</button><button type="button" class="chip" data-pert="nuance">À nuancer</button></div></fieldset>
+    <p class="note" id="c1b-rule"></p>
+    <button class="primary" type="submit">Enregistrer</button>
+    <button class="ghost" type="button" id="c1b-del" hidden>Supprimer ce biais</button>
+  </form>
+</dialog>
+<dialog class="modal" id="c1v-dialog" aria-labelledby="c1v-h" style="width:min(640px,calc(100vw - 32px))">
+  <div class="phead"><h3 id="c1v-h">Nouveau mot</h3><button class="mclose" type="button" data-c1close aria-label="Fermer">×</button></div>
+  <form id="c1v-form" novalidate style="display:flex;flex-direction:column;gap:12px">
+    <div class="grid"><label for="c1v-word" class="wide">Mot / expression<input id="c1v-word" maxlength="80" autocomplete="off"></label>
+    <label for="c1v-cat">Catégorie<select id="c1v-cat"><option value="neuro">Neuromarketing</option><option value="brand">Branding</option><option value="ia">IA</option><option value="critique">Critique commerciale</option><option value="posture">Posture éditoriale</option><option value="autre">Autre</option></select></label></div>
+    <label for="c1v-def">Définition (comment JE l'utilise)<textarea id="c1v-def" rows="2"></textarea></label>
+    <label for="c1v-src">Source<input id="c1v-src" list="c1-books" autocomplete="off"></label>
+    <label for="c1v-ex">Exemple d'usage (1 phrase dans ma bouche, à voix haute)<textarea id="c1v-ex" rows="2" placeholder="« … »"></textarea></label>
+    <label for="c1v-why">Pourquoi je le garde<textarea id="c1v-why" rows="2"></textarea></label>
+    <div class="grid"><label for="c1v-inst">Au lieu de…<input id="c1v-inst" autocomplete="off"></label><label for="c1v-pref">Je préfère…<input id="c1v-pref" autocomplete="off"></label></div>
+    <label class="c1-chk"><input type="checkbox" id="c1v-oral"> Testé à l'oral, je peux le dire sans rougir</label>
+    <button class="primary" type="submit">Enregistrer</button>
+    <button class="ghost" type="button" id="c1v-del" hidden>Supprimer ce mot</button>
+  </form>
+</dialog>
+<datalist id="c1-books"></datalist>
 <dialog class="modal" id="l-dialog" aria-labelledby="lb-h">
   <div class="phead"><h3 id="lb-h">Ajouter un livre</h3><button class="mclose" type="button" id="l-close" aria-label="Fermer">×</button></div>
   <form id="lb-form" novalidate style="display:flex;flex-direction:column;gap:12px">
@@ -1758,13 +1811,13 @@ var CATS={
   in:["Salaire","Aides","Ventes","Remboursement","Autre"]
 };
 
-var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],products:[],meds:{list:[],log:{}},shop:{items:[],cat:{},store:"",trips:[]},sav:{envs:[],plan:[],goal:100000}};
+var state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],products:[],meds:{list:[],log:{}},shop:{items:[],cat:{},store:"",trips:[]},sav:{envs:[],plan:[],goal:100000},c1:{start:"2026-11-16",bias:[],vocab:[],reviewed:""}};
 var ui={tab:"home",month:today().slice(0,7),day:today(),finType:"out"};
 
 /* ---------- stockage local ---------- */
 var LS="carnet-joseph-v1";
 function loadLocal(){
-  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[],books:Array.isArray(p.books)?p.books:[],plan:p.plan&&typeof p.plan==="object"?p.plan:{},inbox:Array.isArray(p.inbox)?p.inbox:[],subs:Array.isArray(p.subs)?p.subs:[],credits:Array.isArray(p.credits)?p.credits:[],products:Array.isArray(p.products)?p.products:[],meds:mdNorm(p.meds),shop:shNorm(p.shop),sav:savNorm(p.sav)}}}}catch(e){}
+  try{var r=localStorage.getItem(LS);if(r){var p=JSON.parse(r);if(p&&typeof p==="object"){state={settings:p.settings||{},fin:p.fin||{},cal:p.cal||{},rec:Array.isArray(p.rec)?p.rec:[],finSkip:p.finSkip||{},jobs:Array.isArray(p.jobs)?p.jobs:[],act:p.act&&typeof p.act==="object"?p.act:{},body:Array.isArray(p.body)?p.body:[],p30:Array.isArray(p.p30)?p.p30:[],books:Array.isArray(p.books)?p.books:[],plan:p.plan&&typeof p.plan==="object"?p.plan:{},inbox:Array.isArray(p.inbox)?p.inbox:[],subs:Array.isArray(p.subs)?p.subs:[],credits:Array.isArray(p.credits)?p.credits:[],products:Array.isArray(p.products)?p.products:[],meds:mdNorm(p.meds),shop:shNorm(p.shop),sav:savNorm(p.sav),c1:c1Norm(p.c1)}}}}catch(e){}
 
 }
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
@@ -1783,6 +1836,7 @@ var dirty=lsGet("carnet-dirty")||{};
 var sync={state:"off",pushing:false,timer:null,lastOk:null,firstPull:!lsGet("carnet-synced-once")};
 
 function savNorm(b){b=b&&typeof b==="object"?b:{};return {envs:Array.isArray(b.envs)?b.envs:[],plan:Array.isArray(b.plan)?b.plan:[],goal:+b.goal>0?+b.goal:100000}}
+function c1Norm(b){b=b&&typeof b==="object"?b:{};return {start:b.start||"2026-11-16",bias:Array.isArray(b.bias)?b.bias:[],vocab:Array.isArray(b.vocab)?b.vocab:[],reviewed:b.reviewed||""}}
 function hasCfg(){return !!(CFG.url&&CFG.key)}
 function hasData(){return Object.keys(state.fin).length||Object.keys(state.cal).length||Object.keys(state.settings).length||state.rec.length||state.jobs.length||state.body.length||state.p30.length||state.books.length||Object.keys(state.plan).length||state.inbox.length||state.subs.length||state.credits.length||state.products.length||state.meds.list.length||state.shop.items.length||Object.keys(state.shop.cat).length||state.sav.envs.length||state.sav.plan.length}
 function allKeys(){
@@ -1800,6 +1854,7 @@ function allKeys(){
   if(state.meds.list.length||Object.keys(state.meds.log).length)k.push("meds");
   if(state.shop.items.length||Object.keys(state.shop.cat).length||state.shop.trips.length)k.push("shop");
   if(state.sav.envs.length||state.sav.plan.length)k.push("savings");
+  if(state.c1&&(state.c1.bias.length||state.c1.vocab.length))k.push("c1");
   Object.keys(state.fin).forEach(function(m){k.push("fin-"+m)});
   Object.keys(state.cal).forEach(function(m){k.push("cal-"+m)});
   Object.keys(state.act).forEach(function(m){if(k.indexOf("cal-"+m)<0)k.push("cal-"+m)});
@@ -1812,6 +1867,7 @@ function bodyFor(key){
   if(key==="body")return {items:state.body};
   if(key==="p30")return {items:state.p30};
   if(key==="books")return {items:state.books};
+  if(key==="c1")return state.c1;
   if(key==="plan")return {days:state.plan};
   if(key==="inbox")return {items:state.inbox};
   if(key==="subs")return {items:state.subs};
@@ -1839,6 +1895,7 @@ function applyDoc(key,body){
   else if(key==="meds")state.meds=mdNorm(body);
   else if(key==="shop")state.shop=shNorm(body);
   else if(key==="savings")state.sav=savNorm(body);
+  else if(key==="c1")state.c1=c1Norm(body);
   else if(key==="plan")state.plan=body&&body.days&&typeof body.days==="object"?body.days:{};
   else if(/^(fin|cal)-\d{4}-\d{2}$/.test(key)){state[key.slice(0,3)][key.slice(4)]=Array.isArray(body&&body.items)?body.items:[];
     if(key.slice(0,3)==="cal"){if(body&&body.active&&typeof body.active==="object")state.act[key.slice(4)]=body.active;else delete state.act[key.slice(4)]}
@@ -3501,12 +3558,12 @@ function renderModel(){
 $("#bm-date").addEventListener("change",function(){bmui.date=this.value;renderModel()});
 $("#bm-cmp").addEventListener("change",function(){bmui.cmp=this.value;renderModel()});
 /* ---------- sauvegardes ---------- */
-function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30,books:state.books,plan:state.plan,inbox:state.inbox,subs:state.subs,credits:state.credits,products:state.products,meds:state.meds,shop:state.shop,sav:state.sav}}
+function snapData(){return {app:"carnet-joseph",v:3,exported:today(),settings:state.settings,fin:state.fin,cal:state.cal,rec:state.rec,finSkip:state.finSkip,jobs:state.jobs,act:state.act,body:state.body,p30:state.p30,books:state.books,plan:state.plan,inbox:state.inbox,subs:state.subs,credits:state.credits,products:state.products,meds:state.meds,shop:state.shop,sav:state.sav,c1:state.c1}}
 function restoreData(p,full){
   var ok=function(o){return o&&typeof o==="object"};
-  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30&&!p.books&&!p.plan&&!p.subs&&!p.sav&&!p.credits&&!p.products&&!p.meds&&!p.shop))return false;
+  if(!ok(p)||(!p.fin&&!p.cal&&!p.jobs&&!p.body&&!p.p30&&!p.books&&!p.plan&&!p.subs&&!p.sav&&!p.credits&&!p.products&&!p.meds&&!p.shop&&!p.c1))return false;
   var before=allKeys();
-  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],products:[],meds:{list:[],log:{}},shop:{items:[],cat:{},store:"",trips:[]},sav:{envs:[],plan:[],goal:100000}};
+  if(full)state={settings:{},fin:{},cal:{},act:{},rec:[],finSkip:{},jobs:[],body:[],p30:[],books:[],plan:{},inbox:[],subs:[],credits:[],products:[],meds:{list:[],log:{}},shop:{items:[],cat:{},store:"",trips:[]},sav:{envs:[],plan:[],goal:100000},c1:{start:"2026-11-16",bias:[],vocab:[],reviewed:""}};
   if(ok(p.settings))state.settings=Object.assign({},p.settings);
   if(Array.isArray(p.rec))state.rec=p.rec;
   if(Array.isArray(p.jobs))state.jobs=p.jobs;
@@ -3522,6 +3579,7 @@ function restoreData(p,full){
   if(ok(p.meds))state.meds=mdNorm(p.meds);
   if(ok(p.shop))state.shop=shNorm(p.shop);
   if(ok(p.sav))state.sav=savNorm(p.sav);
+  if(ok(p.c1))state.c1=c1Norm(p.c1);
   if(ok(p.finSkip))state.finSkip=p.finSkip;
   ["fin","cal"].forEach(function(k){if(ok(p[k]))Object.keys(p[k]).forEach(function(m){if(/^\d{4}-\d{2}$/.test(m)&&Array.isArray(p[k][m]))state[k][m]=p[k][m]})});
   var keys=allKeys();before.forEach(function(k){if(keys.indexOf(k)<0)keys.push(k)});
@@ -3632,6 +3690,101 @@ function pTimeline(big){
   });
   return h+'</div>';
 }
+/* ---------- Fiches C1 ---------- */
+var c1ui={tab:"bias",cat:"",edit:null,pert:""};
+var C1CAT={neuro:"Neuromarketing",brand:"Branding",ia:"IA",critique:"Critique commerciale",posture:"Posture éditoriale",autre:"Autre"};
+var C1SUG=[["Biais égocentrique","Renvoisé & Morin : le cerveau ne s'intéresse qu'à ce qui le concerne directement."],["Effet de contraste","Renvoisé & Morin : on décide en comparant avant/après, avec/sans."],["Effet de tangibilité (concret)","Renvoisé & Morin : le cerveau préfère le concret et le simple à l'abstrait."],["Effet de primauté et de récence","Renvoisé & Morin : on retient surtout le début et la fin d'un message."],["Supériorité de l'image","Renvoisé & Morin : le visuel est traité plus vite que les mots."],["Heuristique d'affect (émotion)","Renvoisé & Morin : l'émotion déclenche la mémorisation et la décision."]];
+function c1(){if(!state.c1)state.c1=c1Norm(null);return state.c1}
+function c1Save(){persist("c1");renderC1()}
+function c1Ok(b){return (b.good||[]).filter(function(x){return x&&x.trim()}).length>=2}
+function c1Date(d){return d?parseYmd(d).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}):""}
+function renderC1(){
+  var el=$("#c1-body");if(!el)return;var C=c1();
+  document.querySelectorAll("#c1-seg button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.c1===c1ui.tab))});
+  var h="";
+  if(c1ui.tab==="bias"){
+    var doc=C.bias.filter(c1Ok),todo=C.bias.filter(function(b){return !c1Ok(b)});
+    var pc=Math.min(100,Math.round(doc.length/15*100));
+    h+='<div class="c1-head">Démarrée le '+esc(c1Date(C.start))+' · Objectif : 15-20 biais, chacun avec 2-3 marques · Mise à jour à chaque livre lu</div>'+
+      '<div class="c1-goal"><b>'+doc.length+' biais documenté'+(doc.length>1?'s':'')+'</b><span class="muted">objectif 15</span></div><div class="meter"><i style="width:'+pc+'%;background:linear-gradient(90deg,#8b5cf6,#5b8cff)"></i></div>';
+    var srt=function(a,b){return (a.n||0)-(b.n||0)};
+    var card=function(b){var g=(b.good||[]).filter(function(x){return x&&x.trim()});return '<div class="c1-card" data-c1b="'+esc(b.id)+'" role="button" tabindex="0"><h4><small>N° '+(b.n||"?")+'</small>'+esc(b.name||"Sans nom")+(b.pert?'<span class="c1-tag '+b.pert+'">'+({fort:"Fort",sec:"Secondaire",nuance:"À nuancer"})[b.pert]+'</span>':'')+'</h4>'+(b.def?'<p>'+esc(b.def)+'</p>':'')+(g.length?'<div class="c1-brands">🏷 '+g.map(esc).join(" · ")+'</div>':'')+(b.src?'<p>📖 '+esc(b.src)+'</p>':'')+'</div>'};
+    h+=doc.length?doc.slice().sort(srt).map(card).join(""):'<p class="empty" style="margin-top:10px">Aucun biais documenté pour l\'instant. Un biais entre ici dès qu\'il a 2 marques en exemple.</p>';
+    if(todo.length)h+='<div class="c1-sec">⏳ À documenter ('+todo.length+')</div>'+todo.slice().sort(srt).map(card).join("");
+    if(!C.bias.length)h+='<button class="ghost sm" type="button" id="c1-sug" style="margin-top:12px">Ajouter les 6 pistes Renvoisé & Morin dans « À documenter »</button>';
+    h+='<details class="c1-tips" style="margin-top:14px"><summary>Conseils d\'usage</summary><ul><li>Rédige après chaque livre, pas pendant.</li><li>Un biais n\'entre dans la fiche que si tu peux donner au moins 2 marques qui l\'utilisent.</li><li>Sinon, il reste en attente dans « À documenter ».</li></ul></details>';
+  }else{
+    var cats={};C.vocab.forEach(function(v){cats[v.cat]=(cats[v.cat]||0)+1});
+    var rv=C.reviewed||C.start,next=addDays(rv,91),late=next<=today();
+    h+='<div class="c1-head">Démarrée le '+esc(c1Date(C.start))+' · Objectif : accumuler les mots qui forment ma voix pro</div>'+
+      '<div class="c1-goal"><b>'+C.vocab.length+' mot'+(C.vocab.length>1?'s':'')+'</b><span class="'+(late?"warn":"muted")+'">Révision '+(late?'à faire':'le '+esc(fd(next)))+'</span></div>'+
+      (late&&C.vocab.length?'<button class="ghost sm" type="button" id="c1-rev" style="margin:6px 0">J\'ai relu ma fiche ✓</button>':'');
+    if(C.vocab.length)h+='<div class="chips" style="margin:8px 0 0"><button type="button" class="chip'+(!c1ui.cat?" on":"")+'" data-c1cat="">Tous <span>'+C.vocab.length+'</span></button>'+Object.keys(C1CAT).filter(function(k){return cats[k]}).map(function(k){return '<button type="button" class="chip'+(c1ui.cat===k?" on":"")+'" data-c1cat="'+k+'">'+C1CAT[k]+' <span>'+cats[k]+'</span></button>'}).join("")+'</div>';
+    var L=C.vocab.filter(function(v){return !c1ui.cat||v.cat===c1ui.cat}).slice().sort(function(a,b){return (a.word||"").localeCompare(b.word||"","fr")});
+    h+=L.length?L.map(function(v){return '<div class="c1-card" data-c1v="'+esc(v.id)+'" role="button" tabindex="0"><h4>'+esc(v.word)+'<span class="c1-tag">'+esc(C1CAT[v.cat]||"Autre")+'</span>'+(v.oral?'<span class="c1-tag fort">🗣 testé</span>':'')+'</h4>'+(v.def?'<p>'+esc(v.def)+'</p>':'')+(v.ex?'<p class="c1-quote">'+esc(v.ex)+'</p>':'')+(v.inst||v.pref?'<p>Au lieu de « '+esc(v.inst||"…")+' » → « '+esc(v.pref||v.word)+' »</p>':'')+'</div>'}).join(""):'<p class="empty" style="margin-top:10px">Aucun mot pour l\'instant. Touche ＋ quand un mot te plaît en lisant.</p>';
+    h+='<details class="c1-tips" style="margin-top:14px"><summary>Conseils d\'usage</summary><ul><li>Un mot n\'entre que si tu peux le dire à voix haute dans une phrase sans rougir.</li><li>Teste tes mots à l\'oral avant de les écrire.</li><li>Révise la fiche tous les 3 mois : certains mots vont tomber, d\'autres émerger.</li></ul></details>';
+  }
+  h+='<div class="btnrow" style="margin-top:12px"><button class="link" type="button" id="c1-md" style="font-size:.8rem">Exporter en Markdown (iPhone / Mac)</button></div>';
+  el.innerHTML=h;
+}
+function c1Books(){$("#c1-books").innerHTML=state.books.map(function(b){return '<option value="'+esc(b.title)+'">'}).join("")}
+function c1OpenBias(id){
+  var C=c1(),b=id?C.bias.filter(function(x){return x.id===id})[0]:null;c1ui.edit=b?b.id:null;c1ui.pert=b&&b.pert||"";c1Books();
+  $("#c1b-h").textContent=b?"Biais N° "+b.n:"Nouveau biais";
+  [["name","name"],["def","def"],["meca","meca"],["src","src"],["opp","opp"],["note","note"]].forEach(function(k){$("#c1b-"+k[0]).value=b&&b[k[1]]||""});
+  [1,2,3].forEach(function(i){$("#c1b-g"+i).value=b&&b.good&&b.good[i-1]||""});
+  c1Pert();$("#c1b-del").hidden=!b;$("#c1b-rule").textContent="Il passe dans les biais documentés dès que 2 marques sont renseignées.";
+  var d=$("#c1b-dialog");if(d.showModal)d.showModal();else d.setAttribute("open","");setTimeout(function(){$("#c1b-name").focus()},30);
+}
+function c1Pert(){document.querySelectorAll("#c1b-pert .chip").forEach(function(c){c.classList.toggle("on",c.dataset.pert===c1ui.pert)})}
+function c1OpenVocab(id){
+  var C=c1(),v=id?C.vocab.filter(function(x){return x.id===id})[0]:null;c1ui.edit=v?v.id:null;c1Books();
+  $("#c1v-h").textContent=v?v.word:"Nouveau mot";
+  ["word","def","src","ex","why","inst","pref"].forEach(function(k){$("#c1v-"+k).value=v&&v[k]||""});
+  $("#c1v-cat").value=v&&v.cat||c1ui.cat||"neuro";$("#c1v-oral").checked=!!(v&&v.oral);$("#c1v-del").hidden=!v;
+  var d=$("#c1v-dialog");if(d.showModal)d.showModal();else d.setAttribute("open","");setTimeout(function(){$("#c1v-word").focus()},30);
+}
+function c1Close(d){if(d.close)d.close();else d.removeAttribute("open")}
+function c1MD(){
+  var C=c1(),L=["# FICHE BIAIS COGNITIFS — Projet 30 — C1.1","Démarrée le : "+c1Date(C.start),"Objectif : 15-20 biais, chacun avec 2-3 marques en exemple","Mise à jour : à chaque nouveau livre lu",""];
+  var pt={fort:"Fort (à mobiliser souvent)",sec:"Secondaire",nuance:"À nuancer selon contexte"};
+  var bl=function(b){L.push("## Biais N° "+b.n+" : "+(b.name||""),"","**Définition :** "+(b.def||"—"),"","**Mécanique mentale :** "+(b.meca||"—"),"","**Source :** "+(b.src||"—"),"","**Marques qui l'utilisent bien :**");(b.good||[]).forEach(function(g,i){if(g)L.push((i+1)+". "+g)});L.push("","**Opportunité :** "+(b.opp||"—"),"","**Note perso / limite :** "+(b.note||"—"),"","**Pertinence :** "+(pt[b.pert]||"—"),"","*Ajouté le "+c1Date(b.date)+"*","")};
+  C.bias.filter(c1Ok).sort(function(a,b){return a.n-b.n}).forEach(bl);
+  var td=C.bias.filter(function(b){return !c1Ok(b)});if(td.length){L.push("# À documenter","");td.forEach(bl)}
+  L.push("---","","# FICHE VOCABULAIRE PERSONNEL — Projet 30","Démarrée le : "+c1Date(C.start),"Objectif : accumuler les mots qui forment ma voix pro","");
+  C.vocab.slice().sort(function(a,b){return (a.word||"").localeCompare(b.word||"","fr")}).forEach(function(v){L.push("## "+v.word+" ("+(C1CAT[v.cat]||"Autre")+")","","**Définition :** "+(v.def||"—"),"","**Source :** "+(v.src||"—"),"","**Exemple d'usage :** "+(v.ex||"—"),"","**Pourquoi je le garde :** "+(v.why||"—"),"","Au lieu de : "+(v.inst||"—")+" → Je préfère : "+(v.pref||v.word),"","*Ajouté le "+c1Date(v.date)+"*","")});
+  var blob=new Blob([L.join("\n")],{type:"text/markdown"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="fiches-C1-"+today()+".md";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+}
+$("#c1-seg").addEventListener("click",function(e){var b=e.target.closest("[data-c1]");if(!b)return;c1ui.tab=b.dataset.c1;renderC1()});
+$("#c1-add").addEventListener("click",function(){if(c1ui.tab==="bias")c1OpenBias(null);else c1OpenVocab(null)});
+$("#c1-body").addEventListener("click",function(e){
+  var t=e.target.closest("[data-c1b]");if(t){c1OpenBias(t.dataset.c1b);return}
+  t=e.target.closest("[data-c1v]");if(t){c1OpenVocab(t.dataset.c1v);return}
+  t=e.target.closest("[data-c1cat]");if(t){c1ui.cat=t.dataset.c1cat;renderC1();return}
+  if(e.target.closest("#c1-md")){c1MD();return}
+  if(e.target.closest("#c1-rev")){c1().reviewed=today();c1Save();toast("Révision notée, prochaine dans 3 mois.");return}
+  if(e.target.closest("#c1-sug")){var C=c1();C1SUG.forEach(function(x,i){C.bias.push({id:newId(),n:i+1,name:x[0],note:x[1],src:"Neuromarketing : le nerf de la vente (Renvoisé & Morin)",good:[],date:today()})});c1Save();toast("6 pistes ajoutées dans « À documenter ».")}
+});
+$("#c1-body").addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.closest("[data-c1b],[data-c1v]")){e.preventDefault();e.target.click()}});
+document.querySelectorAll("[data-c1close]").forEach(function(b){b.addEventListener("click",function(){c1Close(b.closest("dialog"))})});
+$("#c1b-pert").addEventListener("click",function(e){var c=e.target.closest("[data-pert]");if(!c)return;c1ui.pert=c1ui.pert===c.dataset.pert?"":c.dataset.pert;c1Pert()});
+$("#c1b-form").addEventListener("submit",function(e){
+  e.preventDefault();var name=$("#c1b-name").value.trim();if(!name){flash("#c1b-name");toast("Donne un nom au biais");return}
+  var C=c1(),b=c1ui.edit?C.bias.filter(function(x){return x.id===c1ui.edit})[0]:null;
+  if(!b){b={id:newId(),n:C.bias.reduce(function(m,x){return Math.max(m,x.n||0)},0)+1,date:today()};C.bias.push(b)}
+  b.name=name;b.def=$("#c1b-def").value.trim();b.meca=$("#c1b-meca").value.trim();b.src=$("#c1b-src").value.trim();b.opp=$("#c1b-opp").value.trim();b.note=$("#c1b-note").value.trim();b.pert=c1ui.pert;
+  b.good=[1,2,3].map(function(i){return $("#c1b-g"+i).value.trim()});
+  c1Close($("#c1b-dialog"));c1Save();toast(c1Ok(b)?"Biais N° "+b.n+" documenté":"Biais enregistré dans « À documenter » (il manque des marques)");
+});
+$("#c1b-del").addEventListener("click",function(){var C=c1(),i=-1;C.bias.forEach(function(x,k){if(x.id===c1ui.edit)i=k});if(i<0)return;var b=C.bias.splice(i,1)[0];c1Close($("#c1b-dialog"));c1Save();toast("Biais supprimé",function(){C.bias.splice(i,0,b);c1Save()})});
+$("#c1v-form").addEventListener("submit",function(e){
+  e.preventDefault();var w=$("#c1v-word").value.trim();if(!w){flash("#c1v-word");toast("Écris le mot ou l'expression");return}
+  var C=c1(),v=c1ui.edit?C.vocab.filter(function(x){return x.id===c1ui.edit})[0]:null;
+  if(!v){v={id:newId(),date:today()};C.vocab.push(v)}
+  v.word=w;v.cat=$("#c1v-cat").value;["def","src","ex","why","inst","pref"].forEach(function(k){v[k]=$("#c1v-"+k).value.trim()});v.oral=$("#c1v-oral").checked;
+  c1Close($("#c1v-dialog"));c1Save();toast(v.oral?"Mot ajouté à ta fiche":"Mot ajouté. Pense à le tester à voix haute 🗣");
+});
+$("#c1v-del").addEventListener("click",function(){var C=c1(),i=-1;C.vocab.forEach(function(x,k){if(x.id===c1ui.edit)i=k});if(i<0)return;var v=C.vocab.splice(i,1)[0];c1Close($("#c1v-dialog"));c1Save();toast("Mot supprimé",function(){C.vocab.splice(i,0,v);c1Save()})});
 function pSave(){persist("p30");renderP30();renderHome()}
 function renderP30(){
   if(!$("#v-p30"))return;
@@ -6182,7 +6335,7 @@ $("#mods-box").addEventListener("change",function(e){
 });
 function render(){
   var t=state.settings.title||"Dashboard";$("#app-title").textContent=t;
-  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderLib();renderPlan();fillPlanCfg();renderHome();applyHome();renderProd();renderMeds();renderShop();renderModsSet();applyMods();if(ui.tab==="rev")renderRev();
+  fillCats();fillRecCats();fillMeals();renderFin();renderCal();fillSettings();renderJobs();renderBody();renderP30();renderC1();renderLib();renderPlan();fillPlanCfg();renderHome();applyHome();renderProd();renderMeds();renderShop();renderModsSet();applyMods();if(ui.tab==="rev")renderRev();
 }
 
 loadLocal();
