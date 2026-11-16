@@ -3035,7 +3035,8 @@
     "Ramener au mois et par appareil : avec 6 appareils, ça revient à environ 2 € par appareil et par mois",
     "Comparer avec une seule réparation hors garantie : souvent 20 à 50 % du prix du neuf (pièces + main-d'œuvre)",
     "Rappeler ce qui est inclus en plus : livraison offerte, 2 % cagnottés, accès prioritaire au service client",
-    "Dernier levier si autorisé : « Si vous adhérez aujourd'hui, je vous fais l'équivalent de vos premiers mois sur l'appareil » (1 à 2 mois autour de 300 €, environ 6 mois sur un gros produit)"
+    "Dernier levier si autorisé : « Si vous adhérez aujourd'hui, je vous fais l'équivalent de vos premiers mois sur l'appareil » (1 à 2 mois autour de 300 €, environ 6 mois sur un gros produit)",
+    "Jusqu'au 30/11 : 35 € cagnottés à l'adhésion, soit à peu près 3 mois d'abonnement « remboursés » en bon d'achat"
    ],
    "tags": "infinity prix cher abonnement mois cout",
    "inf": true
@@ -4985,5 +4986,10 @@
    "Traduis en mois offerts, pas en euros : « vos X premiers mois de protection sont offerts »",
    "Reste dans le cadre autorisé et fais-la valider si besoin avant de l'annoncer"
   ]
+ },
+ "infPromo": {
+  "montant": 35,
+  "fin": "2026-11-30",
+  "txt": "35 € cagnottés à l'adhésion"
  }
 }

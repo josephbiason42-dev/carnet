@@ -110,6 +110,7 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(-
 .co-voc{display:grid;gap:6px}.co-voc div{display:grid;gap:2px;padding:8px 10px;border-radius:10px;background:var(--s2)}.co-voc span{color:var(--muted);font-size:.9rem}
 .co-q{margin-bottom:14px}.co-q p{margin:0 0 8px}.co-o{display:grid;gap:6px}.co-o .opt{text-align:left}.co-o .opt.good{background:rgba(74,222,128,.18);border-color:var(--ok);color:var(--ink)}.co-o .opt.bad{background:rgba(248,113,113,.15);border-color:var(--bad)}.co-x{margin-top:8px!important;font-size:.9rem;color:var(--muted)}.lnk-a{color:var(--acc);font-weight:700}
 .svc.rem ul{margin:6px 0 0;padding-left:18px}.svc.rem li{margin:3px 0}
+.promo{margin:4px 0 12px;padding:12px 14px;border-radius:var(--r);background:linear-gradient(135deg,rgba(255,181,71,.18),rgba(255,138,76,.12));border:1px solid var(--acc);font-size:.92rem}
 .stage{display:flex;align-items:baseline;gap:8px;margin:26px 2px -6px;font-weight:800;font-size:1.05rem;scroll-margin-top:120px}
 .stage span{width:24px;height:24px;border-radius:50%;background:var(--acc);color:#1a1206;display:grid;place-items:center;font-size:.8rem;flex:0 0 auto;align-self:center}
 .stage i{font-style:normal;color:var(--muted);font-weight:600;font-size:.82rem}
@@ -591,7 +592,7 @@ function infHTML(){
   var f=infFam();
   if(!f||!f.items)return '<div class="lhead"><h1>♾️ Club Infinity</h1></div><p class="empty">Fiches Infinity en cours de chargement…</p>';
   var h='<div class="lhead"><h1>♾️ Club Infinity</h1><span>'+f.items.length+' fiches</span></div>'+
-    '<nav class="jump inl"><button type="button" data-ianc="cd">📋 Conditions</button><button type="button" data-ianc="lv">🧠 Leviers</button><button type="button" data-ianc="hk">🎯 Accroches</button><button type="button" data-ianc="fi">📄 Fiches</button><button type="button" data-ianc="ob">💬 Objections</button></nav>'+'<div class="svc">Assurance panne : réparation illimitée de tous les appareils de l\'univers choisi, achetés chez Boulanger ou ailleurs. Toujours remettre la notice d\'information au client.</div>';
+    (infPr()?'<div class="promo">⏳ <b>Jusqu\'au '+infPr().finTxt+'</b> ('+(infPr().left<=0?'dernier jour':'encore '+infPr().left+' j')+') : <b>'+eur.format(infPr().montant)+' cagnottés</b> à l\'adhésion. À combiner avec ta remise : « en plus des mois offerts sur l\'appareil, vous avez '+eur.format(infPr().montant)+' à dépenser chez nous ».</div>':'')+'<nav class="jump inl"><button type="button" data-ianc="cd">📋 Conditions</button><button type="button" data-ianc="lv">🧠 Leviers</button><button type="button" data-ianc="hk">🎯 Accroches</button><button type="button" data-ianc="fi">📄 Fiches</button><button type="button" data-ianc="ob">💬 Objections</button></nav>'+'<div class="svc">Assurance panne : réparation illimitée de tous les appareils de l\'univers choisi, achetés chez Boulanger ou ailleurs. Toujours remettre la notice d\'information au client.</div>';
   var LV=X&&X.infLevers;
   if(LV)var D=X&&X.infDoc;if(D)h+='<h2 class="inf-h2" id="ia-cd">📋 Conditions officielles</h2><div class="cmp-wrap"><table class="cmp cmp3"><thead><tr><th>Formule</th><th>Par mois</th><th>Par an</th><th>Inclus</th></tr></thead><tbody>'+D.tarifs.map(function(t){return '<tr><td>'+esc(t[0])+'</td><td><b>'+esc(t[1])+'</b></td><td>'+esc(t[2])+'</td><td>'+esc(t[3])+'</td></tr>'}).join("")+'</tbody></table></div>'+D.blocs.map(function(b,i){var o=ui.cdOpen&&ui.cdOpen[i];return '<div class="inf'+(o?" open":"")+'"><button type="button" data-cd="'+i+'" aria-expanded="'+!!o+'">'+esc(b[0])+'</button><div class="inf-b"><ul>'+b[1].map(function(l){return '<li>'+infLine(l)+'</li>'}).join("")+'</ul></div></div>'}).join("")+'<p class="hint-s">Source : '+esc(D.src)+'. La notice remise au client fait foi.</p>';
   var RM=X&&X.infRemise;if(RM)h+='<div class="svc rem"><b>🎁 Remise liée à l\'adhésion (règle magasin)</b><ul><li>Produit de 200 à 500 € → 1 à 2 mois ('+eur.format(RM.mois)+' à '+eur.format(2*RM.mois)+')</li><li>Produit de 500 € et plus → environ 6 mois ('+eur.format(6*RM.mois)+')</li></ul><ul>'+RM.how.map(function(l){return '<li>'+esc(l)+'</li>'}).join("")+'</ul></div>';
@@ -608,6 +609,7 @@ function infHTML(){
   if(IO.length)h+='<h2 class="inf-h2" id="ia-ob">💬 Objections clients ('+IO.length+')</h2>'+IO.map(function(o){var k=L.indexOf(o);return '<div class="ob'+(ui.obOpen[k]?" open":"")+'"><button type="button" data-ob="'+k+'" aria-expanded="'+!!ui.obOpen[k]+'">« '+esc(o.o)+' »</button><ol>'+o.r.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ol></div>'}).join("");
   return h+'<p class="foot">Infos publiques relevées sur boulanger.com. En cas de doute, la notice et la grille tarifaire du magasin font foi.</p>';
 }
+function infPr(){var P=X&&X.infPromo;if(!P)return null;var d=new Date(),t=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);if(t>P.fin)return null;var f=P.fin.split("-");P.finTxt=+f[2]+"/"+f[1];P.left=Math.round((new Date(P.fin+"T23:59:59")-d)/864e5);return P}
 function infRem(p){var R=X&&X.infRemise,pr=+p.price||0;if(!R||p.price==null)return null;for(var i=0;i<R.bands.length;i++){var b=R.bands[i];if(pr>=b[0]&&pr<b[1])return {a:b[2],b:b[3],ea:b[2]*R.mois,eb:b[3]*R.mois}}return null}
 function remTxt(r){return r.a===r.b?"environ "+r.a+" mois ("+eur.format(r.ea)+")":r.a+" à "+r.b+" mois ("+eur.format(r.ea)+" à "+eur.format(r.eb)+")"}
 function infSheet(p){
@@ -617,6 +619,7 @@ function infSheet(p){
   if(pr>=60){var a=Math.max(1,Math.round(pr*.2/11.99)),b=Math.max(a+1,Math.round(pr*.5/11.99));
     h+='Une réparation hors garantie coûte souvent 20 à 50 % du neuf, soit environ <b>'+a+' à '+b+' mois</b> d\'abonnement 1 univers.<br>';}
   h+='Couvert par l\'univers <b>Électroménager</b>, avec tous les autres appareils de la maison'+(p.cat==="beaute"?' (beauté : vérifie que ce type d\'appareil figure bien sur la liste)':'')+'.<br>';
+  var pz=infPr();if(pz)h+='⏳ <b>Offre jusqu\'au '+pz.finTxt+'</b> : '+eur.format(pz.montant)+' cagnottés à l\'adhésion, à utiliser chez Boulanger.<br>';
   var rm=infRem(p);if(rm)h+='🎁 <b>Levier de closing</b> : remise de l\'équivalent <b>'+(rm.a===rm.b?'d\'':'de ')+remTxt(rm)+'</b> d\'Infinity sur l\'appareil, si le client adhère aujourd\'hui. Dis-le en mois offerts : « vos premiers mois de protection sont pour moi ».<br>';
   h+='Acheté aujourd\'hui chez Boulanger : <b>0 € de franchise</b>, et adhérer le jour de l\'achat évite les 30 jours de carence.<br>';
   if(p.cat==="aspi"||/batterie/i.test(JSON.stringify(p.specs||{})))h+='⚠️ La batterie usée, les filtres et brosses sont de l\'usure : non couverts. Une vraie panne (moteur, carte, chargeur) l\'est.<br>';
@@ -738,7 +741,7 @@ function pitchHTML(p){
     L.push(["Dis-le avant lui","Annonce le point faible toi-même, ça rend crédible : « "+cap(fr).replace(/\.$/,"")+". »"+(reb?" Puis enchaîne : « En contrepartie, "+lc(reb).replace(/\.$/,"")+". »":"")])}
   /* 6 conclure */
   var acc=String(p.acc||"").split(/\s*[;,\n]\s*/).filter(Boolean);if(!acc.length)acc=C.acc||[];
-  L.push(["Conclure","« On part sur celui-là ? "+(acc[0]?"Je vous ajoute "+lc(acc[0])+" pour "+(sp.type==="Accessoire"?"aller avec":"bien démarrer")+" ?":"")+" »"+(p.price!=null&&p.price<50?"":" Puis pose la question Infinity."+(infRem(p)?" S'il hésite : « Si vous adhérez aujourd'hui, je vous fais l'équivalent "+(infRem(p).a===infRem(p).b?"d'":"de ")+remTxt(infRem(p))+" sur l'appareil. »":""))]);
+  L.push(["Conclure","« On part sur celui-là ? "+(acc[0]?"Je vous ajoute "+lc(acc[0])+" pour "+(sp.type==="Accessoire"?"aller avec":"bien démarrer")+" ?":"")+" »"+(p.price!=null&&p.price<50?"":" Puis pose la question Infinity."+(infPr()?" Ajoute l'urgence : « Jusqu'au "+infPr().finTxt+", vous avez en plus "+eur.format(infPr().montant)+" cagnottés à l'adhésion. »":"")+(infRem(p)?" S'il hésite : « Si vous adhérez aujourd'hui, je vous fais l'équivalent "+(infRem(p).a===infRem(p).b?"d'":"de ")+remTxt(infRem(p))+" sur l'appareil. »":""))]);
   return '<ol class="pitch">'+L.map(function(x){return '<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>'}).join("")+'</ol>';
 }
 function sheetHTML(p){
