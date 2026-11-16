@@ -11,7 +11,8 @@
    ],
    "demo": "Mettre l'appareil en main au client, puis le passer en mode aspirateur à main : il juge lui-même le poids et la prise en main.",
    "entretien": "Vider le bac après chaque usage, rincer le filtre environ une fois par mois, couper les cheveux enroulés sur la brosse si elle n'est pas anti-enroulement.",
-   "usage": "Pas de sac. Prévoir à terme une batterie de remplacement (souvent après plusieurs années) et éventuellement un filtre : vérifier les prix des pièces."
+   "usage": "Pas de sac. Prévoir à terme une batterie de remplacement (souvent après plusieurs années) et éventuellement un filtre : vérifier les prix des pièces.",
+   "hook": "Aujourd'hui, qu'est-ce qui vous agace le plus quand vous passez l'aspirateur : le poids, l'autonomie ou les poils et cheveux ?"
   },
   "aspi|Robot laveur": {
    "quest": [
@@ -22,7 +23,8 @@
    ],
    "demo": "Montrer l'appli : carte du logement, zones interdites, programmation pendant que le client est au travail.",
    "entretien": "La station vide le bac et lave les serpillières. Vider le sac de la station et le bac d'eau sale régulièrement, nettoyer les brosses environ une fois par mois.",
-   "usage": "Consommables à prévoir : sacs de station, serpillières, brosses latérales, filtres et produit de lavage. Vérifier le prix d'un kit de rechange avant de vendre."
+   "usage": "Consommables à prévoir : sacs de station, serpillières, brosses latérales, filtres et produit de lavage. Vérifier le prix d'un kit de rechange avant de vendre.",
+   "hook": "Vous aimeriez rentrer le soir avec des sols déjà aspirés et lavés, sans y avoir touché ?"
   },
   "cafe|Grain automatique": {
    "quest": [
@@ -33,7 +35,8 @@
    ],
    "demo": "Faire couler un café et un cappuccino si la machine de démo le permet. Montrer le démontage du groupe café ou du carafe à lait.",
    "entretien": "Rincer le circuit lait après chaque boisson lactée, détartrer quand la machine le demande, et rincer le groupe café chaque semaine s'il est amovible.",
-   "usage": "Le café en grain revient beaucoup moins cher à la tasse que les capsules. Ajouter le détartrant et éventuellement des filtres à eau. Faire le calcul avec l'outil Calcul."
+   "usage": "Le café en grain revient beaucoup moins cher à la tasse que les capsules. Ajouter le détartrant et éventuellement des filtres à eau. Faire le calcul avec l'outil Calcul.",
+   "hook": "Combien de cafés par jour à la maison, et plutôt noir ou avec du lait ? Avec le grain, vous avez le goût du café fraîchement moulu, et la tasse revient moins cher qu'en capsule."
   },
   "cafe|Capsules": {
    "quest": [
@@ -43,7 +46,8 @@
    ],
    "demo": "Insister sur la simplicité : une capsule, un bouton, aucun réglage.",
    "entretien": "Vider le bac à capsules, détartrer régulièrement selon la dureté de l'eau.",
-   "usage": "Machine peu chère à l'achat, mais chaque capsule coûte nettement plus cher qu'une tasse de café en grain. Faire le calcul sur 3 ans avec l'outil Calcul."
+   "usage": "Machine peu chère à l'achat, mais chaque capsule coûte nettement plus cher qu'une tasse de café en grain. Faire le calcul sur 3 ans avec l'outil Calcul.",
+   "hook": "Ce que vous voulez, c'est un bon café en appuyant sur un bouton, sans réglage ni nettoyage ?"
   },
   "cuis|Robot cuiseur": {
    "quest": [
@@ -54,7 +58,8 @@
    ],
    "demo": "Montrer une recette guidée et le nettoyage du bol. Rappeler qu'il remplace plusieurs appareils (mixeur, cuiseur vapeur, robot).",
    "entretien": "Bol et accessoires lavables, programme de pré-nettoyage sur la plupart des modèles. Vérifier l'état des joints de temps en temps.",
-   "usage": "Pas de consommable. Abonnement aux recettes éventuel selon la marque, à vérifier."
+   "usage": "Pas de consommable. Abonnement aux recettes éventuel selon la marque, à vérifier.",
+   "hook": "Vous aimeriez qu'un repas se prépare tout seul pendant que vous faites autre chose, sans surveiller la cuisson ?"
   },
   "cuis|Multicuiseur": {
    "quest": [
@@ -64,7 +69,8 @@
    ],
    "demo": "Montrer la cuisson sous pression : un plat mijoté en quelques dizaines de minutes au lieu de plusieurs heures.",
    "entretien": "Cuve amovible, joint du couvercle à nettoyer et à changer de temps en temps.",
-   "usage": "Pas de consommable. Prévoir à terme un joint de rechange."
+   "usage": "Pas de consommable. Prévoir à terme un joint de rechange.",
+   "hook": "Le soir en rentrant, vous voulez un plat mijoté prêt en 20 minutes au lieu d'une heure ?"
   },
   "cuis|Robot pâtissier": {
    "quest": [
@@ -74,7 +80,8 @@
    ],
    "demo": "Montrer les accessoires (crochet, fouet, batteur) et la stabilité du moteur.",
    "entretien": "Bol et accessoires au lave-vaisselle selon les modèles.",
-   "usage": "Pas de consommable. Accessoires en option (hachoir, laminoir…)."
+   "usage": "Pas de consommable. Accessoires en option (hachoir, laminoir…).",
+   "hook": "Vous pâtissez souvent ? Pétrir, fouetter, monter des blancs : il le fait à votre place, et mieux qu'à la main."
   },
   "air": {
    "quest": [
@@ -85,7 +92,8 @@
    ],
    "demo": "Montrer la taille du tiroir avec un plat réel en tête et le nettoyage du panier.",
    "entretien": "Panier antiadhésif à laver après usage, souvent compatible lave-vaisselle. Éviter les éponges abrasives.",
-   "usage": "Consomme moins d'énergie qu'un four pour de petites quantités. Pas de consommable obligatoire (papier cuisson en option)."
+   "usage": "Consomme moins d'énergie qu'un four pour de petites quantités. Pas de consommable obligatoire (papier cuisson en option).",
+   "hook": "Vous cuisinez pour combien, et vous aimeriez des frites ou un poulet croustillants sans bain d'huile ?"
   },
   "linge|Centrale vapeur": {
    "quest": [
@@ -96,7 +104,8 @@
    ],
    "demo": "Faire défroisser un tissu froissé avec le coup de vapeur, puis repasser une chemise sur la table de démo.",
    "entretien": "Détartrer régulièrement (collecteur ou programme selon la marque) : c'est la première cause de panne.",
-   "usage": "Pas de consommable, sauf éventuellement les produits anticalcaire selon le modèle."
+   "usage": "Pas de consommable, sauf éventuellement les produits anticalcaire selon le modèle.",
+   "hook": "Le repassage, chez vous, c'est une grosse pile le week-end ou quelques chemises le matin ?"
   },
   "beaute|Sèche-cheveux": {
    "quest": [
@@ -106,7 +115,8 @@
    ],
    "demo": "Faire sentir le flux d'air et le poids en main ; montrer les embouts aimantés si présents.",
    "entretien": "Nettoyer le filtre d'entrée d'air régulièrement : un filtre encrassé fait chauffer l'appareil.",
-   "usage": "Pas de consommable."
+   "usage": "Pas de consommable.",
+   "hook": "Combien de temps vous passez à sécher vos cheveux aujourd'hui, et ils ont tendance à frisotter ou à s'abîmer ?"
   },
   "beaute|Multi-styler": {
    "quest": [
@@ -116,7 +126,8 @@
    ],
    "demo": "Montrer l'effet Coanda ou l'embout boucleur sur une mèche si possible.",
    "entretien": "Nettoyer le filtre régulièrement.",
-   "usage": "Pas de consommable. Embouts supplémentaires en option."
+   "usage": "Pas de consommable. Embouts supplémentaires en option.",
+   "hook": "Vous aimeriez sécher, lisser et boucler avec un seul appareil, sans abîmer vos cheveux à force de chaleur ?"
   },
   "aspi|Laveur de sols": {
    "quest": [
@@ -126,7 +137,8 @@
    ],
    "demo": "Montrer la séparation eau sale / débris et l'autonettoyage du rouleau sur la station.",
    "entretien": "Vider l'eau sale après chaque usage, lancer l'autonettoyage sur la station.",
-   "usage": "Produit nettoyant pour sol à racheter. Rouleau à remplacer avec le temps."
+   "usage": "Produit nettoyant pour sol à racheter. Rouleau à remplacer avec le temps.",
+   "hook": "Aujourd'hui vous faites aspirateur puis serpillière ? Ici, c'est les deux en un seul passage, et sans vous baisser pour essorer."
   },
   "aspi|Accessoire": {
    "quest": [
@@ -134,7 +146,8 @@
    ],
    "demo": "Vérifier la compatibilité avec le modèle du client avant la vente.",
    "entretien": "",
-   "usage": ""
+   "usage": "",
+   "hook": "Vous avez déjà l'appareil ? Ça, c'est ce qui lui redonne un coup de jeune sans en racheter un."
   },
   "aspi|Balai filaire": {
    "quest": [
@@ -143,7 +156,8 @@
    ],
    "demo": "Montrer la légèreté et la longueur du câble.",
    "entretien": "Vider le bac et rincer le filtre régulièrement.",
-   "usage": "Pas de batterie à remplacer."
+   "usage": "Pas de batterie à remplacer.",
+   "hook": "Vous voulez un aspirateur léger qui ne s'arrête jamais en plein ménage faute de batterie ?"
   },
   "cafe|Expresso manuel": {
    "quest": [
@@ -153,7 +167,8 @@
    ],
    "demo": "Faire un expresso devant le client : mouture, tassage, extraction, puis mousser le lait à la buse.",
    "entretien": "Nettoyer le porte-filtre et la buse après chaque usage, détartrer régulièrement.",
-   "usage": "Café en grain : coût à la tasse bas. Détartrant et filtres à prévoir."
+   "usage": "Café en grain : coût à la tasse bas. Détartrant et filtres à prévoir.",
+   "hook": "Vous avez envie de faire votre café vous-même, comme au comptoir, et de soigner la mousse de lait ?"
   },
   "cafe|Bouilloire": {
    "quest": [
@@ -162,7 +177,8 @@
    ],
    "demo": "Montrer la rotation sur le socle et la prise en main.",
    "entretien": "Détartrer régulièrement selon la dureté de l'eau.",
-   "usage": "Pas de consommable."
+   "usage": "Pas de consommable.",
+   "hook": "Vous l'utilisez surtout pour le thé, le café filtre ou pour cuisiner ? Selon l'usage, la température et la contenance changent tout."
   },
   "cafe|Accessoire": {
    "quest": [
@@ -170,7 +186,8 @@
    ],
    "demo": "Vérifier la compatibilité avec la machine du client.",
    "entretien": "",
-   "usage": ""
+   "usage": "",
+   "hook": "Ça, c'est le petit plus qui change votre machine au quotidien."
   },
   "cuis|Accessoire": {
    "quest": [
@@ -179,7 +196,8 @@
    ],
    "demo": "Montrer comment le couvercle se pose à la place du couvercle pression.",
    "entretien": "Panier et grille au lave-vaisselle.",
-   "usage": "Pas de consommable."
+   "usage": "Pas de consommable.",
+   "hook": "C'est ce qui rend votre robot encore plus polyvalent."
   },
   "beaute|Tondeuse": {
    "quest": [
@@ -189,7 +207,8 @@
    ],
    "demo": "Montrer les sabots et la lame qui suit les courbes.",
    "entretien": "Rincer la lame après usage.",
-   "usage": "Lames de rechange à prévoir régulièrement : vérifier leur prix et leur durée."
+   "usage": "Lames de rechange à prévoir régulièrement : vérifier leur prix et leur durée.",
+   "hook": "Barbe de trois jours, barbe longue ou cheveux aussi ? On choisit la tondeuse selon ce que vous taillez."
   },
   "beaute|Rasoir": {
    "quest": [
@@ -199,7 +218,8 @@
    ],
    "demo": "Montrer la tête flexible et la station de nettoyage.",
    "entretien": "Rincer ou passer à la station après chaque rasage.",
-   "usage": "Têtes à changer tous les 12 à 18 mois."
+   "usage": "Têtes à changer tous les 12 à 18 mois.",
+   "hook": "Vous avez la peau qui irrite après le rasage ? Et vous vous rasez tous les jours ?"
   },
   "beaute|Épilateur": {
    "quest": [
@@ -209,7 +229,8 @@
    ],
    "demo": "Montrer la tête rasoir et les rouleaux massants.",
    "entretien": "Brosser les pincettes après usage.",
-   "usage": "Mieux vaut épiler après la douche, peau sèche ou sous l'eau si étanche."
+   "usage": "Mieux vaut épiler après la douche, peau sèche ou sous l'eau si étanche.",
+   "hook": "Vous cherchez quelque chose qui tienne plusieurs semaines, sans aller en institut à chaque fois ?"
   },
   "cafe|Grille-pain": {
    "quest": [
@@ -219,7 +240,8 @@
    ],
    "demo": "Montrer la grille viennoiseries et le bouton décongélation.",
    "entretien": "Vider le tiroir à miettes chaque semaine.",
-   "usage": "Ne jamais décoincer le pain avec un couteau métallique."
+   "usage": "Ne jamais décoincer le pain avec un couteau métallique.",
+   "hook": "Plutôt pain de mie, baguette ou grosses tranches de campagne ? C'est ça qui décide le bon grille-pain."
   },
   "photo|Compact": {
    "quest": [
@@ -230,7 +252,8 @@
    ],
    "demo": "Mettre l'appareil en main, zoomer à fond sur un objet au bout du rayon, puis comparer avec le zoom du smartphone du client.",
    "entretien": "Recharger la batterie, ranger dans un étui pour protéger l'écran et l'objectif, vider la carte sur l'ordinateur ou le téléphone.",
-   "usage": "Carte mémoire souvent non fournie : la proposer systématiquement. Une batterie de rechange double l'autonomie."
+   "usage": "Carte mémoire souvent non fournie : la proposer systématiquement. Une batterie de rechange double l'autonomie.",
+   "hook": "Vous voulez de meilleures photos qu'au téléphone, dans un appareil qui tient dans la poche ?"
   },
   "photo|Bridge": {
    "quest": [
@@ -241,7 +264,8 @@
    ],
    "demo": "Zoomer à fond sur un détail à l'autre bout du magasin (une étiquette prix), montrer la stabilisation en tenant l'appareil à bout de bras.",
    "entretien": "Cache objectif toujours remis, objectif nettoyé avec un chiffon microfibre, batterie (ou piles rechargeables) chargée avant de partir.",
-   "usage": "Carte SD non fournie. Batterie de rechange ou piles rechargeables NiMH + chargeur selon le modèle. Un sac ou un étui."
+   "usage": "Carte SD non fournie. Batterie de rechange ou piles rechargeables NiMH + chargeur selon le modèle. Un sac ou un étui.",
+   "hook": "Vous voulez photographier de loin, comme des animaux, du sport ou en voyage, avec un seul appareil et sans changer d'objectif ?"
   },
   "photo|Étanche": {
    "quest": [
@@ -251,7 +275,8 @@
    ],
    "demo": "Montrer la trappe à double verrouillage et le joint, expliquer qu'on la ferme avant chaque baignade.",
    "entretien": "Après la mer ou la piscine : rincer à l'eau douce trappe fermée, sécher avant d'ouvrir, vérifier qu'aucun grain de sable n'est sur le joint.",
-   "usage": "Carte microSD à prévoir. Une dragonne flottante évite de le perdre au fond de l'eau."
+   "usage": "Carte microSD à prévoir. Une dragonne flottante évite de le perdre au fond de l'eau.",
+   "hook": "Vous voulez prendre des photos à la plage, sous l'eau ou en rando sans avoir peur de le casser ?"
   },
   "photo|Argentique": {
    "quest": [
@@ -261,7 +286,8 @@
    ],
    "demo": "Montrer le chargement de la pellicule (automatique) et le compteur de vues sur le dessus.",
    "entretien": "Changer les 2 piles AAA quand le flash faiblit, ne jamais ouvrir le dos avant la fin du rembobinage.",
-   "usage": "Budget à annoncer : une pellicule par film + le développement. Proposer des pellicules et des piles AAA."
+   "usage": "Budget à annoncer : une pellicule par film + le développement. Proposer des pellicules et des piles AAA.",
+   "hook": "Vous voulez le plaisir de la pellicule et des photos à attendre, comme avant ?"
   }
  },
  "products": {

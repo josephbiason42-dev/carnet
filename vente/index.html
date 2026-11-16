@@ -105,6 +105,7 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(-
 .jump.inl{position:static;padding:2px 0 12px;border:0;background:none}
 .sec small a{color:var(--acc);font-weight:700}
 .lnb{display:flex;gap:12px;align-items:center;margin-bottom:8px}.lnb b{font-size:1.4rem;color:var(--acc);white-space:nowrap}.lng{display:block;color:var(--muted);margin-bottom:6px}
+.pitch{margin:0;padding:0;list-style:none;counter-reset:pi;display:grid;gap:10px}.pitch li{counter-increment:pi;position:relative;padding:10px 12px 10px 40px;border-radius:12px;background:var(--s2)}.pitch li:before{content:counter(pi);position:absolute;left:11px;top:11px;width:20px;height:20px;border-radius:50%;background:var(--acc);color:#1a1206;font-weight:800;font-size:.75rem;display:grid;place-items:center}.pitch b{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);margin-bottom:3px}
 .stage{display:flex;align-items:baseline;gap:8px;margin:26px 2px -6px;font-weight:800;font-size:1.05rem;scroll-margin-top:120px}
 .stage span{width:24px;height:24px;border-radius:50%;background:var(--acc);color:#1a1206;display:grid;place-items:center;font-size:.8rem;flex:0 0 auto;align-self:center}
 .stage i{font-style:normal;color:var(--muted);font-weight:600;font-size:.82rem}
@@ -634,6 +635,49 @@ function services(p){
   var inf=G.families.filter(function(f){return /infinity/i.test(f.n||f.u||"")})[0],it=inf&&inf.items&&inf.items[0];
   return it&&it.q?'<div class="svc"><b>Garantie / Infinity</b> — à demander : « '+esc(it.q)+' »</div>':"";
 }
+function lc(s){s=String(s||"").trim();var w=s.split(/\s+/),w0=w[0].replace(/[,.;:!?]+$/,"");if(/^[A-ZÀ-Ý][a-zà-ÿ'’-]+$/.test(w0)&&!(w[1]&&/^[A-ZÀ-Ý]/.test(w[1])&&w0!=="Système"))return s.charAt(0).toLowerCase()+s.slice(1);return s}
+function sig(t){return norm(t).split(/[^a-z0-9]+/).filter(function(x){return x.length>3})}
+function dup(a,b){var B=sig(b),n=0;sig(a).forEach(function(x){if(B.indexOf(x)>=0)n++});return n>=2}
+function nameOf(x){return (x.brand?x.brand+" ":"")+String(x.model).replace(/\s*\(.*$/,"")}
+function pitchHTML(p){
+  var C=PCAT[p.cat],sp=p.specs||{},xt=xT(p),xp=xP(p),L=[],used={};
+  var tname=lc(sp.type&&sp.type!=="Accessoire"?sp.type:C.n);
+  /* 1 accroche */
+  if(xt&&xt.hook)L.push(["Accroche","« "+xt.hook+" »"]);
+  /* 2 différence */
+  var args=(p.args||[]).filter(function(x){return !/\bavis\b|moins cher|prix/i.test(x)});
+  var U=p.uniq&&!/\bavis\b|moins ch[eè]re?\b|du rayon/i.test(p.uniq);
+  if(U){L.push(["Sa différence","« Ce qui le distingue : "+lc(p.uniq)+". "+(p.uniqUse?"Concrètement, pour vous : "+lc(p.uniqUse)+".":"")+" »"])}
+  else if(p.uniqUse){L.push(["Sa différence","« C'est le bon choix pour : "+lc(p.uniqUse).replace(/\.$/,"")+". »"])}
+  else if(args.length){L.push(["Sa différence","« "+args[0]+". »"]);used[0]=1}
+  /* 3 prix */
+  var pool=P.filter(function(x){return x.cat===p.cat&&(x.specs||{}).type===sp.type&&x.price!=null&&(x.specs||{}).type!=="Accessoire"});
+  if(p.price!=null&&pool.length>2&&sp.type!=="Accessoire"){
+    var srt=pool.map(function(x){return x.price}).sort(function(a,b){return a-b}),r=srt.indexOf(p.price),n=srt.length,alts=alternatives(p),lo=alts.filter(function(a){return a.l==="Moins cher"})[0],hi=alts.filter(function(a){return a.l!=="Moins cher"})[0];
+    var ex=null;for(var i=0;i<args.length;i++)if(!used[i]&&!(p.uniq&&dup(args[i],p.uniq+" "+(p.uniqUse||"")))){ex=args[i];used[i]=1;break}
+    var t;
+    if(r===0)t="Prix le plus bas du rayon « "+sp.type+" » ("+n+" modèles). À proposer quand le budget prime"+(xp&&xp.pour?" : "+lc(xp.pour).replace(/\.$/,""):"")+"."+(hi?" S'il peut mettre plus, montre le "+(nameOf(hi.p))+" ("+eur.format(hi.p.price-p.price)+" de plus).":"");
+    else if(r>=n-1)t="C'est le haut du rayon ("+n+" modèles). Ne le défends pas sur le prix, défends-le sur ce qu'aucun autre ne fait"+(U?" : "+lc(p.uniq).replace(/\.$/,""):"")+".";
+    else if(lo)t=(p.price-lo.p.price<=Math.max(10,p.price*.05)?"Pour quasiment le prix du "+nameOf(lo.p)+", il apporte en plus":"Face au "+nameOf(lo.p)+", "+eur.format(p.price-lo.p.price)+" de moins, ce qu'il apporte en plus")+(ex?" : "+lc(ex):U?" : "+lc(p.uniq):"")+". Pose la question : « Est-ce que ça compte pour vous ? »";
+    if(t)L.push(["Justifier le prix",t]);
+  }
+  /* 4 preuve */
+  var pr=[];
+  if(p.ln)pr.push("noté "+nf.format(p.ln.n)+"/5 par Les Numériques"+(p.ln.g?" (même gamme)":""));
+  if(p.test&&p.test.plus&&p.test.plus.length)pr.push("les testeurs retiennent : "+p.test.plus.slice(0,2).map(lc).join(", "));
+  if(p.avis&&p.avis.n>=15&&p.avis.note>=4.2)pr.push(nf.format(p.avis.note)+"/5 sur "+p.avis.n+" avis clients Boulanger");
+  if(sp.repar!=null&&sp.repar>=7.5)pr.push("indice de réparabilité "+nf.format(sp.repar)+"/10");
+  if(pr.length)L.push(["La preuve","« Et ce n'est pas que moi qui le dis : "+pr.join(" ; ")+". »"]);
+  /* 5 frein */
+  var cons=((xp&&xp.cons)||[]).filter(function(c){return !/^peu d.avis|avis à|non trouv|à vérifier/i.test(c)});
+  var mo=(p.test&&p.test.moins)||[],fr=cons[0]||mo[0];
+  if(fr){var reb=null;for(var j=0;j<args.length;j++)if(!used[j]&&!dup(args[j],fr)){reb=args[j];used[j]=1;break}
+    L.push(["Dis-le avant lui","Annonce le point faible toi-même, ça rend crédible : « "+cap(fr).replace(/\.$/,"")+". »"+(reb?" Puis enchaîne : « En contrepartie, "+lc(reb).replace(/\.$/,"")+". »":"")])}
+  /* 6 conclure */
+  var acc=String(p.acc||"").split(/\s*[;,\n]\s*/).filter(Boolean);if(!acc.length)acc=C.acc||[];
+  L.push(["Conclure","« On part sur celui-là ? "+(acc[0]?"Je vous ajoute "+lc(acc[0])+" pour "+(sp.type==="Accessoire"?"aller avec":"bien démarrer")+" ?":"")+" » Puis pose la question Infinity."]);
+  return '<ol class="pitch">'+L.map(function(x){return '<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>'}).join("")+'</ol>';
+}
 function sheetHTML(p){
   var C=PCAT[p.cat],sp=p.specs||{},h="",S={dec:[],pre:[],ras:[],con:[]};
   function sec(k,t,body,int){S[k].push({i:!!int,h:'<section class="sec'+(int?" int":"")+'"><h3>'+t+'</h3>'+body+'</section>'})}
@@ -646,6 +690,7 @@ function sheetHTML(p){
   if(xp&&xp.pour)sec("dec","👤 Pour qui",'<p class="ptxt" style="margin:0">'+esc(xp.pour)+'</p>');
   if(xt&&xt.quest&&xt.quest.length)sec("dec","❓ Questions à poser",'<ol class="qs">'+xt.quest.map(function(q){return '<li>'+esc(q)+'</li>'}).join("")+'</ol>',1);
   /* 2. Présenter */
+  sec("pre","🎤 Argumentaire",pitchHTML(p),1);
   if(p.uniq)S.pre.push({i:0,h:'<div class="pour uniq"><small>✨ Son point unique</small>'+esc(p.uniq)+(p.uniqUse?'<span class="uu">👉 Au quotidien : '+esc(p.uniqUse)+'</span>':'')+'</div>'});
   if(p.args&&p.args.length)sec("pre","⭐ L'essentiel",'<ol class="args">'+p.args.map(function(a){return '<li>'+esc(a)+'</li>'}).join("")+'</ol>');
   if(xt&&xt.demo)sec("pre","🎬 Démo en magasin",'<p class="ptxt" style="margin:0">'+esc(xt.demo)+'</p>',1);
