@@ -1,0 +1,766 @@
+{
+ "doc": "https://claude.ai/artifact/XhMHVZZZB7EVYhuT7txgzv",
+ "modules": [
+  {
+   "id": "balai",
+   "cat": "aspi",
+   "type": "Balai sans fil",
+   "ic": "🧹",
+   "t": "Aspirateurs balais",
+   "ess": [
+    "On choisit sur 3 critères : autonomie réelle, poids en main, brosse adaptée aux sols.",
+    "L'autonomie annoncée est en mode Éco sans brosse motorisée : en usage normal, compte environ la moitié.",
+    "La puissance utile se lit en air watts (AW), pas en watts moteur.",
+    "La batterie s'use : 2e batterie et Infinity ont du sens ici."
+   ],
+   "voc": [
+    [
+     "AW",
+     "Puissance d'aspiration réelle"
+    ],
+    [
+     "HEPA",
+     "Filtre anti-allergènes"
+    ],
+    [
+     "Anti-enroulement",
+     "Coupe cheveux et poils sur la brosse"
+    ],
+    [
+     "Brosse douce",
+     "Poussière fine sur sols durs"
+    ],
+    [
+     "Station de vidage",
+     "Vide le bac sans toucher la poussière"
+    ]
+   ],
+   "crit": [
+    "Surface et étages → autonomie (60 min pour une maison à étage)",
+    "Sols durs → brosse douce ; tapis → poils durs et puissance",
+    "Animaux, cheveux longs → anti-enroulement + mini-brosse",
+    "Petit gabarit ou mal de dos → le poids passe avant la puissance"
+   ],
+   "pieges": [
+    "Annoncer l'autonomie Éco comme l'autonomie réelle",
+    "Vendre un modèle lourd à quelqu'un qui a mal au dos"
+   ],
+   "qcm": [
+    [
+     "Quel chiffre reflète le mieux la puissance d'aspiration ?",
+     [
+      "Les watts du moteur",
+      "Les air watts (AW)",
+      "La tension de batterie"
+     ],
+     1,
+     "Les AW mesurent la force réelle au bout du tube."
+    ],
+    [
+     "Client sans tapis, beaucoup de poussière fine sur parquet : quelle brosse ?",
+     [
+      "Brosse douce (rouleau velours)",
+      "Brosse à poils durs",
+      "Mini-brosse motorisée"
+     ],
+     0,
+     "Le rouleau doux ramasse la poussière fine sans rayer."
+    ],
+    [
+     "Autonomie annoncée 60 min : en mode normal avec brosse, plutôt…",
+     [
+      "60 min",
+      "Environ 30 min",
+      "90 min"
+     ],
+     1,
+     "Le chiffre de la boîte est en mode Éco."
+    ]
+   ]
+  },
+  {
+   "id": "robot",
+   "cat": "aspi",
+   "type": "Robot laveur",
+   "ic": "🤖",
+   "t": "Robots et laveurs de sols",
+   "ess": [
+    "Première question : le client veut-il déléguer (robot) ou faire lui-même (laveur de sols) ?",
+    "Le robot cartographie (LiDAR) et travaille seul ; la station vide, remplit et lave les serpillières.",
+    "Le laveur aspire et lave en un passage : idéal pour une cuisine sale en 10 minutes.",
+    "Aucun robot ne monte les escaliers."
+   ],
+   "voc": [
+    [
+     "LiDAR",
+     "Laser qui cartographie le logement"
+    ],
+    [
+     "Évitement d'obstacles",
+     "Reconnaît câbles, chaussettes"
+    ],
+    [
+     "Serpillières relevables",
+     "Ne mouillent pas les tapis"
+    ],
+    [
+     "Franchissement",
+     "Hauteur de seuil passée"
+    ],
+    [
+     "Kit raccordement",
+     "Station branchée sur l'eau"
+    ]
+   ],
+   "crit": [
+    "Beaucoup de tapis → serpillières relevables ou détachables",
+    "Animaux → anti-enroulement, caméra d'évitement",
+    "Meubles bas → robot fin (environ 8 cm)",
+    "Laveur : poids, se couche à plat, nettoyage des bords"
+   ],
+   "pieges": [
+    "Vendre le robot comme un remplacement total du ménage",
+    "Oublier les consommables (sacs, filtres, serpillières)"
+   ],
+   "qcm": [
+    [
+     "À quoi sert le LiDAR ?",
+     [
+      "Laver à l'eau chaude",
+      "Cartographier le logement",
+      "Détecter les tapis"
+     ],
+     1,
+     "Le laser permet un passage méthodique pièce par pièce."
+    ],
+    [
+     "Beaucoup de tapis + robot laveur : fonction indispensable ?",
+     [
+      "Serpillières qui se relèvent",
+      "Station de vidage",
+      "Application"
+     ],
+     0,
+     "Sinon il mouille les tapis."
+    ],
+    [
+     "Nettoyer une cuisine très sale en 10 min ?",
+     [
+      "Robot laveur",
+      "Laveur de sols",
+      "Balai sans fil"
+     ],
+     1,
+     "Le laveur agit tout de suite sous ta main."
+    ]
+   ]
+  },
+  {
+   "id": "cafe",
+   "cat": "cafe",
+   "type": "Grain automatique",
+   "ic": "☕",
+   "t": "Machines à café",
+   "ess": [
+    "Grain = tout automatique ; expresso manuel = rituel ; capsule = simplicité mais coût par tasse élevé.",
+    "Dès 2 à 3 tasses par jour, le grain devient rentable face à la capsule : fais le calcul (onglet Calcul).",
+    "Café noir → buse vapeur suffit ; cappuccinos quotidiens → système lait automatique.",
+    "Un bon expresso se fait autour de 9 bars : 15 ou 19 bars n'est pas un gage de qualité."
+   ],
+   "voc": [
+    [
+     "Broyeur céramique",
+     "Chauffe moins le grain, s'use peu"
+    ],
+    [
+     "Groupe amovible",
+     "Se rince : meilleure hygiène"
+    ],
+    [
+     "Buse vapeur",
+     "Mousse de lait à la main"
+    ],
+    [
+     "Carafe automatique",
+     "Cappuccino en un bouton"
+    ],
+    [
+     "Thermoblock",
+     "Prête en moins d'une minute"
+    ]
+   ],
+   "crit": [
+    "Noir ou lait",
+    "Nombre de tasses par jour",
+    "Bouton ou rituel",
+    "Encombrement (hauteur sous meuble)",
+    "Entretien : groupe amovible, détartrage"
+   ],
+   "pieges": [
+    "Vendre un expresso manuel à quelqu'un qui veut un bouton",
+    "Oublier détartrant et filtre"
+   ],
+   "qcm": [
+    [
+     "À partir de combien de tasses par jour le grain devient intéressant ?",
+     [
+      "1",
+      "2 à 3",
+      "6"
+     ],
+     1,
+     "L'écart de coût par tasse rembourse vite la machine."
+    ],
+    [
+     "Avantage d'un groupe d'infusion amovible ?",
+     [
+      "Café plus chaud",
+      "Il se rince : hygiène",
+      "Moins de bruit"
+     ],
+     1,
+     "On le passe sous l'eau."
+    ],
+    [
+     "Client qui veut des cappuccinos sans effort ?",
+     [
+      "Buse vapeur manuelle",
+      "Système lait automatique",
+      "Expresso manuel"
+     ],
+     1,
+     "Un bouton, la carafe fait tout."
+    ]
+   ]
+  },
+  {
+   "id": "petitdej",
+   "cat": "cafe",
+   "type": "Bouilloire",
+   "ic": "🫖",
+   "t": "Bouilloires et grille-pain",
+   "ess": [
+    "Vente rapide : une question d'usage suffit à orienter vers le bon modèle.",
+    "Bouilloire à température réglable : thé vert vers 70-80 °C, café filtre vers 92 °C.",
+    "Grille-pain : la forme du pain décide (fente longue pour baguette, large pour campagne).",
+    "Propose toujours la pièce assortie de la même collection."
+   ],
+   "voc": [
+    [
+     "Maintien au chaud",
+     "Garde l'eau à température"
+    ],
+    [
+     "Double paroi",
+     "Extérieur froid, pas de brûlure"
+    ],
+    [
+     "Filtre anticalcaire",
+     "Pas de dépôt dans la tasse"
+    ],
+    [
+     "Fente longue",
+     "Baguette, grandes tranches"
+    ],
+    [
+     "Décongélation",
+     "Pain direct du congélateur"
+    ]
+   ],
+   "crit": [
+    "Bouilloire : contenance, réglage de température, matière",
+    "Grille-pain : fentes, 2 ou 4 tranches, réglage",
+    "Design : collection assortie"
+   ],
+   "pieges": [
+    "Fentes étroites pour un amateur de pain de campagne",
+    "Oublier le calcaire en région d'eau dure"
+   ],
+   "qcm": [
+    [
+     "Température pour un thé vert ?",
+     [
+      "100 °C",
+      "70 à 80 °C",
+      "50 °C"
+     ],
+     1,
+     "Au-delà, il devient amer."
+    ],
+    [
+     "Client qui achète sa baguette chaque jour ?",
+     [
+      "Grille-pain 4 tranches",
+      "Fente longue ou support baguette",
+      "Toaster vertical classique"
+     ],
+     1,
+     "La baguette ne rentre pas dans une fente standard."
+    ],
+    [
+     "Quoi proposer avec une bouilloire design ?",
+     [
+      "Un airfryer",
+      "Le grille-pain assorti",
+      "Un détartrant"
+     ],
+     1,
+     "Le duo de la même collection."
+    ]
+   ]
+  },
+  {
+   "id": "air",
+   "cat": "air",
+   "type": "",
+   "ic": "🍟",
+   "t": "Airfryers et multicuiseurs",
+   "ess": [
+    "Airfryer : air très chaud brassé vite dans un petit volume → croustillant avec très peu d'huile.",
+    "Multicuiseur sous pression : la pression monte la température au-dessus de 100 °C → plats mijotés bien plus rapides.",
+    "Critère n°1 : la taille du foyer (4-5 L pour 2, 6 L et plus pour une famille).",
+    "Double tiroir : plat et accompagnement en même temps."
+   ],
+   "voc": [
+    [
+     "Double tiroir",
+     "Deux zones indépendantes"
+    ],
+    [
+     "Fenêtre",
+     "Surveiller sans ouvrir"
+    ],
+    [
+     "Sous pression",
+     "Cuisson accélérée en cuve fermée"
+    ],
+    [
+     "Recettes guidées",
+     "Pas à pas à l'écran"
+    ]
+   ],
+   "crit": [
+    "Taille du foyer",
+    "Double zone ou pas",
+    "Place sur le plan de travail",
+    "Polyvalence (grill, vapeur)",
+    "Guidage pour débutant"
+   ],
+   "pieges": [
+    "Promettre des frites « sans huile » identiques à la friture",
+    "Petit panier pour une famille de quatre"
+   ],
+   "qcm": [
+    [
+     "Comment un airfryer rend-il croustillant ?",
+     [
+      "Il frit dans l'huile",
+      "Air très chaud brassé vite",
+      "Micro-ondes"
+     ],
+     1,
+     "C'est un petit four à chaleur tournante très puissant."
+    ],
+    [
+     "Pourquoi un multicuiseur sous pression cuit plus vite ?",
+     [
+      "Plus de watts",
+      "Température au-dessus de 100 °C",
+      "Il mixe en cuisant"
+     ],
+     1,
+     "La pression élève le point d'ébullition."
+    ],
+    [
+     "Famille de 4, plat + accompagnement ensemble ?",
+     [
+      "Airfryer 3 L",
+      "Double tiroir grande capacité",
+      "Mini-four"
+     ],
+     1,
+     "Deux zones, prêtes au même moment."
+    ]
+   ]
+  },
+  {
+   "id": "robotcuis",
+   "cat": "cuis",
+   "type": "Robot cuiseur",
+   "ic": "🥘",
+   "t": "Robots cuiseurs et pâtissiers",
+   "ess": [
+    "Le robot cuiseur chauffe et cuit dans son bol ; le pâtissier pétrit et fouette mais ne cuit pas.",
+    "Achat réfléchi (souvent plus de 600 €) : la démo et la projection dans le quotidien font la vente.",
+    "Signale l'abonnement aux recettes connectées quand il existe.",
+    "Mouvement planétaire : l'outil balaie tout le bol."
+   ],
+   "voc": [
+    [
+     "Bol chauffant",
+     "Cuit sans surveiller"
+    ],
+    [
+     "Balance intégrée",
+     "Pèse dans le bol"
+    ],
+    [
+     "Crochet",
+     "Pâtes à pain"
+    ],
+    [
+     "Batteur plat",
+     "Gâteaux"
+    ],
+    [
+     "Fouet",
+     "Blancs, crème"
+    ]
+   ],
+   "crit": [
+    "Cuire (cuiseur) ou préparer/pâtisser (pâtissier)",
+    "Fréquence d'usage",
+    "Abonnement accepté ?",
+    "Capacité et place"
+   ],
+   "pieges": [
+    "Laisser croire qu'un pâtissier cuit",
+    "Vendre sans démonstration"
+   ],
+   "qcm": [
+    [
+     "Différence essentielle cuiseur / pâtissier ?",
+     [
+      "La couleur",
+      "Le cuiseur chauffe, pas le pâtissier",
+      "Le pâtissier a un écran"
+     ],
+     1,
+     "Le pâtissier ne cuit pas."
+    ],
+    [
+     "Quel outil pour une pâte à pain ?",
+     [
+      "Fouet",
+      "Crochet",
+      "Batteur plat"
+     ],
+     1,
+     "Le crochet pétrit."
+    ],
+    [
+     "Qu'apporte le mouvement planétaire ?",
+     [
+      "Moins de bruit",
+      "Mélange de tout le bol sans racler",
+      "Cuisson plus rapide"
+     ],
+     1,
+     "L'outil tourne sur lui-même et autour du bol."
+    ]
+   ]
+  },
+  {
+   "id": "vapeur",
+   "cat": "linge",
+   "type": "Centrale vapeur",
+   "ic": "👔",
+   "t": "Centrales vapeur",
+   "ess": [
+    "Plus de vapeur, sous pression : elle traverse les deux épaisseurs → repassage plus rapide.",
+    "Débit continu (g/min) = gain de temps sur une pile ; effet pressing (g) = plis tenaces.",
+    "Le calcaire est la première cause de panne : collecteur ou cartouche à rincer.",
+    "Pour 3 chemises par semaine, un bon fer peut suffire."
+   ],
+   "voc": [
+    [
+     "Bars",
+     "Force de la vapeur dans le tissu"
+    ],
+    [
+     "Débit continu",
+     "Vapeur en continu (g/min)"
+    ],
+    [
+     "Effet pressing",
+     "Bouffée ponctuelle"
+    ],
+    [
+     "Température unique",
+     "Tous tissus sans réglage"
+    ],
+    [
+     "Verrouillage",
+     "Transport d'une main"
+    ]
+   ],
+   "crit": [
+    "Volume de linge",
+    "Types de tissus",
+    "Eau calcaire ?",
+    "Rangement de la base"
+   ],
+   "pieges": [
+    "Vendre sur la pression seule",
+    "Oublier l'entretien anticalcaire"
+   ],
+   "qcm": [
+    [
+     "Débit continu vs effet pressing ?",
+     [
+      "C'est pareil",
+      "Continu = en permanence, pressing = bouffée ponctuelle",
+      "Pressing = vapeur froide"
+     ],
+     1,
+     "Les deux chiffres se lisent séparément."
+    ],
+    [
+     "Pourquoi plus rapide qu'un fer ?",
+     [
+      "Semelle plus grande",
+      "Plus de vapeur sous pression",
+      "Il est plus lourd"
+     ],
+     1,
+     "La vapeur traverse les deux épaisseurs."
+    ],
+    [
+     "Première cause de panne ?",
+     [
+      "Le cordon",
+      "Le calcaire",
+      "La semelle"
+     ],
+     1,
+     "D'où le collecteur à rincer."
+    ]
+   ]
+  },
+  {
+   "id": "cheveux",
+   "cat": "beaute",
+   "type": "Sèche-cheveux",
+   "ic": "💨",
+   "t": "Sèche-cheveux et multi-stylers",
+   "ess": [
+    "Ce qui sèche, c'est le débit d'air, pas la chaleur : un flux rapide et modéré abîme moins.",
+    "Moteur numérique : aussi efficace, plus léger en main.",
+    "Ions : moins d'électricité statique et de frisottis.",
+    "Multi-styler : sèche et coiffe à l'air (effet Coanda), sans plaque brûlante."
+   ],
+   "voc": [
+    [
+     "Moteur AC",
+     "Classique, lourd et robuste"
+    ],
+    [
+     "Moteur numérique",
+     "Rapide et léger"
+    ],
+    [
+     "Contrôle de température",
+     "Évite de brûler le cheveu"
+    ],
+    [
+     "Air froid",
+     "Fixe la mise en forme"
+    ],
+    [
+     "Diffuseur",
+     "Respecte les boucles"
+    ]
+   ],
+   "crit": [
+    "Type et longueur de cheveux",
+    "Temps de séchage",
+    "Poids et bruit",
+    "Sécher seulement ou coiffer aussi"
+   ],
+   "pieges": [
+    "Vendre sur les watts",
+    "Multi-styler pour qui veut juste sécher vite"
+   ],
+   "qcm": [
+    [
+     "Qu'est-ce qui sèche le plus ?",
+     [
+      "La chaleur",
+      "Le débit d'air",
+      "Les ions"
+     ],
+     1,
+     "Un air rapide évapore l'eau sans surchauffer."
+    ],
+    [
+     "À quoi servent les ions ?",
+     [
+      "Chauffer plus vite",
+      "Limiter frisottis et statique",
+      "Parfumer"
+     ],
+     1,
+     "Les cheveux sont plus lisses."
+    ],
+    [
+     "Embout pour cheveux bouclés ?",
+     [
+      "Concentrateur",
+      "Diffuseur",
+      "Brosse ronde"
+     ],
+     1,
+     "Il préserve la forme des boucles."
+    ]
+   ]
+  },
+  {
+   "id": "rasage",
+   "cat": "beaute",
+   "type": "Rasoir",
+   "ic": "🪒",
+   "t": "Rasoirs et tondeuses",
+   "ess": [
+    "Rasoir = au ras de la peau ; tondeuse = une longueur choisie ; hybride (OneBlade) = un peu des deux, sans irriter.",
+    "Rotatif : suit les courbes, poils dans tous les sens. Grille : très près, apprécié des peaux sensibles.",
+    "La peau met 2 à 3 semaines à s'habituer à l'électrique : préviens le client.",
+    "Compte les têtes et lames de rechange dans le coût."
+   ],
+   "voc": [
+    [
+     "Wet & Dry",
+     "Sous la douche ou avec gel"
+    ],
+    [
+     "Têtes flexibles",
+     "Suivent le cou et le menton"
+    ],
+    [
+     "Station de nettoyage",
+     "Nettoie, lubrifie, recharge"
+    ],
+    [
+     "Pas de réglage",
+     "Précision de longueur (mm)"
+    ]
+   ],
+   "crit": [
+    "Rasage de près ou barbe",
+    "Peau sensible ?",
+    "Type de poils",
+    "Fréquence",
+    "Corps, nez, cheveux aussi ?"
+   ],
+   "pieges": [
+    "Promettre zéro irritation la première semaine",
+    "Rasoir pour une barbe de 3 jours"
+   ],
+   "qcm": [
+    [
+     "Rotatif ou grille pour un visage aux courbes marquées ?",
+     [
+      "Grille",
+      "Rotatif",
+      "Tondeuse"
+     ],
+     1,
+     "Les têtes rondes suivent les contours."
+    ],
+    [
+     "Temps d'adaptation de la peau à l'électrique ?",
+     [
+      "1 jour",
+      "2 à 3 semaines",
+      "6 mois"
+     ],
+     1,
+     "À dire avant qu'il ne revienne."
+    ],
+    [
+     "Tondre, contours et raser sans irriter ?",
+     [
+      "Rasoir à grille",
+      "Hybride type OneBlade",
+      "Tondeuse cheveux"
+     ],
+     1,
+     "Une seule lame pour les trois."
+    ]
+   ]
+  },
+  {
+   "id": "epil",
+   "cat": "beaute",
+   "type": "Épilateur",
+   "ic": "✨",
+   "t": "Épilateurs",
+   "ess": [
+    "Épilateur électrique : pincettes, à la racine, environ 3 à 4 semaines.",
+    "Lumière pulsée (IPL) : réduction durable après plusieurs séances, sur poils foncés seulement.",
+    "IPL : inefficace sur poils blonds, roux ou blancs ; l'appareil vérifie le teint.",
+    "Ne jamais dire « définitive » : on parle de réduction durable."
+   ],
+   "voc": [
+    [
+     "Pincettes",
+     "Plus il y en a, plus c'est rapide"
+    ],
+    [
+     "Wet & Dry",
+     "Sous la douche, plus doux"
+    ],
+    [
+     "Capteur de teint",
+     "Bloque les flashs si incompatible"
+    ],
+    [
+     "Nombre de flashs",
+     "Durée de vie de la lampe"
+    ]
+   ],
+   "crit": [
+    "Durée voulue : semaines ou durable",
+    "Couleur du poil et de la peau",
+    "Sensibilité",
+    "Zones à traiter",
+    "Budget sur la durée vs institut"
+   ],
+   "pieges": [
+    "IPL vendue sur poils clairs",
+    "Promettre une épilation définitive"
+   ],
+   "qcm": [
+    [
+     "Durée d'une épilation à l'épilateur électrique ?",
+     [
+      "2 jours",
+      "3 à 4 semaines",
+      "6 mois"
+     ],
+     1,
+     "Le poil est retiré à la racine."
+    ],
+    [
+     "Sur quels poils l'IPL ne marche pas ?",
+     [
+      "Poils foncés",
+      "Poils clairs, roux ou blancs",
+      "Poils des jambes"
+     ],
+     1,
+     "Elle agit sur le pigment du poil."
+    ],
+    [
+     "Quel mot éviter en vendant une IPL ?",
+     [
+      "Durable",
+      "Définitive",
+      "Progressive"
+     ],
+     1,
+     "On parle de réduction durable de la repousse."
+    ]
+   ]
+  }
+ ]
+}

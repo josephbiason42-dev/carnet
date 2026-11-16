@@ -106,6 +106,9 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(-
 .sec small a{color:var(--acc);font-weight:700}
 .lnb{display:flex;gap:12px;align-items:center;margin-bottom:8px}.lnb b{font-size:1.4rem;color:var(--acc);white-space:nowrap}.lng{display:block;color:var(--muted);margin-bottom:6px}
 .pitch{margin:0;padding:0;list-style:none;counter-reset:pi;display:grid;gap:10px}.pitch li{counter-increment:pi;position:relative;padding:10px 12px 10px 40px;border-radius:12px;background:var(--s2)}.pitch li:before{content:counter(pi);position:absolute;left:11px;top:11px;width:20px;height:20px;border-radius:50%;background:var(--acc);color:#1a1206;font-weight:800;font-size:.75rem;display:grid;place-items:center}.pitch b{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);margin-bottom:3px}
+.co-list{display:grid;gap:8px}.co-it{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:36px 1fr;column-gap:10px;align-items:center;padding:13px 14px;border-radius:var(--r);background:var(--s1);border:1px solid var(--line)}.co-it .ic{grid-row:span 2;font-size:1.5rem}.co-it small{color:var(--muted);font-weight:600}
+.co-voc{display:grid;gap:6px}.co-voc div{display:grid;gap:2px;padding:8px 10px;border-radius:10px;background:var(--s2)}.co-voc span{color:var(--muted);font-size:.9rem}
+.co-q{margin-bottom:14px}.co-q p{margin:0 0 8px}.co-o{display:grid;gap:6px}.co-o .opt{text-align:left}.co-o .opt.good{background:rgba(74,222,128,.18);border-color:var(--ok);color:var(--ink)}.co-o .opt.bad{background:rgba(248,113,113,.15);border-color:var(--bad)}.co-x{margin-top:8px!important;font-size:.9rem;color:var(--muted)}.lnk-a{color:var(--acc);font-weight:700}
 .stage{display:flex;align-items:baseline;gap:8px;margin:26px 2px -6px;font-weight:800;font-size:1.05rem;scroll-margin-top:120px}
 .stage span{width:24px;height:24px;border-radius:50%;background:var(--acc);color:#1a1206;display:grid;place-items:center;font-size:.8rem;flex:0 0 auto;align-self:center}
 .stage i{font-style:normal;color:var(--muted);font-weight:600;font-size:.82rem}
@@ -216,8 +219,8 @@ body.client .client-tag{display:inline-block}
 .foot a{color:var(--muted)}
 
 /* onglets */
-.tabs{position:fixed; left:0; right:0; bottom:0; z-index:40; display:grid; grid-template-columns:repeat(5,1fr); padding:6px 8px calc(6px + var(--safe-b)); background:rgba(14,16,22,.97); border-top:1px solid var(--line)}
-.tabs button{all:unset; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:2px; padding:6px 0; border-radius:12px; font-size:.72rem; font-weight:700; color:var(--muted)}
+.tabs{position:fixed; left:0; right:0; bottom:0; z-index:40; display:grid; grid-template-columns:repeat(6,1fr); padding:6px 4px calc(6px + var(--safe-b)); background:rgba(14,16,22,.97); border-top:1px solid var(--line)}
+.tabs button{all:unset; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:2px; padding:6px 0; border-radius:12px; font-size:.66rem; font-weight:700; color:var(--muted)}
 .tabs button span{font-size:1.2rem; line-height:1}
 .tabs button[aria-current="page"]{color:var(--acc); background:rgba(255,181,71,.1)}
 .tabs button:focus-visible{outline:2px solid var(--acc)}
@@ -311,7 +314,7 @@ body.has-tray .tray{bottom:calc(78px + var(--safe-b))}
 
 <main class="wrap" id="main"></main>
 
-<nav class="tabs" id="tabs" aria-label="Sections"><button type="button" data-tab="prod" aria-current="page"><span>🗂</span>Produits</button><button type="button" data-tab="adv"><span>🧭</span>Conseiller</button><button type="button" data-tab="obj"><span>💬</span>Objections</button><button type="button" data-tab="calc"><span>🧮</span>Calcul</button><button type="button" data-tab="inf"><span>♾️</span>Infinity</button></nav>
+<nav class="tabs" id="tabs" aria-label="Sections"><button type="button" data-tab="prod" aria-current="page"><span>🗂</span>Produits</button><button type="button" data-tab="adv"><span>🧭</span>Conseiller</button><button type="button" data-tab="obj"><span>💬</span>Objections</button><button type="button" data-tab="calc"><span>🧮</span>Calcul</button><button type="button" data-tab="cours"><span>🎓</span>Cours</button><button type="button" data-tab="inf"><span>♾️</span>Infinity</button></nav>
 <div class="tray" id="tray" hidden><span id="tray-t"></span><button class="go" type="button" id="tray-go">Comparer</button><button class="x" type="button" id="tray-x" aria-label="Vider le comparateur">×</button></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -340,7 +343,7 @@ var PCAT={
 var BUD=[["","Tous prix"],["0-100","< 100 €"],["100-200","100–200 €"],["200-400","200–400 €"],["400-99999","400 € et +"]];
 
 var P=[],G=null,X=null,src="";
-var ui={refOpen:null,tab:"prod",adv:{cat:null,i:0,a:{}},obq:"",obOpen:{},infOpen:{},hkOpen:{},cbase:null,cat:null,type:"",bud:"",sort:"",q:"",open:null,list:[],client:false,cmp:lsGet("rayon-cmp")||[],fav:lsGet("rayon-fav")||{},seen:lsGet("rayon-seen")||[]};
+var K=null;var ui={co:null,coA:{},coS:lsGet("rayon-cours")||{},refOpen:null,tab:"prod",adv:{cat:null,i:0,a:{}},obq:"",obOpen:{},infOpen:{},hkOpen:{},cbase:null,cat:null,type:"",bud:"",sort:"",q:"",open:null,list:[],client:false,cmp:lsGet("rayon-cmp")||[],fav:lsGet("rayon-fav")||{},seen:lsGet("rayon-seen")||[]};
 
 /* ----- données : copie locale du Dashboard, puis Supabase, sinon sélection de base ----- */
 var FILE=null;
@@ -366,6 +369,7 @@ function load(){
       .then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(rows){var it=rows&&rows[0]&&rows[0].body&&rows[0].body.items;if(Array.isArray(it)&&it.length)setP(it,"Dashboard");else if(!P.length)return fromFile()}).catch(function(){if(!P.length)return fromFile()});
   }else if(!P.length)fromFile();
   fetch("../data/rayon-plus.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(j){X=j;render()}).catch(function(){});
+  fetch("../data/cours.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(j){K=j;if(ui.tab==="cours")render()}).catch(function(){});
   fetch("../data/guides-pem.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(j){G=j;render()}).catch(function(){});
 }
 
@@ -427,6 +431,7 @@ function render(){
   if(ui.tab==="adv"&&!ui.q){m.innerHTML=advHTML();renderTray();return}
   if(ui.tab==="obj"&&!ui.q){m.innerHTML=objHTML();renderTray();return}
   if(ui.tab==="inf"&&!ui.q){m.innerHTML=infHTML();renderTray();return}
+  if(ui.tab==="cours"&&!ui.q){m.innerHTML=coursHTML();renderTray();return}
   if(ui.tab==="calc"&&!ui.q){m.innerHTML=calcHTML();calcRun();renderTray();return}
   if(ui.q){
     var L=filtered();ui.list=L.map(function(p){return p.id});
@@ -471,6 +476,38 @@ $("#main").addEventListener("click",function(e){
 });
 
 
+/* ----- cours ----- */
+function coursHTML(){
+  if(!K)return '<div class="lhead"><h1>🎓 Cours</h1></div><p class="empty">Chargement des cours…</p>';
+  var M=K.modules;
+  if(!ui.co){
+    var done=M.filter(function(m){return ui.coS[m.id]===m.qcm.length}).length;
+    return '<div class="lhead"><h1>🎓 Cours</h1><span>'+done+' / '+M.length+' modules réussis</span></div><p class="muted" style="margin:4px 2px 12px">Une fiche mémo et un quiz de 3 questions par famille. Le cours complet, à lire au calme, est dans <a class="lnk-a" href="'+esc(K.doc)+'" target="_blank" rel="noopener">le document Cours produits PEM</a>.</p><div class="co-list">'+
+      M.map(function(m){var sc=ui.coS[m.id];return '<button type="button" class="co-it" data-co="'+m.id+'"><span class="ic">'+m.ic+'</span><b>'+esc(m.t)+'</b><small>'+(sc==null?'Pas encore fait':sc===m.qcm.length?'✓ Réussi '+sc+'/'+m.qcm.length:'Quiz : '+sc+'/'+m.qcm.length+' · à refaire')+'</small></button>'}).join("")+'</div>';
+  }
+  var m=M.filter(function(x){return x.id===ui.co})[0];if(!m){ui.co=null;return coursHTML()}
+  var A=ui.coA,h='<button type="button" class="crumb" data-co="">‹ Tous les cours</button><div class="lhead"><h1>'+m.ic+' '+esc(m.t)+'</h1></div>';
+  h+='<section class="sec"><h3>⭐ L\'essentiel</h3><ol class="args">'+m.ess.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ol></section>';
+  h+='<section class="sec"><h3>📖 Vocabulaire</h3><div class="co-voc">'+m.voc.map(function(v){return '<div><b>'+esc(v[0])+'</b><span>'+esc(v[1])+'</span></div>'}).join("")+'</div></section>';
+  h+='<section class="sec"><h3>🎯 Les critères qui départagent</h3><ol class="qs">'+m.crit.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ol></section>';
+  h+='<section class="sec"><h3>⚠️ Pièges</h3><div class="cons">'+m.pieges.map(function(x){return '<div>'+esc(x)+'</div>'}).join("")+'</div></section>';
+  var nA=0,ok=0;m.qcm.forEach(function(q,i){var a=A[m.id+i];if(a!=null){nA++;if(a===q[2])ok++}});
+  h+='<section class="sec"><h3>🧠 Quiz '+(nA===m.qcm.length?'· '+ok+'/'+m.qcm.length:'')+'</h3>'+m.qcm.map(function(q,i){var a=A[m.id+i];
+    return '<div class="co-q"><p><b>'+(i+1)+'.</b> '+esc(q[0])+'</p><div class="co-o">'+q[1].map(function(o,j){var cl=a==null?'':j===q[2]?' good':j===a?' bad':'';return '<button type="button" class="opt'+cl+'" data-qa="'+i+'|'+j+'"'+(a!=null?' disabled':'')+'>'+esc(o)+'</button>'}).join("")+'</div>'+(a!=null?'<p class="co-x">'+(a===q[2]?'✅ Bonne réponse. ':'❌ ')+esc(q[3])+'</p>':'')+'</div>'}).join("")+
+    (nA===m.qcm.length?'<div class="adv-nav"><button type="button" class="chip" data-coreset="1">Refaire le quiz</button>'+(ok<m.qcm.length?'':'<span class="muted">Bravo, module réussi.</span>')+'</div>':'')+'</section>';
+  var rc=m.cat&&PCAT[m.cat];
+  if(rc)h+='<button type="button" class="lnk" data-cogo="'+m.cat+'|'+esc(m.type||"")+'">Voir les produits '+esc(rc.n.toLowerCase())+' du rayon →</button>';
+  return h;
+}
+$("#main").addEventListener("click",function(e){
+  if(ui.tab!=="cours")return;
+  var c=e.target.closest("[data-co]");if(c){ui.co=c.dataset.co||null;history.pushState({tab:"cours",co:ui.co},"");render();window.scrollTo(0,0);return}
+  var q=e.target.closest("[data-qa]");if(q){var x=q.dataset.qa.split("|"),m=K.modules.filter(function(y){return y.id===ui.co})[0];ui.coA[ui.co+x[0]]=+x[1];
+    var all=m.qcm.every(function(_,i){return ui.coA[m.id+i]!=null});if(all){var ok=m.qcm.filter(function(qq,i){return ui.coA[m.id+i]===qq[2]}).length;ui.coS[m.id]=Math.max(ok,ui.coS[m.id]||0);lsSet("rayon-cours",ui.coS)}
+    var y=window.scrollY;render();window.scrollTo(0,y);return}
+  if(e.target.closest("[data-coreset]")){var mm=K.modules.filter(function(y){return y.id===ui.co})[0];mm.qcm.forEach(function(_,i){delete ui.coA[mm.id+i]});render();return}
+  var g=e.target.closest("[data-cogo]");if(g){var z=g.dataset.cogo.split("|");ui.tab="prod";ui.cat=z[0];ui.type=z[1]||"";ui.bud="";ui.sort="";go();return}
+});
 /* ----- onglets ----- */
 $("#tabs").addEventListener("click",function(e){var b=e.target.closest("[data-tab]");if(!b)return;ui.tab=b.dataset.tab;if(ui.q){ui.q="";$("#q").value="";$("#q-clr").hidden=true}if(ui.tab==="prod")ui.cat=null;history.pushState({tab:ui.tab},"");render();window.scrollTo(0,0)});
 
@@ -625,7 +662,7 @@ $("#main").addEventListener("click",function(e){
 function go(){history.pushState({cat:ui.cat},"");render();window.scrollTo(0,0)}
 window.addEventListener("popstate",function(e){
   if(ui.open){closeSheet(true);return}
-  var s=e.state||{};ui.cat=s.cat||null;if(s.tab)ui.tab=s.tab;render();
+  var s=e.state||{};ui.cat=s.cat||null;if(s.tab)ui.tab=s.tab;if(s.tab==="cours")ui.co=s.co||null;render();
 });
 $("#home-btn").addEventListener("click",function(){ui.cmpMode=false;ui.tab="prod";ui.cat=null;ui.q="";$("#q").value="";$("#q-clr").hidden=true;if(ui.open)closeSheet(true);history.pushState({},"");render();window.scrollTo(0,0)});
 
