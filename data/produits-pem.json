@@ -508,7 +508,13 @@
    "seed": true,
    "uniq": "La machine à grain la plus vendue : simple, robuste, la valeur sûre",
    "releve": "2026-11-12",
-   "uniqUse": "Le matin, un bouton et le café est prêt, pour quelqu'un qui ne veut pas se prendre la tête"
+   "uniqUse": "Le matin, un bouton et le café est prêt, pour quelqu'un qui ne veut pas se prendre la tête",
+   "ln": {
+    "n": 3.5,
+    "pos": "Référence historique de l'entrée de gamme.",
+    "g": "Magnifica S ECAM22.140.B",
+    "d": "2026-11"
+   }
   },
   {
    "id": "p015",
@@ -539,6 +545,12 @@
    "avis": {
     "note": 4.7,
     "n": 89
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Spécialiste des boissons chaudes et froides (cold brew).",
+    "g": "Eletta Explore",
+    "d": "2026-11"
    }
   },
   {
@@ -560,7 +572,13 @@
    "seed": true,
    "uniq": "Profils utilisateurs + lait LatteGo en 2 pièces sans tuyau",
    "releve": "2026-11-12",
-   "uniqUse": "Chacun lance SA boisson réglée à son goût, sans refaire les réglages à chaque fois"
+   "uniqUse": "Chacun lance SA boisson réglée à son goût, sans refaire les réglages à chaque fois",
+   "ln": {
+    "n": 4,
+    "pos": "Milieu/haut de gamme avec profils utilisateurs.",
+    "g": "Philips Série 5400",
+    "d": "2026-11"
+   }
   },
   {
    "id": "p017",
@@ -642,7 +660,13 @@
    ],
    "obj": "",
    "acc": "",
-   "seed": true
+   "seed": true,
+   "ln": {
+    "n": 4.5,
+    "pos": "Compatible capsules simples et doubles.",
+    "g": null,
+    "d": "2026-11"
+   }
   },
   {
    "id": "p021",
@@ -2444,7 +2468,13 @@
     "n": 372
    },
    "uniq": "Dinamica à buse avec menu « My » pour enregistrer ses cafés préférés",
-   "uniqUse": "Il fait son cappuccino à la main mais retrouve son café favori en un appui"
+   "uniqUse": "Il fait son cappuccino à la main mais retrouve son café favori en un appui",
+   "ln": {
+    "n": 4,
+    "pos": "Classique éprouvé du milieu de gamme.",
+    "g": null,
+    "d": "2026-11"
+   }
   },
   {
    "id": "p083",
@@ -2546,7 +2576,13 @@
    },
    "uniq": "La machine à grain De'Longhi la moins chère du rayon",
    "uniqUse": "Passer des capsules au grain sans se ruiner, pour un café noir au quotidien",
-   "ref": "1182549"
+   "ref": "1182549",
+   "ln": {
+    "n": 3.5,
+    "pos": "Remplaçante modernisée de la Magnifica S.",
+    "g": "Magnifica Start ECAM220.31",
+    "d": "2026-11"
+   }
   },
   {
    "id": "p086",
@@ -2806,6 +2842,12 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 3,
+    "pos": "Hybride mi-automatique, mi-barista.",
+    "g": null,
+    "d": "2026-11"
    }
   },
   {
@@ -3171,7 +3213,13 @@
    },
    "uniq": "La seule avec 2 carafes, dont une isotherme pour le lait",
    "uniqUse": "Le lait reste au frais sur le plan de travail tout le petit-déjeuner",
-   "ref": "1208880"
+   "ref": "1208880",
+   "ln": {
+    "n": 4,
+    "pos": "Milieu de gamme supérieur.",
+    "g": null,
+    "d": "2026-11"
+   }
   },
   {
    "id": "p106",
@@ -3204,7 +3252,13 @@
    },
    "uniq": "La plus de recettes (42), dont Cold Brew et boissons glacées",
    "uniqUse": "Pour qui varie tout le temps : chaud en hiver, glacé en été, une boisson différente chaque jour",
-   "ref": "1187902"
+   "ref": "1187902",
+   "ln": {
+    "n": 4.5,
+    "pos": "Spécialiste des boissons chaudes et froides (cold brew).",
+    "g": "Eletta Explore",
+    "d": "2026-11"
+   }
   },
   {
    "id": "p107",
@@ -3298,7 +3352,13 @@
    },
    "uniq": "Bean Switch : 2 bacs à grains interchangeables, prix plus doux que la Rivelia",
    "uniqUse": "Changer de café ou passer au déca le soir, en gardant 2 grains différents",
-   "ref": "1240229"
+   "ref": "1240229",
+   "ln": {
+    "n": 5,
+    "pos": "Version plus abordable de la Rivelia, citée parmi les meilleurs compromis.",
+    "g": null,
+    "d": "2026-11"
+   }
   },
   {
    "id": "p110",
@@ -3334,7 +3394,13 @@
    },
    "uniq": "Machine à porte-filtre dont la buse fait la mousse de lait toute seule",
    "uniqUse": "Il fait son café à la main mais la mousse de lait se fait toute seule, même au lait végétal",
-   "ref": "1213223"
+   "ref": "1213223",
+   "ln": {
+    "n": 5,
+    "pos": "Percolateur avec broyeur intégré et assistance tactile ; meilleur semi-automatique de leur sélection.",
+    "g": null,
+    "d": "2026-11"
+   }
   },
   {
    "id": "p111",
@@ -4984,6 +5050,12 @@
    "avis": {
     "note": 4.2,
     "n": 144
+   },
+   "ln": {
+    "n": 4,
+    "pos": "Hybride ludique entre machine à grain et percolateur.",
+    "g": null,
+    "d": "2026-11"
    }
   },
   {
@@ -5013,6 +5085,12 @@
    "avis": {
     "note": 4.8,
     "n": 10
+   },
+   "ln": {
+    "n": 4,
+    "pos": "Hybride ludique entre machine à grain et percolateur.",
+    "g": "Philips Baristina",
+    "d": "2026-11"
    }
   },
   {
@@ -5037,7 +5115,13 @@
    "uniq": "Le modèle Baristina le plus haut de gamme",
    "uniqUse": "À présenter avec la fiche produit",
    "releve": "2026-11-14",
-   "incl": ""
+   "incl": "",
+   "ln": {
+    "n": 4,
+    "pos": "Hybride ludique entre machine à grain et percolateur.",
+    "g": "Philips Baristina",
+    "d": "2026-11"
+   }
   },
   {
    "id": "p168",
@@ -10082,6 +10166,12 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Milieu de gamme polyvalent.",
+    "g": "Philips Série 3300",
+    "d": "2026-11"
    }
   },
   {
@@ -10134,6 +10224,12 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Milieu de gamme polyvalent.",
+    "g": "Philips Série 3300",
+    "d": "2026-11"
    }
   },
   {
@@ -10219,6 +10315,12 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 3.5,
+    "pos": "Référence historique de l'entrée de gamme, rapport qualité-prix redoutable.",
+    "g": null,
+    "d": "2026-11"
    }
   },
   {
@@ -10304,6 +10406,12 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 4,
+    "pos": "Variante de la série Magnifica Evo.",
+    "g": null,
+    "d": "2026-11"
    }
   },
   {
@@ -10426,6 +10534,12 @@
      }
     ],
     "d": "2026-11-15"
+   },
+   "ln": {
+    "n": 5,
+    "pos": "Haut de gamme : carafe à lait et bacs à grains interchangeables.",
+    "g": null,
+    "d": "2026-11"
    }
   },
   {
@@ -10459,6 +10573,12 @@
    "avis": {
     "note": 4.8,
     "n": 12
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Haut de gamme.",
+    "g": null,
+    "d": "2026-11"
    }
   },
   {
@@ -10492,6 +10612,12 @@
    "avis": {
     "note": 4.9,
     "n": 14
+   },
+   "ln": {
+    "n": 5,
+    "pos": "Très haut de gamme.",
+    "g": null,
+    "d": "2026-11"
    }
   },
   {
@@ -10594,6 +10720,12 @@
    "avis": {
     "note": 4.1,
     "n": 84
+   },
+   "ln": {
+    "n": 3,
+    "pos": "Entrée/milieu de gamme Krups.",
+    "g": null,
+    "d": "2026-11"
    }
   },
   {
@@ -10623,7 +10755,13 @@
    "ref": "1236981",
    "uniq": "30 recettes avec carafe à lait",
    "uniqUse": "Amateur de boissons lactées",
-   "releve": "2026-11-14"
+   "releve": "2026-11-14",
+   "ln": {
+    "n": 3,
+    "pos": "Axée boissons chaudes et froides.",
+    "g": null,
+    "d": "2026-11"
+   }
   },
   {
    "id": "p342",
@@ -10685,7 +10823,13 @@
    "ref": "1246651",
    "uniq": "Jura compacte, 18 recettes",
    "uniqUse": "Qualité Jura dans un petit format",
-   "releve": "2026-11-14"
+   "releve": "2026-11-14",
+   "ln": {
+    "n": 5,
+    "pos": "Ultra-compacte, haut de gamme sans rogner sur les fonctions.",
+    "g": null,
+    "d": "2026-11"
+   }
   },
   {
    "id": "p344",
@@ -13678,6 +13822,12 @@
    "avis": {
     "note": 4.3,
     "n": 12
+   },
+   "ln": {
+    "n": 4.5,
+    "pos": "Spécialiste des boissons chaudes et froides (cold brew).",
+    "g": "Eletta Explore",
+    "d": "2026-11"
    }
   },
   {
@@ -13775,6 +13925,12 @@
    "avis": {
     "note": 4.2,
     "n": 20
+   },
+   "ln": {
+    "n": 3,
+    "pos": "Ultra-compacte, café noir uniquement (pas de buse vapeur).",
+    "g": "Melitta E950 Caffeo Solo",
+    "d": "2026-11"
    }
   },
   {
@@ -13805,6 +13961,12 @@
    "avis": {
     "note": 4.6,
     "n": 23
+   },
+   "ln": {
+    "n": 4,
+    "pos": "Hybride ludique entre machine à grain et percolateur.",
+    "g": "Philips Baristina",
+    "d": "2026-11"
    }
   },
   {
@@ -13836,6 +13998,12 @@
    "avis": {
     "note": 4.8,
     "n": 20
+   },
+   "ln": {
+    "n": 4,
+    "pos": "Hybride ludique entre machine à grain et percolateur.",
+    "g": "Philips Baristina",
+    "d": "2026-11"
    }
   },
   {

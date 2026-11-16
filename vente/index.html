@@ -103,6 +103,8 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(-
 .jump button{flex:1 0 auto;border:1px solid var(--line2);background:var(--s1);color:var(--ink);border-radius:999px;padding:7px 9px;font-weight:700;font-size:.78rem;cursor:pointer}
 .jump button.on{background:var(--acc);border-color:var(--acc);color:#1a1206}
 .jump.inl{position:static;padding:2px 0 12px;border:0;background:none}
+.sec small a{color:var(--acc);font-weight:700}
+.lnb{display:flex;gap:12px;align-items:center;margin-bottom:8px}.lnb b{font-size:1.4rem;color:var(--acc);white-space:nowrap}.lng{display:block;color:var(--muted);margin-bottom:6px}
 .stage{display:flex;align-items:baseline;gap:8px;margin:26px 2px -6px;font-weight:800;font-size:1.05rem;scroll-margin-top:120px}
 .stage span{width:24px;height:24px;border-radius:50%;background:var(--acc);color:#1a1206;display:grid;place-items:center;font-size:.8rem;flex:0 0 auto;align-self:center}
 .stage i{font-style:normal;color:var(--muted);font-weight:600;font-size:.82rem}
@@ -333,8 +335,8 @@ function mergeFile(list){
   if(!FILE)return list;var by={};list.forEach(function(p){by[p.id]=p});
   FILE.forEach(function(f){var d=by[f.id];
     if(!d){list.push(f);return}
-    if(f.releve&&(!d.releve||d.releve<f.releve)){["model","price","specs","args","obj","acc","incl","ean","ref","avis","uniq","uniqUse","test","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}
-    else ["incl","ean","ref","avis","uniq","uniqUse","test"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
+    if(f.releve&&(!d.releve||d.releve<f.releve)){["model","price","specs","args","obj","acc","incl","ean","ref","avis","uniq","uniqUse","test","ln","releve"].forEach(function(k){if(f[k]!=null)d[k]=f[k]})}
+    else ["incl","ean","ref","avis","uniq","uniqUse","test","ln"].forEach(function(k){if(d[k]==null&&f[k]!=null)d[k]=f[k]});
   });
   return list;
 }
@@ -638,7 +640,7 @@ function sheetHTML(p){
   h+='<div class="sh-cat">'+C.ic+' '+esc(C.n)+(sp.type?' · '+esc(sp.type):'')+(p.price!=null?' · <b class="sh-price">'+price(p)+'</b>':'')+'<span class="client-tag">Mode client</span></div>';
   h+='<h1 class="sh-title"><small>'+esc(p.brand||"")+'</small>'+esc(p.model)+'</h1>';
   if(p.ref)h+='<div class="sh-ref">Réf. Boulanger : '+String(p.ref).split(/\s*\/\s*/).map(function(r){return '<a href="https://www.boulanger.com/ref/'+encodeURIComponent(r)+'" target="_blank" rel="noopener">'+esc(r)+'</a>'}).join(" · ")+'</div>';
-  if((p.avis&&p.avis.n)||sp.repar!=null)h+='<div class="badges">'+(p.avis&&p.avis.n?'<span class="bdg">★ '+nf.format(p.avis.note)+' / 5 · '+p.avis.n+' avis</span>':'')+(sp.repar!=null?'<span class="bdg rp" style="--rc:'+(sp.repar>=8?"#22c55e":sp.repar>=6?"#a3e635":"#facc15")+'">🔧 Réparabilité '+nf.format(sp.repar)+'/10</span>':'')+(sp.pieces?'<span class="bdg">Pièces : '+esc(sp.pieces)+'</span>':'')+'</div>';
+  if((p.avis&&p.avis.n)||sp.repar!=null||p.ln)h+='<div class="badges">'+(p.avis&&p.avis.n?'<span class="bdg">★ '+nf.format(p.avis.note)+' / 5 · '+p.avis.n+' avis</span>':'')+(p.ln?'<span class="bdg">📰 LN '+nf.format(p.ln.n)+'/5'+(p.ln.g?'*':'')+'</span>':'')+(sp.repar!=null?'<span class="bdg rp" style="--rc:'+(sp.repar>=8?"#22c55e":sp.repar>=6?"#a3e635":"#facc15")+'">🔧 Réparabilité '+nf.format(sp.repar)+'/10</span>':'')+(sp.pieces?'<span class="bdg">Pièces : '+esc(sp.pieces)+'</span>':'')+'</div>';
   var xp=xP(p),xt=xT(p);
   /* 1. Découvrir */
   if(xp&&xp.pour)sec("dec","👤 Pour qui",'<p class="ptxt" style="margin:0">'+esc(xp.pour)+'</p>');
@@ -654,6 +656,7 @@ function sheetHTML(p){
   if(inc.length)sec("pre","📦 Dans la boîte",'<div class="adds">'+inc.map(function(a){return '<span>'+esc(a)+'</span>'}).join("")+'</div>');
   /* 3. Rassurer */
   if(p.test){var t=p.test;sec("ras","🧪 En vrai (tests)",'<p>'+esc(t.txt)+'</p>'+((t.plus||[]).length?'<div class="tst-l"><b>👍</b>'+t.plus.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>':'')+((t.moins||[]).length?'<div class="tst-l bad"><b>👎</b>'+t.moins.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>':'')+'<small>Source : '+(t.src||[]).map(function(x){return '<a href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.n)+'</a>'}).join(' · ')+'</small>');S.ras[S.ras.length-1].h=S.ras[S.ras.length-1].h.replace('class="sec"','class="sec tst"')}
+  if(p.ln){var L=p.ln;sec("ras","📰 Les Numériques",'<div class="lnb"><b>'+nf.format(L.n)+' / 5</b><span>'+esc(L.pos||"")+'</span></div>'+(L.g?'<small class="lng">⚠️ Note du modèle testé « '+esc(L.g)+' » : même gamme, référence différente.</small>':'')+'<small>Relevé nov. 2026 · <a href="https://www.lesnumeriques.com/cafe-petit-dejeuner.html" target="_blank" rel="noopener">lesnumeriques.com</a></small>')}
   if(xp&&xp.cons&&xp.cons.length)sec("ras","⚠️ Points faibles à connaître",'<div class="cons">'+xp.cons.map(function(c){return '<div>'+esc(c)+'</div>'}).join("")+'</div>',1);
   var obj=String(p.obj||"").split(/\s*;\s*|\n+/).filter(Boolean);
   if(obj.length)sec("ras","💬 Si le client hésite",'<div class="objs">'+obj.map(function(o){var x=o.split(/\s*→\s*/);return '<div class="obj">'+(x.length>1?'<b>'+esc(cap(x[0]))+'</b>'+esc(cap(x.slice(1).join(" → "))):esc(cap(o)))+'</div>'}).join("")+'</div>',1);
