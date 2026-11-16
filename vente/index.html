@@ -590,9 +590,10 @@ function infHTML(){
   var f=infFam();
   if(!f||!f.items)return '<div class="lhead"><h1>♾️ Club Infinity</h1></div><p class="empty">Fiches Infinity en cours de chargement…</p>';
   var h='<div class="lhead"><h1>♾️ Club Infinity</h1><span>'+f.items.length+' fiches</span></div>'+
-    '<nav class="jump inl"><button type="button" data-ianc="lv">🧠 Leviers</button><button type="button" data-ianc="hk">🎯 Accroches</button><button type="button" data-ianc="fi">📄 Fiches</button><button type="button" data-ianc="ob">💬 Objections</button></nav>'+'<div class="svc">Assurance panne : réparation illimitée de tous les appareils de l\'univers choisi, achetés chez Boulanger ou ailleurs. Toujours remettre la notice d\'information au client.</div>';
+    '<nav class="jump inl"><button type="button" data-ianc="cd">📋 Conditions</button><button type="button" data-ianc="lv">🧠 Leviers</button><button type="button" data-ianc="hk">🎯 Accroches</button><button type="button" data-ianc="fi">📄 Fiches</button><button type="button" data-ianc="ob">💬 Objections</button></nav>'+'<div class="svc">Assurance panne : réparation illimitée de tous les appareils de l\'univers choisi, achetés chez Boulanger ou ailleurs. Toujours remettre la notice d\'information au client.</div>';
   var LV=X&&X.infLevers;
-  if(LV)h+='<div id="ia-lv"></div><div class="inf'+(ui.lvOpen?" open":"")+'"><button type="button" data-lv="1" aria-expanded="'+!!ui.lvOpen+'">🧠 Les leviers de vente<small>À relire avant la journée</small></button><div class="inf-b"><ul class="lv">'+LV["do"].map(function(l){return '<li><span>'+l[0]+'</span><div><b>'+esc(l[1])+'</b><p>'+esc(l[2])+'</p></div></li>'}).join("")+'</ul><h4>À éviter</h4><ul class="lv">'+LV.dont.map(function(d){return '<li>❌ '+esc(d)+'</li>'}).join("")+'</ul><p style="margin-top:10px">'+esc(LV.note)+'</p></div></div>';
+  if(LV)var D=X&&X.infDoc;if(D)h+='<h2 class="inf-h2" id="ia-cd">📋 Conditions officielles</h2><div class="cmp-wrap"><table class="cmp cmp3"><thead><tr><th>Formule</th><th>Par mois</th><th>Par an</th><th>Inclus</th></tr></thead><tbody>'+D.tarifs.map(function(t){return '<tr><td>'+esc(t[0])+'</td><td><b>'+esc(t[1])+'</b></td><td>'+esc(t[2])+'</td><td>'+esc(t[3])+'</td></tr>'}).join("")+'</tbody></table></div>'+D.blocs.map(function(b,i){var o=ui.cdOpen&&ui.cdOpen[i];return '<div class="inf'+(o?" open":"")+'"><button type="button" data-cd="'+i+'" aria-expanded="'+!!o+'">'+esc(b[0])+'</button><div class="inf-b"><ul>'+b[1].map(function(l){return '<li>'+infLine(l)+'</li>'}).join("")+'</ul></div></div>'}).join("")+'<p class="hint-s">Source : '+esc(D.src)+'. La notice remise au client fait foi.</p>';
+  h+='<div id="ia-lv"></div><div class="inf'+(ui.lvOpen?" open":"")+'"><button type="button" data-lv="1" aria-expanded="'+!!ui.lvOpen+'">🧠 Les leviers de vente<small>À relire avant la journée</small></button><div class="inf-b"><ul class="lv">'+LV["do"].map(function(l){return '<li><span>'+l[0]+'</span><div><b>'+esc(l[1])+'</b><p>'+esc(l[2])+'</p></div></li>'}).join("")+'</ul><h4>À éviter</h4><ul class="lv">'+LV.dont.map(function(d){return '<li>❌ '+esc(d)+'</li>'}).join("")+'</ul><p style="margin-top:10px">'+esc(LV.note)+'</p></div></div>';
   var HK=(X&&X.infHooks)||[];
   if(HK.length)h+='<h2 class="inf-h2" id="ia-hk">🎯 Fiche client ouverte : quelle accroche ?</h2><p class="hint-s">Repère sa situation, lance la phrase, puis écoute.</p>'+HK.map(function(k,i){var o=ui.hkOpen[i];return '<div class="inf hk'+(o?" open":"")+'"><button type="button" data-hk="'+i+'" aria-expanded="'+!!o+'">'+(k.ic?k.ic+' ':'')+esc(k.s)+'</button><div class="inf-b">'+k.a.map(function(a){return /^«/.test(a)?'<div class="inf-hook">'+esc(a)+'</div>':'<p>'+esc(a)+'</p>'}).join("")+'</div></div>'}).join("")+'<h2 class="inf-h2">📚 Fiches Infinity</h2>';
   h+='<h2 class="inf-h2" id="ia-fi">📄 Fiches par situation</h2>';
@@ -608,9 +609,13 @@ function infHTML(){
 function infSheet(p){
   if(!infFam()||(p.specs||{}).type==="Accessoire")return "";
   var pr=+p.price||0,h='<section class="sec int"><h3>♾️ Club Infinity</h3><div class="svc">';
+  if(p.price!=null&&pr<50){h+='<b>Ce produit ne serait pas couvert</b> : Infinity ne prend que les appareils d\'au moins 50 € TTC. L\'argument reste valable si le client a d\'autres appareils à protéger (café, aspirateur, gros électroménager).</div></section>';return h}
   if(pr>=60){var a=Math.max(1,Math.round(pr*.2/11.99)),b=Math.max(a+1,Math.round(pr*.5/11.99));
     h+='Une réparation hors garantie coûte souvent 20 à 50 % du neuf, soit environ <b>'+a+' à '+b+' mois</b> d\'abonnement 1 univers.<br>';}
-  h+='Couvert par l\'univers <b>Électroménager</b>, avec tous les autres appareils de la maison.<br><button type="button" class="lnk" data-gotab="inf">Voir l\'argumentaire Infinity →</button></div></section>';
+  h+='Couvert par l\'univers <b>Électroménager</b>, avec tous les autres appareils de la maison'+(p.cat==="beaute"?' (beauté : vérifie que ce type d\'appareil figure bien sur la liste)':'')+'.<br>';
+  h+='Acheté aujourd\'hui chez Boulanger : <b>0 € de franchise</b>, et adhérer le jour de l\'achat évite les 30 jours de carence.<br>';
+  if(p.cat==="aspi"||/batterie/i.test(JSON.stringify(p.specs||{})))h+='⚠️ La batterie usée, les filtres et brosses sont de l\'usure : non couverts. Une vraie panne (moteur, carte, chargeur) l\'est.<br>';
+  h+='<button type="button" class="lnk" data-gotab="inf">Voir l\'argumentaire et les conditions Infinity →</button></div></section>';
   return h;
 }
 function objHTML(){
@@ -651,6 +656,7 @@ $("#main").addEventListener("click",function(e){
   var an=e.target.closest("[data-ans]");if(an){var Q=ADV[ui.adv.cat].qs;ui.adv.a[Q[ui.adv.i].k]=an.dataset.ans;ui.adv.i++;render();window.scrollTo(0,0);return}
   var av=e.target.closest("[data-adv]");if(av){var A=ui.adv,k=av.dataset.adv;if(k==="back"){if(A.i)A.i--;else A.cat=null}else if(k==="skip")A.i++;else if(k==="edit")A.i=0;else if(k==="reset")ui.adv={cat:null,i:0,a:{}};render();return}
   var rc=e.target.closest(".rc[data-id]");if(rc){openSheet(rc.dataset.id,[].slice.call(document.querySelectorAll(".rc[data-id]")).map(function(x){return x.dataset.id}));return}
+  var cd=e.target.closest("[data-cd]");if(cd){ui.cdOpen=ui.cdOpen||{};var k=cd.dataset.cd;ui.cdOpen[k]=!ui.cdOpen[k];cd.parentNode.classList.toggle("open",!!ui.cdOpen[k]);cd.setAttribute("aria-expanded",String(!!ui.cdOpen[k]));return}
   var lv=e.target.closest("[data-lv]");if(lv){ui.lvOpen=!ui.lvOpen;lv.parentNode.classList.toggle("open",ui.lvOpen);lv.setAttribute("aria-expanded",String(ui.lvOpen));return}
   var hk=e.target.closest("[data-hk]");if(hk){var k4=hk.dataset.hk;ui.hkOpen[k4]=!ui.hkOpen[k4];hk.parentNode.classList.toggle("open",!!ui.hkOpen[k4]);hk.setAttribute("aria-expanded",String(!!ui.hkOpen[k4]));return}
   var io=e.target.closest("[data-inf]");if(io){var k3=io.dataset.inf;ui.infOpen[k3]=!ui.infOpen[k3];io.parentNode.classList.toggle("open",!!ui.infOpen[k3]);io.setAttribute("aria-expanded",String(!!ui.infOpen[k3]));return}
@@ -682,6 +688,7 @@ function alternatives(p){
   return [lo&&{l:"Moins cher",p:lo},hi&&{l:"Monter en gamme",p:hi}].filter(Boolean);
 }
 function services(p){
+  if(p.price!=null&&p.price<50)return "";
   if(!G||!G.families)return "";
   var inf=G.families.filter(function(f){return /infinity/i.test(f.n||f.u||"")})[0],it=inf&&inf.items&&inf.items[0];
   return it&&it.q?'<div class="svc"><b>Garantie / Infinity</b> — à demander : « '+esc(it.q)+' »</div>':"";
@@ -726,7 +733,7 @@ function pitchHTML(p){
     L.push(["Dis-le avant lui","Annonce le point faible toi-même, ça rend crédible : « "+cap(fr).replace(/\.$/,"")+". »"+(reb?" Puis enchaîne : « En contrepartie, "+lc(reb).replace(/\.$/,"")+". »":"")])}
   /* 6 conclure */
   var acc=String(p.acc||"").split(/\s*[;,\n]\s*/).filter(Boolean);if(!acc.length)acc=C.acc||[];
-  L.push(["Conclure","« On part sur celui-là ? "+(acc[0]?"Je vous ajoute "+lc(acc[0])+" pour "+(sp.type==="Accessoire"?"aller avec":"bien démarrer")+" ?":"")+" » Puis pose la question Infinity."]);
+  L.push(["Conclure","« On part sur celui-là ? "+(acc[0]?"Je vous ajoute "+lc(acc[0])+" pour "+(sp.type==="Accessoire"?"aller avec":"bien démarrer")+" ?":"")+" »"+(p.price!=null&&p.price<50?"":" Puis pose la question Infinity.")]);
   return '<ol class="pitch">'+L.map(function(x){return '<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>'}).join("")+'</ol>';
 }
 function sheetHTML(p){

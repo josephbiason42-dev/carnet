@@ -11,7 +11,7 @@
     "On choisit sur 3 critères : autonomie réelle, poids en main, brosse adaptée aux sols.",
     "L'autonomie annoncée est en mode Éco sans brosse motorisée : en usage normal, compte environ la moitié.",
     "La puissance utile se lit en air watts (AW), pas en watts moteur.",
-    "La batterie s'use : 2e batterie et Infinity ont du sens ici."
+    "2e batterie : elle double l'autonomie et prend le relais quand la première s'use (l'usure de batterie n'est pas couverte par Infinity, une vraie panne l'est)."
    ],
    "voc": [
     [
@@ -43,7 +43,8 @@
    ],
    "pieges": [
     "Annoncer l'autonomie Éco comme l'autonomie réelle",
-    "Vendre un modèle lourd à quelqu'un qui a mal au dos"
+    "Vendre un modèle lourd à quelqu'un qui a mal au dos",
+    "Dire qu'Infinity remplace une batterie usée : c'est de l'usure, exclue"
    ],
    "qcm": [
     [

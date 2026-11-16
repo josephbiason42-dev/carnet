@@ -3076,7 +3076,7 @@
    "o": "Je ne veux pas m'engager",
    "r": [
     "Être transparent : l'engagement est de 12 mois, ensuite c'est résiliable",
-    "Le client dispose d'un droit de rétractation après l'adhésion (délai précisé dans la notice)",
+    "Il peut renoncer dans les 30 jours après l'adhésion s'il n'a déclaré aucune panne",
     "« Sur un an, une seule réparation suffit souvent à rentabiliser l'abonnement »",
     "Laisser la notice au client s'il veut y réfléchir chez lui"
    ],
@@ -3155,6 +3155,27 @@
     "Si le client n'a vraiment qu'un appareil à protéger, comparer honnêtement avec le coût probable d'une réparation"
    ],
    "tags": "infinity seulement un appareil ce produit uniquement",
+   "inf": true
+  },
+  {
+   "o": "Et la batterie de mon aspirateur, quand elle sera usée ?",
+   "r": [
+    "Être honnête : une batterie usée par l'usage, c'est de l'usure, exclue comme les filtres et les joints",
+    "En revanche, une vraie panne (moteur, carte électronique, chargeur) est couverte",
+    "C'est pour ça qu'on propose une 2e batterie : elle double l'autonomie et prend le relais"
+   ],
+   "tags": "infinity batterie usure filtre consommable",
+   "inf": true
+  },
+  {
+   "o": "Mon appareil a déjà 10 ans, ça ne sert à rien",
+   "r": [
+    "« Il est justement hors garantie depuis longtemps : c'est lui qui risque le plus. »",
+    "Il est couvert dès lors qu'il fonctionne à l'adhésion (pas de panne existante) et valait au moins 50 €",
+    "Préciser le cas irréparable : bon d'achat de 20 % (acheté chez Boulanger) ou 10 % (acheté ailleurs) de sa valeur après 8 ans",
+    "Et s'il était déjà chez lui avant l'adhésion, même acheté ailleurs : 0 € de franchise, diagnostic, pièces et main-d'œuvre inclus"
+   ],
+   "tags": "infinity vieux ancien age ans",
    "inf": true
   }
  ],
@@ -4840,5 +4861,99 @@
     }
    ]
   }
+ },
+ "infDoc": {
+  "src": "Notice et FAQ Boulanger Infinity, relevé nov. 2026 (contrat n° 4033, assureur Cardif)",
+  "tarifs": [
+   [
+    "1 univers",
+    "11,99 €",
+    "143,88 €",
+    "Réparation illimitée + avantages Club"
+   ],
+   [
+    "2 univers",
+    "16,99 €",
+    "203,88 €",
+    "Idem sur 2 univers"
+   ],
+   [
+    "3 univers",
+    "21,99 €",
+    "263,88 €",
+    "Tous les univers + visite annuelle d'un expert à domicile"
+   ]
+  ],
+  "blocs": [
+   [
+    "✅ Appareils éligibles",
+    [
+     "Valeur d'achat d'au moins 50 € TTC, avec preuve d'achat nominative",
+     "Utilisé au domicile déclaré",
+     "Acheté chez Boulanger ou ailleurs (France ou Espace économique européen)",
+     "Reconditionnés et modèles d'exposition couverts avec facture nominative",
+     "Smartphones exclus : contrat Infinity Smartphone à part"
+    ]
+   ],
+   [
+    "⏱️ Quand ça démarre",
+    [
+     "Prend le relais après la garantie légale (2 ans) et l'éventuelle garantie commerciale",
+     "Délai de carence de 30 jours si aucun appareil garanti n'est acheté le jour de l'adhésion → adhérer le jour d'un achat évite ce délai",
+     "Engagement 12 mois, puis résiliable à tout moment (effet à l'échéance mensuelle suivante)",
+     "Renonciation possible dans les 30 jours si aucun sinistre déclaré"
+    ]
+   ],
+   [
+    "💶 Franchises",
+    [
+     "Acheté chez Boulanger → 0 €",
+     "Acheté ailleurs AVANT l'adhésion → 0 €",
+     "Acheté ailleurs APRÈS l'adhésion → 79 € si technicien à domicile, 39 € sinon",
+     "Pannes successives sur le même appareil → franchise payée une seule fois"
+    ]
+   ],
+   [
+    "🔧 Ce qui est pris en charge",
+    [
+     "Pannes matérielles et fonctionnelles : diagnostic, déplacement, transport, pièces et main-d'œuvre à 100 %",
+     "Nombre d'appareils et de pannes illimité, plafond 10 000 € TTC par année",
+     "Appareil de prêt en magasin pendant la réparation (selon disponibilité)"
+    ]
+   ],
+   [
+    "♻️ Si l'appareil est irréparable",
+    [
+     "Bon d'achat Boulanger valable 1 an",
+     "Acheté chez Boulanger : selon la valeur d'achat (barème) jusqu'à 8 ans, puis 20 % de la valeur d'achat",
+     "Acheté ailleurs : 20 % jusqu'à 8 ans, puis 10 %"
+    ]
+   ],
+   [
+    "🚫 Exclusions",
+    [
+     "Casse accidentelle, chute, choc, liquide renversé (oxydation)",
+     "Vol et perte",
+     "Panne existant avant l'adhésion",
+     "Consommables et pièces d'usure : filtres, batteries usagées, joints, ampoules, accessoires"
+    ]
+   ],
+   [
+    "🎁 Avantages Club",
+    [
+     "Livraison offerte sans minimum, y compris express et créneau pour le volumineux",
+     "2 % cagnottés sur chaque achat (offres ponctuelles à l'adhésion)",
+     "Chèque anniversaire de 6 € par an",
+     "Accès prioritaire au SAV, ventes privées"
+    ]
+   ],
+   [
+    "📞 Contacts client",
+    [
+     "Déclarer une panne : 09 69 32 32 23, 7j/7 de 8 h à 22 h (non surtaxé)",
+     "Contrat, résiliation : 03 59 35 69 40, du lundi au samedi de 10 h à 20 h, ou espace client"
+    ]
+   ]
+  ]
  }
 }
