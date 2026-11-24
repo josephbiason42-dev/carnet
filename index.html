@@ -6151,12 +6151,14 @@ function mdState(d,s){
   if(late>=-30)return {k:"now",txt:"À prendre maintenant"};
   return {k:"todo",txt:"À "+s.t};
 }
+function keepY(fn){var y=window.scrollY||document.documentElement.scrollTop||0;fn();var r=function(){if(Math.abs((window.scrollY||0)-y)>2)window.scrollTo(0,y)};r();requestAnimationFrame(r);setTimeout(r,60);setTimeout(r,250)}
+function mdRefresh(){keepY(function(){renderMeds();if(ui.tab==="home"){renderMedCard();renderDateCard()}else renderHome()})}
 function mdTake(d,key,m){
   var L=state.meds.log[d]=state.meds.log[d]||{},n=new Date();
   if(L[key]){var prev=L[key];delete L[key];if(!Object.keys(L).length)delete state.meds.log[d];if(m&&typeof m.stock==="number")m.stock++;
-    persist("meds");renderMeds();renderHome();toast("Prise annulée",function(){(state.meds.log[d]=state.meds.log[d]||{})[key]=prev;if(m&&typeof m.stock==="number")m.stock--;persist("meds");renderMeds();renderHome()});return}
+    persist("meds");mdRefresh();toast("Prise annulée",function(){(state.meds.log[d]=state.meds.log[d]||{})[key]=prev;if(m&&typeof m.stock==="number")m.stock--;persist("meds");renderMeds();renderHome()});return}
   L[key]={at:d===today()?hhmm():"—"};if(m&&typeof m.stock==="number"&&m.stock>0)m.stock--;
-  persist("meds");renderMeds();renderHome();toast((m?m.name:"Médicament")+" : pris ✓");
+  persist("meds");mdRefresh();toast((m?m.name:"Médicament")+" : pris ✓");
 }
 function mdTakeNeed(m){
   var d=today(),L=state.meds.log[d]=state.meds.log[d]||{},key=m.id+"@b"+Date.now().toString(36);
@@ -6243,7 +6245,7 @@ function renderMedCard(){
     '<div class="md-mini">'+S.slice(0,4).map(function(s){var st=mdState(d,s);return '<span role="button" tabindex="0" class="md-chip md-'+st.k+'" data-mk="'+esc(s.key)+'" data-mid="'+esc(s.m.id)+'" aria-label="'+esc(s.m.name+" "+s.t+" : "+st.txt)+'"><i>'+(st.k==="ok"?"✓":"")+'</i><span><b>'+esc(s.m.name)+'</b><small>'+esc(st.txt)+'</small></span></span>'}).join("")+'</div>'+
     (low.length?'<div class="k-lbl" style="color:#ffb38a">Stock bas : '+esc(low.map(function(m){return m.name}).join(", "))+'</div>':'')+'<span class="k-open">Ouvrir →</span>';
 }
-$("#card-meds").addEventListener("click",function(e){var c=e.target.closest("[data-mk]");if(!c||hEdit)return;e.stopPropagation();e.preventDefault();mdTake(today(),c.dataset.mk,mdFind(c.dataset.mid))},true);
+$("#card-meds").addEventListener("click",function(e){var c=e.target.closest("[data-mk]");if(!c||hEdit)return;e.stopPropagation();e.preventDefault();if(c.blur)c.blur();mdTake(today(),c.dataset.mk,mdFind(c.dataset.mid))},true);
 $("#card-meds").addEventListener("keydown",function(e){var c=e.target.closest("[data-mk]");if(c&&(e.key==="Enter"||e.key===" ")){e.preventDefault();e.stopPropagation();mdTake(today(),c.dataset.mk,mdFind(c.dataset.mid))}},true);
 setInterval(function(){if(!document.hidden&&(ui.tab==="meds"||ui.tab==="home")){renderMeds();renderMedCard()}},5*60000);
 /* ---------- finances : résumé, ajout rapide, filtres ---------- */
