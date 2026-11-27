@@ -4773,7 +4773,7 @@ $("#ib-clear").addEventListener("click",function(){state.inbox=state.inbox.filte
 /* ---------- candidatures ---------- */
 var JST=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien","Offre","Refusé"];
 var JCLS={"A postuler":"st-a","Candidature envoyée":"st-e","Relancé":"st-rl","A relancer":"st-ar","Entretien":"st-i","Offre":"st-o","Refusé":"st-r"};
-var JOPEN=["A postuler","Candidature envoyée","Relancé","A relancer","Entretien"];
+var JOPEN=["A postuler","Relancé","A relancer","Entretien"];
 var jui={filter:"open",q:"",open:null,limit:60};
 function jRelDate(j){return j.relance||(j.date?addDays(j.date,7):"")}
 function jDue(j){
