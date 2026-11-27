@@ -4823,11 +4823,12 @@ function renderJobs(){
   if(due.length>12)h+='<p class="note" style="margin-top:8px">+ '+(due.length-12)+' autres dans la liste ci-dessous (filtre « À relancer »).</p>';
   $("#j-due").innerHTML=h;
   // filtres
-  var F={open:"En cours",due:"À relancer",itv:"Entretiens",ref:"Refusées",all:"Toutes"};
+  var F={open:"En cours",sent:"Envoyées",due:"À relancer",itv:"Entretiens",ref:"Refusées",all:"Toutes"};
   $("#j-filters").innerHTML=Object.keys(F).map(function(k){return '<button type="button" class="chip'+(jui.filter===k?" on":"")+'" data-f="'+k+'">'+F[k]+'</button>'}).join("");
   var q=jui.q.trim().toLowerCase();
   var list=state.jobs.filter(function(j){
     if(jui.filter==="open"&&JOPEN.indexOf(j.status)<0)return false;
+    if(jui.filter==="sent"&&j.status!=="Candidature envoyée")return false;
     if(jui.filter==="due"&&!jDue(j))return false;
     if(jui.filter==="itv"&&j.status!=="Entretien"&&j.status!=="Offre")return false;
     if(jui.filter==="ref"&&j.status!=="Refusé")return false;
